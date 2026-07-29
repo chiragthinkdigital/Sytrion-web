@@ -532,13 +532,13 @@ export default function Navbar() {
         <div className="nav-full">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center" onClick={closeMenu}>
-            <Image
+            <img
               src="/SytrionLogo-8.png"
               alt="Sytrion Logo"
-              width={220}
+              width={280}
               height={56}
-              className="h-12 w-auto"
-              priority
+              className="h-20 "
+             
             />
           </Link>
 
