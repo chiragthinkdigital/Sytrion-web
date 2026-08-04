@@ -62,8 +62,8 @@ export default function Philosophy() {
     const observer = createObserver(0.2);
 
     if (sectionRef.current) {
-      const rows = sectionRef.current.querySelectorAll(".philosophy-row-wrapper");
-      rows.forEach((row) => observer.observe(row));
+      const cards = sectionRef.current.querySelectorAll(".phil-card-wrapper");
+      cards.forEach((card) => observer.observe(card));
     }
     if (closingRef.current) {
       observer.observe(closingRef.current);
@@ -75,87 +75,19 @@ export default function Philosophy() {
   return (
     <>
       <style>{`
-        .philosophy-row-wrapper {
+        .phil-card-wrapper {
           opacity: 0;
+          transform: translateY(40px) scale(0.97);
           transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
                       transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
           will-change: opacity, transform;
         }
-
-        /* Normal row (icon left, text right): icon from left, text from right */
-        .philosophy-row-wrapper:not(.reverse) .philosophy-letter-block {
-          opacity: 0;
-          transform: translateX(-100px) scale(0.95);
-          transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-                      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .philosophy-row-wrapper:not(.reverse) .philosophy-text-block {
-          opacity: 0;
-          transform: translateX(100px) scale(0.95);
-          transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-                      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-          transition-delay: 0.08s;
-        }
-
-        /* Reversed row (icon right, text left): icon from right, text from left */
-        .philosophy-row-wrapper.reverse .philosophy-letter-block {
-          opacity: 0;
-          transform: translateX(100px) scale(0.95);
-          transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-                      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .philosophy-row-wrapper.reverse .philosophy-text-block {
-          opacity: 0;
-          transform: translateX(-100px) scale(0.95);
-          transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-                      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-          transition-delay: 0.08s;
-        }
-
-        /* Step number */
-        .philosophy-row-wrapper .philosophy-step {
-          opacity: 0;
-          transform: scale(0.5);
-          transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-          transition-delay: 0.15s;
-        }
-
-        /* Stagger: each row pair delays by 200ms increments */
-        .philosophy-row-wrapper.in-view {
+        .phil-card-wrapper.in-view {
           opacity: 1;
+          transform: translateY(0) scale(1);
         }
-        .philosophy-row-wrapper.in-view .philosophy-letter-block,
-        .philosophy-row-wrapper.in-view .philosophy-text-block {
-          opacity: 1;
-          transform: translateX(0) scale(1);
-        }
-        .philosophy-row-wrapper.in-view .philosophy-step {
-          opacity: 1;
-          transform: scale(1);
-        }
+        .phil-card-wrapper[data-index="0"] { transition-delay: 0s; }
 
-        .philosophy-row-wrapper[data-index="0"] { transition-delay: 0s; }
-        .philosophy-row-wrapper[data-index="0"] .philosophy-letter-block { transition-delay: 0s; }
-        .philosophy-row-wrapper[data-index="0"] .philosophy-text-block { transition-delay: 0.08s; }
-
-        .philosophy-row-wrapper[data-index="1"] { transition-delay: 0.2s; }
-        .philosophy-row-wrapper[data-index="1"] .philosophy-letter-block { transition-delay: 0.2s; }
-        .philosophy-row-wrapper[data-index="1"] .philosophy-text-block { transition-delay: 0.28s; }
-
-        .philosophy-row-wrapper[data-index="2"] { transition-delay: 0.4s; }
-        .philosophy-row-wrapper[data-index="2"] .philosophy-letter-block { transition-delay: 0.4s; }
-        .philosophy-row-wrapper[data-index="2"] .philosophy-text-block { transition-delay: 0.48s; }
-
-        .philosophy-row-wrapper[data-index="3"] { transition-delay: 0.6s; }
-        .philosophy-row-wrapper[data-index="3"] .philosophy-letter-block { transition-delay: 0.6s; }
-        .philosophy-row-wrapper[data-index="3"] .philosophy-text-block { transition-delay: 0.68s; }
-
-        .philosophy-row-wrapper[data-index="4"] { transition-delay: 0.8s; }
-        .philosophy-row-wrapper[data-index="4"] .philosophy-letter-block { transition-delay: 0.8s; }
-        .philosophy-row-wrapper[data-index="4"] .philosophy-text-block { transition-delay: 0.88s; }
-
-        /* Closing statement animation */
         .philosophy-closing-wrapper {
           opacity: 0;
           transform: translateY(40px) scale(0.97);
@@ -167,75 +99,101 @@ export default function Philosophy() {
           transform: translateY(0) scale(1);
         }
 
-        .philosophy-closing-box {
-          background: #DDE8B5;
-          border-radius: 28px;
-          padding: 40px 48px;
-          max-width: 900px;
-          width: 100%;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+        .fade-only .phil-unified-card {
+          transform: none !important;
         }
-        .philosophy-closing-text {
-          font-size: 20px;
-          font-weight: 500;
-          color: #0f0f0f;
-          line-height: 1.7;
-          text-align: center;
-        }
-
-        /* Reduced motion: fade only */
-        .fade-only .philosophy-letter-block,
-        .fade-only .philosophy-text-block,
-        .fade-only .philosophy-step,
         .fade-only.philosophy-closing-wrapper {
           transform: none !important;
         }
 
-        .philosophy-row {
+        .philosophy-closing-box {
+          background: #111827;
+          border-radius: 28px;
+          padding: 48px 56px;
+          width: 100%;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.2);
+          border: 1px solid rgba(198, 232, 74, 0.15);
+        }
+        .philosophy-closing-text {
+          font-size: 21px;
+          font-weight: 500;
+          color: #E5E7EB;
+          line-height: 1.7;
+          text-align: center;
+        }
+
+        .phil-unified-wrapper {
+          width: 100%;
+        }
+
+        .phil-unified-card {
+          background: #111827;
+          border-radius: 32px;
+          padding: 48px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+          border: 1px solid rgba(255,255,255,0.05);
           display: flex;
-          align-items: center;
-          gap: 60px;
-          padding: 50px 0;
-          border-bottom: 1px solid #DCDECD;
+          flex-direction: column;
+          gap: 48px;
         }
-        .philosophy-row:last-child {
-          border-bottom: none;
+
+        .phil-cohesive-name-row {
+          display: flex;
+          gap: 20px;
         }
-        .philosophy-row.reverse {
-          flex-direction: row-reverse;
-        }
-        .philosophy-letter-block {
+
+        .phil-name-segment {
           flex: 1;
           display: flex;
           align-items: center;
           justify-content: center;
-        }
-        .philosophy-letter-badge {
-          width: 140px;
-          height: 140px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 24px;
-          background: rgba(198, 232, 74, 0.1);
-          border: 2px solid rgba(198, 232, 74, 0.2);
-        }
-        .philosophy-text-block {
-          flex: 1;
-        }
-        .philosophy-step {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
           background: #C6E84A;
-          color: #0f0f0f;
-          font-size: 14px;
-          font-weight: 700;
-          flex-shrink: 0;
+          height: 120px;
+          border-radius: 24px;
+          box-shadow: 0 8px 24px rgba(198, 232, 74, 0.15);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        
+        .phil-name-segment:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 32px rgba(198, 232, 74, 0.25);
+        }
+
+        .phil-segment-letter {
+          font-size: 42px;
+          font-weight: 800;
+          color: #0f0f0f;
+          line-height: 1;
+          letter-spacing: 2px;
+        }
+
+        .phil-definitions-row {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 32px;
+        }
+
+        .phil-definition-item {
+          display: flex;
+          flex-direction: column;
+        }
+        .phil-card-title {
+          font-size: 22px;
+          font-weight: 600;
+          letter-spacing: -0.01em;
+          color: #F9FAFB;
+          margin-bottom: 16px;
+          line-height: 1.3;
+        }
+        
+        .phil-card-desc {
+          font-size: 16px;
+          font-weight: 400;
+          color: #9CA3AF;
+          line-height: 1.7;
+          text-align: left;
+        }
+
         @media (max-width: 1024px) {
           .philosophy-section {
             padding: 80px 40px !important;
@@ -243,23 +201,17 @@ export default function Philosophy() {
           .philosophy-closing {
             padding: 60px 40px !important;
           }
-          .philosophy-row {
-            gap: 40px;
+          .phil-definitions-row {
+            grid-template-columns: repeat(3, 1fr);
+          }
+          .phil-name-segment {
+            height: 100px;
+          }
+          .phil-segment-letter {
+            font-size: 32px;
           }
         }
         @media (max-width: 768px) {
-          .philosophy-row,
-          .philosophy-row.reverse {
-            flex-direction: column;
-            gap: 24px;
-            text-align: center;
-          }
-          .philosophy-letter-block {
-            width: 100%;
-          }
-          .philosophy-text-block {
-            width: 100%;
-          }
           .philosophy-section {
             padding: 60px 20px !important;
           }
@@ -272,20 +224,91 @@ export default function Philosophy() {
           .philosophy-closing-text {
             font-size: 17px;
           }
-          .philosophy-row-wrapper:not(.reverse) .philosophy-letter-block,
-          .philosophy-row-wrapper.reverse .philosophy-letter-block {
-            transform: translateY(-40px) scale(0.95);
+          .phil-definitions-row {
+            grid-template-columns: 1fr;
           }
-          .philosophy-row-wrapper:not(.reverse) .philosophy-text-block,
-          .philosophy-row-wrapper.reverse .philosophy-text-block {
-            transform: translateY(40px) scale(0.95);
+          .phil-unified-card {
+            padding: 32px 24px;
+            gap: 32px;
           }
-          .philosophy-row-wrapper.in-view:not(.reverse) .philosophy-letter-block,
-          .philosophy-row-wrapper.in-view.reverse .philosophy-letter-block,
-          .philosophy-row-wrapper.in-view:not(.reverse) .philosophy-text-block,
-          .philosophy-row-wrapper.in-view.reverse .philosophy-text-block {
-            transform: translateY(0) scale(1);
+          .phil-cohesive-name-row {
+            flex-direction: column;
+            gap: 16px;
           }
+          .phil-name-segment {
+            height: 80px;
+          }
+        }
+        
+        /* ── Dynamic Closing Statement Animations ── */
+        @keyframes philGlowFloat1 {
+          0% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(-30px, 20px) scale(1.1); }
+          100% { transform: translate(0, 0) scale(1); }
+        }
+        @keyframes philGlowFloat2 {
+          0% { transform: translate(0, 0) scale(1.1); }
+          50% { transform: translate(30px, -20px) scale(1); }
+          100% { transform: translate(0, 0) scale(1.1); }
+        }
+        @keyframes philShimmer {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 200% 50%; }
+        }
+        .phil-closing-orb-1 {
+          position: absolute;
+          top: -20px;
+          left: -20px;
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(circle, rgba(198, 232, 74, 0.15), transparent 70%);
+          filter: blur(40px);
+          animation: philGlowFloat1 15s ease-in-out infinite;
+          pointer-events: none;
+          z-index: 0;
+        }
+        .phil-closing-orb-2 {
+          position: absolute;
+          bottom: -40px;
+          right: -40px;
+          width: 250px;
+          height: 250px;
+          background: radial-gradient(circle, rgba(66, 153, 225, 0.15), transparent 70%);
+          filter: blur(40px);
+          animation: philGlowFloat2 18s ease-in-out infinite;
+          pointer-events: none;
+          z-index: 0;
+        }
+        .phil-shimmer-text {
+          background: linear-gradient(90deg, #C6E84A 0%, #4299E1 25%, #C6E84A 50%, #4299E1 75%, #C6E84A 100%);
+          background-size: 200% auto;
+          color: transparent;
+          -webkit-background-clip: text;
+          background-clip: text;
+          animation: philShimmer 8s linear infinite;
+          font-weight: 700;
+        }
+        .phil-keyword {
+          color: #C6E84A;
+          font-weight: 700;
+        }
+        .phil-closing-divider {
+          width: 60px;
+          height: 3px;
+          margin: 32px auto 0;
+          background: linear-gradient(90deg, #C6E84A, #4299E1);
+          border-radius: 2px;
+          opacity: 0.8;
+          animation: philShimmer 6s linear infinite;
+          background-size: 200% auto;
+        }
+        .philosophy-closing-box {
+          position: relative;
+          overflow: hidden;
+        }
+        .philosophy-closing-content {
+          position: relative;
+          z-index: 1;
         }
       `}</style>
 
@@ -295,14 +318,14 @@ export default function Philosophy() {
         className="philosophy-section"
         style={{
           width: "100%",
-          background: "#F8F8F8",
+          background: "#030712",
           padding: "100px 80px",
         }}
       >
-        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
 
           {/* Header */}
-          <div style={{ textAlign: "center", marginBottom: "60px" }}>
+          <div style={{ textAlign: "center", marginBottom: "64px" }}>
             <span className="eyebrow-badge">
               Our philosophy
             </span>
@@ -311,7 +334,7 @@ export default function Philosophy() {
               style={{
                 fontSize: "clamp(32px, 5vw, 48px)",
                 fontWeight: 700,
-                color: "#0f0f0f",
+                color: "#ffffff",
                 lineHeight: 1.15,
                 letterSpacing: "-0.02em",
                 marginBottom: "24px",
@@ -322,12 +345,14 @@ export default function Philosophy() {
 
             <p
               style={{
-                fontSize: "18px",
+                fontSize: "19px",
                 fontWeight: 400,
-                color: "#5A5D66",
-                lineHeight: 1.7,
-                maxWidth: "800px",
+                color: "#9CA3AF",
+                lineHeight: 1.8,
+                maxWidth: "100%",
                 margin: "0 auto",
+                textAlign: "justify",
+                textAlignLast: "center",
               }}
             >
               Every remarkable organization begins with a purpose. Sytrion is
@@ -338,60 +363,33 @@ export default function Philosophy() {
             </p>
           </div>
 
-          {/* Rows */}
-          {cards.map((card, index) => (
-            <div
-              key={card.letter}
-              className={`philosophy-row-wrapper ${index % 2 !== 0 ? "reverse" : ""}`}
-              data-index={index}
-            >
-              <div className={`philosophy-row ${index % 2 !== 0 ? "reverse" : ""}`}>
-                {/* Letter Block */}
-                <div className="philosophy-letter-block">
-                  <div className="philosophy-letter-badge">
-                    <span
-                      style={{
-                        fontSize: "64px",
-                        fontWeight: 700,
-                        color: "#C6E84A",
-                        lineHeight: 1,
-                      }}
-                    >
+          {/* Unified Cards Grid */}
+          <div className="phil-unified-wrapper phil-card-wrapper" data-index="0">
+            <div className="phil-unified-card">
+
+              {/* Cohesive Brand Name Row */}
+              <div className="phil-cohesive-name-row">
+                {cards.map((card) => (
+                  <div key={card.letter} className="phil-name-segment">
+                    <div className="phil-segment-letter">
                       {card.letter}
-                    </span>
+                    </div>
                   </div>
-                </div>
-
-                {/* Step Number */}
-                <div className="philosophy-step">{index + 1}</div>
-
-                {/* Text Block */}
-                <div className="philosophy-text-block">
-                  <h3
-                    style={{
-                      fontSize: "20px",
-                      fontWeight: 700,
-              color: "#0f0f0f",
-              marginBottom: "12px",
-                    }}
-                  >
-                    {card.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: "16px",
-                      fontWeight: 400,
-                      color: "#5A5D66",
-                      lineHeight: 1.7,
-                      maxWidth: "500px",
-                    }}
-                  >
-                    {card.description}
-                  </p>
-                </div>
+                ))}
               </div>
+
+              {/* Definitions Row */}
+              <div className="phil-definitions-row">
+                {cards.map((card, index) => (
+                  <div key={card.letter} className="phil-definition-item">
+                    <h3 className="phil-card-title">{card.title}</h3>
+                    <p className="phil-card-desc">{card.description}</p>
+                  </div>
+                ))}
+              </div>
+
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
@@ -404,21 +402,33 @@ export default function Philosophy() {
           className="philosophy-closing"
           style={{
             width: "100%",
-            padding: "60px 80px",
+            padding: "80px 80px",
             display: "flex",
             justifyContent: "center",
+            background: "#030712",
           }}
         >
-          <div className="philosophy-closing-box">
-            <p className="philosophy-closing-text">
-              Together, these principles define Sytrion — a company built on
-              Synergy, Systems, Transformation, Innovation, Operations, and Next
-              Generation thinking, delivering intelligent solutions that empower
-              businesses and enrich lives.
-            </p>
+          <div className="philosophy-closing-box" style={{ maxWidth: "1000px" }}>
+            <div className="phil-closing-orb-1" />
+            <div className="phil-closing-orb-2" />
+            
+            <div className="philosophy-closing-content">
+              <p className="philosophy-closing-text" style={{ textAlign: "center", color: "#D1D5DB" }}>
+                Together, these principles define <span className="phil-shimmer-text">Sytrion</span> — a company built on{" "}
+                <strong className="phil-keyword">Synergy</strong>,{" "}
+                <strong className="phil-keyword">Systems</strong>,{" "}
+                <strong className="phil-keyword">Transformation</strong>,{" "}
+                <strong className="phil-keyword">Innovation</strong>,{" "}
+                <strong className="phil-keyword">Operations</strong>, and{" "}
+                <strong className="phil-keyword">Next Generation</strong> thinking, delivering intelligent solutions that empower
+                businesses and enrich lives.
+              </p>
+              <div className="phil-closing-divider" />
+            </div>
           </div>
         </section>
       </div>
     </>
   );
 }
+

@@ -1,50 +1,50 @@
 "use client";
 
-import { Globe } from "./Globe";
-
 export default function About() {
   return (
     <>
       <style>{`
         .about-section {
           display: grid;
-          grid-template-columns: 1.1fr 0.9fr;
+          grid-template-columns: 1fr 1fr;
           align-items: center;
           gap: 40px;
-          padding: 60px 80px;
-          min-height: 560px;
+          padding: 80px 80px;
+          min-height: 620px;
           overflow: hidden;
           width: 100%;
-          max-width: 1400px;
+          max-width: 1600px;
           margin: 0 auto;
           background: #F8F8F8;
           position: relative;
         }
-        .about-inner {
-          max-width: 1200px;
-          margin: 0 auto;
-          width: 100%;
-          display: contents;
-        }
         .about-text {
-          text-align: left;
-          max-width: 520px;
+          text-align: justify;
+          hyphens: auto;
+          max-width: 680px;
           padding-left: 20px;
         }
-        .globe-col {
+        .about-visual {
           position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
+          width: 100%;
           height: 100%;
-          padding-right: 20px;
+          min-height: 500px;
+          border-radius: 24px;
+          overflow: hidden;
+          background: #1a1a1a;
         }
-        .globe-wrap {
-          position: relative;
-          width: 500px;
-          height: 500px;
-          margin-left: 0;
-          margin-right: 0;
+        .about-visual img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          position: absolute;
+          inset: 0;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+        }
+        .about-visual:hover img {
+          transform: scale(1.03);
+          filter: brightness(1.05);
         }
         @media (max-width: 1024px) {
           .about-section {
@@ -61,14 +61,8 @@ export default function About() {
             max-width: none;
             padding-left: 0;
           }
-          .globe-col {
-            padding-right: 0;
-            justify-content: center;
-          }
-          .globe-wrap {
-            width: 260px;
-            height: 260px;
-            margin: 30px auto 0;
+          .about-visual {
+            min-height: 360px;
           }
         }
       `}</style>
@@ -82,30 +76,17 @@ export default function About() {
 
           <h2
             style={{
-              fontSize: "clamp(32px, 5vw, 48px)",
+              fontSize: "clamp(36px, 5.5vw, 56px)",
               fontWeight: 700,
               color: "#0f0f0f",
-              lineHeight: 1.15,
+              lineHeight: 1.12,
               letterSpacing: "-0.03em",
-              marginBottom: "24px",
+              marginBottom: "28px",
+              textAlign: "left",
             }}
           >
-            Intelligence with <span style={{ color: "#C6E84A" }}>purpose</span>.
+            Intelligence with <span style={{ color: "#C6E84A", whiteSpace: "nowrap" }}>purpose</span>.
           </h2>
-
-          <p
-            style={{
-              fontSize: "18px",
-              fontWeight: 500,
-              color: "#5A5D66",
-              lineHeight: 1.7,
-              marginBottom: "40px",
-              maxWidth: "65ch",
-            }}
-          >
-            Technology has the power to redefine industries, but only when it
-            solves real business challenges.
-          </p>
 
           <p
             style={{
@@ -114,14 +95,15 @@ export default function About() {
               color: "#5A5D66",
               lineHeight: 1.8,
               marginBottom: "20px",
-              maxWidth: "65ch",
             }}
           >
-            At Sytrion Data Labs, we combine intelligent technologies with
-            operational excellence to simplify complexity, improve productivity,
-            and create sustainable business value. Every engagement is designed to
-            help organizations operate smarter, innovate faster, and adapt
-            confidently in an evolving digital world.
+            &emsp;Technology has the power to redefine industries, but only when it
+            solves real business challenges. At Sytrion Data Labs, we combine
+            intelligent technologies with operational excellence to simplify
+            complexity, improve productivity, and create sustainable business
+            value. Every engagement is designed to help organizations operate
+            smarter, innovate faster, and adapt confidently in an evolving
+            digital world.
           </p>
 
           <p
@@ -130,20 +112,21 @@ export default function About() {
               fontWeight: 400,
               color: "#5A5D66",
               lineHeight: 1.8,
-              maxWidth: "65ch",
             }}
           >
-            Our purpose extends beyond business transformation. We aspire to
+            &emsp;Our purpose extends beyond business transformation. We aspire to
             create opportunities, empower people, and contribute to building a
             more connected and intelligent future.
           </p>
         </div>
 
-        {/* Right — Globe */}
-        <div className="globe-col">
-          <div className="globe-wrap">
-            <Globe />
-          </div>
+        {/* Right — Single Cover Image */}
+        <div className="about-visual">
+          <img
+            src="/aboutai.png"
+            alt="AI-first intelligent automation"
+            loading="lazy"
+          />
         </div>
       </section>
     </>

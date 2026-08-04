@@ -9,6 +9,7 @@ const solutions = [
     description:
       "Empowering enterprises with intelligent automation, cognitive workflows, and AI-driven decision-making to transform operational performance.",
     icon: "/AI Automation & Agentic AI.svg",
+    image: "/AI Automation & Agentic AI.jpg",
   },
   {
     number: "02",
@@ -16,6 +17,7 @@ const solutions = [
     description:
       "Delivering technology-enabled managed operations that combine skilled professionals, standardized processes, and intelligent automation to achieve measurable business outcomes.",
     icon: "/Intelligent Operations (RPAs).svg",
+    image: "/intelligent operations rpa.jpg",
   },
   {
     number: "03",
@@ -23,6 +25,7 @@ const solutions = [
     description:
       "Building trusted data ecosystems through data processing, enrichment, validation, migration, and intelligent data management.",
     icon: "/Data Engineering.svg",
+    image: "/dataengineeringai.jpg",
   },
   {
     number: "04",
@@ -30,6 +33,7 @@ const solutions = [
     description:
       "Transforming enterprise data into actionable insights through dashboards, reporting, predictive analytics, and decision intelligence.",
     icon: "/Analytics & BI.svg",
+    image: "/sol-analytics-bi.jpg",
   },
   {
     number: "05",
@@ -37,6 +41,7 @@ const solutions = [
     description:
       "Digitally transforming freight forwarding, shipping operations, customs documentation, and supply chain support through intelligent operational services.",
     icon: "/Shipping & Logistics.svg",
+    image: "/sol-shipping-logistics.jpg",
   },
   {
     number: "06",
@@ -44,6 +49,7 @@ const solutions = [
     description:
       "Enhancing healthcare administration through claims management, document intelligence, workflow automation, and secure operational support.",
     icon: "/Healthcare Operations.svg",
+    image: "/sol-healthcare-ops.jpg",
   },
 ];
 
@@ -67,16 +73,19 @@ function SolutionCard({ item }: { item: (typeof solutions)[number] }) {
   return (
     <a href="#contact" className="solutions-card" aria-label={item.title}>
       <div className="solutions-card-image">
+        <img
+          src={item.image}
+          alt={item.title}
+          className="solutions-card-bg-img"
+        />
+        <div className="solutions-card-overlay" />
         <div className="solutions-card-noise" />
-        <div className="solutions-card-icon">
-          <img src={item.icon} alt={item.title} width={48} height={48} />
-        </div>
       </div>
       <div className="solutions-card-text">
         <h3 className="solutions-card-title">{item.title}</h3>
         <p className="solutions-card-desc">{item.description}</p>
         <span className="solutions-card-arrow">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="5" y1="12" x2="19" y2="12" />
             <polyline points="12 5 19 12 12 19" />
           </svg>
@@ -156,7 +165,7 @@ export default function Solutions() {
 
         .solutions-card-image {
           position: relative;
-          height: 210px;
+          height: 240px;
           background: #2E2E2C;
           border-radius: 20px 20px 0 0;
           display: flex;
@@ -168,6 +177,24 @@ export default function Solutions() {
         .solutions-card:hover .solutions-card-image {
           background: #232322;
         }
+        .solutions-card-bg-img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.4s ease;
+        }
+        .solutions-card:hover .solutions-card-bg-img {
+          transform: scale(1.05);
+        }
+        .solutions-card-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%);
+          pointer-events: none;
+          z-index: 1;
+        }
 
         .solutions-card-noise {
           position: absolute;
@@ -176,36 +203,11 @@ export default function Solutions() {
           background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
           background-size: 128px 128px;
           pointer-events: none;
-        }
-
-        .solutions-card-icon {
-          position: relative;
-          z-index: 1;
-          width: 56px;
-          height: 56px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #C6E84A;
-          transition: color 0.25s ease, filter 0.25s ease;
-        }
-        .solutions-card-icon img {
-          width: 48px;
-          height: 48px;
-          object-fit: contain;
-          filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(500%) hue-rotate(35deg) brightness(100%) contrast(90%);
-          transition: filter 0.25s ease;
-        }
-        .solutions-card:hover .solutions-card-icon img {
-          filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(500%) hue-rotate(35deg) brightness(100%) contrast(90%) drop-shadow(0 0 12px rgba(198, 232, 74, 0.5));
-        }
-        .solutions-card:hover .solutions-card-icon {
-          color: #C6E84A;
-          filter: drop-shadow(0 0 16px rgba(198, 232, 74, 0.5));
+          z-index: 2;
         }
 
         .solutions-card-text {
-          padding: 24px;
+          padding: 28px 28px 24px;
           display: flex;
           flex-direction: column;
           flex: 1;
@@ -213,15 +215,15 @@ export default function Solutions() {
         }
 
         .solutions-card-title {
-          font-size: 17px;
+          font-size: 19px;
           font-weight: 700;
           color: #242424;
           line-height: 1.3;
-          margin: 0 0 10px;
+          margin: 0 0 12px;
         }
 
         .solutions-card-desc {
-          font-size: 14px;
+          font-size: 15px;
           font-weight: 400;
           color: #5A5D66;
           line-height: 1.6;
@@ -236,8 +238,8 @@ export default function Solutions() {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 32px;
-          height: 32px;
+          width: 36px;
+          height: 36px;
           border-radius: 50%;
           color: #242424;
           margin-top: auto;
@@ -255,8 +257,8 @@ export default function Solutions() {
           justify-content: flex-end;
         }
         .sol-arrow-btn {
-          width: 48px;
-          height: 48px;
+          width: 52px;
+          height: 52px;
           border-radius: 50%;
           border: 1.5px solid rgba(0,0,0,0.15);
           background: transparent;
@@ -296,30 +298,32 @@ export default function Solutions() {
           padding: "100px 80px",
         }}
       >
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
             <span className="eyebrow-badge">
               Our solutions
             </span>
             <h2
               style={{
-                fontSize: "clamp(28px, 4vw, 38px)",
+                fontSize: "clamp(36px, 5vw, 52px)",
                 fontWeight: 700,
                 color: "#242424",
                 lineHeight: 1.2,
-                marginBottom: "12px",
+                marginBottom: "16px",
               }}
             >
               Intelligent Solutions. <span style={{ color: "#C6E84A" }}>Meaningful Outcomes</span>.
             </h2>
             <p
               style={{
-                fontSize: "15px",
+                fontSize: "18px",
                 fontWeight: 400,
                 color: "#5A5D66",
-                lineHeight: 1.6,
-                maxWidth: "650px",
+                lineHeight: 1.7,
+                maxWidth: "100%",
                 margin: "0 auto",
+                textAlign: "justify",
+                textAlignLast: "center",
               }}
             >
               Every business faces unique operational challenges. Our integrated

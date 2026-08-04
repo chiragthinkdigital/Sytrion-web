@@ -15,8 +15,8 @@ const industryCards = [
     name: "Healthcare",
     tagline: "HCLS",
     description: "Claims management, document intelligence & clinical workflow automation.",
-    image: "/healthcare.jpg",
-    imageAlt: "Hospital corridor",
+    image: "/healtcare operations.jpg",
+    imageAlt: "Healthcare operations",
   },
   {
     name: "Insurance",
@@ -36,14 +36,14 @@ const industryCards = [
     name: "Travel",
     tagline: "",
     description: "Booking operations, itinerary management & customer support automation.",
-    image: "/travel.jpg",
+    image: "/travelai.jpg",
     imageAlt: "Travel destination aerial view",
   },
   {
     name: "Banking",
     tagline: "",
     description: "KYC/AML compliance, loan processing & financial operations support.",
-    image: "/banking.jpg",
+    image: "/bankingai.jpg",
     imageAlt: "Modern bank building",
   },
   {
@@ -77,7 +77,7 @@ const stats = [
     count: 50,
     displayValue: "40–50%",
     label: "Automation & Annual Savings",
-    subLabel: "RPAs / Transformation / Macro VBA",
+    // subLabel: "RPAs / Transformation / Macro VBA",
     fillPercent: 50,
   },
   {
@@ -279,12 +279,12 @@ export default function Industries() {
           top: 0;
           left: 0;
           right: 0;
-          padding: 24px;
+          padding: 28px;
           z-index: 1;
         }
         .ind-photo-name {
           display: block;
-          font-size: 20px;
+          font-size: 22px;
           font-weight: 700;
           color: #FFFFFF;
           line-height: 1.3;
@@ -293,7 +293,7 @@ export default function Industries() {
         .ind-photo-tagline {
           font-weight: 500;
           color: rgba(255,255,255,0.7);
-          font-size: 14px;
+          font-size: 15px;
         }
 
         .ind-arrows {
@@ -303,8 +303,8 @@ export default function Industries() {
           justify-content: flex-end;
         }
         .ind-arrow-btn {
-          width: 48px;
-          height: 48px;
+          width: 52px;
+          height: 52px;
           border-radius: 50%;
           border: 1.5px solid rgba(255,255,255,0.2);
           background: transparent;
@@ -340,7 +340,7 @@ export default function Industries() {
         .dash-stats-grid {
           display: grid;
           grid-template-columns: repeat(5, 1fr);
-          gap: 40px 24px;
+          gap: 28px 20px;
           position: relative;
           align-items: start;
         }
@@ -351,13 +351,17 @@ export default function Industries() {
           opacity: 0;
           transform: translateY(20px);
           transition: opacity 0.6s ease, transform 0.6s ease;
+          background: #2A2A2A;
+          border-radius: 20px;
+          padding: 32px 20px;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 4px 20px rgba(0,0,0,0.3);
         }
         .dash-stat-block.dash-in-view {
           opacity: 1;
           transform: translateY(0);
         }
         .dash-stat-number {
-          font-size: 44px;
+          font-size: 48px;
           font-weight: 700;
           color: #C6E84A;
           line-height: 1;
@@ -365,9 +369,9 @@ export default function Industries() {
           margin-bottom: 16px;
         }
         .dash-stat-label {
-          font-size: 13px;
+          font-size: 14px;
           font-weight: 600;
-          color: #242424;
+          color: rgba(255,255,255,0.85);
           text-transform: uppercase;
           letter-spacing: 0.5px;
           line-height: 1.5;
@@ -375,27 +379,27 @@ export default function Industries() {
           text-align: center;
         }
         .dash-stat-sublabel {
-          font-size: 11px;
+          font-size: 12px;
           font-weight: 400;
-          color: #8A8D96;
+          color: rgba(255,255,255,0.45);
           text-transform: none;
           letter-spacing: 0;
-          margin-top: 2px;
+          margin-top: 4px;
           text-align: center;
         }
         @media (max-width: 900px) {
           .dash-stats-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 36px 24px;
+            gap: 24px 16px;
           }
         }
         @media (max-width: 600px) {
           .dash-stats-grid {
             grid-template-columns: 1fr;
-            gap: 32px;
+            gap: 20px;
           }
           .dash-stat-number {
-            font-size: 36px;
+            font-size: 40px;
           }
         }
         @media (max-width: 1024px) {
@@ -422,7 +426,7 @@ export default function Industries() {
           padding: "100px 80px",
         }}
       >
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: "56px" }}>
             <span className="eyebrow-badge">
@@ -430,7 +434,7 @@ export default function Industries() {
             </span>
             <h2
               style={{
-                fontSize: "clamp(32px, 5vw, 48px)",
+                fontSize: "clamp(36px, 5vw, 52px)",
                 fontWeight: 700,
                 color: "#FFFFFF",
                 lineHeight: 1.2,
@@ -445,8 +449,10 @@ export default function Industries() {
                 fontWeight: 400,
                 color: "rgba(255,255,255,0.55)",
                 lineHeight: 1.7,
-                maxWidth: "750px",
+                maxWidth: "100%",
                 margin: "0 auto",
+                textAlign: "justify",
+                textAlignLast: "center",
               }}
             >
               Every industry presents unique opportunities and operational
@@ -515,16 +521,16 @@ export default function Industries() {
         className="industries-stats-band"
         style={{
           width: "100%",
-          background: "#F5F5F0",
+          background: "#F8F8F8",
           padding: "80px 80px",
         }}
       >
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           <h3
             style={{
-              fontSize: "clamp(24px, 3vw, 32px)",
+              fontSize: "clamp(28px, 3.5vw, 38px)",
               fontWeight: 700,
-              color: "#242424",
+              color: "#111827",
               marginBottom: "48px",
               textAlign: "center",
             }}

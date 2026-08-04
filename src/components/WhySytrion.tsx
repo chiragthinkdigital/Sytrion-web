@@ -109,7 +109,7 @@ export default function WhySytrion() {
           padding: "100px 80px",
         }}
       >
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
 
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: "60px" }}>
@@ -119,7 +119,7 @@ export default function WhySytrion() {
 
             <h2
               style={{
-                fontSize: "clamp(32px, 5vw, 48px)",
+                fontSize: "clamp(36px, 5vw, 52px)",
                 fontWeight: 700,
                 color: "#FFFFFF",
                 lineHeight: 1.2,
@@ -131,11 +131,11 @@ export default function WhySytrion() {
 
             <p
               style={{
-                fontSize: "18px",
+                fontSize: "19px",
                 fontWeight: 400,
                 color: "rgba(255,255,255,0.55)",
                 lineHeight: 1.7,
-                maxWidth: "700px",
+                maxWidth: "800px",
                 margin: "0 auto",
               }}
             >
@@ -153,6 +153,7 @@ export default function WhySytrion() {
             {bentoCards.map((card) => (
               <div
                 key={card.id}
+                className="bento-card"
                 style={{
                   gridColumn: `span ${card.span}`,
                   background: "#FFFFFF",
@@ -191,11 +192,11 @@ export default function WhySytrion() {
                         key={tag}
                         style={{
                           display: "inline-block",
-                          padding: "4px 12px",
+                          padding: "5px 14px",
                           borderRadius: "999px",
                           background: "rgba(255,255,255,0.9)",
                           backdropFilter: "blur(4px)",
-                          fontSize: "11px",
+                          fontSize: "12px",
                           fontWeight: 600,
                           letterSpacing: "0.8px",
                           textTransform: "uppercase",
@@ -212,7 +213,7 @@ export default function WhySytrion() {
                 <h3
                   className="bento-title"
                   style={{
-                    fontSize: card.featured ? "24px" : "19px",
+                    fontSize: card.featured ? "26px" : "21px",
                     fontWeight: 700,
                     color: "#0f0f0f",
                     marginTop: "16px",
@@ -232,7 +233,7 @@ export default function WhySytrion() {
                 />
                 <p
                   style={{
-                    fontSize: "15px",
+                    fontSize: "16px",
                     fontWeight: 400,
                     color: "#5A5D66",
                     lineHeight: 1.6,
@@ -260,7 +261,7 @@ export default function WhySytrion() {
               <div style={{ flex: 1 }}>
                 <h3
                   style={{
-                    fontSize: "28px",
+                    fontSize: "32px",
                     fontWeight: 700,
                     color: "#0f0f0f",
                     lineHeight: 1.3,
@@ -271,11 +272,11 @@ export default function WhySytrion() {
                 </h3>
                 <p
                   style={{
-                    fontSize: "16px",
+                    fontSize: "17px",
                     fontWeight: 400,
-                    color: "#5A5D66",
+                    color: "#3A3D44",
                     lineHeight: 1.7,
-                    maxWidth: "480px",
+                    maxWidth: "520px",
                   }}
                 >
                   Protecting client information is fundamental to everything we
@@ -316,9 +317,9 @@ export default function WhySytrion() {
               <span
                 style={{
                   display: "block",
-                  fontSize: "12px",
+                  fontSize: "13px",
                   fontWeight: 700,
-                  color: "#C6E84A",
+                  color: "#8CA825",
                   textTransform: "uppercase",
                   letterSpacing: "1px",
                   marginBottom: "20px",
@@ -346,11 +347,11 @@ export default function WhySytrion() {
                     }}
                   >
                     <svg
-                      width="20"
-                      height="20"
+                      width="22"
+                      height="22"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#C6E84A"
+                      stroke="#8CA825"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -360,7 +361,7 @@ export default function WhySytrion() {
                     </svg>
                     <span
                       style={{
-                        fontSize: "15px",
+                        fontSize: "16px",
                         fontWeight: 500,
                         color: "#0f0f0f",
                         lineHeight: 1.5,

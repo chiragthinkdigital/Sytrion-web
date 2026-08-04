@@ -122,9 +122,9 @@ html {
   display: inline-block;
   background: var(--color-primary);
   color: var(--color-offblack);
-  padding: 6px 16px;
+  padding: 8px 20px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.5px;
   font-variant: small-caps;

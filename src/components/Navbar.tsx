@@ -159,16 +159,18 @@ export default function Navbar() {
           top: 0;
           left: 0;
           right: 0;
+          margin: 12px 16px 0 16px;
           z-index: 50;
-          background: rgba(255, 255, 255, 0.92);
+          background-color: #edeff2;
+          border-radius: 28px;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
-          box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
           transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
                       box-shadow 0.35s ease;
         }
         .nav-header.scrolled {
-          box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
         }
 
         .nav-full {
@@ -538,7 +540,7 @@ export default function Navbar() {
               width={280}
               height={56}
               className="h-20 "
-             
+
             />
           </Link>
 
