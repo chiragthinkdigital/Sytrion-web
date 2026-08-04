@@ -535,7 +535,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center" onClick={closeMenu}>
             <img
-              src="/SytrionLogo-8.png"
+              src="/Sytrionlogo-8.png"
               alt="Sytrion Logo"
               width={280}
               height={56}
