@@ -1,39 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-
-const cards = [
-  {
-    letter: "SY",
-    title: "Synergy · Systems",
-    description:
-      "True transformation begins when people, processes, and technology work together seamlessly. We build systems that create synergy across organizations, enabling greater collaboration, operational consistency, and sustainable growth.",
-  },
-  {
-    letter: "TR",
-    title: "Transformation",
-    description:
-      "Transformation is more than adopting technology, it's about reimagining how businesses operate. We help organizations modernize operations, simplify complexity, and unlock new possibilities through intelligent transformation.",
-  },
-  {
-    letter: "I",
-    title: "Innovation",
-    description:
-      "Innovation is the driving force behind progress. We continuously embrace emerging technologies, Artificial Intelligence, automation, and advanced analytics to solve business challenges with creativity and precision.",
-  },
-  {
-    letter: "O",
-    title: "Operations",
-    description:
-      "Operational excellence is where strategy becomes measurable success. Our intelligent operations framework enables organizations to improve efficiency, enhance customer experiences, and achieve operational resilience at scale.",
-  },
-  {
-    letter: "N",
-    title: "Next Generation",
-    description:
-      "Tomorrow belongs to organizations that innovate today. We build next-generation solutions designed to help businesses remain agile, competitive, and prepared for an ever-changing digital landscape.",
-  },
-];
+import PhilosophyCards from "./PhilosophyCards";
 
 export default function Philosophy() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -99,9 +67,6 @@ export default function Philosophy() {
           transform: translateY(0) scale(1);
         }
 
-        .fade-only .phil-unified-card {
-          transform: none !important;
-        }
         .fade-only.philosophy-closing-wrapper {
           transform: none !important;
         }
@@ -126,89 +91,12 @@ export default function Philosophy() {
           width: 100%;
         }
 
-        .phil-unified-card {
-          background: #111827;
-          border-radius: 32px;
-          padding: 48px;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-          border: 1px solid rgba(255,255,255,0.05);
-          display: flex;
-          flex-direction: column;
-          gap: 48px;
-        }
-
-        .phil-cohesive-name-row {
-          display: flex;
-          gap: 20px;
-        }
-
-        .phil-name-segment {
-          flex: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: #C6E84A;
-          height: 120px;
-          border-radius: 24px;
-          box-shadow: 0 8px 24px rgba(198, 232, 74, 0.15);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .phil-name-segment:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 12px 32px rgba(198, 232, 74, 0.25);
-        }
-
-        .phil-segment-letter {
-          font-size: 42px;
-          font-weight: 800;
-          color: #0f0f0f;
-          line-height: 1;
-          letter-spacing: 2px;
-        }
-
-        .phil-definitions-row {
-          display: grid;
-          grid-template-columns: repeat(5, 1fr);
-          gap: 32px;
-        }
-
-        .phil-definition-item {
-          display: flex;
-          flex-direction: column;
-        }
-        .phil-card-title {
-          font-size: 22px;
-          font-weight: 600;
-          letter-spacing: -0.01em;
-          color: #F9FAFB;
-          margin-bottom: 16px;
-          line-height: 1.3;
-        }
-        
-        .phil-card-desc {
-          font-size: 16px;
-          font-weight: 400;
-          color: #9CA3AF;
-          line-height: 1.7;
-          text-align: left;
-        }
-
         @media (max-width: 1024px) {
           .philosophy-section {
             padding: 80px 40px !important;
           }
           .philosophy-closing {
-            padding: 60px 40px !important;
-          }
-          .phil-definitions-row {
-            grid-template-columns: repeat(3, 1fr);
-          }
-          .phil-name-segment {
-            height: 100px;
-          }
-          .phil-segment-letter {
-            font-size: 32px;
+            padding: 0 40px 40px !important;
           }
         }
         @media (max-width: 768px) {
@@ -216,27 +104,13 @@ export default function Philosophy() {
             padding: 60px 20px !important;
           }
           .philosophy-closing {
-            padding: 40px 20px !important;
+            padding: 0 20px 20px !important;
           }
           .philosophy-closing-box {
             padding: 32px 24px;
           }
           .philosophy-closing-text {
             font-size: 17px;
-          }
-          .phil-definitions-row {
-            grid-template-columns: 1fr;
-          }
-          .phil-unified-card {
-            padding: 32px 24px;
-            gap: 32px;
-          }
-          .phil-cohesive-name-row {
-            flex-direction: column;
-            gap: 16px;
-          }
-          .phil-name-segment {
-            height: 80px;
           }
         }
         
@@ -325,8 +199,8 @@ export default function Philosophy() {
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
 
           {/* Header */}
-          <div style={{ textAlign: "center", marginBottom: "64px" }}>
-            <span className="eyebrow-badge">
+          <div style={{ marginBottom: "64px" }}>
+            <span className="eyebrow-badge" style={{ marginBottom: "18px" }}>
               Our philosophy
             </span>
 
@@ -337,7 +211,7 @@ export default function Philosophy() {
                 color: "#ffffff",
                 lineHeight: 1.15,
                 letterSpacing: "-0.02em",
-                marginBottom: "24px",
+                marginBottom: "16px",
               }}
             >
               More than a name. <span style={{ color: "#C6E84A" }}>A philosophy.</span>
@@ -350,9 +224,6 @@ export default function Philosophy() {
                 color: "#9CA3AF",
                 lineHeight: 1.8,
                 maxWidth: "100%",
-                margin: "0 auto",
-                textAlign: "justify",
-                textAlignLast: "center",
               }}
             >
               Every remarkable organization begins with a purpose. Sytrion is
@@ -365,30 +236,7 @@ export default function Philosophy() {
 
           {/* Unified Cards Grid */}
           <div className="phil-unified-wrapper phil-card-wrapper" data-index="0">
-            <div className="phil-unified-card">
-
-              {/* Cohesive Brand Name Row */}
-              <div className="phil-cohesive-name-row">
-                {cards.map((card) => (
-                  <div key={card.letter} className="phil-name-segment">
-                    <div className="phil-segment-letter">
-                      {card.letter}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Definitions Row */}
-              <div className="phil-definitions-row">
-                {cards.map((card, index) => (
-                  <div key={card.letter} className="phil-definition-item">
-                    <h3 className="phil-card-title">{card.title}</h3>
-                    <p className="phil-card-desc">{card.description}</p>
-                  </div>
-                ))}
-              </div>
-
-            </div>
+            <PhilosophyCards />
           </div>
         </div>
       </section>
@@ -402,7 +250,7 @@ export default function Philosophy() {
           className="philosophy-closing"
           style={{
             width: "100%",
-            padding: "80px 80px",
+            padding: "0 80px 80px",
             display: "flex",
             justifyContent: "center",
             background: "#030712",

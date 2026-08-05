@@ -851,7 +851,7 @@ export default function AboutPage() {
           <div className="orbit-ring r2"><div className="orb" /></div>
           <div className="orbit-ring r3" />
 
-          <div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center", position: "relative", zIndex: 2 }}>
+          <div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "left", position: "relative", zIndex: 2 }}>
             <div className="hero-badge" style={{ marginBottom: "16px" }}>
               <span className="eyebrow-badge">About Sytrion</span>
             </div>
@@ -882,8 +882,8 @@ export default function AboutPage() {
               fontFamily: "var(--font-geist-sans), sans-serif",
               color: "var(--ab-text-muted)",
               lineHeight: 1.7,
-              maxWidth: "540px",
-              margin: "40px auto 0",
+              maxWidth: "100%",
+              margin: "24px 0 0",
             }}>
               We combine intelligent technologies with operational excellence to
               simplify complexity, improve productivity, and create sustainable
@@ -1015,16 +1015,16 @@ export default function AboutPage() {
             ════════════════════════════════════════════════════ */}
         <section className="ab-section ab-section-dark ab-section-border-top">
           <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="reveal-child" style={{ textAlign: "center", marginBottom: "32px" }}>
+            <div className="reveal-child" style={{ marginBottom: "18px" }}>
               <span className="eyebrow-badge">Our vision</span>
             </div>
-            <div style={{ textAlign: "center", maxWidth: "800px", margin: "0 auto" }}>
+            <div style={{ maxWidth: "800px" }}>
               <h2 className="heading-display reveal-child" style={{
                 fontSize: "clamp(32px, 5vw, 48px)",
                 fontFamily: "var(--font-syne), sans-serif",
                 fontWeight: 700,
                 color: "var(--ab-text-primary)",
-                marginBottom: "24px",
+                marginBottom: "16px",
               }}>
                 Shaping the Future of{" "}
                 <span style={{ color: "var(--ab-accent)" }}>Intelligent Operations</span>
@@ -1034,8 +1034,7 @@ export default function AboutPage() {
                 fontFamily: "var(--font-geist-sans), sans-serif",
                 color: "var(--ab-text-secondary)",
                 lineHeight: 1.75,
-                maxWidth: "680px",
-                margin: "0 auto",
+                maxWidth: "100%",
               }}>
                 To become one of the world's most trusted Intelligent Operations partners,
                 enabling organizations to achieve sustainable growth through innovation,
@@ -1050,16 +1049,16 @@ export default function AboutPage() {
             ════════════════════════════════════════════════════ */}
         <section className="ab-section ab-section-darker ab-section-border-top">
           <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="reveal-child" style={{ textAlign: "center", marginBottom: "32px" }}>
+            <div className="reveal-child" style={{ marginBottom: "18px" }}>
               <span className="eyebrow-badge">Our mission</span>
             </div>
-            <div style={{ textAlign: "center", maxWidth: "800px", margin: "0 auto" }}>
+            <div style={{ maxWidth: "800px" }}>
               <h2 className="heading-display reveal-child" style={{
                 fontSize: "clamp(32px, 5vw, 48px)",
                 fontFamily: "var(--font-syne), sans-serif",
                 fontWeight: 700,
                 color: "var(--ab-text-primary)",
-                marginBottom: "24px",
+                marginBottom: "16px",
               }}>
                 Transforming Complexity into{" "}
                 <span style={{ color: "var(--ab-accent)" }}>Competitive Advantage</span>
@@ -1069,8 +1068,7 @@ export default function AboutPage() {
                 fontFamily: "var(--font-geist-sans), sans-serif",
                 color: "var(--ab-text-secondary)",
                 lineHeight: 1.75,
-                maxWidth: "680px",
-                margin: "0 auto",
+                maxWidth: "100%",
               }}>
                 To empower businesses by delivering secure, scalable and intelligent
                 operational solutions that create measurable value for clients, employees
@@ -1123,7 +1121,7 @@ export default function AboutPage() {
             ════════════════════════════════════════════════════ */}
         <section className="ab-section ab-section-darker ab-section-border-top">
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="reveal-section" style={{ textAlign: "center", marginBottom: "72px" }}>
+            <div className="reveal-section" style={{ marginBottom: "72px" }}>
               <div className="reveal-child">
                 <span className="eyebrow-badge">Our values</span>
               </div>
@@ -1132,7 +1130,7 @@ export default function AboutPage() {
                 fontFamily: "var(--font-syne), sans-serif",
                 fontWeight: 700,
                 color: "var(--ab-text-primary)",
-                marginBottom: "20px",
+                marginBottom: "16px",
                 marginTop: "20px",
               }}>
                 What <span style={{ color: "var(--ab-accent)" }}>drives</span> us forward
@@ -1142,8 +1140,7 @@ export default function AboutPage() {
                 fontFamily: "var(--font-geist-sans), sans-serif",
                 color: "var(--ab-text-muted)",
                 lineHeight: 1.7,
-                maxWidth: "520px",
-                margin: "0 auto",
+                maxWidth: "100%",
               }}>
                 Our core values shape every solution we build, every partnership we
                 nurture, and every impact we create.
@@ -1201,8 +1198,8 @@ export default function AboutPage() {
             left: "10%",
           }} />
           <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-            <div style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto" }}>
-              <div className="reveal-child" style={{ marginBottom: "22px" }}>
+            <div style={{ maxWidth: "100%" }}>
+              <div className="reveal-child" style={{ marginBottom: "18px" }}>
                 <span className="eyebrow-badge">Why Sytrion</span>
               </div>
               <h2 className="heading-display reveal-child" style={{
@@ -1210,7 +1207,7 @@ export default function AboutPage() {
                 fontFamily: "var(--font-syne), sans-serif",
                 fontWeight: 700,
                 color: "var(--ab-text-primary)",
-                marginBottom: "24px",
+                marginBottom: "16px",
               }}>
                 Why Businesses Choose{" "}
                 <span style={{ color: "var(--ab-accent)" }}>Sytrion</span>
@@ -1228,7 +1225,7 @@ export default function AboutPage() {
               <div className="reveal-child" style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
+                justifyContent: "flex-start",
                 gap: "16px",
                 marginTop: "32px",
               }}>
@@ -1258,7 +1255,7 @@ export default function AboutPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="ab-section ab-section-darker ab-section-border-top">
           <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="reveal-child" style={{ textAlign: "center", marginBottom: "48px" }}>
+            <div className="reveal-child" style={{ marginBottom: "48px" }}>
               <span className="eyebrow-badge">Industries we serve</span>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "24px" }}>
@@ -1507,7 +1504,7 @@ export default function AboutPage() {
             SCALABLE ENGAGEMENT
             ════════════════════════════════════════════════════════════ */}
         <section className="ab-section ab-section-dark ab-section-border-top">
-          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
+          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div className="reveal-child" style={{ marginBottom: "16px" }}>
               <span className="eyebrow-badge">Scalable Engagement</span>
             </div>
@@ -1516,7 +1513,7 @@ export default function AboutPage() {
               fontFamily: "var(--font-syne), sans-serif",
               fontWeight: 700,
               color: "var(--ab-text-primary)",
-              marginBottom: "20px",
+              marginBottom: "16px",
             }}>
               Solutions that scale with{" "}
               <span style={{ color: "var(--ab-accent)" }}>your ambition</span>
@@ -1526,8 +1523,7 @@ export default function AboutPage() {
               fontFamily: "var(--font-geist-sans), sans-serif",
               color: "var(--ab-text-secondary)",
               lineHeight: 1.75,
-              maxWidth: "600px",
-              margin: "0 auto",
+              maxWidth: "100%",
             }}>
               Whether supporting five professionals or five hundred, our solutions evolve
               with our clients' ambitions — growing as you grow.
@@ -1540,7 +1536,7 @@ export default function AboutPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="ab-section ab-section-darker ab-section-border-top">
           <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="reveal-child" style={{ textAlign: "center", marginBottom: "56px" }}>
+            <div className="reveal-child" style={{ marginBottom: "56px" }}>
               <span className="eyebrow-badge">What sets us apart</span>
               <h2 className="heading-display" style={{
                 fontSize: "clamp(28px, 4vw, 40px)",
@@ -1580,7 +1576,7 @@ export default function AboutPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="ab-section ab-section-dark ab-section-border-top">
           <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="reveal-child" style={{ textAlign: "center", marginBottom: "48px" }}>
+            <div className="reveal-child" style={{ marginBottom: "48px" }}>
               <span className="eyebrow-badge">Our Operating Principles</span>
               <h2 className="heading-display" style={{
                 fontSize: "clamp(28px, 4vw, 40px)",
@@ -1623,7 +1619,7 @@ export default function AboutPage() {
             THE FUTURE WE ARE BUILDING
             ════════════════════════════════════════════════════════════ */}
         <section className="ab-section ab-section-darker ab-section-border-top">
-          <div className="reveal-section" style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "center" }}>
+          <div className="reveal-section" style={{ maxWidth: "1000px", margin: "0 auto" }}>
             <div className="reveal-child" style={{ marginBottom: "16px" }}>
               <span className="eyebrow-badge">Looking ahead</span>
             </div>
@@ -1642,8 +1638,8 @@ export default function AboutPage() {
               fontFamily: "var(--font-geist-sans), sans-serif",
               color: "var(--ab-text-secondary)",
               lineHeight: 1.8,
-              maxWidth: "720px",
-              margin: "0 auto 48px",
+              maxWidth: "100%",
+              margin: "0 0 48px",
             }}>
               Technology alone cannot transform businesses. People alone cannot transform
               businesses. The future belongs to organizations that combine both.
@@ -1733,7 +1729,7 @@ export default function AboutPage() {
             ════════════════════════════════════════════════════ */}
         <section className="ab-section ab-section-dark ab-section-border-top">
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="reveal-section" style={{ textAlign: "center", marginBottom: "72px" }}>
+            <div className="reveal-section" style={{ marginBottom: "72px" }}>
               <div className="reveal-child">
                 <span className="eyebrow-badge">Leadership</span>
               </div>
@@ -1742,7 +1738,7 @@ export default function AboutPage() {
                 fontFamily: "var(--font-syne), sans-serif",
                 fontWeight: 700,
                 color: "var(--ab-text-primary)",
-                marginBottom: "20px",
+                marginBottom: "16px",
                 marginTop: "20px",
               }}>
                 The people behind the{" "}
@@ -1753,8 +1749,7 @@ export default function AboutPage() {
                 fontFamily: "var(--font-geist-sans), sans-serif",
                 color: "var(--ab-text-muted)",
                 lineHeight: 1.7,
-                maxWidth: "520px",
-                margin: "0 auto",
+                maxWidth: "100%",
               }}>
                 Our leadership team brings decades of experience in technology,
                 operations, and business transformation.

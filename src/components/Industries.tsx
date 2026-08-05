@@ -67,7 +67,7 @@ const stats = [
   {
     type: "bar" as const,
     count: 40,
-    displayValue: "20–40%",
+    displayValue: "40%",
     label: "Faster Documentation Processing",
     subLabel: "",
     fillPercent: 40,
@@ -75,9 +75,9 @@ const stats = [
   {
     type: "bar" as const,
     count: 50,
-    displayValue: "40–50%",
+    displayValue: "50%",
     label: "Automation & Annual Savings",
-    // subLabel: "RPAs / Transformation / Macro VBA",
+    subLabel: "",
     fillPercent: 50,
   },
   {
@@ -96,6 +96,31 @@ const stats = [
     subLabel: "",
     fillPercent: 40,
   },
+];
+
+const mosaicImages = [
+  { src: "/global clients.jpg", alt: "Global clients" },
+  { src: "/Faster Documentation Processing.jpg", alt: "Faster documentation processing" },
+  { src: "/Automation & Annual Savings.jpg", alt: "Automation and annual savings" },
+  { src: "/Reduction in Dispute Resolution Time.jpg", alt: "Reduction in dispute resolution time" },
+  { src: "/Reduction in Operating Cost.jpg", alt: "Reduction in operating cost" },
+];
+
+type MosaicTile =
+  | { kind: "image"; image: { src: string; alt: string } }
+  | { kind: "stat"; statIndex: number };
+
+const mosaicTiles: MosaicTile[] = [
+  { kind: "image", image: mosaicImages[0] },
+  { kind: "stat", statIndex: 0 },
+  { kind: "image", image: mosaicImages[1] },
+  { kind: "stat", statIndex: 1 },
+  { kind: "image", image: mosaicImages[2] },
+  { kind: "stat", statIndex: 2 },
+  { kind: "image", image: mosaicImages[3] },
+  { kind: "stat", statIndex: 3 },
+  { kind: "image", image: mosaicImages[4] },
+  { kind: "stat", statIndex: 4 },
 ];
 
 const STAGGER_DELAY = 150;
@@ -336,70 +361,111 @@ export default function Industries() {
           }
         }
 
-        /* ── Stats Count-Up Grid ──────────────────────────── */
-        .dash-stats-grid {
+        /* ── Outcomes Mosaic Grid ──────────────────────────── */
+        .outcomes-section {
+          position: relative;
+          overflow: hidden;
+          background:
+            radial-gradient(ellipse at top right, rgba(198, 232, 74, 0.08), transparent 55%),
+            #0a0a0a;
+        }
+        .outcomes-layout {
+          display: flex;
+          gap: 64px;
+          align-items: center;
+        }
+        .outcomes-intro {
+          flex: 0 0 340px;
+          max-width: 340px;
+        }
+        .outcomes-headline {
+          font-size: 40px;
+          font-weight: 700;
+          color: #FFFFFF;
+          line-height: 1.15;
+          margin-bottom: 20px;
+        }
+        .outcomes-headline span {
+          color: #C6E84A;
+        }
+        .outcomes-sub {
+          font-size: 16px;
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.55);
+          line-height: 1.7;
+          margin-bottom: 28px;
+        }
+        .outcomes-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          color: #C6E84A;
+          font-weight: 700;
+          font-size: 15px;
+          text-decoration: none;
+          transition: opacity 0.2s ease;
+        }
+        .outcomes-link:hover {
+          opacity: 0.8;
+        }
+
+        .outcomes-mosaic {
+          flex: 1;
           display: grid;
           grid-template-columns: repeat(5, 1fr);
-          gap: 28px 20px;
-          position: relative;
-          align-items: start;
+          grid-auto-rows: 170px;
+          gap: 6px;
         }
-        .dash-stat-block {
+        .outcome-tile {
+          border-radius: 14px;
+          overflow: hidden;
+        }
+        .outcome-tile-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.4s ease;
+        }
+        .outcome-tile:hover .outcome-tile-img {
+          transform: scale(1.04);
+        }
+        .outcome-tile-stat {
+          background: #14161D;
           display: flex;
           flex-direction: column;
           align-items: center;
-          opacity: 0;
-          transform: translateY(20px);
-          transition: opacity 0.6s ease, transform 0.6s ease;
-          background: #2A2A2A;
-          border-radius: 20px;
-          padding: 32px 20px;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 4px 20px rgba(0,0,0,0.3);
+          justify-content: center;
+          padding: 12px;
+          text-align: center;
         }
-        .dash-stat-block.dash-in-view {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        .dash-stat-number {
-          font-size: 48px;
+        .outcome-tile-number {
+          font-size: 36px;
           font-weight: 700;
           color: #C6E84A;
           line-height: 1;
           font-variant-numeric: tabular-nums;
-          margin-bottom: 16px;
+          margin-bottom: 10px;
         }
-        .dash-stat-label {
-          font-size: 14px;
-          font-weight: 600;
-          color: rgba(255,255,255,0.85);
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          line-height: 1.5;
-          min-height: 40px;
-          text-align: center;
+        .outcome-tile-label {
+          font-size: 13px;
+          font-weight: 500;
+          color: rgba(255, 255, 255, 0.85);
+          line-height: 1.45;
         }
-        .dash-stat-sublabel {
-          font-size: 12px;
-          font-weight: 400;
-          color: rgba(255,255,255,0.45);
-          text-transform: none;
-          letter-spacing: 0;
-          margin-top: 4px;
-          text-align: center;
-        }
-        @media (max-width: 900px) {
-          .dash-stats-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px 16px;
+        @media (max-width: 1000px) {
+          .outcomes-layout {
+            flex-direction: column;
+            gap: 40px;
+            align-items: flex-start;
           }
-        }
-        @media (max-width: 600px) {
-          .dash-stats-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
+          .outcomes-intro {
+            flex: none;
+            max-width: none;
           }
-          .dash-stat-number {
-            font-size: 40px;
+          .outcomes-mosaic {
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 150px;
           }
         }
         @media (max-width: 1024px) {
@@ -411,7 +477,7 @@ export default function Industries() {
           .ind-photo-section {
             padding: 60px 20px !important;
           }
-          .industries-stats-band {
+          .outcomes-section {
             padding: 60px 20px !important;
           }
         }
@@ -428,8 +494,8 @@ export default function Industries() {
       >
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           {/* Header */}
-          <div style={{ textAlign: "center", marginBottom: "56px" }}>
-            <span className="eyebrow-badge">
+          <div style={{ marginBottom: "56px" }}>
+            <span className="eyebrow-badge" style={{ marginBottom: "18px" }}>
               Industries we serve
             </span>
             <h2
@@ -438,7 +504,7 @@ export default function Industries() {
                 fontWeight: 700,
                 color: "#FFFFFF",
                 lineHeight: 1.2,
-                marginBottom: "24px",
+                marginBottom: "16px",
               }}
             >
               Delivering Expertise <span style={{ color: "#C6E84A" }}>Across Industries</span>
@@ -450,9 +516,6 @@ export default function Industries() {
                 color: "rgba(255,255,255,0.55)",
                 lineHeight: 1.7,
                 maxWidth: "100%",
-                margin: "0 auto",
-                textAlign: "justify",
-                textAlignLast: "center",
               }}
             >
               Every industry presents unique opportunities and operational
@@ -515,50 +578,61 @@ export default function Industries() {
         </div>
       </section>
 
-      {/* ── Stats Dashboard Band ──────────────────────────────── */}
+      {/* ── Outcomes Mosaic ─────────────────────────────────────── */}
       <section
         ref={sectionRef}
-        className="industries-stats-band"
+        className="outcomes-section"
         style={{
           width: "100%",
-          background: "#F8F8F8",
-          padding: "80px 80px",
+          padding: "100px 80px",
         }}
       >
-        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-          <h3
-            style={{
-              fontSize: "clamp(28px, 3.5vw, 38px)",
-              fontWeight: 700,
-              color: "#111827",
-              marginBottom: "48px",
-              textAlign: "center",
-            }}
-          >
-            Delivering Outcomes
-          </h3>
+        <div style={{ maxWidth: "1400px", margin: "0 auto" }} className="outcomes-layout">
+          {/* Left column — intro */}
+          <div className="outcomes-intro">
+            <h3 className="outcomes-headline">
+              Delivering <span>Outcomes</span>
+            </h3>
+            <p className="outcomes-sub">
+              From accelerated documentation processing to smarter automation
+              and lower operating costs, our intelligent operations deliver
+              measurable results — consistently, across every engagement.
+            </p>
+            <a href="#contact" className="outcomes-link">
+              Read More <span aria-hidden="true">↗</span>
+            </a>
+          </div>
 
-          <div className="dash-stats-grid">
-            {stats.map((stat, i) => {
-              const animVal = animValues.current[i];
+          {/* Right column — mosaic grid */}
+          <div className="outcomes-mosaic">
+            {mosaicTiles.map((tile, i) => {
+              if (tile.kind === "image") {
+                return (
+                  <div key={`img-${i}`} className="outcome-tile">
+                    <img
+                      src={tile.image.src}
+                      alt={tile.image.alt}
+                      className="outcome-tile-img"
+                      loading="lazy"
+                    />
+                  </div>
+                );
+              }
+              const stat = stats[tile.statIndex];
+              const animVal = animValues.current[tile.statIndex];
               const numPart = inView ? animVal : 0;
               const suffix = stat.displayValue === "5+" ? "+" : "%";
-
               return (
                 <div
-                  key={stat.label}
-                  className={`dash-stat-block ${inView ? "dash-in-view" : ""}`}
-                  style={{ transitionDelay: `${i * STAGGER_DELAY}ms` }}
+                  key={`stat-${i}`}
+                  className="outcome-tile outcome-tile-stat"
                   role="group"
                   aria-label={`${stat.displayValue} ${stat.label}`}
                 >
-                  <div className="dash-stat-number">
+                  <div className="outcome-tile-number">
                     {numPart}{suffix}
                   </div>
-                  <div className="dash-stat-label">{stat.label}</div>
-                  {stat.subLabel && (
-                    <div className="dash-stat-sublabel">{stat.subLabel}</div>
-                  )}
+                  <div className="outcome-tile-label">{stat.label}</div>
                 </div>
               );
             })}

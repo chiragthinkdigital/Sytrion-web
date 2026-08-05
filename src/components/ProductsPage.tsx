@@ -322,8 +322,8 @@ export default function ProductsPage() {
           padding: "140px 80px 80px",
         }}
       >
-        <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
-            <span className="eyebrow-badge">
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+            <span className="eyebrow-badge" style={{ marginBottom: "18px" }}>
               Our solutions
             </span>
 
@@ -333,7 +333,7 @@ export default function ProductsPage() {
               fontWeight: 700,
               color: "#242424",
               lineHeight: 1.2,
-              marginBottom: "24px",
+              marginBottom: "16px",
             }}
           >
             Intelligent <span style={{ color: "#C6E84A" }}>Solutions</span>. Meaningful Outcomes.
@@ -345,8 +345,7 @@ export default function ProductsPage() {
               fontWeight: 400,
               color: "#5A5D66",
               lineHeight: 1.7,
-              maxWidth: "680px",
-              margin: "0 auto",
+              maxWidth: "100%",
             }}
           >
             Every business faces unique operational challenges. Our portfolio of

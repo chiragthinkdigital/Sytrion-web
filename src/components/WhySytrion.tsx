@@ -1,377 +1,335 @@
 "use client";
 
-const bentoCards = [
-  {
-    id: 1,
-    span: 7,
-    featured: false,
-    title: "AI-First Thinking",
-    tags: ["AI", "INNOVATION"],
-    description:
-      "Embedding intelligence into every process to improve efficiency and accelerate innovation.",
-    image: "/ai first thinking.jpg",
-  },
-  {
-    id: 2,
-    span: 5,
-    featured: false,
-    title: "Business Transformation",
-    tags: ["TRANSFORMATION", "OPERATIONS"],
-    description:
-      "Helping organizations modernize operations through scalable, measurable transformation initiatives.",
-    image: "/business transformation.jpg",
-  },
-  {
-    id: 3,
-    span: 4,
-    featured: false,
-    title: "Enterprise Security",
-    tags: ["SECURITY", "GOVERNANCE"],
-    description:
-      "Protecting critical business information with secure infrastructure, governance frameworks, and confidentiality-first practices.",
-    image: "/enterprise  secuirty.jpg",
-  },
-  {
-    id: 4,
-    span: 4,
-    featured: false,
-    title: "Scalable Delivery",
-    tags: ["SCALABLE", "FLEXIBLE"],
-    description:
-      "Flexible engagement models that grow alongside your business.",
-    image: "/scalable delivery.jpg",
-  },
-  {
-    id: 5,
-    span: 4,
-    featured: false,
-    title: "Customer Partnership",
-    tags: ["PARTNERSHIP", "TRUST"],
-    description:
-      "Building long-term relationships founded on trust, transparency, collaboration, and shared success.",
-    image: "/customer partnership.jpg",
-  },
-];
+const ACCENT = "#c6ff3d";
+const NAVY = "#0e1b3d";
 
-const securityItems = [
-  "Secure Infrastructure",
-  "Role Based Access Controls",
-  "Confidentiality First",
-  "Business Continuity Planning",
-  "Audit-Ready Processes",
-  "Compliance-Oriented Operations",
-];
+function Badge({ children }: { children: React.ReactNode }) {
+  return <span className="ws-badge">{children}</span>;
+}
+
+function Title({ children }: { children: React.ReactNode }) {
+  return <h3 className="ws-title">{children}</h3>;
+}
 
 export default function WhySytrion() {
   return (
     <>
       <style>{`
-        .bento-card:hover .bento-title {
-          color: #C6E84A !important;
+        .ws-section {
+          width: 100%;
+          background: #0b1220;
+          padding: 100px 80px;
         }
-        @media (max-width: 1024px) {
-          .bento-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-          .bento-grid > div {
-            grid-column: span 1 !important;
-          }
-          .security-row1 {
-            flex-direction: column !important;
-            gap: 40px !important;
-          }
+        .ws-wrap {
+          max-width: 1400px;
+          margin: 0 auto;
         }
-        @media (max-width: 768px) {
-          .bento-grid {
-            grid-template-columns: 1fr !important;
+
+        /* ── Header ─────────────────────────────────────── */
+        .ws-header {
+          margin-bottom: 60px;
+        }
+        .ws-pill {
+          display: inline-block;
+          border: 1.5px solid ${ACCENT};
+          color: ${ACCENT};
+          padding: 8px 22px;
+          border-radius: 999px;
+          font-size: 14px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          margin-bottom: 18px;
+        }
+        .ws-headline {
+          font-size: clamp(36px, 5vw, 52px);
+          font-weight: 700;
+          color: #ffffff;
+          line-height: 1.2;
+          margin-bottom: 16px;
+        }
+        .ws-sub {
+          font-size: 19px;
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.55);
+          line-height: 1.7;
+          max-width: 100%;
+        }
+
+        /* ── Rows & cards ───────────────────────────────── */
+        .ws-row {
+          display: flex;
+          gap: 24px;
+          margin-bottom: 24px;
+        }
+        .ws-card {
+          background: #f4f5f7;
+          border-radius: 16px;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25), 0 16px 40px rgba(0, 0, 0, 0.3);
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .ws-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), 0 24px 60px rgba(0, 0, 0, 0.35);
+        }
+        .ws-wide {
+          flex: 1.4;
+        }
+        .ws-narrow {
+          flex: 1;
+        }
+
+        /* Split card — side image */
+        .ws-split {
+          flex-direction: row;
+        }
+        .ws-vcenter .ws-content {
+          justify-content: center;
+        }
+        .ws-img-side {
+          flex: 0 0 30%;
+        }
+        .ws-split.ws-img-26 .ws-img-side {
+          flex-basis: 26%;
+        }
+        .ws-img-side img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        /* Image-top card */
+        .ws-img-top {
+          width: 100%;
+          height: 230px;
+          object-fit: cover;
+          display: block;
+        }
+
+        /* Card content */
+        .ws-content {
+          padding: 28px;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+        }
+        .ws-content .ws-badge {
+          margin-bottom: 14px;
+        }
+        .ws-content .ws-title {
+          margin-bottom: 12px;
+        }
+
+        /* Shared primitives */
+        .ws-badge {
+          align-self: flex-start;
+          display: inline-block;
+          background: ${NAVY};
+          color: #ffffff;
+          padding: 6px 14px;
+          border-radius: 6px;
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: 0.3px;
+        }
+        .ws-title {
+          font-size: 24px;
+          font-weight: 700;
+          color: ${NAVY};
+          line-height: 1.3;
+        }
+        .ws-desc {
+          font-size: 16px;
+          font-weight: 400;
+          color: #5a6478;
+          line-height: 1.6;
+        }
+
+        /* ── Row 3 — full-width split card ──────────────── */
+        .ws-row3 {
+          flex-direction: row;
+          margin-bottom: 0;
+        }
+        .ws-half {
+          flex: 1;
+          display: flex;
+        }
+        .ws-half-right {
+          border-left: 1px solid rgba(14, 27, 61, 0.14);
+          padding: 32px 36px;
+          flex-direction: column;
+        }
+        .ws-half-left {
+          padding: 0;
+          flex-direction: row;
+          overflow: hidden;
+        }
+        .ws-half-img {
+          flex: 0 0 40%;
+          overflow: hidden;
+        }
+        .ws-half-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        .ws-half-body {
+          flex: 1;
+          padding: 32px 36px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        .ws-half .ws-badge {
+          margin-bottom: 14px;
+        }
+        .ws-half .ws-title {
+          margin-bottom: 12px;
+        }
+
+        /* ── Responsive ─────────────────────────────────── */
+        @media (max-width: 820px) {
+          .ws-section {
+            padding: 60px 20px;
           }
-          .why-section {
-            padding: 60px 20px !important;
+          .ws-row {
+            flex-direction: column;
+            margin-bottom: 20px;
           }
-          .security-callout {
-            padding: 30px !important;
+          .ws-wide,
+          .ws-narrow {
+            flex: 1 1 auto;
           }
-          .security-checklist {
-            grid-template-columns: 1fr !important;
+          .ws-split {
+            flex-direction: column;
           }
-          .security-row1 {
-            flex-direction: column !important;
-            gap: 32px !important;
+          .ws-split.ws-img-26 .ws-img-side {
+            flex-basis: auto;
+          }
+          .ws-img-side {
+            flex: none;
+            width: 100%;
+          }
+          .ws-img-side img {
+            height: 230px;
+            width: 100%;
+          }
+          .ws-row3 {
+            flex-direction: column;
+          }
+          .ws-half-left {
+            flex-direction: column;
+          }
+          .ws-half-img {
+            flex: none;
+            width: 100%;
+            height: 220px;
+          }
+          .ws-half-right {
+            border-left: none;
+            border-top: 1px solid rgba(14, 27, 61, 0.14);
           }
         }
       `}</style>
 
-      <section
-        className="why-section"
-        style={{
-          width: "100%",
-          background: "#242424",
-          padding: "100px 80px",
-        }}
-      >
-        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-
+      <section className="ws-section">
+        <div className="ws-wrap">
           {/* Header */}
-          <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <span className="eyebrow-badge">
-              Why Sytrion
-            </span>
+          <div className="ws-header">
+            <span className="ws-pill">Why Sytrion</span>
 
-            <h2
-              style={{
-                fontSize: "clamp(36px, 5vw, 52px)",
-                fontWeight: 700,
-                color: "#FFFFFF",
-                lineHeight: 1.2,
-                marginBottom: "24px",
-              }}
-            >
-              A Trusted Partner for <span style={{ color: "#C6E84A" }}>Intelligent Transformation</span>
+            <h2 className="ws-headline">
+              A Trusted Partner for <span style={{ color: ACCENT }}>Intelligent Transformation</span>
             </h2>
 
-            <p
-              style={{
-                fontSize: "19px",
-                fontWeight: 400,
-                color: "rgba(255,255,255,0.55)",
-                lineHeight: 1.7,
-                maxWidth: "800px",
-                margin: "0 auto",
-              }}
-            >
+            <p className="ws-sub">
               Organizations choose Sytrion because we combine technological
               innovation with operational expertise to deliver meaningful
               business outcomes.
             </p>
           </div>
 
-          {/* Bento Grid */}
-          <div
-            className="bento-grid"
-            style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "24px" }}
-          >
-            {bentoCards.map((card) => (
-              <div
-                key={card.id}
-                className="bento-card"
-                style={{
-                  gridColumn: `span ${card.span}`,
-                  background: "#FFFFFF",
-                  border: "none",
-                  borderRadius: "24px",
-                  padding: "32px",
-                  boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 8px 40px rgba(0,0,0,0.08)",
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                  position: "relative",
-                  overflow: "hidden",
-                  cursor: "default",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-4px)";
-                  e.currentTarget.style.boxShadow = "0 4px 8px rgba(0,0,0,0.06), 0 16px 56px rgba(0,0,0,0.12)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.04), 0 8px 40px rgba(0,0,0,0.08)";
-                }}
-              >
-                <div style={{ position: "relative", margin: "-32px -32px 20px -32px" }}>
-                  <img
-                    src={card.image}
-                    alt={card.title}
-                    style={{
-                      width: "100%",
-                      height: "200px",
-                      objectFit: "cover",
-                      borderRadius: "18px",
-                    }}
-                  />
-                  <div style={{ position: "absolute", bottom: "12px", left: "12px", display: "flex", gap: "8px", flexWrap: "wrap" }}>
-                    {card.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        style={{
-                          display: "inline-block",
-                          padding: "5px 14px",
-                          borderRadius: "999px",
-                          background: "rgba(255,255,255,0.9)",
-                          backdropFilter: "blur(4px)",
-                          fontSize: "12px",
-                          fontWeight: 600,
-                          letterSpacing: "0.8px",
-                          textTransform: "uppercase",
-                          color: "#242424",
-                          lineHeight: 1,
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <h3
-                  className="bento-title"
-                  style={{
-                    fontSize: card.featured ? "26px" : "21px",
-                    fontWeight: 700,
-                    color: "#0f0f0f",
-                    marginTop: "16px",
-                    marginBottom: "0px",
-                  }}
-                >
-                  {card.title}
-                </h3>
-                <div
-                  style={{
-                    width: "100%",
-                    height: "1px",
-                    background: "#E0E0E0",
-                    border: "none",
-                    margin: "16px 0",
-                  }}
-                />
-                <p
-                  style={{
-                    fontSize: "16px",
-                    fontWeight: 400,
-                    color: "#5A5D66",
-                    lineHeight: 1.6,
-                    marginTop: "0px",
-                  }}
-                >
-                  {card.description}
-                </p>
+          {/* Row 1 — AI-First Thinking (wide) + Business Transformation (narrow) */}
+          <div className="ws-row">
+            <div className="ws-card ws-wide ws-split ws-vcenter">
+              <div className="ws-img-side">
+                <img src="/ai first thinking.jpg" alt="AI-First Thinking" />
               </div>
-            ))}
-          </div>
-
-          {/* Security Callout */}
-          <div
-            className="security-callout"
-            style={{
-              marginTop: "60px",
-              background: "#F0F0F0",
-              borderRadius: "20px",
-              padding: "50px 50px 42px 50px",
-            }}
-          >
-            {/* Row 1 — Heading + Image */}
-            <div className="security-row1" style={{ display: "flex", gap: "60px", alignItems: "center" }}>
-              <div style={{ flex: 1 }}>
-                <h3
-                  style={{
-                    fontSize: "32px",
-                    fontWeight: 700,
-                    color: "#0f0f0f",
-                    lineHeight: 1.3,
-                    marginBottom: "20px",
-                  }}
-                >
-                  Security by Design. Trust by Commitment.
-                </h3>
-                <p
-                  style={{
-                    fontSize: "17px",
-                    fontWeight: 400,
-                    color: "#3A3D44",
-                    lineHeight: 1.7,
-                    maxWidth: "520px",
-                  }}
-                >
-                  Protecting client information is fundamental to everything we
-                  do. Our delivery framework incorporates secure infrastructure,
-                  role-based access controls, confidentiality agreements,
-                  governance policies, and compliance-focused operational
-                  practices to ensure your business information remains protected
-                  throughout every engagement.
+              <div className="ws-content">
+                <Badge>AI &middot; Innovation</Badge>
+                <Title>AI-First Thinking</Title>
+                <p className="ws-desc">
+                  Embedding intelligence into every process to improve
+                  efficiency and accelerate innovation.
                 </p>
-              </div>
-
-              <div
-                style={{
-                  flex: 1,
-                  borderRadius: "16px",
-                  overflow: "hidden",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  minHeight: "220px",
-                }}
-              >
-                <img
-                  src="/Security by Design. Trust by Commitment..jpg"
-                  alt="Security by Design"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    borderRadius: "16px",
-                  }}
-                />
               </div>
             </div>
 
-            {/* Row 2 — Commitment Highlights (full width) */}
-            <div style={{ marginTop: "44px" }}>
-              <span
-                style={{
-                  display: "block",
-                  fontSize: "13px",
-                  fontWeight: 700,
-                  color: "#8CA825",
-                  textTransform: "uppercase",
-                  letterSpacing: "1px",
-                  marginBottom: "20px",
-                }}
-              >
-                Commitment Highlights
-              </span>
-              <div
-                className="security-checklist"
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr 1fr",
-                  gap: "0 24px",
-                }}
-              >
-                {securityItems.map((item) => (
-                  <div
-                    key={item}
-                    style={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                      gap: "12px",
-                      marginBottom: "4px",
-                      minHeight: "44px",
-                    }}
-                  >
-                    <svg
-                      width="22"
-                      height="22"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#8CA825"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      style={{ flexShrink: 0, marginTop: "2px" }}
-                    >
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    <span
-                      style={{
-                        fontSize: "16px",
-                        fontWeight: 500,
-                        color: "#0f0f0f",
-                        lineHeight: 1.5,
-                      }}
-                    >
-                      {item}
-                    </span>
-                  </div>
-                ))}
+            <div className="ws-card ws-narrow">
+              <img className="ws-img-top" src="/business transformation.jpg" alt="Business Transformation" />
+              <div className="ws-content">
+                <Badge>Transformation &middot; Operations</Badge>
+                <Title>Business Transformation</Title>
               </div>
+            </div>
+          </div>
+
+          {/* Row 2 — Scalable Delivery (narrow) + Enterprise Security (wide) */}
+          <div className="ws-row">
+            <div className="ws-card ws-narrow">
+              <img className="ws-img-top" src="/scalable delivery.jpg" alt="Scalable Delivery" />
+              <div className="ws-content">
+                <Badge>Scalable &middot; Flexible</Badge>
+                <Title>Scalable Delivery</Title>
+              </div>
+            </div>
+
+            <div className="ws-card ws-wide ws-split ws-img-26 ws-vcenter">
+              <div className="ws-img-side">
+                <img src="/enterprise  secuirty.jpg" alt="Enterprise Security" />
+              </div>
+              <div className="ws-content">
+                <Badge>Security &middot; Governance</Badge>
+                <Title>Enterprise Security</Title>
+                <p className="ws-desc">
+                  Protecting critical business information with secure
+                  infrastructure, governance frameworks, and
+                  confidentiality-first practices.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Row 3 — Customer Partnership + Security by Design */}
+          <div className="ws-card ws-row3">
+            <div className="ws-half ws-half-left">
+              <div className="ws-half-img">
+                <img src="/customer partnership.jpg" alt="Customer Partnership" />
+              </div>
+              <div className="ws-half-body">
+                <Badge>Partnership &middot; Trust</Badge>
+                <Title>Customer Partnership</Title>
+                <p className="ws-desc">
+                  Building long-term relationships founded on trust,
+                  transparency, and shared success.
+                </p>
+              </div>
+            </div>
+
+            <div className="ws-half ws-half-right">
+              <Badge>Trust by Default</Badge>
+              <Title>Security by Design, Trust by Default</Title>
+              <p className="ws-desc">
+                Secure infrastructure, role-based access controls,
+                confidentiality-first practices, business continuity planning,
+                audit-ready processes, and compliance-oriented operations —
+                ensuring your business information stays protected throughout
+                every engagement.
+              </p>
             </div>
           </div>
         </div>

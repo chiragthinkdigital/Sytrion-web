@@ -220,8 +220,8 @@ export default function Contact() {
           padding: "140px 80px 80px",
         }}
       >
-        <div style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
-          <span className="eyebrow-badge">
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <span className="eyebrow-badge" style={{ marginBottom: "18px" }}>
             Contact us
           </span>
 
@@ -232,7 +232,7 @@ export default function Contact() {
               color: "#0f0f0f",
               lineHeight: 1.15,
               letterSpacing: "-0.02em",
-              marginBottom: "24px",
+              marginBottom: "16px",
             }}
           >
             Let&apos;s start a <span style={{ color: "#C6E84A" }}>conversation</span>
@@ -244,8 +244,7 @@ export default function Contact() {
               fontWeight: 400,
               color: "#5A5D66",
               lineHeight: 1.7,
-              maxWidth: "640px",
-              margin: "0 auto",
+              maxWidth: "100%",
             }}
           >
             Whether you&apos;re exploring AI-driven transformation, intelligent

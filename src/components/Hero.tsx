@@ -141,8 +141,8 @@ export default function Hero() {
         }
         @media (max-width: 768px) {
           .hero-content {
-            align-items: center;
-            text-align: center;
+            align-items: flex-start;
+            text-align: left;
             padding: 0 24px;
           }
           .hero-heading {
@@ -154,6 +154,7 @@ export default function Hero() {
           }
           .hero-cta-row {
             flex-direction: column;
+            align-items: flex-start;
             gap: 16px;
             width: 100%;
           }
@@ -163,7 +164,7 @@ export default function Hero() {
             justify-content: center;
           }
           .hero-cta-secondary {
-            justify-content: center;
+            justify-content: flex-start;
           }
           .hero-microcopy {
             margin-top: 32px;
