@@ -3,30 +3,35 @@
 const cards = [
   {
     letter: "SY",
+    name: "Synergy Systems",
     description:
       "People, process, and technology working as one connected system.",
     image: "/Synergy \u00B7 Systems.jpg",
   },
   {
     letter: "TR",
+    name: "Transformation",
     description:
       "Reimagining how businesses operate, not just adopting new tools.",
     image: "/Transformation.jpg",
   },
   {
     letter: "I",
+    name: "Innovation",
     description:
       "AI, automation, and analytics applied with creativity and precision.",
     image: "/Innovation.jpg",
   },
   {
     letter: "O",
+    name: "Operations",
     description:
       "Turning strategy into measurable efficiency and lasting resilience.",
     image: "/Operations.jpg",
   },
   {
     letter: "N",
+    name: "Next Generation",
     description:
       "Building agile, future-ready solutions for an evolving digital world.",
     image: "/Next Generation.jpg",
@@ -91,6 +96,13 @@ export default function PhilosophyCards() {
           line-height: 1.1;
           margin: 0 0 14px;
         }
+        .phil-card-name {
+          font-size: 32px;
+          font-weight: 700;
+          color: #fffffe;
+          line-height: 1.1;
+          margin: 0 0 14px;
+        }
         .phil-card-copy {
           font-size: 14px;
           font-weight: 400;
@@ -134,7 +146,7 @@ export default function PhilosophyCards() {
               />
             </div>
             <div className="phil-card-body">
-              <h3 className="phil-card-letter">{card.letter}</h3>
+              <h3 className="phil-card-letter">{card.letter}<span className="phil-card-name">{card.letter && ` — ${card.name}` }</span></h3>
               <p className="phil-card-copy">{card.description}</p>
               <span className="phil-card-btn" aria-hidden="true">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

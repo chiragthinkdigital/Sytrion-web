@@ -9,7 +9,7 @@ const solutions = [
     description:
       "Empowering enterprises with intelligent automation, cognitive workflows, and AI-driven decision-making to transform operational performance.",
     icon: "/AI Automation & Agentic AI.svg",
-    image: "/AI Automation & Agentic AI.jpg",
+    image: "/AI Automation & Agentic AI 2.jpg",
   },
   {
     number: "02",
@@ -17,7 +17,7 @@ const solutions = [
     description:
       "Delivering technology-enabled managed operations that combine skilled professionals, standardized processes, and intelligent automation to achieve measurable business outcomes.",
     icon: "/Intelligent Operations (RPAs).svg",
-    image: "/intelligent operations rpa.jpg",
+    image: "/rpa2.jpg",
   },
   {
     number: "03",
@@ -25,7 +25,7 @@ const solutions = [
     description:
       "Building trusted data ecosystems through data processing, enrichment, validation, migration, and intelligent data management.",
     icon: "/Data Engineering.svg",
-    image: "/dataengineeringai.jpg",
+    image: "/Data Engineering.png",
   },
   {
     number: "04",
@@ -33,7 +33,7 @@ const solutions = [
     description:
       "Transforming enterprise data into actionable insights through dashboards, reporting, predictive analytics, and decision intelligence.",
     icon: "/Analytics & BI.svg",
-    image: "/sol-analytics-bi.jpg",
+    image: "/Analytics & BI.png",
   },
   {
     number: "05",
@@ -41,15 +41,15 @@ const solutions = [
     description:
       "Digitally transforming freight forwarding, shipping operations, customs documentation, and supply chain support through intelligent operational services.",
     icon: "/Shipping & Logistics.svg",
-    image: "/sol-shipping-logistics.jpg",
+    image: "/shipping and logistics.jpg",
   },
   {
     number: "06",
     title: "Healthcare Operations",
     description:
       "Enhancing healthcare administration through claims management, document intelligence, workflow automation, and secure operational support.",
-    icon: "/Healthcare Operations.svg",
-    image: "/sol-healthcare-ops.jpg",
+    icon: "/Healthcare operations.svg",
+    image: "/Healthcare operations.png",
   },
 ];
 
