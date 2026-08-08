@@ -1,14 +1,37 @@
-"use client";
-
 const ACCENT = "#c6ff3d";
 const NAVY = "#0e1b3d";
 
-function Badge({ children }: { children: React.ReactNode }) {
-  return <span className="ws-badge">{children}</span>;
-}
+const securityItems = [
+  "Secure Infrastructure",
+  "Role Based Access Controls",
+  "Confidentiality First",
+  "Business Continuity Planning",
+  "Audit-Ready Processes",
+  "Compliance-Oriented Operations",
+];
 
-function Title({ children }: { children: React.ReactNode }) {
-  return <h3 className="ws-title">{children}</h3>;
+function Card({
+  image,
+  title,
+  alt,
+  span,
+  description,
+}: {
+  image: string;
+  title: string;
+  alt: string;
+  span: string;
+  description: string;
+}) {
+  return (
+    <div className={`ws-card ws-span-${span}`}>
+      <img className="ws-img-top" src={image} alt={alt} loading="lazy" decoding="async" />
+      <div className="ws-content">
+        <h3 className="ws-title">{title}</h3>
+        <p className="ws-desc">{description}</p>
+      </div>
+    </div>
+  );
 }
 
 export default function WhySytrion() {
@@ -27,6 +50,7 @@ export default function WhySytrion() {
 
         /* ── Header ─────────────────────────────────────── */
         .ws-header {
+          text-align: left;
           margin-bottom: 60px;
         }
         .ws-pill {
@@ -38,6 +62,7 @@ export default function WhySytrion() {
           font-size: 14px;
           font-weight: 600;
           letter-spacing: 0.5px;
+          text-transform: uppercase;
           margin-bottom: 18px;
         }
         .ws-headline {
@@ -53,11 +78,13 @@ export default function WhySytrion() {
           color: rgba(255, 255, 255, 0.55);
           line-height: 1.7;
           max-width: 100%;
+          margin: 0;
         }
 
-        /* ── Rows & cards ───────────────────────────────── */
-        .ws-row {
-          display: flex;
+        /* ── Card grid ──────────────────────────────────── */
+        .ws-grid {
+          display: grid;
+          grid-template-columns: repeat(12, 1fr);
           gap: 24px;
           margin-bottom: 24px;
         }
@@ -74,72 +101,34 @@ export default function WhySytrion() {
           transform: translateY(-4px);
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), 0 24px 60px rgba(0, 0, 0, 0.35);
         }
-        .ws-wide {
-          flex: 1.4;
+        .ws-span-7 {
+          grid-column: span 7;
         }
-        .ws-narrow {
-          flex: 1;
+        .ws-span-5 {
+          grid-column: span 5;
         }
-
-        /* Split card — side image */
-        .ws-split {
-          flex-direction: row;
-        }
-        .ws-vcenter .ws-content {
-          justify-content: center;
-        }
-        .ws-img-side {
-          flex: 0 0 30%;
-        }
-        .ws-split.ws-img-26 .ws-img-side {
-          flex-basis: 26%;
-        }
-        .ws-img-side img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
+        .ws-span-4 {
+          grid-column: span 4;
         }
 
-        /* Image-top card */
         .ws-img-top {
           width: 100%;
-          height: 230px;
+          height: 220px;
           object-fit: cover;
           display: block;
         }
-
-        /* Card content */
         .ws-content {
           padding: 28px;
           flex: 1;
           display: flex;
           flex-direction: column;
         }
-        .ws-content .ws-badge {
-          margin-bottom: 14px;
-        }
-        .ws-content .ws-title {
-          margin-bottom: 12px;
-        }
-
-        /* Shared primitives */
-        .ws-badge {
-          align-self: flex-start;
-          display: inline-block;
-          background: ${NAVY};
-          color: #ffffff;
-          padding: 6px 14px;
-          border-radius: 6px;
-          font-size: 13px;
-          font-weight: 600;
-          letter-spacing: 0.3px;
-        }
         .ws-title {
           font-size: 24px;
           font-weight: 700;
           color: ${NAVY};
           line-height: 1.3;
+          margin-bottom: 12px;
         }
         .ws-desc {
           font-size: 16px;
@@ -148,90 +137,106 @@ export default function WhySytrion() {
           line-height: 1.6;
         }
 
-        /* ── Row 3 — full-width split card ──────────────── */
-        .ws-row3 {
-          flex-direction: row;
-          margin-bottom: 0;
+        /* ── Security callout ───────────────────────────── */
+        .ws-security {
+          background: #f0f0f0;
+          border-radius: 20px;
+          padding: 40px 40px 36px;
         }
-        .ws-half {
-          flex: 1;
+        .ws-security-row1 {
           display: flex;
+          gap: 60px;
+          align-items: center;
         }
-        .ws-half-right {
-          border-left: 1px solid rgba(14, 27, 61, 0.14);
-          padding: 32px 36px;
-          flex-direction: column;
+        .ws-security-text {
+          flex: 1;
         }
-        .ws-half-left {
-          padding: 0;
-          flex-direction: row;
+        .ws-security-title {
+          font-size: 26px;
+          font-weight: 700;
+          color: #0f0f0f;
+          line-height: 1.3;
+          margin-bottom: 18px;
+        }
+        .ws-security-para {
+          font-size: 16px;
+          font-weight: 400;
+          color: #5a5d66;
+          line-height: 1.7;
+          max-width: 480px;
+        }
+        .ws-security-img {
+          flex: 1;
+          border-radius: 16px;
           overflow: hidden;
+          min-height: 220px;
         }
-        .ws-half-img {
-          flex: 0 0 40%;
-          overflow: hidden;
-        }
-        .ws-half-img img {
+        .ws-security-img img {
           width: 100%;
-          height: 100%;
+          height: 260px;
           object-fit: cover;
+          border-radius: 16px;
           display: block;
         }
-        .ws-half-body {
-          flex: 1;
-          padding: 32px 36px;
+        .ws-security-label {
+          display: block;
+          font-size: 12px;
+          font-weight: 700;
+          color: #9fb83e;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin: 44px 0 20px;
+        }
+        .ws-security-check {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 0 24px;
+        }
+        .ws-security-item {
           display: flex;
-          flex-direction: column;
-          justify-content: center;
+          align-items: flex-start;
+          gap: 12px;
+          min-height: 44px;
         }
-        .ws-half .ws-badge {
-          margin-bottom: 14px;
+        .ws-security-item svg {
+          flex-shrink: 0;
+          margin-top: 2px;
         }
-        .ws-half .ws-title {
-          margin-bottom: 12px;
+        .ws-security-item span {
+          font-size: 15px;
+          font-weight: 500;
+          color: #0f0f0f;
+          line-height: 1.5;
         }
 
         /* ── Responsive ─────────────────────────────────── */
-        @media (max-width: 820px) {
+        @media (max-width: 1024px) {
+          .ws-section {
+            padding: 60px 40px;
+          }
+          .ws-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .ws-grid > .ws-card {
+            grid-column: span 1;
+          }
+        }
+        @media (max-width: 768px) {
           .ws-section {
             padding: 60px 20px;
           }
-          .ws-row {
+          .ws-grid {
+            grid-template-columns: 1fr;
+          }
+          .ws-security {
+            padding: 30px;
+          }
+          .ws-security-row1 {
             flex-direction: column;
-            margin-bottom: 20px;
+            gap: 32px;
           }
-          .ws-wide,
-          .ws-narrow {
-            flex: 1 1 auto;
-          }
-          .ws-split {
-            flex-direction: column;
-          }
-          .ws-split.ws-img-26 .ws-img-side {
-            flex-basis: auto;
-          }
-          .ws-img-side {
-            flex: none;
-            width: 100%;
-          }
-          .ws-img-side img {
-            height: 230px;
-            width: 100%;
-          }
-          .ws-row3 {
-            flex-direction: column;
-          }
-          .ws-half-left {
-            flex-direction: column;
-          }
-          .ws-half-img {
-            flex: none;
-            width: 100%;
-            height: 220px;
-          }
-          .ws-half-right {
-            border-left: none;
-            border-top: 1px solid rgba(14, 27, 61, 0.14);
+          .ws-security-check {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>
@@ -253,83 +258,95 @@ export default function WhySytrion() {
             </p>
           </div>
 
-          {/* Row 1 — AI-First Thinking (wide) + Business Transformation (narrow) */}
-          <div className="ws-row">
-            <div className="ws-card ws-wide ws-split ws-vcenter">
-              <div className="ws-img-side">
-                <img src="/ai first thinking.jpg" alt="AI-First Thinking" />
-              </div>
-              <div className="ws-content">
-                <Badge>AI &middot; Innovation</Badge>
-                <Title>AI-First Thinking</Title>
-                <p className="ws-desc">
-                  Embedding intelligence into every process to improve
-                  efficiency and accelerate innovation.
-                </p>
-              </div>
-            </div>
-
-            <div className="ws-card ws-narrow">
-              <img className="ws-img-top" src="/business transformation.jpg" alt="Business Transformation" />
-              <div className="ws-content">
-                <Badge>Transformation &middot; Operations</Badge>
-                <Title>Business Transformation</Title>
-              </div>
-            </div>
+          {/* Row 1 — AI-First Thinking (wider) + Business Transformation */}
+          <div className="ws-grid">
+            <Card
+              image="/ai first thinking.jpg"
+              alt="AI-First Thinking"
+              title="AI-First Thinking"
+              span="7"
+              description="Embedding intelligence into every process to improve efficiency and accelerate innovation."
+            />
+            <Card
+              image="/business transformation.jpg"
+              alt="Business Transformation"
+              title="Business Transformation"
+              span="5"
+              description="Helping organizations modernize operations through scalable, measurable transformation initiatives."
+            />
           </div>
 
-          {/* Row 2 — Scalable Delivery (narrow) + Enterprise Security (wide) */}
-          <div className="ws-row">
-            <div className="ws-card ws-narrow">
-              <img className="ws-img-top" src="/scalable delivery.jpg" alt="Scalable Delivery" />
-              <div className="ws-content">
-                <Badge>Scalable &middot; Flexible</Badge>
-                <Title>Scalable Delivery</Title>
-              </div>
-            </div>
-
-            <div className="ws-card ws-wide ws-split ws-img-26 ws-vcenter">
-              <div className="ws-img-side">
-                <img src="/enterprise  secuirty.jpg" alt="Enterprise Security" />
-              </div>
-              <div className="ws-content">
-                <Badge>Security &middot; Governance</Badge>
-                <Title>Enterprise Security</Title>
-                <p className="ws-desc">
-                  Protecting critical business information with secure
-                  infrastructure, governance frameworks, and
-                  confidentiality-first practices.
-                </p>
-              </div>
-            </div>
+          {/* Row 2 — Enterprise Security + Scalable Delivery + Customer Partnership */}
+          <div className="ws-grid">
+            <Card
+              image="/enterprise  secuirty.jpg"
+              alt="Enterprise Security"
+              title="Enterprise Security"
+              span="4"
+              description="Protecting critical business information with secure infrastructure, governance frameworks, and confidentiality-first practices."
+            />
+            <Card
+              image="/scalable delivery.jpg"
+              alt="Scalable Delivery"
+              title="Scalable Delivery"
+              span="4"
+              description="Flexible engagement models that grow alongside your business."
+            />
+            <Card
+              image="/customer partnership.jpg"
+              alt="Customer Partnership"
+              title="Customer Partnership"
+              span="4"
+              description="Building long-term relationships founded on trust, transparency, and shared success."
+            />
           </div>
 
-          {/* Row 3 — Customer Partnership + Security by Design */}
-          <div className="ws-card ws-row3">
-            <div className="ws-half ws-half-left">
-              <div className="ws-half-img">
-                <img src="/customer partnership.jpg" alt="Customer Partnership" />
-              </div>
-              <div className="ws-half-body">
-                <Badge>Partnership &middot; Trust</Badge>
-                <Title>Customer Partnership</Title>
-                <p className="ws-desc">
-                  Building long-term relationships founded on trust,
-                  transparency, and shared success.
+          {/* Security by Design. Trust by Commitment. */}
+          <div className="ws-security">
+            <div className="ws-security-row1">
+              <div className="ws-security-text">
+                <h3 className="ws-security-title">
+                  Security by Design. Trust by Commitment.
+                </h3>
+                <p className="ws-security-para">
+                  Protecting client information is fundamental to everything we
+                  do. Our delivery framework incorporates secure infrastructure,
+                  role-based access controls, confidentiality agreements,
+                  governance policies, and compliance-focused operational
+                  practices to ensure your business information remains protected
+                  throughout every engagement.
                 </p>
+              </div>
+
+              <div className="ws-security-img">
+                <img
+                  src="/Security by Design. Trust by Commitment..jpg"
+                  alt="Security by Design"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </div>
 
-            <div className="ws-half ws-half-right">
-              <Badge>Trust by Default</Badge>
-              <Title>Security by Design, Trust by Default</Title>
-              <p className="ws-desc">
-                Secure infrastructure, role-based access controls,
-                confidentiality-first practices, business continuity planning,
-                audit-ready processes, and compliance-oriented operations —
-                ensuring your business information stays protected throughout
-                every engagement.
-              </p>
+            <span className="ws-security-label">Commitment Highlights</span>
+            <div className="ws-security-check">
+              {securityItems.map((item) => (
+                <div key={item} className="ws-security-item">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#9FB83E"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  <span>{item}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>

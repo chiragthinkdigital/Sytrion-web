@@ -9,7 +9,7 @@ const solutions = [
     description:
       "Empowering enterprises with intelligent automation, cognitive workflows, and AI-driven decision-making to transform operational performance.",
     icon: "/AI Automation & Agentic AI.svg",
-    image: "/AI Automation & Agentic AI 2.jpg",
+    image: "/AI-Automation-and-Agentic-AI-2.jpg",
   },
   {
     number: "02",
@@ -25,7 +25,7 @@ const solutions = [
     description:
       "Building trusted data ecosystems through data processing, enrichment, validation, migration, and intelligent data management.",
     icon: "/Data Engineering.svg",
-    image: "/Data Engineering.png",
+    image: "/Data Engineering.webp",
   },
   {
     number: "04",
@@ -33,7 +33,7 @@ const solutions = [
     description:
       "Transforming enterprise data into actionable insights through dashboards, reporting, predictive analytics, and decision intelligence.",
     icon: "/Analytics & BI.svg",
-    image: "/Analytics & BI.png",
+    image: "/Analytics-and-BI.webp",
   },
   {
     number: "05",
@@ -49,7 +49,7 @@ const solutions = [
     description:
       "Enhancing healthcare administration through claims management, document intelligence, workflow automation, and secure operational support.",
     icon: "/Healthcare operations.svg",
-    image: "/Healthcare operations.png",
+    image: "/Healthcare operations.webp",
   },
 ];
 
@@ -76,6 +76,8 @@ function SolutionCard({ item }: { item: (typeof solutions)[number] }) {
         src={item.image}
         alt={item.title}
         className="solutions-card-bg-img"
+        loading="lazy"
+        decoding="async"
       />
       <div className="solutions-card-overlay" />
       <div className="solutions-card-noise" />

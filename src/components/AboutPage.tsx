@@ -97,7 +97,7 @@ const timeline = [
   {
     year: "Growth",
     title: "Scaling Impact",
-    text: "Expanded into shipping, healthcare, insurance, and banking — building trusted partnerships with global enterprises.",
+    text: "Expanded into shipping, healthcare, insurance, and banking â€” building trusted partnerships with global enterprises.",
   },
   {
     year: "Today",
@@ -114,6 +114,440 @@ const REGIONS: Record<string, { lat: number; lng: number }> = {
   Asia: { lat: 34.05, lng: 100.62 },
   Africa: { lat: -8.78, lng: 34.51 },
 };
+const valueImages = [
+  "/enterprise  secuirty.jpg",      // Integrity
+  "/AI-Automation-and-Agentic-AI-2.jpg",  // Innovation
+  "/scalable delivery.jpg",         // Excellence
+  "/customer partnership.jpg",      // Ownership
+  "/global clients.jpg",            // Collaboration
+  "/business transformation.jpg",   // Customer Success
+];
+
+function ValuesPanel() {
+  const [active, setActive] = useState(0);
+  const activeValue = values[active];
+  const num = String(active + 1).padStart(2, "0");
+
+  const subLabels = [
+    "Our guiding principle",
+    "Our driving force",
+    "Our standard",
+    "Our commitment",
+    "Our foundation",
+    "Our north star",
+  ];
+
+  return (
+    <div className="vp-root">
+      <style>{`
+        .vp-root {
+          display: flex;
+          gap: 0;
+          border: 1px solid rgba(0,0,0,0.08);
+          border-radius: 24px;
+          overflow: hidden;
+          box-shadow: 0 4px 32px rgba(0,0,0,0.06);
+          background: #FFFFFF;
+          min-height: 480px;
+        }
+
+        /* Left nav */
+        .vp-nav {
+          flex: 0 0 42%;
+          display: flex;
+          flex-direction: column;
+          border-right: 1px solid rgba(0,0,0,0.07);
+        }
+        .vp-row {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          padding: 22px 32px;
+          border-bottom: 1px solid rgba(0,0,0,0.06);
+          cursor: pointer;
+          background: transparent;
+          border-left: 3px solid transparent;
+          transition: background 0.18s ease, border-color 0.18s ease;
+          text-align: left;
+          width: 100%;
+          outline: none;
+          position: relative;
+        }
+        .vp-row:last-child {
+          border-bottom: none;
+        }
+        .vp-row:hover {
+          background: rgba(199,243,75,0.06);
+        }
+        .vp-row:focus-visible {
+          box-shadow: inset 0 0 0 2px var(--ab-accent);
+        }
+        .vp-row.active {
+          border-left-color: #C7F34B;
+          background: rgba(199,243,75,0.07);
+        }
+        .vp-row-num {
+          font-size: 11px;
+          font-weight: 700;
+          color: #9AA8BF;
+          letter-spacing: 1.5px;
+          font-family: var(--font-geist-mono), monospace;
+          flex-shrink: 0;
+          width: 24px;
+          transition: color 0.18s ease;
+        }
+        .vp-row.active .vp-row-num {
+          color: #C7F34B;
+        }
+        .vp-row-name {
+          flex: 1;
+          font-size: 15px;
+          font-weight: 600;
+          color: #6B7A99;
+          font-family: var(--font-geist-sans), sans-serif;
+          transition: color 0.18s ease;
+          letter-spacing: -0.01em;
+        }
+        .vp-row.active .vp-row-name {
+          color: #0B1225;
+          font-weight: 700;
+        }
+        .vp-row-arrow {
+          font-size: 14px;
+          color: #CBD5E1;
+          flex-shrink: 0;
+          transition: color 0.18s ease, transform 0.18s ease;
+        }
+        .vp-row.active .vp-row-arrow,
+        .vp-row:hover .vp-row-arrow {
+          color: #C7F34B;
+          transform: translate(2px, -2px);
+        }
+
+        /* Right detail panel */
+        .vp-panel {
+          flex: 1;
+          position: relative;
+          padding: 48px 52px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          min-height: 480px;
+          background: #0B1225;
+        }
+        .vp-panel-img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          opacity: 0;
+          transition: opacity 0.45s ease;
+          z-index: 0;
+        }
+        .vp-panel-img.visible {
+          opacity: 1;
+        }
+        .vp-panel-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            135deg,
+            rgba(7, 12, 24, 0.80) 0%,
+            rgba(7, 12, 24, 0.60) 60%,
+            rgba(7, 12, 24, 0.50) 100%
+          );
+          z-index: 1;
+          pointer-events: none;
+        }
+        .vp-bg-num {
+          position: absolute;
+          top: -24px;
+          right: -12px;
+          font-size: clamp(120px, 18vw, 200px);
+          font-family: var(--font-syne), sans-serif;
+          font-weight: 800;
+          color: rgba(199,243,75,0.12);
+          line-height: 1;
+          pointer-events: none;
+          user-select: none;
+          letter-spacing: -0.04em;
+          transition: opacity 0.3s ease;
+        }
+        .vp-accent-line {
+          width: 36px;
+          height: 3px;
+          background: #C7F34B;
+          border-radius: 2px;
+          margin-bottom: 28px;
+          flex-shrink: 0;
+        }
+        .vp-sub-label {
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: rgba(199,243,75,0.7);
+          font-family: var(--font-geist-mono), monospace;
+          margin-bottom: 12px;
+        }
+        .vp-title {
+          font-size: clamp(28px, 4vw, 42px);
+          font-family: var(--font-syne), sans-serif;
+          font-weight: 700;
+          color: #FFFFFF;
+          line-height: 1.1;
+          letter-spacing: -0.02em;
+          margin-bottom: 20px;
+        }
+        .vp-desc {
+          font-size: 17px;
+          font-family: var(--font-geist-sans), sans-serif;
+          color: rgba(200, 214, 235, 0.88);
+          line-height: 1.75;
+          max-width: 380px;
+        }
+        .vp-content {
+          position: relative;
+          z-index: 2;
+          transition: opacity 0.22s ease;
+        }
+        .vp-content.fade {
+          opacity: 0;
+        }
+        .vp-bg-num {
+          color: rgba(199,243,75,0.10);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+          .vp-root {
+            flex-direction: column;
+            min-height: unset;
+          }
+          .vp-nav {
+            flex: unset;
+            border-right: none;
+            border-bottom: 1px solid rgba(0,0,0,0.07);
+          }
+          .vp-row {
+            padding: 18px 24px;
+          }
+          .vp-panel {
+            padding: 36px 28px;
+            min-height: 320px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .vp-row,
+          .vp-row-num,
+          .vp-row-name,
+          .vp-row-arrow,
+          .vp-content {
+            transition: none !important;
+          }
+        }
+      `}</style>
+
+      {/* Left — editorial navigation */}
+      <nav className="vp-nav" aria-label="Our Values navigation">
+        {values.map((v, i) => {
+          const n = String(i + 1).padStart(2, "0");
+          return (
+            <button
+              key={v.title}
+              className={`vp-row${active === i ? " active" : ""}`}
+              onClick={() => setActive(i)}
+              onMouseEnter={() => setActive(i)}
+              aria-pressed={active === i}
+              aria-label={`${n} ${v.title}`}
+            >
+              <span className="vp-row-num">{n}</span>
+              <span className="vp-row-name">{v.title}</span>
+              <span className="vp-row-arrow" aria-hidden="true">↗</span>
+            </button>
+          );
+        })}
+      </nav>
+
+      {/* Right — active value detail panel with background image */}
+      <div className="vp-panel" aria-live="polite" aria-atomic="true">
+        {/* Background images — one per value, crossfade via opacity */}
+        {valueImages.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt=""
+            aria-hidden="true"
+            className={`vp-panel-img${active === i ? " visible" : ""}`}
+          />
+        ))}
+        {/* Dark overlay for text legibility */}
+        <div className="vp-panel-overlay" aria-hidden="true" />
+        <div className="vp-bg-num" aria-hidden="true">{num}</div>
+        <div className="vp-content">
+          <div className="vp-accent-line" />
+          <div className="vp-sub-label">{subLabels[active]}</div>
+          <div className="vp-title">{activeValue.title}</div>
+          <p className="vp-desc">{activeValue.description}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MissionCollage() {
+  const [offsets, setOffsets] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    // Check prefers-reduced-motion using window matchMedia
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+    // Subtly scale the parallax effect
+    setOffsets({
+      x: x * 20, // max 10px shift
+      y: y * 20,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setOffsets({ x: 0, y: 0 });
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        position: "relative",
+        width: "100%",
+        maxWidth: "500px",
+        height: "380px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      {/* Decorative ambient lime glow behind the collage */}
+      <div style={{
+        position: "absolute",
+        width: "250px",
+        height: "250px",
+        borderRadius: "50%",
+        background: "rgba(77, 124, 15, 0.08)",
+        filter: "blur(50px)",
+        zIndex: 0,
+        pointerEvents: "none",
+      }} />
+
+      {/* Decorative dots / grid decoration */}
+      <div style={{
+        position: "absolute",
+        top: "10%",
+        left: "5%",
+        width: "60px",
+        height: "60px",
+        backgroundImage: "radial-gradient(circle, rgba(77, 124, 15, 0.25) 1px, transparent 1px)",
+        backgroundSize: "10px 10px",
+        zIndex: 1,
+        pointerEvents: "none",
+      }} />
+
+      {/* 1. Large Primary Image */}
+      <div style={{
+        width: "60%",
+        height: "75%",
+        borderRadius: "20px",
+        overflow: "hidden",
+        boxShadow: "0 12px 30px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05)",
+        zIndex: 2,
+        transform: `translate(${offsets.x * 0.4}px, ${offsets.y * 0.4}px)`,
+        transition: "transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)",
+        position: "relative",
+        border: "1px solid rgba(77, 124, 15, 0.08)",
+      }}>
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(135deg, rgba(77, 124, 15, 0.05) 0%, transparent 100%)",
+          zIndex: 1,
+          pointerEvents: "none",
+        }} />
+        <img
+          src="/scalable delivery.jpg"
+          alt="Advanced technological enterprise operations"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
+      </div>
+
+      {/* 2. Smaller floating image near top right */}
+      <div style={{
+        position: "absolute",
+        width: "38%",
+        height: "45%",
+        top: "5%",
+        right: "2%",
+        borderRadius: "16px",
+        overflow: "hidden",
+        boxShadow: "0 16px 36px rgba(0, 0, 0, 0.16)",
+        zIndex: 3,
+        transform: `translate(${offsets.x * 0.8}px, ${offsets.y * 0.8}px)`,
+        transition: "transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)",
+        border: "1px solid rgba(77, 124, 15, 0.12)",
+      }}>
+        <img
+          src="/business transformation.jpg"
+          alt="Intelligent business transformation workflow"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
+      </div>
+
+      {/* 3. Smaller floating image near bottom left */}
+      <div style={{
+        position: "absolute",
+        width: "38%",
+        height: "45%",
+        bottom: "5%",
+        left: "2%",
+        borderRadius: "16px",
+        overflow: "hidden",
+        boxShadow: "0 16px 36px rgba(0, 0, 0, 0.16)",
+        zIndex: 4,
+        transform: `translate(${offsets.x * 1.2}px, ${offsets.y * 1.2}px)`,
+        transition: "transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)",
+        border: "1px solid rgba(77, 124, 15, 0.12)",
+      }}>
+        <img
+          src="/rpa2.jpg"
+          alt="Analytics and automated digital solution execution"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
 
 export default function AboutPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -133,7 +567,7 @@ export default function AboutPage() {
         const conditions = context.conditions as { reduceMotion?: boolean } | undefined;
         const reduceMotion = conditions?.reduceMotion ?? false;
 
-        // ── Hero text reveal ──
+        // â”€â”€ Hero text reveal â”€â”€
         const heroLines = heroTextRef.current?.querySelectorAll(".hero-line");
         if (heroLines?.length) {
           gsap.set(heroLines, { clipPath: "inset(0 0 100% 0)", yPercent: 30 });
@@ -147,7 +581,7 @@ export default function AboutPage() {
           });
         }
 
-        // ── Hero badge + subtitle fade in ──
+        // â”€â”€ Hero badge + subtitle fade in â”€â”€
         const heroBadge = containerRef.current?.querySelector(".hero-badge");
         const heroSub = containerRef.current?.querySelector(".hero-sub");
         if (heroBadge) {
@@ -163,7 +597,7 @@ export default function AboutPage() {
           );
         }
 
-        // ── Section reveals (scroll-triggered) ──
+        // â”€â”€ Section reveals (scroll-triggered) â”€â”€
         const sections = containerRef.current?.querySelectorAll(".reveal-section");
         sections?.forEach((section) => {
           const children = section.querySelectorAll(".reveal-child");
@@ -184,7 +618,7 @@ export default function AboutPage() {
           });
         });
 
-        // ── Stats counter ──
+        // â”€â”€ Stats counter â”€â”€
         const statEls = statsRef.current?.querySelectorAll(".stat-number");
         statEls?.forEach((el) => {
           const target = parseInt(el.getAttribute("data-target") || "0", 10);
@@ -207,7 +641,7 @@ export default function AboutPage() {
           });
         });
 
-        // ── Value cards stagger ──
+        // â”€â”€ Value cards stagger â”€â”€
         const valueCards = containerRef.current?.querySelectorAll(".value-card");
         if (valueCards?.length) {
           gsap.set(valueCards, { autoAlpha: 0, y: 60 });
@@ -227,7 +661,7 @@ export default function AboutPage() {
           });
         }
 
-        // ── Timeline line draw ──
+        // â”€â”€ Timeline line draw â”€â”€
         const timelineLine = containerRef.current?.querySelector(".timeline-line-fill");
         if (timelineLine) {
           gsap.set(timelineLine, { scaleY: 0, transformOrigin: "top" });
@@ -242,7 +676,7 @@ export default function AboutPage() {
           });
         }
 
-        // ── Timeline items stagger ──
+        // â”€â”€ Timeline items stagger â”€â”€
         const tlItems = containerRef.current?.querySelectorAll(".timeline-item");
         if (tlItems?.length) {
           gsap.set(tlItems, { autoAlpha: 0, y: -30 });
@@ -264,7 +698,7 @@ export default function AboutPage() {
           });
         }
 
-        // ── Leadership card reveal ──
+        // â”€â”€ Leadership card reveal â”€â”€
         const leaderCards = containerRef.current?.querySelectorAll(".leader-card");
         if (leaderCards?.length) {
           gsap.set(leaderCards, { autoAlpha: 0, y: 50, scale: 0.96 });
@@ -285,7 +719,7 @@ export default function AboutPage() {
           });
         }
 
-        // ── CTA glow pulse (only if not reduced motion) ──
+        // â”€â”€ CTA glow pulse (only if not reduced motion) â”€â”€
         if (!reduceMotion) {
           const ctaGlow = containerRef.current?.querySelector(".cta-orb");
           if (ctaGlow) {
@@ -329,7 +763,109 @@ export default function AboutPage() {
           --ab-glass-border: rgba(255, 255, 255, 0.06);
         }
 
-        /* ── Grid texture overlay ── */
+        /* ── Light theme section ── */
+        .ab-section-light {
+          --ab-base: #f8f9fc;
+          --ab-surface-1: #f0f2f7;
+          --ab-surface-2: #ffffff;
+          --ab-surface-3: #e8ebf2;
+          --ab-text-primary: #0f172a;
+          --ab-text-secondary: #334155;
+          --ab-text-muted: #64748b;
+          --ab-accent: #4d7c0f;
+          --ab-accent-dim: rgba(77, 124, 15, 0.1);
+          --ab-glow: 0 4px 24px rgba(77, 124, 15, 0.08);
+          --ab-glow-strong: 0 8px 40px rgba(77, 124, 15, 0.12);
+          --ab-border: rgba(15, 23, 42, 0.08);
+          --ab-border-hover: rgba(15, 23, 42, 0.14);
+          --ab-glass: rgba(255, 255, 255, 0.7);
+          --ab-glass-border: rgba(15, 23, 42, 0.08);
+          background: #f8f9fc !important;
+        }
+        .ab-section-light .ab-glass {
+          background: rgba(255,255,255,0.7);
+          border-color: rgba(15,23,42,0.08);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+        }
+        .ab-section-light .ab-glass:hover {
+          background: rgba(255,255,255,0.85);
+          border-color: rgba(15,23,42,0.14);
+          box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+        }
+        .ab-section-light .ab-stat-card {
+          background: #ffffff;
+          border-color: rgba(15,23,42,0.08);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .ab-section-light .ab-stat-card:hover {
+          border-color: rgba(77,124,15,0.25);
+          box-shadow: 0 8px 24px rgba(77,124,15,0.08);
+        }
+        .ab-section-light .val-card {
+          background: #ffffff;
+          border-color: rgba(15,23,42,0.08);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .ab-section-light .val-card:hover {
+          border-color: rgba(77,124,15,0.2);
+          box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+        .ab-section-light .val-card-num {
+          -webkit-text-stroke-color: rgba(77,124,15,0.1);
+        }
+        .ab-section-light .val-card:hover .val-card-num {
+          -webkit-text-stroke-color: rgba(77,124,15,0.2);
+        }
+        .ab-section-light .val-card-icon {
+          background: rgba(77,124,15,0.08);
+          border-color: rgba(77,124,15,0.15);
+        }
+        .ab-section-light .val-card:hover .val-card-icon {
+          background: rgba(77,124,15,0.15);
+          border-color: rgba(77,124,15,0.3);
+          box-shadow: 0 0 16px rgba(77,124,15,0.12);
+        }
+        .ab-section-light .val-card-line {
+          background: #4d7c0f;
+        }
+        .ab-section-light .eyebrow-badge {
+          background: rgba(77,124,15,0.08) !important;
+          border-color: rgba(77,124,15,0.18) !important;
+          color: #4d7c0f !important;
+        }
+        .ab-section-light .timeline-line {
+          background: rgba(15,23,42,0.1);
+        }
+        .ab-section-light .timeline-line-fill {
+          background: linear-gradient(180deg, #4d7c0f, rgba(77,124,15,0.15));
+        }
+        .ab-section-light .timeline-dot {
+          background: #f8f9fc;
+          border-color: #4d7c0f;
+          box-shadow: 0 0 12px rgba(77,124,15,0.25);
+        }
+        .ab-section-light .leader-card {
+          background: #ffffff;
+          border-color: rgba(15,23,42,0.08);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .ab-section-light .leader-card:hover {
+          border-color: rgba(77,124,15,0.2);
+          box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+        .ab-section-light .leader-card-avatar {
+          background: linear-gradient(135deg, #e8f5e9, #f0f4c3);
+        }
+        .ab-section-light .leader-card-avatar::after {
+          background: linear-gradient(0deg, #ffffff 0%, transparent 100%);
+        }
+        .ab-section-light .ab-section-border-top,
+        .ab-section-light.ab-section-border-top {
+          border-top-color: rgba(15,23,42,0.08);
+        }
+
+        /* â”€â”€ Grid texture overlay â”€â”€ */
         .ab-grid-overlay {
           position: absolute;
           inset: 0;
@@ -342,7 +878,7 @@ export default function AboutPage() {
           -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 80%);
         }
 
-        /* ── Hero ── */
+        /* â”€â”€ Hero â”€â”€ */
         .ab-hero {
           position: relative;
           background: var(--ab-base);
@@ -406,18 +942,19 @@ export default function AboutPage() {
           .orbit-ring.r3 { width: 560px; height: 560px; }
         }
 
-        /* ── Section wrapper ── */
+        /* â”€â”€ Section wrapper â”€â”€ */
         .ab-section {
           position: relative;
           padding: 120px 48px;
         }
         .ab-section-dark { background: var(--ab-base); }
         .ab-section-darker { background: var(--ab-surface-1); }
+        .ab-section-light { background: #f8f9fc; }
         .ab-section-border-top {
           border-top: 1px solid var(--ab-border);
         }
 
-        /* ── Glass card ── */
+        /* â”€â”€ Glass card â”€â”€ */
         .ab-glass {
           background: var(--ab-glass);
           backdrop-filter: blur(20px);
@@ -432,7 +969,7 @@ export default function AboutPage() {
           box-shadow: var(--ab-glow);
         }
 
-        /* ── Stat card ── */
+        /* â”€â”€ Stat card â”€â”€ */
         .ab-stat-card {
           background: var(--ab-surface-2);
           border: 1px solid var(--ab-border);
@@ -446,7 +983,7 @@ export default function AboutPage() {
           box-shadow: var(--ab-glow);
         }
 
-        /* ── Value card ── */
+        /* â”€â”€ Value card â”€â”€ */
         .value-card {
           background: var(--ab-surface-2);
           border: 1px solid var(--ab-border);
@@ -513,7 +1050,7 @@ export default function AboutPage() {
           padding: 40px;
         }
 
-        /* ── Timeline ── */
+        /* â”€â”€ Timeline â”€â”€ */
         .timeline-wrapper {
           position: relative;
           padding-left: 32px;
@@ -552,7 +1089,7 @@ export default function AboutPage() {
           z-index: 1;
         }
 
-        /* ── Leader card ── */
+        /* â”€â”€ Leader card â”€â”€ */
         .leader-card {
           background: var(--ab-surface-2);
           border: 1px solid var(--ab-border);
@@ -585,14 +1122,14 @@ export default function AboutPage() {
           background: linear-gradient(0deg, var(--ab-surface-2) 0%, transparent 100%);
         }
 
-        /* ── Values grid ── */
+        /* â”€â”€ Values grid â”€â”€ */
         .ab-values-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 20px;
         }
 
-        /* ── Value card new ── */
+        /* â”€â”€ Value card new â”€â”€ */
         .val-card {
           position: relative;
           background: var(--ab-surface-2);
@@ -755,7 +1292,7 @@ export default function AboutPage() {
           justify-content: center;
         }
 
-        /* ── CTA ── */
+        /* â”€â”€ CTA â”€â”€ */
         .ab-cta {
           position: relative;
           background: var(--ab-base);
@@ -840,9 +1377,9 @@ export default function AboutPage() {
       `}</style>
 
       <div ref={containerRef}>
-        {/* ════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             HERO
-            ════════════════════════════════════════════════════ */}
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         <section className="ab-hero">
           <div className="ab-grid-overlay" />
           <div className="ab-hero-orb" />
@@ -892,12 +1429,12 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             STORY + TIMELINE
-            ════════════════════════════════════════════════════ */}
-        <section className="ab-section ab-section-darker ab-section-border-top">
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+        <section className="ab-section ab-section-light ab-section-border-top">
           <div className="reveal-section ab-story-grid" style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", gap: "80px", alignItems: "flex-start" }}>
-            {/* Left — Text */}
+            {/* Left â€” Text */}
             <div className="reveal-child" style={{ flex: 1 }}>
               <span className="eyebrow-badge">Our story</span>
 
@@ -934,7 +1471,7 @@ export default function AboutPage() {
                 marginBottom: "16px",
                 maxWidth: "480px",
               }}>
-                Sytrion Data Labs was founded with a clear mission — to help
+                Sytrion Data Labs was founded with a clear mission â€” to help
                 organizations harness the power of AI, data intelligence, and
                 operational excellence to build stronger, more resilient businesses.
               </p>
@@ -965,7 +1502,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Right — Timeline */}
+            {/* Right â€” Timeline */}
             <div className="reveal-child" style={{ flex: 1 }}>
               <div className="ab-glass" style={{ padding: "48px" }}>
                 <div className="timeline-wrapper">
@@ -1010,128 +1547,610 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             VISION
-            ════════════════════════════════════════════════════ */}
-        <section className="ab-section ab-section-dark ab-section-border-top">
-          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="reveal-child" style={{ marginBottom: "18px" }}>
-              <span className="eyebrow-badge">Our vision</span>
-            </div>
-            <div style={{ maxWidth: "800px" }}>
-              <h2 className="heading-display reveal-child" style={{
-                fontSize: "clamp(32px, 5vw, 48px)",
-                fontFamily: "var(--font-syne), sans-serif",
-                fontWeight: 700,
-                color: "var(--ab-text-primary)",
-                marginBottom: "16px",
-              }}>
-                Shaping the Future of{" "}
-                <span style={{ color: "var(--ab-accent)" }}>Intelligent Operations</span>
-              </h2>
-              <p className="reveal-child" style={{
-                fontSize: "18px",
-                fontFamily: "var(--font-geist-sans), sans-serif",
-                color: "var(--ab-text-secondary)",
-                lineHeight: 1.75,
-                maxWidth: "100%",
-              }}>
-                To become one of the world's most trusted Intelligent Operations partners,
-                enabling organizations to achieve sustainable growth through innovation,
-                operational excellence and technology-driven transformation.
-              </p>
-            </div>
-          </div>
-        </section>
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+        <section className="ab-section ab-section-dark ab-section-border-top" style={{ background: "#070C18", overflow: "hidden", position: "relative" }}>
+          {/* Subtle tech grid, grain texture and blue ambient glow on the right */}
+          <div className="ab-grid-overlay" style={{ opacity: 0.15 }} />
+          <div style={{
+            position: "absolute",
+            width: "600px",
+            height: "600px",
+            borderRadius: "50%",
+            filter: "blur(120px)",
+            pointerEvents: "none",
+            zIndex: 1,
+            background: "radial-gradient(circle, rgba(104, 217, 255, 0.08) 0%, rgba(46, 90, 172, 0.04) 50%, transparent 100%)",
+            top: "10%",
+            right: "-10%",
+          }} />
 
-        {/* ════════════════════════════════════════════════════
-            MISSION
-            ════════════════════════════════════════════════════ */}
-        <section className="ab-section ab-section-darker ab-section-border-top">
-          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="reveal-child" style={{ marginBottom: "18px" }}>
-              <span className="eyebrow-badge">Our mission</span>
-            </div>
-            <div style={{ maxWidth: "800px" }}>
-              <h2 className="heading-display reveal-child" style={{
-                fontSize: "clamp(32px, 5vw, 48px)",
-                fontFamily: "var(--font-syne), sans-serif",
-                fontWeight: 700,
-                color: "var(--ab-text-primary)",
-                marginBottom: "16px",
+          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+            <div style={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              gap: "60px",
+              alignItems: "center",
+            }}>
+              {/* Left Column — Vision Content */}
+              <div className="reveal-child" style={{
+                flex: "1 1 500px",
+                display: "flex",
+                flexDirection: "row",
+                gap: "24px",
+                alignItems: "stretch",
               }}>
-                Transforming Complexity into{" "}
-                <span style={{ color: "var(--ab-accent)" }}>Competitive Advantage</span>
-              </h2>
-              <p className="reveal-child" style={{
-                fontSize: "18px",
-                fontFamily: "var(--font-geist-sans), sans-serif",
-                color: "var(--ab-text-secondary)",
-                lineHeight: 1.75,
-                maxWidth: "100%",
-              }}>
-                To empower businesses by delivering secure, scalable and intelligent
-                operational solutions that create measurable value for clients, employees
-                and society.
-              </p>
-            </div>
-          </div>
-        </section>
+                {/* Left accent fade line */}
+                <div style={{
+                  width: "2px",
+                  background: "linear-gradient(180deg, #C7F34B 0%, rgba(199, 243, 75, 0.3) 50%, transparent 100%)",
+                  flexShrink: 0,
+                  marginTop: "8px",
+                  borderRadius: "2px",
+                }} />
 
-        {/* ════════════════════════════════════════════════════
-            STATS
-            ════════════════════════════════════════════════════ */}
-        <section className="ab-section ab-section-dark ab-section-border-top" ref={statsRef}>
-          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="ab-stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px" }}>
-              {stats.map((stat) => (
-                <div key={stat.label} className="ab-stat-card reveal-child">
-                  <div
-                    className="stat-number"
-                    data-target={stat.value}
-                    data-suffix={stat.suffix}
-                    style={{
-                      fontSize: "clamp(36px, 5vw, 56px)",
-                      fontFamily: "var(--font-syne), sans-serif",
+                <div style={{ flex: 1 }}>
+                  {/* Vision Badge */}
+                  <div style={{ marginBottom: "20px" }}>
+                    <span style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      padding: "6px 14px",
+                      borderRadius: "999px",
+                      background: "rgba(7, 12, 24, 0.6)",
+                      border: "1px solid rgba(199, 243, 75, 0.3)",
+                      color: "#C7F34B",
+                      fontSize: "11px",
                       fontWeight: 700,
-                      color: "var(--ab-accent)",
-                      lineHeight: 1,
-                      marginBottom: "12px",
-                    }}
-                  >
-                    0{stat.suffix}
+                      letterSpacing: "1.5px",
+                      textTransform: "uppercase",
+                      fontFamily: "var(--font-geist-mono), monospace",
+                    }}>
+                      <span className="pulse-dot" style={{
+                        width: "6px",
+                        height: "6px",
+                        borderRadius: "50%",
+                        background: "#C7F34B",
+                        boxShadow: "0 0 8px #C7F34B",
+                      }} />
+                      Our vision
+                    </span>
                   </div>
-                  <div style={{
-                    fontSize: "13px",
-                    fontWeight: 600,
-                    color: "var(--ab-text-muted)",
-                    letterSpacing: "1.5px",
-                    textTransform: "uppercase",
+
+                  {/* Header */}
+                  <h2 className="heading-display" style={{
+                    fontSize: "clamp(42px, 5vw, 68px)",
+                    fontFamily: "var(--font-syne), sans-serif",
+                    fontWeight: 700,
+                    lineHeight: "0.98",
+                    letterSpacing: "-0.02em",
+                    color: "#F4F7FB",
+                    marginBottom: "24px",
                   }}>
-                    {stat.label}
+                    Shaping the Future of<br />
+                    <span style={{ color: "#C7F34B" }}>Intelligent</span><br />
+                    <span style={{ color: "#C7F34B" }}>Operations</span>
+                  </h2>
+
+                  {/* Description */}
+                  <p style={{
+                    fontSize: "17px",
+                    fontFamily: "var(--font-geist-sans), sans-serif",
+                    color: "#9AA8BF",
+                    lineHeight: "1.75",
+                    maxWidth: "520px",
+                    margin: "0 0 40px 0",
+                  }}>
+                    To become one of the world's most trusted Intelligent Operations partners,
+                    enabling organizations to achieve sustainable growth through innovation,
+                    operational excellence and technology-driven transformation.
+                  </p>
+
+                  {/* Supporting Metrics */}
+                  <div style={{
+                    borderTop: "1px solid rgba(255, 255, 255, 0.08)",
+                    paddingTop: "28px",
+                    display: "flex",
+                    gap: "36px",
+                    flexWrap: "wrap",
+                  }}>
+                    {[
+                      { value: "01", label: "Purpose" },
+                      { value: "24/7", label: "Intelligence" },
+                      { value: "∞", label: "Possibility" },
+                    ].map((metric) => (
+                      <div key={metric.label}>
+                        <div style={{
+                          fontSize: "24px",
+                          fontFamily: "var(--font-syne), sans-serif",
+                          fontWeight: 700,
+                          color: "#F4F7FB",
+                          marginBottom: "4px",
+                        }}>{metric.value}</div>
+                        <div style={{
+                          fontSize: "11px",
+                          fontWeight: 600,
+                          color: "#9AA8BF",
+                          letterSpacing: "1.5px",
+                          textTransform: "uppercase",
+                          fontFamily: "var(--font-geist-sans), sans-serif",
+                        }}>{metric.label}</div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Right Column — Technology Image Collage with Overlapping Card */}
+              <div className="reveal-child" style={{
+                flex: "1 1 500px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "relative",
+              }}>
+                {/* 3D Perspective Collage Frame */}
+                <div className="collage-3d-frame" style={{
+                  position: "relative",
+                  width: "100%",
+                  maxWidth: "540px",
+                  height: "440px",
+                  borderRadius: "26px",
+                  border: "1px solid rgba(255, 255, 255, 0.12)",
+                  background: "rgba(11, 18, 32, 0.4)",
+                  padding: "24px",
+                  boxShadow: "0 24px 48px rgba(0, 0, 0, 0.4)",
+                  transform: "perspective(1000px) rotateY(-4deg)",
+                  overflow: "hidden",
+                }}>
+                  {/* Subtle scanning line animation */}
+                  <div className="scan-line" style={{
+                    position: "absolute",
+                    left: 0,
+                    right: 0,
+                    height: "2px",
+                    background: "linear-gradient(90deg, transparent, #C7F34B, transparent)",
+                    opacity: 0.25,
+                    zIndex: 3,
+                  }} />
+
+                  {/* Collage Grid */}
+                  <div style={{
+                    position: "relative",
+                    width: "100%",
+                    height: "100%",
+                  }}>
+                    {/* Image 1: Large top-left */}
+                    <div className="collage-img-wrap" style={{
+                      position: "absolute",
+                      width: "58%",
+                      height: "65%",
+                      left: 0,
+                      top: 0,
+                      borderRadius: "18px",
+                      overflow: "hidden",
+                      border: "1px solid rgba(255, 255, 255, 0.08)",
+                      boxShadow: "0 12px 24px rgba(0, 0, 0, 0.3)",
+                    }}>
+                      <img
+                        src="/aboutai.png"
+                        alt="AI and operations analytics dashboard visualizing data intelligence"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          filter: "brightness(0.6) contrast(1.1) saturate(0.8)",
+                          transition: "transform 0.4s ease, filter 0.4s ease",
+                        }}
+                      />
+                    </div>
+
+                    {/* Image 2: Small top-right */}
+                    <div className="collage-img-wrap" style={{
+                      position: "absolute",
+                      width: "38%",
+                      height: "40%",
+                      right: 0,
+                      top: 0,
+                      borderRadius: "18px",
+                      overflow: "hidden",
+                      border: "1px solid rgba(255, 255, 255, 0.08)",
+                      boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)",
+                    }}>
+                      <img
+                        src="/ai first thinking.jpg"
+                        alt="Intelligent technological infrastructure"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          filter: "brightness(0.55) contrast(1.15) saturate(0.7)",
+                          transition: "transform 0.4s ease, filter 0.4s ease",
+                        }}
+                      />
+                    </div>
+
+                    {/* Image 3: Small bottom-right */}
+                    <div className="collage-img-wrap" style={{
+                      position: "absolute",
+                      width: "38%",
+                      height: "50%",
+                      right: 0,
+                      bottom: 0,
+                      borderRadius: "18px",
+                      overflow: "hidden",
+                      border: "1px solid rgba(255, 255, 255, 0.08)",
+                      boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)",
+                    }}>
+                      <img
+                        src="/Data Engineering.webp"
+                        alt="Data flow and system engineering operations"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          filter: "brightness(0.55) contrast(1.15) saturate(0.7)",
+                          transition: "transform 0.4s ease, filter 0.4s ease",
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Operations Intelligence Card overlapping lower-left */}
+                <div className="intelligence-floating-card" style={{
+                  position: "absolute",
+                  bottom: "16px",
+                  left: "24px",
+                  width: "220px",
+                  background: "rgba(11, 18, 32, 0.8)",
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)",
+                  border: "1px solid rgba(255, 255, 255, 0.12)",
+                  borderRadius: "20px",
+                  padding: "18px 20px",
+                  boxShadow: "0 20px 40px rgba(0, 0, 0, 0.5)",
+                  zIndex: 4,
+                }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+                    <span style={{ fontSize: "11px", fontWeight: 700, color: "#9AA8BF", letterSpacing: "1px", textTransform: "uppercase" }}>Ops Intelligence</span>
+                    <span style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "4px",
+                      fontSize: "9px",
+                      fontWeight: 800,
+                      background: "rgba(199, 243, 75, 0.1)",
+                      color: "#C7F34B",
+                      padding: "2px 6px",
+                      borderRadius: "4px",
+                      border: "1px solid rgba(199, 243, 75, 0.2)",
+                    }}>
+                      <span className="pulse-dot" style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#C7F34B" }} />
+                      LIVE
+                    </span>
+                  </div>
+
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "2px", marginBottom: "4px" }}>
+                    <span style={{ fontSize: "36px", fontWeight: 800, color: "#F4F7FB", fontFamily: "var(--font-syne), sans-serif", lineHeight: 1 }}>98.4</span>
+                    <span style={{ fontSize: "20px", fontWeight: 700, color: "#C7F34B" }}>%</span>
+                  </div>
+                  <p style={{ fontSize: "11px", color: "#9AA8BF", margin: "0 0 16px 0", lineHeight: 1.3 }}>automated resolution rate</p>
+
+                  {/* Micro Bar Chart */}
+                  <div style={{ display: "flex", alignItems: "flex-end", gap: "5px", height: "28px", paddingBottom: "2px" }}>
+                    {[35, 50, 45, 60, 55, 75, 90, 85, 100].map((h, idx) => (
+                      <div key={idx} className="chart-bar" style={{
+                        flex: 1,
+                        height: `${h}%`,
+                        background: "#C7F34B",
+                        borderRadius: "2px",
+                        opacity: idx === 8 ? 1 : 0.45,
+                        transition: "height 0.6s ease",
+                      }} />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <style>{`
+            @keyframes pulse {
+              0%, 100% { opacity: 0.5; transform: scale(1); }
+              50% { opacity: 1; transform: scale(1.15); }
+            }
+            .pulse-dot {
+              animation: pulse 2s infinite ease-in-out;
+            }
+            @keyframes scan {
+              0% { top: -2%; }
+              50% { top: 102%; }
+              100% { top: -2%; }
+            }
+            .scan-line {
+              animation: scan 6s infinite linear;
+            }
+            @keyframes float {
+              0%, 100% { transform: translateY(0); }
+              50% { transform: translateY(-6px); }
+            }
+            .intelligence-floating-card {
+              animation: float 4s infinite ease-in-out;
+            }
+            .collage-img-wrap:hover img {
+              transform: scale(1.04);
+              filter: brightness(0.85) contrast(1.1) saturate(0.9) !important;
+            }
+            @media (prefers-reduced-motion: reduce) {
+              .pulse-dot, .scan-line, .intelligence-floating-card {
+                animation: none !important;
+              }
+              .collage-3d-frame {
+                transform: none !important;
+              }
+              .collage-img-wrap img {
+                transition: none !important;
+              }
+            }
+          `}</style>
+        </section>
+
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+            MISSION
+            ──────────────────────────────────────────────────────────────────── */}
+        <section className="ab-section ab-section-light ab-section-border-top" style={{ overflow: "hidden" }}>
+          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
+            <div style={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              gap: "60px",
+              alignItems: "center",
+            }}>
+              {/* Left Column — Text */}
+              <div className="reveal-child" style={{ flex: "1 1 500px" }}>
+                <div style={{ marginBottom: "18px" }}>
+                  <span className="eyebrow-badge">Our mission</span>
+                </div>
+                <h2 className="heading-display" style={{
+                  fontSize: "clamp(32px, 5vw, 48px)",
+                  fontFamily: "var(--font-syne), sans-serif",
+                  fontWeight: 700,
+                  color: "var(--ab-text-primary)",
+                  marginBottom: "24px",
+                  lineHeight: "1.15",
+                }}>
+                  Transforming Complexity into{" "}
+                  <span style={{ color: "var(--ab-accent)" }}>Competitive Advantage</span>
+                </h2>
+                <p style={{
+                  fontSize: "18px",
+                  fontFamily: "var(--font-geist-sans), sans-serif",
+                  color: "var(--ab-text-secondary)",
+                  lineHeight: "1.75",
+                  maxWidth: "540px",
+                }}>
+                  To empower businesses by delivering secure, scalable and intelligent
+                  operational solutions that create measurable value for clients, employees
+                  and society.
+                </p>
+              </div>
+
+              {/* Right Column — Layered Image Collage with Mouse Parallax */}
+              <div className="reveal-child" style={{
+                flex: "1 1 500px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "relative",
+              }}>
+                <MissionCollage />
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+            STATS
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+        {/* ── Outcomes Mosaic ─────────────────────────────────────── */}
+        <section
+          className="outcomes-section"
+          style={{
+            width: "100%",
+            padding: "100px 80px",
+          }}
+        >
+          <div style={{ maxWidth: "1400px", margin: "0 auto" }} className="outcomes-layout">
+            {/* Left column — intro */}
+            <div className="outcomes-intro">
+              <h3 className="outcomes-headline" style={{ color: "#FFFFFF" }}>
+                Delivering <span style={{ color: "#C6E84A" }}>Outcomes</span>
+              </h3>
+              <p className="outcomes-sub">
+                From accelerated documentation processing to smarter automation
+                and lower operating costs, our intelligent operations deliver
+                measurable results — consistently, across every engagement.
+              </p>
+              <a href="/contact" className="outcomes-link" style={{ color: "#C6E84A" }}>
+                Read More <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            {/* Right column — mosaic grid */}
+            <div className="outcomes-mosaic">
+              {[
+                { kind: "image" as const, src: "/global clients.jpg", alt: "Global clients" },
+                { kind: "stat" as const, val: "5+", label: "Global Clients" },
+                { kind: "image" as const, src: "/Faster Documentation Processing.jpg", alt: "Faster documentation processing" },
+                { kind: "stat" as const, val: "40%", label: "Faster Documentation Processing" },
+                { kind: "image" as const, src: "/Automation-and-Annual-Savings.jpg", alt: "Automation and annual savings" },
+                { kind: "stat" as const, val: "50%", label: "Automation & Annual Savings" },
+                { kind: "image" as const, src: "/Reduction in Dispute Resolution Time.jpg", alt: "Reduction in dispute resolution time" },
+                { kind: "stat" as const, val: "50%", label: "Reduction in Dispute Resolution Time" },
+                { kind: "image" as const, src: "/Reduction in Operating Cost.jpg", alt: "Reduction in operating cost" },
+                { kind: "stat" as const, val: "40%", label: "Reduction in Operating Cost" },
+              ].map((tile, i) => {
+                if (tile.kind === "image") {
+                  return (
+                    <div key={`img-${i}`} className="outcome-tile">
+                      <img
+                        src={tile.src}
+                        alt={tile.alt}
+                        className="outcome-tile-img"
+                        loading="lazy"
+                      />
+                    </div>
+                  );
+                }
+                return (
+                  <div
+                    key={`stat-${i}`}
+                    className="outcome-tile outcome-tile-stat"
+                    style={{ background: "#14161D" }}
+                    role="group"
+                    aria-label={`${tile.val} ${tile.label}`}
+                  >
+                    <div className="outcome-tile-number" style={{ color: "#C6E84A" }}>
+                      {tile.val}
+                    </div>
+                    <div className="outcome-tile-label">{tile.label}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <style>{`
+            /* ── Outcomes Mosaic Grid ──────────────────────────── */
+            .outcomes-section {
+              position: relative;
+              overflow: hidden;
+              background:
+                radial-gradient(ellipse at top right, rgba(198, 232, 74, 0.08), transparent 55%),
+                #0a0a0a;
+            }
+            .outcomes-layout {
+              display: flex;
+              gap: 64px;
+              align-items: center;
+            }
+            .outcomes-intro {
+              flex: 0 0 340px;
+              max-width: 340px;
+            }
+            .outcomes-headline {
+              font-size: 40px;
+              font-weight: 700;
+              line-height: 1.15;
+              margin-bottom: 20px;
+            }
+            .outcomes-sub {
+              font-size: 16px;
+              font-weight: 400;
+              color: rgba(255, 255, 255, 0.55);
+              line-height: 1.7;
+              margin-bottom: 28px;
+            }
+            .outcomes-link {
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              font-weight: 700;
+              font-size: 15px;
+              text-decoration: none;
+              transition: opacity 0.2s ease;
+            }
+            .outcomes-link:hover {
+              opacity: 0.8;
+            }
+            .outcomes-mosaic {
+              flex: 1;
+              display: grid;
+              grid-template-columns: repeat(5, 1fr);
+              grid-auto-rows: 170px;
+              gap: 6px;
+            }
+            .outcome-tile {
+              border-radius: 14px;
+              overflow: hidden;
+            }
+            .outcome-tile-img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              display: block;
+              transition: transform 0.4s ease;
+            }
+            .outcome-tile:hover .outcome-tile-img {
+              transform: scale(1.04);
+            }
+            .outcome-tile-stat {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              padding: 12px;
+              text-align: center;
+            }
+            .outcome-tile-number {
+              font-size: 36px;
+              font-weight: 700;
+              line-height: 1;
+              font-variant-numeric: tabular-nums;
+              margin-bottom: 10px;
+            }
+            .outcome-tile-label {
+              font-size: 13px;
+              font-weight: 500;
+              color: rgba(255, 255, 255, 0.85);
+              line-height: 1.45;
+            }
+            @media (max-width: 1000px) {
+              .outcomes-layout {
+                flex-direction: column;
+                gap: 40px;
+                align-items: flex-start;
+              }
+              .outcomes-intro {
+                flex: none;
+                max-width: none;
+              }
+              .outcomes-mosaic {
+                grid-template-columns: repeat(3, 1fr);
+                grid-auto-rows: 150px;
+              }
+            }
+            @media (max-width: 768px) {
+              .outcomes-section {
+                padding: 60px 20px !important;
+              }
+            }
+          `}</style>
+        </section>
+
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             VALUES
-            ════════════════════════════════════════════════════ */}
-        <section className="ab-section ab-section-darker ab-section-border-top">
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+        <section className="ab-section ab-section-light ab-section-border-top" style={{ overflow: "hidden" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="reveal-section" style={{ marginBottom: "72px" }}>
-              <div className="reveal-child">
+
+            {/* Header — left-aligned */}
+            <div className="reveal-section" style={{ marginBottom: "64px" }}>
+              <div className="reveal-child" style={{ marginBottom: "20px" }}>
                 <span className="eyebrow-badge">Our values</span>
               </div>
               <h2 className="heading-display reveal-child" style={{
-                fontSize: "clamp(32px, 5vw, 48px)",
+                fontSize: "clamp(32px, 5vw, 52px)",
                 fontFamily: "var(--font-syne), sans-serif",
                 fontWeight: 700,
                 color: "var(--ab-text-primary)",
                 marginBottom: "16px",
                 marginTop: "20px",
+                lineHeight: 1.1,
               }}>
                 What <span style={{ color: "var(--ab-accent)" }}>drives</span> us forward
               </h2>
@@ -1139,36 +2158,23 @@ export default function AboutPage() {
                 fontSize: "17px",
                 fontFamily: "var(--font-geist-sans), sans-serif",
                 color: "var(--ab-text-muted)",
-                lineHeight: 1.7,
-                maxWidth: "100%",
+                lineHeight: 1.75,
+                maxWidth: "560px",
               }}>
                 Our core values shape every solution we build, every partnership we
                 nurture, and every impact we create.
               </p>
             </div>
 
-            <div className="ab-values-grid">
-              {values.map((value, i) => {
-                const num = String(i + 1).padStart(2, "0");
-                return (
-                  <div key={value.title} className="val-card">
-                    <div className="val-card-inner">
-                      <div className="val-card-num">{num}</div>
-                      <div className="val-card-icon">{value.icon}</div>
-                      <div className="val-card-title">{value.title}</div>
-                      <p className="val-card-desc">{value.description}</p>
-                      <div className="val-card-line" />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            {/* Interactive Values Interface */}
+            <ValuesPanel />
+
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             WHY BUSINESSES CHOOSE SYTRION
-            ════════════════════════════════════════════════════════════ */}
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         <section className="ab-section ab-section-dark ab-section-border-top" style={{ position: "relative", overflow: "hidden" }}>
           {/* Glow blobs */}
           <div style={{
@@ -1218,7 +2224,7 @@ export default function AboutPage() {
                 color: "var(--ab-text-secondary)",
                 lineHeight: 1.75,
               }}>
-                Intelligent Operations — AI-enabled workflows designed for efficiency and accuracy.
+                Intelligent Operations â€” AI-enabled workflows designed for efficiency and accuracy.
                 Our solutions are designed around the unique operational requirements of every industry.
               </p>
               {/* Accent divider */}
@@ -1250,10 +2256,10 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             INDUSTRY FOCUS
-            ════════════════════════════════════════════════════════════ */}
-        <section className="ab-section ab-section-darker ab-section-border-top">
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+        <section className="ab-section ab-section-light ab-section-border-top">
           <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div className="reveal-child" style={{ marginBottom: "48px" }}>
               <span className="eyebrow-badge">Industries we serve</span>
@@ -1332,9 +2338,9 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             GLOBAL CLIENTS
-            ════════════════════════════════════════════════════════════ */}
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         <section className="ab-section ab-section-dark ab-section-border-top">
           <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div className="ab-global-row" style={{ display: "flex", gap: "60px", alignItems: "center" }}>
@@ -1418,10 +2424,10 @@ export default function AboutPage() {
           `}</style>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             SECURITY FIRST
-            ════════════════════════════════════════════════════════════ */}
-        <section className="ab-section ab-section-darker ab-section-border-top">
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+        <section className="ab-section ab-section-light ab-section-border-top">
           <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div style={{ display: "flex", gap: "60px", alignItems: "center" }}>
               <div className="reveal-child" style={{ flex: "0 0 40%" }}>
@@ -1500,9 +2506,9 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             SCALABLE ENGAGEMENT
-            ════════════════════════════════════════════════════════════ */}
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         <section className="ab-section ab-section-dark ab-section-border-top">
           <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div className="reveal-child" style={{ marginBottom: "16px" }}>
@@ -1526,15 +2532,15 @@ export default function AboutPage() {
               maxWidth: "100%",
             }}>
               Whether supporting five professionals or five hundred, our solutions evolve
-              with our clients' ambitions — growing as you grow.
+              with our clients' ambitions â€” growing as you grow.
             </p>
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             FEATURE GRID
-            ════════════════════════════════════════════════════════════ */}
-        <section className="ab-section ab-section-darker ab-section-border-top">
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+        <section className="ab-section ab-section-light ab-section-border-top">
           <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div className="reveal-child" style={{ marginBottom: "56px" }}>
               <span className="eyebrow-badge">What sets us apart</span>
@@ -1571,9 +2577,9 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             OPERATING PRINCIPLES
-            ════════════════════════════════════════════════════════════ */}
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         <section className="ab-section ab-section-dark ab-section-border-top">
           <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div className="reveal-child" style={{ marginBottom: "48px" }}>
@@ -1593,7 +2599,7 @@ export default function AboutPage() {
               {[
                 { title: "Customer First", desc: "Every solution begins with understanding our client's business objectives and desired outcomes." },
                 { title: "Operational Excellence", desc: "We continuously improve processes to deliver consistent, measurable results." },
-                { title: "Innovation with Purpose", desc: "Technology is applied where it creates real business value — not for its own sake." },
+                { title: "Innovation with Purpose", desc: "Technology is applied where it creates real business value â€” not for its own sake." },
                 { title: "Integrity & Trust", desc: "We build lasting relationships through transparency, accountability, and ethical business practices." },
                 { title: "Continuous Improvement", desc: "We embrace change and continuously evolve to help our clients stay ahead." },
               ].map((principle, i) => (
@@ -1615,10 +2621,10 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             THE FUTURE WE ARE BUILDING
-            ════════════════════════════════════════════════════════════ */}
-        <section className="ab-section ab-section-darker ab-section-border-top">
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+        <section className="ab-section ab-section-light ab-section-border-top">
           <div className="reveal-section" style={{ maxWidth: "1000px", margin: "0 auto" }}>
             <div className="reveal-child" style={{ marginBottom: "16px" }}>
               <span className="eyebrow-badge">Looking ahead</span>
@@ -1672,9 +2678,9 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             FOUNDER'S MESSAGE
-            ════════════════════════════════════════════════════════════ */}
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         <section className="ab-section ab-section-dark ab-section-border-top">
           <div className="reveal-section" style={{ maxWidth: "900px", margin: "0 auto" }}>
             <div className="ab-glass" style={{ padding: "56px 48px" }}>
@@ -1692,7 +2698,7 @@ export default function AboutPage() {
                 textAlign: "center",
                 fontStyle: "italic",
               }}>
-                "Sytrion was born from a simple yet powerful belief — that every organization
+                "Sytrion was born from a simple yet powerful belief â€” that every organization
                 deserves operational excellence backed by integrity, innovation, and intelligent
                 thinking. Our mission is not merely to deliver services, but to become a trusted
                 partner in our clients' journey of growth and transformation."
@@ -1724,10 +2730,10 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             LEADERSHIP
-            ════════════════════════════════════════════════════ */}
-        <section className="ab-section ab-section-dark ab-section-border-top">
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+        <section className="ab-section ab-section-light ab-section-border-top">
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div className="reveal-section" style={{ marginBottom: "72px" }}>
               <div className="reveal-child">
@@ -1922,9 +2928,9 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             CTA
-            ════════════════════════════════════════════════════ */}
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         <section className="ab-cta ab-section-border-top">
           <div className="cta-orb" />
           <div className="ab-grid-overlay" />

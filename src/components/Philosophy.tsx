@@ -8,17 +8,12 @@ export default function Philosophy() {
   const closingRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
     const createObserver = (threshold: number) =>
       new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               const el = entry.target as HTMLElement;
-              if (prefersReduced) {
-                el.classList.add("fade-only");
-              }
               el.classList.add("in-view");
               observer.unobserve(el);
             }
@@ -43,32 +38,25 @@ export default function Philosophy() {
   return (
     <>
       <style>{`
-        .phil-card-wrapper {
-          opacity: 0;
-          transform: translateY(40px) scale(0.97);
-          transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-          will-change: opacity, transform;
-        }
-        .phil-card-wrapper.in-view {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-        .phil-card-wrapper[data-index="0"] { transition-delay: 0s; }
-
+        .phil-card-wrapper,
         .philosophy-closing-wrapper {
-          opacity: 0;
-          transform: translateY(40px) scale(0.97);
-          transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .philosophy-closing-wrapper.in-view {
           opacity: 1;
-          transform: translateY(0) scale(1);
+          transform: none;
         }
-
-        .fade-only.philosophy-closing-wrapper {
-          transform: none !important;
+        .phil-card-wrapper.in-view,
+        .philosophy-closing-wrapper.in-view {
+          animation: philEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        @keyframes philEntrance {
+          from { opacity: 0; transform: translateY(40px) scale(0.97); }
+          to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .phil-card-wrapper[data-index="0"].in-view { animation-delay: 0s; }
+        @media (prefers-reduced-motion: reduce) {
+          .phil-card-wrapper.in-view,
+          .philosophy-closing-wrapper.in-view {
+            animation: none;
+          }
         }
 
         .philosophy-closing-box {

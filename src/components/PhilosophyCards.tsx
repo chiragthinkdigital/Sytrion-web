@@ -143,6 +143,7 @@ export default function PhilosophyCards() {
                 src={card.image}
                 alt={`${card.letter} — ${card.description}`}
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="phil-card-body">

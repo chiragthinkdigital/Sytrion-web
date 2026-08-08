@@ -101,7 +101,7 @@ const stats = [
 const mosaicImages = [
   { src: "/global clients.jpg", alt: "Global clients" },
   { src: "/Faster Documentation Processing.jpg", alt: "Faster documentation processing" },
-  { src: "/Automation & Annual Savings.jpg", alt: "Automation and annual savings" },
+  { src: "/Automation-and-Annual-Savings.jpg", alt: "Automation and annual savings" },
   { src: "/Reduction in Dispute Resolution Time.jpg", alt: "Reduction in dispute resolution time" },
   { src: "/Reduction in Operating Cost.jpg", alt: "Reduction in operating cost" },
 ];
@@ -163,9 +163,15 @@ export default function Industries() {
   const [inView, setInView] = useState(false);
   const reducedMotion = useReducedMotion();
 
-  const animValues = useRef<number[]>(stats.map(() => 0));
-  const [tick, setTick] = useState(0);
+  const statEls = useRef<(HTMLDivElement | null)[]>([]);
   const animFrame = useRef<number>(0);
+
+  const setStatEl = (i: number) => (el: HTMLDivElement | null) => {
+    statEls.current[i] = el;
+  };
+
+  const statSuffix = (stat: (typeof stats)[number]) =>
+    stat.displayValue === "5+" ? "+" : "%";
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -184,11 +190,13 @@ export default function Industries() {
   }, []);
 
   useEffect(() => {
-    if (!inView || reducedMotion) {
-      if (reducedMotion && inView) {
-        animValues.current = stats.map((s) => s.count);
-        setTick((t) => t + 1);
-      }
+    if (!inView) return;
+
+    if (reducedMotion) {
+      stats.forEach((stat, i) => {
+        const node = statEls.current[i];
+        if (node) node.textContent = `${stat.count}${statSuffix(stat)}`;
+      });
       return;
     }
 
@@ -203,11 +211,11 @@ export default function Industries() {
         const rowElapsed = Math.max(0, elapsed - rowDelay);
         const progress = Math.min(1, rowElapsed / COUNT_DURATION);
         const easedProgress = easeOutCubic(progress);
-        animValues.current[i] = Math.round(easedProgress * stat.count);
+        const value = Math.round(easedProgress * stat.count);
+        const node = statEls.current[i];
+        if (node) node.textContent = `${value}${statSuffix(stat)}`;
         if (progress < 1) anyRunning = true;
       });
-
-      setTick((t) => t + 1);
 
       if (anyRunning) {
         animFrame.current = requestAnimationFrame(animate);
@@ -619,9 +627,7 @@ export default function Industries() {
                 );
               }
               const stat = stats[tile.statIndex];
-              const animVal = animValues.current[tile.statIndex];
-              const numPart = inView ? animVal : 0;
-              const suffix = stat.displayValue === "5+" ? "+" : "%";
+              const suffix = statSuffix(stat);
               return (
                 <div
                   key={`stat-${i}`}
@@ -629,8 +635,8 @@ export default function Industries() {
                   role="group"
                   aria-label={`${stat.displayValue} ${stat.label}`}
                 >
-                  <div className="outcome-tile-number">
-                    {numPart}{suffix}
+                  <div className="outcome-tile-number" ref={setStatEl(tile.statIndex)}>
+                    0{suffix}
                   </div>
                   <div className="outcome-tile-label">{stat.label}</div>
                 </div>

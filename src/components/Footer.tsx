@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 const quickLinks = [
@@ -213,7 +211,7 @@ export default function Footer() {
               style={{
                 fontSize: "17px",
                 fontWeight: 600,
-                color: "#C6E84A",
+                color: "#8FAB1E",
                 marginBottom: "12px",
                 lineHeight: 1.4,
               }}
