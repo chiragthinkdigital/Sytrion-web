@@ -1,4 +1,4 @@
-const ACCENT = "#c6ff3d";
+const ACCENT = "#C6E84A";
 const NAVY = "#0e1b3d";
 
 const securityItems = [
@@ -182,7 +182,7 @@ export default function WhySytrion() {
           display: block;
           font-size: 12px;
           font-weight: 700;
-          color: #9fb83e;
+          color: #4d7c0f;
           text-transform: uppercase;
           letter-spacing: 1px;
           margin: 44px 0 20px;
@@ -337,7 +337,7 @@ export default function WhySytrion() {
                     height="20"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="#9FB83E"
+                    stroke="#4D7C0F"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"

@@ -36,9 +36,10 @@ interface GlobeProps {
   markers?: Array<{ location: [number, number]; size: number }>;
   baseColor?: [number, number, number];
   markerColor?: [number, number, number];
+  maxSize?: number;
 }
 
-export function Globe({ focusTarget, markers, baseColor, markerColor }: GlobeProps) {
+export function Globe({ focusTarget, markers, baseColor, markerColor, maxSize = 480 }: GlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const phiRef = useRef(0);
   const thetaRef = useRef(GLOBE_CONFIG.theta);
@@ -48,7 +49,7 @@ export function Globe({ focusTarget, markers, baseColor, markerColor }: GlobePro
 
   useEffect(() => {
     if (focusTarget) {
-      targetPhiRef.current = (focusTarget.lng * Math.PI) / 180;
+      targetPhiRef.current = Math.PI - ((focusTarget.lng * Math.PI) / 180 - Math.PI / 2);
       targetThetaRef.current = (focusTarget.lat * Math.PI) / 180;
     } else {
       targetPhiRef.current = null;
@@ -63,7 +64,7 @@ export function Globe({ focusTarget, markers, baseColor, markerColor }: GlobePro
     const container = canvas.parentElement;
     if (!container) return;
 
-    const s = Math.min(container.clientWidth, 480) || 480;
+    const s = Math.min(container.clientWidth, maxSize) || maxSize;
     const dpr = window.devicePixelRatio || 2;
     const px = Math.round(s * dpr);
 
@@ -96,12 +97,9 @@ export function Globe({ focusTarget, markers, baseColor, markerColor }: GlobePro
       let theta = thetaRef.current;
 
       if (targetPhiRef.current !== null) {
-        const diff = targetPhiRef.current - phi;
+        let diff = targetPhiRef.current - phi;
+        diff = ((diff % (2 * Math.PI)) + 3 * Math.PI) % (2 * Math.PI) - Math.PI;
         phi += diff * 0.04;
-        if (Math.abs(diff) < 0.002) {
-          phi = targetPhiRef.current;
-          targetPhiRef.current = null;
-        }
       } else {
         phi += 0.005;
       }
@@ -109,10 +107,9 @@ export function Globe({ focusTarget, markers, baseColor, markerColor }: GlobePro
       if (targetThetaRef.current !== null) {
         const diff = targetThetaRef.current - theta;
         theta += diff * 0.04;
-        if (Math.abs(diff) < 0.002) {
-          theta = targetThetaRef.current;
-          targetThetaRef.current = null;
-        }
+      } else {
+        const diff = GLOBE_CONFIG.theta - theta;
+        theta += diff * 0.04;
       }
 
       phiRef.current = phi;
@@ -137,7 +134,7 @@ export function Globe({ focusTarget, markers, baseColor, markerColor }: GlobePro
       globe.destroy();
       globeRef.current = null;
     };
-  }, [markers]);
+  }, [markers, baseColor, markerColor, maxSize]);
 
   return (
     <div

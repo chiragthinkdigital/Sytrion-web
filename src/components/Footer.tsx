@@ -21,7 +21,7 @@ export default function Footer() {
       style={{
         width: "100%",
         background: "#EEF0F1",
-        padding: "48px 80px 24px",
+        padding: "32px 80px 16px",
         position: "relative",
         overflow: "hidden",
       }}
@@ -73,11 +73,11 @@ export default function Footer() {
           font-size: 15px;
           font-weight: 700;
           color: #0f0f0f;
-          margin-bottom: 16px;
+          margin-bottom: 20px;
           letter-spacing: 0.5px;
         }
         .fl-col-pad {
-          padding-top: 12px;
+          padding-top: 48px;
         }
         .fl-link {
           color: #5A5D66;
@@ -85,7 +85,7 @@ export default function Footer() {
           text-decoration: none;
           display: block;
           padding: 0;
-          margin-bottom: 16px;
+          margin-bottom: 20px;
           line-height: 1;
           transition: color 0.2s ease;
         }
@@ -135,7 +135,7 @@ export default function Footer() {
         .fl-divider {
           border: none;
           border-top: 1px solid #D8DBDD;
-          margin: 24px auto 0;
+          margin: 16px auto 0;
           max-width: 1400px;
         }
         .fl-bottom {
@@ -144,7 +144,7 @@ export default function Footer() {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 24px 0 0;
+          padding: 16px 0 0;
           position: relative;
           z-index: 2;
         }
@@ -163,17 +163,20 @@ export default function Footer() {
         }
         @media (max-width: 1024px) {
           .fl-footer-root {
-            padding: 60px 40px 30px;
+            padding: 40px 40px 20px;
           }
           .fl-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px 36px;
           }
+          .fl-col-pad {
+            padding-top: 12px;
+          }
         }
         @media (max-width: 768px) {
           .fl-footer-root {
-            padding: 48px 20px 24px;
+            padding: 32px 20px 16px;
           }
           .fl-grid {
             grid-template-columns: 1fr;
@@ -203,16 +206,16 @@ export default function Footer() {
             <Image
               src="/Sytrion-Logo.png"
               alt="Sytrion Data Labs"
-              width={200}
-              height={52}
-              style={{ height: "auto", marginBottom: "16px" }}
+              width={170}
+              height={44}
+              style={{ height: "auto", marginBottom: "12px" }}
             />
             <p
               style={{
                 fontSize: "17px",
                 fontWeight: 600,
                 color: "#8FAB1E",
-                marginBottom: "12px",
+                marginBottom: "8px",
                 lineHeight: 1.4,
               }}
             >
@@ -222,9 +225,9 @@ export default function Footer() {
               style={{
                 fontSize: "15px",
                 color: "#8A8D96",
-                lineHeight: 1.6,
+                lineHeight: 1.5,
                 maxWidth: "420px",
-                marginBottom: "20px",
+                marginBottom: "12px",
               }}
             >
               AI-powered intelligent operations company

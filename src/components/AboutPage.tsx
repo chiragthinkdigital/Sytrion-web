@@ -1,10 +1,14 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Globe } from "@/components/Globe";
+import WhySytrion from "@/components/WhySytrion";
+import Founder from "@/components/Founder";
+import FutureCards from "@/components/FutureCards";
+import CallToAction from "@/components/CallToAction";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +17,14 @@ const stats = [
   { value: 98, suffix: "%", label: "Client Retention" },
   { value: 50, suffix: "+", label: "Team Members" },
   { value: 10, suffix: "+", label: "Years of Excellence" },
+];
+
+const operatingPrinciples = [
+  { title: "Customer First", image: "/Customer First.jpg", desc: "Every solution begins with understanding our client's business objectives and desired outcomes." },
+  { title: "Operational Excellence", image: "/Operational Excellence.jpg", desc: "We continuously improve processes to deliver consistent, measurable results." },
+  { title: "Innovation with Purpose", image: "/Innovation with Purpose.jpg", desc: "Technology is applied where it creates real business value â€” not for its own sake." },
+  { title: "Integrity & Trust", image: "/integrit and trust.jpg", desc: "We build lasting relationships through transparency, accountability, and ethical business practices." },
+  { title: "Continuous Improvement", image: "/Continuous Improvement.jpg", desc: "We embrace change and continuously evolve to help our clients stay ahead." },
 ];
 
 const values = [
@@ -115,12 +127,12 @@ const REGIONS: Record<string, { lat: number; lng: number }> = {
   Africa: { lat: -8.78, lng: 34.51 },
 };
 const valueImages = [
-  "/enterprise  secuirty.jpg",      // Integrity
-  "/AI-Automation-and-Agentic-AI-2.jpg",  // Innovation
-  "/scalable delivery.jpg",         // Excellence
-  "/customer partnership.jpg",      // Ownership
-  "/global clients.jpg",            // Collaboration
-  "/business transformation.jpg",   // Customer Success
+  "/integrity.jpg",         // Integrity
+  "/innovation1.jpg",       // Innovation
+  "/excellence.jpg",        // Excellence
+  "/ownership.jpg",         // Ownership
+  "/collaboration.jpg",     // Collaboration
+  "/customer success.png",  // Customer Success
 ];
 
 function ValuesPanel() {
@@ -177,14 +189,14 @@ function ValuesPanel() {
           border-bottom: none;
         }
         .vp-row:hover {
-          background: rgba(199,243,75,0.06);
+          background: rgba(198,232,74,0.06);
         }
         .vp-row:focus-visible {
           box-shadow: inset 0 0 0 2px var(--ab-accent);
         }
         .vp-row.active {
-          border-left-color: #C7F34B;
-          background: rgba(199,243,75,0.07);
+          border-left-color: #C6E84A;
+          background: rgba(198,232,74,0.07);
         }
         .vp-row-num {
           font-size: 11px;
@@ -197,7 +209,7 @@ function ValuesPanel() {
           transition: color 0.18s ease;
         }
         .vp-row.active .vp-row-num {
-          color: #C7F34B;
+          color: #C6E84A;
         }
         .vp-row-name {
           flex: 1;
@@ -220,7 +232,7 @@ function ValuesPanel() {
         }
         .vp-row.active .vp-row-arrow,
         .vp-row:hover .vp-row-arrow {
-          color: #C7F34B;
+          color: #C6E84A;
           transform: translate(2px, -2px);
         }
 
@@ -269,7 +281,7 @@ function ValuesPanel() {
           font-size: clamp(120px, 18vw, 200px);
           font-family: var(--font-syne), sans-serif;
           font-weight: 800;
-          color: rgba(199,243,75,0.12);
+          color: rgba(198,232,74,0.12);
           line-height: 1;
           pointer-events: none;
           user-select: none;
@@ -279,7 +291,7 @@ function ValuesPanel() {
         .vp-accent-line {
           width: 36px;
           height: 3px;
-          background: #C7F34B;
+          background: #C6E84A;
           border-radius: 2px;
           margin-bottom: 28px;
           flex-shrink: 0;
@@ -289,7 +301,7 @@ function ValuesPanel() {
           font-weight: 700;
           letter-spacing: 2px;
           text-transform: uppercase;
-          color: rgba(199,243,75,0.7);
+          color: rgba(198,232,74,0.7);
           font-family: var(--font-geist-mono), monospace;
           margin-bottom: 12px;
         }
@@ -318,7 +330,7 @@ function ValuesPanel() {
           opacity: 0;
         }
         .vp-bg-num {
-          color: rgba(199,243,75,0.10);
+          color: rgba(198,232,74,0.10);
         }
 
         /* Responsive */
@@ -484,7 +496,7 @@ function MissionCollage() {
           pointerEvents: "none",
         }} />
         <img
-          src="/scalable delivery.jpg"
+          src="/Transforming Complexity into Competitive Advantage2.jpg"
           alt="Advanced technological enterprise operations"
           style={{
             width: "100%",
@@ -510,7 +522,7 @@ function MissionCollage() {
         border: "1px solid rgba(77, 124, 15, 0.12)",
       }}>
         <img
-          src="/business transformation.jpg"
+          src="/Transforming Complexity into Competitive Advantage1.jpg"
           alt="Intelligent business transformation workflow"
           style={{
             width: "100%",
@@ -536,7 +548,7 @@ function MissionCollage() {
         border: "1px solid rgba(77, 124, 15, 0.12)",
       }}>
         <img
-          src="/rpa2.jpg"
+          src="/Transforming Complexity into Competitive Advantage3.jpg"
           alt="Analytics and automated digital solution execution"
           style={{
             width: "100%",
@@ -554,6 +566,38 @@ export default function AboutPage() {
   const heroTextRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
+
+  const opTrackRef = useRef<HTMLDivElement>(null);
+  const [opVisible, setOpVisible] = useState(4);
+  const [opPage, setOpPage] = useState(0);
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      if (w < 768) setOpVisible(1);
+      else if (w < 1024) setOpVisible(2);
+      else setOpVisible(4);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const opMaxPage = Math.ceil(operatingPrinciples.length / opVisible) - 1;
+  const canScrollLeft = opPage > 0;
+  const canScrollRight = opPage < opMaxPage;
+
+  const scrollOp = (p: number) => {
+    const track = opTrackRef.current;
+    if (!track) return;
+    const clamped = Math.max(0, Math.min(opMaxPage, p));
+    const card = track.children[0] as HTMLElement | undefined;
+    if (!card) return;
+    const cardW = card.offsetWidth;
+    const gap = 20;
+    track.scrollTo({ left: clamped * (cardW + gap) * opVisible, behavior: "smooth" });
+    setOpPage(clamped);
+  };
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
@@ -698,27 +742,6 @@ export default function AboutPage() {
           });
         }
 
-        // â”€â”€ Leadership card reveal â”€â”€
-        const leaderCards = containerRef.current?.querySelectorAll(".leader-card");
-        if (leaderCards?.length) {
-          gsap.set(leaderCards, { autoAlpha: 0, y: 50, scale: 0.96 });
-          ScrollTrigger.create({
-            trigger: leaderCards[0],
-            start: "top 80%",
-            once: true,
-            onEnter: () => {
-              gsap.to(leaderCards, {
-                autoAlpha: 1,
-                y: 0,
-                scale: 1,
-                duration: reduceMotion ? 0 : 0.8,
-                ease: "power2.out",
-                stagger: reduceMotion ? 0 : 0.15,
-              });
-            },
-          });
-        }
-
         // â”€â”€ CTA glow pulse (only if not reduced motion) â”€â”€
         if (!reduceMotion) {
           const ctaGlow = containerRef.current?.querySelector(".cta-orb");
@@ -845,24 +868,53 @@ export default function AboutPage() {
           border-color: #4d7c0f;
           box-shadow: 0 0 12px rgba(77,124,15,0.25);
         }
-        .ab-section-light .leader-card {
-          background: #ffffff;
-          border-color: rgba(15,23,42,0.08);
-          box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        }
-        .ab-section-light .leader-card:hover {
-          border-color: rgba(77,124,15,0.2);
-          box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-        }
-        .ab-section-light .leader-card-avatar {
-          background: linear-gradient(135deg, #e8f5e9, #f0f4c3);
-        }
-        .ab-section-light .leader-card-avatar::after {
-          background: linear-gradient(0deg, #ffffff 0%, transparent 100%);
-        }
         .ab-section-light .ab-section-border-top,
         .ab-section-light.ab-section-border-top {
           border-top-color: rgba(15,23,42,0.08);
+        }
+
+        /* ── Light sections: lime accent override (light bg preserved) ── */
+        .ab-lime-accent {
+          --ab-accent: #C6E84A;
+        }
+        .ab-lime-accent .ab-stat-card:hover {
+          border-color: rgba(198,232,74,0.3);
+          box-shadow: 0 8px 24px rgba(198,232,74,0.12);
+        }
+        .ab-lime-accent .val-card:hover {
+          border-color: rgba(198,232,74,0.2);
+          box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+        .ab-lime-accent .val-card-num {
+          -webkit-text-stroke-color: rgba(198,232,74,0.1);
+        }
+        .ab-lime-accent .val-card:hover .val-card-num {
+          -webkit-text-stroke-color: rgba(198,232,74,0.2);
+        }
+        .ab-lime-accent .val-card-icon {
+          background: rgba(198,232,74,0.08);
+          border-color: rgba(198,232,74,0.15);
+        }
+        .ab-lime-accent .val-card:hover .val-card-icon {
+          background: rgba(198,232,74,0.15);
+          border-color: rgba(198,232,74,0.3);
+          box-shadow: 0 0 16px rgba(198,232,74,0.12);
+        }
+        .ab-lime-accent .val-card-line {
+          background: #C6E84A;
+        }
+        .ab-lime-accent .timeline-line-fill {
+          background: linear-gradient(180deg, #C6E84A, rgba(198,232,74,0.15));
+        }
+        .ab-lime-accent .timeline-dot {
+          background: #f8f9fc;
+          border-color: #C6E84A;
+          box-shadow: 0 0 12px rgba(198,232,74,0.3);
+        }
+        .ab-lime-accent .eyebrow-badge {
+          background: #C6E84A !important;
+          border-color: #C6E84A !important;
+          color: #0f172a !important;
         }
 
         /* â”€â”€ Grid texture overlay â”€â”€ */
@@ -914,7 +966,7 @@ export default function AboutPage() {
           position: absolute;
           top: 50%;
           left: 50%;
-          border: 1px solid rgba(199, 224, 82, 0.12);
+          border: 1px solid rgba(198, 232, 74, 0.12);
           border-radius: 50%;
           transform: translate(-50%, -50%);
           pointer-events: none;
@@ -927,8 +979,8 @@ export default function AboutPage() {
           width: 6px;
           height: 6px;
           border-radius: 50%;
-          background: #C7E052;
-          box-shadow: 0 0 12px 2px rgba(199, 224, 82, 0.7);
+          background: #C6E84A;
+          box-shadow: 0 0 12px 2px rgba(198, 232, 74, 0.7);
           top: -3px;
           left: 50%;
         }
@@ -1089,39 +1141,6 @@ export default function AboutPage() {
           z-index: 1;
         }
 
-        /* â”€â”€ Leader card â”€â”€ */
-        .leader-card {
-          background: var(--ab-surface-2);
-          border: 1px solid var(--ab-border);
-          border-radius: 20px;
-          overflow: hidden;
-          transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .leader-card:hover {
-          border-color: rgba(198,232,74,0.15);
-          box-shadow: var(--ab-glow);
-          transform: translateY(-4px);
-        }
-        .leader-card-avatar {
-          width: 100%;
-          height: 280px;
-          background: var(--ab-surface-3);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          overflow: hidden;
-        }
-        .leader-card-avatar::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 50%;
-          background: linear-gradient(0deg, var(--ab-surface-2) 0%, transparent 100%);
-        }
-
         /* â”€â”€ Values grid â”€â”€ */
         .ab-values-grid {
           display: grid;
@@ -1261,6 +1280,135 @@ export default function AboutPage() {
           background: linear-gradient(135deg, var(--ab-surface-2) 40%, rgba(26,31,58,0.85) 100%);
         }
 
+        /* ── Operating principle cards (photo carousel, like Industries) ── */
+        .ab-op-track {
+          display: flex;
+          gap: 20px;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          scroll-behavior: smooth;
+          padding-bottom: 4px;
+        }
+        .ab-op-track::-webkit-scrollbar { display: none; }
+        .op-card {
+          position: relative;
+          flex: 0 0 calc((100% - 60px) / 4);
+          align-self: flex-start;
+          aspect-ratio: 4 / 5;
+          border-radius: 18px;
+          overflow: hidden;
+          scroll-snap-align: start;
+          scroll-snap-stop: always;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .op-card:hover {
+          transform: scale(1.02);
+          box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+        }
+        @media (max-width: 1023px) {
+          .op-card {
+            flex: 0 0 calc((100% - 20px) / 2);
+          }
+        }
+        @media (max-width: 639px) {
+          .op-card {
+            flex: 0 0 100%;
+          }
+        }
+        .op-card-img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: filter 0.3s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .op-card:hover .op-card-img {
+          filter: brightness(1.1);
+          transform: scale(1.04);
+        }
+        .op-card-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.25) 42%, rgba(0,0,0,0.78) 100%);
+          pointer-events: none;
+        }
+        .op-card-body {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          padding: 28px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        .op-card-num {
+          font-family: "var(--font-syne), sans-serif";
+          font-weight: 800;
+          font-size: 44px;
+          color: transparent;
+          -webkit-text-stroke: 1.5px rgba(255,255,255,0.55);
+          line-height: 1;
+          position: absolute;
+          top: 22px;
+          right: 24px;
+          pointer-events: none;
+          user-select: none;
+        }
+        .op-card-title {
+          font-family: "var(--font-syne), sans-serif";
+          font-weight: 700;
+          font-size: 22px;
+          color: #FFFFFF;
+          line-height: 1.3;
+          margin-top: 48px;
+          text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        }
+        .op-card-desc {
+          font-family: var(--font-geist-sans), sans-serif;
+          font-size: 14px;
+          color: rgba(255,255,255,0.85);
+          line-height: 1.7;
+          margin: 0;
+          text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+        @media (max-width: 768px) {
+          .op-card-body {
+            padding: 24px;
+          }
+        }
+        .ab-op-arrows {
+          display: flex;
+          gap: 12px;
+          margin-top: 32px;
+          justify-content: flex-end;
+        }
+        .ab-op-arrow-btn {
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          border: 1.5px solid rgba(255,255,255,0.2);
+          background: transparent;
+          color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+          padding: 0;
+        }
+        .ab-op-arrow-btn:hover:not(:disabled) {
+          background: rgba(255,255,255,0.08);
+          border-color: rgba(255,255,255,0.4);
+        }
+        .ab-op-arrow-btn:disabled {
+          opacity: 0.25;
+          cursor: default;
+        }
+
         /* Wide card image */
         .val-card-wide-img {
           width: 45%;
@@ -1316,14 +1464,6 @@ export default function AboutPage() {
           .ab-stats-grid {
             grid-template-columns: repeat(2, 1fr) !important;
           }
-          .ab-leaders-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-          .ab-leaders-grid > :last-child {
-            grid-column: 1 / -1;
-            max-width: 400px;
-            margin: 0 auto;
-          }
           .ab-values-grid {
             grid-template-columns: 1fr 1fr !important;
           }
@@ -1338,12 +1478,6 @@ export default function AboutPage() {
           }
           .ab-values-grid {
             grid-template-columns: 1fr !important;
-          }
-          .ab-leaders-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .ab-leaders-grid > :last-child {
-            max-width: none;
           }
           .val-card--wide .val-card-inner {
             flex-direction: column;
@@ -1432,8 +1566,8 @@ export default function AboutPage() {
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             STORY + TIMELINE
             â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <section className="ab-section ab-section-light ab-section-border-top">
-          <div className="reveal-section ab-story-grid" style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", gap: "80px", alignItems: "flex-start" }}>
+        <section className="ab-section ab-section-light ab-lime-accent ab-section-border-top">
+          <div className="reveal-section ab-story-grid" style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", gap: "80px", alignItems: "flex-start" }}>
             {/* Left â€” Text */}
             <div className="reveal-child" style={{ flex: 1 }}>
               <span className="eyebrow-badge">Our story</span>
@@ -1566,7 +1700,7 @@ export default function AboutPage() {
             right: "-10%",
           }} />
 
-          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+          <div className="reveal-section" style={{ maxWidth: "1400px", margin: "0 auto", position: "relative", zIndex: 2 }}>
             <div style={{
               display: "flex",
               flexDirection: "row",
@@ -1585,7 +1719,7 @@ export default function AboutPage() {
                 {/* Left accent fade line */}
                 <div style={{
                   width: "2px",
-                  background: "linear-gradient(180deg, #C7F34B 0%, rgba(199, 243, 75, 0.3) 50%, transparent 100%)",
+                  background: "linear-gradient(180deg, #C6E84A 0%, rgba(198, 232, 74, 0.3) 50%, transparent 100%)",
                   flexShrink: 0,
                   marginTop: "8px",
                   borderRadius: "2px",
@@ -1601,8 +1735,8 @@ export default function AboutPage() {
                       padding: "6px 14px",
                       borderRadius: "999px",
                       background: "rgba(7, 12, 24, 0.6)",
-                      border: "1px solid rgba(199, 243, 75, 0.3)",
-                      color: "#C7F34B",
+                      border: "1px solid rgba(198, 232, 74, 0.3)",
+                      color: "#C6E84A",
                       fontSize: "11px",
                       fontWeight: 700,
                       letterSpacing: "1.5px",
@@ -1613,8 +1747,8 @@ export default function AboutPage() {
                         width: "6px",
                         height: "6px",
                         borderRadius: "50%",
-                        background: "#C7F34B",
-                        boxShadow: "0 0 8px #C7F34B",
+                        background: "#C6E84A",
+                        boxShadow: "0 0 8px #C6E84A",
                       }} />
                       Our vision
                     </span>
@@ -1631,8 +1765,8 @@ export default function AboutPage() {
                     marginBottom: "24px",
                   }}>
                     Shaping the Future of<br />
-                    <span style={{ color: "#C7F34B" }}>Intelligent</span><br />
-                    <span style={{ color: "#C7F34B" }}>Operations</span>
+                    <span style={{ color: "#C6E84A" }}>Intelligent</span><br />
+                    <span style={{ color: "#C6E84A" }}>Operations</span>
                   </h2>
 
                   {/* Description */}
@@ -1712,7 +1846,7 @@ export default function AboutPage() {
                     left: 0,
                     right: 0,
                     height: "2px",
-                    background: "linear-gradient(90deg, transparent, #C7F34B, transparent)",
+                    background: "linear-gradient(90deg, transparent, #C6E84A, transparent)",
                     opacity: 0.25,
                     zIndex: 3,
                   }} />
@@ -1823,20 +1957,20 @@ export default function AboutPage() {
                       gap: "4px",
                       fontSize: "9px",
                       fontWeight: 800,
-                      background: "rgba(199, 243, 75, 0.1)",
-                      color: "#C7F34B",
+                      background: "rgba(198, 232, 74, 0.1)",
+                      color: "#C6E84A",
                       padding: "2px 6px",
                       borderRadius: "4px",
-                      border: "1px solid rgba(199, 243, 75, 0.2)",
+                      border: "1px solid rgba(198, 232, 74, 0.2)",
                     }}>
-                      <span className="pulse-dot" style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#C7F34B" }} />
+                      <span className="pulse-dot" style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#C6E84A" }} />
                       LIVE
                     </span>
                   </div>
 
                   <div style={{ display: "flex", alignItems: "baseline", gap: "2px", marginBottom: "4px" }}>
                     <span style={{ fontSize: "36px", fontWeight: 800, color: "#F4F7FB", fontFamily: "var(--font-syne), sans-serif", lineHeight: 1 }}>98.4</span>
-                    <span style={{ fontSize: "20px", fontWeight: 700, color: "#C7F34B" }}>%</span>
+                    <span style={{ fontSize: "20px", fontWeight: 700, color: "#C6E84A" }}>%</span>
                   </div>
                   <p style={{ fontSize: "11px", color: "#9AA8BF", margin: "0 0 16px 0", lineHeight: 1.3 }}>automated resolution rate</p>
 
@@ -1846,7 +1980,7 @@ export default function AboutPage() {
                       <div key={idx} className="chart-bar" style={{
                         flex: 1,
                         height: `${h}%`,
-                        background: "#C7F34B",
+                        background: "#C6E84A",
                         borderRadius: "2px",
                         opacity: idx === 8 ? 1 : 0.45,
                         transition: "height 0.6s ease",
@@ -1902,8 +2036,8 @@ export default function AboutPage() {
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             MISSION
             ──────────────────────────────────────────────────────────────────── */}
-        <section className="ab-section ab-section-light ab-section-border-top" style={{ overflow: "hidden" }}>
-          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <section className="ab-section ab-section-light ab-lime-accent ab-section-border-top" style={{ overflow: "hidden" }}>
+          <div className="reveal-section" style={{ maxWidth: "1400px", margin: "0 auto" }}>
             <div style={{
               display: "flex",
               flexDirection: "row",
@@ -2134,9 +2268,9 @@ export default function AboutPage() {
 
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             VALUES
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <section className="ab-section ab-section-light ab-section-border-top" style={{ overflow: "hidden" }}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+        <section className="ab-section ab-section-light ab-lime-accent ab-section-border-top" style={{ overflow: "hidden" }}>
+          <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
 
             {/* Header — left-aligned */}
             <div className="reveal-section" style={{ marginBottom: "64px" }}>
@@ -2173,178 +2307,17 @@ export default function AboutPage() {
         </section>
 
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-            WHY BUSINESSES CHOOSE SYTRION
+            WHY SYTRION (HOME SECTION)
             â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <section className="ab-section ab-section-dark ab-section-border-top" style={{ position: "relative", overflow: "hidden" }}>
-          {/* Glow blobs */}
-          <div style={{
-            position: "absolute",
-            width: "500px",
-            height: "500px",
-            borderRadius: "50%",
-            filter: "blur(90px)",
-            pointerEvents: "none",
-            zIndex: 0,
-            background: "#C7E052",
-            opacity: 0.25,
-            top: "-180px",
-            left: "60%",
-          }} />
-          <div style={{
-            position: "absolute",
-            width: "500px",
-            height: "500px",
-            borderRadius: "50%",
-            filter: "blur(90px)",
-            pointerEvents: "none",
-            zIndex: 0,
-            background: "#2E5AAC",
-            opacity: 0.2,
-            bottom: "-200px",
-            left: "10%",
-          }} />
-          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-            <div style={{ maxWidth: "100%" }}>
-              <div className="reveal-child" style={{ marginBottom: "18px" }}>
-                <span className="eyebrow-badge">Why Sytrion</span>
-              </div>
-              <h2 className="heading-display reveal-child" style={{
-                fontSize: "clamp(32px, 5vw, 48px)",
-                fontFamily: "var(--font-syne), sans-serif",
-                fontWeight: 700,
-                color: "var(--ab-text-primary)",
-                marginBottom: "16px",
-              }}>
-                Why Businesses Choose{" "}
-                <span style={{ color: "var(--ab-accent)" }}>Sytrion</span>
-              </h2>
-              <p className="reveal-child" style={{
-                fontSize: "18px",
-                fontFamily: "var(--font-geist-sans), sans-serif",
-                color: "var(--ab-text-secondary)",
-                lineHeight: 1.75,
-              }}>
-                Intelligent Operations â€” AI-enabled workflows designed for efficiency and accuracy.
-                Our solutions are designed around the unique operational requirements of every industry.
-              </p>
-              {/* Accent divider */}
-              <div className="reveal-child" style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-start",
-                gap: "16px",
-                marginTop: "32px",
-              }}>
-                <div style={{
-                  width: "60px",
-                  height: "1px",
-                  background: "linear-gradient(90deg, transparent, rgba(199,224,82,0.6))",
-                }} />
-                <div style={{
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "50%",
-                  background: "#C7E052",
-                }} />
-                <div style={{
-                  width: "60px",
-                  height: "1px",
-                  background: "linear-gradient(90deg, rgba(199,224,82,0.6), transparent)",
-                }} />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-            INDUSTRY FOCUS
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <section className="ab-section ab-section-light ab-section-border-top">
-          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="reveal-child" style={{ marginBottom: "48px" }}>
-              <span className="eyebrow-badge">Industries we serve</span>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "24px" }}>
-              {[
-                {
-                  title: "Shipping & Logistics",
-                  image: "/shipping.jpg",
-                  items: ["Freight forwarding & documentation", "Shipment processing & customs support", "Finance & accounting operations", "Vendor management", "Supply chain back-office services"],
-                },
-                {
-                  title: "Healthcare & Life Sciences",
-                  image: "/healthcare.jpg",
-                  items: ["Claims processing & provider support", "Document management", "Workflow optimization", "Healthcare administration services"],
-                },
-                {
-                  title: "E-Commerce",
-                  image: "/ecommerce.jpg",
-                  items: ["Order processing & catalog operations", "Customer support", "Returns management", "Business reporting"],
-                },
-                {
-                  title: "Other Industries",
-                  image: "/banking.jpg",
-                  items: ["Banking & Financial Services", "Insurance", "Travel & Hospitality", "Retail", "Digital Public Infrastructure"],
-                },
-              ].map((group) => (
-                <div key={group.title} className="ab-glass" style={{ position: "relative", overflow: "hidden" }}>
-                  <div style={{
-                    position: "absolute",
-                    inset: 0,
-                    backgroundImage: `url(${group.image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    opacity: 0.18,
-                  }} />
-                  <div style={{ position: "relative", zIndex: 1, padding: "36px" }}>
-                    <h3 style={{
-                      fontSize: "20px",
-                      fontFamily: "var(--font-syne), sans-serif",
-                      fontWeight: 700,
-                      color: "var(--ab-text-primary)",
-                      marginBottom: "20px",
-                    }}>
-                      {group.title}
-                    </h3>
-                    <ul style={{
-                      listStyle: "none",
-                      padding: 0,
-                      margin: 0,
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "10px",
-                    }}>
-                      {group.items.map((item) => (
-                        <li key={item} style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "10px",
-                          fontSize: "15px",
-                          fontFamily: "var(--font-geist-sans), sans-serif",
-                          color: "var(--ab-text-muted)",
-                          lineHeight: 1.6,
-                        }}>
-                          <svg width="6" height="6" viewBox="0 0 6 6" fill="none">
-                            <circle cx="3" cy="3" r="3" fill="var(--ab-accent)" opacity="0.6" />
-                          </svg>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <WhySytrion />
 
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             GLOBAL CLIENTS
             â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <section className="ab-section ab-section-dark ab-section-border-top">
-          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <section className="ab-section ab-section-dark ab-section-border-top ab-global-section">
+          <div className="reveal-section" style={{ maxWidth: "1400px", margin: "0 auto" }}>
             <div className="ab-global-row" style={{ display: "flex", gap: "60px", alignItems: "center" }}>
-              <div className="reveal-child" style={{ flex: "0 0 45%", maxWidth: "520px" }}>
+              <div className="reveal-child" style={{ flex: "0 0 48%", maxWidth: "640px" }}>
                 <span className="eyebrow-badge">Global presence</span>
                 <h2 className="heading-display" style={{
                   fontSize: "clamp(28px, 4vw, 40px)",
@@ -2352,7 +2325,7 @@ export default function AboutPage() {
                   fontWeight: 700,
                   color: "var(--ab-text-primary)",
                   marginTop: "16px",
-                  marginBottom: "32px",
+                  marginBottom: "28px",
                 }}>
                   Supporting organizations across{" "}
                   <span style={{ color: "var(--ab-accent)" }}>the globe</span>
@@ -2360,7 +2333,7 @@ export default function AboutPage() {
                 <div style={{
                   display: "flex",
                   flexWrap: "wrap",
-                  gap: "10px",
+                  gap: "8px",
                 }}>
                   {["Australia", "New Zealand", "United States", "Europe", "Asia", "Africa"].map((region) => {
                     const active = selectedRegion === region;
@@ -2371,7 +2344,7 @@ export default function AboutPage() {
                         style={{
                           cursor: "pointer",
                           display: "inline-block",
-                          padding: "8px 18px",
+                          padding: "8px 14px",
                           borderRadius: "999px",
                           background: active ? "var(--ab-accent)" : "var(--ab-surface-2)",
                           border: active ? "1px solid var(--ab-accent)" : "1px solid var(--ab-border)",
@@ -2389,25 +2362,32 @@ export default function AboutPage() {
                   })}
                 </div>
               </div>
-              <div className="reveal-child" style={{
-                flex: 1,
-                height: "480px",
-                position: "relative",
-              }}>
-                <Globe
-                  focusTarget={selectedRegion ? REGIONS[selectedRegion] : null}
-                  markers={
-                    selectedRegion
-                      ? [{ location: [REGIONS[selectedRegion].lat, REGIONS[selectedRegion].lng], size: 0.12 }]
-                      : undefined
-                  }
-                  baseColor={[0.3, 0.32, 0.35]}
-                  markerColor={[198 / 255, 232 / 255, 74 / 255]}
-                />
+              <div className="reveal-child" style={{ flex: 1, height: "520px", position: "relative" }}>
+                <div style={{
+                  position: "absolute",
+                  right: "-20px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  width: "600px",
+                  height: "600px",
+                }}>
+                  <Globe
+                    focusTarget={selectedRegion ? REGIONS[selectedRegion] : null}
+                    markers={Object.values(REGIONS).map((region) => ({ location: [region.lat, region.lng] as [number, number], size: 0.06 }))}
+                    
+                    maxSize={600}
+                    baseColor={[0.95, 0.95, 0.93]}
+                    markerColor={[198 / 255, 232 / 255, 74 / 255]}
+                  />
+                </div>
               </div>
             </div>
           </div>
           <style>{`
+            .ab-global-section {
+              padding: 56px 48px;
+              overflow: hidden;
+            }
             @media (max-width: 900px) {
               .ab-global-row {
                 flex-direction: column !important;
@@ -2418,7 +2398,20 @@ export default function AboutPage() {
               }
               .ab-global-row > div:last-child {
                 width: 100% !important;
-                height: 360px !important;
+                height: 380px !important;
+              }
+              .ab-global-row > div:last-child > div {
+                position: static !important;
+                right: auto !important;
+                top: auto !important;
+                transform: none !important;
+                width: 100% !important;
+                height: 100% !important;
+              }
+            }
+            @media (max-width: 768px) {
+              .ab-global-section {
+                padding: 48px 24px;
               }
             }
           `}</style>
@@ -2427,10 +2420,10 @@ export default function AboutPage() {
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             SECURITY FIRST
             â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <section className="ab-section ab-section-light ab-section-border-top">
-          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div style={{ display: "flex", gap: "60px", alignItems: "center" }}>
-              <div className="reveal-child" style={{ flex: "0 0 40%" }}>
+        <section className="ab-section ab-section-dark ab-section-border-top ab-sec-combo">
+          <div className="reveal-section" style={{ maxWidth: "1400px", margin: "0 auto" }}>
+            <div className="ab-sec-grid">
+              <div className="reveal-child ab-sec-grid-text">
                 <span className="eyebrow-badge">Security First</span>
                 <h2 className="heading-display" style={{
                   fontSize: "clamp(28px, 4vw, 40px)",
@@ -2454,94 +2447,184 @@ export default function AboutPage() {
                   readiness in mind.
                 </p>
               </div>
-              <div className="reveal-child" style={{ flex: 1 }}>
-                <div className="ab-glass" style={{ padding: "40px" }}>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-                    {[
-                      { title: "Data Protection", desc: "End-to-end encryption and access controls to safeguard sensitive information." },
-                      { title: "Compliance Ready", desc: "Built to meet ISO 27001, GDPR, and industry-specific regulatory standards." },
-                      { title: "Continuous Monitoring", desc: "24/7 threat detection, incident response, and regular security audits." },
-                    ].map((item) => (
-                      <div key={item.title} style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
-                        <div style={{
-                          width: "32px",
-                          height: "32px",
-                          borderRadius: "8px",
-                          background: "rgba(198,232,74,0.1)",
-                          border: "1px solid rgba(198,232,74,0.15)",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          flexShrink: 0,
-                        }}>
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ab-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                          </svg>
-                        </div>
-                        <div>
-                          <div style={{
-                            fontSize: "16px",
-                            fontWeight: 600,
-                            color: "var(--ab-text-primary)",
-                            fontFamily: "var(--font-syne), sans-serif",
-                            marginBottom: "4px",
-                          }}>
-                            {item.title}
-                          </div>
-                          <div style={{
-                            fontSize: "14px",
-                            fontFamily: "var(--font-geist-sans), sans-serif",
-                            color: "var(--ab-text-muted)",
-                            lineHeight: 1.6,
-                          }}>
-                            {item.desc}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
+              <div className="reveal-child ab-sec-grid-cards">
+                {[
+                  { title: "Data Protection", desc: "End-to-end encryption and access controls to safeguard sensitive information." },
+                  { title: "Compliance Ready", desc: "Built to meet ISO 27001, GDPR, and industry-specific regulatory standards." },
+                  { title: "Continuous Monitoring", desc: "24/7 threat detection, incident response, and regular security audits." },
+                ].map((item) => (
+                  <div key={item.title} className="ab-glass ab-sec-card">
+                    <div className="ab-sec-card-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ab-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </div>
+                    <div className="ab-sec-card-title">{item.title}</div>
+                    <p className="ab-sec-card-desc">{item.desc}</p>
                   </div>
-                </div>
+                ))}
+              </div>
+            </div>
+            <div className="ab-scale-band">
+              <div className="reveal-child" style={{ flex: 1 }}>
+                <span className="eyebrow-badge">Scalable Engagement</span>
+                <h2 className="heading-display" style={{
+                  fontSize: "clamp(26px, 3.5vw, 36px)",
+                  fontFamily: "var(--font-syne), sans-serif",
+                  fontWeight: 700,
+                  color: "var(--ab-text-primary)",
+                  marginBottom: "16px",
+                }}>
+                  Solutions that scale with{" "}
+                  <span style={{ color: "var(--ab-accent)" }}>your ambition</span>
+                </h2>
+                <p style={{
+                  fontSize: "16px",
+                  fontFamily: "var(--font-geist-sans), sans-serif",
+                  color: "var(--ab-text-secondary)",
+                  lineHeight: 1.75,
+                  maxWidth: "100%",
+                  marginBottom: 0,
+                }}>
+                  Whether supporting five professionals or five hundred, our solutions evolve
+                  with our clients&apos; ambitions — growing as you grow.
+                </p>
+              </div>
+              <div className="ab-scale-bars" aria-hidden="true">
+                {[24, 38, 52, 72, 100].map((h, i) => (
+                  <div
+                    key={i}
+                    className="ab-scale-bar"
+                    style={{
+                      height: `${h}px`,
+                      background: i === 4 ? "var(--ab-accent)" : "rgba(198,232,74,0.16)",
+                      boxShadow: i === 4 ? "var(--ab-glow)" : "none",
+                    }}
+                  />
+                ))}
               </div>
             </div>
           </div>
-        </section>
-
-        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-            SCALABLE ENGAGEMENT
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <section className="ab-section ab-section-dark ab-section-border-top">
-          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="reveal-child" style={{ marginBottom: "16px" }}>
-              <span className="eyebrow-badge">Scalable Engagement</span>
-            </div>
-            <h2 className="heading-display reveal-child" style={{
-              fontSize: "clamp(28px, 4vw, 40px)",
-              fontFamily: "var(--font-syne), sans-serif",
-              fontWeight: 700,
-              color: "var(--ab-text-primary)",
-              marginBottom: "16px",
-            }}>
-              Solutions that scale with{" "}
-              <span style={{ color: "var(--ab-accent)" }}>your ambition</span>
-            </h2>
-            <p className="reveal-child" style={{
-              fontSize: "18px",
-              fontFamily: "var(--font-geist-sans), sans-serif",
-              color: "var(--ab-text-secondary)",
-              lineHeight: 1.75,
-              maxWidth: "100%",
-            }}>
-              Whether supporting five professionals or five hundred, our solutions evolve
-              with our clients' ambitions â€” growing as you grow.
-            </p>
-          </div>
+          <style>{`
+            .ab-sec-grid {
+              display: flex;
+              gap: 60px;
+              align-items: center;
+            }
+            .ab-sec-grid-text {
+              flex: 0 0 38%;
+            }
+            .ab-sec-grid-cards {
+              flex: 1;
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 16px;
+            }
+            .ab-sec-card {
+              padding: 28px 24px;
+              border-radius: 16px;
+            }
+            .ab-sec-card-icon {
+              width: 40px;
+              height: 40px;
+              border-radius: 12px;
+              background: rgba(198,232,74,0.1);
+              border: 1px solid rgba(198,232,74,0.15);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-bottom: 18px;
+            }
+            .ab-sec-card-title {
+              font-size: 16px;
+              font-weight: 600;
+              color: var(--ab-text-primary);
+              font-family: var(--font-syne), sans-serif;
+              margin-bottom: 8px;
+            }
+            .ab-sec-card-desc {
+              font-size: 14px;
+              font-family: var(--font-geist-sans), sans-serif;
+              color: var(--ab-text-muted);
+              line-height: 1.6;
+              margin: 0;
+            }
+            .ab-scale-band {
+              position: relative;
+              margin-top: 72px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 48px;
+              padding: 56px 64px;
+              background: linear-gradient(135deg, rgba(198,232,74,0.06), rgba(255,255,255,0.02));
+              border: 1px solid rgba(198,232,74,0.14);
+              border-radius: 24px;
+              overflow: hidden;
+            }
+            .ab-scale-band::before {
+              content: "";
+              position: absolute;
+              top: 50%;
+              right: -8%;
+              width: 460px;
+              height: 460px;
+              background: radial-gradient(circle, rgba(198,232,74,0.1) 0%, transparent 60%);
+              transform: translateY(-50%);
+              pointer-events: none;
+            }
+            .ab-scale-bars {
+              position: relative;
+              display: flex;
+              align-items: flex-end;
+              gap: 10px;
+              flex-shrink: 0;
+              padding: 12px;
+            }
+            .ab-scale-bar {
+              width: 16px;
+              border-radius: 6px 6px 0 0;
+              transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .ab-scale-band:hover .ab-scale-bar:nth-child(1) { transform: scaleY(1.08); }
+            .ab-scale-band:hover .ab-scale-bar:nth-child(2) { transform: scaleY(1.12); }
+            .ab-scale-band:hover .ab-scale-bar:nth-child(3) { transform: scaleY(1.16); }
+            .ab-scale-band:hover .ab-scale-bar:nth-child(4) { transform: scaleY(1.2); }
+            @media (max-width: 900px) {
+              .ab-sec-grid {
+                flex-direction: column;
+              }
+              .ab-sec-grid-text {
+                flex: none;
+                width: 100%;
+              }
+              .ab-sec-grid-cards {
+                grid-template-columns: 1fr;
+                width: 100%;
+              }
+              .ab-scale-band {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 40px 28px;
+              }
+            }
+          `}</style>
         </section>
 
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             FEATURE GRID
             â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <section className="ab-section ab-section-light ab-section-border-top">
-          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <section className="ab-section ab-section-light ab-lime-accent ab-section-border-top" style={{ position: "relative", overflow: "hidden" }}>
+          <div aria-hidden="true" style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: [
+              "radial-gradient(560px 380px at 6% 4%, rgba(198,232,74,0.08) 0%, rgba(198,232,74,0) 62%)",
+              "radial-gradient(680px 480px at 94% 100%, rgba(12,18,34,0.06) 0%, rgba(12,18,34,0) 62%)",
+            ].join(","),
+            pointerEvents: "none",
+          }} />
+          <div className="reveal-section" style={{ maxWidth: "1400px", margin: "0 auto", position: "relative" }}>
             <div className="reveal-child" style={{ marginBottom: "56px" }}>
               <span className="eyebrow-badge">What sets us apart</span>
               <h2 className="heading-display" style={{
@@ -2555,33 +2638,222 @@ export default function AboutPage() {
                 <span style={{ color: "var(--ab-accent)" }}>impact</span>
               </h2>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
+            <div className="ab-impact-grid reveal-child">
               {[
-                { title: "Domain Expertise", desc: "Industry-focused teams with deep operational understanding across sectors." },
-                { title: "Operational Excellence", desc: "Standardized processes designed to improve quality, productivity, and efficiency." },
-                { title: "Technology-Enabled Services", desc: "Leveraging Agentic AI, AI-enabled automation, analytics, and digital tools to enhance business operations." },
-                { title: "Flexible Delivery Models", desc: "Solutions that scale with your business requirements, from on-site to hybrid and remote." },
-                { title: "Quality & Governance", desc: "Strong operational controls, structured governance, and continuous performance monitoring." },
-                { title: "Customer-Centric Approach", desc: "We work as an extension of your business, ensuring transparency, responsiveness, and long-term partnership." },
+                {
+                  title: "Domain Expertise",
+                  desc: "Industry-focused teams with deep operational understanding across sectors.",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="9" />
+                      <circle cx="12" cy="12" r="4" />
+                      <line x1="12" y1="2" x2="12" y2="6" />
+                      <line x1="12" y1="18" x2="12" y2="22" />
+                      <line x1="2" y1="12" x2="6" y2="12" />
+                      <line x1="18" y1="12" x2="22" y2="12" />
+                    </svg>
+                  ),
+                  corner: (
+                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                      <circle cx="22" cy="22" r="18" />
+                      <circle cx="22" cy="22" r="11" />
+                      <circle cx="22" cy="22" r="4" />
+                    </svg>
+                  ),
+                },
+                {
+                  title: "Operational Excellence",
+                  desc: "Standardized processes designed to improve quality, productivity, and efficiency.",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="9" r="6" />
+                      <path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5" />
+                    </svg>
+                  ),
+                  corner: (
+                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 12c6 0 6 8 12 8s6-8 12-8 6 8 12 8" />
+                      <path d="M4 30c6 0 6 8 12 8s6-8 12-8 6 8 12 8" />
+                    </svg>
+                  ),
+                },
+                {
+                  title: "Technology-Enabled Services",
+                  desc: "Leveraging Agentic AI, AI-enabled automation, analytics, and digital tools to enhance business operations.",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="6" y="6" width="12" height="12" rx="2" />
+                      <rect x="10" y="10" width="4" height="4" />
+                      <path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4" />
+                    </svg>
+                  ),
+                  corner: (
+                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round">
+                      <path d="M22 5l15 8.5v17L22 39 7 30.5v-17L22 5z" />
+                      <path d="M22 13l10 5.5v11L22 35l-10-5.5v-11L22 13z" />
+                    </svg>
+                  ),
+                },
+                {
+                  title: "Flexible Delivery Models",
+                  desc: "Solutions that scale with your business requirements, from on-site to hybrid and remote.",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 8l-9-5-9 5v8l9 5 9-5V8z" />
+                      <path d="M3 8l9 5 9-5M12 13v8" />
+                    </svg>
+                  ),
+                  corner: (
+                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round">
+                      <rect x="6" y="6" width="32" height="32" rx="2" />
+                      <rect x="14" y="14" width="16" height="16" rx="2" />
+                      <rect x="20" y="20" width="4" height="4" />
+                    </svg>
+                  ),
+                },
+                {
+                  title: "Quality & Governance",
+                  desc: "Strong operational controls, structured governance, and continuous performance monitoring.",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      <path d="M9 12l2 2 4-4" />
+                    </svg>
+                  ),
+                  corner: (
+                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                      <path d="M10 22h24M22 10v24" />
+                      <path d="M15 15h14M15 29h14" />
+                      <circle cx="10" cy="10" r="2" />
+                      <circle cx="34" cy="10" r="2" />
+                      <circle cx="10" cy="34" r="2" />
+                      <circle cx="34" cy="34" r="2" />
+                      <circle cx="22" cy="22" r="2" />
+                    </svg>
+                  ),
+                },
+                {
+                  title: "Customer-Centric Approach",
+                  desc: "We work as an extension of your business, ensuring transparency, responsiveness, and long-term partnership.",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                    </svg>
+                  ),
+                  corner: (
+                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <circle cx="16" cy="22" r="13" />
+                      <circle cx="28" cy="22" r="13" />
+                    </svg>
+                  ),
+                },
               ].map((feature) => (
-                <div key={feature.title} className="ab-glass" style={{ padding: "32px" }}>
-                  <div className="val-card-title" style={{ fontSize: "18px", marginBottom: "12px" }}>
-                    {feature.title}
-                  </div>
-                  <p className="val-card-desc" style={{ fontSize: "14px" }}>
-                    {feature.desc}
-                  </p>
+                <div key={feature.title} className="ab-impact-card ab-impact-card--dark">
+                  <span className="ab-impact-corner" aria-hidden="true">
+                    {feature.corner}
+                  </span>
+                  <span className="ab-impact-glow" aria-hidden="true" />
+                  <div className="ab-impact-icon">{feature.icon}</div>
+                  <div className="ab-impact-title">{feature.title}</div>
+                  <p className="ab-impact-desc">{feature.desc}</p>
                 </div>
               ))}
             </div>
           </div>
+          <style>{`
+            .ab-impact-grid {
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 20px;
+            }
+            .ab-impact-card {
+              position: relative;
+              display: flex;
+              flex-direction: column;
+              padding: 32px;
+              border-radius: 20px;
+              background: #0f0f0f;
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              overflow: hidden;
+              transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+            .ab-impact-card:hover {
+              transform: translateY(-4px);
+              box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+            }
+            .ab-impact-corner {
+              position: absolute;
+              top: 24px;
+              right: 24px;
+              width: 44px;
+              height: 44px;
+              color: rgba(198, 232, 74, 0.5);
+              pointer-events: none;
+              z-index: 1;
+            }
+            .ab-impact-glow {
+              position: absolute;
+              bottom: -70px;
+              right: -70px;
+              width: 200px;
+              height: 200px;
+              border-radius: 50%;
+              background: radial-gradient(circle, rgba(198, 232, 74, 0.16) 0%, rgba(198, 232, 74, 0) 70%);
+              filter: blur(8px);
+              pointer-events: none;
+              z-index: 0;
+            }
+            .ab-impact-icon {
+              width: 36px;
+              height: 36px;
+              border-radius: 10px;
+              background: rgba(198, 232, 74, 0.18);
+              border: 1px solid rgba(198, 232, 74, 0.28);
+              color: #C6E84A;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-bottom: 18px;
+              flex-shrink: 0;
+              z-index: 2;
+            }
+            .ab-impact-title {
+              font-size: 18px;
+              font-family: var(--font-syne), sans-serif;
+              font-weight: 700;
+              color: #FFFFFF;
+              line-height: 1.3;
+              margin-bottom: 12px;
+              position: relative;
+              z-index: 2;
+            }
+            .ab-impact-desc {
+              font-size: 14px;
+              font-family: var(--font-geist-sans), sans-serif;
+              color: #DCDECD;
+              line-height: 1.6;
+              margin: 0;
+              position: relative;
+              z-index: 2;
+            }
+            @media (max-width: 1024px) {
+              .ab-impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+              }
+            }
+            @media (max-width: 768px) {
+              .ab-impact-grid {
+                grid-template-columns: 1fr;
+              }
+            }
+          `}</style>
         </section>
 
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             OPERATING PRINCIPLES
             â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         <section className="ab-section ab-section-dark ab-section-border-top">
-          <div className="reveal-section" style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div className="reveal-section" style={{ maxWidth: "1400px", margin: "0 auto" }}>
             <div className="reveal-child" style={{ marginBottom: "48px" }}>
               <span className="eyebrow-badge">Our Operating Principles</span>
               <h2 className="heading-display" style={{
@@ -2595,28 +2867,48 @@ export default function AboutPage() {
                 <span style={{ color: "var(--ab-accent)" }}>operate</span>
               </h2>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
-              {[
-                { title: "Customer First", desc: "Every solution begins with understanding our client's business objectives and desired outcomes." },
-                { title: "Operational Excellence", desc: "We continuously improve processes to deliver consistent, measurable results." },
-                { title: "Innovation with Purpose", desc: "Technology is applied where it creates real business value â€” not for its own sake." },
-                { title: "Integrity & Trust", desc: "We build lasting relationships through transparency, accountability, and ethical business practices." },
-                { title: "Continuous Improvement", desc: "We embrace change and continuously evolve to help our clients stay ahead." },
-              ].map((principle, i) => (
-                <div key={principle.title} className="val-card" style={i === 4 ? { gridColumn: "2 / 3" } : undefined}>
-                  <div className="val-card-inner" style={{ padding: "32px" }}>
-                    <div className="val-card-num" style={{ fontSize: "48px", top: "16px", right: "20px" }}>
+            <div className="ab-op-track" ref={opTrackRef}>
+              {operatingPrinciples.map((principle, i) => (
+                <div key={principle.title} className="op-card">
+                  <img className="op-card-img" src={principle.image} alt={principle.title} loading="lazy" decoding="async" />
+                  <div className="op-card-overlay" />
+                  <div className="op-card-body">
+                    <div className="op-card-num">
                       {String(i + 1).padStart(2, "0")}
                     </div>
-                    <div className="val-card-title" style={{ fontSize: "18px", marginBottom: "12px", marginTop: "8px" }}>
+                    <div className="op-card-title">
                       {principle.title}
                     </div>
-                    <p className="val-card-desc" style={{ fontSize: "14px" }}>
+                    <p className="op-card-desc">
                       {principle.desc}
                     </p>
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Nav Arrows */}
+            <div className="ab-op-arrows">
+              <button
+                className="ab-op-arrow-btn"
+                disabled={!canScrollLeft}
+                onClick={() => scrollOp(opPage - 1)}
+                aria-label="Previous principles"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+              <button
+                className="ab-op-arrow-btn"
+                disabled={!canScrollRight}
+                onClick={() => scrollOp(opPage + 1)}
+                aria-label="Next principles"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
             </div>
           </div>
         </section>
@@ -2624,360 +2916,75 @@ export default function AboutPage() {
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             THE FUTURE WE ARE BUILDING
             â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <section className="ab-section ab-section-light ab-section-border-top">
-          <div className="reveal-section" style={{ maxWidth: "1000px", margin: "0 auto" }}>
-            <div className="reveal-child" style={{ marginBottom: "16px" }}>
-              <span className="eyebrow-badge">Looking ahead</span>
-            </div>
-            <h2 className="heading-display reveal-child" style={{
-              fontSize: "clamp(32px, 5vw, 48px)",
-              fontFamily: "var(--font-syne), sans-serif",
-              fontWeight: 700,
-              color: "var(--ab-text-primary)",
-              marginBottom: "32px",
-            }}>
-              The Future We Are{" "}
-              <span style={{ color: "var(--ab-accent)" }}>Building</span>
-            </h2>
-            <p className="reveal-child" style={{
-              fontSize: "18px",
-              fontFamily: "var(--font-geist-sans), sans-serif",
-              color: "var(--ab-text-secondary)",
-              lineHeight: 1.8,
-              maxWidth: "100%",
-              margin: "0 0 48px",
-            }}>
-              Technology alone cannot transform businesses. People alone cannot transform
-              businesses. The future belongs to organizations that combine both.
-            </p>
-            <div className="reveal-child" style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "20px",
-            }}>
-              {[
-                { label: "Artificial Intelligence", desc: "Enhances human capability" },
-                { label: "Automation", desc: "Accelerates productivity" },
-                { label: "Data", desc: "Drives better decisions" },
-                { label: "People", desc: "Create lasting impact" },
-              ].map((item) => (
-                <div key={item.label} className="ab-glass" style={{ padding: "28px 20px" }}>
-                  <div className="val-card-title" style={{
-                    fontSize: "15px",
-                    marginBottom: "8px",
-                    color: "var(--ab-accent)",
-                  }}>
-                    {item.label}
-                  </div>
-                  <p className="val-card-desc" style={{ fontSize: "14px" }}>
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-            FOUNDER'S MESSAGE
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <section className="ab-section ab-section-dark ab-section-border-top">
-          <div className="reveal-section" style={{ maxWidth: "900px", margin: "0 auto" }}>
-            <div className="ab-glass" style={{ padding: "56px 48px" }}>
-              <div className="reveal-child" style={{ textAlign: "center", marginBottom: "16px" }}>
-                <span className="eyebrow-badge">A message from our founder</span>
-              </div>
-              <blockquote className="reveal-child" style={{
-                fontSize: "clamp(18px, 2.5vw, 24px)",
-                fontFamily: "var(--font-syne), sans-serif",
-                fontWeight: 600,
-                color: "var(--ab-text-primary)",
-                lineHeight: 1.6,
-                margin: "0 auto",
-                maxWidth: "720px",
-                textAlign: "center",
-                fontStyle: "italic",
-              }}>
-                "Sytrion was born from a simple yet powerful belief â€” that every organization
-                deserves operational excellence backed by integrity, innovation, and intelligent
-                thinking. Our mission is not merely to deliver services, but to become a trusted
-                partner in our clients' journey of growth and transformation."
-              </blockquote>
-              <div className="reveal-child" style={{
-                textAlign: "center",
-                marginTop: "32px",
-                paddingTop: "24px",
-                borderTop: "1px solid var(--ab-border)",
-              }}>
-                <div style={{
-                  fontSize: "16px",
+        <section
+          className="ab-future-section"
+          style={{
+            width: "100%",
+            background: "#030712",
+            padding: "100px 80px",
+          }}
+        >
+          <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+            <div className="reveal-child" style={{ marginBottom: "64px" }}>
+              <span className="eyebrow-badge" style={{ marginBottom: "18px" }}>
+                Looking ahead
+              </span>
+              <h2
+                className="heading-display"
+                style={{
+                  fontSize: "clamp(32px, 5vw, 48px)",
                   fontWeight: 700,
-                  color: "var(--ab-accent)",
-                  fontFamily: "var(--font-syne), sans-serif",
-                }}>
-                  Rajesh Kulkarni
-                </div>
-                <div style={{
-                  fontSize: "14px",
-                  color: "var(--ab-text-muted)",
-                  fontFamily: "var(--font-geist-sans), sans-serif",
-                  marginTop: "4px",
-                }}>
-                  Founder &amp; CEO, Sytrion Data Labs
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-            LEADERSHIP
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <section className="ab-section ab-section-light ab-section-border-top">
-          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="reveal-section" style={{ marginBottom: "72px" }}>
-              <div className="reveal-child">
-                <span className="eyebrow-badge">Leadership</span>
-              </div>
-              <h2 className="heading-display reveal-child" style={{
-                fontSize: "clamp(32px, 5vw, 48px)",
-                fontFamily: "var(--font-syne), sans-serif",
-                fontWeight: 700,
-                color: "var(--ab-text-primary)",
-                marginBottom: "16px",
-                marginTop: "20px",
-              }}>
-                The people behind the{" "}
-                <span style={{ color: "var(--ab-accent)" }}>vision</span>
+                  color: "#ffffff",
+                  lineHeight: 1.15,
+                  letterSpacing: "-0.02em",
+                  marginBottom: "16px",
+                }}
+              >
+                The Future We Are{" "}
+                <span style={{ color: "#C6E84A" }}>Building</span>
               </h2>
-              <p className="reveal-child" style={{
-                fontSize: "17px",
-                fontFamily: "var(--font-geist-sans), sans-serif",
-                color: "var(--ab-text-muted)",
-                lineHeight: 1.7,
-                maxWidth: "100%",
-              }}>
-                Our leadership team brings decades of experience in technology,
-                operations, and business transformation.
+              <p
+                className="reveal-child"
+                style={{
+                  fontSize: "19px",
+                  fontWeight: 400,
+                  color: "#9CA3AF",
+                  lineHeight: 1.8,
+                  maxWidth: "100%",
+                }}
+              >
+                Technology alone cannot transform businesses. People alone cannot transform
+                businesses. The future belongs to organizations that combine both.
               </p>
             </div>
 
-            <div className="ab-leaders-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }}>
-              {/* Leader 1 */}
-              <div className="leader-card">
-                <div className="leader-card-avatar">
-                  <div style={{
-                    width: "120px",
-                    height: "120px",
-                    borderRadius: "50%",
-                    background: "rgba(198,232,74,0.1)",
-                    border: "2px solid rgba(198,232,74,0.2)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "42px",
-                    fontWeight: 700,
-                    fontFamily: "var(--font-syne), sans-serif",
-                    color: "var(--ab-accent)",
-                    position: "relative",
-                    zIndex: 1,
-                  }}>
-                    R
-                  </div>
-                </div>
-                <div style={{ padding: "28px 32px 32px" }}>
-                  <div style={{
-                    fontSize: "18px",
-                    fontFamily: "var(--font-syne), sans-serif",
-                    fontWeight: 700,
-                    color: "var(--ab-text-primary)",
-                    marginBottom: "4px",
-                  }}>
-                    Rajesh Kulkarni
-                  </div>
-                  <div style={{
-                    fontSize: "13px",
-                    fontWeight: 600,
-                    color: "var(--ab-accent)",
-                    letterSpacing: "1px",
-                    textTransform: "uppercase",
-                    marginBottom: "16px",
-                  }}>
-                    Founder &amp; CEO
-                  </div>
-                  <p style={{
-                    fontSize: "14px",
-                    fontFamily: "var(--font-geist-sans), sans-serif",
-                    color: "var(--ab-text-muted)",
-                    lineHeight: 1.7,
-                    margin: 0,
-                  }}>
-                    Visionary leader with a passion for bridging technology and business outcomes through AI and operational excellence.
-                  </p>
-                </div>
-              </div>
-
-              {/* Leader 2 */}
-              <div className="leader-card">
-                <div className="leader-card-avatar">
-                  <div style={{
-                    width: "120px",
-                    height: "120px",
-                    borderRadius: "50%",
-                    background: "rgba(198,232,74,0.1)",
-                    border: "2px solid rgba(198,232,74,0.2)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "42px",
-                    fontWeight: 700,
-                    fontFamily: "var(--font-syne), sans-serif",
-                    color: "var(--ab-accent)",
-                    position: "relative",
-                    zIndex: 1,
-                  }}>
-                    A
-                  </div>
-                </div>
-                <div style={{ padding: "28px 32px 32px" }}>
-                  <div style={{
-                    fontSize: "18px",
-                    fontFamily: "var(--font-syne), sans-serif",
-                    fontWeight: 700,
-                    color: "var(--ab-text-primary)",
-                    marginBottom: "4px",
-                  }}>
-                    Anil Kumar
-                  </div>
-                  <div style={{
-                    fontSize: "13px",
-                    fontWeight: 600,
-                    color: "var(--ab-accent)",
-                    letterSpacing: "1px",
-                    textTransform: "uppercase",
-                    marginBottom: "16px",
-                  }}>
-                    Chief Technology Officer
-                  </div>
-                  <p style={{
-                    fontSize: "14px",
-                    fontFamily: "var(--font-geist-sans), sans-serif",
-                    color: "var(--ab-text-muted)",
-                    lineHeight: 1.7,
-                    margin: 0,
-                  }}>
-                    Drives the technical vision and architecture behind Sytrion&apos;s AI-powered solutions and data engineering platforms.
-                  </p>
-                </div>
-              </div>
-
-              {/* Leader 3 */}
-              <div className="leader-card">
-                <div className="leader-card-avatar">
-                  <div style={{
-                    width: "120px",
-                    height: "120px",
-                    borderRadius: "50%",
-                    background: "rgba(198,232,74,0.1)",
-                    border: "2px solid rgba(198,232,74,0.2)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "42px",
-                    fontWeight: 700,
-                    fontFamily: "var(--font-syne), sans-serif",
-                    color: "var(--ab-accent)",
-                    position: "relative",
-                    zIndex: 1,
-                  }}>
-                    P
-                  </div>
-                </div>
-                <div style={{ padding: "28px 32px 32px" }}>
-                  <div style={{
-                    fontSize: "18px",
-                    fontFamily: "var(--font-syne), sans-serif",
-                    fontWeight: 700,
-                    color: "var(--ab-text-primary)",
-                    marginBottom: "4px",
-                  }}>
-                    Priya Sharma
-                  </div>
-                  <div style={{
-                    fontSize: "13px",
-                    fontWeight: 600,
-                    color: "var(--ab-accent)",
-                    letterSpacing: "1px",
-                    textTransform: "uppercase",
-                    marginBottom: "16px",
-                  }}>
-                    Head of Operations
-                  </div>
-                  <p style={{
-                    fontSize: "14px",
-                    fontFamily: "var(--font-geist-sans), sans-serif",
-                    color: "var(--ab-text-muted)",
-                    lineHeight: 1.7,
-                    margin: 0,
-                  }}>
-                    Ensures operational excellence across all client engagements with a focus on scalable, resilient process design.
-                  </p>
-                </div>
-              </div>
+            <div className="reveal-child">
+              <FutureCards />
             </div>
           </div>
+          <style>{`
+            @media (max-width: 1024px) {
+              .ab-future-section {
+                padding: 80px 40px !important;
+              }
+            }
+            @media (max-width: 768px) {
+              .ab-future-section {
+                padding: 60px 20px !important;
+              }
+            }
+          `}</style>
         </section>
+
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+            FOUNDER'S MESSAGE (HOME SECTION)
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+        <Founder />
 
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             CTA
             â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <section className="ab-cta ab-section-border-top">
-          <div className="cta-orb" />
-          <div className="ab-grid-overlay" />
-
-          <div className="reveal-section" style={{ maxWidth: "700px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-            <div className="reveal-child" style={{ marginBottom: "16px" }}>
-              <span className="eyebrow-badge">Let's build together</span>
-            </div>
-
-            <h2 className="heading-display reveal-child" style={{
-              fontSize: "clamp(32px, 5vw, 52px)",
-              fontFamily: "var(--font-syne), sans-serif",
-              fontWeight: 700,
-              color: "var(--ab-text-primary)",
-              marginBottom: "24px",
-              marginTop: "20px",
-            }}>
-              Let's Build{" "}
-              <span style={{ color: "var(--ab-accent)" }}>Smarter Operations</span>{" "}
-              Together
-            </h2>
-
-            <p className="reveal-child" style={{
-              fontSize: "18px",
-              fontFamily: "var(--font-geist-sans), sans-serif",
-              color: "var(--ab-text-muted)",
-              lineHeight: 1.7,
-              marginBottom: "48px",
-              maxWidth: "580px",
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}>
-              Whether you are looking to optimize business processes, enhance operational
-              efficiency, or accelerate digital transformation, Sytrion Data Labs is ready
-              to help you achieve your goals with confidence.
-            </p>
-
-            <div className="reveal-child">
-              <a href="/contact" className="btn-primary" style={{ fontSize: "17px", padding: "18px 44px" }}>
-                Schedule a Consultation
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </section>
+        <CallToAction />
       </div>
     </>
   );

@@ -59,20 +59,14 @@ export default function Philosophy() {
           }
         }
 
-        .philosophy-closing-box {
-          background: #111827;
-          border-radius: 28px;
-          padding: 48px 56px;
-          width: 100%;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.2);
-          border: 1px solid rgba(198, 232, 74, 0.15);
-        }
         .philosophy-closing-text {
           font-size: 21px;
           font-weight: 500;
           color: #E5E7EB;
           line-height: 1.7;
           text-align: center;
+          max-width: 1400px;
+          margin: 0 auto;
         }
 
         .phil-unified-wrapper {
@@ -83,19 +77,10 @@ export default function Philosophy() {
           .philosophy-section {
             padding: 80px 40px !important;
           }
-          .philosophy-closing {
-            padding: 0 40px 40px !important;
-          }
         }
         @media (max-width: 768px) {
           .philosophy-section {
             padding: 60px 20px !important;
-          }
-          .philosophy-closing {
-            padding: 0 20px 20px !important;
-          }
-          .philosophy-closing-box {
-            padding: 32px 24px;
           }
           .philosophy-closing-text {
             font-size: 17px;
@@ -103,43 +88,9 @@ export default function Philosophy() {
         }
         
         /* ── Dynamic Closing Statement Animations ── */
-        @keyframes philGlowFloat1 {
-          0% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(-30px, 20px) scale(1.1); }
-          100% { transform: translate(0, 0) scale(1); }
-        }
-        @keyframes philGlowFloat2 {
-          0% { transform: translate(0, 0) scale(1.1); }
-          50% { transform: translate(30px, -20px) scale(1); }
-          100% { transform: translate(0, 0) scale(1.1); }
-        }
         @keyframes philShimmer {
           0% { background-position: 0% 50%; }
           100% { background-position: 200% 50%; }
-        }
-        .phil-closing-orb-1 {
-          position: absolute;
-          top: -20px;
-          left: -20px;
-          width: 300px;
-          height: 300px;
-          background: radial-gradient(circle, rgba(198, 232, 74, 0.15), transparent 70%);
-          filter: blur(40px);
-          animation: philGlowFloat1 15s ease-in-out infinite;
-          pointer-events: none;
-          z-index: 0;
-        }
-        .phil-closing-orb-2 {
-          position: absolute;
-          bottom: -40px;
-          right: -40px;
-          width: 250px;
-          height: 250px;
-          background: radial-gradient(circle, rgba(66, 153, 225, 0.15), transparent 70%);
-          filter: blur(40px);
-          animation: philGlowFloat2 18s ease-in-out infinite;
-          pointer-events: none;
-          z-index: 0;
         }
         .phil-shimmer-text {
           background: linear-gradient(90deg, #C6E84A 0%, #4299E1 25%, #C6E84A 50%, #4299E1 75%, #C6E84A 100%);
@@ -153,24 +104,6 @@ export default function Philosophy() {
         .phil-keyword {
           color: #C6E84A;
           font-weight: 700;
-        }
-        .phil-closing-divider {
-          width: 60px;
-          height: 3px;
-          margin: 32px auto 0;
-          background: linear-gradient(90deg, #C6E84A, #4299E1);
-          border-radius: 2px;
-          opacity: 0.8;
-          animation: philShimmer 6s linear infinite;
-          background-size: 200% auto;
-        }
-        .philosophy-closing-box {
-          position: relative;
-          overflow: hidden;
-        }
-        .philosophy-closing-content {
-          position: relative;
-          z-index: 1;
         }
       `}</style>
 
@@ -226,44 +159,26 @@ export default function Philosophy() {
           <div className="phil-unified-wrapper phil-card-wrapper" data-index="0">
             <PhilosophyCards />
           </div>
+
+          {/* ── Closing Statement ────────────────────────────────── */}
+          <div
+            ref={closingRef}
+            className="philosophy-closing-wrapper"
+            style={{ marginTop: "48px" }}
+          >
+            <p className="philosophy-closing-text" style={{ color: "#D1D5DB" }}>
+              Together, these principles define <span className="phil-shimmer-text">Sytrion</span> — a company built on{" "}
+              <strong className="phil-keyword">Synergy</strong>,{" "}
+              <strong className="phil-keyword">Systems</strong>,{" "}
+              <strong className="phil-keyword">Transformation</strong>,{" "}
+              <strong className="phil-keyword">Innovation</strong>,{" "}
+              <strong className="phil-keyword">Operations</strong>, and{" "}
+              <strong className="phil-keyword">Next Generation</strong> thinking, delivering intelligent solutions that empower
+              businesses and enrich lives.
+            </p>
+          </div>
         </div>
       </section>
-
-      {/* ── Closing Statement ────────────────────────────────── */}
-      <div
-        ref={closingRef}
-        className="philosophy-closing-wrapper"
-      >
-        <section
-          className="philosophy-closing"
-          style={{
-            width: "100%",
-            padding: "0 80px 80px",
-            display: "flex",
-            justifyContent: "center",
-            background: "#030712",
-          }}
-        >
-          <div className="philosophy-closing-box" style={{ maxWidth: "1000px" }}>
-            <div className="phil-closing-orb-1" />
-            <div className="phil-closing-orb-2" />
-            
-            <div className="philosophy-closing-content">
-              <p className="philosophy-closing-text" style={{ textAlign: "center", color: "#D1D5DB" }}>
-                Together, these principles define <span className="phil-shimmer-text">Sytrion</span> — a company built on{" "}
-                <strong className="phil-keyword">Synergy</strong>,{" "}
-                <strong className="phil-keyword">Systems</strong>,{" "}
-                <strong className="phil-keyword">Transformation</strong>,{" "}
-                <strong className="phil-keyword">Innovation</strong>,{" "}
-                <strong className="phil-keyword">Operations</strong>, and{" "}
-                <strong className="phil-keyword">Next Generation</strong> thinking, delivering intelligent solutions that empower
-                businesses and enrich lives.
-              </p>
-              <div className="phil-closing-divider" />
-            </div>
-          </div>
-        </section>
-      </div>
     </>
   );
 }
