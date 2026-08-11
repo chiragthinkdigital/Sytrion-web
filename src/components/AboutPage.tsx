@@ -443,8 +443,8 @@ function MissionCollage() {
       style={{
         position: "relative",
         width: "100%",
-        maxWidth: "500px",
-        height: "380px",
+        maxWidth: "570px",
+        height: "440px",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -477,8 +477,8 @@ function MissionCollage() {
 
       {/* 1. Large Primary Image */}
       <div style={{
-        width: "60%",
-        height: "75%",
+        width: "62%",
+        height: "78%",
         borderRadius: "20px",
         overflow: "hidden",
         boxShadow: "0 12px 30px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05)",
@@ -509,8 +509,8 @@ function MissionCollage() {
       {/* 2. Smaller floating image near top right */}
       <div style={{
         position: "absolute",
-        width: "38%",
-        height: "45%",
+        width: "42%",
+        height: "48%",
         top: "5%",
         right: "2%",
         borderRadius: "16px",
@@ -535,8 +535,8 @@ function MissionCollage() {
       {/* 3. Smaller floating image near bottom left */}
       <div style={{
         position: "absolute",
-        width: "38%",
-        height: "45%",
+        width: "42%",
+        height: "48%",
         bottom: "5%",
         left: "2%",
         borderRadius: "16px",
