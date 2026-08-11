@@ -126,6 +126,9 @@ const REGIONS: Record<string, { lat: number; lng: number }> = {
   Asia: { lat: 34.05, lng: 100.62 },
   Africa: { lat: -8.78, lng: 34.51 },
 };
+const REGION_MARKERS: Array<{ location: [number, number]; size: number }> = Object.values(REGIONS).map(
+  (region) => ({ location: [region.lat, region.lng] as [number, number], size: 0.06 })
+);
 const valueImages = [
   "/integrity.jpg",         // Integrity
   "/innovation1.jpg",       // Innovation
@@ -2373,7 +2376,7 @@ export default function AboutPage() {
                 }}>
                   <Globe
                     focusTarget={selectedRegion ? REGIONS[selectedRegion] : null}
-                    markers={Object.values(REGIONS).map((region) => ({ location: [region.lat, region.lng] as [number, number], size: 0.06 }))}
+                    markers={REGION_MARKERS}
                     
                     maxSize={600}
                     baseColor={[0.95, 0.95, 0.93]}

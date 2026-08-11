@@ -45,15 +45,18 @@ export function Globe({ focusTarget, markers, baseColor, markerColor, maxSize = 
   const thetaRef = useRef(GLOBE_CONFIG.theta);
   const targetPhiRef = useRef<number | null>(null);
   const targetThetaRef = useRef<number | null>(null);
+  const focusStartRef = useRef<number | null>(null);
   const globeRef = useRef<ReturnType<typeof createGlobe> | null>(null);
 
   useEffect(() => {
     if (focusTarget) {
       targetPhiRef.current = Math.PI - ((focusTarget.lng * Math.PI) / 180 - Math.PI / 2);
       targetThetaRef.current = (focusTarget.lat * Math.PI) / 180;
+      focusStartRef.current = performance.now();
     } else {
       targetPhiRef.current = null;
       targetThetaRef.current = null;
+      focusStartRef.current = null;
     }
   }, [focusTarget]);
 
@@ -92,6 +95,12 @@ export function Globe({ focusTarget, markers, baseColor, markerColor, maxSize = 
 
     const animate = () => {
       if (!running) return;
+
+      if (focusStartRef.current !== null && performance.now() - focusStartRef.current >= 3000) {
+        targetPhiRef.current = null;
+        targetThetaRef.current = null;
+        focusStartRef.current = null;
+      }
 
       let phi = phiRef.current;
       let theta = thetaRef.current;
