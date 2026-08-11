@@ -116,6 +116,10 @@ export default function WhySytrion() {
           height: 220px;
           object-fit: cover;
           display: block;
+          transition: transform 0.4s ease;
+        }
+        .ws-card:hover .ws-img-top {
+          transform: scale(1.08);
         }
         .ws-content {
           padding: 28px;
@@ -154,7 +158,7 @@ export default function WhySytrion() {
         .ws-security-title {
           font-size: 26px;
           font-weight: 700;
-          color: #0f0f0f;
+          color: ${NAVY};
           line-height: 1.3;
           margin-bottom: 18px;
         }
@@ -177,6 +181,10 @@ export default function WhySytrion() {
           object-fit: cover;
           border-radius: 16px;
           display: block;
+          transition: transform 0.4s ease;
+        }
+        .ws-security-img:hover img {
+          transform: scale(1.08);
         }
         .ws-security-label {
           display: block;
