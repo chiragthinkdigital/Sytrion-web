@@ -1570,6 +1570,7 @@ export default function AboutPage() {
                 lineHeight: 1.75,
                 marginBottom: "20px",
                 maxWidth: "480px",
+                textAlign: "justify",
               }}>
                 Technology has the power to redefine industries, but only when it
                 solves real business challenges.
@@ -1582,8 +1583,9 @@ export default function AboutPage() {
                 lineHeight: 1.8,
                 marginBottom: "16px",
                 maxWidth: "480px",
+                textAlign: "justify",
               }}>
-                Sytrion Data Labs was founded with a clear mission â€” to help
+                &emsp;Sytrion Data Labs was founded with a clear mission to help
                 organizations harness the power of AI, data intelligence, and
                 operational excellence to build stronger, more resilient businesses.
               </p>
@@ -1595,8 +1597,9 @@ export default function AboutPage() {
                 lineHeight: 1.8,
                 marginBottom: "16px",
                 maxWidth: "480px",
+                textAlign: "justify",
               }}>
-                What began as a vision to bridge the gap between technology and
+                &emsp;What began as a vision to bridge the gap between technology and
                 business outcomes has grown into a trusted partnership with
                 enterprises across shipping, healthcare, insurance, banking, and more.
               </p>
@@ -1608,7 +1611,7 @@ export default function AboutPage() {
                 lineHeight: 1.8,
                 maxWidth: "480px",
               }}>
-                Our purpose extends beyond business transformation. We aspire to
+                &emsp;Our purpose extends beyond business transformation. We aspire to
                 create opportunities, empower people, and contribute to building a
                 more connected and intelligent future.
               </p>
