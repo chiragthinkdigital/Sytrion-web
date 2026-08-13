@@ -1348,26 +1348,13 @@ export default function AboutPage() {
           flex-direction: column;
           justify-content: space-between;
         }
-        .op-card-num {
-          font-family: "var(--font-syne), sans-serif";
-          font-weight: 800;
-          font-size: 44px;
-          color: transparent;
-          -webkit-text-stroke: 1.5px rgba(255,255,255,0.55);
-          line-height: 1;
-          position: absolute;
-          top: 22px;
-          right: 24px;
-          pointer-events: none;
-          user-select: none;
-        }
         .op-card-title {
           font-family: "var(--font-syne), sans-serif";
           font-weight: 700;
           font-size: 22px;
           color: #FFFFFF;
           line-height: 1.3;
-          margin-top: 48px;
+          margin-top: 8px;
           text-shadow: 0 1px 4px rgba(0,0,0,0.4);
         }
         .op-card-desc {
@@ -1856,17 +1843,19 @@ export default function AboutPage() {
 
                   {/* Collage Grid */}
                   <div style={{
-                    position: "relative",
+                    display: "grid",
+                    gridTemplateColumns: "60fr 40fr",
+                    gridTemplateRows: "58fr 42fr",
+                    gap: "14px",
                     width: "100%",
                     height: "100%",
                   }}>
                     {/* Image 1: Large top-left */}
                     <div className="collage-img-wrap" style={{
-                      position: "absolute",
-                      width: "58%",
-                      height: "65%",
-                      left: 0,
-                      top: 0,
+                      gridColumn: 1,
+                      gridRow: 1,
+                      minWidth: 0,
+                      minHeight: 0,
                       borderRadius: "18px",
                       overflow: "hidden",
                       border: "1px solid rgba(255, 255, 255, 0.08)",
@@ -1887,11 +1876,10 @@ export default function AboutPage() {
 
                     {/* Image 2: Small top-right */}
                     <div className="collage-img-wrap" style={{
-                      position: "absolute",
-                      width: "38%",
-                      height: "40%",
-                      right: 0,
-                      top: 0,
+                      gridColumn: 2,
+                      gridRow: 1,
+                      minWidth: 0,
+                      minHeight: 0,
                       borderRadius: "18px",
                       overflow: "hidden",
                       border: "1px solid rgba(255, 255, 255, 0.08)",
@@ -1912,11 +1900,10 @@ export default function AboutPage() {
 
                     {/* Image 3: Small bottom-right */}
                     <div className="collage-img-wrap" style={{
-                      position: "absolute",
-                      width: "38%",
-                      height: "50%",
-                      right: 0,
-                      bottom: 0,
+                      gridColumn: 2,
+                      gridRow: 2,
+                      minWidth: 0,
+                      minHeight: 0,
                       borderRadius: "18px",
                       overflow: "hidden",
                       border: "1px solid rgba(255, 255, 255, 0.08)",
@@ -1934,66 +1921,66 @@ export default function AboutPage() {
                         }}
                       />
                     </div>
-                  </div>
-                </div>
 
-                {/* Operations Intelligence Card overlapping lower-left */}
-                <div className="intelligence-floating-card" style={{
-                  position: "absolute",
-                  bottom: "16px",
-                  left: "24px",
-                  width: "220px",
-                  background: "rgba(11, 18, 32, 0.8)",
-                  backdropFilter: "blur(20px)",
-                  WebkitBackdropFilter: "blur(20px)",
-                  border: "1px solid rgba(255, 255, 255, 0.12)",
-                  borderRadius: "20px",
-                  padding: "18px 20px",
-                  boxShadow: "0 20px 40px rgba(0, 0, 0, 0.5)",
-                  zIndex: 4,
-                }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
-                    <span style={{ fontSize: "11px", fontWeight: 700, color: "#9AA8BF", letterSpacing: "1px", textTransform: "uppercase" }}>Ops Intelligence</span>
-                    <span style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "4px",
-                      fontSize: "9px",
-                      fontWeight: 800,
-                      background: "rgba(198, 232, 74, 0.1)",
-                      color: "#C6E84A",
-                      padding: "2px 6px",
-                      borderRadius: "4px",
-                      border: "1px solid rgba(198, 232, 74, 0.2)",
+                    {/* Operations Intelligence Card occupying bottom-left cell */}
+                    <div className="intelligence-floating-card" style={{
+                      gridColumn: 1,
+                      gridRow: 2,
+                      minWidth: 0,
+                      minHeight: 0,
+                      height: "100%",
+                      background: "rgba(11, 18, 32, 0.85)",
+                      backdropFilter: "blur(20px)",
+                      WebkitBackdropFilter: "blur(20px)",
+                      border: "1px solid rgba(255, 255, 255, 0.12)",
+                      borderRadius: "18px",
+                      padding: "16px 18px",
+                      boxShadow: "0 20px 40px rgba(0, 0, 0, 0.5)",
                     }}>
-                      <span className="pulse-dot" style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#C6E84A" }} />
-                      LIVE
-                    </span>
-                  </div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px" }}>
+                      <span style={{ fontSize: "11px", fontWeight: 700, color: "#9AA8BF", letterSpacing: "1px", textTransform: "uppercase" }}>Ops Intelligence</span>
+                      <span style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "4px",
+                        fontSize: "9px",
+                        fontWeight: 800,
+                        background: "rgba(198, 232, 74, 0.1)",
+                        color: "#C6E84A",
+                        padding: "2px 6px",
+                        borderRadius: "4px",
+                        border: "1px solid rgba(198, 232, 74, 0.2)",
+                      }}>
+                        <span className="pulse-dot" style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#C6E84A" }} />
+                        LIVE
+                      </span>
+                    </div>
 
-                  <div style={{ display: "flex", alignItems: "baseline", gap: "2px", marginBottom: "4px" }}>
-                    <span style={{ fontSize: "36px", fontWeight: 800, color: "#F4F7FB", fontFamily: "var(--font-syne), sans-serif", lineHeight: 1 }}>98.4</span>
-                    <span style={{ fontSize: "20px", fontWeight: 700, color: "#C6E84A" }}>%</span>
-                  </div>
-                  <p style={{ fontSize: "11px", color: "#9AA8BF", margin: "0 0 16px 0", lineHeight: 1.3 }}>automated resolution rate</p>
+                    <div style={{ display: "flex", alignItems: "baseline", gap: "2px", marginBottom: "4px" }}>
+                      <span style={{ fontSize: "32px", fontWeight: 800, color: "#F4F7FB", fontFamily: "var(--font-syne), sans-serif", lineHeight: 1 }}>98.4</span>
+                      <span style={{ fontSize: "18px", fontWeight: 700, color: "#C6E84A" }}>%</span>
+                    </div>
+                    <p style={{ fontSize: "11px", color: "#9AA8BF", margin: "0 0 10px 0", lineHeight: 1.3 }}>automated resolution rate</p>
 
-                  {/* Micro Bar Chart */}
-                  <div style={{ display: "flex", alignItems: "flex-end", gap: "5px", height: "28px", paddingBottom: "2px" }}>
-                    {[35, 50, 45, 60, 55, 75, 90, 85, 100].map((h, idx) => (
-                      <div key={idx} className="chart-bar" style={{
-                        flex: 1,
-                        height: `${h}%`,
-                        background: "#C6E84A",
-                        borderRadius: "2px",
-                        opacity: idx === 8 ? 1 : 0.45,
-                        transition: "height 0.6s ease",
-                      }} />
-                    ))}
+                    {/* Micro Bar Chart */}
+                    <div style={{ display: "flex", alignItems: "flex-end", gap: "5px", height: "22px", paddingBottom: "2px" }}>
+                      {[35, 50, 45, 60, 55, 75, 90, 85, 100].map((h, idx) => (
+                        <div key={idx} className="chart-bar" style={{
+                          flex: 1,
+                          height: `${h}%`,
+                          background: "#C6E84A",
+                          borderRadius: "2px",
+                          opacity: idx === 8 ? 1 : 0.45,
+                          transition: "height 0.6s ease",
+                        }} />
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
           <style>{`
             @keyframes pulse {
@@ -2011,19 +1998,12 @@ export default function AboutPage() {
             .scan-line {
               animation: scan 6s infinite linear;
             }
-            @keyframes float {
-              0%, 100% { transform: translateY(0); }
-              50% { transform: translateY(-6px); }
-            }
-            .intelligence-floating-card {
-              animation: float 4s infinite ease-in-out;
-            }
             .collage-img-wrap:hover img {
               transform: scale(1.04);
               filter: brightness(0.85) contrast(1.1) saturate(0.9) !important;
             }
             @media (prefers-reduced-motion: reduce) {
-              .pulse-dot, .scan-line, .intelligence-floating-card {
+              .pulse-dot, .scan-line {
                 animation: none !important;
               }
               .collage-3d-frame {
@@ -2876,9 +2856,6 @@ export default function AboutPage() {
                   <img className="op-card-img" src={principle.image} alt={principle.title} loading="lazy" decoding="async" />
                   <div className="op-card-overlay" />
                   <div className="op-card-body">
-                    <div className="op-card-num">
-                      {String(i + 1).padStart(2, "0")}
-                    </div>
                     <div className="op-card-title">
                       {principle.title}
                     </div>

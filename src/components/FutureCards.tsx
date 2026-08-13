@@ -19,7 +19,7 @@ const cards = [
   {
     name: "People",
     desc: "Create lasting impact",
-    image: "/people.jpg",
+    image: "/people.png",
   },
 ];
 
