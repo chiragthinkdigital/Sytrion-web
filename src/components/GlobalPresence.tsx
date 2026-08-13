@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 /* ── Flag / icon SVGs ─────────────────────────────────────── */
 
@@ -105,6 +105,7 @@ const COLLAPSED_WIDTH = 56;
 
 export default function GlobalPresence() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const gridTemplateColumns = regions
     .map((_, i) => (i === activeIndex ? "minmax(0, 1fr)" : `${COLLAPSED_WIDTH}px`))
@@ -165,6 +166,8 @@ export default function GlobalPresence() {
                 type="button"
                 className="gp-card gp-card-collapsed"
                 onClick={() => setActiveIndex(i)}
+                onMouseEnter={() => { hoverTimeout.current = setTimeout(() => setActiveIndex(i), 300); } }
+                onMouseLeave={() => { if (hoverTimeout.current) { clearTimeout(hoverTimeout.current); hoverTimeout.current = null; } } }
                 aria-controls={panelId}
                 aria-label={`Show ${region.name}`}
               >
