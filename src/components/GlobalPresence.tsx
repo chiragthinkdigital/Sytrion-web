@@ -86,22 +86,9 @@ function FlagEurope() {
   );
 }
 
-function GlobeIcon({ land }: { land: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className="gp-flag-svg" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" fill="var(--ab-accent-dim)" />
-      <path d={land} fill="var(--ab-accent)" opacity="0.9" />
-      <ellipse cx="12" cy="12" rx="10" ry="3.6" fill="none" stroke="var(--ab-border-hover)" strokeWidth="1" />
-      <ellipse cx="12" cy="12" rx="3.6" ry="10" fill="none" stroke="var(--ab-border-hover)" strokeWidth="1" />
-    </svg>
-  );
+function FlagLogo({ src }: { src: string }) {
+  return <img src={src} className="gp-flag-svg gp-logo" alt="" />;
 }
-
-const ASIA_LAND =
-  "M15 3.8c1.1.3 2 1.1 2.5 2.1.6 1.3.5 2.7-.2 3.9.7.4 1.1 1.1 1.1 1.9 0 .9-.5 1.7-1.3 2.1.5 1.1.7 2.3.5 3.4 0 .8-.3 1.6-.9 2.3-1.1 1-2.6 1.5-4.1 1.3-1.1-.1-2.1-.6-2.9-1.3-.9-.8-1.5-1.8-1.8-2.9-.2-.9-.2-1.9.1-2.8.4-1.2 1.1-2.3 2-3.1.8-.7 1.7-1.1 2.7-1.3.2-1.4.6-2.7 1.8-3.4.8-.4 1.8-.5 2.6-.2z";
-
-const AFRICA_LAND =
-  "M14 4.9c1.1.2 2 .9 2.5 1.9.5.9.6 2 .3 3 .4.3.7.8.7 1.3 0 .8-.4 1.5-1.1 1.9.3.9.5 1.8.3 2.7-.1.9-.5 1.7-1.1 2.4-.9.8-2.1 1.2-3.3 1.1-1.2-.1-2.3-.6-3-1.4-.6-.8-1-1.8-.8-2.8.1-1 .6-1.9 1.4-2.5.6-.9 1-1.9 2-2.6.8-.5 1.7-.7 2.5-.4.4-1 1-1.9 2-2.3.6-.2 1.3-.3 1.9-.1z";
 
 /* ── Data ─────────────────────────────────────────────────── */
 
@@ -110,8 +97,8 @@ const regions = [
   { name: "New Zealand", Flag: FlagNewZealand, image: "/new zealand.jpg", alt: "Sytrion presence in New Zealand" },
   { name: "United States", Flag: FlagUnitedStates, image: "/united states.jpg", alt: "Sytrion presence in the United States" },
   { name: "Europe", Flag: FlagEurope, image: "/europe.jpg", alt: "Sytrion presence in Europe" },
-  { name: "Asia", Flag: () => <GlobeIcon land={ASIA_LAND} />, image: "/asia.jpg", alt: "Sytrion presence in Asia" },
-  { name: "Africa", Flag: () => <GlobeIcon land={AFRICA_LAND} />, image: "/africa.jpg", alt: "Sytrion presence in Africa" },
+  { name: "Asia", Flag: () => <FlagLogo src="/asialogo.svg" />, image: "/asia.jpg", alt: "Sytrion presence in Asia" },
+  { name: "Africa", Flag: () => <FlagLogo src="/africalogo.svg" />, image: "/africa.jpg", alt: "Sytrion presence in Africa" },
 ];
 
 const COLLAPSED_WIDTH = 56;
@@ -254,11 +241,26 @@ export default function GlobalPresence() {
           border-radius: 3px;
           transition: transform 0.25s ease;
         }
+        .gp-flag-svg.gp-logo {
+          width: 28px;
+          height: 28px;
+          object-fit: contain;
+          border-radius: 4px;
+          background: #f0f2f7;
+        }
         .gp-card-collapsed .gp-flag-svg {
           width: 24px;
         }
+        .gp-card-collapsed .gp-flag-svg.gp-logo {
+          width: 24px;
+          height: 24px;
+        }
         .gp-card-head .gp-flag-svg {
           width: 32px;
+        }
+        .gp-card-head .gp-flag-svg.gp-logo {
+          width: 32px;
+          height: 32px;
         }
 
         .gp-label {
