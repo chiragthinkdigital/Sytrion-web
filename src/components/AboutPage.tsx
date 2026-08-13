@@ -4,11 +4,11 @@ import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Globe } from "@/components/Globe";
 import WhySytrion from "@/components/WhySytrion";
 import Founder from "@/components/Founder";
 import FutureCards from "@/components/FutureCards";
 import CallToAction from "@/components/CallToAction";
+import GlobalPresence from "@/components/GlobalPresence";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -118,17 +118,6 @@ const timeline = [
   },
 ];
 
-const REGIONS: Record<string, { lat: number; lng: number }> = {
-  Australia: { lat: -25.27, lng: 133.77 },
-  "New Zealand": { lat: -40.9, lng: 174.88 },
-  "United States": { lat: 37.09, lng: -95.71 },
-  Europe: { lat: 54.53, lng: 15.25 },
-  Asia: { lat: 34.05, lng: 100.62 },
-  Africa: { lat: -8.78, lng: 34.51 },
-};
-const REGION_MARKERS: Array<{ location: [number, number]; size: number }> = Object.values(REGIONS).map(
-  (region) => ({ location: [region.lat, region.lng] as [number, number], size: 0.06 })
-);
 const valueImages = [
   "/integrity.jpg",         // Integrity
   "/innovation1.jpg",       // Innovation
@@ -568,7 +557,6 @@ export default function AboutPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroTextRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
-  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
 
   const opTrackRef = useRef<HTMLDivElement>(null);
   const [opVisible, setOpVisible] = useState(4);
@@ -2295,110 +2283,9 @@ export default function AboutPage() {
         <WhySytrion />
 
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-            GLOBAL CLIENTS
+            GLOBAL PRESENCE
             â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <section className="ab-section ab-section-dark ab-section-border-top ab-global-section">
-          <div className="reveal-section" style={{ maxWidth: "1400px", margin: "0 auto" }}>
-            <div className="ab-global-row" style={{ display: "flex", gap: "60px", alignItems: "center" }}>
-              <div className="reveal-child" style={{ flex: "0 0 48%", maxWidth: "640px" }}>
-                <span className="eyebrow-badge">Global presence</span>
-                <h2 className="heading-display" style={{
-                  fontSize: "clamp(28px, 4vw, 40px)",
-                  fontFamily: "var(--font-syne), sans-serif",
-                  fontWeight: 700,
-                  color: "var(--ab-text-primary)",
-                  marginTop: "16px",
-                  marginBottom: "28px",
-                }}>
-                  Supporting organizations across{" "}
-                  <span style={{ color: "var(--ab-accent)" }}>the globe</span>
-                </h2>
-                <div style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "8px",
-                }}>
-                  {["Australia", "New Zealand", "United States", "Europe", "Asia", "Africa"].map((region) => {
-                    const active = selectedRegion === region;
-                    return (
-                      <button
-                        key={region}
-                        onClick={() => setSelectedRegion(active ? null : region)}
-                        style={{
-                          cursor: "pointer",
-                          display: "inline-block",
-                          padding: "8px 14px",
-                          borderRadius: "999px",
-                          background: active ? "var(--ab-accent)" : "var(--ab-surface-2)",
-                          border: active ? "1px solid var(--ab-accent)" : "1px solid var(--ab-border)",
-                          fontSize: "13px",
-                          fontWeight: 600,
-                          color: active ? "#0f0f0f" : "var(--ab-text-secondary)",
-                          letterSpacing: "0.3px",
-                          whiteSpace: "nowrap",
-                          transition: "all 0.3s ease",
-                        }}
-                      >
-                        {region}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-              <div className="reveal-child" style={{ flex: 1, height: "520px", position: "relative" }}>
-                <div style={{
-                  position: "absolute",
-                  right: "-20px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  width: "600px",
-                  height: "600px",
-                }}>
-                  <Globe
-                    focusTarget={selectedRegion ? REGIONS[selectedRegion] : null}
-                    markers={REGION_MARKERS}
-                    
-                    maxSize={600}
-                    baseColor={[0.95, 0.95, 0.93]}
-                    markerColor={[198 / 255, 232 / 255, 74 / 255]}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <style>{`
-            .ab-global-section {
-              padding: 56px 48px;
-              overflow: hidden;
-            }
-            @media (max-width: 900px) {
-              .ab-global-row {
-                flex-direction: column !important;
-              }
-              .ab-global-row > div:first-child {
-                flex: none !important;
-                max-width: none !important;
-              }
-              .ab-global-row > div:last-child {
-                width: 100% !important;
-                height: 380px !important;
-              }
-              .ab-global-row > div:last-child > div {
-                position: static !important;
-                right: auto !important;
-                top: auto !important;
-                transform: none !important;
-                width: 100% !important;
-                height: 100% !important;
-              }
-            }
-            @media (max-width: 768px) {
-              .ab-global-section {
-                padding: 48px 24px;
-              }
-            }
-          `}</style>
-        </section>
+        <GlobalPresence />
 
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             SECURITY FIRST
