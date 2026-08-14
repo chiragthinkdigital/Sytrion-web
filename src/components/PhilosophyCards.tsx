@@ -6,7 +6,7 @@ const cards = [
     name: "Synergy Systems",
     description:
       "People, process, and technology working as one connected system.",
-    image: "/Synergy \u00B7 Systems.jpg",
+    image: "/synergy-systems.png",
   },
   {
     letter: "TR",
@@ -20,7 +20,7 @@ const cards = [
     name: "Innovation",
     description:
       "AI, automation, and analytics applied with creativity and precision.",
-    image: "/Innovation.jpg",
+    image: "/Innovation.png",
   },
   {
     letter: "O",
@@ -34,7 +34,7 @@ const cards = [
     name: "Next Generation",
     description:
       "Building agile, future-ready solutions for an evolving digital world.",
-    image: "/Next Generation.jpg",
+    image: "/Next-Gen.png",
   },
 ];
 
@@ -75,11 +75,14 @@ export default function PhilosophyCards() {
           height: 290px;
           overflow: hidden;
         }
-        .phil-card-img img {
+.phil-card-img img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           display: block;
+        }
+        .phil-card--innovation .phil-card-img img {
+          transform: scale(1.07);
         }
         .phil-card-body {
           position: relative;
@@ -137,7 +140,7 @@ export default function PhilosophyCards() {
 
       <div className="phil-cards-scroll">
         {cards.map((card) => (
-          <div key={card.letter} className="phil-card">
+          <div key={card.letter} className={card.letter === "I" ? "phil-card phil-card--innovation" : "phil-card"}>
             <div className="phil-card-img">
               <img
                 src={card.image}
