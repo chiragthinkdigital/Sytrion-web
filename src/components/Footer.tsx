@@ -2,16 +2,16 @@ import Image from "next/image";
 
 const quickLinks = [
   { label: "About", href: "/about" },
-  { label: "Solutions", href: "/products" },
+  { label: "Solutions", href: "/solutions" },
   { label: "Industries", href: "/#industries" },
   { label: "Contact", href: "/contact" },
 ];
 
 const solutions = [
-  { label: "AI Automation", href: "/products#ai-automation" },
-  { label: "Intelligent Operations", href: "/products#intelligent-operations" },
-  { label: "Data Engineering", href: "/products#data-engineering" },
-  { label: "Analytics & BI", href: "/products#analytics-bi" },
+  { label: "AI Automation", href: "/solutions#ai-automation" },
+  { label: "Intelligent Operations", href: "/solutions#intelligent-operations" },
+  { label: "Data Engineering", href: "/solutions#data-engineering" },
+  { label: "Analytics & BI", href: "/solutions#analytics-bi" },
 ];
 
 export default function Footer() {
@@ -34,14 +34,14 @@ export default function Footer() {
           left: 0;
           right: 0;
           height: 3px;
-          background: linear-gradient(90deg, transparent, #C7E052, transparent);
+          background: linear-gradient(90deg, transparent, #C6E84A, transparent);
           z-index: 3;
         }
         .fl-glow {
           position: absolute;
           width: 500px;
           height: 500px;
-          background: radial-gradient(circle, rgba(199,224,82,0.2), transparent 70%);
+          background: radial-gradient(circle, rgba(198,232,74,0.2), transparent 70%);
           top: -180px;
           right: -120px;
           filter: blur(40px);
@@ -52,7 +52,7 @@ export default function Footer() {
           position: absolute;
           width: 400px;
           height: 400px;
-          background: radial-gradient(circle, rgba(199,224,82,0.1), transparent 70%);
+          background: radial-gradient(circle, rgba(198,232,74,0.1), transparent 70%);
           bottom: -100px;
           left: -80px;
           filter: blur(40px);
@@ -103,8 +103,8 @@ export default function Footer() {
         }
         .fl-contact svg {
           flex-shrink: 0;
-          color: #1C2430;
-          background: #C7E052;
+          color: #0f0f0f;
+          background: #C6E84A;
           border-radius: 50%;
           padding: 5px;
           width: 30px;
@@ -112,8 +112,8 @@ export default function Footer() {
           transition: background 0.25s ease, color 0.25s ease;
         }
         .fl-contact:hover svg {
-          background: #1C2430;
-          color: #C7E052;
+          background: #0f0f0f;
+          color: #C6E84A;
         }
         .fl-social {
           display: inline-flex;
@@ -122,15 +122,15 @@ export default function Footer() {
           width: 40px;
           height: 40px;
           border-radius: 50%;
-          background: #C7E052;
-          color: #1C2430;
+          background: #C6E84A;
+          color: #0f0f0f;
           text-decoration: none;
           margin-right: 10px;
           transition: background 0.25s ease, color 0.25s ease;
         }
         .fl-social:hover {
-          background: #1C2430;
-          color: #C7E052;
+          background: #0f0f0f;
+          color: #C6E84A;
         }
         .fl-divider {
           border: none;

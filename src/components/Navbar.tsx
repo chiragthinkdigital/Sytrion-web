@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const navItems = [
@@ -15,22 +15,22 @@ const navItems = [
   },
   {
     name: "Solutions",
-    href: "/products",
+    href: "/solutions",
     children: [
-      { name: "AI Automation & Agentic AI", href: "/products" },
-      { name: "Intelligent Operations", href: "/products" },
-      { name: "Data Engineering", href: "/products" },
-      { name: "Analytics & BI", href: "/products" },
+      { name: "AI Automation & Agentic AI", href: "/solutions#ai-automation" },
+      { name: "Intelligent Operations", href: "/solutions#intelligent-operations" },
+      { name: "Data Engineering", href: "/solutions#data-engineering" },
+      { name: "Analytics & BI", href: "/solutions#analytics-bi" },
     ],
   },
   {
     name: "Services",
-    href: "#",
+    href: "/#industries",
     children: [
-      { name: "Shipping & Logistics", href: "#" },
-      { name: "Healthcare Operations", href: "#" },
-      { name: "Financial Services", href: "#" },
-      { name: "Manufacturing", href: "#" },
+      { name: "Shipping & Logistics", href: "/solutions#shipping-logistics" },
+      { name: "Healthcare Operations", href: "/solutions#healthcare-operations" },
+      { name: "Financial Services", href: "/#industries" },
+      { name: "Manufacturing", href: "/#industries" },
     ],
   },
   {
@@ -86,6 +86,7 @@ const SocialIcon = ({ name }: { name: string }) => {
 const SCROLL_THRESHOLD = 60;
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -150,6 +151,15 @@ export default function Navbar() {
   const toggleSubmenu = useCallback((name: string) => {
     setExpandedItem((prev) => (prev === name ? null : name));
   }, []);
+
+  const isNavActive = useCallback(
+    (item: (typeof navItems)[number]) => {
+      if (item.href === "#" || item.href.includes("#")) return false;
+      if (item.href === "/") return pathname === "/";
+      return pathname === item.href || pathname.startsWith(item.href);
+    },
+    [pathname]
+  );
 
   return (
     <>
@@ -247,6 +257,12 @@ export default function Navbar() {
           color: #C6E84A;
         }
         .desktop-tab:hover::after {
+          width: 100%;
+        }
+        .desktop-tab.active {
+          color: #C6E84A;
+        }
+        .desktop-tab.active::after {
           width: 100%;
         }
 
@@ -384,6 +400,12 @@ export default function Navbar() {
           transition: width 0.3s ease;
         }
         .menu-link:hover::after {
+          width: 60px;
+        }
+        .menu-link.active {
+          color: #C6E84A;
+        }
+        .menu-link.active::after {
           width: 60px;
         }
         .submenu-container {
@@ -562,7 +584,7 @@ export default function Navbar() {
               >
                 <a
                   href={item.href}
-                  className="desktop-tab"
+                  className={"desktop-tab" + (isNavActive(item) ? " active" : "")}
                   onClick={() => setDesktopDropdown(null)}
                 >
                   {item.name}
@@ -698,7 +720,7 @@ export default function Navbar() {
                               style={{ padding: "10px 0" }}
                             >
                               <span
-                                className="menu-link"
+                                className={"menu-link" + (isNavActive(item) ? " active" : "")}
                                 style={{
                                   fontSize: "clamp(32px, 5vw, 56px)",
                                   fontWeight: 700,
@@ -753,7 +775,7 @@ export default function Navbar() {
                           <div style={{ padding: "10px 0" }}>
                             <a
                               href={item.href}
-                              className="menu-link"
+                              className={"menu-link" + (isNavActive(item) ? " active" : "")}
                               onClick={closeMenu}
                               style={{
                                 fontSize: "clamp(32px, 5vw, 56px)",

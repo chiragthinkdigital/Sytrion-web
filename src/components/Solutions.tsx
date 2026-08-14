@@ -5,6 +5,7 @@ import { useRef, useState, useCallback, useEffect } from "react";
 const solutions = [
   {
     number: "01",
+    anchor: "ai-automation",
     title: "AI Automation & Agentic AI",
     description:
       "Empowering enterprises with intelligent automation, cognitive workflows, and AI-driven decision-making to transform operational performance.",
@@ -13,6 +14,7 @@ const solutions = [
   },
   {
     number: "02",
+    anchor: "intelligent-operations",
     title: "Intelligent Operations (RPAs)",
     description:
       "Delivering technology-enabled managed operations that combine skilled professionals, standardized processes, and intelligent automation to achieve measurable business outcomes.",
@@ -21,6 +23,7 @@ const solutions = [
   },
   {
     number: "03",
+    anchor: "data-engineering",
     title: "Data Engineering",
     description:
       "Building trusted data ecosystems through data processing, enrichment, validation, migration, and intelligent data management.",
@@ -29,6 +32,7 @@ const solutions = [
   },
   {
     number: "04",
+    anchor: "analytics-bi",
     title: "Analytics & Business Intelligence",
     description:
       "Transforming enterprise data into actionable insights through dashboards, reporting, predictive analytics, and decision intelligence.",
@@ -37,6 +41,7 @@ const solutions = [
   },
   {
     number: "05",
+    anchor: "shipping-logistics",
     title: "Shipping & Logistics Solutions",
     description:
       "Digitally transforming freight forwarding, shipping operations, customs documentation, and supply chain support through intelligent operational services.",
@@ -45,6 +50,7 @@ const solutions = [
   },
   {
     number: "06",
+    anchor: "healthcare-operations",
     title: "Healthcare Operations",
     description:
       "Enhancing healthcare administration through claims management, document intelligence, workflow automation, and secure operational support.",
@@ -71,7 +77,7 @@ function useVisibleCount() {
 
 function SolutionCard({ item }: { item: (typeof solutions)[number] }) {
   return (
-    <a href="#contact" className="solutions-card" aria-label={item.title}>
+    <a href={`/solutions#${item.anchor}`} className="solutions-card" aria-label={item.title}>
       <img
         src={item.image}
         alt={item.title}
@@ -243,9 +249,29 @@ export default function Solutions() {
 
         .sol-arrows {
           display: flex;
+          align-items: center;
+          justify-content: space-between;
           gap: 12px;
           margin-top: 32px;
-          justify-content: flex-end;
+        }
+        .sol-view-all {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          color: #242424;
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 1.4px;
+          text-transform: uppercase;
+          text-decoration: none;
+          padding: 6px 0;
+          border-bottom: 2px solid rgba(198,232,74,0.9);
+          transition: color 0.2s ease, border-color 0.2s ease, gap 0.2s ease;
+        }
+        .sol-view-all:hover {
+          color: #8FAB1E;
+          border-bottom-color: #C6E84A;
+          gap: 12px;
         }
         .sol-arrow-btn {
           width: 52px;
@@ -283,6 +309,7 @@ export default function Solutions() {
 
       <section
         className="sol-section"
+        id="solutions"
         style={{
           width: "100%",
           background: "#F5F6F0",
@@ -328,6 +355,13 @@ export default function Solutions() {
           </div>
 
           <div className="sol-arrows">
+            <a href="/solutions" className="sol-view-all">
+              View All Solutions
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
             <button
               className="sol-arrow-btn"
               disabled={!canScrollLeft}
