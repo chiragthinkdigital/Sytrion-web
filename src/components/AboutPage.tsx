@@ -1779,11 +1779,12 @@ export default function AboutPage() {
                     ].map((metric) => (
                       <div key={metric.label}>
                         <div style={{
-                          fontSize: "24px",
+                          fontSize: metric.value === "∞" ? "34px" : "24px",
                           fontFamily: "var(--font-syne), sans-serif",
                           fontWeight: 700,
                           color: "#F4F7FB",
-                          marginBottom: "4px",
+                          height: "38px",
+                          lineHeight: "38px",
                         }}>{metric.value}</div>
                         <div style={{
                           fontSize: "11px",
@@ -2328,22 +2329,13 @@ export default function AboutPage() {
                 ].map((item) => (
                   <div key={item.title} className="ab-glass ab-sec-card">
                     <div className="ab-sec-card-icon">
-                      {item.title} =>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ab-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                          <circle cx="12" cy="12" r="10" />
-                        </svg>
-                      ) || item.title === "Compliance Ready" && (
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ab-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                          <path d="M22 11.08A5 5 0 0 1 12 2l-10 7 10 7 11-11a5 5 0 0 0 7 7z" />
-                        </svg>
-                      ) || item.title === "Continuous Monitoring" && (
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ab-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M19.72 14.02a5 5 0 0 1 0 6.94M15.5 19h-6a4 4 0 0 0-4 4v4a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-4zm-8-8V3a3 3 0 0 1 3 3h6a3 3 0 0 1 3 3v6z" />
-                        </svg>
-                      )}"
+                      <img
+                        src={`/${item.title}.svg`}
+                        alt={item.title}
+                        width={24}
+                        height={24}
+                        style={{ objectFit: "contain", filter: "brightness(0) invert(74%) sepia(60%) saturate(500%) hue-rotate(18deg) brightness(1.1)" }}
+                      />
                     </div>
                     <div className="ab-sec-card-title">{item.title}</div>
                     <p className="ab-sec-card-desc">{item.desc}</p>

@@ -114,21 +114,7 @@ export default function PhilosophyCards() {
           margin: 0;
           padding-right: 40px;
         }
-        .phil-card-btn {
-          position: absolute;
-          bottom: 26px;
-          right: 24px;
-          width: 38px;
-          height: 38px;
-          border-radius: 50%;
-          background: #c6ff3d;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .phil-card-btn svg {
-          color: #111827;
-        }
+
 
         @media (max-width: 600px) {
           .phil-card {
@@ -152,12 +138,6 @@ export default function PhilosophyCards() {
             <div className="phil-card-body">
               <h3 className="phil-card-letter">{card.letter}<span className="phil-card-name">{card.letter && ` — ${card.name}` }</span></h3>
               <p className="phil-card-copy">{card.description}</p>
-              <span className="phil-card-btn" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </span>
             </div>
           </div>
         ))}
