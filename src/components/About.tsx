@@ -121,7 +121,7 @@ export default function About() {
         {/* Right — Single Cover Image */}
         <div className="about-visual">
           <img
-            src="/aboutai2.jpg"
+            src="/about3.png"
             alt="AI-first intelligent automation"
             loading="lazy"
           />

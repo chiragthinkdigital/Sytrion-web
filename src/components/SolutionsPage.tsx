@@ -1320,6 +1320,24 @@ export default function SolutionsPage() {
         <div className="sol-hero-glow" />
         <div className="sol-hero-orb" />
         <div className="grain-overlay absolute inset-0 pointer-events-none" />
+<video
+          className="sol-hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            opacity: 0.65,
+          }}
+        >
+          <source src="/solutionshero.mp4" type="video/mp4" />
+        </video>
 
         <div className="sol-hero-content">
           <Eyebrow>Our Solutions</Eyebrow>
@@ -2303,6 +2321,9 @@ export default function SolutionsPage() {
     </>
 );
 }
+
+
+
 
 
 
