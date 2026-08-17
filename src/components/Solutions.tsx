@@ -10,7 +10,7 @@ const solutions = [
     description:
       "Empowering enterprises with intelligent automation, cognitive workflows, and AI-driven decision-making to transform operational performance.",
     icon: "/AI Automation & Agentic AI.svg",
-    image: "/AI-Automation-and-Agentic-AI-2.jpg",
+    image: "/AI-Automation-and-Agentic-AI-2.jpeg",
   },
   {
     number: "02",

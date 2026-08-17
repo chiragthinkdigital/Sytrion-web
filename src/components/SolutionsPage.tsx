@@ -1459,7 +1459,7 @@ export default function SolutionsPage() {
             
             <div style={{ position: "relative", borderRadius: "24px", overflow: "hidden", border: "1px solid rgba(198,232,74,0.2)", boxShadow: "0 20px 40px rgba(0,0,0,0.4)" }}>
               <img 
-                src="/AI-Automation-and-Agentic-AI-2.jpg" 
+                src="/AI-Automation-and-Agentic-AI-2.jpeg" 
                 alt="AI Automation & Agentic AI" 
                 style={{ width: "100%", height: "auto", display: "block", objectFit: "cover", aspectRatio: "4/3" }} 
               />
