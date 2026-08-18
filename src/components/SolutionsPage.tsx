@@ -2,24 +2,10 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
+import WhySytrion from "./WhySytrion";
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Design-system reuse (mapped from Home/About):
-   - Colors: --color-primary #C6E84A, --color-offblack #0f0f0f, #F5F6F0 / #F8F8F8
-     light section backgrounds, #5A5D66 muted text (same tokens as About/Industries).
-   - Typography: .heading-display (letter-spacing/line-height), .eyebrow-badge pill,
-     Syne headings via font-family var(--font-syne), Geist body.
-   - Buttons: global .btn-primary (lime pill w/ shine) and .btn-secondary (outline)
-     from globals.css — same as used on dark Home sections.
-   - Cards: white borderless-elevation card (card-elevated pattern from globals.css)
-     and the lime-top-border tile pattern from the old products grid (prod-solutions-card).
-   - Icons: inline lucide-style SVGs (stroke currentColor, 24 viewBox) — the same
-     icon approach used across Hero/About/Contact (lucide-react is installed but the
-     site inlines SVGs; reusing that inline pattern).
-   - Motion: hover lift translateY(-4px) + soft shadow (card-elevated), CSS smooth
-     scroll (html { scroll-behavior: smooth } in globals.css). No new motion system.
-   - Section rhythm: padding 100px 80px → 80px 40px → 60px 20px, max-width 1400px,
-     alternating light/warm/dark backgrounds — identical to Home/About sections.
+   Solutions Page — Redesigned
    ───────────────────────────────────────────────────────────────────────────── */
 
 const icons: Record<string, React.ReactNode> = {
@@ -227,19 +213,11 @@ const icons: Record<string, React.ReactNode> = {
   ),
 };
 
+/* ── Shared helpers ────────────────────────────────────────────────────────── */
+
 function SolIcon({ name, size = 22 }: { name: string; size?: number }) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       {icons[name]}
     </svg>
   );
@@ -254,7 +232,261 @@ function ArrowIcon() {
   );
 }
 
-/* ── Capabilities overview (interactive rail + preview) ───────────────── */
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return <span className="sol-eyebrow">{children}</span>;
+}
+
+function SectionTitle({ children, dark }: { children: React.ReactNode; dark?: boolean }) {
+  return <h2 className={"sol-section-title" + (dark ? " sol-section-title--dark" : "")}>{children}</h2>;
+}
+
+/* ── Shared Card Component ─────────────────────────────────────────────────── */
+
+function SolutionCard({
+  icon,
+  title,
+  desc,
+  variant = "dark",
+  iconStyle = "square",
+}: {
+  icon: string;
+  title: string;
+  desc: string;
+  variant?: "dark" | "light";
+  iconStyle?: "square" | "circle";
+}) {
+  return (
+    <div className={"sol-card sol-card--" + variant}>
+      <div className={"sol-card-icon sol-card-icon--" + iconStyle}>
+        <SolIcon name={icon} size={22} />
+      </div>
+      <h4 className={"sol-card-title" + (variant === "dark" ? " sol-card-title--dark" : "")}>{title}</h4>
+      <p className={"sol-card-desc" + (variant === "dark" ? " sol-card-desc--dark" : "")}>{desc}</p>
+    </div>
+  );
+}
+
+/* ── Data Capability Card ───────────────────────────────────────────────────── */
+
+/* ── Data Engineering — Card Visuals ────────────────────────────────────────── */
+
+function DEVisual01() {
+  return (
+    <svg viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "100%" }} aria-hidden="true">
+      <defs>
+        <radialGradient id="de01-g1" cx="25%" cy="30%" r="50%"><stop offset="0%" stopColor="#93e857" stopOpacity="0.13" /><stop offset="100%" stopColor="#93e857" stopOpacity="0" /></radialGradient>
+        <radialGradient id="de01-g2" cx="75%" cy="70%" r="45%"><stop offset="0%" stopColor="#93e857" stopOpacity="0.08" /><stop offset="100%" stopColor="#93e857" stopOpacity="0" /></radialGradient>
+        <radialGradient id="de01-g3" cx="60%" cy="25%" r="35%"><stop offset="0%" stopColor="#b9f16c" stopOpacity="0.06" /><stop offset="100%" stopColor="#b9f16c" stopOpacity="0" /></radialGradient>
+      </defs>
+      <rect width="800" height="500" fill="#08090a" />
+      <rect width="800" height="500" fill="url(#de01-g1)" />
+      <rect width="800" height="500" fill="url(#de01-g2)" />
+      <rect width="800" height="500" fill="url(#de01-g3)" />
+      {/* Node constellation — converging streams */}
+      <line x1="80" y1="80" x2="340" y2="220" stroke="#93e857" strokeWidth="0.7" opacity="0.25" />
+      <line x1="120" y1="420" x2="340" y2="260" stroke="#93e857" strokeWidth="0.7" opacity="0.2" />
+      <line x1="60" y1="260" x2="340" y2="240" stroke="#b9f16c" strokeWidth="0.5" opacity="0.15" />
+      <line x1="200" y1="60" x2="360" y2="200" stroke="#93e857" strokeWidth="0.5" opacity="0.18" />
+      <line x1="340" y1="240" x2="580" y2="180" stroke="#93e857" strokeWidth="0.7" opacity="0.22" />
+      <line x1="340" y1="240" x2="600" y2="340" stroke="#93e857" strokeWidth="0.7" opacity="0.2" />
+      <line x1="340" y1="240" x2="700" y2="200" stroke="#b9f16c" strokeWidth="0.5" opacity="0.15" />
+      <line x1="340" y1="240" x2="520" y2="420" stroke="#93e857" strokeWidth="0.5" opacity="0.18" />
+      <line x1="580" y1="180" x2="720" y2="120" stroke="#93e857" strokeWidth="0.5" opacity="0.15" />
+      <line x1="600" y1="340" x2="740" y2="400" stroke="#b9f16c" strokeWidth="0.5" opacity="0.12" />
+      {/* Nodes */}
+      <circle cx="80" cy="80" r="4" fill="#93e857" opacity="0.4" />
+      <circle cx="120" cy="420" r="3.5" fill="#93e857" opacity="0.35" />
+      <circle cx="60" cy="260" r="3" fill="#b9f16c" opacity="0.3" />
+      <circle cx="200" cy="60" r="3" fill="#93e857" opacity="0.35" />
+      <circle cx="340" cy="240" r="7" fill="#93e857" opacity="0.5" />
+      <circle cx="340" cy="240" r="3" fill="#08090a" />
+      <circle cx="580" cy="180" r="4" fill="#93e857" opacity="0.4" />
+      <circle cx="600" cy="340" r="3.5" fill="#93e857" opacity="0.35" />
+      <circle cx="700" cy="200" r="3" fill="#b9f16c" opacity="0.3" />
+      <circle cx="520" cy="420" r="3" fill="#93e857" opacity="0.3" />
+      <circle cx="720" cy="120" r="2.5" fill="#93e857" opacity="0.25" />
+      <circle cx="740" cy="400" r="2.5" fill="#b9f16c" opacity="0.25" />
+    </svg>
+  );
+}
+
+function DEVisual02() {
+  return (
+    <svg viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "100%" }} aria-hidden="true">
+      <defs>
+        <radialGradient id="de02-g1" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#93e857" stopOpacity="0.14" /><stop offset="100%" stopColor="#93e857" stopOpacity="0" /></radialGradient>
+        <radialGradient id="de02-g2" cx="20%" cy="75%" r="40%"><stop offset="0%" stopColor="#b9f16c" stopOpacity="0.06" /><stop offset="100%" stopColor="#b9f16c" stopOpacity="0" /></radialGradient>
+        <radialGradient id="de02-g3" cx="80%" cy="25%" r="35%"><stop offset="0%" stopColor="#93e857" stopOpacity="0.07" /><stop offset="100%" stopColor="#93e857" stopOpacity="0" /></radialGradient>
+      </defs>
+      <rect width="800" height="500" fill="#08090a" />
+      <rect width="800" height="500" fill="url(#de02-g1)" />
+      <rect width="800" height="500" fill="url(#de02-g2)" />
+      <rect width="800" height="500" fill="url(#de02-g3)" />
+      {/* Node constellation — central hub with radiating connections */}
+      <line x1="140" y1="100" x2="400" y2="250" stroke="#93e857" strokeWidth="0.7" opacity="0.22" />
+      <line x1="100" y1="380" x2="400" y2="250" stroke="#93e857" strokeWidth="0.7" opacity="0.2" />
+      <line x1="660" y1="120" x2="400" y2="250" stroke="#b9f16c" strokeWidth="0.7" opacity="0.2" />
+      <line x1="700" y1="400" x2="400" y2="250" stroke="#93e857" strokeWidth="0.7" opacity="0.18" />
+      <line x1="400" y1="60" x2="400" y2="250" stroke="#93e857" strokeWidth="0.5" opacity="0.15" />
+      <line x1="400" y1="440" x2="400" y2="250" stroke="#b9f16c" strokeWidth="0.5" opacity="0.15" />
+      <line x1="60" y1="250" x2="400" y2="250" stroke="#93e857" strokeWidth="0.5" opacity="0.12" />
+      <line x1="740" y1="250" x2="400" y2="250" stroke="#93e857" strokeWidth="0.5" opacity="0.12" />
+      {/* Cross connections */}
+      <line x1="140" y1="100" x2="660" y2="120" stroke="#93e857" strokeWidth="0.4" opacity="0.1" />
+      <line x1="100" y1="380" x2="700" y2="400" stroke="#b9f16c" strokeWidth="0.4" opacity="0.1" />
+      <line x1="140" y1="100" x2="100" y2="380" stroke="#93e857" strokeWidth="0.3" opacity="0.08" />
+      <line x1="660" y1="120" x2="700" y2="400" stroke="#93e857" strokeWidth="0.3" opacity="0.08" />
+      {/* Nodes */}
+      <circle cx="140" cy="100" r="5" fill="#93e857" opacity="0.45" />
+      <circle cx="100" cy="380" r="4.5" fill="#93e857" opacity="0.4" />
+      <circle cx="660" cy="120" r="5" fill="#b9f16c" opacity="0.4" />
+      <circle cx="700" cy="400" r="4" fill="#93e857" opacity="0.35" />
+      <circle cx="400" cy="60" r="3.5" fill="#93e857" opacity="0.3" />
+      <circle cx="400" cy="440" r="3" fill="#b9f16c" opacity="0.3" />
+      <circle cx="60" cy="250" r="3" fill="#93e857" opacity="0.25" />
+      <circle cx="740" cy="250" r="3" fill="#93e857" opacity="0.25" />
+      <circle cx="400" cy="250" r="9" fill="#93e857" opacity="0.35" />
+      <circle cx="400" cy="250" r="4" fill="#08090a" />
+    </svg>
+  );
+}
+
+function DEVisual03() {
+  return (
+    <svg viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "100%" }} aria-hidden="true">
+      <defs>
+        <radialGradient id="de03-g1" cx="30%" cy="40%" r="50%"><stop offset="0%" stopColor="#93e857" stopOpacity="0.12" /><stop offset="100%" stopColor="#93e857" stopOpacity="0" /></radialGradient>
+        <radialGradient id="de03-g2" cx="70%" cy="60%" r="45%"><stop offset="0%" stopColor="#b9f16c" stopOpacity="0.09" /><stop offset="100%" stopColor="#b9f16c" stopOpacity="0" /></radialGradient>
+        <radialGradient id="de03-g3" cx="50%" cy="80%" r="35%"><stop offset="0%" stopColor="#93e857" stopOpacity="0.05" /><stop offset="100%" stopColor="#93e857" stopOpacity="0" /></radialGradient>
+      </defs>
+      <rect width="800" height="500" fill="#08090a" />
+      <rect width="800" height="500" fill="url(#de03-g1)" />
+      <rect width="800" height="500" fill="url(#de03-g2)" />
+      <rect width="800" height="500" fill="url(#de03-g3)" />
+      {/* Node constellation — left-to-right transformation flow */}
+      <line x1="60" y1="140" x2="200" y2="200" stroke="#93e857" strokeWidth="0.6" opacity="0.2" />
+      <line x1="60" y1="280" x2="200" y2="250" stroke="#93e857" strokeWidth="0.6" opacity="0.18" />
+      <line x1="100" y1="400" x2="200" y2="300" stroke="#b9f16c" strokeWidth="0.5" opacity="0.15" />
+      <line x1="200" y1="230" x2="420" y2="230" stroke="#93e857" strokeWidth="0.8" opacity="0.25" />
+      <line x1="200" y1="230" x2="420" y2="200" stroke="#b9f16c" strokeWidth="0.5" opacity="0.15" />
+      <line x1="200" y1="230" x2="420" y2="280" stroke="#93e857" strokeWidth="0.5" opacity="0.15" />
+      <line x1="420" y1="230" x2="620" y2="180" stroke="#93e857" strokeWidth="0.7" opacity="0.22" />
+      <line x1="420" y1="230" x2="620" y2="280" stroke="#93e857" strokeWidth="0.7" opacity="0.2" />
+      <line x1="420" y1="230" x2="640" y2="380" stroke="#b9f16c" strokeWidth="0.5" opacity="0.15" />
+      <line x1="420" y1="230" x2="660" y2="120" stroke="#93e857" strokeWidth="0.5" opacity="0.15" />
+      <line x1="620" y1="180" x2="750" y2="140" stroke="#93e857" strokeWidth="0.4" opacity="0.12" />
+      <line x1="620" y1="280" x2="740" y2="360" stroke="#93e857" strokeWidth="0.4" opacity="0.12" />
+      {/* Nodes */}
+      <circle cx="60" cy="140" r="3.5" fill="#93e857" opacity="0.35" />
+      <circle cx="60" cy="280" r="3" fill="#93e857" opacity="0.3" />
+      <circle cx="100" cy="400" r="3" fill="#b9f16c" opacity="0.25" />
+      <circle cx="200" cy="230" r="6" fill="#93e857" opacity="0.45" />
+      <circle cx="200" cy="230" r="2.5" fill="#08090a" />
+      <circle cx="420" cy="230" r="7" fill="#93e857" opacity="0.4" />
+      <circle cx="420" cy="230" r="3" fill="#08090a" />
+      <circle cx="620" cy="180" r="4" fill="#93e857" opacity="0.4" />
+      <circle cx="620" cy="280" r="3.5" fill="#93e857" opacity="0.35" />
+      <circle cx="640" cy="380" r="3" fill="#b9f16c" opacity="0.3" />
+      <circle cx="660" cy="120" r="3" fill="#93e857" opacity="0.3" />
+      <circle cx="750" cy="140" r="2.5" fill="#93e857" opacity="0.25" />
+      <circle cx="740" cy="360" r="2.5" fill="#93e857" opacity="0.25" />
+    </svg>
+  );
+}
+
+function DEVisual04() {
+  return (
+    <svg viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "100%" }} aria-hidden="true">
+      <defs>
+        <radialGradient id="de04-g1" cx="50%" cy="40%" r="50%"><stop offset="0%" stopColor="#93e857" stopOpacity="0.13" /><stop offset="100%" stopColor="#93e857" stopOpacity="0" /></radialGradient>
+        <radialGradient id="de04-g2" cx="30%" cy="70%" r="40%"><stop offset="0%" stopColor="#b9f16c" stopOpacity="0.06" /><stop offset="100%" stopColor="#b9f16c" stopOpacity="0" /></radialGradient>
+        <radialGradient id="de04-g3" cx="75%" cy="30%" r="35%"><stop offset="0%" stopColor="#93e857" stopOpacity="0.07" /><stop offset="100%" stopColor="#93e857" stopOpacity="0" /></radialGradient>
+      </defs>
+      <rect width="800" height="500" fill="#08090a" />
+      <rect width="800" height="500" fill="url(#de04-g1)" />
+      <rect width="800" height="500" fill="url(#de04-g2)" />
+      <rect width="800" height="500" fill="url(#de04-g3)" />
+      {/* Node constellation — shield/quality pattern */}
+      <line x1="400" y1="80" x2="280" y2="200" stroke="#93e857" strokeWidth="0.7" opacity="0.25" />
+      <line x1="400" y1="80" x2="520" y2="200" stroke="#93e857" strokeWidth="0.7" opacity="0.25" />
+      <line x1="280" y1="200" x2="220" y2="360" stroke="#93e857" strokeWidth="0.6" opacity="0.2" />
+      <line x1="520" y1="200" x2="580" y2="360" stroke="#93e857" strokeWidth="0.6" opacity="0.2" />
+      <line x1="220" y1="360" x2="400" y2="440" stroke="#b9f16c" strokeWidth="0.6" opacity="0.18" />
+      <line x1="580" y1="360" x2="400" y2="440" stroke="#b9f16c" strokeWidth="0.6" opacity="0.18" />
+      <line x1="280" y1="200" x2="520" y2="200" stroke="#93e857" strokeWidth="0.5" opacity="0.15" />
+      <line x1="220" y1="360" x2="580" y2="360" stroke="#93e857" strokeWidth="0.5" opacity="0.12" />
+      {/* Outer verification nodes */}
+      <line x1="120" y1="160" x2="280" y2="200" stroke="#93e857" strokeWidth="0.4" opacity="0.12" />
+      <line x1="680" y1="160" x2="520" y2="200" stroke="#93e857" strokeWidth="0.4" opacity="0.12" />
+      <line x1="100" y1="400" x2="220" y2="360" stroke="#b9f16c" strokeWidth="0.4" opacity="0.1" />
+      <line x1="700" y1="400" x2="580" y2="360" stroke="#93e857" strokeWidth="0.4" opacity="0.1" />
+      {/* Nodes */}
+      <circle cx="400" cy="80" r="5" fill="#93e857" opacity="0.45" />
+      <circle cx="280" cy="200" r="5.5" fill="#93e857" opacity="0.4" />
+      <circle cx="520" cy="200" r="5.5" fill="#93e857" opacity="0.4" />
+      <circle cx="220" cy="360" r="4.5" fill="#93e857" opacity="0.35" />
+      <circle cx="580" cy="360" r="4.5" fill="#93e857" opacity="0.35" />
+      <circle cx="400" cy="440" r="4" fill="#b9f16c" opacity="0.35" />
+      <circle cx="120" cy="160" r="3" fill="#93e857" opacity="0.25" />
+      <circle cx="680" cy="160" r="3" fill="#93e857" opacity="0.25" />
+      <circle cx="100" cy="400" r="2.5" fill="#b9f16c" opacity="0.2" />
+      <circle cx="700" cy="400" r="2.5" fill="#93e857" opacity="0.2" />
+    </svg>
+  );
+}
+
+const deVisuals: Record<string, React.FC> = { "01": DEVisual01, "02": DEVisual02, "03": DEVisual03, "04": DEVisual04 };
+const deImages: Record<string, string> = {
+  "01": "/Data Processing & Validation.png",
+  "02": "/Data Enrichment & Integration1.png",
+  "03": "/AI-Ready Data Preparation.png",
+  "04": "/data quality management.png",
+};
+
+function DataEngCard({
+  index,
+  icon,
+  title,
+  desc,
+}: {
+  index: string;
+  icon: string;
+  title: string;
+  desc: string;
+}) {
+  const Visual = deVisuals[index];
+  const imgSrc = deImages[index];
+  return (
+    <div className="de-card">
+      <div className="de-card-visual">
+        {imgSrc ? (
+          <img src={imgSrc} alt={title} />
+        ) : (
+          Visual && <Visual />
+        )}
+        <div className="de-card-scrim" />
+        <div className="de-card-grain" />
+      </div>
+      <div className="de-card-body">
+        <div className="de-card-icon">
+          <SolIcon name={icon} size={18} />
+        </div>
+        <h4 className="de-card-title">{title}</h4>
+        <p className="de-card-desc">{desc}</p>
+        <Link href="/contact" className="de-card-link">
+          Explore capability
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+/* ── Data ──────────────────────────────────────────────────────────────────── */
+
 const capabilities = [
   {
     number: "01",
@@ -318,124 +550,45 @@ const capabilities = [
   },
 ];
 
-/* ── Section 3 — AI Automation ─────────────────────────────────────────── */
 const aiCapabilities = [
-  "Intelligent workflow automation",
-  "Agentic AI solutions",
-  "AI-assisted business processes",
-  "Intelligent document processing",
-  "Cognitive data extraction",
-  "Workflow orchestration",
-  "Human-in-the-loop automation",
-  "Enterprise AI integration",
-  "Process intelligence",
-  "AI-enabled decision support",
-];
-const aiImpact = [
-  { icon: "mouse-pointer", title: "Less Manual Effort", desc: "Reduce repetitive and information-intensive work." },
-  { icon: "zap", title: "Faster Processing", desc: "Reduce delays across multi-step workflows." },
-  { icon: "check-circle", title: "Greater Consistency", desc: "Apply business rules more consistently at scale." },
-  { icon: "target", title: "Better Decisions", desc: "Bring intelligence closer to the point of action." },
+  { icon: "sparkles", title: "Agentic AI Solutions", desc: "AI systems that reason, plan and act across multi-step workflows." },
+  { icon: "workflow", title: "Workflow Orchestration", desc: "Connecting people, systems and AI into seamless operational flows." },
+  { icon: "cpu", title: "AI-Assisted Business Processes", desc: "Embedding intelligence into core processes for faster execution." },
+  { icon: "layers", title: "Intelligent Document Processing", desc: "Extracting and understanding information from complex documents." },
 ];
 
-/* ── Section 4 — Intelligent Operations ────────────────────────────────── */
 const opsCapabilities = [
-  { icon: "settings", label: "Business process operations" },
-  { icon: "clipboard", label: "Back-office operations" },
-  { icon: "receipt", label: "Transaction processing" },
-  { icon: "file-text", label: "Document-intensive operations" },
-  { icon: "workflow", label: "Workflow management" },
-  { icon: "layers", label: "Process standardization" },
-  { icon: "shield-check", label: "Quality assurance" },
-  { icon: "alert-circle", label: "Exception management" },
-  { icon: "bar-chart", label: "Operational reporting" },
-  { icon: "zap", label: "Process automation" },
-  { icon: "gauge", label: "Performance management" },
-];
-const opsFramework = [
-  { icon: "users", title: "People", desc: "Domain-aware teams with clearly defined responsibilities." },
-  { icon: "workflow", title: "Process", desc: "Standardized workflows designed for quality and consistency." },
-  { icon: "cpu", title: "Technology", desc: "AI and automation embedded where they add measurable value." },
-  { icon: "gauge", title: "Performance", desc: "Defined controls, service levels and continuous improvement." },
+  { icon: "settings", title: "Business Process Operations", desc: "Running and improving high-volume processes with precision and consistency." },
+  { icon: "clipboard", title: "Back-Office Operations", desc: "Managing transaction-heavy workflows that keep the business moving." },
+  { icon: "workflow", title: "Workflow Management", desc: "Coordinating tasks, exceptions and handoffs across operational teams." },
+  { icon: "shield-check", title: "Quality Assurance", desc: "Applying defined controls and audits to maintain operational standards." },
 ];
 
-/* ── Section 5 — Data Engineering ──────────────────────────────────────── */
 const dataCapabilities = [
-  "Data processing",
-  "Data cleansing",
-  "Data validation",
-  "Data enrichment",
-  "Data transformation",
-  "Data migration",
-  "Data integration",
-  "Master data support",
-  "Data quality management",
-  "Unstructured data processing",
-  "AI-ready data preparation",
-];
-const dataProcess = [
-  { title: "Collect", desc: "Bring data together from relevant systems, sources and formats." },
-  { title: "Process", desc: "Transform raw information into structured and usable data." },
-  { title: "Validate", desc: "Improve accuracy, completeness and consistency." },
-  { title: "Enrich", desc: "Add context and value to information." },
-  { title: "Integrate", desc: "Connect data across systems and business processes." },
-  { title: "Activate", desc: "Make trusted information available for operations, analytics and AI." },
+  { index: "01", icon: "database", title: "Data Processing & Validation", desc: "Cleaning, verifying and structuring data from multiple sources into a single reliable format." },
+  { index: "02", icon: "layers", title: "Data Enrichment & Integration", desc: "Adding context and connecting data across systems." },
+  { index: "03", icon: "cpu", title: "AI-Ready Data Preparation", desc: "Shaping data into formats AI and analytics can consume." },
+  { index: "04", icon: "shield-check", title: "Data Quality Management", desc: "Monitoring and maintaining accuracy across the lifecycle." },
 ];
 
-/* ── Section 6 — Analytics & BI ────────────────────────────────────────── */
-const analyticsCapabilities = [
-  "Executive dashboards",
-  "Operational dashboards",
-  "Business intelligence",
-  "KPI monitoring",
-  "Management reporting",
-  "Automated reporting",
-  "Data visualization",
-  "Trend analysis",
-  "Variance analysis",
-  "Predictive analytics",
-  "Decision intelligence",
-];
-const analyticsFramework = [
-  { icon: "eye", title: "Visibility", desc: "Understand what is happening across the business." },
-  { icon: "lightbulb", title: "Insight", desc: "Identify trends, exceptions and opportunities." },
-  { icon: "trending-up", title: "Prediction", desc: "Use historical information to understand what may happen next." },
-  { icon: "target", title: "Action", desc: "Give teams the intelligence needed to make informed decisions." },
-];
-
-/* ── Section 8 — Shipping & Logistics ──────────────────────────────────── */
 const shippingCapabilities = [
-  { icon: "anchor", title: "Freight Forwarding Operations", desc: "Operational support across freight-forwarding workflows, helping teams manage high-volume activities with greater speed and consistency." },
-  { icon: "file-text", title: "Shipping Documentation", desc: "Processing, validating and managing business-critical shipping documents across operational workflows." },
-  { icon: "file-check", title: "Customs Documentation Support", desc: "Structured support for customs-related documentation, data processing and validation." },
-  { icon: "receipt", title: "Invoice & Billing Operations", desc: "Processing and validating freight invoices, supporting billing workflows and identifying exceptions." },
-  { icon: "database", title: "Shipment Data Management", desc: "Capturing, validating, enriching and maintaining shipment-related operational information." },
-  { icon: "alert-circle", title: "Exception & Dispute Management", desc: "Structured handling of discrepancies and operational exceptions to support faster resolution." },
-  { icon: "workflow", title: "Workflow Automation", desc: "Applying intelligent automation to repetitive documentation and operational processes." },
-  { icon: "trending-up", title: "Logistics Analytics", desc: "Creating visibility into operational volumes, performance, exceptions and trends." },
-];
-const shippingTags = [
-  "Shipping companies",
-  "Freight forwarders",
-  "Logistics service providers",
-  "3PL organizations",
-  "Supply-chain businesses",
-  "Transportation operations",
+  { icon: "anchor", title: "Freight Forwarding Operations", desc: "Operational support for high-volume freight workflows with speed and consistency." },
+  { icon: "file-text", title: "Shipping Documentation", desc: "Processing, validating and managing business-critical shipping documents." },
+  { icon: "file-check", title: "Customs Documentation", desc: "Structured support for customs-related documentation, data and validation." },
+  { icon: "receipt", title: "Invoice & Billing Operations", desc: "Processing and validating freight invoices with exception identification." },
+  { icon: "database", title: "Shipment Data Management", desc: "Capturing, validating and enriching shipment-related information." },
+  { icon: "alert-circle", title: "Exception Management", desc: "Structured handling of discrepancies and operational exceptions." },
 ];
 
-/* ── Section 9 — Healthcare Operations ─────────────────────────────────── */
 const healthcareCapabilities = [
-  { icon: "clipboard", title: "Claims Operations", desc: "Technology-enabled support for claims-related administrative processes and workflows." },
-  { icon: "scan-text", title: "Document Intelligence", desc: "Using intelligent technologies to capture, classify, extract and process information from healthcare-related documents." },
-  { icon: "database", title: "Healthcare Data Processing", desc: "Structured processing, validation and management of operational healthcare data." },
-  { icon: "workflow", title: "Workflow Automation", desc: "Automating repetitive administrative activities and routing information intelligently across processes." },
-  { icon: "file-text", title: "Document Management", desc: "Organizing and processing high-volume documentation through structured operational workflows." },
-  { icon: "check-circle", title: "Data Validation & Quality Control", desc: "Applying defined validation and quality processes to improve accuracy and consistency." },
-  { icon: "bar-chart", title: "Operational Reporting", desc: "Creating visibility into processing volumes, turnaround times, exceptions and operational performance." },
-  { icon: "shield-check", title: "Secure Operational Support", desc: "Delivery practices designed around confidentiality, controlled access and responsible information handling." },
+  { icon: "clipboard", title: "Claims Operations", desc: "Technology-enabled support for claims-related administrative workflows." },
+  { icon: "scan-text", title: "Document Intelligence", desc: "Capturing, classifying and extracting information from healthcare documents." },
+  { icon: "database", title: "Healthcare Data Processing", desc: "Structured processing and validation of operational healthcare data." },
+  { icon: "workflow", title: "Workflow Automation", desc: "Automating repetitive administrative tasks and intelligent routing." },
+  { icon: "shield-check", title: "Secure Operations", desc: "Delivery practices designed around confidentiality and controlled access." },
+  { icon: "bar-chart", title: "Operational Reporting", desc: "Visibility into volumes, turnaround times and exceptions." },
 ];
 
-/* ── Section 10 — Connected Ecosystem ──────────────────────────────────── */
 const ecosystem = [
   { icon: "sparkles", title: "AI Automation", desc: "Understand and automate." },
   { icon: "settings", title: "Intelligent Operations", desc: "Execute and optimize." },
@@ -444,27 +597,15 @@ const ecosystem = [
   { icon: "compass", title: "Domain Expertise", desc: "Apply with context." },
 ];
 
-/* ── Section 11 — Approach ─────────────────────────────────────────────── */
 const approachSteps = [
-  { title: "Discover", desc: "Understand your processes, systems, data, people and business objectives." },
-  { title: "Diagnose", desc: "Identify bottlenecks, manual effort, fragmented workflows and opportunities for improvement." },
-  { title: "Design", desc: "Create the right combination of process, technology, automation and operational support." },
-  { title: "Implement", desc: "Introduce the solution through a structured transition designed around business continuity." },
-  { title: "Operate", desc: "Manage agreed processes with defined controls, quality standards and performance measures." },
-  { title: "Improve", desc: "Continuously identify opportunities for automation, optimization and greater intelligence." },
+  { title: "Discover", desc: "Understand your processes, systems, data and business objectives." },
+  { title: "Diagnose", desc: "Identify bottlenecks, manual effort and opportunities for improvement." },
+  { title: "Design", desc: "Create the right combination of process, technology and automation." },
+  { title: "Implement", desc: "Introduce the solution through a structured transition." },
+  { title: "Operate", desc: "Manage processes with defined controls and performance measures." },
+  { title: "Improve", desc: "Continuously identify opportunities for optimization and intelligence." },
 ];
 
-/* ── Section 12 — Differentiators ──────────────────────────────────────── */
-const differentiators = [
-  { icon: "sparkles", title: "AI-First Thinking", desc: "We identify where intelligence can create meaningful operational value." },
-  { icon: "settings", title: "Operational Expertise", desc: "Technology combined with an understanding of how business processes actually work." },
-  { icon: "shield", title: "Security by Design", desc: "Security, confidentiality and governance considered throughout delivery." },
-  { icon: "layers", title: "Scalable Delivery", desc: "Solutions designed to evolve alongside changing business requirements." },
-  { icon: "trending-up", title: "Data-Driven Improvement", desc: "Use operational intelligence to continuously identify improvement opportunities." },
-  { icon: "users", title: "Customer Partnership", desc: "Work as an extension of client teams with transparency and accountability." },
-];
-
-/* ── Section 13 — Security & Trust ─────────────────────────────────────── */
 const securityTags = [
   "Secure Infrastructure",
   "Role-Based Access",
@@ -472,70 +613,35 @@ const securityTags = [
   "Governance Frameworks",
   "Business Continuity",
   "Audit-Ready Processes",
-  "Compliance-Oriented Operations",
 ];
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <span className="eyebrow-badge">{children}</span>;
-}
+/* ── Analytics Orbit Diagram ────────────────────────────────────────────────── */
 
-function SectionHeading({
-  children,
-  size = "lg",
-}: {
-  children: React.ReactNode;
-  size?: "lg" | "md";
-}) {
+function CapabilitiesOrbit() {
   return (
-    <h2
-      className="heading-display sol-h2"
-      style={{ fontSize: size === "lg" ? "clamp(32px, 5vw, 48px)" : "clamp(28px, 4vw, 40px)" }}
-    >
-      {children}
-    </h2>
-  );
-}
-
-function IntroText({ children, dark }: { children: React.ReactNode; dark?: boolean }) {
-  return (
-    <p
-      className={dark ? "sol-lead sol-lead--dark" : "sol-lead"}
-      style={{ marginBottom: "16px", maxWidth: "720px" }}
-    >
-      {children}
-    </p>
-  );
-}
-
-function CapabilitiesGrid({ items }: { items: string[] }) {
-  return (
-    <div className="sol-checks">
-      {items.map((item) => (
-        <div key={item} className="sol-check">
-          <span className="sol-check-icon">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-          </span>
-          <span className="sol-check-text">{item}</span>
+    <div className="orbit-section">
+      <div className="orbit-wrap">
+        <div className="orbit-ring" />
+        <div className="orbit-core">
+          <span className="orbit-core-num">08</span>
+          <span className="orbit-core-label">CAPABILITIES</span>
         </div>
-      ))}
+        <div className="cap-1"><span className="orbit-dot" />Executive dashboards</div>
+        <div className="cap-2"><span className="orbit-dot" />KPI monitoring</div>
+        <div className="cap-3"><span className="orbit-dot" />Automated reporting</div>
+        <div className="cap-4"><span className="orbit-dot" />Trend analysis</div>
+        <div className="cap-5"><span className="orbit-dot" />Operational dashboards</div>
+        <div className="cap-6"><span className="orbit-dot" />Predictive analytics</div>
+        <div className="cap-7"><span className="orbit-dot" />Data visualization</div>
+        <div className="cap-8"><span className="orbit-dot" />Decision intelligence</div>
+      </div>
     </div>
   );
 }
 
-function SubLabel({ children }: { children: React.ReactNode }) {
-  return <span className="sol-sublabel">{children}</span>;
-}
-
-function Callout({ children, dark }: { children: React.ReactNode; dark?: boolean }) {
-  return (
-    <div className={dark ? "sol-callout sol-callout--dark" : "sol-callout"}>
-      <div className="sol-callout-rule" />
-      <p className="sol-callout-line">{children}</p>
-    </div>
-  );
-}
+/* ─────────────────────────────────────────────────────────────────────────────
+   MAIN COMPONENT
+   ───────────────────────────────────────────────────────────────────────────── */
 
 function CapabilitiesRail() {
   const [active, setActive] = useState(0);
@@ -605,60 +711,135 @@ export default function SolutionsPage() {
   return (
     <>
       <style>{`
+        /* ── Base Section ────────────────────────────────── */
         .sol-section {
           position: relative;
           width: 100%;
           padding: 100px 80px;
           overflow: hidden;
         }
-        .sol-section--warm { background: #F5F6F0; }
-        .sol-section--white { background: #ffffff; }
-        .sol-section--cream { background: #F8F8F8; }
-        .sol-section--dark { background: #0f0f0f; }
-        .sol-section--dark-alt { background: #0a0a0a; }
-
+        .sol-section--dark { background: #0a0a0a; }
+        .sol-section--light { background: #f8faf5; }
         .sol-wrap {
           max-width: 1400px;
           margin: 0 auto;
           position: relative;
           z-index: 2;
         }
+        section[id] { scroll-margin-top: 110px; }
 
-        section[id] {
-          scroll-margin-top: 110px;
+        /* ── Eyebrow ────────────────────────────────────── */
+        .sol-eyebrow {
+          display: inline-block;
+          background: #C6E84A;
+          color: #0f0f0f;
+          padding: 8px 20px;
+          border-radius: 999px;
+          font-size: 14px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          font-variant: small-caps;
+          text-transform: none;
+          margin-bottom: 24px;
         }
 
-        /* ── Typography ─────────────────────────────────── */
-        .sol-h2 {
+        /* ── Section Title ───────────────────────────────── */
+        .sol-section-title {
           font-family: var(--font-syne), sans-serif;
+          font-size: clamp(32px, 5vw, 48px);
           font-weight: 700;
           color: #0f172a;
           line-height: 1.15;
           letter-spacing: -0.02em;
-          width: 100%;
-          box-sizing: border-box;
           margin: 0 0 20px;
         }
-        .sol-lead {
+        .sol-section-title--dark { color: #fff; }
+        .sol-section-title--dark span { color: #C6E84A; }
+        .sol-section-title span { color: #C6E84A; }
+
+        /* ── Shared Card ─────────────────────────────────── */
+        .sol-card {
+          border-radius: 20px;
+          padding: 32px 28px;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .sol-card:hover {
+          transform: translateY(-4px);
+        }
+        .sol-card--dark {
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.08);
+        }
+        .sol-card--dark:hover {
+          border-color: rgba(198,232,74,0.3);
+          box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+        }
+        .sol-card--light {
+          background: #ffffff;
+          border: 1px solid rgba(0,0,0,0.07);
+        }
+        .sol-card--light:hover {
+          border-color: rgba(198,232,74,0.4);
+          box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+        }
+        .sol-card-icon {
+          width: 48px;
+          height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 18px;
+          transition: background 0.25s ease, color 0.25s ease;
+        }
+        .sol-card-icon--square {
+          border-radius: 14px;
+          background: rgba(198,232,74,0.12);
+          color: #C6E84A;
+        }
+        .sol-card--light .sol-card-icon--square {
+          background: rgba(198,232,74,0.12);
+          color: #4d7c0f;
+        }
+        .sol-card-icon--circle {
+          border-radius: 50%;
+          background: rgba(198,232,74,0.12);
+          color: #C6E84A;
+        }
+        .sol-card--light .sol-card-icon--circle {
+          background: rgba(198,232,74,0.12);
+          color: #4d7c0f;
+        }
+        .sol-card:hover .sol-card-icon--square,
+        .sol-card:hover .sol-card-icon--circle {
+          background: #C6E84A;
+          color: #0f0f0f;
+        }
+        .sol-card-title {
+          font-family: var(--font-syne), sans-serif;
           font-size: 17px;
+          font-weight: 700;
+          color: #fff;
+          line-height: 1.3;
+          margin: 0 0 10px;
+        }
+        .sol-card-title--dark { color: #fff; }
+        .sol-card-desc {
+          font-size: 14.5px;
           font-weight: 400;
-          color: #5A5D66;
-          line-height: 1.8;
+          color: rgba(255,255,255,0.55);
+          line-height: 1.65;
           margin: 0;
         }
-        .sol-lead--dark { color: rgba(255,255,255,0.62); }
-        .sol-sublabel {
-          display: block;
-          font-size: 12px;
-          font-weight: 700;
-          color: #4d7c0f;
-          text-transform: uppercase;
-          letter-spacing: 1.5px;
-          font-family: var(--font-geist-sans), sans-serif;
-          margin: 0 0 20px;
-        }
+        .sol-card-desc--dark { color: rgba(255,255,255,0.55); }
+        .sol-card--light .sol-card-title { color: #242424; }
+        .sol-card--light .sol-card-desc { color: #5A5D66; }
 
-        /* ── Hero ───────────────────────────────────────── */
+        /* ── Grid Helpers ────────────────────────────────── */
+        .sol-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .sol-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .sol-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+
+        /* ── Hero ────────────────────────────────────────── */
         .sol-hero {
           position: relative;
           min-height: 100dvh;
@@ -668,25 +849,12 @@ export default function SolutionsPage() {
           background: #0f0f0f;
           overflow: hidden;
         }
-        .sol-hero-glow {
+        .sol-hero-video {
           position: absolute;
-          top: 22%;
-          left: 55%;
-          width: 720px;
-          height: 720px;
-          background: radial-gradient(circle, rgba(198,232,74,0.07) 0%, transparent 60%);
-          border-radius: 50%;
-          pointer-events: none;
-        }
-        .sol-hero-orb {
-          position: absolute;
-          bottom: -18%;
-          right: -8%;
-          width: 500px;
-          height: 500px;
-          background: radial-gradient(circle, rgba(198,232,74,0.05) 0%, transparent 60%);
-          border-radius: 50%;
-          pointer-events: none;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
+          object-fit: cover;
+          opacity: 0.65;
         }
         .sol-hero-grid {
           position: absolute;
@@ -699,6 +867,22 @@ export default function SolutionsPage() {
           mask-image: radial-gradient(ellipse 80% 70% at 55% 40%, black 30%, transparent 80%);
           -webkit-mask-image: radial-gradient(ellipse 80% 70% at 55% 40%, black 30%, transparent 80%);
         }
+        .sol-hero-glow {
+          position: absolute;
+          top: 22%; left: 55%;
+          width: 720px; height: 720px;
+          background: radial-gradient(circle, rgba(198,232,74,0.07) 0%, transparent 60%);
+          border-radius: 50%;
+          pointer-events: none;
+        }
+        .sol-hero-orb {
+          position: absolute;
+          bottom: -18%; right: -8%;
+          width: 500px; height: 500px;
+          background: radial-gradient(circle, rgba(198,232,74,0.05) 0%, transparent 60%);
+          border-radius: 50%;
+          pointer-events: none;
+        }
         .sol-hero-content {
           max-width: 860px;
           position: relative;
@@ -708,7 +892,7 @@ export default function SolutionsPage() {
           font-size: clamp(40px, 6vw, 68px);
           font-family: var(--font-syne), sans-serif;
           font-weight: 700;
-          color: #FFFFFF;
+          color: #fff;
           line-height: 1.1;
           letter-spacing: -0.03em;
           margin: 0 0 32px;
@@ -723,24 +907,6 @@ export default function SolutionsPage() {
           max-width: 640px;
           margin: 0;
         }
-        .sol-hero-ctas {
-          display: flex;
-          align-items: center;
-          gap: 20px;
-          flex-wrap: wrap;
-          margin-top: 44px;
-        }
-        .sol-hero-ctas .btn-primary,
-        .sol-hero-ctas .btn-secondary {
-          font-size: 16px;
-          padding: 16px 34px;
-        }
-
-        /* ── Overview cards ─────────────────────────────── */
-        .sol-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .sol-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-        .sol-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .sol-grid-6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 
         /* ── Capabilities rail + preview ────────────────── */
         .sol-rail-layout {
@@ -749,7 +915,6 @@ export default function SolutionsPage() {
           gap: 56px;
           align-items: stretch;
         }
-
         .sol-rail {
           display: flex;
           flex-direction: column;
@@ -826,6 +991,7 @@ export default function SolutionsPage() {
         .sol-preview {
           position: relative;
           background: #0f0f0f;
+          border: 1px solid rgba(255,255,255,0.08);
           border-radius: 24px;
           padding: 56px 48px 40px;
           overflow: hidden;
@@ -870,6 +1036,7 @@ export default function SolutionsPage() {
           margin-bottom: 28px;
         }
         .sol-preview-title {
+          font-family: var(--font-syne), sans-serif;
           font-size: clamp(28px, 3vw, 38px);
           font-weight: 700;
           color: #ffffff;
@@ -982,164 +1149,43 @@ export default function SolutionsPage() {
           }
         }
 
-        /* ── Capability detail cards ────────────────────── */
-        .sol-cap-card {
-          background: #ffffff;
-          border-radius: 20px;
-          padding: 32px 28px;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.06);
-          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .sol-cap-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 4px 8px rgba(0,0,0,0.06), 0 12px 40px rgba(0,0,0,0.1);
-        }
-        .sol-cap-icon {
-          width: 48px;
-          height: 48px;
-          border-radius: 14px;
-          background: rgba(198,232,74,0.12);
-          color: #4d7c0f;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 18px;
-          transition: background 0.25s ease, color 0.25s ease;
-        }
-        .sol-cap-card:hover .sol-cap-icon {
-          background: #C6E84A;
-          color: #0f0f0f;
-        }
-        .sol-cap-title {
-          font-size: 17px;
-          font-weight: 700;
-          color: #242424;
-          line-height: 1.3;
-          margin: 0 0 10px;
-        }
-        .sol-cap-desc {
-          font-size: 14px;
-          font-weight: 400;
-          color: #5A5D66;
-          line-height: 1.65;
-          margin: 0;
-        }
-
-        /* ── Check list (capabilities) ──────────────────── */
-        .sol-checks {
+        /* ── Split Layout (Section 3) ─────────────────────── */
+        .sol-split {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 14px 40px;
-        }
-        .sol-check {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-        }
-        .sol-check-icon {
-          width: 22px;
-          height: 22px;
-          border-radius: 50%;
-          background: rgba(198,232,74,0.16);
-          color: #4d7c0f;
-          display: flex;
+          gap: 60px;
           align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          margin-top: 2px;
+          margin-bottom: 64px;
         }
-        .sol-check-text {
-          font-size: 15px;
-          font-weight: 500;
-          color: #242424;
-          line-height: 1.5;
-        }
-
-        /* ── Impact / framework cards ───────────────────── */
-        .sol-impact { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .sol-impact-card {
-          background: #ffffff;
-          border: 1px solid rgba(0,0,0,0.07);
-          border-radius: 20px;
-          padding: 30px 26px;
-          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-        .sol-impact-card:hover {
-          transform: translateY(-4px);
-          border-color: rgba(198,232,74,0.4);
-          box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-        }
-        .sol-impact-icon {
-          width: 46px;
-          height: 46px;
-          border-radius: 13px;
-          background: rgba(198,232,74,0.12);
-          color: #4d7c0f;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 16px;
-        }
-        .sol-impact-title {
+        .sol-split-text { max-width: 100%; }
+        .sol-split-body {
+          color: rgba(255,255,255,0.7);
           font-size: 17px;
-          font-weight: 700;
-          color: #242424;
-          line-height: 1.3;
-          margin: 0 0 8px;
+          line-height: 1.7;
+          margin: 0 0 32px;
         }
-        .sol-impact-desc {
-          font-size: 14px;
-          font-weight: 400;
-          color: #5A5D66;
-          line-height: 1.65;
-          margin: 0;
-        }
-
-        /* ── Data process flow ──────────────────────────── */
-        .sol-flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
-        .sol-flow-item {
+        .sol-split-img {
           position: relative;
-          text-align: center;
-          padding: 26px 16px;
-          background: #ffffff;
-          border-radius: 16px;
-          border-top: 4px solid rgba(198,232,74,0.5);
-          box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.06);
-          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+          border-radius: 24px;
+          overflow: hidden;
+          border: 1px solid rgba(198,232,74,0.2);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
-        .sol-flow-item:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 4px 8px rgba(0,0,0,0.06), 0 12px 40px rgba(0,0,0,0.1);
-        }
-        .sol-flow-num {
-          width: 40px;
-          height: 40px;
-          margin: 0 auto 16px;
-          border-radius: 50%;
-          background: #C6E84A;
-          color: #0f0f0f;
-          font-size: 15px;
-          font-weight: 700;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .sol-flow-title {
-          font-size: 15px;
-          font-weight: 700;
-          color: #242424;
-          margin: 0 0 8px;
-        }
-        .sol-flow-desc {
-          font-size: 13px;
-          font-weight: 400;
-          color: #5A5D66;
-          line-height: 1.6;
-          margin: 0;
+        .sol-split-img img {
+          width: 100%;
+          height: auto;
+          display: block;
+          object-fit: cover;
+          aspect-ratio: 4/3;
         }
 
-        /* ── Steps (approach) ───────────────────────────── */
-        .sol-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        /* ── Numbered Steps ───────────────────────────────── */
+        .sol-steps {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          margin-top: 48px;
+        }
         .sol-step {
           background: #ffffff;
           border-radius: 20px;
@@ -1162,6 +1208,7 @@ export default function SolutionsPage() {
           display: block;
         }
         .sol-step-title {
+          font-family: var(--font-syne), sans-serif;
           font-size: 20px;
           font-weight: 700;
           color: #242424;
@@ -1175,59 +1222,18 @@ export default function SolutionsPage() {
           margin: 0;
         }
 
-        /* ── Callout ────────────────────────────────────── */
-        .sol-callout {
-          text-align: center;
-          margin: 56px auto 0;
-          max-width: 760px;
+        /* ── Ecosystem Row ───────────────────────────────── */
+        .sol-eco-row {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 20px;
+          margin-top: 48px;
         }
-        .sol-callout-rule {
-          width: 48px;
-          height: 3px;
-          background: #C6E84A;
-          border-radius: 2px;
-          margin: 0 auto 20px;
-        }
-        .sol-callout-line {
-          font-size: clamp(20px, 2.6vw, 26px);
-          font-weight: 700;
-          color: #0f0f0f;
-          line-height: 1.5;
-          font-family: var(--font-syne), sans-serif;
-          margin: 0;
-        }
-        .sol-callout--dark .sol-callout-line { color: #FFFFFF; }
-        .sol-callout--dark .sol-callout-line span { color: #C6E84A; }
-
-        /* ── Tags / pills ──────────────────────────────── */
-        .sol-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 12px;
-        }
-        .sol-tag {
-          padding: 10px 22px;
-          border-radius: 999px;
-          background: rgba(198,232,74,0.12);
-          border: 1px solid rgba(198,232,74,0.35);
-          color: #242424;
-          font-size: 14px;
-          font-weight: 600;
-          line-height: 1.4;
-        }
-        .sol-tag--dark {
-          background: rgba(198,232,74,0.08);
-          border-color: rgba(198,232,74,0.3);
-          color: #F5F5F0;
-        }
-
-        /* ── Ecosystem row ─────────────────────────────── */
-        .sol-eco { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
         .sol-eco-item {
           background: rgba(255,255,255,0.04);
           border: 1px solid rgba(255,255,255,0.09);
           border-radius: 20px;
-          padding: 32px 24px;
+          padding: 28px 20px;
           text-align: center;
           transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
         }
@@ -1237,10 +1243,9 @@ export default function SolutionsPage() {
           transform: translateY(-4px);
         }
         .sol-eco-icon {
-          width: 52px;
-          height: 52px;
-          margin: 0 auto 18px;
-          border-radius: 14px;
+          width: 48px; height: 48px;
+          margin: 0 auto 16px;
+          border-radius: 12px;
           background: rgba(198,232,74,0.12);
           border: 1px solid rgba(198,232,74,0.2);
           color: #C6E84A;
@@ -1249,68 +1254,539 @@ export default function SolutionsPage() {
           justify-content: center;
         }
         .sol-eco-title {
-          font-size: 16px;
+          font-family: var(--font-syne), sans-serif;
+          font-size: 15px;
           font-weight: 700;
-          color: #FFFFFF;
-          margin: 0 0 6px;
+          color: #fff;
+          margin: 0 0 4px;
         }
         .sol-eco-desc {
-          font-size: 13.5px;
+          font-size: 13px;
+          color: rgba(255,255,255,0.5);
+          margin: 0;
+        }
+
+        /* ── Tags / Pills ────────────────────────────────── */
+        .sol-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+        .sol-tag {
+          padding: 10px 22px;
+          border-radius: 999px;
+          background: rgba(198,232,74,0.08);
+          border: 1px solid rgba(198,232,74,0.3);
+          color: rgba(255,255,255,0.9);
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 1.4;
+        }
+        .sol-tag--light {
+          background: rgba(198,232,74,0.12);
+          border-color: rgba(198,232,74,0.35);
+          color: #242424;
+        }
+
+        /* ── Callout ─────────────────────────────────────── */
+        .sol-callout {
+          text-align: center;
+          margin: 56px auto 0;
+          max-width: 760px;
+        }
+        .sol-callout-rule {
+          width: 48px; height: 3px;
+          background: #C6E84A;
+          border-radius: 2px;
+          margin: 0 auto 20px;
+        }
+        .sol-callout-line {
+          font-size: clamp(20px, 2.6vw, 26px);
+          font-weight: 700;
+          color: #fff;
+          line-height: 1.5;
+          font-family: var(--font-syne), sans-serif;
+          margin: 0;
+        }
+        .sol-callout-line span { color: #C6E84A; }
+
+        /* ── Intro Lead ──────────────────────────────────── */
+        .sol-lead {
+          font-size: 17px;
           font-weight: 400;
-          color: rgba(255,255,255,0.55);
+          color: rgba(255,255,255,0.6);
+          line-height: 1.8;
+          margin: 0 0 12px;
+          max-width: 720px;
+        }
+        .sol-lead--light { color: #5A5D66; }
+
+        /* ── Sublabel ────────────────────────────────────── */
+        .sol-sublabel {
+          display: block;
+          font-size: 12px;
+          font-weight: 700;
+          color: #C6E84A;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+          margin: 0 0 20px;
+        }
+
+        /* ── Data Engineering Section ──────────────────────── */
+        .de-header {
+          max-width: 720px;
+          margin-bottom: 56px;
+        }
+        .de-eyebrow {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin-bottom: 24px;
+        }
+        .de-eyebrow-line {
+          width: 28px;
+          height: 1px;
+          background: #93e857;
+        }
+        .de-eyebrow-text {
+          font-family: var(--font-geist-mono), monospace;
+          font-size: 12px;
+          font-weight: 500;
+          color: #93e857;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+
+        /* Card grid — 1 large + 3 standard */
+        .de-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          gap: 20px;
+          margin-top: 48px;
+        }
+
+        /* Card base */
+        .de-card {
+          position: relative;
+          background: #0d0e10;
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 18px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        .de-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(147,232,87,0.3);
+          box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Visual area — full bleed background */
+        .de-card-visual {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 16 / 10;
+          overflow: hidden;
+          flex-shrink: 0;
+        }
+        .de-card--large .de-card-visual {
+          aspect-ratio: 16 / 10;
+        }
+        .de-card-visual svg, .de-card-visual img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .de-card:hover .de-card-visual svg, .de-card:hover .de-card-visual img {
+          transform: scale(1.03);
+        }
+
+        /* Dark gradient scrim over bottom ~55% */
+        .de-card-scrim {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to bottom, transparent 30%, rgba(8,9,10,0.7) 55%, rgba(8,9,10,0.95) 100%);
+          pointer-events: none;
+        }
+
+        /* Grain/noise overlay */
+        .de-card-grain {
+          position: absolute;
+          inset: 0;
+          opacity: 0.04;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+          background-size: 128px 128px;
+          pointer-events: none;
+        }
+
+        /* Index label — top right */
+        .de-card-index {
+          position: absolute;
+          top: 16px;
+          right: 18px;
+          font-family: var(--font-geist-mono), monospace;
+          font-size: 11px;
+          font-weight: 500;
+          color: rgba(255,255,255,0.35);
+          letter-spacing: 1px;
+          z-index: 2;
+        }
+
+        /* Card body — content below visual */
+        .de-card-body {
+          padding: 20px 22px 24px;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          z-index: 1;
+        }
+
+        /* Icon badge */
+        .de-card-icon {
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: rgba(147,232,87,0.1);
+          border: 1px solid rgba(147,232,87,0.18);
+          color: #93e857;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 14px;
+          transition: background 0.3s ease, color 0.3s ease;
+          flex-shrink: 0;
+        }
+        .de-card:hover .de-card-icon {
+          background: rgba(147,232,87,0.18);
+        }
+
+        /* Title */
+        .de-card-title {
+          font-family: var(--font-syne), sans-serif;
+          font-size: 15px;
+          font-weight: 700;
+          color: #ffffff;
+          line-height: 1.35;
+          margin: 0 0 8px;
+        }
+
+        /* Description */
+        .de-card-desc {
+          font-size: 13px;
+          font-weight: 400;
+          color: #96988f;
           line-height: 1.6;
           margin: 0;
         }
 
-        /* ── Dark section headings ─────────────────────── */
-        .sol-h2--dark { color: #FFFFFF; }
+        /* Explore link — only on large card */
+        .de-card-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          margin-top: auto;
+          padding-top: 16px;
+          font-size: 13px;
+          font-weight: 600;
+          color: #93e857;
+          text-decoration: none;
+          transition: gap 0.3s ease;
+        }
+        .de-card-link:hover {
+          gap: 12px;
+        }
+        .de-card-link svg {
+          transition: transform 0.3s ease;
+        }
+        .de-card-link:hover svg {
+          transform: translateX(2px);
+        }
 
-        /* ── Industry intro ────────────────────────────── */
-        .sol-industry-intro { text-align: center; max-width: 900px; margin: 0 auto; }
-        .sol-industry-intro .sol-h2 { margin-left: auto; margin-right: auto; max-width: 780px; }
+        /* Closing row */
+        .de-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 24px;
+          margin-top: 48px;
+          padding-top: 32px;
+          border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .de-footer-text {
+          font-family: var(--font-syne), sans-serif;
+          font-size: 18px;
+          font-weight: 600;
+          color: rgba(255,255,255,0.7);
+          line-height: 1.5;
+          margin: 0;
+        }
+        .de-footer-text span {
+          color: #93e857;
+        }
+        .de-footer-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background: #93e857;
+          color: #08090a;
+          padding: 14px 28px;
+          border-radius: 999px;
+          font-size: 14px;
+          font-weight: 700;
+          font-family: var(--font-syne), sans-serif;
+          text-decoration: none;
+          white-space: nowrap;
+          flex-shrink: 0;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .de-footer-cta:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 28px rgba(147,232,87,0.25);
+        }
+        .de-footer-cta svg {
+          transition: transform 0.3s ease;
+        }
+        .de-footer-cta:hover svg {
+          transform: translateX(3px);
+        }
 
-        /* ── CTA band ──────────────────────────────────── */
-        .sol-cta-band { text-align: center; }
-        .sol-cta-band .sol-wrap { max-width: 780px; }
-        .sol-cta-buttons {
+        /* ── Analytics Orbit Diagram ────────────────────── */
+        .orbit-section {
           display: flex;
           justify-content: center;
-          gap: 20px;
-          flex-wrap: wrap;
-          margin-top: 40px;
+          padding: 64px 0 16px;
+          overflow: visible;
+        }
+        .orbit-wrap {
+          position: relative;
+          width: 660px;
+          height: 660px;
+          flex-shrink: 0;
+          overflow: visible;
         }
 
-        /* ── Responsive ────────────────────────────────── */
-        @media (max-width: 1024px) {
-          .sol-section, .sol-hero { padding: 80px 40px; }
-          .sol-hero { padding-top: 150px; min-height: auto; }
-          .sol-grid-3, .sol-grid-6 { grid-template-columns: repeat(2, 1fr); }
-          .sol-grid-4, .sol-impact { grid-template-columns: repeat(2, 1fr); }
-          .sol-flow { grid-template-columns: repeat(3, 1fr); }
-          .sol-eco { grid-template-columns: repeat(3, 1fr); }
+        /* Ring */
+        .orbit-ring {
+          position: absolute;
+          inset: 130px;
+          border-radius: 50%;
+          border: 1px solid rgba(17,22,37,0.12);
+          pointer-events: none;
         }
-        @media (max-width: 768px) {
-          .sol-section, .sol-hero { padding: 60px 20px; }
-          .sol-hero { padding-top: 130px; }
-          .sol-grid-3, .sol-grid-2, .sol-grid-4, .sol-grid-6,
-          .sol-impact, .sol-steps, .sol-flow, .sol-eco {
-            grid-template-columns: 1fr;
+
+        /* Core */
+        .orbit-core {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 250px;
+          height: 250px;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          background: #c8ef3f;
+          box-shadow: 0 0 0 20px rgba(200,239,63,.07), 0 0 0 55px rgba(200,239,63,.035);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          z-index: 2;
+        }
+        .orbit-core::before {
+          content: "";
+          position: absolute;
+          inset: 18px;
+          border: 1px solid rgba(17,22,37,.18);
+          border-radius: 50%;
+          pointer-events: none;
+        }
+        .orbit-core-num {
+          font-family: var(--font-syne), sans-serif;
+          font-size: 36px;
+          font-weight: 800;
+          color: #111625;
+          line-height: 1;
+          letter-spacing: -0.03em;
+        }
+        .orbit-core-label {
+          font-family: var(--font-geist-mono), monospace;
+          font-size: 11px;
+          font-weight: 700;
+          color: #3c4520;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          margin-top: 7px;
+        }
+
+        /* Dot shared style */
+        .orbit-dot {
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          background: #c8ef3f;
+          border: 1px solid rgba(17,22,37,.2);
+          flex-shrink: 0;
+        }
+
+        /* 8 Labels — desktop self-contained rules */
+        .cap-1 {
+          position: absolute;
+          left: 330px;
+          top: 30px;
+          transform: translate(-50%, -50%);
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          font-size: 20px;
+          font-weight: 600;
+          color: #111625;
+          white-space: nowrap;
+          z-index: 3;
+        }
+        .cap-2 {
+          position: absolute;
+          left: 542px;
+          top: 118px;
+          transform: translate(0, -50%);
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          font-size: 20px;
+          font-weight: 600;
+          color: #111625;
+          white-space: nowrap;
+          z-index: 3;
+        }
+        .cap-3 {
+          position: absolute;
+          left: 630px;
+          top: 330px;
+          transform: translate(0, -50%);
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          font-size: 20px;
+          font-weight: 600;
+          color: #111625;
+          white-space: nowrap;
+          z-index: 3;
+        }
+        .cap-4 {
+          position: absolute;
+          left: 542px;
+          top: 542px;
+          transform: translate(0, -50%);
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          font-size: 20px;
+          font-weight: 600;
+          color: #111625;
+          white-space: nowrap;
+          z-index: 3;
+        }
+        .cap-5 {
+          position: absolute;
+          left: 330px;
+          top: 630px;
+          transform: translate(-50%, -50%);
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          font-size: 20px;
+          font-weight: 600;
+          color: #111625;
+          white-space: nowrap;
+          z-index: 3;
+        }
+        .cap-6 {
+          position: absolute;
+          left: 118px;
+          top: 542px;
+          flex-direction: row-reverse;
+          transform: translate(-100%, -50%);
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          font-size: 20px;
+          font-weight: 600;
+          color: #111625;
+          white-space: nowrap;
+          z-index: 3;
+        }
+        .cap-7 {
+          position: absolute;
+          left: 30px;
+          top: 330px;
+          flex-direction: row-reverse;
+          transform: translate(-100%, -50%);
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          font-size: 20px;
+          font-weight: 600;
+          color: #111625;
+          white-space: nowrap;
+          z-index: 3;
+        }
+        .cap-8 {
+          position: absolute;
+          left: 118px;
+          top: 118px;
+          flex-direction: row-reverse;
+          transform: translate(-100%, -50%);
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          font-size: 20px;
+          font-weight: 600;
+          color: #111625;
+          white-space: nowrap;
+          z-index: 3;
+        }
+
+        /* Responsive (<640px) */
+        @media (max-width: 640px) {
+          .orbit-wrap {
+            width: 420px;
+            height: 420px;
           }
-          .sol-checks { grid-template-columns: 1fr; }
-          .sol-hero-ctas, .sol-cta-buttons {
-            flex-direction: column;
-            align-items: stretch;
+          .orbit-ring {
+            inset: 85px;
           }
-          .sol-hero-ctas .btn-primary,
-          .sol-hero-ctas .btn-secondary,
-          .sol-cta-buttons .btn-primary,
-          .sol-cta-buttons .btn-secondary {
-            width: 100%;
-            max-width: 320px;
-            justify-content: center;
-            margin: 0 auto;
+          .orbit-core {
+            width: 150px;
+            height: 150px;
           }
-          .sol-callout { margin-top: 44px; }
+          .orbit-core-num {
+            font-size: 24px;
+          }
+          .orbit-core-label {
+            font-size: 9px;
+          }
+
+          .cap-1 { left: 210px; top: 10px; transform: translate(-50%, -50%); gap: 7px; font-size: 15px; }
+          .cap-2 { left: 351px; top: 69px; transform: translate(0, -50%); gap: 7px; font-size: 15px; }
+          .cap-3 { left: 410px; top: 210px; transform: translate(0, -50%); gap: 7px; font-size: 15px; }
+          .cap-4 { left: 351px; top: 351px; transform: translate(0, -50%); gap: 7px; font-size: 15px; }
+          .cap-5 { left: 210px; top: 410px; transform: translate(-50%, -50%); gap: 7px; font-size: 15px; }
+          .cap-6 { left: 69px; top: 351px; flex-direction: row-reverse; transform: translate(-100%, -50%); gap: 7px; font-size: 15px; }
+          .cap-7 { left: 10px; top: 210px; flex-direction: row-reverse; transform: translate(-100%, -50%); gap: 7px; font-size: 15px; }
+          .cap-8 { left: 69px; top: 69px; flex-direction: row-reverse; transform: translate(-100%, -50%); gap: 7px; font-size: 15px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .sol-card, .sol-step, .sol-eco-item { transition: none; transform: none; }
+          .de-card { transition: none; transform: none; }
+          .de-card:hover { transform: none; }
+          .de-card-visual svg { transition: none; transform: none; }
+          .de-card-icon { transition: none; }
+          .de-card-link { transition: none; }
+          .de-card-link svg { transition: none; }
+          .de-footer-cta { transition: none; transform: none; }
+          .de-footer-cta svg { transition: none; }
         }
       `}</style>
 
@@ -1320,21 +1796,12 @@ export default function SolutionsPage() {
         <div className="sol-hero-glow" />
         <div className="sol-hero-orb" />
         <div className="grain-overlay absolute inset-0 pointer-events-none" />
-<video
+        <video
           className="sol-hero-video"
           autoPlay
           muted
           loop
           playsInline
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            opacity: 0.65,
-          }}
         >
           <source src="/solutionshero.mp4" type="video/mp4" />
         </video>
@@ -1347,35 +1814,23 @@ export default function SolutionsPage() {
           </h1>
 
           <p className="sol-hero-body">
-            Every business has its own complexities — processes that consume time, data that
-            remains underused, systems that do not always work together, and decisions that
-            need to happen faster.
+            Every business has its own complexities — processes that consume time, data that remains underused,
+            systems that don&apos;t always work together, and decisions that need to happen faster. Sytrion brings
+            together AI, automation, data and operational expertise to solve these challenges — helping
+            organizations simplify operations, improve productivity and build for what comes next.
           </p>
-          <p className="sol-hero-body" style={{ marginTop: "16px" }}>
-            Sytrion brings together AI, automation, data, analytics and operational expertise
-            to solve these challenges — helping organizations simplify operations, improve
-            productivity and build for what comes next.
-          </p>
-
-          <div className="sol-hero-ctas">
-            <a href="#capabilities" className="btn-primary">
-              Explore Our Solutions
-              <ArrowIcon />
-            </a>
-            <Link href="/contact" className="btn-secondary">
-              Talk to Our Experts
-            </Link>
-          </div>
         </div>
       </section>
 
       {/* ══════════════════════ 2. CAPABILITIES OVERVIEW ══════════════════════ */}
-      <section id="capabilities" className="sol-section sol-section--warm">
+      <section id="capabilities" className="sol-section" style={{ background: "#F5F6F0" }}>
         <div className="sol-wrap">
           <div style={{ maxWidth: "720px", marginBottom: "56px" }}>
             <Eyebrow>Capabilities</Eyebrow>
-            <SectionHeading>One partner. Multiple <span style={{ color: "#C6E84A" }}>capabilities</span>. One connected approach.</SectionHeading>
-            <p className="sol-lead" style={{ maxWidth: "620px" }}>
+            <SectionTitle>
+              One partner. Multiple <span>capabilities</span>. One connected approach.
+            </SectionTitle>
+            <p className="sol-lead" style={{ color: "#5A5D66" }}>
               Our capabilities work individually or together, depending on the challenge you
               need to solve.
             </p>
@@ -1385,83 +1840,39 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-{/* ══════════════════════ 3. AI AUTOMATION & AGENTIC AI ══════════════════════ */}
-      <style>{`
-        .ai-auto-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 60px;
-          align-items: center;
-          margin-bottom: 80px;
-        }
-        .ai-bento-grid {
-          display: grid;
-          grid-template-columns: repeat(12, 1fr);
-          gap: 24px;
-          margin-top: 80px;
-        }
-        .ai-bento-left {
-          grid-column: span 7;
-        }
-        .ai-bento-right {
-          grid-column: span 5;
-        }
-        @media (max-width: 1024px) {
-          .ai-auto-grid {
-            grid-template-columns: 1fr;
-            gap: 40px;
-          }
-          .ai-bento-grid {
-            grid-template-columns: 1fr;
-          }
-          .ai-bento-left, .ai-bento-right {
-            grid-column: span 1;
-          }
-        }
-      `}</style>
-      <section id="ai-automation" className="sol-section" style={{ background: "#0a0a0a", position: "relative", overflow: "hidden" }}>
-        {/* Background Effects */}
+      {/* ══════════════════════ 3. AI AUTOMATION ══════════════════════ */}
+      <section id="ai-automation" className="sol-section sol-section--dark" style={{ position: "relative" }}>
         <div style={{
           position: "absolute", top: "-20%", right: "-10%", width: "800px", height: "800px",
           background: "radial-gradient(circle, rgba(198,232,74,0.08) 0%, transparent 70%)",
           borderRadius: "50%", pointerEvents: "none"
         }} />
-        
+
         <div className="sol-wrap">
-          {/* Header & Image Split */}
-          <div className="ai-auto-grid">
-            <div>
+          <div className="sol-split">
+            <div className="sol-split-text">
               <Eyebrow>AI Automation & Agentic AI</Eyebrow>
-              <h2 className="heading-display sol-h2" style={{
-                color: "#FFFFFF",
-                fontFamily: "var(--font-syne), sans-serif",
-                fontWeight: 700,
-                lineHeight: 1.15,
-                margin: "0 0 24px",
-                fontSize: "clamp(36px, 5vw, 56px)",
-              }}>
-                From repetitive tasks to <span style={{ color: "#C6E84A" }}>intelligent</span> action.
-              </h2>
-              <div style={{
-                color: "rgba(255,255,255,0.7)",
-                fontSize: "18px",
-                lineHeight: 1.7,
-                marginBottom: "32px",
-              }}>
-                <p style={{ marginBottom: "16px" }}>Automation has evolved. Businesses today need systems that can do more than follow predefined rules.</p>
-                <p>Sytrion helps organizations move from conventional process automation towards AI-enabled and agentic operations — combining artificial intelligence, workflow automation and human expertise to improve the way work gets done.</p>
-              </div>
+              <SectionTitle dark>
+                Smarter systems that <span>think, decide and act.</span>
+              </SectionTitle>
+              <p className="sol-split-body">
+                Automation has evolved. Businesses today need systems that can do more than follow predefined rules —
+                they need operations that can understand information, make decisions and adapt in real time.
+              </p>
+              <p className="sol-split-body">
+                Sytrion combines AI, workflow automation and human expertise to improve the way work gets done —
+                from document processing to complex multi-step decision workflows.
+              </p>
               <Link href="/contact" className="btn-primary" style={{ display: "inline-flex" }}>
-                Explore AI Opportunities
-                <ArrowIcon />
+                Explore AI Opportunities <ArrowIcon />
               </Link>
             </div>
-            
-            <div style={{ position: "relative", borderRadius: "24px", overflow: "hidden", border: "1px solid rgba(198,232,74,0.2)", boxShadow: "0 20px 40px rgba(0,0,0,0.4)" }}>
-              <img 
-                src="/AI-Automation-and-Agentic-AI-2.jpeg" 
-                alt="AI Automation & Agentic AI" 
-                style={{ width: "100%", height: "auto", display: "block", objectFit: "cover", aspectRatio: "4/3" }} 
+
+            <div className="sol-split-img">
+              <img
+                src="/AI-Automation-and-Agentic-AI-2.jpeg"
+                alt="AI Automation & Agentic AI"
+                style={{ width: "100%", height: "auto", display: "block", objectFit: "cover", aspectRatio: "4/3" }}
               />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 60%)", pointerEvents: "none" }} />
               <div style={{ position: "absolute", bottom: "30px", left: "30px", display: "flex", alignItems: "center", gap: "16px" }}>
@@ -1476,854 +1887,305 @@ export default function SolutionsPage() {
             </div>
           </div>
 
-          {/* New Bento Grid for Capabilities & Impact */}
-          <div className="ai-bento-grid">
-            
-            {/* Capabilities Box */}
-            <div className="ai-bento-left" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "24px", padding: "48px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "32px" }}>
-                <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "rgba(198,232,74,0.1)", display: "flex", alignItems: "center", justifyContent: "center", color: "#C6E84A" }}>
-                  <SolIcon name="layers" size={20} />
-                </div>
-                <h3 style={{ fontSize: "22px", fontWeight: 700, color: "#fff", margin: 0 }}>Core Capabilities</h3>
-              </div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
-                {aiCapabilities.map((cap) => (
-                  <span key={cap} style={{ 
-                    padding: "10px 20px", 
-                    background: "rgba(198,232,74,0.05)", 
-                    border: "1px solid rgba(198,232,74,0.2)", 
-                    borderRadius: "999px", 
-                    color: "rgba(255,255,255,0.9)", 
-                    fontSize: "14px", 
-                    fontWeight: 500,
-                    transition: "all 0.2s ease",
-                    cursor: "default"
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(198,232,74,0.15)'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(198,232,74,0.05)'; e.currentTarget.style.transform = 'translateY(0)' }}
-                  >
-                    {cap}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Impact List */}
-            <div className="ai-bento-right" style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              {aiImpact.map((item, idx) => (
-                <div key={item.title} style={{ 
-                  background: idx === 0 ? "rgba(198,232,74,0.1)" : "rgba(255,255,255,0.03)", 
-                  border: idx === 0 ? "1px solid rgba(198,232,74,0.3)" : "1px solid rgba(255,255,255,0.08)", 
-                  borderRadius: "20px", 
-                  padding: "24px", 
-                  display: "flex", 
-                  alignItems: "flex-start", 
-                  gap: "16px",
-                  transition: "transform 0.3s ease, background 0.3s ease"
-                }}
-                onMouseEnter={(e) => { if(idx !== 0) e.currentTarget.style.background = 'rgba(255,255,255,0.06)' }}
-                onMouseLeave={(e) => { if(idx !== 0) e.currentTarget.style.background = 'rgba(255,255,255,0.03)' }}
-                >
-                  <div style={{ 
-                    width: "48px", height: "48px", 
-                    borderRadius: "12px", 
-                    background: idx === 0 ? "#C6E84A" : "rgba(255,255,255,0.05)", 
-                    color: idx === 0 ? "#0f0f0f" : "#C6E84A", 
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    flexShrink: 0
-                  }}>
-                    <SolIcon name={item.icon} size={24} />
-                  </div>
-                  <div>
-                    <h4 style={{ fontSize: "17px", fontWeight: 700, color: "#fff", margin: "0 0 6px" }}>{item.title}</h4>
-                    <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
+          <div className="sol-grid-4">
+            {aiCapabilities.map((cap) => (
+              <SolutionCard key={cap.title} icon={cap.icon} title={cap.title} desc={cap.desc} variant="dark" />
+            ))}
           </div>
 
-          <div style={{ 
-            marginTop: "60px", 
-            padding: "36px", 
-            background: "linear-gradient(90deg, rgba(198,232,74,0.08) 0%, rgba(198,232,74,0.02) 100%)", 
-            borderLeft: "4px solid #C6E84A", 
-            borderRadius: "0 20px 20px 0" 
-          }}>
-            <p style={{ fontSize: "clamp(18px, 2vw, 22px)", fontWeight: 500, color: "#fff", margin: 0, fontStyle: "italic", lineHeight: 1.5 }}>
-              "We don't introduce AI because it is new. We apply it where it can make operations meaningfully better."
+          <div className="sol-callout">
+            <div className="sol-callout-rule" />
+            <p className="sol-callout-line">
+              &ldquo;We don&apos;t introduce AI because it is new. We apply it where it can make operations <span>meaningfully better.</span>&rdquo;
             </p>
           </div>
-
         </div>
       </section>
 
       {/* ══════════════════════ 4. INTELLIGENT OPERATIONS ══════════════════════ */}
-      <style>{`
-        .io-section {
-          padding: 120px 0;
-          background: linear-gradient(180deg, #f8faf5 0%, #ffffff 50%, #f5f7f2 100%);
-          position: relative;
-          overflow: hidden;
-        }
-        .io-section::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(198,232,74,0.4), transparent);
-        }
-
-        /* Hero Row */
-        .io-hero-row {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 80px;
-          align-items: center;
-          margin-bottom: 100px;
-        }
-        .io-hero-text h2 {
-          font-family: var(--font-syne), sans-serif;
-          font-size: clamp(38px, 5vw, 56px);
-          font-weight: 700;
-          color: #0f172a;
-          line-height: 1.12;
-          letter-spacing: -0.02em;
-          margin: 0 0 28px;
-        }
-        .io-hero-desc {
-          font-size: 17px;
-          color: #5A5D66;
-          line-height: 1.8;
-          margin: 0 0 40px;
-        }
-        .io-hero-img-wrap {
-          position: relative;
-          border-radius: 24px;
-          overflow: hidden;
-          background: #0f172a;
-        }
-        .io-hero-img-wrap img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          aspect-ratio: 4/3;
-          display: block;
-          opacity: 0.85;
-          transition: opacity 0.6s ease, transform 0.8s ease;
-        }
-        .io-hero-img-wrap:hover img {
-          opacity: 1;
-          transform: scale(1.03);
-        }
-        .io-hero-img-badge {
-          position: absolute;
-          top: 28px;
-          left: 28px;
-          background: rgba(198,232,74,0.95);
-          color: #0f172a;
-          font-family: var(--font-syne), sans-serif;
-          font-weight: 700;
-          font-size: 13px;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          padding: 10px 20px;
-          border-radius: 100px;
-        }
-
-        /* Auto-Scroll Capabilities */
-        .io-scroll-wrap {
-          margin-bottom: 100px;
-          overflow: hidden;
-          position: relative;
-          mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
-          -webkit-mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
-        }
-        .io-scroll-track {
-          display: flex;
-          gap: 20px;
-          width: max-content;
-          animation: io-scroll 40s linear infinite;
-        }
-        .io-scroll-wrap:hover .io-scroll-track {
-          animation-play-state: paused;
-        }
-        @keyframes io-scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .io-scroll-card {
-          flex-shrink: 0;
-          width: 300px;
-          background: #ffffff;
-          border: 1px solid rgba(0,0,0,0.06);
-          border-radius: 20px;
-          padding: 36px 32px;
-          position: relative;
-          overflow: hidden;
-          transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-          cursor: default;
-        }
-        .io-scroll-card:hover {
-          border-color: rgba(198,232,74,0.5);
-          box-shadow: 0 16px 32px rgba(0,0,0,0.06), 0 0 0 1px rgba(198,232,74,0.3);
-          transform: translateY(-4px);
-        }
-        .io-scroll-card::after {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 3px;
-          background: linear-gradient(90deg, #C6E84A, #4d7c0f);
-          opacity: 0;
-          transition: opacity 0.4s ease;
-        }
-        .io-scroll-card:hover::after {
-          opacity: 1;
-        }
-        .io-scroll-icon {
-          width: 44px;
-          height: 44px;
-          border-radius: 12px;
-          background: linear-gradient(135deg, #f0f4e4, #e8eddb);
-          color: #4d7c0f;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 20px;
-          transition: all 0.4s ease;
-        }
-        .io-scroll-card:hover .io-scroll-icon {
-          background: linear-gradient(135deg, #C6E84A, #a5c83a);
-          color: #0f172a;
-        }
-        .io-scroll-title {
-          font-family: var(--font-syne), sans-serif;
-          font-size: 17px;
-          font-weight: 700;
-          color: #0f172a;
-          margin: 0;
-          line-height: 1.3;
-        }
-
-        /* Framework */
-        .io-fw-header {
-          text-align: center;
-          margin-bottom: 60px;
-        }
-        .io-fw-header h3 {
-          font-family: var(--font-syne), sans-serif;
-          font-size: clamp(28px, 4vw, 40px);
-          font-weight: 700;
-          color: #0f172a;
-          margin: 0 0 16px;
-        }
-        .io-fw-header p {
-          font-size: 17px;
-          color: #5A5D66;
-          margin: 0;
-        }
-        .io-fw-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 24px;
-        }
-        .io-fw-card {
-          background: #ffffff;
-          border: 1px solid rgba(0,0,0,0.06);
-          border-radius: 20px;
-          padding: 44px 36px;
-          text-align: center;
-          transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-          position: relative;
-          overflow: hidden;
-        }
-        .io-fw-card:hover {
-          border-color: rgba(198,232,74,0.5);
-          box-shadow: 0 20px 40px rgba(0,0,0,0.06), 0 0 0 1px rgba(198,232,74,0.3);
-          transform: translateY(-6px);
-        }
-        .io-fw-card-icon {
-          width: 56px;
-          height: 56px;
-          border-radius: 50%;
-          background: #f5f7f2;
-          color: #4d7c0f;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto 28px;
-          transition: all 0.4s ease;
-          border: 1.5px solid rgba(0,0,0,0.06);
-        }
-        .io-fw-card:hover .io-fw-card-icon {
-          background: #C6E84A;
-          border-color: #C6E84A;
-          color: #0f172a;
-          transform: scale(1.1) rotate(8deg);
-        }
-        .io-fw-card h4 {
-          font-family: var(--font-syne), sans-serif;
-          font-size: 20px;
-          font-weight: 700;
-          color: #0f172a;
-          margin: 0 0 12px;
-        }
-        .io-fw-card p {
-          font-size: 14.5px;
-          color: #5A5D66;
-          line-height: 1.65;
-          margin: 0;
-        }
-
-        /* CTA Banner */
-        .io-cta-banner {
-          margin-top: 80px;
-          background: #0f172a;
-          border-radius: 24px;
-          padding: 56px 64px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 40px;
-          position: relative;
-          overflow: hidden;
-        }
-        .io-cta-banner::before {
-          content: '';
-          position: absolute;
-          top: -80px; right: -80px;
-          width: 300px; height: 300px;
-          border-radius: 50%;
-          background: rgba(198,232,74,0.08);
-          pointer-events: none;
-        }
-        .io-cta-banner::after {
-          content: '';
-          position: absolute;
-          bottom: -60px; left: -60px;
-          width: 200px; height: 200px;
-          border-radius: 50%;
-          background: rgba(198,232,74,0.05);
-          pointer-events: none;
-        }
-        .io-cta-text h3 {
-          font-family: var(--font-syne), sans-serif;
-          font-size: 28px;
-          font-weight: 700;
-          color: #ffffff;
-          margin: 0 0 8px;
-          position: relative;
-          z-index: 2;
-        }
-        .io-cta-text p {
-          font-size: 16px;
-          color: rgba(255,255,255,0.6);
-          margin: 0;
-          position: relative;
-          z-index: 2;
-        }
-
-        @media (max-width: 1024px) {
-          .io-hero-row {
-            grid-template-columns: 1fr;
-            gap: 48px;
-          }
-          .io-bento {
-            grid-template-columns: repeat(2, 1fr);
-          }
-          .io-fw-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-          .io-cta-banner {
-            flex-direction: column;
-            text-align: center;
-            padding: 48px 40px;
-          }
-        }
-        @media (max-width: 640px) {
-          .io-section { padding: 80px 0; }
-          .io-bento {
-            grid-template-columns: 1fr;
-          }
-          .io-fw-grid {
-            grid-template-columns: 1fr;
-          }
-          .io-cta-banner {
-            padding: 40px 28px;
-          }
-        }
-      `}</style>
-      <section id="intelligent-operations" className="io-section">
+      <section id="intelligent-operations" className="sol-section sol-section--light">
         <div className="sol-wrap">
+          <Eyebrow>Intelligent Operations</Eyebrow>
+          <SectionTitle>
+            People. Process. <span>Technology.</span>
+          </SectionTitle>
+          <p className="sol-lead sol-lead--light">
+            Operational excellence cannot be achieved through technology alone. Sytrion combines skilled professionals,
+            standardized processes, intelligent automation and performance management to operate and improve
+            business-critical processes every day.
+          </p>
 
-          {/* Hero Row */}
-          <div className="io-hero-row">
-            <div className="io-hero-text">
-              <Eyebrow>Intelligent Operations</Eyebrow>
-              <h2>
-                People. Process.<br /><span style={{ color: "#4d7c0f" }}>Technology</span>.
-              </h2>
-              <p className="io-hero-desc">
-                Operational excellence cannot be achieved through technology alone.
-                Sytrion combines skilled professionals, standardized processes, intelligent
-                automation and performance management to operate and improve business-critical
-                processes. Our teams become an extension of your organization — bringing
-                structure, technology and continuous improvement to operations that need to
-                perform reliably every day.
-              </p>
-              <Link href="/contact" className="btn-primary" style={{ display: "inline-flex" }}>
-                Transform Your Operations
-                <ArrowIcon />
-              </Link>
-            </div>
-            <div className="io-hero-img-wrap">
-              <img src="/Operations.jpg" alt="Intelligent Operations" />
-              <div className="io-hero-img-badge">Operational Excellence</div>
-            </div>
+          <div className="sol-grid-4" style={{ marginTop: "48px" }}>
+            {opsCapabilities.map((cap) => (
+              <SolutionCard key={cap.title} icon={cap.icon} title={cap.title} desc={cap.desc} variant="light" />
+            ))}
           </div>
 
-          {/* Capabilities — Auto-Scroll */}
-          <div className="io-scroll-wrap">
-            <div className="io-scroll-track">
-              {[...opsCapabilities, ...opsCapabilities].map((cap, i) => (
-                <div key={i} className="io-scroll-card">
-                  <div className="io-scroll-icon">
-                    <SolIcon name={cap.icon} size={20} />
-                  </div>
-                  <h4 className="io-scroll-title">{cap.label}</h4>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Operating Framework */}
-          <div className="io-fw-header">
-            <h3>Our Operating Framework</h3>
-            <p>Technology makes operations smarter. Operational discipline makes them dependable.</p>
-          </div>
-          <div className="io-fw-grid">
-            {opsFramework.map((item) => (
-              <div key={item.title} className="io-fw-card">
-                <div className="io-fw-card-icon">
-                  <SolIcon name={item.icon} size={26} />
-                </div>
-                <h4>{item.title}</h4>
-                <p>{item.desc}</p>
+          <div className="sol-steps">
+            {approachSteps.map((step, i) => (
+              <div key={step.title} className="sol-step">
+                <span className="sol-step-num">Step {String(i + 1).padStart(2, "0")}</span>
+                <h4 className="sol-step-title">{step.title}</h4>
+                <p className="sol-step-desc">{step.desc}</p>
               </div>
             ))}
           </div>
 
-          {/* CTA Banner */}
-          <div className="io-cta-banner">
-            <div className="io-cta-text">
-              <h3>Ready to transform your operations?</h3>
-              <p>Let our experts build a dependable, scalable operating model for your business.</p>
-            </div>
-            <Link href="/contact" className="btn-primary" style={{ position: "relative", zIndex: 2, flexShrink: 0 }}>
-              Get Started
-              <ArrowIcon />
-            </Link>
+          <div className="sol-callout">
+            <div className="sol-callout-rule" />
+            <p className="sol-callout-line" style={{ color: "#0f172a" }}>
+              Technology makes operations smarter. <span>Operational discipline makes them dependable.</span>
+            </p>
           </div>
 
+          <div style={{ textAlign: "center", marginTop: "40px" }}>
+            <Link href="/contact" className="btn-primary">
+              Transform Your Operations <ArrowIcon />
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* ══════════════════════ 5. DATA ENGINEERING ══════════════════════ */}
-      <section id="data-engineering" className="sol-section sol-section--warm">
+      <section id="data-engineering" className="sol-section sol-section--dark">
         <div className="sol-wrap">
-          <div style={{ maxWidth: "760px" }}>
-            <Eyebrow>Data Engineering</Eyebrow>
-            <SectionHeading>Build intelligence on data you can <span style={{ color: "#C6E84A" }}>trust</span>.</SectionHeading>
-            <IntroText>AI and analytics are only as reliable as the information behind them.</IntroText>
-            <IntroText>
-              Enterprise data often exists across different systems, formats and processes —
-              creating inconsistencies that limit its business value.
-            </IntroText>
-            <IntroText>
-              Sytrion helps organizations transform fragmented information into structured,
-              accurate and usable data assets that can support operations, analytics and AI.
-            </IntroText>
-          </div>
-
-          <div style={{ margin: "56px 0 0" }}>
-            <SubLabel>Capabilities</SubLabel>
-            <CapabilitiesGrid items={dataCapabilities} />
-          </div>
-
-          <div style={{ marginTop: "64px" }}>
-            <SubLabel>From Raw Data to Activation</SubLabel>
-            <div className="sol-flow">
-              {dataProcess.map((step, i) => (
-                <div key={step.title} className="sol-flow-item">
-                  <div className="sol-flow-num">{i + 1}</div>
-                  <div className="sol-flow-title">{step.title}</div>
-                  <p className="sol-flow-desc">{step.desc}</p>
-                </div>
-              ))}
+          <div className="de-header">
+            <div className="de-eyebrow">
+              <span className="de-eyebrow-line" />
+              <span className="de-eyebrow-text">DATA ENGINEERING</span>
             </div>
+            <SectionTitle dark>
+              The backbone of every <span>intelligent system.</span>
+            </SectionTitle>
+            <p className="sol-lead">
+              AI and analytics are only as reliable as the information behind them. Sytrion transforms fragmented
+              data into structured, accurate and usable assets that power operations, analytics and AI.
+            </p>
           </div>
 
-          <Callout>Better intelligence begins with better data.</Callout>
+          <div className="de-grid">
+            {dataCapabilities.map((cap) => (
+              <DataEngCard
+                key={cap.title}
+                index={cap.index}
+                icon={cap.icon}
+                title={cap.title}
+                desc={cap.desc}
+              />
+            ))}
+          </div>
 
-          <div style={{ textAlign: "center", marginTop: "40px" }}>
-            <Link href="/contact" className="btn-primary">
-              Strengthen Your Data Foundation
-              <ArrowIcon />
+          <div className="de-footer">
+            <p className="de-footer-text">Better intelligence begins with <span>better data.</span></p>
+            <Link href="/contact" className="de-footer-cta">
+              Strengthen your data foundation
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
             </Link>
           </div>
         </div>
       </section>
 
       {/* ══════════════════════ 6. ANALYTICS & BI ══════════════════════ */}
-      <section id="analytics-bi" className="sol-section sol-section--white">
+      <section id="analytics-bi" className="sol-section sol-section--light">
         <div className="sol-wrap">
-          <div style={{ maxWidth: "760px" }}>
-            <Eyebrow>Analytics &amp; Business Intelligence</Eyebrow>
-            <SectionHeading>See what is happening. Understand <span style={{ color: "#C6E84A" }}>why</span>. Know what to do next.</SectionHeading>
-            <IntroText>Organizations generate enormous amounts of information every day.</IntroText>
-            <IntroText>
-              The challenge is turning that information into something decision-makers can
-              actually use.
-            </IntroText>
-            <IntroText>
-              Sytrion develops analytics and business intelligence solutions that transform
-              enterprise and operational data into clear, relevant and actionable insights.
-            </IntroText>
-          </div>
+          <Eyebrow>Analytics &amp; Business Intelligence</Eyebrow>
+          <SectionTitle>
+            See what is happening. Understand <span>why.</span>
+          </SectionTitle>
+          <p className="sol-lead sol-lead--light">
+            Organizations generate enormous amounts of information every day. The challenge is turning that information
+            into something decision-makers can actually use. Sytrion develops analytics and BI solutions that transform
+            data into clear, relevant and actionable insights.
+          </p>
 
-          <div style={{ margin: "56px 0 0" }}>
-            <SubLabel>Capabilities</SubLabel>
-            <CapabilitiesGrid items={analyticsCapabilities} />
-          </div>
+          <CapabilitiesOrbit />
 
-          <div style={{ marginTop: "64px" }}>
-            <SubLabel>From Data to Decision</SubLabel>
-            <div className="sol-impact">
-              {analyticsFramework.map((item) => (
-                <div key={item.title} className="sol-impact-card">
-                  <div className="sol-impact-icon">
-                    <SolIcon name={item.icon} size={22} />
-                  </div>
-                  <h4 className="sol-impact-title">{item.title}</h4>
-                  <p className="sol-impact-desc">{item.desc}</p>
-                </div>
-              ))}
-            </div>
+          <div className="sol-callout">
+            <div className="sol-callout-rule" />
+            <p className="sol-callout-line" style={{ color: "#0f172a" }}>
+              The value of data isn&apos;t in having more of it. It&apos;s in <span>knowing what it means.</span>
+            </p>
           </div>
-
-          <Callout>
-            The value of data isn&apos;t in having more of it. It&apos;s in knowing what it means.
-          </Callout>
 
           <div style={{ textAlign: "center", marginTop: "40px" }}>
             <Link href="/contact" className="btn-primary">
-              Turn Data Into Intelligence
-              <ArrowIcon />
+              Turn Data Into Intelligence <ArrowIcon />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════ 7. INDUSTRY INTRO ══════════════════════ */}
-      <section className="sol-section sol-section--dark">
+      {/* ══════════════════════ 7. SHIPPING & LOGISTICS ══════════════════════ */}
+      <section id="shipping-logistics" className="sol-section sol-section--dark">
         <div className="sol-wrap">
-          <div className="sol-industry-intro">
-            <Eyebrow>Industries</Eyebrow>
-            <h2 className="heading-display sol-h2 sol-h2--dark">
-              Technology understands data. We also understand <span style={{ color: "#C6E84A" }}>the business behind it.</span>
-            </h2>
-            <p className="sol-lead sol-lead--dark" style={{ margin: "0 0 16px" }}>
-              Industry transformation requires more than technology expertise.
-            </p>
-            <p className="sol-lead sol-lead--dark" style={{ margin: "0 0 16px" }}>
-              Processes, documents, terminology, exceptions and operating priorities vary
-              significantly from one industry to another.
-            </p>
-            <p className="sol-lead sol-lead--dark" style={{ margin: 0 }}>
-              That is why Sytrion combines technology capabilities with domain-focused
-              operational expertise to create solutions designed around how industries
-              actually work.
-            </p>
-          </div>
-        </div>
-      </section>
+          <Eyebrow>Shipping &amp; Logistics</Eyebrow>
+          <SectionTitle dark>
+            Helping shipping teams <span>move smarter.</span>
+          </SectionTitle>
+          <p className="sol-lead">
+            Global logistics depends on thousands of interconnected activities — shipments, documentation, freight,
+            customs and invoices. When these processes remain manual or fragmented, small inefficiencies become larger
+            operational challenges. Sytrion combines domain expertise, automation and data to help logistics
+            organizations simplify complex workflows.
+          </p>
 
-      {/* ══════════════════════ 8. SHIPPING & LOGISTICS ══════════════════════ */}
-      <section id="shipping-logistics" className="sol-section sol-section--warm">
-        <div className="sol-wrap">
-          <div style={{ maxWidth: "760px" }}>
-            <Eyebrow>Shipping &amp; Logistics Solutions</Eyebrow>
-            <SectionHeading>Intelligence across every movement, document and <span style={{ color: "#C6E84A" }}>decision</span>.</SectionHeading>
-            <IntroText>
-              Global logistics depends on thousands of interconnected activities — shipments,
-              documentation, freight operations, customs processes, invoices, exceptions and
-              customer communication.
-            </IntroText>
-            <IntroText>
-              When these processes remain manual or fragmented, small inefficiencies quickly
-              become larger operational challenges.
-            </IntroText>
-            <IntroText>
-              Sytrion combines shipping domain expertise, intelligent operations, automation
-              and data to help logistics organizations simplify complex workflows and improve
-              operational performance.
-            </IntroText>
+          <div className="sol-grid-3" style={{ marginTop: "48px" }}>
+            {shippingCapabilities.map((cap) => (
+              <SolutionCard key={cap.title} icon={cap.icon} title={cap.title} desc={cap.desc} variant="dark" />
+            ))}
           </div>
 
-          <div style={{ margin: "56px 0 0" }}>
-            <SubLabel>Capabilities</SubLabel>
-            <div className="sol-grid-4">
-              {shippingCapabilities.map((cap) => (
-                <div key={cap.title} className="sol-cap-card">
-                  <div className="sol-cap-icon">
-                    <SolIcon name={cap.icon} size={22} />
-                  </div>
-                  <h4 className="sol-cap-title">{cap.title}</h4>
-                  <p className="sol-cap-desc">{cap.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div style={{ marginTop: "64px" }}>
-            <SubLabel>Who We Support</SubLabel>
+          <div style={{ marginTop: "48px" }}>
+            <span className="sol-sublabel">Who We Support</span>
             <div className="sol-tags">
-              {shippingTags.map((tag) => (
+              {["Shipping companies", "Freight forwarders", "Logistics service providers", "3PL organizations", "Supply-chain businesses"].map((tag) => (
                 <span key={tag} className="sol-tag">{tag}</span>
               ))}
             </div>
           </div>
 
-          <Callout>Moving information as efficiently as you move goods.</Callout>
-
-          <div style={{ textAlign: "center", marginTop: "40px" }}>
-            <Link href="/contact" className="btn-primary">
-              Talk to Our Shipping Experts
-              <ArrowIcon />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════ 9. HEALTHCARE OPERATIONS ══════════════════════ */}
-      <section id="healthcare-operations" className="sol-section sol-section--white">
-        <div className="sol-wrap">
-          <div style={{ maxWidth: "760px" }}>
-            <Eyebrow>Healthcare Operations</Eyebrow>
-            <SectionHeading>Smarter administration. More efficient <span style={{ color: "#C6E84A" }}>healthcare</span> operations.</SectionHeading>
-            <IntroText>
-              Healthcare organizations manage enormous volumes of information alongside
-              complex administrative processes.
-            </IntroText>
-            <IntroText>
-              Claims, documents, data validation, workflow coordination and operational
-              controls can consume significant resources that could otherwise be focused on
-              higher-value activities.
-            </IntroText>
-            <IntroText>
-              Sytrion combines intelligent document processing, automation, data and managed
-              operations to help healthcare organizations streamline administrative workflows
-              while maintaining a strong focus on security, accuracy and process control.
-            </IntroText>
-          </div>
-
-          <div style={{ margin: "56px 0 0" }}>
-            <SubLabel>Capabilities</SubLabel>
-            <div className="sol-grid-4">
-              {healthcareCapabilities.map((cap) => (
-                <div key={cap.title} className="sol-cap-card">
-                  <div className="sol-cap-icon">
-                    <SolIcon name={cap.icon} size={22} />
-                  </div>
-                  <h4 className="sol-cap-title">{cap.title}</h4>
-                  <p className="sol-cap-desc">{cap.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <Callout>Making healthcare administration work smarter behind the scenes.</Callout>
-
-          <div style={{ textAlign: "center", marginTop: "40px" }}>
-            <Link href="/contact" className="btn-primary">
-              Talk to Our Healthcare Experts
-              <ArrowIcon />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════ 10. CONNECTED ECOSYSTEM ══════════════════════ */}
-      <section className="sol-section sol-section--dark-alt">
-        <div className="sol-wrap">
-          <div style={{ maxWidth: "820px" }}>
-            <Eyebrow>One Connected Ecosystem</Eyebrow>
-            <h2 className="heading-display sol-h2 sol-h2--dark">
-              Six capabilities. One connected <span style={{ color: "#C6E84A" }}>intelligence ecosystem.</span>
-            </h2>
-            <p className="sol-lead sol-lead--dark" style={{ margin: "0 0 16px" }}>
-              The strongest transformation opportunities often sit between traditional
-              solution categories.
-            </p>
-            <p className="sol-lead sol-lead--dark" style={{ margin: "0 0 16px" }}>
-              A document may require intelligent extraction. The extracted information may
-              require validation and enrichment. The process may require human review.
-              Management may need real-time analytics. And AI may determine the next action.
-            </p>
-            <p className="sol-lead sol-lead--dark" style={{ margin: 0 }}>
-              Sytrion brings these capabilities together.
+          <div className="sol-callout">
+            <div className="sol-callout-rule" />
+            <p className="sol-callout-line">
+              Moving information as efficiently as you <span>move goods.</span>
             </p>
           </div>
-
-          <div style={{ marginTop: "56px" }}>
-            <div className="sol-eco">
-              {ecosystem.map((item) => (
-                <div key={item.title} className="sol-eco-item">
-                  <div className="sol-eco-icon">
-                    <SolIcon name={item.icon} size={24} />
-                  </div>
-                  <div className="sol-eco-title">{item.title}</div>
-                  <p className="sol-eco-desc">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <Callout dark>
-            <span>Smarter Operations.</span> Meaningful Outcomes.
-          </Callout>
         </div>
       </section>
 
-      {/* ══════════════════════ 11. APPROACH / PROCESS ══════════════════════ */}
-      <section className="sol-section sol-section--cream">
+      {/* ══════════════════════ 8. HEALTHCARE OPERATIONS ══════════════════════ */}
+      <section id="healthcare-operations" className="sol-section sol-section--light">
         <div className="sol-wrap">
-          <div style={{ maxWidth: "760px" }}>
-            <Eyebrow>Our Approach</Eyebrow>
-            <SectionHeading>Transformation starts with <span style={{ color: "#C6E84A" }}>understanding</span>.</SectionHeading>
-            <IntroText>We do not begin with a technology recommendation.</IntroText>
-            <IntroText>
-              We begin by understanding how your business works, where friction exists and
-              what better performance should look like.
-            </IntroText>
+          <Eyebrow>Healthcare Operations</Eyebrow>
+          <SectionTitle>
+            Smarter administration. More <span>efficient</span> healthcare.
+          </SectionTitle>
+          <p className="sol-lead sol-lead--light">
+            Healthcare organizations manage enormous volumes of information alongside complex administrative processes.
+            Sytrion combines intelligent document processing, automation and managed operations to help organizations
+            streamline workflows while maintaining security, accuracy and process control.
+          </p>
+
+          <div className="sol-grid-3" style={{ marginTop: "48px" }}>
+            {healthcareCapabilities.map((cap) => (
+              <SolutionCard key={cap.title} icon={cap.icon} title={cap.title} desc={cap.desc} variant="light" />
+            ))}
           </div>
 
-          <div style={{ marginTop: "56px" }}>
-            <SubLabel>How We Work</SubLabel>
-            <div className="sol-steps">
-              {approachSteps.map((step, i) => (
-                <div key={step.title} className="sol-step">
-                  <span className="sol-step-num">Step {String(i + 1).padStart(2, "0")}</span>
-                  <h4 className="sol-step-title">{step.title}</h4>
-                  <p className="sol-step-desc">{step.desc}</p>
-                </div>
-              ))}
-            </div>
+          <div className="sol-callout">
+            <div className="sol-callout-rule" />
+            <p className="sol-callout-line" style={{ color: "#0f172a" }}>
+              Making healthcare administration work <span>smarter behind the scenes.</span>
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════ 12. DIFFERENTIATORS ══════════════════════ */}
-      <section className="sol-section sol-section--warm">
+      {/* ══════════════════════ 9. CONNECTED ECOSYSTEM ══════════════════════ */}
+      <section className="sol-section sol-section--dark">
         <div className="sol-wrap">
-          <div style={{ maxWidth: "720px", marginBottom: "56px" }}>
-            <Eyebrow>Why Sytrion</Eyebrow>
-            <SectionHeading>Built for intelligent <span style={{ color: "#C6E84A" }}>transformation</span>.</SectionHeading>
+          <Eyebrow>One Connected Ecosystem</Eyebrow>
+          <SectionTitle dark>
+            Five capabilities. One connected <span>intelligence ecosystem.</span>
+          </SectionTitle>
+          <p className="sol-lead">
+            The strongest transformation opportunities sit between traditional solution categories. A document may
+            require extraction. Extracted data may need validation. The process may need human review. And AI
+            determines the next action. Sytrion brings these capabilities together.
+          </p>
+
+          <div className="sol-eco-row">
+            {ecosystem.map((item) => (
+              <div key={item.title} className="sol-eco-item">
+                <div className="sol-eco-icon">
+                  <SolIcon name={item.icon} size={24} />
+                </div>
+                <div className="sol-eco-title">{item.title}</div>
+                <p className="sol-eco-desc">{item.desc}</p>
+              </div>
+            ))}
           </div>
 
-          <div className="sol-grid-6">
-            {differentiators.map((diff) => (
-              <div key={diff.title} className="sol-cap-card">
-                <div className="sol-cap-icon">
-                  <SolIcon name={diff.icon} size={22} />
-                </div>
-                <h4 className="sol-cap-title">{diff.title}</h4>
-                <p className="sol-cap-desc">{diff.desc}</p>
+          <div className="sol-callout">
+            <div className="sol-callout-rule" />
+            <p className="sol-callout-line">
+              <span>Smarter Operations.</span> Meaningful Outcomes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════ 10. APPROACH / PROCESS ══════════════════════ */}
+      <section className="sol-section sol-section--light">
+        <div className="sol-wrap">
+          <Eyebrow>Our Approach</Eyebrow>
+          <SectionTitle>
+            Transformation starts with <span>understanding.</span>
+          </SectionTitle>
+          <p className="sol-lead sol-lead--light">
+            We don&apos;t begin with a technology recommendation. We begin by understanding how your business works,
+            where friction exists and what better performance should look like.
+          </p>
+
+          <div className="sol-steps" style={{ marginTop: "48px" }}>
+            {approachSteps.map((step, i) => (
+              <div key={step.title} className="sol-step">
+                <span className="sol-step-num">Step {String(i + 1).padStart(2, "0")}</span>
+                <h4 className="sol-step-title">{step.title}</h4>
+                <p className="sol-step-desc">{step.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════ 13. SECURITY & TRUST ══════════════════════ */}
-      <section className="sol-section sol-section--white">
-        <div className="sol-wrap">
-          <div style={{ maxWidth: "760px", marginBottom: "48px" }}>
-            <Eyebrow>Security &amp; Trust</Eyebrow>
-            <SectionHeading><span style={{ color: "#C6E84A" }}>Intelligence</span> you can trust.</SectionHeading>
-            <IntroText>Business transformation increasingly depends on data.</IntroText>
-            <IntroText>
-              Protecting that data must therefore be part of the solution — not something
-              considered afterwards.
-            </IntroText>
-            <IntroText>
-              Our delivery approach incorporates security and confidentiality principles
-              across people, processes and technology.
-            </IntroText>
-          </div>
+      {/* ══════════════════════ 11. WHY SYTRION ══════════════════════ */}
+      <WhySytrion />
 
-          <div className="sol-tags">
+      {/* ══════════════════════ 12. SECURITY & TRUST ══════════════════════ */}
+      <section className="sol-section sol-section--light">
+        <div className="sol-wrap">
+          <Eyebrow>Security &amp; Trust</Eyebrow>
+          <SectionTitle>
+            <span>Intelligence</span> you can trust.
+          </SectionTitle>
+          <p className="sol-lead sol-lead--light">
+            Business transformation increasingly depends on data. Protecting that data must be part of the solution
+            — not something considered afterwards. Our delivery approach incorporates security and confidentiality
+            principles across people, processes and technology.
+          </p>
+
+          <div className="sol-tags" style={{ marginTop: "48px" }}>
             {securityTags.map((tag) => (
-              <span key={tag} className="sol-tag">{tag}</span>
+              <span key={tag} className="sol-tag sol-tag--light">{tag}</span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════ 14. FINAL CTA ══════════════════════ */}
-      <section className="sol-section sol-section--dark">
-        <div className="sol-wrap sol-cta-band">
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: "600px",
-              height: "400px",
-              background: "radial-gradient(circle, rgba(198,232,74,0.12) 0%, transparent 70%)",
-              borderRadius: "50%",
-              pointerEvents: "none",
-            }}
-          />
-          <div style={{ position: "relative", zIndex: 2 }}>
-            <Eyebrow>Get started</Eyebrow>
-            <h2 className="heading-display sol-h2 sol-h2--dark" style={{ maxWidth: "680px", marginLeft: "auto", marginRight: "auto" }}>
-              Start with the challenge. <span style={{ color: "#C6E84A" }}>We&apos;ll help you find the solution.</span>
-            </h2>
-            <p className="sol-lead sol-lead--dark" style={{ margin: "0 0 16px" }}>
-              You don&apos;t need to know whether your challenge requires AI, automation, data
-              engineering or operational transformation.
-            </p>
-            <p className="sol-lead sol-lead--dark" style={{ margin: "0 0 16px" }}>
-              Tell us what needs to work better.
-            </p>
-            <p className="sol-lead sol-lead--dark" style={{ margin: 0 }}>
-              Together, we&apos;ll identify the right approach and build a solution designed
-              around your business.
-            </p>
+      {/* ══════════════════════ 13. FINAL CTA ══════════════════════ */}
+      <section className="sol-section sol-section--dark" style={{ textAlign: "center" }}>
+        <div className="sol-wrap" style={{ maxWidth: "780px" }}>
+          <Eyebrow>Get started</Eyebrow>
+          <SectionTitle dark>
+            Start with the challenge. <span>We&apos;ll help you find the solution.</span>
+          </SectionTitle>
+          <p className="sol-lead" style={{ maxWidth: "640px", margin: "0 auto" }}>
+            You don&apos;t need to know whether your challenge requires AI, automation, data engineering or
+            operational transformation. Tell us what needs to work better. Together, we&apos;ll identify the
+            right approach and build a solution designed around your business.
+          </p>
 
-            <div className="sol-cta-buttons">
-              <Link href="/contact" className="btn-primary">
-                Schedule a Consultation
-                <ArrowIcon />
-              </Link>
-              <Link href="/contact" className="btn-secondary">
-                Talk to Our Experts
-              </Link>
-            </div>
+          <div style={{ textAlign: "center", marginTop: "40px" }}>
+            <Link href="/contact" className="btn-primary">
+              Schedule a Consultation <ArrowIcon />
+            </Link>
           </div>
         </div>
       </section>
     </>
-);
+  );
 }
-
-
-
-
-
-
