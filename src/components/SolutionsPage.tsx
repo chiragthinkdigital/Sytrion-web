@@ -248,15 +248,22 @@ function SolutionCard({
   desc,
   variant = "dark",
   iconStyle = "square",
+  image,
 }: {
   icon: string;
   title: string;
   desc: string;
   variant?: "dark" | "light";
   iconStyle?: "square" | "circle";
+  image?: string;
 }) {
   return (
     <div className={"sol-card sol-card--" + variant}>
+      {image && (
+        <div className="sol-card-img">
+          <img src={image} alt={title} loading="lazy" decoding="async" />
+        </div>
+      )}
       <div className={"sol-card-icon sol-card-icon--" + iconStyle}>
         <SolIcon name={icon} size={22} />
       </div>
@@ -558,10 +565,10 @@ const aiCapabilities = [
 ];
 
 const opsCapabilities = [
-  { icon: "settings", title: "Business Process Operations", desc: "Running and improving high-volume processes with precision and consistency." },
-  { icon: "clipboard", title: "Back-Office Operations", desc: "Managing transaction-heavy workflows that keep the business moving." },
-  { icon: "workflow", title: "Workflow Management", desc: "Coordinating tasks, exceptions and handoffs across operational teams." },
-  { icon: "shield-check", title: "Quality Assurance", desc: "Applying defined controls and audits to maintain operational standards." },
+  { title: "Business Process Operations", desc: "Structured support for high-volume and business-critical operational processes.", image: "/Business Process Operations.jpg" },
+  { title: "Back-Office Operations", desc: "Improve efficiency across repetitive administrative and transaction-based activities.", image: "/Back-Office Operations.jpg" },
+  { title: "Workflow & Exception Management", desc: "Manage workflows, exceptions and process dependencies with greater control.", image: "/Workflow & Exception Management.jpg" },
+  { title: "Quality & Performance Management", desc: "Maintain consistent delivery through defined quality controls, reporting and continuous improvement.", image: "/Quality & Performance Management.jpg" },
 ];
 
 const dataCapabilities = [
@@ -572,12 +579,12 @@ const dataCapabilities = [
 ];
 
 const shippingCapabilities = [
-  { icon: "anchor", title: "Freight Forwarding Operations", desc: "Operational support for high-volume freight workflows with speed and consistency." },
-  { icon: "file-text", title: "Shipping Documentation", desc: "Processing, validating and managing business-critical shipping documents." },
-  { icon: "file-check", title: "Customs Documentation", desc: "Structured support for customs-related documentation, data and validation." },
-  { icon: "receipt", title: "Invoice & Billing Operations", desc: "Processing and validating freight invoices with exception identification." },
-  { icon: "database", title: "Shipment Data Management", desc: "Capturing, validating and enriching shipment-related information." },
-  { icon: "alert-circle", title: "Exception Management", desc: "Structured handling of discrepancies and operational exceptions." },
+  { icon: "anchor", title: "Freight Forwarding Operations", desc: "Operational support for high-volume freight workflows with speed and consistency.", image: "/Freight Forwarding Operations.jpg" },
+  { icon: "file-text", title: "Shipping Documentation", desc: "Processing, validating and managing business-critical shipping documents.", image: "/Shipping Documentation.jpg" },
+  { icon: "file-check", title: "Customs Documentation", desc: "Structured support for customs-related documentation, data and validation.", image: "/Customs Documentation.jpg" },
+  { icon: "receipt", title: "Invoice & Billing Operations", desc: "Processing and validating freight invoices with exception identification.", image: "/Invoice & Billing Operations.jpg" },
+  { icon: "database", title: "Shipment Data Management", desc: "Capturing, validating and enriching shipment-related information.", image: "/Shipment Data Management.jpg" },
+  { icon: "alert-circle", title: "Exception Management", desc: "Structured handling of discrepancies and operational exceptions.", image: "/Exception Management.jpg" },
 ];
 
 const healthcareCapabilities = [
@@ -669,8 +676,8 @@ function CapabilitiesRail() {
               <ArrowIcon />
             </span>
           </button>
-        ))}
-      </div>
+            ))}
+          </div>
 
       <div className="sol-preview" aria-live="polite" aria-atomic="true">
         <span className="sol-preview-ghost" aria-hidden="true">{cap.number}</span>
@@ -759,6 +766,7 @@ export default function SolutionsPage() {
 
         /* ── Shared Card ─────────────────────────────────── */
         .sol-card {
+          box-sizing: border-box;
           border-radius: 20px;
           padding: 32px 28px;
           transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
@@ -834,10 +842,24 @@ export default function SolutionsPage() {
         .sol-card--light .sol-card-title { color: #242424; }
         .sol-card--light .sol-card-desc { color: #5A5D66; }
 
+        .sol-card-img {
+          margin: -32px -28px 20px;
+          height: 180px;
+          overflow: hidden;
+          border-radius: 20px 20px 0 0;
+        }
+        .sol-card-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
         /* ── Grid Helpers ────────────────────────────────── */
         .sol-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
         .sol-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .sol-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .sol-grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
 
         /* ── Hero ────────────────────────────────────────── */
         .sol-hero {
@@ -1788,6 +1810,174 @@ export default function SolutionsPage() {
           .de-footer-cta { transition: none; transform: none; }
           .de-footer-cta svg { transition: none; }
         }
+
+        /* ── Ops Capability Cards (philosophy-style) ─────── */
+        .ops-cards-scroll {
+          display: flex;
+          gap: 20px;
+          overflow-x: auto;
+          padding-bottom: 14px;
+          scrollbar-width: thin;
+          scrollbar-color: #1a1d24 #e5e7eb;
+        }
+        .ops-cards-scroll::-webkit-scrollbar {
+          height: 8px;
+        }
+        .ops-cards-scroll::-webkit-scrollbar-track {
+          background: #e5e7eb;
+          border-radius: 4px;
+        }
+        .ops-cards-scroll::-webkit-scrollbar-thumb {
+          background: #1a1d24;
+          border-radius: 4px;
+        }
+
+        .ops-card {
+          flex: 0 0 440px;
+          width: 440px;
+          border-radius: 6px;
+          overflow: hidden;
+          background: #2b2e35;
+          display: flex;
+          flex-direction: column;
+        }
+        .ops-card-img {
+          height: 290px;
+          overflow: hidden;
+        }
+        .ops-card-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        .ops-card-body {
+          position: relative;
+          flex: 1;
+          min-height: 180px;
+          padding: 26px 24px;
+          display: flex;
+          flex-direction: column;
+        }
+        .ops-card-title {
+          font-size: 28px;
+          font-weight: 700;
+          color: #fffffe;
+          line-height: 1.15;
+          margin: 0 0 14px;
+        }
+        .ops-card-desc {
+          font-size: 14px;
+          font-weight: 400;
+          color: #9ca3af;
+          line-height: 1.6;
+          margin: 0;
+          padding-right: 40px;
+        }
+
+        @media (max-width: 600px) {
+          .ops-card {
+            flex: 0 0 320px;
+            width: 320px;
+          }
+        }
+          .cta-primary {
+          position: relative;
+          overflow: hidden;
+          background: #C6E84A;
+          color: #0f0f0f;
+          border: none;
+          padding: 16px 32px;
+          border-radius: 9999px;
+          font-size: 16px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cta-primary::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          height: 60%;
+          background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 100%);
+          pointer-events: none;
+          border-radius: inherit;
+          transition: opacity 0.3s ease;
+        }
+        .cta-primary::after {
+          content: '';
+          position: absolute;
+          top: 0; left: -100%; right: 0;
+          width: 60%;
+          height: 100%;
+          background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.25) 45%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.25) 55%, transparent 100%);
+          pointer-events: none;
+          border-radius: inherit;
+          transition: left 0.6s ease;
+        }
+        .cta-primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(198,232,74,0.35);
+        }
+        .cta-primary:hover::before {
+          opacity: 1.2;
+        }
+        .cta-primary:hover::after {
+          left: 120%;
+        }
+        .cta-primary:active {
+          transform: translateY(0) scale(0.98);
+        }
+
+        .cta-secondary {
+          position: relative;
+          overflow: hidden;
+          background: transparent;
+          color: #FFFFFF;
+          border: 1.5px solid #FFFFFF;
+          padding: 16px 32px;
+          border-radius: 9999px;
+          font-size: 16px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cta-secondary::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          height: 60%;
+          background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 100%);
+          pointer-events: none;
+          border-radius: inherit;
+          transition: opacity 0.3s ease;
+        }
+        .cta-secondary::after {
+          content: '';
+          position: absolute;
+          top: 0; left: -100%; right: 0;
+          width: 60%;
+          height: 100%;
+          background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.15) 55%, transparent 100%);
+          pointer-events: none;
+          border-radius: inherit;
+          transition: left 0.6s ease;
+        }
+        .cta-secondary:hover {
+          background: #FFFFFF;
+          color: #0f0f0f;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(255,255,255,0.15);
+        }
+        .cta-secondary:hover::before {
+          background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 100%);
+        }
+        .cta-secondary:hover::after {
+          left: 120%;
+        }
+        .cta-secondary:active {
+          transform: translateY(0) scale(0.98);
+        }
       `}</style>
 
       {/* ══════════════════════ 1. HERO ══════════════════════ */}
@@ -1825,14 +2015,19 @@ export default function SolutionsPage() {
       {/* ══════════════════════ 2. CAPABILITIES OVERVIEW ══════════════════════ */}
       <section id="capabilities" className="sol-section" style={{ background: "#F5F6F0" }}>
         <div className="sol-wrap">
-          <div style={{ maxWidth: "720px", marginBottom: "56px" }}>
+          <div >
             <Eyebrow>Capabilities</Eyebrow>
-            <SectionTitle>
-              One partner. Multiple <span>capabilities</span>. One connected approach.
-            </SectionTitle>
+            <h2  style={{
+                fontSize: "clamp(36px, 5vw, 52px)",
+                fontWeight: 700,
+                color: "#242424",
+                lineHeight: 1.2,
+                marginBottom: "16px",
+              }}>
+              One partner. Multiple capabilities. <span style={{ color: "#C6E84A" }}>One connected approach.</span>
+            </h2>
             <p className="sol-lead" style={{ color: "#5A5D66" }}>
-              Our capabilities work individually or together, depending on the challenge you
-              need to solve.
+              Our solutions work individually or together, depending on the challenge you need to solve. 
             </p>
           </div>
 
@@ -1853,11 +2048,10 @@ export default function SolutionsPage() {
             <div className="sol-split-text">
               <Eyebrow>AI Automation & Agentic AI</Eyebrow>
               <SectionTitle dark>
-                Smarter systems that <span>think, decide and act.</span>
+                From repetitive tasks to <span>intelligent action.</span>
               </SectionTitle>
               <p className="sol-split-body">
-                Automation has evolved. Businesses today need systems that can do more than follow predefined rules —
-                they need operations that can understand information, make decisions and adapt in real time.
+                We help businesses move beyond traditional automation by combining AI, intelligent workflows and human expertise to automate processes, understand information and support better decisions.
               </p>
               <p className="sol-split-body">
                 Sytrion combines AI, workflow automation and human expertise to improve the way work gets done —
@@ -1909,24 +2103,32 @@ export default function SolutionsPage() {
           <SectionTitle>
             People. Process. <span>Technology.</span>
           </SectionTitle>
-          <p className="sol-lead sol-lead--light">
-            Operational excellence cannot be achieved through technology alone. Sytrion combines skilled professionals,
-            standardized processes, intelligent automation and performance management to operate and improve
-            business-critical processes every day.
+          <p style={{
+                fontSize: "19px",
+                fontWeight: 400,
+                color: "#9CA3AF",
+                lineHeight: 1.8,
+                maxWidth: "100%",
+              }}>
+            Sytrion combines skilled teams, standardized processes, automation and performance management to improve business-critical operations. 
+We work as an extension of your organization, bringing greater efficiency, consistency and control to everyday processes. 
           </p>
 
-          <div className="sol-grid-4" style={{ marginTop: "48px" }}>
+          <div className="ops-cards-scroll" style={{ marginTop: "48px" }}>
             {opsCapabilities.map((cap) => (
-              <SolutionCard key={cap.title} icon={cap.icon} title={cap.title} desc={cap.desc} variant="light" />
-            ))}
-          </div>
-
-          <div className="sol-steps">
-            {approachSteps.map((step, i) => (
-              <div key={step.title} className="sol-step">
-                <span className="sol-step-num">Step {String(i + 1).padStart(2, "0")}</span>
-                <h4 className="sol-step-title">{step.title}</h4>
-                <p className="sol-step-desc">{step.desc}</p>
+              <div key={cap.title} className="ops-card">
+                <div className="ops-card-img">
+                  <img
+                    src={cap.image}
+                    alt={cap.title}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="ops-card-body">
+                  <h4 className="ops-card-title">{cap.title}</h4>
+                  <p className="ops-card-desc">{cap.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -1949,17 +2151,19 @@ export default function SolutionsPage() {
       {/* ══════════════════════ 5. DATA ENGINEERING ══════════════════════ */}
       <section id="data-engineering" className="sol-section sol-section--dark">
         <div className="sol-wrap">
-          <div className="de-header">
-            <div className="de-eyebrow">
-              <span className="de-eyebrow-line" />
-              <span className="de-eyebrow-text">DATA ENGINEERING</span>
-            </div>
-            <SectionTitle dark>
-              The backbone of every <span>intelligent system.</span>
-            </SectionTitle>
-            <p className="sol-lead">
-              AI and analytics are only as reliable as the information behind them. Sytrion transforms fragmented
-              data into structured, accurate and usable assets that power operations, analytics and AI.
+          <div className="">
+           <Eyebrow> DATA ENGINEERING </Eyebrow>
+            <h2 className="ws-headline">
+              The backbone of every <span style={{ color: "#C6E84A" }}>intelligent system.</span>
+            </h2>
+            <p style={{
+                fontSize: "19px",
+                fontWeight: 400,
+                color: "#9CA3AF",
+                lineHeight: 1.8,
+                maxWidth: "100%",
+              }}>
+              AI and analytics are only as reliable as the information behind them. Sytrion transforms fragmented data into structured, accurate and usable assets that power operations, analytics and AI.
             </p>
           </div>
 
@@ -1993,12 +2197,16 @@ export default function SolutionsPage() {
         <div className="sol-wrap">
           <Eyebrow>Analytics &amp; Business Intelligence</Eyebrow>
           <SectionTitle>
-            See what is happening. Understand <span>why.</span>
+            Turn business data into <span>better decisions.</span>
           </SectionTitle>
-          <p className="sol-lead sol-lead--light">
-            Organizations generate enormous amounts of information every day. The challenge is turning that information
-            into something decision-makers can actually use. Sytrion develops analytics and BI solutions that transform
-            data into clear, relevant and actionable insights.
+          <p style={{
+                fontSize: "19px",
+                fontWeight: 400,
+                color: "#9CA3AF",
+                lineHeight: 1.8,
+                maxWidth: "100%",
+              }}>
+            Sytrion transforms enterprise and operational data into clear, actionable intelligence — helping teams understand performance, identify opportunities and make informed decisions. 
           </p>
 
           <CapabilitiesOrbit />
@@ -2023,18 +2231,36 @@ export default function SolutionsPage() {
         <div className="sol-wrap">
           <Eyebrow>Shipping &amp; Logistics</Eyebrow>
           <SectionTitle dark>
-            Helping shipping teams <span>move smarter.</span>
+           Intelligence across every movement, <span>document and decision.</span>
           </SectionTitle>
-          <p className="sol-lead">
-            Global logistics depends on thousands of interconnected activities — shipments, documentation, freight,
-            customs and invoices. When these processes remain manual or fragmented, small inefficiencies become larger
-            operational challenges. Sytrion combines domain expertise, automation and data to help logistics
-            organizations simplify complex workflows.
+          <p style={{
+                fontSize: "19px",
+                fontWeight: 400,
+                color: "#9CA3AF",
+                lineHeight: 1.8,
+                maxWidth: "100%",
+              }}>
+           Sytrion combines logistics expertise, intelligent operations, automation and data to simplify documentation-heavy workflows and improve efficiency across shipping and logistics operations. 
           </p>
 
-          <div className="sol-grid-3" style={{ marginTop: "48px" }}>
-            {shippingCapabilities.map((cap) => (
-              <SolutionCard key={cap.title} icon={cap.icon} title={cap.title} desc={cap.desc} variant="dark" />
+          <div className="sol-grid-6" style={{ marginTop: "48px" }}>
+            {[
+              { title: "Freight Forwarding Operations", desc: "Support high-volume freight workflows with greater speed, accuracy and consistency.", image: "/Freight Forwarding Operations.jpg" },
+              { title: "Shipping & Customs Documentation", desc: "Process, validate and manage critical shipping and customs documentation.", image: "/Shipping Documentation.jpg" },
+              { title: "Invoice & Billing Operations", desc: "Streamline invoice processing, validation, billing workflows and exception handling.", image: "/Invoice & Billing Operations.jpg" },
+              { title: "Shipment Data Management", desc: "Capture, validate and maintain accurate shipment and operational information.", image: "/Shipment Data Management.jpg" },
+              { title: "Exception Management", desc: "Identify and manage discrepancies through structured resolution workflows.", image: "/Exception Management.jpg" },
+              { title: "Automation & Logistics Analytics", desc: "Automate repetitive activities while improving visibility into operational performance.", image: "/Automation-and-Annual-Savings.jpg" },
+            ].map((card) => (
+              <div key={card.title} className="sol-card sol-card--dark" style={{ padding: 0, overflow: "hidden" }}>
+                <div style={{ height: "160px", overflow: "hidden" }}>
+                  <img src={card.image} alt={card.title} loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                </div>
+                <div style={{ padding: "20px" }}>
+                  <h4 className="sol-card-title sol-card-title--dark" style={{ fontSize: "15px", marginBottom: "8px" }}>{card.title}</h4>
+                  <p className="sol-card-desc sol-card-desc--dark" style={{ fontSize: "13px" }}>{card.desc}</p>
+                </div>
+              </div>
             ))}
           </div>
 
@@ -2061,12 +2287,16 @@ export default function SolutionsPage() {
         <div className="sol-wrap">
           <Eyebrow>Healthcare Operations</Eyebrow>
           <SectionTitle>
-            Smarter administration. More <span>efficient</span> healthcare.
+            Smarter administration. <span>More efficient healthcare operations.</span>
           </SectionTitle>
-          <p className="sol-lead sol-lead--light">
-            Healthcare organizations manage enormous volumes of information alongside complex administrative processes.
-            Sytrion combines intelligent document processing, automation and managed operations to help organizations
-            streamline workflows while maintaining security, accuracy and process control.
+          <p style={{
+                fontSize: "19px",
+                fontWeight: 400,
+                color: "#9CA3AF",
+                lineHeight: 1.8,
+                maxWidth: "100%",
+              }}>
+            Sytrion combines intelligent document processing, automation, data and operational expertise to simplify healthcare administrative workflows while maintaining a strong focus on accuracy, security and control. 
           </p>
 
           <div className="sol-grid-3" style={{ marginTop: "48px" }}>
@@ -2087,14 +2317,18 @@ export default function SolutionsPage() {
       {/* ══════════════════════ 9. CONNECTED ECOSYSTEM ══════════════════════ */}
       <section className="sol-section sol-section--dark">
         <div className="sol-wrap">
-          <Eyebrow>One Connected Ecosystem</Eyebrow>
-          <SectionTitle dark>
-            Five capabilities. One connected <span>intelligence ecosystem.</span>
-          </SectionTitle>
-          <p className="sol-lead">
-            The strongest transformation opportunities sit between traditional solution categories. A document may
-            require extraction. Extracted data may need validation. The process may need human review. And AI
-            determines the next action. Sytrion brings these capabilities together.
+          <Eyebrow>One Connected intelligence Ecosystem</Eyebrow>
+          <h2 className="ws-headline">
+           The strongest solutions rarely rely on <span style={{ color: "#C6E84A" }}>one capability alone.</span>
+          </h2>
+          <p style={{
+                fontSize: "19px",
+                fontWeight: 400,
+                color: "#9CA3AF",
+                lineHeight: 1.8,
+                maxWidth: "100%",
+              }}>
+            Sytrion connects AI, operations, data, analytics and domain expertise to address the complete business challenge. 
           </p>
 
           <div className="sol-eco-row">
@@ -2125,7 +2359,13 @@ export default function SolutionsPage() {
           <SectionTitle>
             Transformation starts with <span>understanding.</span>
           </SectionTitle>
-          <p className="sol-lead sol-lead--light">
+          <p style={{
+                fontSize: "19px",
+                fontWeight: 400,
+                color: "#9CA3AF",
+                lineHeight: 1.8,
+                maxWidth: "100%",
+              }}>
             We don&apos;t begin with a technology recommendation. We begin by understanding how your business works,
             where friction exists and what better performance should look like.
           </p>
@@ -2145,27 +2385,6 @@ export default function SolutionsPage() {
       {/* ══════════════════════ 11. WHY SYTRION ══════════════════════ */}
       <WhySytrion />
 
-      {/* ══════════════════════ 12. SECURITY & TRUST ══════════════════════ */}
-      <section className="sol-section sol-section--light">
-        <div className="sol-wrap">
-          <Eyebrow>Security &amp; Trust</Eyebrow>
-          <SectionTitle>
-            <span>Intelligence</span> you can trust.
-          </SectionTitle>
-          <p className="sol-lead sol-lead--light">
-            Business transformation increasingly depends on data. Protecting that data must be part of the solution
-            — not something considered afterwards. Our delivery approach incorporates security and confidentiality
-            principles across people, processes and technology.
-          </p>
-
-          <div className="sol-tags" style={{ marginTop: "48px" }}>
-            {securityTags.map((tag) => (
-              <span key={tag} className="sol-tag sol-tag--light">{tag}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ══════════════════════ 13. FINAL CTA ══════════════════════ */}
       <section className="sol-section sol-section--dark" style={{ textAlign: "center" }}>
         <div className="sol-wrap" style={{ maxWidth: "780px" }}>
@@ -2173,17 +2392,12 @@ export default function SolutionsPage() {
           <SectionTitle dark>
             Start with the challenge. <span>We&apos;ll help you find the solution.</span>
           </SectionTitle>
-          <p className="sol-lead" style={{ maxWidth: "640px", margin: "0 auto" }}>
-            You don&apos;t need to know whether your challenge requires AI, automation, data engineering or
-            operational transformation. Tell us what needs to work better. Together, we&apos;ll identify the
-            right approach and build a solution designed around your business.
+          <p className="sol-lead" style={{ maxWidth: "640px", margin: "20px auto" }}>
+          Whether the opportunity lies in AI, automation, data, analytics or operations, we'll help you identify the right approach and build a solution around your business.
           </p>
 
-          <div style={{ textAlign: "center", marginTop: "40px" }}>
-            <Link href="/contact" className="btn-primary">
-              Schedule a Consultation <ArrowIcon />
-            </Link>
-          </div>
+           <button className="cta-primary">Schedule a Consultation</button>
+            <button className="cta-secondary">Talk to Our Experts</button>
         </div>
       </section>
     </>
