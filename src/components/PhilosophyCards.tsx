@@ -6,35 +6,35 @@ const cards = [
     name: "Synergy Systems",
     description:
       "People, process, and technology working as one connected system.",
-    image: "/synergy-systems.png",
+    image: "/home/synergy-systems.png",
   },
   {
     letter: "TR",
     name: "Transformation",
     description:
       "Reimagining how businesses operate, not just adopting new tools.",
-    image: "/Transformation.jpg",
+    image: "/home/Transformation.jpg",
   },
   {
     letter: "I",
     name: "Innovation",
     description:
       "AI, automation, and analytics applied with creativity and precision.",
-    image: "/Innovation.png",
+    image: "/home/Innovation.png",
   },
   {
     letter: "O",
     name: "Operations",
     description:
       "Turning strategy into measurable efficiency and lasting resilience.",
-    image: "/Operations.jpg",
+    image: "/home/Operations.jpg",
   },
   {
     letter: "N",
     name: "Next Generation",
     description:
       "Building agile, future-ready solutions for an evolving digital world.",
-    image: "/Next-Gen.png",
+    image: "/home/Next-Gen.png",
   },
 ];
 

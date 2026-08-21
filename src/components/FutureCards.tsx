@@ -4,22 +4,22 @@ const cards = [
   {
     name: "Artificial Intelligence",
     desc: "Enhances human capability",
-    image: "/artificial-intelligence.jpg",
+    image: "/about/artificial-intelligence.jpg",
   },
   {
     name: "Automation",
     desc: "Accelerates productivity",
-    image: "/automation.jpg",
+    image: "/about/automation.jpg",
   },
   {
     name: "Data",
     desc: "Drives better decisions",
-    image: "/data.jpg",
+    image: "/about/data.jpg",
   },
   {
     name: "People",
     desc: "Create lasting impact",
-    image: "/people.png",
+    image: "/about/people.png",
   },
 ];
 

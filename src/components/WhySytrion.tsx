@@ -269,14 +269,14 @@ export default function WhySytrion() {
           {/* Row 1 — AI-First Thinking (wider) + Business Transformation */}
           <div className="ws-grid">
             <Card
-              image="/ai first thinking.jpg"
+              image="/shared/ai first thinking.jpg"
               alt="AI-First Thinking"
               title="AI-First Thinking"
               span="7"
               description="Embedding intelligence into every process to improve efficiency and accelerate innovation."
             />
             <Card
-              image="/business transformation.jpg"
+              image="/home/business transformation.jpg"
               alt="Business Transformation"
               title="Business Transformation"
               span="5"
@@ -287,21 +287,21 @@ export default function WhySytrion() {
           {/* Row 2 — Enterprise Security + Scalable Delivery + Customer Partnership */}
           <div className="ws-grid">
             <Card
-              image="/enterprise  secuirty.jpg"
+              image="/home/enterprise  secuirty.jpg"
               alt="Enterprise Security"
               title="Enterprise Security"
               span="4"
               description="Protecting critical business information with secure infrastructure, governance frameworks, and confidentiality-first practices."
             />
             <Card
-              image="/scalable delivery.jpg"
+              image="/home/scalable delivery.jpg"
               alt="Scalable Delivery"
               title="Scalable Delivery"
               span="4"
               description="Flexible engagement models that grow alongside your business."
             />
             <Card
-              image="/customer partnership.jpg"
+              image="/home/customer partnership.jpg"
               alt="Customer Partnership"
               title="Customer Partnership"
               span="4"
@@ -328,7 +328,7 @@ export default function WhySytrion() {
 
               <div className="ws-security-img">
                 <img
-                  src="/Security by Design. Trust by Commitment..jpg"
+                  src="/home/Security by Design. Trust by Commitment..jpg"
                   alt="Security by Design"
                   loading="lazy"
                   decoding="async"

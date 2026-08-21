@@ -512,10 +512,10 @@ function DEVisual04() {
 
 const deVisuals: Record<string, React.FC> = { "01": DEVisual01, "02": DEVisual02, "03": DEVisual03, "04": DEVisual04 };
 const deImages: Record<string, string> = {
-  "01": "/Data Processing & Validation.png",
-  "02": "/Data Enrichment & Integration1.png",
-  "03": "/AI-Ready Data Preparation.png",
-  "04": "/data quality management.png",
+  "01": "/solutions/Data Processing & Validation.png",
+  "02": "/solutions/Data Enrichment & Integration1.png",
+  "03": "/solutions/AI-Ready Data Preparation.png",
+  "04": "/solutions/data quality management.png",
 };
 
 function DataEngCard({
@@ -633,10 +633,10 @@ const aiCapabilities = [
 ];
 
 const opsCapabilities = [
-  { title: "Business Process Operations", desc: "Structured support for high-volume and business-critical operational processes.", image: "/Business Process Operations.jpg" },
-  { title: "Back-Office Operations", desc: "Improve efficiency across repetitive administrative and transaction-based activities.", image: "/Back-Office Operations.jpg" },
-  { title: "Workflow & Exception Management", desc: "Manage workflows, exceptions and process dependencies with greater control.", image: "/Workflow & Exception Management.jpg" },
-  { title: "Quality & Performance Management", desc: "Maintain consistent delivery through defined quality controls, reporting and continuous improvement.", image: "/Quality & Performance Management.jpg" },
+  { title: "Business Process Operations", desc: "Structured support for high-volume and business-critical operational processes.", image: "/solutions/Business Process Operations.jpg" },
+  { title: "Back-Office Operations", desc: "Improve efficiency across repetitive administrative and transaction-based activities.", image: "/solutions/Back-Office Operations.jpg" },
+  { title: "Workflow & Exception Management", desc: "Manage workflows, exceptions and process dependencies with greater control.", image: "/solutions/Workflow & Exception Management.jpg" },
+  { title: "Quality & Performance Management", desc: "Maintain consistent delivery through defined quality controls, reporting and continuous improvement.", image: "/solutions/Quality & Performance Management.jpg" },
 ];
 
 const dataCapabilities = [
@@ -647,12 +647,12 @@ const dataCapabilities = [
 ];
 
 const shippingCapabilities = [
-  { icon: "anchor", title: "Freight Forwarding Operations", desc: "Operational support for high-volume freight workflows with speed and consistency.", image: "/Freight Forwarding Operations.jpg" },
-  { icon: "file-text", title: "Shipping Documentation", desc: "Processing, validating and managing business-critical shipping documents.", image: "/Shipping Documentation.jpg" },
-  { icon: "file-check", title: "Customs Documentation", desc: "Structured support for customs-related documentation, data and validation.", image: "/Customs Documentation.jpg" },
-  { icon: "receipt", title: "Invoice & Billing Operations", desc: "Processing and validating freight invoices with exception identification.", image: "/Invoice & Billing Operations.jpg" },
-  { icon: "database", title: "Shipment Data Management", desc: "Capturing, validating and enriching shipment-related information.", image: "/Shipment Data Management.jpg" },
-  { icon: "alert-circle", title: "Exception Management", desc: "Structured handling of discrepancies and operational exceptions.", image: "/Exception Management.jpg" },
+  { icon: "anchor", title: "Freight Forwarding Operations", desc: "Operational support for high-volume freight workflows with speed and consistency.", image: "/solutions/Freight Forwarding Operations.jpg" },
+  { icon: "file-text", title: "Shipping Documentation", desc: "Processing, validating and managing business-critical shipping documents.", image: "/solutions/Shipping Documentation.jpg" },
+  { icon: "file-check", title: "Customs Documentation", desc: "Structured support for customs-related documentation, data and validation.", image: "/solutions/Customs Documentation.jpg" },
+  { icon: "receipt", title: "Invoice & Billing Operations", desc: "Processing and validating freight invoices with exception identification.", image: "/solutions/Invoice & Billing Operations.jpg" },
+  { icon: "database", title: "Shipment Data Management", desc: "Capturing, validating and enriching shipment-related information.", image: "/solutions/Shipment Data Management.jpg" },
+  { icon: "alert-circle", title: "Exception Management", desc: "Structured handling of discrepancies and operational exceptions.", image: "/solutions/Exception Management.jpg" },
 ];
 
 const healthcareCapabilities = [
@@ -2316,7 +2316,7 @@ export default function SolutionsPage() {
           loop
           playsInline
         >
-          <source src="/solutionshero2.mp4" type="video/mp4" />
+          <source src="/solutions/solutionshero2.mp4" type="video/mp4" />
         </video>
 
         <div className="sol-hero-content">
@@ -2387,7 +2387,7 @@ export default function SolutionsPage() {
 
             <div className="sol-split-img">
               <img
-                src="/AI-Automation-and-Agentic-AI-2.jpeg"
+                src="/shared/AI-Automation-and-Agentic-AI-2.jpeg"
                 alt="AI Automation & Agentic AI"
                 style={{ width: "100%", height: "auto", display: "block", objectFit: "cover", aspectRatio: "4/3" }}
               />
@@ -2569,12 +2569,12 @@ We work as an extension of your organization, bringing greater efficiency, consi
 
         <section className="stack-wrapper" aria-label="Shipping and logistics capabilities">
           {[
-            { title: "Freight Forwarding Operations", desc: "Support high-volume freight workflows with greater speed, accuracy and consistency.", image: "/Freight Forwarding Operations.jpg" },
-            { title: "Shipping & Customs Documentation", desc: "Process, validate and manage critical shipping and customs documentation.", image: "/Shipping Documentation.jpg" },
-            { title: "Invoice & Billing Operations", desc: "Streamline invoice processing, validation, billing workflows and exception handling.", image: "/Invoice & Billing Operations.jpg" },
-            { title: "Shipment Data Management", desc: "Capture, validate and maintain accurate shipment and operational information.", image: "/Shipment Data Management.jpg" },
-            { title: "Exception Management", desc: "Identify and manage discrepancies through structured resolution workflows.", image: "/Exception Management.jpg" },
-            { title: "Automation & Logistics Analytics", desc: "Automate repetitive activities while improving visibility into operational performance.", image: "/Automation & Logistics Analytics.jpg" },
+            { title: "Freight Forwarding Operations", desc: "Support high-volume freight workflows with greater speed, accuracy and consistency.", image: "/solutions/Freight Forwarding Operations.jpg" },
+            { title: "Shipping & Customs Documentation", desc: "Process, validate and manage critical shipping and customs documentation.", image: "/solutions/Shipping Documentation.jpg" },
+            { title: "Invoice & Billing Operations", desc: "Streamline invoice processing, validation, billing workflows and exception handling.", image: "/solutions/Invoice & Billing Operations.jpg" },
+            { title: "Shipment Data Management", desc: "Capture, validate and maintain accurate shipment and operational information.", image: "/solutions/Shipment Data Management.jpg" },
+            { title: "Exception Management", desc: "Identify and manage discrepancies through structured resolution workflows.", image: "/solutions/Exception Management.jpg" },
+            { title: "Automation & Logistics Analytics", desc: "Automate repetitive activities while improving visibility into operational performance.", image: "/solutions/Automation & Logistics Analytics.jpg" },
           ].map((card, i) => (
             <div key={card.title} className="stack-card">
               <div className="stack-media">
@@ -2649,7 +2649,7 @@ We work as an extension of your organization, bringing greater efficiency, consi
 
             <div className="ho-media">
               <img
-                src="/healthcare operations section.png"
+                src="/solutions/healthcare operations section.png"
                 alt="Healthcare professional reviewing documents on a tablet"
                 loading="lazy"
                 decoding="async"

@@ -8,42 +8,42 @@ const industryCards = [
     name: "Shipping & Logistics",
     tagline: "IBS & FNA",
     description: "Freight forwarding, customs documentation & supply chain intelligence.",
-    image: "/shipping.jpg",
+    image: "/home/shipping.jpg",
     imageAlt: "Shipping containers at port",
   },
   {
     name: "Healthcare",
     tagline: "HCLS",
     description: "Claims management, document intelligence & clinical workflow automation.",
-    image: "/healtcare operations.jpg",
+    image: "/home/healtcare operations.jpg",
     imageAlt: "Healthcare operations",
   },
   {
     name: "Digital Public Infrastructure",
     tagline: "DPI",
     description: "Digital identity systems, payment infrastructure & governance platforms.",
-    image: "/dpi.jpg",
+    image: "/home/dpi.jpg",
     imageAlt: "Server room with network cables",
   },
   {
     name: "Travel",
     tagline: "",
     description: "Booking operations, itinerary management & customer support automation.",
-    image: "/travelai.jpg",
+    image: "/home/travelai.jpg",
     imageAlt: "Travel destination aerial view",
   },
   {
     name: "Banking",
     tagline: "",
     description: "KYC/AML compliance, loan processing & financial operations support.",
-    image: "/bankingai.jpg",
+    image: "/home/bankingai.jpg",
     imageAlt: "Modern bank building",
   },
   {
     name: "eCommerce",
     tagline: "",
     description: "Catalog management, order processing & returns automation.",
-    image: "/ecommerce.jpg",
+    image: "/home/ecommerce.jpg",
     imageAlt: "Online shopping on laptop",
   },
 ];
@@ -92,11 +92,11 @@ const stats = [
 ];
 
 const mosaicImages = [
-  { src: "/global clients.jpg", alt: "Global clients" },
-  { src: "/Faster Documentation Processing.jpg", alt: "Faster documentation processing" },
-  { src: "/Automation-and-Annual-Savings.jpg", alt: "Automation and annual savings" },
-  { src: "/Reduction in Dispute Resolution Time.jpg", alt: "Reduction in dispute resolution time" },
-  { src: "/Reduction in Operating Cost.jpg", alt: "Reduction in operating cost" },
+  { src: "/shared/global clients.jpg", alt: "Global clients" },
+  { src: "/shared/Faster Documentation Processing.jpg", alt: "Faster documentation processing" },
+  { src: "/shared/Automation-and-Annual-Savings.jpg", alt: "Automation and annual savings" },
+  { src: "/shared/Reduction in Dispute Resolution Time.jpg", alt: "Reduction in dispute resolution time" },
+  { src: "/shared/Reduction in Operating Cost.jpg", alt: "Reduction in operating cost" },
 ];
 
 type MosaicTile =

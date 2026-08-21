@@ -10,7 +10,7 @@ const solutions = [
     description:
       "Empowering enterprises with intelligent automation, cognitive workflows, and AI-driven decision-making to transform operational performance.",
     icon: "/AI Automation & Agentic AI.svg",
-    image: "/AI-Automation-and-Agentic-AI-2.jpeg",
+    image: "/shared/AI-Automation-and-Agentic-AI-2.jpeg",
   },
   {
     number: "02",
@@ -19,7 +19,7 @@ const solutions = [
     description:
       "Delivering technology-enabled managed operations that combine skilled professionals, standardized processes, and intelligent automation to achieve measurable business outcomes.",
     icon: "/Intelligent Operations (RPAs).svg",
-    image: "/rpa2.jpg",
+    image: "/home/rpa2.jpg",
   },
   {
     number: "03",
@@ -28,7 +28,7 @@ const solutions = [
     description:
       "Building trusted data ecosystems through data processing, enrichment, validation, migration, and intelligent data management.",
     icon: "/Data Engineering.svg",
-    image: "/Data Engineering.webp",
+    image: "/shared/Data Engineering.webp",
   },
   {
     number: "04",
@@ -37,7 +37,7 @@ const solutions = [
     description:
       "Transforming enterprise data into actionable insights through dashboards, reporting, predictive analytics, and decision intelligence.",
     icon: "/Analytics & BI.svg",
-    image: "/Analytics-and-BI.webp",
+    image: "/home/Analytics-and-BI.webp",
   },
   {
     number: "05",
@@ -46,7 +46,7 @@ const solutions = [
     description:
       "Digitally transforming freight forwarding, shipping operations, customs documentation, and supply chain support through intelligent operational services.",
     icon: "/Shipping & Logistics.svg",
-    image: "/shipping and logistics.jpg",
+    image: "/home/shipping and logistics.jpg",
   },
   {
     number: "06",
@@ -55,7 +55,7 @@ const solutions = [
     description:
       "Enhancing healthcare administration through claims management, document intelligence, workflow automation, and secure operational support.",
     icon: "/Healthcare operations.svg",
-    image: "/Healthcare operations.webp",
+    image: "/home/Healthcare operations.webp",
   },
 ];
 

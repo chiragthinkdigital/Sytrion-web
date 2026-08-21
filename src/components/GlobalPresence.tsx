@@ -93,12 +93,12 @@ function FlagLogo({ src }: { src: string }) {
 /* ── Data ─────────────────────────────────────────────────── */
 
 const regions = [
-  { name: "Australia", Flag: FlagAustralia, image: "/australia.jpg", alt: "Sytrion presence in Australia" },
-  { name: "New Zealand", Flag: FlagNewZealand, image: "/new zealand.jpg", alt: "Sytrion presence in New Zealand" },
-  { name: "United States", Flag: FlagUnitedStates, image: "/united states.jpg", alt: "Sytrion presence in the United States" },
-  { name: "Europe", Flag: FlagEurope, image: "/europe.jpg", alt: "Sytrion presence in Europe" },
-  { name: "Asia", Flag: () => <FlagLogo src="/asialogo.svg" />, image: "/asia.jpg", alt: "Sytrion presence in Asia" },
-  { name: "Africa", Flag: () => <FlagLogo src="/africalogo.svg" />, image: "/africa.jpg", alt: "Sytrion presence in Africa" },
+  { name: "Australia", Flag: FlagAustralia, image: "/about/australia.jpg", alt: "Sytrion presence in Australia" },
+  { name: "New Zealand", Flag: FlagNewZealand, image: "/about/new zealand.jpg", alt: "Sytrion presence in New Zealand" },
+  { name: "United States", Flag: FlagUnitedStates, image: "/about/united states.jpg", alt: "Sytrion presence in the United States" },
+  { name: "Europe", Flag: FlagEurope, image: "/about/europe.jpg", alt: "Sytrion presence in Europe" },
+  { name: "Asia", Flag: () => <FlagLogo src="/about/asialogo.svg" />, image: "/about/asia.jpg", alt: "Sytrion presence in Asia" },
+  { name: "Africa", Flag: () => <FlagLogo src="/about/africalogo.svg" />, image: "/about/africa.jpg", alt: "Sytrion presence in Africa" },
 ];
 
 const COLLAPSED_WIDTH = 56;

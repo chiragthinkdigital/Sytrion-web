@@ -20,11 +20,11 @@ const stats = [
 ];
 
 const operatingPrinciples = [
-  { title: "Customer First", image: "/Customer First.jpg", desc: "Every solution begins with understanding our client's business objectives and desired outcomes." },
-  { title: "Operational Excellence", image: "/Operational Excellence.jpg", desc: "We continuously improve processes to deliver consistent, measurable results." },
-  { title: "Innovation with Purpose", image: "/Innovation with Purpose.jpg", desc: "Technology is applied where it creates real business value â€” not for its own sake." },
-  { title: "Integrity & Trust", image: "/integrit and trust.jpg", desc: "We build lasting relationships through transparency, accountability, and ethical business practices." },
-  { title: "Continuous Improvement", image: "/Continuous Improvement.jpg", desc: "We embrace change and continuously evolve to help our clients stay ahead." },
+  { title: "Customer First", image: "/about/Customer First.jpg", desc: "Every solution begins with understanding our client's business objectives and desired outcomes." },
+  { title: "Operational Excellence", image: "/about/Operational Excellence.jpg", desc: "We continuously improve processes to deliver consistent, measurable results." },
+  { title: "Innovation with Purpose", image: "/about/Innovation with Purpose.jpg", desc: "Technology is applied where it creates real business value â€” not for its own sake." },
+  { title: "Integrity & Trust", image: "/about/integrit and trust.jpg", desc: "We build lasting relationships through transparency, accountability, and ethical business practices." },
+  { title: "Continuous Improvement", image: "/about/Continuous Improvement.jpg", desc: "We embrace change and continuously evolve to help our clients stay ahead." },
 ];
 
 const values = [
@@ -119,12 +119,12 @@ const timeline = [
 ];
 
 const valueImages = [
-  "/integrity.jpg",         // Integrity
-  "/innovation1.jpg",       // Innovation
-  "/excellence.jpg",        // Excellence
-  "/ownership.jpg",         // Ownership
-  "/collaboration.jpg",     // Collaboration
-  "/customer success.png",  // Customer Success
+  "/about/integrity.jpg",         // Integrity
+  "/about/innovation1.jpg",       // Innovation
+  "/about/excellence.jpg",        // Excellence
+  "/about/ownership.jpg",         // Ownership
+  "/about/collaboration.jpg",     // Collaboration
+  "/about/customer success.png",  // Customer Success
 ];
 
 function ValuesPanel() {
@@ -488,7 +488,7 @@ function MissionCollage() {
           pointerEvents: "none",
         }} />
         <img
-          src="/Transforming Complexity into Competitive Advantage2.jpg"
+          src="/about/Transforming Complexity into Competitive Advantage2.jpg"
           alt="Advanced technological enterprise operations"
           style={{
             width: "100%",
@@ -514,7 +514,7 @@ function MissionCollage() {
         border: "1px solid rgba(77, 124, 15, 0.12)",
       }}>
         <img
-          src="/Transforming Complexity into Competitive Advantage1.jpg"
+          src="/about/Transforming Complexity into Competitive Advantage1.jpg"
           alt="Intelligent business transformation workflow"
           style={{
             width: "100%",
@@ -540,7 +540,7 @@ function MissionCollage() {
         border: "1px solid rgba(77, 124, 15, 0.12)",
       }}>
         <img
-          src="/Transforming Complexity into Competitive Advantage3.jpg"
+          src="/about/Transforming Complexity into Competitive Advantage3.jpg"
           alt="Analytics and automated digital solution execution"
           style={{
             width: "100%",
@@ -1854,7 +1854,7 @@ export default function AboutPage() {
                       boxShadow: "0 12px 24px rgba(0, 0, 0, 0.3)",
                     }}>
                       <img
-                        src="/aboutai.png"
+                        src="/about/aboutai.png"
                         alt="AI and operations analytics dashboard visualizing data intelligence"
                         style={{
                           width: "100%",
@@ -1878,7 +1878,7 @@ export default function AboutPage() {
                       boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)",
                     }}>
                       <img
-                        src="/ai first thinking.jpg"
+                        src="/shared/ai first thinking.jpg"
                         alt="Intelligent technological infrastructure"
                         style={{
                           width: "100%",
@@ -1902,7 +1902,7 @@ export default function AboutPage() {
                       boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)",
                     }}>
                       <img
-                        src="/Data Engineering.webp"
+                        src="/shared/Data Engineering.webp"
                         alt="Data flow and system engineering operations"
                         style={{
                           width: "100%",
@@ -2093,15 +2093,15 @@ export default function AboutPage() {
             {/* Right column — mosaic grid */}
             <div className="outcomes-mosaic">
               {[
-                { kind: "image" as const, src: "/global clients.jpg", alt: "Global clients" },
+                { kind: "image" as const, src: "/shared/global clients.jpg", alt: "Global clients" },
                 { kind: "stat" as const, val: "5+", label: "Global Clients" },
-                { kind: "image" as const, src: "/Faster Documentation Processing.jpg", alt: "Faster documentation processing" },
+                { kind: "image" as const, src: "/shared/Faster Documentation Processing.jpg", alt: "Faster documentation processing" },
                 { kind: "stat" as const, val: "40%", label: "Faster Documentation Processing" },
-                { kind: "image" as const, src: "/Automation-and-Annual-Savings.jpg", alt: "Automation and annual savings" },
+                { kind: "image" as const, src: "/shared/Automation-and-Annual-Savings.jpg", alt: "Automation and annual savings" },
                 { kind: "stat" as const, val: "50%", label: "Automation & Annual Savings" },
-                { kind: "image" as const, src: "/Reduction in Dispute Resolution Time.jpg", alt: "Reduction in dispute resolution time" },
+                { kind: "image" as const, src: "/shared/Reduction in Dispute Resolution Time.jpg", alt: "Reduction in dispute resolution time" },
                 { kind: "stat" as const, val: "50%", label: "Reduction in Dispute Resolution Time" },
-                { kind: "image" as const, src: "/Reduction in Operating Cost.jpg", alt: "Reduction in operating cost" },
+                { kind: "image" as const, src: "/shared/Reduction in Operating Cost.jpg", alt: "Reduction in operating cost" },
                 { kind: "stat" as const, val: "40%", label: "Reduction in Operating Cost" },
               ].map((tile, i) => {
                 if (tile.kind === "image") {
@@ -2325,7 +2325,7 @@ export default function AboutPage() {
                   <div key={item.title} className="ab-glass ab-sec-card">
                     <div className="ab-sec-card-icon">
                       <img
-                        src={`/${item.title}.svg`}
+                        src={`/about/${item.title}.svg`}
                         alt={item.title}
                         width={24}
                         height={24}

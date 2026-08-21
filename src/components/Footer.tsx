@@ -204,7 +204,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Image
-              src="/Sytrion-Logo.png"
+              src="/shared/Sytrion-Logo.png"
               alt="Sytrion Data Labs"
               width={170}
               height={44}
