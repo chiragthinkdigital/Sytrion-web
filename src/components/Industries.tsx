@@ -19,13 +19,6 @@ const industryCards = [
     imageAlt: "Healthcare operations",
   },
   {
-    name: "Insurance",
-    tagline: "",
-    description: "Policy administration, claims processing & underwriting support.",
-    image: "/insurance.jpg",
-    imageAlt: "Business documents and pen",
-  },
-  {
     name: "Digital Public Infrastructure",
     tagline: "DPI",
     description: "Digital identity systems, payment infrastructure & governance platforms.",

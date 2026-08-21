@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import WhySytrion from "./WhySytrion";
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -236,8 +236,76 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   return <span className="sol-eyebrow">{children}</span>;
 }
 
-function SectionTitle({ children, dark }: { children: React.ReactNode; dark?: boolean }) {
-  return <h2 className={"sol-section-title" + (dark ? " sol-section-title--dark" : "")}>{children}</h2>;
+function SectionTitle({ children, dark, style }: { children: React.ReactNode; dark?: boolean; style?: React.CSSProperties }) {
+  return <h2 className={"sol-section-title" + (dark ? " sol-section-title--dark" : "")} style={style}>{children}</h2>;
+}
+
+/* ── Approach Timeline (scroll-triggered) ─────────────────────────────────── */
+
+function ApproachTimeline() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const setProgress = () => {
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      const start = vh * 0.92;
+      const end = vh * 0.5;
+      const p = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
+      el.style.setProperty("--rail-progress", String(p));
+    };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            el.classList.add("is-visible");
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+    io.observe(el);
+
+    setProgress();
+    window.addEventListener("scroll", setProgress, { passive: true });
+    window.addEventListener("resize", setProgress);
+    return () => {
+      io.disconnect();
+      window.removeEventListener("scroll", setProgress);
+      window.removeEventListener("resize", setProgress);
+    };
+  }, []);
+
+  return (
+    <div className="ap-timeline" ref={ref} style={{ marginTop: "48px" }}>
+      <div className="ap-scroller">
+        <div className="ap-inner">
+          <div className="ap-rail" aria-hidden="true">
+            <span className="ap-rail-fill" />
+          </div>
+          <div className="ap-track">
+            {approachSteps.map((step, i) => (
+              <div
+                key={step.title}
+                className="ap-step"
+                style={{ "--d": `${i * 90}ms` } as React.CSSProperties}
+              >
+                <span className="ap-node" aria-hidden="true" />
+                <span className="sol-step-num">Step {String(i + 1).padStart(2, "0")}</span>
+                <h4 className="sol-step-title">{step.title}</h4>
+                <p className="sol-step-desc">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 /* ── Shared Card Component ─────────────────────────────────────────────────── */
@@ -1202,23 +1270,55 @@ export default function SolutionsPage() {
         }
 
         /* ── Numbered Steps ───────────────────────────────── */
-        .sol-steps {
+        /* ── Approach Timeline ───────────────────────────── */
+        .ap-timeline { --rail-progress: 0; }
+        .ap-inner { position: relative; }
+        .ap-rail {
+          position: absolute;
+          top: 6px;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: #DFE3D6;
+          transform: translateY(-50%);
+        }
+        .ap-rail-fill {
+          display: block;
+          height: 100%;
+          width: 100%;
+          background: #C6E84A;
+          transform-origin: left center;
+          transform: scaleX(var(--rail-progress));
+        }
+        .ap-track {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 24px;
-          margin-top: 48px;
+          grid-template-columns: repeat(6, 1fr);
+          gap: 28px;
         }
-        .sol-step {
-          background: #ffffff;
-          border-radius: 20px;
-          border-top: 4px solid rgba(198,232,74,0.5);
-          padding: 32px 28px;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.06);
-          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+        .ap-step {
+          opacity: 0;
+          transform: translateY(20px);
+          transition:
+            opacity 0.55s ease var(--d, 0ms),
+            transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms);
         }
-        .sol-step:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 4px 8px rgba(0,0,0,0.06), 0 12px 40px rgba(0,0,0,0.1);
+        .ap-timeline.is-visible .ap-step {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .ap-node {
+          display: block;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          border: 2px solid #C6E84A;
+          background: #f8faf5;
+          box-sizing: border-box;
+          margin: 0 auto 20px;
+          transition: background-color 0.35s ease var(--d, 0ms);
+        }
+        .ap-timeline.is-visible .ap-node {
+          background: #C6E84A;
         }
         .sol-step-num {
           font-size: 12px;
@@ -1242,6 +1342,23 @@ export default function SolutionsPage() {
           color: #5A5D66;
           line-height: 1.7;
           margin: 0;
+        }
+        @media (max-width: 1024px) {
+          .ap-scroller {
+            overflow-x: auto;
+            overscroll-behavior-x: contain;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+          }
+          .ap-scroller::-webkit-scrollbar { display: none; }
+          .ap-inner {
+            min-width: max-content;
+            padding-right: 8px;
+          }
+          .ap-track {
+            grid-template-columns: repeat(6, minmax(230px, 1fr));
+          }
+          .ap-step { scroll-snap-align: start; }
         }
 
         /* ── Ecosystem Row ───────────────────────────────── */
@@ -1800,7 +1917,10 @@ export default function SolutionsPage() {
           .cap-8 { left: 69px; top: 69px; flex-direction: row-reverse; transform: translate(-100%, -50%); gap: 7px; font-size: 15px; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .sol-card, .sol-step, .sol-eco-item { transition: none; transform: none; }
+          .sol-card, .sol-eco-item { transition: none; transform: none; }
+          .ap-step, .ap-node, .ap-rail-fill { transition: none !important; }
+          .ap-step { opacity: 1; transform: none; }
+          .ap-timeline .ap-node { background: #C6E84A; }
           .de-card { transition: none; transform: none; }
           .de-card:hover { transform: none; }
           .de-card-visual svg { transition: none; transform: none; }
@@ -1978,6 +2098,209 @@ export default function SolutionsPage() {
         .cta-secondary:active {
           transform: translateY(0) scale(0.98);
         }
+
+        /* ── Healthcare Operations (editorial two-column) ── */
+        .ho-section {
+          background: #F6F7F1;
+          padding: 110px 80px;
+          width: 100%;
+          overflow: hidden;
+        }
+        .ho-wrap {
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+        .ho-grid {
+          display: grid;
+          grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+          gap: 72px;
+          align-items: stretch;
+          margin-top: 44px;
+        }
+        .ho-list {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          border-top: 1px solid #DFE3D6;
+        }
+        .ho-item {
+          display: grid;
+          grid-template-columns: 52px minmax(0, 1fr);
+          align-items: baseline;
+          padding: 20px 0;
+          border-bottom: 1px solid #DFE3D6;
+        }
+        .ho-num {
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 0.06em;
+          color: #8FAE1E;
+        }
+        .ho-item-title {
+          font-size: 16px;
+          font-weight: 600;
+          color: #0F1B2A;
+          line-height: 1.35;
+          margin: 0 0 4px;
+        }
+        .ho-item-desc {
+          font-size: 14px;
+          color: #5B6A63;
+          line-height: 1.6;
+          margin: 0;
+        }
+        .ho-media {
+          position: relative;
+          border-radius: 4px;
+          overflow: hidden;
+          min-height: 320px;
+        }
+        .ho-media img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .ho-media::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(15, 27, 42, 0.5) 0%, rgba(15, 27, 42, 0) 45%);
+          pointer-events: none;
+        }
+        .ho-band {
+          border-top: 1px solid #DFE3D6;
+          margin-top: 80px;
+          padding-top: 52px;
+          text-align: center;
+        }
+        .ho-band p {
+          font-size: clamp(20px, 2vw, 24px);
+          font-weight: 700;
+          color: #0F1B2A;
+          line-height: 1.45;
+          max-width: 780px;
+          margin: 0 auto;
+        }
+        .ho-band span { color: #8FAE1E; }
+
+        @media (max-width: 1024px) {
+          .ho-section { padding: 88px 40px; }
+          .ho-grid { gap: 48px; }
+        }
+        @media (max-width: 900px) {
+          .ho-section { padding: 72px 24px; }
+          .ho-grid {
+            grid-template-columns: 1fr;
+            gap: 36px;
+            margin-top: 36px;
+          }
+          .ho-media {
+            order: -1;
+            min-height: 340px;
+          }
+          .ho-band { margin-top: 56px; padding-top: 40px; }
+        }
+
+        /* ── Shipping sticky stacking cards ─────────────── */
+        /* overflow: visible is REQUIRED here — .sol-section sets
+           overflow: hidden, which silently disables position: sticky */
+        .sol-section--stack { overflow: visible; }
+        .stack-wrapper {
+          margin-top: 64px;
+        }
+        .stack-card {
+          position: sticky;
+          top: 96px;
+          display: grid;
+          grid-template-columns: minmax(0, 30fr) minmax(0, 70fr);
+          align-items: stretch;
+          gap: 56px;
+          height: calc(100vh - 144px);
+          min-height: 520px;
+          padding: 24px;
+          background: #141414;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 24px;
+          box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .stack-card + .stack-card { margin-top: 24px; }
+        .stack-card:nth-child(1) { z-index: 1; }
+        .stack-card:nth-child(2) { z-index: 2; }
+        .stack-card:nth-child(3) { z-index: 3; }
+        .stack-card:nth-child(4) { z-index: 4; }
+        .stack-card:nth-child(5) { z-index: 5; }
+        .stack-card:nth-child(6) { z-index: 6; }
+        .stack-media {
+          order: 2;
+          position: relative;
+          border-radius: 16px;
+          overflow: hidden;
+          height: 100%;
+          min-height: 0;
+        }
+        .stack-media img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .stack-body {
+          order: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        .stack-num {
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          color: #C6E84A;
+          margin-bottom: 16px;
+        }
+        .stack-title {
+          font-family: var(--font-syne), sans-serif;
+          font-size: clamp(26px, 3vw, 32px);
+          font-weight: 700;
+          color: #FFFFFF;
+          line-height: 1.2;
+          margin: 0 0 16px;
+        }
+        .stack-desc {
+          font-size: 16px;
+          color: rgba(255, 255, 255, 0.6);
+          line-height: 1.7;
+          max-width: 52ch;
+          margin: 0;
+        }
+
+        @media (max-width: 1024px) {
+          .stack-card { padding: 20px; gap: 36px; }
+        }
+        @media (max-width: 900px) {
+          .stack-wrapper { margin-top: 40px; }
+          .stack-card {
+            grid-template-columns: 1fr;
+            align-items: start;
+            gap: 24px;
+            top: 88px;
+            height: calc(100vh - 128px);
+            min-height: 540px;
+            padding: 20px 20px 32px;
+          }
+          .stack-media {
+            order: -1;
+            height: auto;
+            min-height: 0;
+            aspect-ratio: 16 / 10;
+          }
+          .stack-body {
+            order: 0;
+            justify-content: flex-start;
+          }
+        }
       `}</style>
 
       {/* ══════════════════════ 1. HERO ══════════════════════ */}
@@ -1993,7 +2316,7 @@ export default function SolutionsPage() {
           loop
           playsInline
         >
-          <source src="/solutionshero.mp4" type="video/mp4" />
+          <source src="/solutionshero2.mp4" type="video/mp4" />
         </video>
 
         <div className="sol-hero-content">
@@ -2227,7 +2550,7 @@ We work as an extension of your organization, bringing greater efficiency, consi
       </section>
 
       {/* ══════════════════════ 7. SHIPPING & LOGISTICS ══════════════════════ */}
-      <section id="shipping-logistics" className="sol-section sol-section--dark">
+      <section id="shipping-logistics" className="sol-section sol-section--dark sol-section--stack">
         <div className="sol-wrap">
           <Eyebrow>Shipping &amp; Logistics</Eyebrow>
           <SectionTitle dark>
@@ -2240,30 +2563,38 @@ We work as an extension of your organization, bringing greater efficiency, consi
                 lineHeight: 1.8,
                 maxWidth: "100%",
               }}>
-           Sytrion combines logistics expertise, intelligent operations, automation and data to simplify documentation-heavy workflows and improve efficiency across shipping and logistics operations. 
+           Sytrion combines logistics expertise, intelligent operations, automation and data to simplify documentation-heavy workflows and improve efficiency across shipping and logistics operations.
           </p>
+        </div>
 
-          <div className="sol-grid-6" style={{ marginTop: "48px" }}>
-            {[
-              { title: "Freight Forwarding Operations", desc: "Support high-volume freight workflows with greater speed, accuracy and consistency.", image: "/Freight Forwarding Operations.jpg" },
-              { title: "Shipping & Customs Documentation", desc: "Process, validate and manage critical shipping and customs documentation.", image: "/Shipping Documentation.jpg" },
-              { title: "Invoice & Billing Operations", desc: "Streamline invoice processing, validation, billing workflows and exception handling.", image: "/Invoice & Billing Operations.jpg" },
-              { title: "Shipment Data Management", desc: "Capture, validate and maintain accurate shipment and operational information.", image: "/Shipment Data Management.jpg" },
-              { title: "Exception Management", desc: "Identify and manage discrepancies through structured resolution workflows.", image: "/Exception Management.jpg" },
-              { title: "Automation & Logistics Analytics", desc: "Automate repetitive activities while improving visibility into operational performance.", image: "/Automation-and-Annual-Savings.jpg" },
-            ].map((card) => (
-              <div key={card.title} className="sol-card sol-card--dark" style={{ padding: 0, overflow: "hidden" }}>
-                <div style={{ height: "160px", overflow: "hidden" }}>
-                  <img src={card.image} alt={card.title} loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-                </div>
-                <div style={{ padding: "20px" }}>
-                  <h4 className="sol-card-title sol-card-title--dark" style={{ fontSize: "15px", marginBottom: "8px" }}>{card.title}</h4>
-                  <p className="sol-card-desc sol-card-desc--dark" style={{ fontSize: "13px" }}>{card.desc}</p>
-                </div>
+        <section className="stack-wrapper" aria-label="Shipping and logistics capabilities">
+          {[
+            { title: "Freight Forwarding Operations", desc: "Support high-volume freight workflows with greater speed, accuracy and consistency.", image: "/Freight Forwarding Operations.jpg" },
+            { title: "Shipping & Customs Documentation", desc: "Process, validate and manage critical shipping and customs documentation.", image: "/Shipping Documentation.jpg" },
+            { title: "Invoice & Billing Operations", desc: "Streamline invoice processing, validation, billing workflows and exception handling.", image: "/Invoice & Billing Operations.jpg" },
+            { title: "Shipment Data Management", desc: "Capture, validate and maintain accurate shipment and operational information.", image: "/Shipment Data Management.jpg" },
+            { title: "Exception Management", desc: "Identify and manage discrepancies through structured resolution workflows.", image: "/Exception Management.jpg" },
+            { title: "Automation & Logistics Analytics", desc: "Automate repetitive activities while improving visibility into operational performance.", image: "/Automation & Logistics Analytics.jpg" },
+          ].map((card, i) => (
+            <div key={card.title} className="stack-card">
+              <div className="stack-media">
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                />
               </div>
-            ))}
-          </div>
+              <div className="stack-body">
+                <span className="stack-num">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="stack-title">{card.title}</h3>
+                <p className="stack-desc">{card.desc}</p>
+              </div>
+            </div>
+          ))}
+        </section>
 
+        <div className="sol-wrap">
           <div style={{ marginTop: "48px" }}>
             <span className="sol-sublabel">Who We Support</span>
             <div className="sol-tags">
@@ -2283,11 +2614,12 @@ We work as an extension of your organization, bringing greater efficiency, consi
       </section>
 
       {/* ══════════════════════ 8. HEALTHCARE OPERATIONS ══════════════════════ */}
-      <section id="healthcare-operations" className="sol-section sol-section--light">
-        <div className="sol-wrap">
+      <section id="healthcare-operations" className="ho-section">
+        <div className="ho-wrap">
           <Eyebrow>Healthcare Operations</Eyebrow>
-          <SectionTitle>
-            Smarter administration. <span>More efficient healthcare operations.</span>
+          <SectionTitle style={{ maxWidth: "100%" }}>
+            Smarter administration.{" "}
+            <span>More efficient healthcare operations.</span>
           </SectionTitle>
           <p style={{
                 fontSize: "19px",
@@ -2296,19 +2628,39 @@ We work as an extension of your organization, bringing greater efficiency, consi
                 lineHeight: 1.8,
                 maxWidth: "100%",
               }}>
-            Sytrion combines intelligent document processing, automation, data and operational expertise to simplify healthcare administrative workflows while maintaining a strong focus on accuracy, security and control. 
+            Sytrion combines intelligent document processing, automation, data
+            and operational expertise to simplify healthcare administrative
+            workflows while maintaining a strong focus on accuracy, security
+            and control.
           </p>
 
-          <div className="sol-grid-3" style={{ marginTop: "48px" }}>
-            {healthcareCapabilities.map((cap) => (
-              <SolutionCard key={cap.title} icon={cap.icon} title={cap.title} desc={cap.desc} variant="light" />
-            ))}
+          <div className="ho-grid">
+            <ul className="ho-list">
+              {healthcareCapabilities.map((cap, i) => (
+                <li key={cap.title} className="ho-item">
+                  <span className="ho-num">{String(i + 1).padStart(2, "0")}</span>
+                  <div className="ho-item-body">
+                    <h3 className="ho-item-title">{cap.title}</h3>
+                    <p className="ho-item-desc">{cap.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            <div className="ho-media">
+              <img
+                src="/healthcare operations section.png"
+                alt="Healthcare professional reviewing documents on a tablet"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </div>
 
-          <div className="sol-callout">
-            <div className="sol-callout-rule" />
-            <p className="sol-callout-line" style={{ color: "#0f172a" }}>
-              Making healthcare administration work <span>smarter behind the scenes.</span>
+          <div className="ho-band">
+            <p>
+              We bring people, technology and intelligence together to make{" "}
+              <span>healthcare administration simpler.</span>
             </p>
           </div>
         </div>
@@ -2318,9 +2670,9 @@ We work as an extension of your organization, bringing greater efficiency, consi
       <section className="sol-section sol-section--dark">
         <div className="sol-wrap">
           <Eyebrow>One Connected intelligence Ecosystem</Eyebrow>
-          <h2 className="ws-headline">
+          <SectionTitle dark>
            The strongest solutions rarely rely on <span style={{ color: "#C6E84A" }}>one capability alone.</span>
-          </h2>
+          </SectionTitle>
           <p style={{
                 fontSize: "19px",
                 fontWeight: 400,
@@ -2370,20 +2722,9 @@ We work as an extension of your organization, bringing greater efficiency, consi
             where friction exists and what better performance should look like.
           </p>
 
-          <div className="sol-steps" style={{ marginTop: "48px" }}>
-            {approachSteps.map((step, i) => (
-              <div key={step.title} className="sol-step">
-                <span className="sol-step-num">Step {String(i + 1).padStart(2, "0")}</span>
-                <h4 className="sol-step-title">{step.title}</h4>
-                <p className="sol-step-desc">{step.desc}</p>
-              </div>
-            ))}
-          </div>
+          <ApproachTimeline />
         </div>
       </section>
-
-      {/* ══════════════════════ 11. WHY SYTRION ══════════════════════ */}
-      <WhySytrion />
 
       {/* ══════════════════════ 13. FINAL CTA ══════════════════════ */}
       <section className="sol-section sol-section--dark" style={{ textAlign: "center" }}>

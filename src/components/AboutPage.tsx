@@ -2282,11 +2282,6 @@ export default function AboutPage() {
         </section>
 
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-            WHY SYTRION (HOME SECTION)
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <WhySytrion />
-
-        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             GLOBAL PRESENCE
             â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         <GlobalPresence />
@@ -2521,16 +2516,6 @@ export default function AboutPage() {
                 {
                   title: "Domain Expertise",
                   desc: "Industry-focused teams with deep operational understanding across sectors.",
-                  icon: (
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="9" />
-                      <circle cx="12" cy="12" r="4" />
-                      <line x1="12" y1="2" x2="12" y2="6" />
-                      <line x1="12" y1="18" x2="12" y2="22" />
-                      <line x1="2" y1="12" x2="6" y2="12" />
-                      <line x1="18" y1="12" x2="22" y2="12" />
-                    </svg>
-                  ),
                   corner: (
                     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                       <circle cx="22" cy="22" r="18" />
@@ -2542,12 +2527,6 @@ export default function AboutPage() {
                 {
                   title: "Operational Excellence",
                   desc: "Standardized processes designed to improve quality, productivity, and efficiency.",
-                  icon: (
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="9" r="6" />
-                      <path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5" />
-                    </svg>
-                  ),
                   corner: (
                     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M4 12c6 0 6 8 12 8s6-8 12-8 6 8 12 8" />
@@ -2558,13 +2537,6 @@ export default function AboutPage() {
                 {
                   title: "Technology-Enabled Services",
                   desc: "Leveraging Agentic AI, AI-enabled automation, analytics, and digital tools to enhance business operations.",
-                  icon: (
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="6" y="6" width="12" height="12" rx="2" />
-                      <rect x="10" y="10" width="4" height="4" />
-                      <path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4" />
-                    </svg>
-                  ),
                   corner: (
                     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round">
                       <path d="M22 5l15 8.5v17L22 39 7 30.5v-17L22 5z" />
@@ -2575,12 +2547,6 @@ export default function AboutPage() {
                 {
                   title: "Flexible Delivery Models",
                   desc: "Solutions that scale with your business requirements, from on-site to hybrid and remote.",
-                  icon: (
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 8l-9-5-9 5v8l9 5 9-5V8z" />
-                      <path d="M3 8l9 5 9-5M12 13v8" />
-                    </svg>
-                  ),
                   corner: (
                     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round">
                       <rect x="6" y="6" width="32" height="32" rx="2" />
@@ -2592,12 +2558,6 @@ export default function AboutPage() {
                 {
                   title: "Quality & Governance",
                   desc: "Strong operational controls, structured governance, and continuous performance monitoring.",
-                  icon: (
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                      <path d="M9 12l2 2 4-4" />
-                    </svg>
-                  ),
                   corner: (
                     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                       <path d="M10 22h24M22 10v24" />
@@ -2613,11 +2573,6 @@ export default function AboutPage() {
                 {
                   title: "Customer-Centric Approach",
                   desc: "We work as an extension of your business, ensuring transparency, responsiveness, and long-term partnership.",
-                  icon: (
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                    </svg>
-                  ),
                   corner: (
                     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <circle cx="16" cy="22" r="13" />
@@ -2631,7 +2586,6 @@ export default function AboutPage() {
                     {feature.corner}
                   </span>
                   <span className="ab-impact-glow" aria-hidden="true" />
-                  <div className="ab-impact-icon">{feature.icon}</div>
                   <div className="ab-impact-title">{feature.title}</div>
                   <p className="ab-impact-desc">{feature.desc}</p>
                 </div>
@@ -2680,20 +2634,6 @@ export default function AboutPage() {
               filter: blur(8px);
               pointer-events: none;
               z-index: 0;
-            }
-            .ab-impact-icon {
-              width: 36px;
-              height: 36px;
-              border-radius: 10px;
-              background: rgba(198, 232, 74, 0.18);
-              border: 1px solid rgba(198, 232, 74, 0.28);
-              color: #C6E84A;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              margin-bottom: 18px;
-              flex-shrink: 0;
-              z-index: 2;
             }
             .ab-impact-title {
               font-size: 18px;

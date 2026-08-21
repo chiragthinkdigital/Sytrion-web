@@ -21,6 +21,9 @@ const navItems = [
       { name: "Intelligent Operations", href: "/solutions#intelligent-operations" },
       { name: "Data Engineering", href: "/solutions#data-engineering" },
       { name: "Analytics & BI", href: "/solutions#analytics-bi" },
+      { name: "Shipping & Logistics", href: "/solutions#shipping-logistics" },
+      { name: "Healthcare Operations", href: "/solutions#healthcare-operations" },
+
     ],
   },
   {
