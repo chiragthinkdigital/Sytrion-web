@@ -324,9 +324,9 @@ export default function ShippingLogisticsPage() {
         .sl-hero-sub { font-size: clamp(17px, 1.6vw, 21px); font-weight: 600; line-height: 1.55; color: rgba(255,255,255,0.92); margin: 0 0 18px; max-width: 640px; }
         .sl-hero-body { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.68); margin: 0 0 38px; max-width: 520px; }
         .sl-hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; }
-        .sl-float-words { position: absolute; right: clamp(24px, 6vw, 90px); top: 50%; transform: translateY(-50%); z-index: 1; display: flex; flex-direction: column; align-items: flex-end; gap: 26px; pointer-events: none; }
-        .sl-float-word { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-weight: 700; font-size: clamp(18px, 2.6vw, 36px); letter-spacing: 0.22em; color: transparent; -webkit-text-stroke: 1px rgba(198,232,74,0.3); white-space: nowrap; }
-        .sl-float-dot { color: rgba(255,255,255,0.35); font-size: 18px; line-height: 0; align-self: flex-end; padding-right: 6px; }
+        .sl-float-words { position: absolute; left: auto !important; top: auto !important; right: clamp(120px, 20vw, 420px) !important; bottom: clamp(48px, 7vh, 110px) !important; z-index: 2; display: flex; flex-direction: row; align-items: center; gap: clamp(14px, 1.8vw, 28px); pointer-events: none; flex-wrap: wrap; }
+        .sl-float-word { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-weight: 700; font-size: clamp(11px, 1.0vw, 18px); letter-spacing: 0.22em; color: transparent; -webkit-text-stroke: 1px rgba(198,232,74,0.85); white-space: nowrap; text-shadow: 0 0 12px rgba(198,232,74,0.25); }
+        .sl-float-dot { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 0; }
 
         /* ── section rhythm ── */
         .sl-section { padding: clamp(76px, 9vw, 128px) 0; }
@@ -493,6 +493,8 @@ export default function ShippingLogisticsPage() {
           .sl-eco-grid { grid-template-columns: 1fr 1fr; }
           .sl-panel { grid-template-columns: 1fr; }
           .sl-panel-visual { min-height: 260px; }
+          .sl-float-words { bottom: clamp(28px, 4.5vh, 64px) !important; top: auto !important; gap: 12px; right: clamp(96px, 14vw, 300px) !important; }
+          .sl-float-word { font-size: clamp(10px, 1.1vw, 16px); -webkit-text-stroke: 1px rgba(198,232,74,0.8); }
           .sl-fa-grid-wrap { grid-template-columns: 1fr; }
           .sl-fa-bg { width: 100%; mask-image: linear-gradient(180deg, transparent 0%, #000 60%); -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 60%); }
           .sl-trans { grid-template-columns: 1fr; }
@@ -505,7 +507,8 @@ export default function ShippingLogisticsPage() {
           .sl-fa-cards { grid-template-columns: 1fr; }
           .sl-why-grid { grid-template-columns: 1fr; }
           .sl-trans-block ul { grid-template-columns: 1fr; }
-          .sl-float-words { display: none; }
+          .sl-float-words { right: 32px !important; bottom: 18px !important; top: auto !important; gap: 8px; }
+          .sl-float-word { font-size: 10px; letter-spacing: 0.18em; -webkit-text-stroke: 1px rgba(198,232,74,0.85); }
           .sl-hero-content { padding: 120px 24px 90px; }
         }
 
