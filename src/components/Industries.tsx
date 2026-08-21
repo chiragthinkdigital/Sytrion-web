@@ -1,15 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState, useCallback } from "react";
 
 const industryCards = [
   {
     name: "Shipping & Logistics",
-    tagline: "IBS & FNA",
+    tagline: "IBS & F&A",
     description: "Freight forwarding, customs documentation & supply chain intelligence.",
     image: "/home/shipping.jpg",
     imageAlt: "Shipping containers at port",
+    href: "/shipping-logistics",
   },
   {
     name: "Healthcare",
@@ -529,28 +531,44 @@ export default function Industries() {
 
           {/* Carousel */}
           <div ref={trackRef} className="ind-photo-track">
-            {industryCards.map((ind) => (
-              <div key={ind.name} className="ind-photo-card">
-                <Image
-                  src={ind.image}
-                  alt={ind.imageAlt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="ind-photo-img"
-                  unoptimized
-                />
-                <div className="ind-photo-overlay" />
-                <div className="ind-photo-overlay" />
-                <div className="ind-photo-label">
-                  <span className="ind-photo-name">
-                    {ind.name}
-                    {ind.tagline && (
-                      <span className="ind-photo-tagline"> ({ind.tagline})</span>
-                    )}
-                  </span>
+            {industryCards.map((ind) => {
+              const card = (
+                <>
+                  <Image
+                    src={ind.image}
+                    alt={ind.imageAlt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="ind-photo-img"
+                    unoptimized
+                  />
+                  <div className="ind-photo-overlay" />
+                  <div className="ind-photo-overlay" />
+                  <div className="ind-photo-label">
+                    <span className="ind-photo-name">
+                      {ind.name}
+                      {ind.tagline && (
+                        <span className="ind-photo-tagline"> ({ind.tagline})</span>
+                      )}
+                    </span>
+                  </div>
+                </>
+              );
+              return ind.href ? (
+                <Link
+                  key={ind.name}
+                  href={ind.href}
+                  className="ind-photo-card"
+                  aria-label={`${ind.name} — explore our capabilities`}
+                >
+                  {card}
+                </Link>
+              ) : (
+                <div key={ind.name} className="ind-photo-card">
+                  {card}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Nav Arrows */}
