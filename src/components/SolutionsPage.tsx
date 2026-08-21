@@ -2476,9 +2476,9 @@ We work as an extension of your organization, bringing greater efficiency, consi
         <div className="sol-wrap">
           <div className="">
            <Eyebrow> DATA ENGINEERING </Eyebrow>
-            <h2 className="ws-headline">
-              The backbone of every <span style={{ color: "#C6E84A" }}>intelligent system.</span>
-            </h2>
+            <SectionTitle dark>
+              The backbone of every <span>intelligent system.</span>
+            </SectionTitle>
             <p style={{
                 fontSize: "19px",
                 fontWeight: 400,
