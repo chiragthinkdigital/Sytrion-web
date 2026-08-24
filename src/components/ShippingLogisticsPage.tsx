@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import CallToAction from "./CallToAction";
 
 const ibsTabs = [
   {
@@ -174,6 +175,26 @@ const outcomes = [
   },
 ];
 
+const outcomeIconProps = {
+  width: 26,
+  height: 26,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.8,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  "aria-hidden": true,
+};
+
+const outcomeIcons = [
+  <svg key="faster" {...outcomeIconProps}><path d="M4.5 17.5a8 8 0 1 1 15 0" /><path d="M12 14l4-5" /><circle cx="12" cy="15" r="1.6" /><path d="M3 20h18" /></svg>,
+  <svg key="accurate" {...outcomeIconProps}><circle cx="12" cy="12" r="8.5" /><circle cx="12" cy="12" r="4.5" /><circle cx="12" cy="12" r="0.8" /></svg>,
+  <svg key="efficient" {...outcomeIconProps}><ellipse cx="12" cy="5.5" rx="7" ry="2.8" /><path d="M5 5.5v6.2c0 1.55 3.13 2.8 7 2.8s7-1.25 7-2.8V5.5" /><path d="M5 11.7v6.3c0 1.55 3.13 2.8 7 2.8s7-1.25 7-2.8v-6.3" /></svg>,
+  <svg key="visible" {...outcomeIconProps}><path d="M2.5 12S6 5.8 12 5.8 21.5 12 21.5 12 18 18.2 12 18.2 2.5 12 2.5 12z" /><circle cx="12" cy="12" r="2.8" /></svg>,
+  <svg key="scalable" {...outcomeIconProps}><path d="M3 17.5l5.5-5.5 3.5 3.5L20.5 7" /><path d="M14.5 7h6v6" /></svg>,
+];
+
 const modelLayers = [
   {
     num: "01",
@@ -216,7 +237,7 @@ const ecosystemTiles = [
     num: "02",
     title: "Freight Forwarding",
     desc: "Intelligent support across booking, documentation, freight data, billing and shipment workflows.",
-    image: "/services/Freight Forwarding.png",
+    image: "/services/Freight Forwarding.jpg",
   },
   {
     num: "03",
@@ -232,15 +253,20 @@ const ecosystemTiles = [
   },
 ];
 
-function SectionLabel({ num, text, dark }: { num: string; text: string; dark?: boolean }) {
+function SectionLabel({ text, dark }: { num?: string; text: string; dark?: boolean }) {
   return (
     <span className={`sl-label${dark ? " sl-label--dark" : ""}`}>
-      <span className="sl-label-num">{num}</span>
-      <span className="sl-label-bar" aria-hidden="true" />
       <span>{text}</span>
     </span>
   );
 }
+
+const faIcons = [
+  "/services/order to cash.svg",
+  "/services/procure to pay.svg",
+  "/services/record to report.svg",
+  "/services/FREIGHT AUDIT & REVENUE ASSURANCE.svg",
+];
 
 function ArrowUpRight() {
   return (
@@ -298,19 +324,19 @@ export default function ShippingLogisticsPage() {
       <style>{`
         .sl-page { background: #ffffff; color: #16181d; font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif; overflow-x: clip; }
         .sl-page h1, .sl-page h2, .sl-page h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; }
-        .sl-wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+        .sl-wrap { max-width: 1400px; margin: 0 auto; }
 
-        .sl-label { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #16181d; margin-bottom: 22px; }
-        .sl-label-num { color: #7AA306; font-variant-numeric: tabular-nums; }
-        .sl-label-bar { width: 34px; height: 2px; background: #C6E84A; display: inline-block; }
-        .sl-label--dark { color: rgba(255,255,255,0.85); }
+        .sl-label { display: inline-block; background: #C6E84A; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: 24px; }
+        .sl-label--dark { background: #C6E84A; color: #0f0f0f; }
 
-        .sl-h2 { font-size: clamp(30px, 4.2vw, 48px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.14; margin: 0 0 20px; }
-        .sl-lead { font-size: clamp(16px, 1.35vw, 18px); line-height: 1.75; color: #5A5D66; max-width: 62ch; }
-        .sl-lead--dark { color: rgba(255,255,255,0.66); }
+        .sl-h2 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; color: #0f172a; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 20px; }
+        .sl-h2 span { color: #C6E84A; }
+        .sl-lead { font-size: 19px; font-weight: 400; line-height: 1.8; color: #5A5D66; margin: 0 0 12px; }
+        .sl-lead--dark { color: rgba(255,255,255,0.6); }
 
-        .sl-reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .sl-reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); animation: slRevealSafety 0.8s ease-out 2.5s forwards; }
         .sl-reveal.sl-in { opacity: 1; transform: none; }
+        @keyframes slRevealSafety { to { opacity: 1; transform: none; } }
 
         /* ── 01 HERO ── */
         .sl-hero { position: relative; height: 100vh; height: 100dvh; min-height: 600px; background: #0A1424; overflow: hidden; isolation: isolate; }
@@ -319,21 +345,21 @@ export default function ShippingLogisticsPage() {
           linear-gradient(90deg, rgba(5,10,20,0.96) 0%, rgba(5,10,20,0.88) 28%, rgba(5,10,20,0.55) 55%, rgba(5,10,20,0.14) 82%, rgba(5,10,20,0.06) 100%),
           linear-gradient(180deg, rgba(5,10,20,0.32) 0%, rgba(5,10,20,0) 34%, rgba(5,10,20,0.48) 100%); }
         .sl-hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; z-index: 1; padding: 100px clamp(24px, 8vw, 120px) 0; max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
-        .sl-hero-eyebrow { display: inline-block; background: var(--color-primary); color: var(--color-offblack); padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; margin-bottom: 28px; }
+        .sl-hero-eyebrow { display: inline-block; background: #C6E84A; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: 24px; }
         .sl-hero h1 { font-size: clamp(38px, 5.6vw, 68px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; color: #ffffff; margin: 0 0 26px; max-width: 780px; text-wrap: balance; }
         .sl-hero-sub { font-size: clamp(17px, 1.6vw, 21px); font-weight: 600; line-height: 1.55; color: rgba(255,255,255,0.92); margin: 0 0 18px; max-width: 640px; }
         .sl-hero-body { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.68); margin: 0 0 38px; max-width: 520px; }
         .sl-hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; }
-        .sl-float-words { position: absolute; left: auto !important; top: auto !important; right: clamp(120px, 20vw, 420px) !important; bottom: clamp(48px, 7vh, 110px) !important; z-index: 2; display: flex; flex-direction: row; align-items: center; gap: clamp(14px, 1.8vw, 28px); pointer-events: none; flex-wrap: wrap; }
+        .sl-float-words { position: absolute; left: auto !important; top: auto !important; right: clamp(24px, 3vw, 56px) !important; bottom: clamp(20px, 3.5vh, 44px) !important; z-index: 2; display: flex; flex-direction: row; align-items: center; justify-content: flex-end; gap: clamp(14px, 1.8vw, 28px); pointer-events: none; flex-wrap: nowrap; white-space: nowrap; }
         .sl-float-word { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-weight: 700; font-size: clamp(11px, 1.0vw, 18px); letter-spacing: 0.22em; color: transparent; -webkit-text-stroke: 1px rgba(198,232,74,0.85); white-space: nowrap; text-shadow: 0 0 12px rgba(198,232,74,0.25); }
         .sl-float-dot { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 0; }
 
         /* ── section rhythm ── */
-        .sl-section { padding: clamp(76px, 9vw, 128px) 0; }
+        .sl-section { padding: clamp(76px, 9vw, 128px) 80px; }
 
         /* ── 02 LANDSCAPE ── */
         .sl-land-grid { display: grid; grid-template-columns: 42% 1fr; gap: clamp(40px, 6vw, 96px); align-items: start; }
-        .sl-land-copy p { font-size: 16px; line-height: 1.8; color: #5A5D66; margin: 0 0 18px; }
+        .sl-land-copy p { font-size: 19px; line-height: 1.8; color: #5A5D66; margin: 0 0 12px; }
         .sl-land-figure { margin: 34px 0 0; border-radius: 20px; overflow: hidden; aspect-ratio: 4 / 5; max-width: 420px; }
         .sl-land-figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .sl-challenge-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(28px, 4vw, 56px); }
@@ -353,8 +379,8 @@ export default function ShippingLogisticsPage() {
         .sl-tile:hover .sl-tile-overlay { background: linear-gradient(180deg, rgba(6,12,24,0.25) 0%, rgba(6,12,24,0.92) 100%); }
         .sl-tile-body { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px; }
         .sl-tile-num { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; color: #C6E84A; }
-        .sl-tile-title { font-size: clamp(21px, 1.7vw, 26px); font-weight: 700; margin: 6px 0 0; color: #ffffff; }
-        .sl-tile-desc { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.75); margin: 10px 0 0; opacity: 0; transform: translateY(12px); transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16,1,0.3,1); }
+        .sl-tile-title { font-size: clamp(17px, 1.45vw, 20px); font-weight: 700; margin: 6px 0 0; color: #ffffff; white-space: nowrap; }
+        .sl-tile-desc { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.75); margin: 10px 0 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; min-height: calc(1.65em * 3); opacity: 0; transform: translateY(12px); transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16,1,0.3,1); }
         .sl-tile:hover .sl-tile-desc, .sl-tile:focus-within .sl-tile-desc { opacity: 1; transform: none; }
 
         /* ── 04 IBS ── */
@@ -377,12 +403,21 @@ export default function ShippingLogisticsPage() {
 
         /* ── 05 F&A ── */
         .sl-fa { position: relative; background: #0A1930; color: #ffffff; overflow: hidden; isolation: isolate; }
+        .sl-fa .sl-wrap { position: relative; z-index: 1; }
         .sl-fa-bg { position: absolute; right: 0; top: 0; width: 58%; height: 100%; object-fit: cover; opacity: 0.24; z-index: -1; mask-image: linear-gradient(90deg, transparent 0%, #000 45%); -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 45%); }
-        .sl-fa-grid-wrap { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(40px, 5vw, 80px); align-items: start; }
-        .sl-fa-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-        .sl-fa-card { background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 26px 24px; backdrop-filter: blur(4px); transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
-        .sl-fa-card:hover { border-color: rgba(198,232,74,0.55); transform: translateY(-4px); }
-        .sl-fa-card-title { font-size: 14px; font-weight: 700; letter-spacing: 0.12em; color: #C6E84A; margin: 0 0 14px; min-height: 34px; }
+        .sl-fa-grid-wrap { display: grid; grid-template-columns: 1fr; gap: clamp(32px, 3.5vw, 48px); }
+        .sl-fa-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+        .sl-fa-card { perspective: 1400px; outline: none; cursor: pointer; }
+        .sl-fa-card-inner { position: relative; height: clamp(300px, 30vw, 370px); transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.25, 1); }
+        .sl-fa-card:hover .sl-fa-card-inner, .sl-fa-card:focus-visible .sl-fa-card-inner { transform: rotateY(180deg); }
+        .sl-fa-card-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.045); backdrop-filter: blur(4px); padding: 26px 24px; display: flex; flex-direction: column; }
+        .sl-fa-card-face--back { transform: rotateY(180deg); border-color: rgba(198,232,74,0.45); background: linear-gradient(160deg, rgba(198,232,74,0.12), rgba(255,255,255,0.03)); }
+        .sl-fa-card-face--front { justify-content: center; align-items: center; text-align: center; }
+        .sl-fa-card-icon { width: 92px; height: 92px; flex: 0 0 auto; border-radius: 22px; background: rgba(198,232,74,0.14); border: 1px solid rgba(198,232,74,0.35); color: #C6E84A; display: flex; align-items: center; justify-content: center; margin-bottom: 26px; box-shadow: 0 0 34px rgba(198,232,74,0.18); }
+        .sl-fa-card-icon img { width: 54px; height: 54px; object-fit: contain; display: block; }
+        .sl-fa-card-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 0.08em; color: #ffffff; margin: 0; line-height: 1.45; max-width: 220px; }
+        .sl-fa-card-hint { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; font-size: 11.5px; letter-spacing: 0.14em; color: rgba(255,255,255,0.5); }
+        .sl-fa-card-back-title { font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; color: #C6E84A; margin: 0 0 12px; }
         .sl-fa-card ul { list-style: none; margin: 0; padding: 0; }
         .sl-fa-card li { font-size: 14.5px; color: rgba(255,255,255,0.78); padding: 7px 0; border-top: 1px solid rgba(255,255,255,0.08); }
         .sl-fa-card li:first-child { border-top: none; }
@@ -398,10 +433,10 @@ export default function ShippingLogisticsPage() {
         .sl-ai-col--right { align-items: flex-start; }
         .sl-ai-col--left { align-items: flex-end; }
         .sl-ai-card { position: relative; background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 18px 22px; max-width: 320px; transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
-        .sl-ai-card:hover { border-color: rgba(103,232,249,0.5); transform: translateY(-3px); }
+        .sl-ai-card:hover { border-color: rgba(198,232,74,0.5); transform: translateY(-3px); }
         .sl-ai-card-name { font-size: 15.5px; font-weight: 700; color: #ffffff; }
-        .sl-ai-card-verbs { font-size: 12.5px; letter-spacing: 0.08em; color: #67E8F9; margin-top: 6px; }
-        .sl-ai-card::after { content: ""; position: absolute; top: 50%; width: clamp(16px, 2.4vw, 40px); height: 2px; background-image: repeating-linear-gradient(90deg, rgba(103,232,249,0.7) 0 5px, transparent 5px 11px); background-size: 11px 2px; }
+        .sl-ai-card-verbs { font-size: 12.5px; letter-spacing: 0.08em; color: #C6E84A; margin-top: 6px; }
+        .sl-ai-card::after { content: ""; position: absolute; top: 50%; width: clamp(16px, 2.4vw, 40px); height: 2px; background-image: repeating-linear-gradient(90deg, rgba(198,232,74,0.7) 0 5px, transparent 5px 11px); background-size: 11px 2px; }
         .sl-ai-col--left .sl-ai-card::after { right: -1px; transform: translateX(100%); }
         .sl-ai-col--right .sl-ai-card::after { left: -1px; transform: translateX(-100%); }
         .sl-ai-core { position: relative; aspect-ratio: 1 / 1; width: 100%; max-width: 460px; justify-self: center; }
@@ -410,27 +445,37 @@ export default function ShippingLogisticsPage() {
         .sl-orbit--rev { animation-direction: reverse; animation-duration: 80s; }
 
         /* ── 07 OUTCOMES ── */
-        .sl-outcome { display: grid; grid-template-columns: auto 1fr; column-gap: clamp(24px, 4vw, 64px); padding: clamp(30px, 4vw, 48px) 0; border-top: 1px solid rgba(0,0,0,0.09); align-items: baseline; }
-        .sl-outcome:last-child { border-bottom: 1px solid rgba(0,0,0,0.09); }
-        .sl-outcome-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; color: #7AA306; letter-spacing: 0.1em; white-space: nowrap; }
-        .sl-outcome-word { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(40px, 7vw, 88px); font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: #16181d; margin: 0; }
-        .sl-outcome-sub { display: block; font-size: clamp(16px, 1.6vw, 20px); font-style: italic; font-weight: 500; color: #33363d; margin-top: 10px; }
-        .sl-outcome-desc { font-size: 15.5px; line-height: 1.7; color: #5A5D66; max-width: 52ch; margin: 14px 0 0; }
+        .sl-outcomes { background: #F7F8F4; }
+        .sl-outcome-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 52px; }
+        .sl-outcome { position: relative; overflow: hidden; background: #ffffff; border: 1px solid rgba(10,25,48,0.1); border-radius: 20px; padding: clamp(24px, 2.2vw, 32px); display: flex; flex-direction: column; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.35s ease; }
+        .sl-outcome:hover { transform: translateY(-5px); border-color: rgba(122,163,6,0.45); box-shadow: 0 22px 44px -26px rgba(10,25,48,0.3); }
+        .sl-outcome::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, #C6E84A, rgba(198,232,74,0)); opacity: 0; transition: opacity 0.3s ease; }
+        .sl-outcome:hover::after { opacity: 1; }
+        .sl-outcome-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid rgba(10,25,48,0.08); }
+        .sl-outcome-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #7AA306; letter-spacing: 0.14em; font-variant-numeric: tabular-nums; }
+        .sl-outcome-chip { width: 52px; height: 52px; flex: 0 0 auto; border-radius: 50%; border: 1px solid rgba(10,25,48,0.14); display: flex; align-items: center; justify-content: center; color: #7AA306; transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
+        .sl-outcome:hover .sl-outcome-chip { background: var(--color-primary); border-color: var(--color-primary); color: #16181d; }
+        .sl-outcome-word { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(24px, 2.2vw, 32px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.05; color: #16181d; margin: 20px 0 0; }
+        .sl-outcome-sub { font-size: 15px; font-weight: 600; color: #7AA306; margin: 8px 0 0; }
+        .sl-outcome-desc { font-size: 15px; line-height: 1.7; color: #5A5D66; margin: 12px 0 0; }
+        @media (min-width: 700px) { .sl-outcome-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1081px) {
+          .sl-outcome-grid { grid-template-columns: repeat(6, 1fr); gap: 20px; }
+          .sl-outcome:nth-child(-n+3) { grid-column: span 2; }
+          .sl-outcome:nth-child(n+4) { grid-column: span 3; }
+        }
 
         /* ── 08 MODEL ── */
         .sl-model { background: #081020; color: #ffffff; }
         .sl-model-stack { max-width: 980px; margin: 56px auto 0; display: flex; flex-direction: column; align-items: stretch; }
-        .sl-layer { border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 24px clamp(20px, 3vw, 36px); background: rgba(255,255,255,0.03); display: grid; grid-template-columns: minmax(200px, 0.85fr) 1.15fr; gap: 14px 32px; align-items: center; transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
-        .sl-layer:hover { border-color: rgba(103,232,249,0.45); transform: translateY(-3px); }
-        .sl-layer--core { border-color: rgba(198,232,74,0.5); background: linear-gradient(135deg, rgba(198,232,74,0.08), rgba(103,232,249,0.05)); }
-        .sl-layer-head { display: flex; align-items: baseline; gap: 14px; }
-        .sl-layer-num { font-size: 13px; font-weight: 700; color: #67E8F9; letter-spacing: 0.12em; }
-        .sl-layer--core .sl-layer-num { color: #C6E84A; }
-        .sl-layer-name { font-size: clamp(15px, 1.5vw, 19px); font-weight: 700; letter-spacing: 0.06em; }
-        .sl-layer-items { display: flex; flex-wrap: wrap; row-gap: 8px; font-size: 14px; color: rgba(255,255,255,0.8); }
-        .sl-layer-pipe { color: rgba(103,232,249,0.55); padding: 0 10px; }
-        .sl-layer--core .sl-layer-pipe { color: rgba(198,232,74,0.6); }
-        .sl-flow { align-self: center; height: 44px; width: 2px; background-image: repeating-linear-gradient(180deg, rgba(103,232,249,0.85) 0 6px, transparent 6px 14px); background-size: 2px 14px; animation: slFlowDown 1.1s linear infinite; }
+        .sl-layer { border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 24px clamp(20px, 3vw, 36px); background: rgba(255,255,255,0.03); display: grid; grid-template-columns: auto 1fr; gap: 14px clamp(32px, 5vw, 64px); align-items: center; transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1), background 0.3s ease; }
+        .sl-layer:hover { border-color: rgba(198,232,74,0.5); transform: translateY(-3px); background: linear-gradient(135deg, rgba(198,232,74,0.08), rgba(198,232,74,0.05)); }
+        .sl-layer-head { display: flex; align-items: baseline; gap: 12px; white-space: nowrap; width: 360px; }
+        .sl-layer-num { font-size: 13px; font-weight: 700; color: #C6E84A; letter-spacing: 0.12em; }
+        .sl-layer-name { font-size: clamp(13px, 1.4vw, 18px); font-weight: 700; letter-spacing: 0.04em; }
+        .sl-layer-items { display: flex; flex-wrap: nowrap; white-space: nowrap; row-gap: 8px; font-size: 13px; color: rgba(255,255,255,0.8); }
+        .sl-layer-pipe { color: rgba(198,232,74,0.55); padding: 0 7px; }
+        .sl-flow { align-self: center; height: 44px; width: 2px; background-image: repeating-linear-gradient(180deg, rgba(198,232,74,0.85) 0 6px, transparent 6px 14px); background-size: 2px 14px; animation: slFlowDown 1.1s linear infinite; }
 
         /* ── 09 WHY ── */
         .sl-why-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(20px, 2.6vw, 36px); margin-top: 54px; }
@@ -448,20 +493,19 @@ export default function ShippingLogisticsPage() {
         .sl-trans-body { background: #ffffff; display: flex; flex-direction: column; justify-content: center; padding: clamp(48px, 6vw, 96px) clamp(28px, 6vw, 96px); }
         .sl-trans-block { margin-top: 26px; }
         .sl-trans-block-title { font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #7AA306; margin: 0 0 8px; }
-        .sl-trans-block p { font-size: 15.5px; line-height: 1.75; color: #44474e; margin: 0; }
+        .sl-trans-block p { font-size: 17px; line-height: 1.8; color: #5A5D66; margin: 0; }
         .sl-trans-block ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
         .sl-trans-block li { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: #16181d; }
         .sl-trans-block li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #C6E84A; box-shadow: 0 0 0 3px rgba(198,232,74,0.25); flex: 0 0 auto; }
         .sl-trans-cta { margin-top: 36px; }
 
         /* ── 11 FINAL CTA ── */
-        .sl-final { position: relative; background: #071120; color: #ffffff; overflow: hidden; isolation: isolate; }
-        .sl-final-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 68%; z-index: -2; }
-        .sl-final-overlay { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(7,17,32,0.86) 0%, rgba(7,17,32,0.72) 45%, rgba(7,17,32,0.92) 100%); }
+        .sl-final { position: relative; background: #0f0f0f; color: #ffffff; overflow: hidden; isolation: isolate; }
+        .sl-final-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 400px; background: radial-gradient(circle, rgba(198,232,74,0.12) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+        .sl-final .sl-wrap { position: relative; z-index: 1; }
         .sl-final-inner { text-align: center; max-width: 780px; margin: 0 auto; }
-        .sl-final .sl-label { justify-content: center; width: 100%; }
-        .sl-final h2 { font-size: clamp(32px, 4.6vw, 54px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.12; margin: 0 0 20px; }
-        .sl-final-body { font-size: clamp(16px, 1.4vw, 18px); line-height: 1.75; color: rgba(255,255,255,0.72); margin: 0 auto 40px; max-width: 60ch; }
+        .sl-final h2 { font-size: clamp(32px, 5vw, 48px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 20px; color: #ffffff; }
+        .sl-final-body { font-size: 17px; line-height: 1.8; color: rgba(255,255,255,0.6); margin: 20px auto 40px; max-width: 640px; }
         .sl-final-ctas { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
 
         /* ── animations ── */
@@ -488,32 +532,42 @@ export default function ShippingLogisticsPage() {
         }
 
         @media (max-width: 900px) {
+          .sl-section { padding-left: 40px; padding-right: 40px; }
           .sl-land-grid { grid-template-columns: 1fr; }
           .sl-land-figure { max-width: 520px; aspect-ratio: 3 / 2; }
           .sl-eco-grid { grid-template-columns: 1fr 1fr; }
           .sl-panel { grid-template-columns: 1fr; }
           .sl-panel-visual { min-height: 260px; }
-          .sl-float-words { bottom: clamp(28px, 4.5vh, 64px) !important; top: auto !important; gap: 12px; right: clamp(96px, 14vw, 300px) !important; }
+          .sl-float-words { bottom: clamp(20px, 3vh, 40px) !important; top: auto !important; gap: 12px; right: clamp(20px, 3.5vw, 40px) !important; flex-wrap: nowrap; white-space: nowrap; }
           .sl-float-word { font-size: clamp(10px, 1.1vw, 16px); -webkit-text-stroke: 1px rgba(198,232,74,0.8); }
           .sl-fa-grid-wrap { grid-template-columns: 1fr; }
+          .sl-fa-cards { grid-template-columns: repeat(2, 1fr); }
           .sl-fa-bg { width: 100%; mask-image: linear-gradient(180deg, transparent 0%, #000 60%); -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 60%); }
           .sl-trans { grid-template-columns: 1fr; }
-          .sl-layer { grid-template-columns: 1fr; }
+          .sl-layer-name { font-size: 12px; letter-spacing: 0.03em; }
+          .sl-layer-head { gap: 8px; width: 270px; }
+          .sl-layer-items { font-size: 11.5px; }
+          .sl-layer-pipe { padding: 0 5px; }
         }
 
         @media (max-width: 640px) {
+          .sl-section { padding-left: 20px; padding-right: 20px; }
           .sl-challenge-list { grid-template-columns: 1fr; }
           .sl-eco-grid { grid-template-columns: 1fr; }
           .sl-fa-cards { grid-template-columns: 1fr; }
           .sl-why-grid { grid-template-columns: 1fr; }
           .sl-trans-block ul { grid-template-columns: 1fr; }
-          .sl-float-words { right: 32px !important; bottom: 18px !important; top: auto !important; gap: 8px; }
-          .sl-float-word { font-size: 10px; letter-spacing: 0.18em; -webkit-text-stroke: 1px rgba(198,232,74,0.85); }
+          .sl-layer { grid-template-columns: 1fr; gap: 10px; }
+          .sl-layer-head { width: auto; }
+          .sl-layer-items { flex-wrap: wrap; white-space: normal; }
+          .sl-float-words { right: 24px !important; bottom: 16px !important; top: auto !important; gap: 8px; flex-wrap: nowrap; white-space: nowrap; }
+          .sl-float-word { font-size: 9px; letter-spacing: 0.15em; -webkit-text-stroke: 1px rgba(198,232,74,0.85); }
           .sl-hero-content { padding: 120px 24px 90px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .sl-reveal { opacity: 1; transform: none; transition: none; }
+          .sl-reveal { opacity: 1; transform: none; transition: none; animation: none; }
+          .sl-fa-card-inner { transition: none; }
           .sl-float-word, .sl-flow, .sl-orbit, .sl-orbit--rev, .sl-ai-card::after { animation: none; }
           .sl-tile img, .sl-tile-desc, .sl-challenge-item, .sl-fa-card, .sl-ai-card, .sl-layer, .sl-why-col { transition: none; }
           html { scroll-behavior: auto; }
@@ -522,7 +576,7 @@ export default function ShippingLogisticsPage() {
 
       {/* ══════════ 01 HERO ══════════ */}
       <section className="sl-hero">
-        <img src="/services/slhero.png" alt="" className="sl-hero-img" fetchPriority="high" />
+        <img src="/services/slhero.jpg" alt="" className="sl-hero-img" fetchPriority="high" />
         <div className="sl-hero-overlay" aria-hidden="true" />
         <div className="sl-float-words" aria-hidden="true">
           <span className="sl-float-word">OPERATIONS</span>
@@ -596,8 +650,8 @@ export default function ShippingLogisticsPage() {
         <div className="sl-wrap">
           <div className="sl-reveal">
             <SectionLabel num="03" text="ACROSS THE LOGISTICS ECOSYSTEM" dark />
-            <h2 className="sl-h2" style={{ color: "#ffffff", maxWidth: "18ch" }}>
-              Built around the way global logistics actually works.
+            <h2 className="sl-h2" style={{ color: "#ffffff" }}>
+              Built around the way <span style={{ color: "#C6E84A" }}>global logistics actually works</span>
             </h2>
             <p className="sl-lead sl-lead--dark">
               From ocean shipping and freight forwarding to 3PL and trade operations, our solutions are designed
@@ -625,7 +679,7 @@ export default function ShippingLogisticsPage() {
         <div className="sl-wrap">
           <div className="sl-reveal">
             <SectionLabel num="04" text="INTELLIGENT BUSINESS SERVICES" />
-            <h2 className="sl-h2">From process execution to intelligent operations.</h2>
+            <h2 className="sl-h2">From process execution to<span style={{ color: "#C6E84A" }}> intelligent operations. </span></h2>
             <p className="sl-lead">
               Sytrion combines logistics domain expertise, standardized processes, automation and AI to help
               enterprises run high-volume operational workflows with greater speed, accuracy and control.
@@ -687,7 +741,7 @@ export default function ShippingLogisticsPage() {
           <div className="sl-fa-grid-wrap">
             <div className="sl-reveal">
               <SectionLabel num="05" text="FINANCE & ACCOUNTING" dark />
-              <h2 className="sl-h2" style={{ color: "#ffffff" }}>Finance that understands freight.</h2>
+              <h2 className="sl-h2" style={{ color: "#ffffff" }}>Finance that understands <span style={{ color: "#C6E84A" }}>freight</span>.</h2>
               <p className="sl-lead sl-lead--dark">
                 Shipping and logistics finance operates at the intersection of shipments, rates, vendors, customers,
                 currencies and contracts. Sytrion brings logistics context and finance expertise together to build
@@ -696,14 +750,23 @@ export default function ShippingLogisticsPage() {
             </div>
             <div className="sl-reveal">
               <div className="sl-fa-cards">
-                {faCapabilities.map((cap) => (
-                  <div key={cap.title} className="sl-fa-card">
-                    <h3 className="sl-fa-card-title">{cap.title}</h3>
-                    <ul>
-                      {cap.items.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
+                {faCapabilities.map((cap, i) => (
+                  <div key={cap.title} className="sl-fa-card" tabIndex={0}>
+                    <div className="sl-fa-card-inner">
+                      <div className="sl-fa-card-face sl-fa-card-face--front">
+                        <span className="sl-fa-card-icon"><img src={faIcons[i]} alt="" /></span>
+                        <h3 className="sl-fa-card-title">{cap.title}</h3>
+                        <span className="sl-fa-card-hint">HOVER TO EXPLORE ↻</span>
+                      </div>
+                      <div className="sl-fa-card-face sl-fa-card-face--back">
+                        <h4 className="sl-fa-card-back-title">{cap.title}</h4>
+                        <ul>
+                          {cap.items.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 ))}
                 <div className="sl-capital-strip">
@@ -728,12 +791,12 @@ export default function ShippingLogisticsPage() {
       {/* ══════════ 06 AI / AUTOMATION INTELLIGENCE ══════════ */}
       <section className="sl-section sl-ai">
         <div className="sl-wrap">
-          <div className="sl-reveal" style={{ textAlign: "center" }}>
+          <div className="sl-reveal">
             <SectionLabel num="06" text="AI / AUTOMATION INTELLIGENCE" dark />
-            <h2 className="sl-h2" style={{ color: "#ffffff", maxWidth: "22ch", marginLeft: "auto", marginRight: "auto" }}>
-              Every process is an opportunity to work smarter.
+            <h2 className="sl-h2" style={{ color: "#ffffff" }}>
+              Every process is an opportunity to <span style={{ color: "#C6E84A" }}>work smarter</span>.
             </h2>
-            <p className="sl-lead sl-lead--dark" style={{ marginLeft: "auto", marginRight: "auto" }}>
+            <p className="sl-lead sl-lead--dark">
               We apply AI, automation and analytics where they create practical operational value — reducing
               repetitive effort, improving data quality and helping teams focus on decisions that matter.
             </p>
@@ -753,28 +816,28 @@ export default function ShippingLogisticsPage() {
               <svg viewBox="0 0 500 500" fill="none">
                 <defs>
                   <radialGradient id="slCoreGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#67E8F9" stopOpacity="0.16" />
-                    <stop offset="55%" stopColor="#67E8F9" stopOpacity="0.05" />
-                    <stop offset="100%" stopColor="#67E8F9" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#C6E84A" stopOpacity="0.16" />
+                    <stop offset="55%" stopColor="#C6E84A" stopOpacity="0.05" />
+                    <stop offset="100%" stopColor="#C6E84A" stopOpacity="0" />
                   </radialGradient>
                   <linearGradient id="slCoreRing" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#67E8F9" stopOpacity="0.7" />
+                    <stop offset="0%" stopColor="#C6E84A" stopOpacity="0.7" />
                     <stop offset="100%" stopColor="#C6E84A" stopOpacity="0.5" />
                   </linearGradient>
                 </defs>
                 <circle cx="250" cy="250" r="240" fill="url(#slCoreGlow)" />
                 <g className="sl-orbit">
                   <circle cx="250" cy="250" r="190" stroke="url(#slCoreRing)" strokeOpacity="0.35" strokeWidth="1" strokeDasharray="3 9" />
-                  <circle cx="250" cy="60" r="4" fill="#67E8F9" fillOpacity="0.9" />
+                  <circle cx="250" cy="60" r="4" fill="#C6E84A" fillOpacity="0.9" />
                   <circle cx="414" cy="345" r="3" fill="#C6E84A" fillOpacity="0.8" />
-                  <circle cx="86" cy="345" r="2.5" fill="#67E8F9" fillOpacity="0.6" />
+                  <circle cx="86" cy="345" r="2.5" fill="#C6E84A" fillOpacity="0.6" />
                 </g>
                 <g className="sl-orbit sl-orbit--rev">
-                  <circle cx="250" cy="250" r="130" stroke="#67E8F9" strokeOpacity="0.3" strokeWidth="1" strokeDasharray="2 7" />
+                  <circle cx="250" cy="250" r="130" stroke="#C6E84A" strokeOpacity="0.3" strokeWidth="1" strokeDasharray="2 7" />
                   <circle cx="380" cy="250" r="3" fill="#C6E84A" fillOpacity="0.85" />
-                  <circle cx="155" cy="137" r="2.5" fill="#67E8F9" fillOpacity="0.7" />
+                  <circle cx="155" cy="137" r="2.5" fill="#C6E84A" fillOpacity="0.7" />
                 </g>
-                <g stroke="#67E8F9" strokeOpacity="0.35" strokeWidth="1">
+                <g stroke="#C6E84A" strokeOpacity="0.35" strokeWidth="1">
                   <line x1="250" y1="250" x2="250" y2="60" />
                   <line x1="250" y1="250" x2="414" y2="345" />
                   <line x1="250" y1="250" x2="86" y2="345" />
@@ -784,7 +847,7 @@ export default function ShippingLogisticsPage() {
                 <circle cx="250" cy="250" r="58" fill="#0A1424" stroke="url(#slCoreRing)" strokeWidth="1.5" />
                 <circle cx="250" cy="250" r="34" fill="none" stroke="#C6E84A" strokeOpacity="0.7" strokeWidth="1" strokeDasharray="4 6" />
                 <circle cx="250" cy="250" r="12" fill="#C6E84A" fillOpacity="0.9" />
-                <circle cx="250" cy="250" r="22" stroke="#67E8F9" strokeOpacity="0.5" strokeWidth="1" fill="none" />
+                <circle cx="250" cy="250" r="22" stroke="#C6E84A" strokeOpacity="0.5" strokeWidth="1" fill="none" />
               </svg>
             </div>
 
@@ -801,23 +864,22 @@ export default function ShippingLogisticsPage() {
       </section>
 
       {/* ══════════ 07 BUSINESS OUTCOMES ══════════ */}
-      <section className="sl-section">
+      <section className="sl-section sl-outcomes">
         <div className="sl-wrap">
           <div className="sl-reveal">
             <SectionLabel num="07" text="BUSINESS OUTCOMES" />
-            <h2 className="sl-h2">Better operations move business forward.</h2>
+            <h2 className="sl-h2">Better operations move <span style={{ color: "#C6E84A" }}>business forward. </span></h2>
           </div>
-          <div className="sl-reveal">
-            {outcomes.map((o) => (
+          <div className="sl-reveal sl-outcome-grid">
+            {outcomes.map((o, i) => (
               <article key={o.num} className="sl-outcome">
-                <span className="sl-outcome-num">{o.num} —</span>
-                <div>
-                  <h3 className="sl-outcome-word">
-                    {o.word}
-                    <span className="sl-outcome-sub">{o.sub}</span>
-                  </h3>
-                  <p className="sl-outcome-desc">{o.desc}</p>
+                <div className="sl-outcome-top">
+                  <span className="sl-outcome-num">{o.num}</span>
+                  <span className="sl-outcome-chip" aria-hidden="true">{outcomeIcons[i]}</span>
                 </div>
+                <h3 className="sl-outcome-word">{o.word}</h3>
+                <p className="sl-outcome-sub">{o.sub}</p>
+                <p className="sl-outcome-desc">{o.desc}</p>
               </article>
             ))}
           </div>
@@ -827,15 +889,15 @@ export default function ShippingLogisticsPage() {
       {/* ══════════ 08 CONNECTED OPERATING MODEL ══════════ */}
       <section className="sl-section sl-model">
         <div className="sl-wrap">
-          <div className="sl-reveal" style={{ textAlign: "center" }}>
+          <div className="sl-reveal">
             <SectionLabel num="08" text="CONNECTED OPERATING MODEL" dark />
-            <h2 className="sl-h2" style={{ color: "#ffffff" }}>One connected operating model.</h2>
+            <h2 className="sl-h2" style={{ color: "#ffffff" }}>One connected <span style={{ color: "#C6E84A" }}>operating model. </span></h2>
           </div>
           <div className="sl-model-stack">
             {modelLayers.map((layer, i) => (
               <div key={layer.num} style={{ display: "contents" }}>
                 {i > 0 && <div className="sl-flow" aria-hidden="true" />}
-                <div className={`sl-layer sl-reveal${layer.num === "02" ? " sl-layer--core" : ""}`}>
+                <div className="sl-layer sl-reveal">
                   <div className="sl-layer-head">
                     <span className="sl-layer-num">{layer.num} —</span>
                     <span className="sl-layer-name">{layer.name}</span>
@@ -860,7 +922,7 @@ export default function ShippingLogisticsPage() {
         <div className="sl-wrap">
           <div className="sl-reveal">
             <SectionLabel num="09" text="WHY SYTRION" />
-            <h2 className="sl-h2">Domain understanding meets intelligent execution.</h2>
+            <h2 className="sl-h2">Domain understanding meets <span style={{ color: "#C6E84A" }}>intelligent execution</span>.</h2>
           </div>
           <div className="sl-why-grid">
             {whyColumns.map((col) => (
@@ -887,7 +949,7 @@ export default function ShippingLogisticsPage() {
         <div className="sl-trans-body">
           <div className="sl-reveal">
             <SectionLabel num="10" text="TRANSFORMATION IN ACTION" />
-            <h2 className="sl-h2">Reimagining document-intensive logistics operations.</h2>
+            <h2 className="sl-h2">Reimagining document-intensive <span style={{ color: "#C6E84A" }}>logistics operations</span>.</h2>
             <div className="sl-trans-block">
               <h3 className="sl-trans-block-title">The Challenge</h3>
               <p>
@@ -922,22 +984,21 @@ export default function ShippingLogisticsPage() {
 
       {/* ══════════ 11 LET'S MOVE FORWARD ══════════ */}
       <section className="sl-section sl-final">
-        <img src="/home/shipping.jpg" alt="" className="sl-final-img" loading="lazy" decoding="async" />
-        <div className="sl-final-overlay" aria-hidden="true" />
+        <div className="sl-final-glow" aria-hidden="true" />
         <div className="sl-wrap">
           <div className="sl-final-inner sl-reveal">
             <SectionLabel num="11" text="LET'S MOVE FORWARD" dark />
-            <h2>Ready to transform your logistics operations?</h2>
+            <h2>Ready to transform your <span style={{ color: "#C6E84A" }}>logistics operations</span>?</h2>
             <p className="sl-final-body">
               Whether you&apos;re rethinking documentation, freight operations, finance or automation, Sytrion can
               help you build a smarter and more scalable operating model.
             </p>
             <div className="sl-final-ctas">
               <Link href="/contact" className="btn-primary">
-                Talk to Our Experts ↗
+               Schedule a Consultation
               </Link>
               <Link href="/contact" className="btn-secondary">
-                Schedule a Consultation
+                 Talk to Our Experts ↗
               </Link>
             </div>
           </div>
