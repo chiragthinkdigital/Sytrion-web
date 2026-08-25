@@ -267,43 +267,61 @@ const modelLayers = [
   },
 ];
 
+const whyIconProps = {
+  width: 22,
+  height: 22,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 2,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  "aria-hidden": true,
+};
+
 const whyPoints = [
   {
     num: "01",
     name: "Domain-led",
     desc: "Operations designed around healthcare's complex administrative workflows.",
+    icon: <svg key="domain" {...whyIconProps}><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>,
   },
   {
     num: "02",
     name: "AI-first",
     desc: "Intelligence applied where it can simplify work and improve operational decision support.",
+    icon: <svg key="ai" {...whyIconProps}><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.5"/><circle cx="12" cy="16" r="4"/><path d="M12 12v-2"/><path d="M8 20h8"/></svg>,
   },
   {
     num: "03",
     name: "Human + Digital",
     desc: "Automation and skilled teams working together.",
+    icon: <svg key="human" {...whyIconProps}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
   },
   {
     num: "04",
     name: "Data-driven",
     desc: "Better information supporting better operational decisions.",
+    icon: <svg key="data" {...whyIconProps}><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg>,
   },
   {
     num: "05",
     name: "Secure by Design",
     desc: "Controlled processes, access and governance embedded into delivery.",
+    icon: <svg key="secure" {...whyIconProps}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>,
   },
   {
     num: "06",
     name: "Built to Scale",
     desc: "Flexible models designed around changing operational requirements.",
+    icon: <svg key="scale" {...whyIconProps}><path d="M3 17.5l5.5-5.5 3.5 3.5L20.5 7"/><path d="M14.5 7h6v6"/><path d="M3 7h4v4"/><path d="M17 13v4h-4"/></svg>,
   },
 ];
 
-function HcLabel({ num, text, light }: { num: string; text: string; light?: boolean }) {
+function HcLabel({ text, light }: { text: string; light?: boolean }) {
   return (
     <span className={`hc-label${light ? " hc-label--light" : ""}`}>
-      <em>{num}</em> / {text}
+      {text}
     </span>
   );
 }
@@ -384,7 +402,10 @@ export default function HealthcareOperationsPage() {
         .hc-section-light .hc-copy { color: #5A5D66; }
         .hc-section-dark .hc-copy, .hc-section-navy .hc-copy { color: rgba(255,255,255,0.6); }
 
-        .hc-land-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; }
+        .hc-land-grid { margin-bottom: 0; }
+        .hc-land-row { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; margin-top: 40px; }
+        .hc-section-landscape { padding-bottom: clamp(40px, 5vw, 60px); }
+        .hc-landscape-text { }
         .hc-landscape-left { }
         .hc-head h2 { position: relative; padding-bottom: 12px; }
         .hc-head h2::after { content: ""; display: block; width: 64px; height: 4px; background: #C4E538; margin-top: 14px; }
@@ -399,7 +420,7 @@ export default function HealthcareOperationsPage() {
         .hc-challenge-icon { width: 34px; height: 34px; border-radius: 9px; background: #0A1628; display: flex; align-items: center; justify-content: center; }
         .hc-challenge-icon svg { width: 16px; height: 16px; stroke: #C4E538; fill: none; stroke-width: 2; }
         .hc-challenge-label { font-size: 16px; font-weight: 600; color: #0A1628; }
-        .hc-approach { border-top: 1px solid #E2E5E9; padding: 64px 0 0; display: grid; grid-template-columns: 260px 1fr; gap: 40px; align-items: start; }
+        .hc-approach { border-top: 1px solid #E2E5E9; padding: 40px 0 0; display: grid; grid-template-columns: 260px 1fr; gap: 40px; align-items: start; }
         .hc-approach-label { font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #8A93A3; }
         .hc-approach-text { font-size: 30px; line-height: 1.55; color: #0A1628; font-weight: 500; max-width: 760px; }
         .hc-approach-text em { font-style: normal; font-weight: 600; }
@@ -494,7 +515,7 @@ export default function HealthcareOperationsPage() {
         .hc-clin-accordion { margin-top:48px; }
         .hc-clin-item { background:#0B1729; border:1px solid #173049; border-radius:10px; margin-bottom:8px; overflow:hidden; }
         .hc-clin-header { width:100%; display:flex; align-items:center; justify-content:space-between; padding:16px 20px; background:transparent; border:none; color:#F5F7FA; font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:15px; font-weight:600; text-align:left; cursor:pointer; }
-        .hc-clin-header:focus { outline:2px solid #5EE6FF; outline-offset:2px; }
+        .hc-clin-header:focus { outline:none; }
         .hc-clin-chevron { color:#5EE6FF; transition:transform .25s ease; flex:0 0 auto; margin-left:12px; }
         .hc-clin-chevron[data-open="true"] { transform:rotate(180deg); }
         .hc-clin-panel { max-height:0; overflow:hidden; transition:max-height .25s ease; }
@@ -524,25 +545,30 @@ export default function HealthcareOperationsPage() {
         .hc-layer-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #ffffff; }
         .hc-layer-items { font-size: 12.5px; letter-spacing: 0.05em; color: rgba(255,255,255,0.62); }
 
-        .hc-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(40px, 5vw, 64px) clamp(32px, 4vw, 56px); margin-top: 64px; }
-        .hc-why { border-top: 2px solid var(--hcc); padding-top: 22px; }
-        .hc-why-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: 0.16em; color: #7AA306; font-variant-numeric: tabular-nums; }
-        .hc-why h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 19px; font-weight: 700; color: #0C1B30; margin: 10px 0 0; }
-        .hc-why p { font-size: 14.5px; line-height: 1.7; color: #5A6B7F; margin: 8px 0 0; }
+        .hc-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+        .hc-why-card { position: relative; border-radius: 16px; padding: 28px 24px 26px; background: #FAFBFC; border: 1px solid #EDF0F3; display: flex; flex-direction: column; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease; }
+        .hc-why-card::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; border-radius: 0 0 16px 16px; background: linear-gradient(90deg, #7AA306, #C6E84A); opacity: 0; transition: opacity 0.35s ease; }
+        .hc-why-card:hover { transform: translateY(-4px); border-color: rgba(122,163,6,0.35); box-shadow: 0 12px 30px -12px rgba(10,22,40,0.12); }
+        .hc-why-card:hover::after { opacity: 1; }
+        .hc-why-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(198,232,74,0.12); border: 1px solid rgba(122,163,6,0.2); display: flex; align-items: center; justify-content: center; color: #618300; margin-bottom: 18px; transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.35s ease; }
+        .hc-why-card:hover .hc-why-icon { background: #C6E84A; border-color: #C6E84A; color: #0C1B30; transform: scale(1.06); }
+        .hc-why-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; color: #7AA306; font-variant-numeric: tabular-nums; }
+        .hc-why-card h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 17px; font-weight: 700; color: #0C1B30; margin: 8px 0 0; }
+        .hc-why-card p { font-size: 14px; line-height: 1.65; color: #5A6B7F; margin: 8px 0 0; }
 
-        .hc-transform { display:grid; grid-template-columns:1fr 1fr; min-height:640px; isolation:isolate; overflow:hidden; }
+        .hc-transform { display:grid; grid-template-columns:1fr 1fr; min-height:700px; isolation:isolate; overflow:hidden; }
         .hc-transform-panel { padding:56px 64px; display:flex; }
         .hc-transform-panel--dark { position:relative; background:radial-gradient(circle at 30% 20%, #132745 0%, #0A1628 55%, #050B14 100%); color:#F5F7FA; overflow:hidden; }
         .hc-transform-panel--dark::before { content:""; position:absolute; left:-80px; bottom:-80px; width:380px; height:380px; background:radial-gradient(circle, rgba(196,229,56,0.12), transparent 70%); pointer-events:none; }
         .hc-transform-panel--light { background:#FFFFFF; color:#0A1628; }
         .hc-transform-panel-inner { width:100%; display:flex; flex-direction:column; }
         .hc-transform-panel--light .hc-transform-panel-inner { justify-content:center; }
-        .hc-transform-badge { display:inline-block; background:#C4E538; color:#2B3B0A; padding:6px 14px; border-radius:999px; font-weight:700; font-size:12px; letter-spacing:.04em; text-transform:uppercase; margin-bottom:24px; }
+        .hc-transform-badge { display:inline-block; align-self:flex-start; background:#C4E538; color:#2B3B0A; padding:5px 14px; border-radius:999px; font-weight:700; font-size:11px; letter-spacing:.04em; text-transform:uppercase; margin-bottom:24px; }
         .hc-transform h3 { font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:clamp(22px,2.4vw,30px); font-weight:600; margin:22px 0 0; color:inherit; }
         .hc-transform-panel--dark > .hc-transform-panel-inner > p { font-size:16px; line-height:1.75; margin:14px 0 0; max-width:340px; color:#93A0B4; }
         .hc-transform-panel--light > .hc-transform-panel-inner > p { font-size:16px; line-height:1.75; margin:14px 0 0; max-width:460px; color:#5B6472; }
-        .hc-transform-illustration { flex:1; display:flex; align-items:flex-end; justify-content:center; margin-top:40px; }
-        .hc-transform-illustration svg { width:100%; max-width:420px; height:auto; }
+        .hc-transform-illustration { flex:1; display:flex; align-items:flex-end; justify-content:center; margin-top:32px; }
+        .hc-transform-illustration svg { width:100%; max-width:480px; height:auto; }
         .hc-pot-heading { display:flex; align-items:center; gap:12px; margin:28px 0 16px; font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:19px; font-weight:700; color:#0A1628; text-transform:uppercase; letter-spacing:.04em; }
         .hc-pot-heading span { white-space:nowrap; }
         .hc-pot-heading::after { content:""; flex:1; height:1px; background:linear-gradient(90deg, #C4E538, #E5E8EC 60%); }
@@ -577,6 +603,7 @@ export default function HealthcareOperationsPage() {
         }
         @media (max-width: 900px) {
           .hc-land-grid, .hc-split, .hc-prov-grid, .hc-clin-hero { grid-template-columns: 1fr; }
+          .hc-land-row { grid-template-columns: 1fr; }
           .hc-ibs-panel { grid-template-columns: 1fr; gap: 26px; }
           .hc-eco-grid { grid-template-columns: 1fr; }
           .hc-eco-card { aspect-ratio: 4 / 3; }
@@ -629,8 +656,8 @@ export default function HealthcareOperationsPage() {
         <div className="hc-hero-scrim" />
         <div className="hc-wrap">
           <div className="hc-hero-inner hc-reveal">
-            <HcLabel num="01" text="Healthcare Operations" />
-            <h1 className="hc-h1">Making healthcare operations work smarter.</h1>
+            <HcLabel text="Healthcare Operations" />
+            <h1 className="hc-h1">Making healthcare operations <span style={{ color: "#C6E84A" }}>work smarter.</span></h1>
             <p className="hc-hero-sub">Transforming complex healthcare processes through domain expertise, intelligent automation, data and AI.</p>
             <p className="hc-hero-body">Sytrion helps healthcare organizations simplify administrative complexity, improve process accuracy and create connected operations that support better experiences for members, patients and providers.</p>
             <div className="hc-hero-ctas">
@@ -641,16 +668,18 @@ export default function HealthcareOperationsPage() {
         </div>
       </section>
 
-      <section className="hc-section-light">
+      <section className="hc-section-light hc-section-landscape">
         <div className="hc-wrap">
-          <div className="hc-land-grid">
-            <div className="hc-landscape-left hc-reveal">
-              <HcLabel num="02" text="The Healthcare Landscape" light />
-              <h2 className="hc-h2">Better healthcare experiences depend on better operations.</h2>
+          <div className="hc-land-grid hc-reveal">
+            <HcLabel text="The Healthcare Landscape" light />
+            <h2 className="hc-h2">Better healthcare experiences depend on <span style={{ color: "#C6E84A" }}>better operations.</span></h2>
+          </div>
+          <div className="hc-land-row hc-reveal">
+            <div className="hc-landscape-text">
               <p className="hc-lede">Healthcare organizations manage enormous volumes of information, transactions and interactions across members, patients, providers and operational systems.</p>
               <p className="hc-copy">Behind every healthcare experience sits a complex network of claims, authorizations, provider information, documentation and service workflows — often spread across multiple systems and teams.</p>
             </div>
-            <div className="hc-landscape-right hc-reveal">
+            <div className="hc-landscape-right">
               {challenges.map((c, i) => (
                 <article key={c} className="hc-challenge-card">
                   <div className="hc-challenge-top">
@@ -681,8 +710,8 @@ export default function HealthcareOperationsPage() {
       <section className="hc-section-navy">
         <div className="hc-wrap">
           <div className="hc-head hc-reveal">
-            <HcLabel num="03" text="Across the Healthcare Ecosystem" />
-            <h2 className="hc-h2">Built around the operations that connect healthcare.</h2>
+            <HcLabel text="Across the Healthcare Ecosystem" />
+            <h2 className="hc-h2">Built around the operations that <span style={{ color: "#C6E84A" }}>connect healthcare.</span></h2>
           </div>
           <div className="hc-eco-grid hc-reveal">
             {ecosystemCards.map((card) => (
@@ -703,8 +732,8 @@ export default function HealthcareOperationsPage() {
       <section className="hc-section-light" id="capabilities">
         <div className="hc-wrap">
           <div className="hc-head hc-reveal">
-            <HcLabel num="04" text="Intelligent Business Services" light />
-            <h2 className="hc-h2">From administrative complexity to intelligent operations.</h2>
+            <HcLabel text="Intelligent Business Services" light />
+            <h2 className="hc-h2">From administrative complexity to <span style={{ color: "#C6E84A" }}>intelligent operations.</span></h2>
             <p className="hc-lede">Sytrion combines healthcare process expertise with intelligent workflows, automation and data to help organizations manage high-volume operations with greater accuracy, visibility and control.</p>
           </div>
           <div className="hc-ibs-tabs hc-reveal" role="tablist" aria-label="Intelligent business services">
@@ -743,8 +772,8 @@ export default function HealthcareOperationsPage() {
               <div className="hc-feature-tint" />
             </div>
             <div className="hc-reveal">
-              <HcLabel num="05" text="Claims Operations" />
-              <h2 className="hc-h2">Smarter claims. Less operational friction.</h2>
+              <HcLabel text="Claims Operations" />
+              <h2 className="hc-h2">Smarter claims. Less <span style={{ color: "#C6E84A" }}>operational friction.</span></h2>
               <p className="hc-lede">Claims operations sit at the intersection of members, providers, policies, documentation and complex administrative workflows.</p>
               <p className="hc-copy">Sytrion combines structured workflows, document intelligence, automation and human expertise to help streamline administrative claims processes while improving visibility and operational control.</p>
               <ol className="hc-steps">
@@ -769,8 +798,8 @@ export default function HealthcareOperationsPage() {
               <div className="hc-prov-net" />
             </div>
             <div className="hc-reveal">
-              <HcLabel num="06" text="Provider Operations" light />
-              <h2 className="hc-h2">Better provider data. Better connected operations.</h2>
+              <HcLabel text="Provider Operations" light />
+              <h2 className="hc-h2">Better provider data. Better <span style={{ color: "#C6E84A" }}>connected operations.</span></h2>
               <p className="hc-lede">Accurate and current provider information is fundamental to claims, network operations and provider/member experiences.</p>
               <p className="hc-copy">Sytrion supports provider lifecycle operations with structured workflows and data management designed to improve consistency, accuracy and visibility.</p>
               <ol className="hc-timeline">
@@ -791,8 +820,8 @@ export default function HealthcareOperationsPage() {
         <div className="hc-intel-veil" />
         <div className="hc-wrap">
           <div className="hc-head hc-reveal">
-            <HcLabel num="07" text="Intelligence Built Into Operations" />
-            <h2 className="hc-h2">AI that works behind the healthcare experience.</h2>
+            <HcLabel text="Intelligence Built Into Operations" />
+            <h2 className="hc-h2">AI that works behind the <span style={{ color: "#C6E84A" }}> healthcare experience.</span></h2>
           </div>
           <div className="hc-tree hc-reveal">
             <div className="hc-core">
@@ -828,8 +857,8 @@ export default function HealthcareOperationsPage() {
               </div>
             </div>
             <div className="hc-reveal">
-              <HcLabel num="08" text="AI Clinical + Quality" />
-              <h2 className="hc-h2">Turn complex records and quality workflows into clear, review-ready intelligence.</h2>
+              <HcLabel text="AI Clinical + Quality" />
+              <h2 className="hc-h2">Turn complex records and quality workflows into clear,<span style={{ color: "#C6E84A" }}>review-ready intelligence. </span></h2>
               <p className="hc-lede">Healthcare teams often work across lengthy clinical records, fragmented documentation and high-volume quality-review queues. Finding the relevant information can require significant manual effort before a qualified reviewer can act.</p>
               <p className="hc-copy">Sytrion can combine healthcare operations expertise, generative AI, workflow automation and human review to organize information, prepare concise summaries and strengthen post-process quality controls — while keeping clinical judgment and final decisions with authorized professionals.</p>
             </div>
@@ -862,8 +891,8 @@ export default function HealthcareOperationsPage() {
       <section className="hc-section-light">
         <div className="hc-wrap">
           <div className="hc-head hc-reveal">
-            <HcLabel num="09" text="The Outcome" light />
-            <h2 className="hc-h2">Better operations create better healthcare experiences.</h2>
+            <HcLabel text="The Outcome" light />
+            <h2 className="hc-h2">Better operations create better <span style={{ color: "#C6E84A" }}>healthcare experiences.</span></h2>
           </div>
           <div className="hc-out-grid hc-reveal">
             {outcomes.map((o, i) => (
@@ -885,8 +914,8 @@ export default function HealthcareOperationsPage() {
       <section className="hc-section-dark">
         <div className="hc-wrap">
           <div className="hc-head hc-reveal">
-            <HcLabel num="10" text="The Sytrion Model" />
-            <h2 className="hc-h2">One connected healthcare operating model.</h2>
+            <HcLabel text="The Sytrion Model" />
+            <h2 className="hc-h2">One connected healthcare <span style={{ color: "#C6E84A" }}>operating model.</span></h2>
           </div>
           <div className="hc-stack hc-reveal">
             {modelLayers.map((layer) => (
@@ -903,12 +932,15 @@ export default function HealthcareOperationsPage() {
       <section className="hc-section-light">
         <div className="hc-wrap">
           <div className="hc-head hc-reveal">
-            <HcLabel num="11" text="Why Sytrion" light />
-            <h2 className="hc-h2">Healthcare understanding. Intelligent execution.</h2>
+            <HcLabel text="Why Sytrion" light />
+            <h2 className="hc-h2">Healthcare understanding. <span style={{ color: "#C6E84A" }}>Intelligent execution.</span></h2>
           </div>
           <div className="hc-why-grid hc-reveal">
             {whyPoints.map((w) => (
-              <article key={w.num} className="hc-why">
+              <article key={w.num} className="hc-why-card">
+                <div className="hc-why-icon" aria-hidden="true">
+                  {w.icon}
+                </div>
                 <span className="hc-why-num">{w.num}</span>
                 <h3>{w.name}</h3>
                 <p>{w.desc}</p>
@@ -921,25 +953,37 @@ export default function HealthcareOperationsPage() {
       <section className="hc-transform">
         <div className="hc-transform-panel hc-transform-panel--dark">
           <div className="hc-transform-panel-inner">
-            <span className="hc-transform-badge">12 / TRANSFORMATION IN ACTION</span>
+            <span className="hc-transform-badge">Transformation in Action</span>
             <h3>The Challenge</h3>
             <p>High-volume healthcare workflows can involve fragmented information, manual document processing, repetitive validations and significant exception handling.</p>
             <div className="hc-transform-illustration" aria-hidden="true">
-              <svg viewBox="0 0 520 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="40" y="70" width="120" height="80" rx="10" stroke="#2E4266" strokeWidth="1.5" transform="rotate(-6 100 110)"/>
-                <rect x="60" y="80" width="120" height="80" rx="10" stroke="#3D5170" strokeWidth="1.5" transform="rotate(4 120 120)"/>
-                <line x1="70" y1="90" x2="130" y2="90" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1"/>
-                <line x1="70" y1="104" x2="140" y2="104" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1"/>
-                <line x1="70" y1="118" x2="120" y2="118" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1"/>
-                <line x1="80" y1="100" x2="150" y2="100" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1"/>
-                <line x1="80" y1="114" x2="150" y2="114" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1"/>
-                <line x1="80" y1="128" x2="130" y2="128" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1"/>
-                <path d="M200 110 C260 80, 300 120, 360 110" stroke="#C4E538" strokeWidth="1.8" strokeDasharray="6 6" fill="none"/>
-                <circle cx="420" cy="110" r="34" stroke="#1A2B45" strokeWidth="1.5" fill="none"/>
-                <circle cx="420" cy="110" r="22" fill="#0A1628" stroke="#C4E538" strokeWidth="2"/>
-                <path d="M408 110 l 8 9 l 16 -17" stroke="#C4E538" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                <text x="80" y="170" fontSize="12" fill="#5B6C87">fragmented records</text>
-                <text x="430" y="160" fontSize="12" fontWeight="700" fill="#C4E538">validated outcome</text>
+              <svg viewBox="0 0 520 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="40" width="160" height="120" rx="12" stroke="#2E4266" strokeWidth="1.5" transform="rotate(-5 100 100)"/>
+                <rect x="45" y="55" width="160" height="120" rx="12" stroke="#3D5170" strokeWidth="1.5" transform="rotate(4 125 115)"/>
+                <line x1="55" y1="75" x2="155" y2="75" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2"/>
+                <line x1="55" y1="95" x2="170" y2="95" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2"/>
+                <line x1="55" y1="115" x2="140" y2="115" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2"/>
+                <line x1="55" y1="135" x2="130" y2="135" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2"/>
+                <line x1="80" y1="80" x2="180" y2="80" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2"/>
+                <line x1="80" y1="100" x2="190" y2="100" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2"/>
+                <line x1="80" y1="120" x2="160" y2="120" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2"/>
+                <line x1="80" y1="140" x2="150" y2="140" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2"/>
+                <rect x="60" y="170" width="120" height="6" rx="3" fill="#1A2B45" fillOpacity="0.5"/>
+                <rect x="60" y="182" width="80" height="6" rx="3" fill="#1A2B45" fillOpacity="0.35"/>
+                <path d="M220 110 C280 70, 320 150, 380 110" stroke="#C4E538" strokeWidth="2" strokeDasharray="8 6" fill="none"/>
+                <circle cx="440" cy="110" r="42" stroke="#1A2B45" strokeWidth="1.5" fill="none"/>
+                <circle cx="440" cy="110" r="28" fill="#0A1628" stroke="#C4E538" strokeWidth="2.5"/>
+                <path d="M426 110 l 10 11 l 20 -22" stroke="#C4E538" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                <text x="65" y="220" fontSize="12" fill="#5B6C87">fragmented records</text>
+                <text x="395" y="170" fontSize="12" fontWeight="700" fill="#C4E538">validated outcome</text>
+                <circle cx="440" cy="110" r="50" stroke="#C4E538" strokeOpacity="0.15" strokeWidth="1" fill="none"/>
+                <path d="M210 200 l 30 -30 l 25 20 l 35 -25 l 30 15" stroke="#2E4266" strokeWidth="1" strokeOpacity="0.4" fill="none"/>
+                <circle cx="210" cy="200" r="3" fill="#C4E538" fillOpacity="0.5"/>
+                <circle cx="240" cy="170" r="3" fill="#C4E538" fillOpacity="0.5"/>
+                <circle cx="265" cy="190" r="3" fill="#C4E538" fillOpacity="0.5"/>
+                <circle cx="300" cy="165" r="3" fill="#C4E538" fillOpacity="0.5"/>
+                <circle cx="330" cy="180" r="3" fill="#C4E538" fillOpacity="0.5"/>
+                <text x="200" y="245" fontSize="11" fill="#5B6C87" fillOpacity="0.7">processing pipeline</text>
               </svg>
             </div>
           </div>
