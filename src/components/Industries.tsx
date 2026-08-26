@@ -40,6 +40,7 @@ const industryCards = [
     description: "KYC/AML compliance, loan processing & financial operations support.",
     image: "/home/bankingai.jpg",
     imageAlt: "Modern bank building",
+    href: "/banking",
   },
   {
     name: "eCommerce",

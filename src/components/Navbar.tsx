@@ -33,7 +33,7 @@ const navItems = [
       { name: "Shipping & Logistics", href: "/shipping-logistics" },
       { name: "Healthcare", href: "/healthcare-operations" },
       { name: "E-Commerce", href: "/#industries" },
-      { name: "Banking", href: "/#industries" },
+      { name: "Banking", href: "/banking" },
       { name: "Digital Public Infrastructure", href: "/#industries" },
       { name: "Travel", href: "/#industries" },
     ],
