@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 const landscapeChallenges = [
   "Rising customer expectations",
@@ -58,7 +58,7 @@ const threeCardSections = [
       { title: "Servicing", items: ["Account maintenance","Payment processing","Customer servicing","Correspondence","Account updates"] },
       { title: "Portfolio Operations", items: ["Document review","Portfolio data management","Monitoring support","Exception management","Operational reporting"] },
     ],
-    img: "/services/banking/Lending Operations.jpg",
+    img: "/services/banking/Lending Operations (2).jpg",
     alt: "Lending professional working with customer",
     linkText: "Explore Lending Operations →",
   },
@@ -72,7 +72,7 @@ const threeCardSections = [
       { title: "Reconciliation & Settlement", items: ["Transaction matching","Settlement support","Account reconciliation","GL reconciliation","Exception management"] },
       { title: "Disputes & Chargebacks", items: ["Dispute intake","Document processing","Chargeback administration","Case workflow support","Resolution tracking"] },
     ],
-    img: "/services/banking/Payments Operations.jpg",
+    img: "/services/banking/Transaction Operations.jpg",
     alt: "Digital payment transaction operations",
     linkText: "Explore Payment Operations →",
   },
@@ -86,7 +86,7 @@ const threeCardSections = [
       { title: "AML Operations", items: ["Transaction-monitoring support","Alert administration","Case preparation","Investigation support","Remediation workflows"] },
       { title: "Fraud & Disputes", items: ["Fraud-case administration","Transaction review support","Dispute processing","Chargeback workflows","Case tracking"] },
     ],
-    img: "/services/banking/Compliance Operations.jpg",
+    img: "/services/banking/Financial Crime & Compliance Operations.jpg",
     alt: "Compliance operations workflow",
     linkText: "Explore Compliance Operations →",
   },
@@ -197,15 +197,15 @@ export default function BankingOperationsPage() {
         .bk-page * { box-sizing: border-box; }
         .bk-wrap { max-width: 1400px; margin: 0 auto; }
         .bk-head { max-width: none; }
-        .bk-label { display: inline-block; background: #A8D51E; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: 24px; }
-        .bk-label--light { background: #A8D51E; color: #0f0f0f; }
+        .bk-label { display: inline-block; background: #C6E84A; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: 24px; }
+        .bk-label--light { background: #C6E84A; color: #0f0f0f; }
         .bk-reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1); }
         .bk-reveal.bk-in { opacity: 1; transform: none; }
         .bk-h2 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 20px; }
         .bk-lede { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; }
         .bk-copy { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; }
-        .bk-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 30px; border-radius: 999px; background: var(--bkc); color: #062033; font-size: 15px; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, background 0.3s ease; }
-        .bk-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -14px rgba(168,213,30,0.55); background: #BEF042; }
+        .bk-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 30px; border-radius: 999px; background: #C6E84A; color: #0f0f0f; font-size: 15px; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, background 0.3s ease; }
+        .bk-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(198,232,74,0.4); }
         .bk-btn--ghost { background: transparent; border: 1px solid rgba(255,255,255,0.45); color: #fff; }
         .bk-btn--ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); box-shadow: none; }
         .bk-btn--dark { background: #0A1628; color: #F5F7FA; }
@@ -218,7 +218,7 @@ export default function BankingOperationsPage() {
           linear-gradient(90deg, rgba(5,10,20,0.96) 0%, rgba(5,10,20,0.88) 28%, rgba(5,10,20,0.55) 55%, rgba(5,10,20,0.14) 82%, rgba(5,10,20,0.06) 100%),
           linear-gradient(180deg, rgba(5,10,20,0.32) 0%, rgba(5,10,20,0) 34%, rgba(5,10,20,0.48) 100%); }
         .bk-hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; z-index: 1; padding: 100px clamp(24px, 8vw, 120px) 0; max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
-        .bk-hero-eyebrow { display: inline-block; background: #A8D51E; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: 24px; }
+        .bk-hero-eyebrow { display: inline-block; background: #C6E84A; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: 24px; }
         .bk-hero h2 { font-size: clamp(38px, 5.6vw, 68px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; color: #ffffff; margin: 0 0 26px; max-width: 780px; text-wrap: balance; }
         .bk-hero-sub { font-size: clamp(17px, 1.6vw, 21px); font-weight: 600; line-height: 1.55; color: rgba(255,255,255,0.92); margin: 0 0 18px; max-width: 640px; }
         .bk-hero-body { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.68); margin: 0 0 38px; max-width: 520px; }
@@ -284,17 +284,19 @@ export default function BankingOperationsPage() {
 
         /* ── S05 ONBOARDING ── */
         .bk-s05 { background: var(--bkn); padding: clamp(76px, 9vw, 128px) 80px; color: #ffffff; }
-        .bk-s05-grid { display: grid; grid-template-columns: 35% 65%; gap: 60px; align-items: start; }
-        .bk-s05 .bk-h2 { color: #ffffff; }
-        .bk-s05 .bk-lede { color: rgba(255,255,255,0.88); }
-        .bk-s05 .bk-copy { color: rgba(255,255,255,0.6); }
-        .bk-s05-journey { display: flex; align-items: flex-start; gap: 0; margin-top: 16px; padding: 32px 0; overflow-x: auto; }
-        .bk-s05-step { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; min-width: 100px; position: relative; }
-        .bk-s05-step:not(:last-child)::after { content: ""; position: absolute; top: 22px; left: 55%; width: 90%; height: 2px; background: repeating-linear-gradient(90deg, rgba(168,213,30,0.5) 0, rgba(168,213,30,0.5) 6px, transparent 6px, transparent 12px); z-index: 0; }
-        .bk-s05-node { width: 44px; height: 44px; border-radius: 50%; background: rgba(168,213,30,0.15); border: 2px solid #A8D51E; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; }
+        .bk-s05-head { margin-bottom: 48px; }
+        .bk-s05-head .bk-h2 { color: #ffffff; margin: 0; }
+        .bk-s05-grid { display: grid; grid-template-columns: 45fr 55fr; gap: 48px; align-items: center; }
+        .bk-s05-copy { min-width: 0; height: auto; overflow: visible; }
+        .bk-s05-copy .bk-lede { color: rgba(255,255,255,0.8); font-size: 17px; }
+        .bk-s05-copy .bk-copy { color: rgba(255,255,255,0.55); font-size: 16px; }
+        .bk-s05-journey { display: flex; align-items: flex-start; min-width: 0; height: auto; }
+        .bk-s05-connector { flex: 1 1 0; min-width: 12px; border-top: 2px dashed rgba(168,213,30,0.5); margin: 21px 6px 0; }
+        .bk-s05-step { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 0 0 auto; min-width: 80px; }
+        .bk-s05-node { width: 44px; height: 44px; border-radius: 50%; background: rgba(168,213,30,0.15); border: 1.5px solid #A8D51E; display: flex; align-items: center; justify-content: center; }
         .bk-s05-node svg { width: 20px; height: 20px; color: #A8D51E; }
-        .bk-s05-step-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #ffffff; margin-top: 12px; letter-spacing: 0.04em; }
-        .bk-s05-step-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; max-width: 100px; line-height: 1.4; }
+        .bk-s05-step-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 700; color: #ffffff; margin-top: 12px; letter-spacing: 0.04em; }
+        .bk-s05-step-sub { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px; max-width: 88px; line-height: 1.4; }
 
         /* ── S06 THREE CARD ROW ── */
         .bk-s06 { background: #ffffff; padding: clamp(76px, 9vw, 128px) 80px; }
@@ -362,9 +364,6 @@ export default function BankingOperationsPage() {
         .bk-s09-col { flex: 1; min-width: 0; position: relative; }
         .bk-s09-col:first-child { padding-right: 48px; border-right: 1px solid rgba(255,255,255,0.07); }
         .bk-s09-col:last-child { padding-left: 48px; }
-        .bk-s09-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
-        .bk-s09-eyebrow-dash { width: 28px; height: 2px; background: #c3e94a; border-radius: 2px; }
-        .bk-s09-eyebrow span:last-child { font-family: var(--font-geist-mono), monospace; font-size: 12px; letter-spacing: 0.18em; color: #c3e94a; font-weight: 500; text-transform: uppercase; }
         .bk-s09-col h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; color: #f4f7fb; font-size: clamp(26px, 2.4vw, 35px); font-weight: 700; line-height: 1.28; letter-spacing: -0.01em; margin: 0 0 64px; }
         .bk-s09-flow { position: relative; display: flex; align-items: flex-start; justify-content: space-between; }
         .bk-s09-flow::before { content: ""; position: absolute; top: 29px; left: 29px; right: 29px; height: 1px; background: linear-gradient(90deg, rgba(195,233,74,0.5) 0%, rgba(195,233,74,0.15) 50%, rgba(195,233,74,0.5) 100%); }
@@ -395,7 +394,7 @@ export default function BankingOperationsPage() {
         /* ── S10 TRANSFORM + CTA ── */
         .bk-s10 { display: grid; grid-template-columns: 1fr 1fr; min-height: 700px; background: var(--bkn); overflow: hidden; }
         .bk-s10-left { padding: clamp(48px, 5vw, 80px); display: flex; flex-direction: column; }
-        .bk-s10-badge { display: inline-block; align-self: flex-start; background: #A8D51E; color: #2B3B0A; padding: 5px 14px; border-radius: 999px; font-weight: 700; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 24px; }
+        .bk-s10-badge { display: inline-block; align-self: flex-start; background: #C6E84A; color: #0f0f0f; padding: 5px 14px; border-radius: 999px; font-weight: 700; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 24px; }
         .bk-s10 h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(22px, 2.4vw, 30px); font-weight: 700; color: #ffffff; margin: 0 0 16px; }
         .bk-s10-mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 12px; }
         .bk-s10-mini { padding: 20px 16px; border-radius: 12px; background: rgba(9,26,48,0.7); border: 1px solid rgba(168,213,30,0.12); }
@@ -404,12 +403,13 @@ export default function BankingOperationsPage() {
         .bk-s10-mini-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; font-size: 14px; font-weight: 700; color: #A8D51E; text-decoration: none; transition: color 0.2s ease; }
         .bk-s10-mini-link:hover { color: #BEF042; }
         .bk-s10-right { padding: clamp(48px, 5vw, 80px); background: #ffffff; display: flex; flex-direction: column; justify-content: center; }
+        .bk-s10-right .bk-label { align-self: flex-start; }
         .bk-s10-right h3 { color: #0C1B30; }
         .bk-s10-right p { font-size: 16px; line-height: 1.75; color: #5B6472; margin: 14px 0 0; max-width: 460px; }
         .bk-s10-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
         .bk-s10-cta { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 999px; font-weight: 700; font-size: 15px; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .bk-s10-cta-primary { background: #A8D51E; color: #0A1628; }
-        .bk-s10-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(168,213,30,0.35); }
+        .bk-s10-cta-primary { background: #C6E84A; color: #0f0f0f; }
+        .bk-s10-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(198,232,74,0.35); }
         .bk-s10-cta-ghost { background: transparent; color: #0A1628; border: 1.5px solid #0A1628; }
         .bk-s10-cta-ghost:hover { background: #0A1628; color: #ffffff; transform: translateY(-2px); }
 
@@ -457,6 +457,9 @@ export default function BankingOperationsPage() {
           .bk-s10-cta { width: 100%; justify-content: center; }
           .bk-hero-ctas { flex-direction: column; }
           .bk-hero-ctas .bk-btn { width: 100%; }
+          .bk-s05-journey { flex-wrap: wrap; row-gap: 24px; justify-content: center; }
+          .bk-s05-connector { display: none; }
+          .bk-s05-step { flex: 0 0 25%; }
         }
         @media (prefers-reduced-motion: reduce) {
           .bk-reveal { opacity: 1; transform: none; transition: none; animation: none; }
@@ -471,7 +474,7 @@ export default function BankingOperationsPage() {
         <div className="bk-hero-overlay" aria-hidden="true" />
         <div className="bk-hero-content bk-reveal">
           <span className="bk-hero-eyebrow">BANKING</span>
-          <h2>Intelligent operations for modern banking.</h2>
+          <h2>Intelligent operations for <span style={{ color: "#C6E84A" }}>modern banking.</span></h2>
           <p className="bk-hero-sub">Transforming banking operations through domain expertise, AI, automation and data intelligence.</p>
           <p className="bk-hero-body">From customer onboarding and account servicing to lending, payments, compliance and finance, Sytrion helps banks simplify complex processes, improve operational control and create connected experiences built for the future of banking.</p>
           <div className="bk-hero-ctas">
@@ -488,7 +491,7 @@ export default function BankingOperationsPage() {
         <div className="bk-wrap">
           <div className="bk-s02-head bk-reveal">
             <BkLabel text="The Banking Landscape" light />
-            <h2 className="bk-h2">Banking expectations have changed. Operations must change with them.</h2>
+            <h2 className="bk-h2">Banking expectations have changed. <span style={{ color: "#C6E84A" }}>Operations must change with them.</span></h2>
           </div>
           <div className="bk-s02-grid bk-reveal">
             <div className="bk-s02-left">
@@ -524,7 +527,7 @@ export default function BankingOperationsPage() {
         <div className="bk-wrap">
           <div className="bk-head bk-reveal">
             <BkLabel text="Across the Banking Ecosystem" />
-            <h2 className="bk-h2">Built around the operations that keep banking moving.</h2>
+            <h2 className="bk-h2">Built around the operations <span style={{ color: "#C6E84A" }}>that keep banking moving.</span></h2>
           </div>
           <div className="bk-s03-cols bk-reveal">
             {ecosystemCards.map((card, i) => (
@@ -552,7 +555,7 @@ export default function BankingOperationsPage() {
         <div className="bk-wrap">
           <div className="bk-head bk-reveal">
             <BkLabel text="Intelligent Business Services" light />
-            <h2 className="bk-h2">From individual transactions to connected banking operations.</h2>
+            <h2 className="bk-h2">From individual transactions to <span style={{ color: "#C6E84A" }}>connected banking operations.</span></h2>
             <p className="bk-lede">Sytrion combines banking-domain expertise with intelligent workflows, automation, AI and data to help banks manage high-volume processes with greater speed, accuracy and control.</p>
           </div>
           <div className="bk-s04-tabbar bk-reveal" role="tablist">
@@ -589,20 +592,25 @@ export default function BankingOperationsPage() {
       {/* ══════════════════════════════════════════════════════════════════ */}
       <section className="bk-s05">
         <div className="bk-wrap">
+          <div className="bk-s05-head bk-reveal">
+            <BkLabel text="Customer Lifecycle Operations" />
+            <h2 className="bk-h2">Start every banking relationship with <span style={{ color: "#C6E84A" }}>confidence.</span></h2>
+          </div>
           <div className="bk-s05-grid bk-reveal">
-            <div>
-              <BkLabel text="Customer Lifecycle Operations" />
-              <h2 className="bk-h2">Start every banking relationship with confidence.</h2>
+            <div className="bk-s05-copy">
               <p className="bk-lede">Customer onboarding sits at the intersection of experience, compliance, identity and data.</p>
               <p className="bk-copy">Sytrion helps banks streamline the administrative workflows behind onboarding and ongoing customer lifecycle management through structured processes, document intelligence, automation and human expertise.</p>
             </div>
             <div className="bk-s05-journey">
-              {kycSteps.map((s) => (
-                <div key={s.name} className="bk-s05-step">
-                  <div className="bk-s05-node">{s.icon}</div>
-                  <div className="bk-s05-step-name">{s.name}</div>
-                  <div className="bk-s05-step-sub">{s.sub}</div>
-                </div>
+              {kycSteps.map((s, i) => (
+                <Fragment key={s.name}>
+                  {i > 0 && <div className="bk-s05-connector" aria-hidden="true" />}
+                  <div className="bk-s05-step">
+                    <div className="bk-s05-node">{s.icon}</div>
+                    <div className="bk-s05-step-name">{s.name}</div>
+                    <div className="bk-s05-step-sub">{s.sub}</div>
+                  </div>
+                </Fragment>
               ))}
             </div>
           </div>
@@ -616,7 +624,7 @@ export default function BankingOperationsPage() {
         <div className="bk-wrap">
           <div className="bk-head bk-reveal">
             <BkLabel text="Core Banking Operations" light />
-            <h2 className="bk-h2">Operational support across the banking lifecycle.</h2>
+            <h2 className="bk-h2">Operational support across the <span style={{ color: "#C6E84A" }}>banking lifecycle.</span></h2>
           </div>
           <div className="bk-s06-row bk-reveal">
             {threeCardSections.map((sec) => (
@@ -658,7 +666,7 @@ export default function BankingOperationsPage() {
       <section className="bk-s07">
         <div className="bk-s07-ai">
           <BkLabel text="Intelligence Built Into Banking" />
-          <h2 className="bk-h2" style={{color:"#fff", textAlign:"center", fontSize:"clamp(28px, 3.5vw, 42px)", maxWidth:"none", width:"100%"}}>AI that works behind every transaction.</h2>
+          <h2 className="bk-h2" style={{color:"#fff", textAlign:"center", fontSize:"clamp(28px, 3.5vw, 42px)", maxWidth:"none", width:"100%"}}>AI that works behind <span style={{ color: "#C6E84A" }}>every transaction.</span></h2>
           <p style={{color:"rgba(255,255,255,0.55)", textAlign:"center", maxWidth:520, fontSize:15, lineHeight:1.7, marginTop:8}}>AI can help banks move beyond automating repetitive tasks toward operations that understand information, identify exceptions and support faster decisions.</p>
           <div className="bk-s07-hub" style={{marginTop: 32}}>
             <div className="bk-s07-core">
@@ -691,7 +699,7 @@ export default function BankingOperationsPage() {
           <div className="bk-s07-human-scrim" />
           <div className="bk-s07-human-content bk-reveal">
             <BkLabel text="Human + Digital" light />
-            <h2>Smarter banking should still feel personal.</h2>
+            <h2>Smarter banking should <span style={{ color: "#C6E84A" }}>still feel personal.</span></h2>
             <p className="bk-copy">Automation can handle repetitive transactions.</p>
             <p className="bk-copy">AI can organize information and help surface what matters.</p>
             <p className="bk-copy">People bring judgment, context and empathy to complex customer situations.</p>
@@ -707,7 +715,7 @@ export default function BankingOperationsPage() {
         <div className="bk-wrap">
           <div className="bk-head bk-reveal">
             <BkLabel text="The Outcome" light />
-            <h2 className="bk-h2">Better banking operations create better banking experiences.</h2>
+            <h2 className="bk-h2">Better banking operations create better <span style={{ color: "#C6E84A" }}>banking experiences.</span></h2>
           </div>
           <div className="bk-s08-cols bk-reveal">
             {outcomes.map((o, i) => (
@@ -731,8 +739,8 @@ export default function BankingOperationsPage() {
         <div className="bk-s09-glow-br" aria-hidden="true"></div>
         <div className="bk-s09-section">
           <div className="bk-s09-col bk-reveal">
-            <div className="bk-s09-eyebrow"><div className="bk-s09-eyebrow-dash"></div><span>Operating Model</span></div>
-            <h3>One connected banking<br />operating model.</h3>
+            <BkLabel text="Operating Model" />
+            <h3>One connected banking<br /><span style={{ color: "#C6E84A" }}>operating model.</span></h3>
             <div className="bk-s09-flow">
               {modelLayers.map((layer) => (
                 <div key={layer.num} className="bk-s09-flow-step">
@@ -746,8 +754,8 @@ export default function BankingOperationsPage() {
             </div>
           </div>
           <div className="bk-s09-col bk-reveal">
-            <div className="bk-s09-eyebrow"><div className="bk-s09-eyebrow-dash"></div><span>Advantages</span></div>
-            <h3>Banking understanding.<br />Intelligent execution.</h3>
+            <BkLabel text="Advantages" />
+            <h3>Banking understanding.<br /><span style={{ color: "#C6E84A" }}>Intelligent execution.</span></h3>
             <div className="bk-s09-checklist">
               {checkLabels.map((label) => (
                 <div key={label} className="bk-s09-check">
@@ -788,7 +796,7 @@ export default function BankingOperationsPage() {
         </div>
         <div className="bk-s10-right">
           <BkLabel text="Let's Build Banking That Works Smarter" light />
-          <h3>Ready to transform your banking operations?</h3>
+          <h3>Ready to transform your <span style={{ color: "#C6E84A" }}>banking operations?</span></h3>
           <p>From onboarding, lending and payments to compliance, finance and AI, Sytrion can help create connected operations designed for greater speed, accuracy and control.</p>
           <div className="bk-s10-ctas">
             <Link href="/contact" className="bk-s10-cta bk-s10-cta-primary">Talk to Our Banking Experts ↗</Link>
