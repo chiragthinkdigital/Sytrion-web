@@ -35,7 +35,7 @@ const navItems = [
       { name: "E-Commerce", href: "/#industries" },
       { name: "Banking", href: "/banking" },
       { name: "Digital Public Infrastructure", href: "/#industries" },
-      { name: "Travel", href: "/#industries" },
+      { name: "Travel", href: "/travel-hospitality" },
     ],
   },
   {
