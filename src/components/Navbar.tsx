@@ -296,11 +296,19 @@ export default function Navbar() {
           z-index: 51;
           min-width: 200px;
           width: max-content;
-          margin-top: 20px;
+          margin-top: 16px;
+        }
+        .desktop-dropdown-panel::before {
+          content: "";
+          position: absolute;
+          top: -20px;
+          left: 0;
+          right: 0;
+          height: 20px;
         }
         @keyframes dropdownIn {
-          from { opacity: 0; transform: translateY(-8px); }
-          to   { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+          to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
         .desktop-dropdown-list {
