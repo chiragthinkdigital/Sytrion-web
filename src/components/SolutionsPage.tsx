@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
@@ -325,18 +325,94 @@ function SolutionCard({
   iconStyle?: "square" | "circle";
   image?: string;
 }) {
+  const isLight = variant === "light";
+  const cardBg = isLight ? "#EEF3D8" : undefined;
+  const titleColor = isLight ? "#20260B" : undefined;
+  const descColor = isLight ? "#5B6142" : undefined;
+  const iconBg = isLight ? "rgba(0, 0, 0, 0.06)" : undefined;
+  const iconColor = isLight ? "#5A6B1C" : undefined;
   return (
-    <div className={"sol-card sol-card--" + variant}>
+    <div className={"sol-card sol-card--" + variant} style={{ backgroundColor: cardBg }}>
       {image && (
         <div className="sol-card-img">
           <img src={image} alt={title} loading="lazy" decoding="async" />
         </div>
       )}
-      <div className={"sol-card-icon sol-card-icon--" + iconStyle}>
+      <div className={"sol-card-icon sol-card-icon--" + iconStyle} style={{ backgroundColor: iconBg, color: iconColor }}>
         <SolIcon name={icon} size={22} />
       </div>
-      <h4 className={"sol-card-title" + (variant === "dark" ? " sol-card-title--dark" : "")}>{title}</h4>
-      <p className={"sol-card-desc" + (variant === "dark" ? " sol-card-desc--dark" : "")}>{desc}</p>
+      <h4 className={"sol-card-title" + (variant === "dark" ? " sol-card-title--dark" : "")} style={{ color: titleColor }}>
+        {title}
+      </h4>
+      <p className={"sol-card-desc" + (variant === "dark" ? " sol-card-desc--dark" : "")} style={{ color: descColor }}>
+        {desc}
+      </p>
+    </div>
+  );
+}
+
+/* ── Analytics Grid Card ───────────────────────────────────────────────────── */
+
+function AnalyticsGridCard({
+  card,
+}: {
+  card: {
+    index: string;
+    title: string;
+    description: string;
+    tall?: boolean;
+    accent?: boolean;
+  };
+}) {
+  const isFeatured = card.index === "01";
+  const isAccent = card.accent;
+  const isTall = card.tall || false;
+
+  // Visual treatment: "light", "fill", or "accent"
+  let treatment = "light";
+  if (isFeatured) {
+    treatment = "fill";
+  } else if (isAccent) {
+    treatment = "accent";
+  }
+
+  // Cell placement for this item (1-indexed)
+  const placements: Record<string, {
+    colStart: number;
+    colEnd: number;
+    rowStart: number;
+    rowEnd: number;
+  }> = {
+    "01": { colStart: 1, colEnd: 7, rowStart: 1, rowEnd: 3 },
+    "02": { colStart: 7, colEnd: 13, rowStart: 1, rowEnd: 2 },
+    "03": { colStart: 7, colEnd: 10, rowStart: 2, rowEnd: 4 },
+    "04": { colStart: 10, colEnd: 13, rowStart: 2, rowEnd: 3 },
+    "05": { colStart: 1, colEnd: 4, rowStart: 3, rowEnd: 4 },
+    "06": { colStart: 4, colEnd: 7, rowStart: 3, rowEnd: 4 },
+    "07": { colStart: 10, colEnd: 13, rowStart: 3, rowEnd: 4 },
+  };
+
+  const placement = placements[card.index];
+
+  // Avoid template literals in JSX className for Turbopack compatibility
+  const className = "analytics-grid-card " + treatment;
+  const gridColumn = placement.colStart + " / " + placement.colEnd;
+  const gridRow = placement.rowStart + " / " + placement.rowEnd;
+
+  return (
+    <div
+      className={className}
+      style={{
+        gridColumn: gridColumn,
+        gridRow: gridRow,
+        ...(isTall && { gridRowEnd: placement.rowEnd + 1 }),
+      }}
+    >
+      <div className="analytics-grid-content">
+        <span className="analytics-grid-index">{card.index}</span>
+        <h3 className="analytics-grid-title">{card.title}</h3>
+        <p className="analytics-grid-desc">{card.description}</p>
+      </div>
     </div>
   );
 }
@@ -670,6 +746,53 @@ const ecosystem = [
   { icon: "database", title: "Data Engineering", desc: "Structure and connect." },
   { icon: "bar-chart", title: "Analytics & BI", desc: "Measure and understand." },
   { icon: "compass", title: "Domain Expertise", desc: "Apply with context." },
+];
+
+const analyticsCapabilities = [
+  {
+    index: "01",
+    title: "Executive dashboards",
+    description:
+      "Show leadership the metrics that matter in one clear view.",
+  },
+  {
+    index: "02",
+    title: "KPI monitoring",
+    description:
+      "Track key performance indicators across teams in real time.",
+  },
+  {
+    index: "03",
+    title: "Automated reporting",
+    description:
+      "Generate and distribute reports on a schedule without manual work.",
+    tall: true,
+  },
+  {
+    index: "04",
+    title: "Trend analysis",
+    description:
+      "Spot patterns in your data before they become problems.",
+  },
+  {
+    index: "05",
+    title: "Operational dashboards",
+    description:
+      "Give operations teams live visibility into daily performance.",
+    accent: true,
+  },
+  {
+    index: "06",
+    title: "Predictive analytics",
+    description:
+      "Use past data to forecast demand, risk and outcomes.",
+  },
+  {
+    index: "07",
+    title: "Data visualization",
+    description:
+      "Turn complex datasets into charts anyone can read.",
+  },
 ];
 
 const approachSteps = [
@@ -2301,6 +2424,107 @@ export default function SolutionsPage() {
             justify-content: flex-start;
           }
         }
+
+        /* ── Analytics & Intelligence Grid ───────────────────────────────────────── */
+        .analytics-grid {
+          display: grid;
+          grid-template-columns: repeat(12, 1fr);
+          grid-template-rows: repeat(3, 168px);
+          gap: 14px;
+          -webkit-font-smoothing: antialiased;
+        }
+
+        .analytics-grid-card {
+          border-radius: 14px;
+          padding: 22px 24px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          position: relative;
+          -webkit-font-smoothing: antialiased;
+        }
+
+        /* Light treatment: white bg + 1px border */
+        .analytics-grid-card.light {
+          background: #fff;
+          border: 1px solid #DEDCCF;
+          color: #16171B;
+        }
+
+        /* Fill treatment: solid accent bg, white text - featured item only */
+        .analytics-grid-card.fill {
+          background: #0E6E5B;
+          color: #fff;
+        }
+
+        /* Accent treatment: pale accent bg + 1px border, dark text - item 5 */
+        .analytics-grid-card.accent {
+          background: #E4F1EC;
+          border: 1px solid #DEDCCF;
+          color: #16171B;
+        }
+
+        .analytics-grid-content {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          justify-content: space-between;
+          min-height: 0;
+        }
+
+        .analytics-grid-index {
+          font-family: "IBM Plex Mono", monospace;
+          font-size: 11px;
+          opacity: 0.6;
+          margin-bottom: 8px;
+          align-self: start;
+        }
+
+        .analytics-grid-title {
+          font-family: "Manrope", sans-serif;
+          font-weight: 700;
+          margin: 0 0 4px;
+          line-height: 1.2;
+        }
+
+        .analytics-grid-card.fill .analytics-grid-title {
+          font-size: 26px;
+        }
+
+        .analytics-grid-card:not(.fill) .analytics-grid-title {
+          font-size: 19px;
+        }
+
+        .analytics-grid-desc {
+          font-family: "Inter", sans-serif;
+          font-size: 13px;
+          line-height: 1.55;
+          color: #77786D;
+          margin: 0;
+          max-width: 88%;
+        }
+
+        .analytics-grid-card.fill .analytics-grid-desc {
+          color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Hover: subtle border darken for light cells only */
+        .analytics-grid-card.light:hover {
+          border-color: #B5B5B5;
+        }
+
+        /* Mobile: single column */
+        @media (max-width: 780px) {
+          .analytics-grid {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+          }
+          .analytics-grid-card {
+            grid-column: 1 / -1;
+            grid-row: auto;
+            height: auto;
+          }
+        }
       `}</style>
 
       {/* ══════════════════════ 1. HERO ══════════════════════ */}
@@ -2316,7 +2540,7 @@ export default function SolutionsPage() {
           loop
           playsInline
         >
-          <source src="/solutions/solutionshero2.mp4" type="video/mp4" />
+          <source src="/solutions/solutionshero.mp4" type="video/mp4" />
         </video>
 
         <div className="sol-hero-content">
@@ -2406,7 +2630,7 @@ export default function SolutionsPage() {
 
           <div className="sol-grid-4">
             {aiCapabilities.map((cap) => (
-              <SolutionCard key={cap.title} icon={cap.icon} title={cap.title} desc={cap.desc} variant="dark" />
+              <SolutionCard key={cap.title} icon={cap.icon} title={cap.title} desc={cap.desc} variant="light" />
             ))}
           </div>
 
@@ -2532,7 +2756,11 @@ We work as an extension of your organization, bringing greater efficiency, consi
             Sytrion transforms enterprise and operational data into clear, actionable intelligence — helping teams understand performance, identify opportunities and make informed decisions. 
           </p>
 
-          <CapabilitiesOrbit />
+          <div className="analytics-grid">
+            {analyticsCapabilities.map((card, i) => (
+              <AnalyticsGridCard key={card.index} card={card} />
+            ))}
+          </div>
 
           <div className="sol-callout">
             <div className="sol-callout-rule" />
