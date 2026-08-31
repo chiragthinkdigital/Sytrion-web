@@ -265,44 +265,38 @@ export default function TravelHospitalityPage() {
         .tv-s06-group-list li { padding: 5px 0; font-size: 13.5px; color: #5A6B7F; display: flex; align-items: baseline; gap: 8px; }
         .tv-s06-group-list li::before { content: ""; width: 5px; height: 5px; flex: 0 0 auto; border-radius: 50%; background: var(--tv-blue); align-self: center; }
 
-        .tv-s08 { display: grid; grid-template-columns: 1fr 1fr; min-height: 700px; background: #060D18; }
-        .tv-s08-ai { background: radial-gradient(circle at 50% 45%, #0D2138 0%, #060D18 70%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px clamp(20px, 5vw, 80px); position: relative; overflow: hidden; }
-        .tv-s08-ai .tv-label { align-self: flex-start; }
-        .tv-s08-ai h2 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; color: #ffffff; font-size: clamp(26px, 2.6vw, 36px); font-weight: 700; line-height: 1.2; margin: 0 0 18px; text-align: center; }
-        .tv-s08-ai .tv-copy { color: rgba(255,255,255,0.6); text-align: center; max-width: 520px; font-size: 15.5px; }
-        .tv-s08-hub { position: relative; width: 340px; height: 340px; margin-top: 40px; }
-        .tv-s08-core { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 96px; height: 96px; border-radius: 50%; background: radial-gradient(circle at 34% 30%, rgba(198,232,74,0.95), rgba(94,138,10,0.85) 55%, rgba(10,22,40,0.95) 100%); box-shadow: 0 0 50px rgba(198,232,74,0.4); display: flex; align-items: center; justify-content: center; z-index: 2; }
-        .tv-s08-core span { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 40px; font-weight: 700; color: #0A1628; }
-        .tv-s08-sat { position: absolute; width: 54px; height: 54px; border-radius: 50%; background: rgba(9,26,48,0.9); border: 1px solid rgba(198,232,74,0.35); display: flex; align-items: center; justify-content: center; color: var(--tv-cyan); transform: translate(-50%, -50%); transition: border-color 0.3s ease; }
-        .tv-s08-sat:hover { border-color: rgba(198,232,74,0.8); }
-        .tv-s08-sat svg { width: 20px; height: 20px; }
-        .tv-s08-sat-label { position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); width: 104px; text-align: center; }
-        .tv-s08-sat-label b { display: block; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.85); line-height: 1.3; }
-        .tv-s08-sat-label span { display: block; font-size: 8.5px; color: rgba(255,255,255,0.45); margin-top: 2px; line-height: 1.3; }
-        .tv-s08-human { display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; background:
-          linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.97) 100%),
-          url("/services/travel/human-digital.jpg") center / cover no-repeat,
-          linear-gradient(180deg, #F1F5F9, #E2E8F0); }
+        .tv-s08 { display: grid; grid-template-columns: 1fr 1fr; min-height: 700px; }
+        .tv-s08-ai { background: radial-gradient(circle at 50% 50%, #0D1F38 0%, #071426 65%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px clamp(20px, 5vw, 80px); position: relative; overflow: hidden; }
+        .tv-s08-ai .tv-label { align-self: center; }
+        .tv-s08-hub { position: relative; width: 280px; height: 280px; }
+        .tv-s08-core { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle at 34% 30%, rgba(200,240,100,0.95), rgba(168,213,30,0.75) 45%, rgba(16,49,92,0.9) 100%); box-shadow: 0 0 50px rgba(168,213,30,0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2; }
+        .tv-s08-core span:first-child { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #04202F; }
+        .tv-s08-core span:last-child { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; color: #06344B; }
+        .tv-s08-sat { position: absolute; width: 52px; height: 52px; border-radius: 50%; background: rgba(9,26,48,0.85); border: 1px solid rgba(168,213,30,0.3); display: flex; align-items: center; justify-content: center; color: #A8D51E; backdrop-filter: blur(4px); transition: border-color 0.3s ease, transform 0.3s ease; }
+        .tv-s08-sat:hover { border-color: rgba(168,213,30,0.7); transform: translate(-50%, -50%) scale(1.1); }
+        .tv-s08-sat svg { width: 18px; height: 18px; }
+        .tv-s08-sat-label { position: absolute; bottom: -20px; white-space: nowrap; font-size: 9.5px; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.02em; text-align: center; }
+        .tv-s08-human { display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; background: #ffffff; }
         .tv-s08-human-content { position: relative; z-index: 1; padding: 60px; }
-        .tv-s08-human-content h2 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(26px, 3vw, 38px); font-weight: 700; line-height: 1.15; color: #0E1B2A; margin: 0; }
-        .tv-s08-human-content .tv-copy { color: #5A6B7F; margin-top: 14px; font-size: 15.5px; }
-        .tv-s08-human-strong { font-size: 17px; font-weight: 700; color: #0E1B2A; margin: 20px 0 0; }
-        .tv-s08-human-more { font-size: 14px; line-height: 1.7; color: #7A8AA0; margin: 16px 0 0; }
+        .tv-s08-human-content .tv-label { margin-bottom: 16px; }
+        .tv-s08-human-content h2 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(28px, 3.5vw, 40px); font-weight: 700; line-height: 1.15; color: #0C1B30; margin: 0; }
+        .tv-s08-human-content .tv-copy { color: #5A6B7F; margin-top: 16px; font-size: 16px; }
+        .tv-s08-human-content h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 20px; font-weight: 700; color: #0C1B30; margin: 28px 0 0; }
 
-        .tv-s09 { background: #ffffff; padding: clamp(76px, 9vw, 128px) 80px; }
-        .tv-s09 .tv-h2 { color: #0E1B2A; }
-        .tv-s09 .tv-lede { color: #5A5D66; }
-        .tv-s09 .tv-copy { color: #5B6472; }
+        .tv-s09 { background: #0e1526; padding: clamp(76px, 9vw, 128px) 80px; }
+        .tv-s09 .tv-h2 { color: #f4f7fb; }
+        .tv-s09 .tv-lede { color: rgba(255,255,255,0.6); }
+        .tv-s09 .tv-copy { color: rgba(255,255,255,0.72); }
         .tv-s09-head { max-width: 1280px; }
         .tv-s09-path { display: flex; align-items: flex-start; margin-top: 56px; }
         .tv-s09-step { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 0 0 auto; min-width: 88px; }
-        .tv-s09-node { width: 52px; height: 52px; border-radius: 50%; background: rgba(94,138,10,0.07); border: 1.5px solid var(--tv-blue); display: flex; align-items: center; justify-content: center; color: var(--tv-blue); }
+        .tv-s09-node { width: 52px; height: 52px; border-radius: 50%; background: rgba(94,138,10,0.15); border: 1.5px solid var(--tv-blue); display: flex; align-items: center; justify-content: center; color: var(--tv-blue); }
         .tv-s09-node svg { width: 22px; height: 22px; }
-        .tv-s09-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #0E1B2A; margin-top: 14px; letter-spacing: 0.06em; }
-        .tv-s09-sub { font-size: 12px; color: #64748B; margin-top: 4px; max-width: 104px; line-height: 1.4; }
+        .tv-s09-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #ffffff; margin-top: 14px; letter-spacing: 0.06em; }
+        .tv-s09-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; max-width: 104px; line-height: 1.4; }
         .tv-s09-connector { flex: 1 1 0; min-width: 20px; display: flex; align-items: center; margin: 25px 4px 0; }
-        .tv-s09-connector-line { flex: 1; border-top: 2px dashed rgba(94,138,10,0.4); }
-        .tv-s09-connector-arrow { width: 0; height: 0; border-left: 6px solid rgba(94,138,10,0.55); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+        .tv-s09-connector-line { flex: 1; border-top: 2px dashed rgba(94,138,10,0.5); }
+        .tv-s09-connector-arrow { width: 0; height: 0; border-left: 6px solid var(--tv-blue); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
 
         .tv-s10 { background: #ffffff; padding: clamp(76px, 9vw, 128px) 80px; }
         .tv-s10 .tv-h2 { color: #0E1B2A; }
@@ -330,14 +324,17 @@ export default function TravelHospitalityPage() {
           .tv-s10-cols { grid-template-columns: repeat(3, 1fr); gap: 32px 0; }
           .tv-s10-col:nth-child(3)::after { display: none; }
           .tv-s10-col { padding: 0 24px; }
+          .tv-s08-hub { width: 240px; height: 240px; }
+          .tv-s08-core { width: 80px; height: 80px; }
+          .tv-s08-sat { width: 44px; height: 44px; }
         }
         @media (max-width: 1080px) {
           .tv-s02-grid { grid-template-columns: 1fr; gap: 40px; }
-          .tv-s08 { grid-template-columns: 1fr; }
-          .tv-s08-ai { padding: 60px 24px; }
-          .tv-s08-human { min-height: 480px; }
         }
         @media (max-width: 900px) {
+          .tv-s08 { grid-template-columns: 1fr; }
+          .tv-s08-ai { min-height: 500px; }
+          .tv-s08-human { min-height: 400px; }
           .tv-s03-cols { grid-template-columns: 1fr 1fr; gap: 40px 0; }
           .tv-s03-col { padding: 0 24px; }
           .tv-s03-col:nth-child(3)::after { display: none; }
@@ -538,39 +535,37 @@ export default function TravelHospitalityPage() {
       </section>
 
       <section className="tv-s08">
-        <div className="tv-s08-ai tv-reveal">
+        <div className="tv-s08-ai">
           <TvLabel text="AI THAT POWERS TRAVEL OPERATIONS" />
-          <h2>Intelligence built into the journey.</h2>
-          <p className="tv-copy">AI shouldn&apos;t simply answer traveler questions.</p>
-          <p className="tv-copy">It can help travel enterprises understand intent, automate repetitive processes, identify exceptions and help operational teams respond faster.</p>
-          <div className="tv-s08-hub">
-            <div className="tv-s08-core"><span>S</span></div>
-            {intelligenceNodes.map((node, i) => {
-              const angle = (i * 360 / 7 - 90) * (Math.PI / 180);
-              const r = 132;
-              const cx = 170 + Math.cos(angle) * r;
-              const cy = 170 + Math.sin(angle) * r;
+          <h2 style={{color:"#fff", textAlign:"center", fontSize:"clamp(28px, 3.5vw, 42px)", maxWidth:"none", width:"100%", fontFamily:"var(--font-syne), Arial, Helvetica, sans-serif", fontWeight:700, lineHeight:1.2, margin:"0 0 18px"}}>AI that works behind <span style={{ color: "#C6E84A" }}>every journey.</span></h2>
+          <p style={{color:"rgba(255,255,255,0.55)", textAlign:"center", maxWidth:520, fontSize:15, lineHeight:1.7, marginTop:8}}>AI can help travel enterprises understand intent, automate repetitive processes, identify exceptions and help operational teams respond faster.</p>
+          <div className="tv-s08-hub" style={{marginTop: 32}}>
+            <div className="tv-s08-core">
+              <span>SYTRION</span>
+              <span>INTELLIGENCE</span>
+            </div>
+            {intelligenceNodes.slice(0, 6).map((node, i) => {
+              const angle = (i * 60 - 90) * (Math.PI / 180);
+              const r = 120;
+              const cx = 140 + Math.cos(angle) * r;
+              const cy = 140 + Math.sin(angle) * r;
               return (
-                <div key={node.title} className="tv-s08-sat" style={{ left: cx, top: cy }}>
+                <div key={node.title} className="tv-s08-sat" style={{ left: cx, top: cy, transform: "translate(-50%, -50%)", position: "absolute" }}>
                   {node.icon}
-                  <div className="tv-s08-sat-label">
-                    <b>{node.title}</b>
-                    <span>{node.verbs}</span>
-                  </div>
+                  <span className="tv-s08-sat-label">{node.title.replace(" Intelligence", "")}</span>
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="tv-s08-human tv-reveal">
+        <div className="tv-s08-human">
           <div className="tv-s08-human-content">
-            <TvLabel text="HUMAN + DIGITAL" />
-            <h2>Great travel experiences still feel human.</h2>
-            <p className="tv-copy">Automation handles repetitive requests.</p>
-            <p className="tv-copy">AI understands intent and surfaces the right information.</p>
-            <p className="tv-copy">People bring empathy, judgment and reassurance — especially when journeys don&apos;t go as planned.</p>
-            <p className="tv-s08-human-strong">Sytrion brings them together.</p>
-            <p className="tv-s08-human-more">This is particularly relevant during disruption. A chatbot is useful when everything works; human judgment becomes far more valuable when a passenger is stranded, connecting flights are affected or exceptions become complicated.</p>
+            <TvLabel text="HUMAN + DIGITAL" light />
+            <h2>Smarter travel should <span style={{ color: "#C6E84A" }}>still feel personal.</span></h2>
+            <p className="tv-copy">Automation can handle repetitive requests.</p>
+            <p className="tv-copy">AI can organize information and help surface what matters.</p>
+            <p className="tv-copy">People bring judgment, context and empathy to complex travel situations.</p>
+            <h3>Sytrion brings them together.</h3>
           </div>
         </div>
       </section>
