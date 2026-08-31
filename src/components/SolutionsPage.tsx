@@ -278,7 +278,12 @@ function ApproachNavigator() {
   return (
     <div className="ap-nav" style={{ marginTop: "64px" }}>
       {/* Left: content panel */}
-      <div className="ap-panel" id="ap-panel" aria-live="polite">
+      <div
+        className="ap-panel"
+        id="ap-panel"
+        aria-live="polite"
+        style={{ "--ap-accent": step.accent } as React.CSSProperties}
+      >
         <div className="ap-panel-visual" aria-hidden="true" />
         <div className="ap-panel-head">
           <span className="ap-panel-step">STEP {pad(active)} / {step.title.toUpperCase()}</span>
@@ -312,6 +317,7 @@ function ApproachNavigator() {
               aria-current={isActive ? "step" : undefined}
               aria-controls="ap-panel"
               onClick={() => selectStep(i)}
+              onMouseEnter={() => selectStep(i)}
               onKeyDown={(e) => onKeyDown(e, i)}
             >
               <span className="ap-nav-dot" aria-hidden="true">
@@ -371,6 +377,13 @@ function SolutionCard({
 
 /* ── Analytics Grid Card ───────────────────────────────────────────────────── */
 
+const analyticsPlacements: Record<string, string> = {
+  "01": "1 / 3",
+  "02": "3 / 4",
+  "03": "1 / 2",
+  "04": "2 / 4",
+};
+
 function AnalyticsGridCard({
   card,
 }: {
@@ -378,58 +391,30 @@ function AnalyticsGridCard({
     index: string;
     title: string;
     description: string;
-    tall?: boolean;
-    accent?: boolean;
+    image: string;
   };
 }) {
-  const isFeatured = card.index === "01";
-  const isAccent = card.accent;
-  const isTall = card.tall || false;
-
-  // Visual treatment: "light", "fill", or "accent"
-  let treatment = "light";
-  if (isFeatured) {
-    treatment = "fill";
-  } else if (isAccent) {
-    treatment = "accent";
-  }
-
-  // Cell placement for this item (1-indexed)
-  const placements: Record<string, {
-    colStart: number;
-    colEnd: number;
-    rowStart: number;
-    rowEnd: number;
-  }> = {
-    "01": { colStart: 1, colEnd: 7, rowStart: 1, rowEnd: 3 },
-    "02": { colStart: 7, colEnd: 13, rowStart: 1, rowEnd: 2 },
-    "03": { colStart: 7, colEnd: 10, rowStart: 2, rowEnd: 4 },
-    "04": { colStart: 10, colEnd: 13, rowStart: 2, rowEnd: 3 },
-    "05": { colStart: 1, colEnd: 4, rowStart: 3, rowEnd: 4 },
-    "06": { colStart: 4, colEnd: 7, rowStart: 3, rowEnd: 4 },
-    "07": { colStart: 10, colEnd: 13, rowStart: 3, rowEnd: 4 },
-  };
-
-  const placement = placements[card.index];
-
-  // Avoid template literals in JSX className for Turbopack compatibility
-  const className = "analytics-grid-card " + treatment;
-  const gridColumn = placement.colStart + " / " + placement.colEnd;
-  const gridRow = placement.rowStart + " / " + placement.rowEnd;
-
+  const gridColumn = analyticsPlacements[card.index] || "auto";
+  const isBig = card.index === "01" || card.index === "04";
   return (
     <div
-      className={className}
-      style={{
-        gridColumn: gridColumn,
-        gridRow: gridRow,
-        ...(isTall && { gridRowEnd: placement.rowEnd + 1 }),
-      }}
+      className={"analytics-grid-card" + (isBig ? " is-big" : "")}
+      style={{ gridColumn: gridColumn }}
     >
-      <div className="analytics-grid-content">
+      <img
+        src={card.image}
+        alt={card.title}
+        className="analytics-grid-bg-img"
+        loading="lazy"
+        decoding="async"
+      />
+      <div className="analytics-grid-overlay" />
+      <div className="analytics-grid-text">
         <span className="analytics-grid-index">{card.index}</span>
-        <h3 className="analytics-grid-title">{card.title}</h3>
-        <p className="analytics-grid-desc">{card.description}</p>
+        <div className="analytics-grid-content">
+          <h3 className="analytics-grid-title">{card.title}</h3>
+          <p className="analytics-grid-desc">{card.description}</p>
+        </div>
       </div>
     </div>
   );
@@ -607,7 +592,7 @@ function DEVisual04() {
 const deVisuals: Record<string, React.FC> = { "01": DEVisual01, "02": DEVisual02, "03": DEVisual03, "04": DEVisual04 };
 const deImages: Record<string, string> = {
   "01": "/solutions/Data Processing & Validation.png",
-  "02": "/solutions/Data Enrichment & Integration1.png",
+  "02": "/solutions/Data Enrichment & Integration.png",
   "03": "/solutions/AI-Ready Data Preparation.png",
   "04": "/solutions/data quality management.png",
 };
@@ -626,31 +611,28 @@ function DataEngCard({
   const Visual = deVisuals[index];
   const imgSrc = deImages[index];
   return (
-    <div className="de-card">
-      <div className="de-card-visual">
-        {imgSrc ? (
-          <img src={imgSrc} alt={title} />
-        ) : (
-          Visual && <Visual />
-        )}
-        <div className="de-card-scrim" />
-        <div className="de-card-grain" />
-      </div>
-      <div className="de-card-body">
-        <div className="de-card-icon">
-          <SolIcon name={icon} size={18} />
+    <a href="/contact" className="de-card" aria-label={title}>
+      {imgSrc ? (
+        <img src={imgSrc} alt={title} className="de-card-bg-img" loading="lazy" decoding="async" />
+      ) : (
+        <div className="de-card-bg-img de-card-bg-svg">
+          {Visual && <Visual />}
         </div>
+      )}
+      <div className="de-card-overlay" />
+      <div className="de-card-grain" />
+      <div className="de-card-text">
         <h4 className="de-card-title">{title}</h4>
         <p className="de-card-desc">{desc}</p>
-        <Link href="/contact" className="de-card-link">
-          Explore capability
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <span className="de-card-readmore">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <line x1="5" y1="12" x2="19" y2="12" />
             <polyline points="12 5 19 12 12 19" />
           </svg>
-        </Link>
+          Read More
+        </span>
       </div>
-    </div>
+    </a>
   );
 }
 
@@ -666,6 +648,7 @@ const capabilities = [
       "Move from conventional process automation towards AI-enabled, agentic operations that understand information, support decisions and coordinate workflows.",
     chips: ["Agentic AI", "Document intelligence", "Workflow orchestration"],
     href: "/solutions#ai-automation",
+    image: "/shared/AI-Automation-and-Agentic-AI-2.jpeg",
   },
   {
     number: "02",
@@ -676,6 +659,7 @@ const capabilities = [
       "People, process, technology and performance management working together to operate and improve business-critical processes reliably every day.",
     chips: ["Process operations", "Quality assurance", "Exception handling"],
     href: "/solutions#intelligent-operations",
+    image: "/home/rpa2.jpg",
   },
   {
     number: "03",
@@ -686,6 +670,7 @@ const capabilities = [
       "Transform fragmented information across systems and formats into structured, accurate and usable data assets that support operations, analytics and AI.",
     chips: ["Data validation", "Enrichment", "AI-ready data"],
     href: "/solutions#data-engineering",
+    image: "/shared/Data Engineering.webp",
   },
   {
     number: "04",
@@ -696,6 +681,7 @@ const capabilities = [
       "Transform enterprise and operational data into clear, relevant and actionable insights — from executive dashboards to predictive analytics.",
     chips: ["Dashboards", "KPI monitoring", "Predictive analytics"],
     href: "/solutions#analytics-bi",
+    image: "/home/Analytics-and-BI.webp",
   },
   {
     number: "05",
@@ -706,6 +692,7 @@ const capabilities = [
       "Shipping domain expertise combined with intelligent operations, automation and data to simplify complex workflows across freight and customs.",
     chips: ["Freight forwarding", "Customs documentation", "Logistics analytics"],
     href: "/solutions#shipping-logistics",
+    image: "/home/shipping and logistics.jpg",
   },
   {
     number: "06",
@@ -716,6 +703,7 @@ const capabilities = [
       "Intelligent document processing, automation, data and managed operations that streamline administrative workflows with a focus on security and accuracy.",
     chips: ["Claims operations", "Document intelligence", "Secure delivery"],
     href: "/solutions#healthcare-operations",
+    image: "/home/Healthcare operations.webp",
   },
 ];
 
@@ -727,10 +715,10 @@ const aiCapabilities = [
 ];
 
 const opsCapabilities = [
-  { title: "Business Process Operations", desc: "Structured support for high-volume and business-critical operational processes.", image: "/solutions/Business Process Operations.jpg" },
+  { title: "Business Process Operations", desc: "Structured support for high-volume and business-critical operational processes.", image: "/solutions/Business Process Operations.png" },
   { title: "Back-Office Operations", desc: "Improve efficiency across repetitive administrative and transaction-based activities.", image: "/solutions/Back-Office Operations.jpg" },
-  { title: "Workflow & Exception Management", desc: "Manage workflows, exceptions and process dependencies with greater control.", image: "/solutions/Workflow & Exception Management.jpg" },
-  { title: "Quality & Performance Management", desc: "Maintain consistent delivery through defined quality controls, reporting and continuous improvement.", image: "/solutions/Quality & Performance Management.jpg" },
+  { title: "Workflow & Exception Management", desc: "Manage workflows, exceptions and process dependencies with greater control.", image: "/solutions/Workflow & Exception Management.png" },
+  { title: "Quality & Performance Management", desc: "Maintain consistent delivery through defined quality controls, reporting and continuous improvement.", image: "/solutions/Quality & Performance Management.png" },
 ];
 
 const dataCapabilities = [
@@ -769,57 +757,41 @@ const ecosystem = [
 const analyticsCapabilities = [
   {
     index: "01",
-    title: "Executive dashboards",
+    title: "Business Intelligence",
     description:
-      "Show leadership the metrics that matter in one clear view.",
+      "Bring critical business information together for easier analysis and decision-making.",
+    image: "/solutions/Decision Intelligence.jpg",
   },
   {
     index: "02",
-    title: "KPI monitoring",
+    title: "Dashboards & Reporting",
     description:
-      "Track key performance indicators across teams in real time.",
+      "Create clear executive and operational visibility across key performance indicators.",
+    image: "/solutions/Executive Dashboards.jpg",
   },
   {
     index: "03",
-    title: "Automated reporting",
+    title: "Performance Analytics",
     description:
-      "Generate and distribute reports on a schedule without manual work.",
-    tall: true,
+      "Identify trends, exceptions and opportunities across business operations.",
+    image: "/solutions/Trend Analysis.jpg",
   },
   {
     index: "04",
-    title: "Trend analysis",
+    title: "Predictive & Decision Intelligence",
     description:
-      "Spot patterns in your data before they become problems.",
-  },
-  {
-    index: "05",
-    title: "Operational dashboards",
-    description:
-      "Give operations teams live visibility into daily performance.",
-    accent: true,
-  },
-  {
-    index: "06",
-    title: "Predictive analytics",
-    description:
-      "Use past data to forecast demand, risk and outcomes.",
-  },
-  {
-    index: "07",
-    title: "Data visualization",
-    description:
-      "Turn complex datasets into charts anyone can read.",
+      "Use data to anticipate outcomes and support faster, informed decisions.",
+    image: "/solutions/Predictive Analytics.jpg",
   },
 ];
 
 const approachSteps = [
-  { title: "Discover", desc: "Understand your processes, systems, data and business objectives.", tags: ["Process Mapping", "Business Objectives", "Systems & Data"] },
-  { title: "Diagnose", desc: "Identify bottlenecks, manual effort and opportunities for improvement.", tags: ["Bottleneck Analysis", "Manual Effort", "Opportunity Mapping"] },
-  { title: "Design", desc: "Create the right combination of process, technology and automation.", tags: ["Process Design", "Technology Mix", "Automation"] },
-  { title: "Implement", desc: "Introduce the solution through a structured transition.", tags: ["Structured Rollout", "Change Management", "Transition"] },
-  { title: "Operate", desc: "Manage processes with defined controls and performance measures.", tags: ["Governance", "Controls", "Performance Measures"] },
-  { title: "Improve", desc: "Continuously identify opportunities for optimization and intelligence.", tags: ["Continuous Optimization", "Intelligence", "Sustained Value"] },
+  { title: "Discover", accent: "#C6E84A", desc: "Understand your processes, systems, data and business objectives.", tags: ["Process Mapping", "Business Objectives", "Systems & Data"] },
+  { title: "Diagnose", accent: "#4FB3FF", desc: "Identify bottlenecks, manual effort and opportunities for improvement.", tags: ["Bottleneck Analysis", "Manual Effort", "Opportunity Mapping"] },
+  { title: "Design", accent: "#A97BFF", desc: "Create the right combination of process, technology and automation.", tags: ["Process Design", "Technology Mix", "Automation"] },
+  { title: "Implement", accent: "#FFB45C", desc: "Introduce the solution through a structured transition.", tags: ["Structured Rollout", "Change Management", "Transition"] },
+  { title: "Operate", accent: "#35D0BA", desc: "Manage processes with defined controls and performance measures.", tags: ["Governance", "Controls", "Performance Measures"] },
+  { title: "Improve", accent: "#FF6B8A", desc: "Continuously identify opportunities for optimization and intelligence.", tags: ["Continuous Optimization", "Intelligence", "Sustained Value"] },
 ];
 
 const securityTags = [
@@ -871,6 +843,11 @@ function CapabilitiesRail() {
   };
 
   const renderBody = (c: (typeof capabilities)[number]) => (
+    <>
+      <div className="sol-deck-bg" aria-hidden="true">
+        <img src={c.image} alt="" loading="eager" decoding="async" />
+      </div>
+      <div className="sol-deck-overlay" aria-hidden="true" />
     <div className="sol-preview-body">
       <div className="sol-preview-icon">
         <SolIcon name={c.icon} size={34} />
@@ -899,6 +876,7 @@ function CapabilitiesRail() {
         </div>
       </div>
     </div>
+    </>
   );
 
   return (
@@ -1196,7 +1174,7 @@ export default function SolutionsPage() {
         }
         .sol-rail-item:hover,
         .sol-rail-item.active {
-          background: rgba(198,232,74,0.16);
+          background: #C6E84A;
           border-bottom-color: transparent;
         }
         .sol-rail-num {
@@ -1333,6 +1311,26 @@ export default function SolutionsPage() {
           filter: brightness(0.55);
           z-index: 1;
           border-color: rgba(198,241,53,0.2);
+        }
+        .sol-deck-bg {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          overflow: hidden;
+        }
+        .sol-deck-bg img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          opacity: 0.58;
+        }
+        .sol-deck-overlay {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          background: linear-gradient(180deg, rgba(10,11,15,0.52) 0%, rgba(10,11,15,0.68) 50%, rgba(10,11,15,0.9) 100%);
+          pointer-events: none;
         }
         .sol-preview-ghost {
           position: absolute;
@@ -1621,12 +1619,23 @@ export default function SolutionsPage() {
           position: relative;
           overflow: hidden;
           background: #0e1526;
+          border: 1px solid rgba(255, 255, 255, 0.06);
           border-radius: 28px;
           padding: clamp(36px, 5vw, 64px);
           min-height: 420px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+        }
+        .ap-panel::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: var(--ap-accent, #C6E84A);
+          z-index: 2;
         }
         .ap-panel-visual {
           position: absolute;
@@ -1641,7 +1650,7 @@ export default function SolutionsPage() {
           width: 460px;
           height: 460px;
           border-radius: 50%;
-          background: radial-gradient(circle at center, rgba(198, 232, 74, 0.1), rgba(198, 232, 74, 0) 62%);
+          background: radial-gradient(circle at center, color-mix(in srgb, var(--ap-accent, #C6E84A) 34%, transparent), transparent 62%);
         }
         .ap-panel-visual::after {
           content: '';
@@ -1665,7 +1674,7 @@ export default function SolutionsPage() {
           font-size: 12.5px;
           font-weight: 700;
           letter-spacing: 2.5px;
-          color: #C6E84A;
+          color: var(--ap-accent, #C6E84A);
           text-transform: uppercase;
         }
         .ap-panel-body {
@@ -1704,9 +1713,9 @@ export default function SolutionsPage() {
           display: inline-block;
           padding: 8px 16px;
           border-radius: 999px;
-          border: 1px solid rgba(198, 232, 74, 0.22);
-          background: rgba(198, 232, 74, 0.06);
-          color: #dbe8bb;
+          border: 1px solid color-mix(in srgb, var(--ap-accent, #C6E84A) 38%, transparent);
+          background: color-mix(in srgb, var(--ap-accent, #C6E84A) 12%, transparent);
+          color: color-mix(in srgb, var(--ap-accent, #C6E84A) 82%, white);
           font-size: 13px;
           font-weight: 500;
           letter-spacing: 0.2px;
@@ -1897,145 +1906,115 @@ export default function SolutionsPage() {
           margin-top: 48px;
         }
 
-        /* Card base */
+        /* Card base — image-overlay style matching home Our Solutions cards */
         .de-card {
           position: relative;
+          display: block;
+          height: 440px;
           background: #0d0e10;
-          border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 18px;
+          border: none;
+          border-radius: 12px;
           overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+          text-decoration: none;
+          cursor: pointer;
+          transition: box-shadow 0.25s ease, transform 0.25s ease;
         }
         .de-card:hover {
+          box-shadow: 0 16px 44px rgba(0,0,0,0.3);
           transform: translateY(-4px);
-          border-color: rgba(147,232,87,0.3);
-          box-shadow: 0 12px 40px rgba(0,0,0,0.3);
         }
 
-        /* Visual area — full bleed background */
-        .de-card-visual {
-          position: relative;
-          width: 100%;
-          aspect-ratio: 16 / 10;
-          overflow: hidden;
-          flex-shrink: 0;
-        }
-        .de-card--large .de-card-visual {
-          aspect-ratio: 16 / 10;
-        }
-        .de-card-visual svg, .de-card-visual img {
-          display: block;
+        /* Full-bleed background image */
+        .de-card-bg-img {
+          position: absolute;
+          inset: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+          display: block;
+          transition: transform 0.5s ease;
         }
-        .de-card:hover .de-card-visual svg, .de-card:hover .de-card-visual img {
-          transform: scale(1.03);
+        .de-card-bg-svg svg {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .de-card:hover .de-card-bg-img {
+          transform: scale(1.04);
         }
 
-        /* Dark gradient scrim over bottom ~55% */
-        .de-card-scrim {
+        /* Dark gradient scrim over bottom */
+        .de-card-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(to bottom, transparent 30%, rgba(8,9,10,0.7) 55%, rgba(8,9,10,0.95) 100%);
+          background: linear-gradient(180deg, rgba(0,0,0,0) 42%, rgba(0,0,0,0.72) 68%, rgba(0,0,0,0.92) 100%);
           pointer-events: none;
+          z-index: 1;
+        }
+        .de-card:hover .de-card-overlay {
+          background: linear-gradient(180deg, rgba(0,0,0,0) 42%, rgba(0,0,0,0.82) 68%, rgba(0,0,0,0.96) 100%);
         }
 
         /* Grain/noise overlay */
         .de-card-grain {
           position: absolute;
           inset: 0;
-          opacity: 0.04;
+          opacity: 0.035;
           background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
           background-size: 128px 128px;
           pointer-events: none;
-        }
-
-        /* Index label — top right */
-        .de-card-index {
-          position: absolute;
-          top: 16px;
-          right: 18px;
-          font-family: var(--font-geist-mono), monospace;
-          font-size: 11px;
-          font-weight: 500;
-          color: rgba(255,255,255,0.35);
-          letter-spacing: 1px;
           z-index: 2;
         }
 
-        /* Card body — content below visual */
-        .de-card-body {
-          padding: 20px 22px 24px;
-          flex: 1;
+        /* Overlaid text — bottom left */
+        .de-card-text {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          padding: 26px;
           display: flex;
           flex-direction: column;
-          position: relative;
-          z-index: 1;
-        }
-
-        /* Icon badge */
-        .de-card-icon {
-          width: 36px;
-          height: 36px;
-          border-radius: 10px;
-          background: rgba(147,232,87,0.1);
-          border: 1px solid rgba(147,232,87,0.18);
-          color: #93e857;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 14px;
-          transition: background 0.3s ease, color 0.3s ease;
-          flex-shrink: 0;
-        }
-        .de-card:hover .de-card-icon {
-          background: rgba(147,232,87,0.18);
+          z-index: 3;
         }
 
         /* Title */
         .de-card-title {
           font-family: var(--font-syne), sans-serif;
-          font-size: 15px;
+          font-size: 22px;
           font-weight: 700;
           color: #ffffff;
-          line-height: 1.35;
-          margin: 0 0 8px;
+          line-height: 1.3;
+          margin: 0 0 10px;
         }
 
-        /* Description */
+        /* Description — clamp to 2 lines */
         .de-card-desc {
-          font-size: 13px;
+          font-size: 13.5px;
           font-weight: 400;
-          color: #96988f;
+          color: rgba(255,255,255,0.82);
           line-height: 1.6;
           margin: 0;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
 
-        /* Explore link — only on large card */
-        .de-card-link {
-          display: inline-flex;
+        /* Read More link */
+        .de-card-readmore {
+          display: flex;
           align-items: center;
           gap: 8px;
-          margin-top: auto;
-          padding-top: 16px;
-          font-size: 13px;
-          font-weight: 600;
-          color: #93e857;
-          text-decoration: none;
-          transition: gap 0.3s ease;
+          margin-top: 16px;
+          color: #ffffff;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 1.6px;
+          text-transform: uppercase;
         }
-        .de-card-link:hover {
-          gap: 12px;
-        }
-        .de-card-link svg {
-          transition: transform 0.3s ease;
-        }
-        .de-card-link:hover svg {
-          transform: translateX(2px);
+        .de-card-readmore svg {
+          flex-shrink: 0;
         }
 
         /* Closing row */
@@ -2317,10 +2296,8 @@ export default function SolutionsPage() {
           .ap-nav-item:hover:not(.is-active) { transform: none; }
           .de-card { transition: none; transform: none; }
           .de-card:hover { transform: none; }
-          .de-card-visual svg { transition: none; transform: none; }
-          .de-card-icon { transition: none; }
-          .de-card-link { transition: none; }
-          .de-card-link svg { transition: none; }
+          .de-card-bg-img { transition: none; transform: none; }
+          .de-card:hover .de-card-bg-img { transform: none; }
           .de-footer-cta { transition: none; transform: none; }
           .de-footer-cta svg { transition: none; }
         }
@@ -2521,14 +2498,27 @@ export default function SolutionsPage() {
           display: grid;
           grid-template-columns: 52px minmax(0, 1fr);
           align-items: baseline;
-          padding: 20px 0;
+          padding: 20px 18px;
+          border-radius: 14px;
           border-bottom: 1px solid #DFE3D6;
+          cursor: pointer;
+          transition: background 0.25s ease, border-color 0.25s ease;
+        }
+        .ho-item:hover,
+        .ho-item:active {
+          background: #C6E84A;
+          border-bottom-color: transparent;
         }
         .ho-num {
           font-size: 13px;
           font-weight: 700;
           letter-spacing: 0.06em;
           color: #8FAE1E;
+          transition: color 0.25s ease;
+        }
+        .ho-item:hover .ho-num,
+        .ho-item:active .ho-num {
+          color: #4d7c0f;
         }
         .ho-item-title {
           font-size: 16px;
@@ -2698,102 +2688,125 @@ export default function SolutionsPage() {
 
         /* ── Analytics & Intelligence Grid ───────────────────────────────────────── */
         .analytics-grid {
+          position: relative;
           display: grid;
-          grid-template-columns: repeat(12, 1fr);
-          grid-template-rows: repeat(3, 168px);
-          gap: 14px;
+          grid-template-columns: repeat(3, 1fr);
+          grid-auto-rows: 320px;
+          grid-auto-flow: row;
+          gap: 22px;
+          margin-top: 48px;
           -webkit-font-smoothing: antialiased;
         }
 
         .analytics-grid-card {
-          border-radius: 14px;
-          padding: 22px 24px;
+          position: relative;
+          display: block;
+          border-radius: 16px;
+          overflow: hidden;
+          background: #0d0e10;
+          text-decoration: none;
+          cursor: pointer;
+          transition: box-shadow 0.25s ease, transform 0.25s ease;
+        }
+        .analytics-grid-card:hover {
+          box-shadow: 0 16px 44px rgba(0,0,0,0.28);
+          transform: translateY(-4px);
+        }
+
+        .analytics-grid-bg-img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.5s ease;
+        }
+        .analytics-grid-card:hover .analytics-grid-bg-img {
+          transform: scale(1.04);
+        }
+
+        .analytics-grid-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(10,12,18,0.08) 35%, rgba(10,12,18,0.72) 68%, rgba(10,12,18,0.92) 100%);
+          pointer-events: none;
+          z-index: 1;
+        }
+        .analytics-grid-card:hover .analytics-grid-overlay {
+          background: linear-gradient(180deg, rgba(10,12,18,0.08) 35%, rgba(10,12,18,0.8) 68%, rgba(10,12,18,0.96) 100%);
+        }
+
+        .analytics-grid-text {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          padding: 28px;
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
-          position: relative;
-          -webkit-font-smoothing: antialiased;
+          z-index: 2;
         }
 
-        /* Light treatment: white bg + 1px border */
-        .analytics-grid-card.light {
-          background: #fff;
-          border: 1px solid #DEDCCF;
-          color: #16171B;
-        }
-
-        /* Fill treatment: solid accent bg, white text - featured item only */
-        .analytics-grid-card.fill {
-          background: #0E6E5B;
-          color: #fff;
-        }
-
-        /* Accent treatment: pale accent bg + 1px border, dark text - item 5 */
-        .analytics-grid-card.accent {
-          background: #E4F1EC;
-          border: 1px solid #DEDCCF;
-          color: #16171B;
+        .analytics-grid-index {
+          font-family: var(--font-geist-mono), monospace;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 1px;
+          color: #C6E84A;
+          margin-bottom: 12px;
         }
 
         .analytics-grid-content {
           display: flex;
           flex-direction: column;
-          flex: 1;
-          justify-content: space-between;
-          min-height: 0;
-        }
-
-        .analytics-grid-index {
-          font-family: "IBM Plex Mono", monospace;
-          font-size: 11px;
-          opacity: 0.6;
-          margin-bottom: 8px;
-          align-self: start;
         }
 
         .analytics-grid-title {
-          font-family: "Manrope", sans-serif;
+          font-family: var(--font-syne), sans-serif;
+          font-size: 24px;
           font-weight: 700;
-          margin: 0 0 4px;
-          line-height: 1.2;
-        }
-
-        .analytics-grid-card.fill .analytics-grid-title {
-          font-size: 26px;
-        }
-
-        .analytics-grid-card:not(.fill) .analytics-grid-title {
-          font-size: 19px;
+          color: #ffffff;
+          line-height: 1.25;
+          margin: 0 0 10px;
         }
 
         .analytics-grid-desc {
-          font-family: "Inter", sans-serif;
-          font-size: 13px;
-          line-height: 1.55;
-          color: #77786D;
+          font-size: 14px;
+          line-height: 1.6;
+          color: rgba(255, 255, 255, 0.82);
           margin: 0;
-          max-width: 88%;
+          max-width: 90%;
         }
 
-        .analytics-grid-card.fill .analytics-grid-desc {
-          color: rgba(255, 255, 255, 0.85);
+        /* Big cards get more generous content scale */
+        .analytics-grid-card.is-big .analytics-grid-title {
+          font-size: 28px;
+          max-width: 18ch;
+        }
+        .analytics-grid-card.is-big .analytics-grid-desc {
+          font-size: 15px;
+          max-width: 60ch;
         }
 
-        /* Hover: subtle border darken for light cells only */
-        .analytics-grid-card.light:hover {
-          border-color: #B5B5B5;
+        /* Tablet: 2-column bento */
+        @media (max-width: 900px) {
+          .analytics-grid {
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: 280px;
+          }
+          .analytics-grid-card.is-big {
+            grid-column: auto !important;
+          }
         }
-
         /* Mobile: single column */
-        @media (max-width: 780px) {
+        @media (max-width: 640px) {
           .analytics-grid {
             grid-template-columns: 1fr;
-            grid-template-rows: auto;
+            grid-auto-rows: 300px;
           }
           .analytics-grid-card {
-            grid-column: 1 / -1;
-            grid-row: auto;
-            height: auto;
+            grid-column: auto !important;
           }
         }
       `}</style>
@@ -3028,7 +3041,7 @@ We work as an extension of your organization, bringing greater efficiency, consi
           </p>
 
           <div className="analytics-grid">
-            {analyticsCapabilities.map((card, i) => (
+            {analyticsCapabilities.map((card) => (
               <AnalyticsGridCard key={card.index} card={card} />
             ))}
           </div>
@@ -3094,9 +3107,9 @@ We work as an extension of your organization, bringing greater efficiency, consi
         </section>
 
         <div className="sol-wrap">
-          <div style={{ marginTop: "48px" }}>
+          <div style={{ marginTop: "48px", textAlign: "center" }}>
             <span className="sol-sublabel">Who We Support</span>
-            <div className="sol-tags">
+            <div className="sol-tags" style={{ justifyContent: "center" }}>
               {["Shipping companies", "Freight forwarders", "Logistics service providers", "3PL organizations", "Supply-chain businesses"].map((tag) => (
                 <span key={tag} className="sol-tag">{tag}</span>
               ))}
