@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import WhySytrion from "./WhySytrion";
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -240,70 +240,88 @@ function SectionTitle({ children, dark, style }: { children: React.ReactNode; da
   return <h2 className={"sol-section-title" + (dark ? " sol-section-title--dark" : "")} style={style}>{children}</h2>;
 }
 
-/* ── Approach Timeline (scroll-triggered) ─────────────────────────────────── */
+/* ── Approach Navigator (interactive vertical nav + content panel) ────────── */
 
-function ApproachTimeline() {
-  const ref = useRef<HTMLDivElement>(null);
+function ApproachNavigator() {
+  const [active, setActive] = useState(0);
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+  const step = approachSteps[active];
+  const pad = (n: number) => String(n + 1).padStart(2, "0");
 
-    const setProgress = () => {
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight || 1;
-      const start = vh * 0.92;
-      const end = vh * 0.5;
-      const p = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
-      el.style.setProperty("--rail-progress", String(p));
-    };
+  const selectStep = (i: number) => {
+    if (i === active) return;
+    setActive(i);
+  };
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            el.classList.add("is-visible");
-            io.disconnect();
-          }
-        });
-      },
-      { threshold: 0.25 }
-    );
-    io.observe(el);
-
-    setProgress();
-    window.addEventListener("scroll", setProgress, { passive: true });
-    window.addEventListener("resize", setProgress);
-    return () => {
-      io.disconnect();
-      window.removeEventListener("scroll", setProgress);
-      window.removeEventListener("resize", setProgress);
-    };
-  }, []);
+  const onKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, i: number) => {
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+      e.preventDefault();
+      const next = (i + 1) % approachSteps.length;
+      document.getElementById(`ap-nav-${next}`)?.focus();
+      setActive(next);
+    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+      e.preventDefault();
+      const prev = (i - 1 + approachSteps.length) % approachSteps.length;
+      document.getElementById(`ap-nav-${prev}`)?.focus();
+      setActive(prev);
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      document.getElementById("ap-nav-0")?.focus();
+      setActive(0);
+    } else if (e.key === "End") {
+      e.preventDefault();
+      document.getElementById(`ap-nav-${approachSteps.length - 1}`)?.focus();
+      setActive(approachSteps.length - 1);
+    }
+  };
 
   return (
-    <div className="ap-timeline" ref={ref} style={{ marginTop: "48px" }}>
-      <div className="ap-scroller">
-        <div className="ap-inner">
-          <div className="ap-rail" aria-hidden="true">
-            <span className="ap-rail-fill" />
-          </div>
-          <div className="ap-track">
-            {approachSteps.map((step, i) => (
-              <div
-                key={step.title}
-                className="ap-step"
-                style={{ "--d": `${i * 90}ms` } as React.CSSProperties}
-              >
-                <span className="ap-node" aria-hidden="true" />
-                <span className="sol-step-num">Step {String(i + 1).padStart(2, "0")}</span>
-                <h4 className="sol-step-title">{step.title}</h4>
-                <p className="sol-step-desc">{step.desc}</p>
-              </div>
-            ))}
-          </div>
+    <div className="ap-nav" style={{ marginTop: "64px" }}>
+      {/* Left: content panel */}
+      <div className="ap-panel" id="ap-panel" aria-live="polite">
+        <div className="ap-panel-visual" aria-hidden="true" />
+        <div className="ap-panel-head">
+          <span className="ap-panel-step">STEP {pad(active)} / {step.title.toUpperCase()}</span>
+        </div>
+
+        <div className="ap-panel-body" key={active}>
+          <h3 className="ap-panel-title">{step.title}</h3>
+          <p className="ap-panel-desc">{step.desc}</p>
+        </div>
+
+        <div className="ap-panel-tags" key={`tags-${active}`}>
+          {step.tags.map((tag) => (
+            <span key={tag} className="ap-panel-tag">{tag}</span>
+          ))}
         </div>
       </div>
+
+      {/* Right: editorial index navigation */}
+      <nav
+        className="ap-nav-list"
+        aria-label="Our approach process"
+      >
+        {approachSteps.map((item, i) => {
+          const isActive = i === active;
+          return (
+            <button
+              key={item.title}
+              id={`ap-nav-${i}`}
+              type="button"
+              className={"ap-nav-item" + (isActive ? " is-active" : "")}
+              aria-current={isActive ? "step" : undefined}
+              aria-controls="ap-panel"
+              onClick={() => selectStep(i)}
+              onKeyDown={(e) => onKeyDown(e, i)}
+            >
+              <span className="ap-nav-dot" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="ap-nav-label">{item.title}</span>
+            </button>
+          );
+        })}
+      </nav>
     </div>
   );
 }
@@ -796,12 +814,12 @@ const analyticsCapabilities = [
 ];
 
 const approachSteps = [
-  { title: "Discover", desc: "Understand your processes, systems, data and business objectives." },
-  { title: "Diagnose", desc: "Identify bottlenecks, manual effort and opportunities for improvement." },
-  { title: "Design", desc: "Create the right combination of process, technology and automation." },
-  { title: "Implement", desc: "Introduce the solution through a structured transition." },
-  { title: "Operate", desc: "Manage processes with defined controls and performance measures." },
-  { title: "Improve", desc: "Continuously identify opportunities for optimization and intelligence." },
+  { title: "Discover", desc: "Understand your processes, systems, data and business objectives.", tags: ["Process Mapping", "Business Objectives", "Systems & Data"] },
+  { title: "Diagnose", desc: "Identify bottlenecks, manual effort and opportunities for improvement.", tags: ["Bottleneck Analysis", "Manual Effort", "Opportunity Mapping"] },
+  { title: "Design", desc: "Create the right combination of process, technology and automation.", tags: ["Process Design", "Technology Mix", "Automation"] },
+  { title: "Implement", desc: "Introduce the solution through a structured transition.", tags: ["Structured Rollout", "Change Management", "Transition"] },
+  { title: "Operate", desc: "Manage processes with defined controls and performance measures.", tags: ["Governance", "Controls", "Performance Measures"] },
+  { title: "Improve", desc: "Continuously identify opportunities for optimization and intelligence.", tags: ["Continuous Optimization", "Intelligence", "Sustained Value"] },
 ];
 
 const securityTags = [
@@ -843,7 +861,45 @@ function CapabilitiesOrbit() {
 
 function CapabilitiesRail() {
   const [active, setActive] = useState(0);
+  const [outgoing, setOutgoing] = useState<(typeof capabilities)[number] | null>(null);
   const cap = capabilities[active];
+
+  const selectItem = (i: number) => {
+    if (i === active) return;
+    setOutgoing(capabilities[active]);
+    setActive(i);
+  };
+
+  const renderBody = (c: (typeof capabilities)[number]) => (
+    <div className="sol-preview-body">
+      <div className="sol-preview-icon">
+        <SolIcon name={c.icon} size={34} />
+      </div>
+      <h3 className="sol-preview-title">{c.title}</h3>
+      <p className="sol-preview-tagline">{c.tagline}</p>
+      <p className="sol-preview-desc">{c.description}</p>
+      <div className="sol-preview-chips">
+        {c.chips.map((chip) => (
+          <span key={chip} className="sol-preview-chip">{chip}</span>
+        ))}
+      </div>
+      <div className="sol-preview-divider" />
+      <div className="sol-preview-foot">
+        <Link href={c.href} className="sol-preview-cta">
+          Explore capability
+          <ArrowIcon />
+        </Link>
+        <div className="sol-preview-dots" aria-hidden="true">
+          {capabilities.map((item, i) => (
+            <span
+              key={item.number}
+              className={"sol-preview-dot" + (i === active ? " active" : "")}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="sol-rail-layout">
@@ -853,9 +909,9 @@ function CapabilitiesRail() {
             key={item.number}
             type="button"
             className={"sol-rail-item" + (i === active ? " active" : "")}
-            onMouseEnter={() => setActive(i)}
-            onClick={() => setActive(i)}
-            onFocus={() => setActive(i)}
+            onMouseEnter={() => selectItem(i)}
+            onClick={() => selectItem(i)}
+            onFocus={() => selectItem(i)}
             aria-pressed={i === active}
           >
             <span className="sol-rail-num">{item.number}</span>
@@ -870,35 +926,24 @@ function CapabilitiesRail() {
             ))}
           </div>
 
-      <div className="sol-preview" aria-live="polite" aria-atomic="true">
-        <span className="sol-preview-ghost" aria-hidden="true">{cap.number}</span>
-        <div className="sol-preview-body" key={cap.number}>
-          <div className="sol-preview-icon">
-            <SolIcon name={cap.icon} size={34} />
+      <div className="sol-stage" aria-live="polite" aria-atomic="true">
+        {[1, 2, 3, 4, 5].map((l) => (
+          <div key={l} className={"deck-card l" + l} aria-hidden="true" />
+        ))}
+        {outgoing && (
+          <div
+            className="deck-card l0 l0-exit"
+            key={"exit-" + outgoing.number}
+            aria-hidden="true"
+            onAnimationEnd={() => setOutgoing(null)}
+          >
+            <span className="sol-preview-ghost">{outgoing.number}</span>
+            {renderBody(outgoing)}
           </div>
-          <h3 className="sol-preview-title">{cap.title}</h3>
-          <p className="sol-preview-tagline">{cap.tagline}</p>
-          <p className="sol-preview-desc">{cap.description}</p>
-          <div className="sol-preview-chips">
-            {cap.chips.map((chip) => (
-              <span key={chip} className="sol-preview-chip">{chip}</span>
-            ))}
-          </div>
-          <div className="sol-preview-divider" />
-          <div className="sol-preview-foot">
-            <Link href={cap.href} className="sol-preview-cta">
-              Explore capability
-              <ArrowIcon />
-            </Link>
-            <div className="sol-preview-dots" aria-hidden="true">
-              {capabilities.map((item, i) => (
-                <span
-                  key={item.number}
-                  className={"sol-preview-dot" + (i === active ? " active" : "")}
-                />
-              ))}
-            </div>
-          </div>
+        )}
+        <div className="deck-card l0" key={cap.number}>
+          <span className="sol-preview-ghost" aria-hidden="true">{cap.number}</span>
+          {renderBody(cap)}
         </div>
       </div>
     </div>
@@ -1200,17 +1245,94 @@ export default function SolutionsPage() {
           transform: translateX(0);
         }
 
-        /* ── Capabilities preview panel ─────────────────── */
-        .sol-preview {
+        /* ── Capabilities preview stage (stacked deck) ───── */
+        .sol-stage {
           position: relative;
-          background: #0f0f0f;
-          border: 1px solid rgba(255,255,255,0.08);
+          height: 620px;
+        }
+        .deck-card {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
           border-radius: 24px;
-          padding: 56px 48px 40px;
+          background: #0f0f0f;
+          border: 2px solid #C6F135;
           overflow: hidden;
-          min-height: 540px;
+          box-sizing: border-box;
+        }
+        .deck-card.l0 {
+          padding: 56px 48px 40px;
+          transform: translateX(0) scale(1);
+          filter: brightness(1);
+          z-index: 6;
+          border-color: rgba(198,241,53,0.85);
           display: flex;
           flex-direction: column;
+          will-change: transform, opacity, filter;
+          animation: solDeckIn 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        @keyframes solDeckIn {
+          0% {
+            transform: translateX(90px) scale(0.9);
+            opacity: 0;
+            filter: brightness(0.6);
+          }
+          60% {
+            filter: brightness(0.92);
+          }
+          100% {
+            transform: translateX(0) scale(1);
+            opacity: 1;
+            filter: brightness(1);
+          }
+        }
+        .deck-card.l0-exit {
+          will-change: transform, opacity, filter;
+          animation: solDeckOut 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes solDeckOut {
+          0% {
+            transform: translateX(0) scale(1);
+            opacity: 1;
+            filter: brightness(1);
+          }
+          100% {
+            transform: translateX(90px) scale(0.88);
+            opacity: 0;
+            filter: brightness(0.5);
+          }
+        }
+        .deck-card.l1 {
+          transform: translateX(22px) scale(0.975);
+          filter: brightness(0.9);
+          z-index: 5;
+          border-color: rgba(198,241,53,0.68);
+        }
+        .deck-card.l2 {
+          transform: translateX(44px) scale(0.95);
+          filter: brightness(0.8);
+          z-index: 4;
+          border-color: rgba(198,241,53,0.5);
+        }
+        .deck-card.l3 {
+          transform: translateX(66px) scale(0.925);
+          filter: brightness(0.7);
+          z-index: 3;
+          border-color: rgba(198,241,53,0.35);
+        }
+        .deck-card.l4 {
+          transform: translateX(88px) scale(0.90);
+          filter: brightness(0.62);
+          z-index: 2;
+          border-color: rgba(198,241,53,0.2);
+        }
+        .deck-card.l5 {
+          transform: translateX(110px) scale(0.875);
+          filter: brightness(0.55);
+          z-index: 1;
+          border-color: rgba(198,241,53,0.2);
         }
         .sol-preview-ghost {
           position: absolute;
@@ -1231,11 +1353,6 @@ export default function SolutionsPage() {
           display: flex;
           flex-direction: column;
           flex: 1;
-          animation: solPreviewIn 0.25s ease;
-        }
-        @keyframes solPreviewIn {
-          from { opacity: 0; transform: translateY(6px); }
-          to   { opacity: 1; transform: translateY(0); }
         }
         .sol-preview-icon {
           width: 76px;
@@ -1344,13 +1461,29 @@ export default function SolutionsPage() {
             grid-template-columns: 1fr;
             gap: 40px;
           }
-          .sol-preview {
-            min-height: 0;
+          .sol-stage {
+            height: auto;
+          }
+          .deck-card {
+            height: auto;
+            position: relative;
+          }
+          .deck-card.l1,
+          .deck-card.l2,
+          .deck-card.l3,
+          .deck-card.l4,
+          .deck-card.l5 {
+            display: none;
+          }
+          .deck-card.l0 {
             padding: 44px 32px 32px;
           }
         }
         @media (prefers-reduced-motion: reduce) {
           .sol-preview-body {
+            animation: none;
+          }
+          .deck-card.l0:not(.l0-exit) {
             animation: none;
           }
           .sol-rail-arrow,
@@ -1393,95 +1526,232 @@ export default function SolutionsPage() {
         }
 
         /* ── Numbered Steps ───────────────────────────────── */
-        /* ── Approach Timeline ───────────────────────────── */
-        .ap-timeline { --rail-progress: 0; }
-        .ap-inner { position: relative; }
-        .ap-rail {
-          position: absolute;
-          top: 6px;
-          left: 0;
-          right: 0;
-          height: 1px;
-          background: #DFE3D6;
-          transform: translateY(-50%);
-        }
-        .ap-rail-fill {
-          display: block;
-          height: 100%;
-          width: 100%;
-          background: #C6E84A;
-          transform-origin: left center;
-          transform: scaleX(var(--rail-progress));
-        }
-        .ap-track {
+        /* ── Approach Navigator ──────────────────────────── */
+        .ap-nav {
           display: grid;
-          grid-template-columns: repeat(6, 1fr);
-          gap: 28px;
+          grid-template-columns: 1fr minmax(240px, 320px);
+          gap: clamp(40px, 6vw, 88px);
+          align-items: start;
         }
-        .ap-step {
-          opacity: 0;
-          transform: translateY(20px);
-          transition:
-            opacity 0.55s ease var(--d, 0ms),
-            transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms);
+
+        /* Left: editorial index */
+        .ap-nav-list {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
         }
-        .ap-timeline.is-visible .ap-step {
-          opacity: 1;
-          transform: translateY(0);
+        .ap-nav-list::before {
+          content: '';
+          position: absolute;
+          top: 26px;
+          bottom: 26px;
+          left: 33px;
+          width: 1px;
+          background: rgba(15, 23, 42, 0.12);
         }
-        .ap-node {
-          display: block;
-          width: 12px;
-          height: 12px;
+        .ap-nav-item {
+          position: relative;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          width: 100%;
+          padding: 13px 12px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          text-align: left;
+          font-family: var(--font-syne), sans-serif;
+          font-size: 17px;
+          font-weight: 600;
+          color: #8A8D96;
+          letter-spacing: -0.01em;
+          transition: color 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+          border-radius: 12px;
+        }
+        .ap-nav-item:hover:not(.is-active) {
+          color: #0f172a;
+          transform: translateX(4px);
+        }
+        .ap-nav-item:focus-visible {
+          outline: 2px solid #C6E84A;
+          outline-offset: 2px;
+        }
+        .ap-nav-item.is-active {
+          color: #0f172a;
+        }
+        .ap-nav-dot {
+          position: relative;
+          z-index: 1;
+          flex: 0 0 auto;
+          width: 36px;
+          height: 36px;
           border-radius: 50%;
-          border: 2px solid #C6E84A;
-          background: #f8faf5;
-          box-sizing: border-box;
-          margin: 0 auto 20px;
-          transition: background-color 0.35s ease var(--d, 0ms);
-        }
-        .ap-timeline.is-visible .ap-node {
-          background: #C6E84A;
-        }
-        .sol-step-num {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           font-size: 12px;
           font-weight: 700;
-          color: #4d7c0f;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          margin-bottom: 14px;
-          display: block;
-        }
-        .sol-step-title {
-          font-family: var(--font-syne), sans-serif;
-          font-size: 20px;
-          font-weight: 700;
-          color: #242424;
-          margin: 0 0 10px;
-        }
-        .sol-step-desc {
-          font-size: 15px;
-          font-weight: 400;
+          letter-spacing: 0.5px;
+          border: 1.5px solid rgba(15, 23, 42, 0.18);
+          background: #f8faf5;
           color: #5A5D66;
-          line-height: 1.7;
+          transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ap-nav-item:hover:not(.is-active) .ap-nav-dot {
+          border-color: rgba(198, 232, 74, 0.7);
+          color: #4d7c0f;
+        }
+        .ap-nav-item.is-active .ap-nav-dot {
+          background: #C6E84A;
+          border-color: #C6E84A;
+          color: #0f0f0f;
+          transform: scale(1.05);
+        }
+        .ap-nav-label {
+          opacity: 0.85;
+          transition: opacity 0.35s ease;
+        }
+        .ap-nav-item.is-active .ap-nav-label {
+          opacity: 1;
+        }
+
+        /* Right: content panel */
+        .ap-panel {
+          position: relative;
+          overflow: hidden;
+          background: #0e1526;
+          border-radius: 28px;
+          padding: clamp(36px, 5vw, 64px);
+          min-height: 420px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        .ap-panel-visual {
+          position: absolute;
+          pointer-events: none;
+          inset: 0;
+        }
+        .ap-panel-visual::before {
+          content: '';
+          position: absolute;
+          right: -120px;
+          top: -120px;
+          width: 460px;
+          height: 460px;
+          border-radius: 50%;
+          background: radial-gradient(circle at center, rgba(198, 232, 74, 0.1), rgba(198, 232, 74, 0) 62%);
+        }
+        .ap-panel-visual::after {
+          content: '';
+          position: absolute;
+          right: -60px;
+          bottom: -160px;
+          width: 420px;
+          height: 420px;
+          border-radius: 50%;
+          border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .ap-panel-head {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 20px;
+        }
+        .ap-panel-step {
+          font-size: 12.5px;
+          font-weight: 700;
+          letter-spacing: 2.5px;
+          color: #C6E84A;
+          text-transform: uppercase;
+        }
+        .ap-panel-body {
+          position: relative;
+          z-index: 1;
+          margin: 56px 0 40px;
+          animation: apBodyIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ap-panel-title {
+          font-family: var(--font-syne), sans-serif;
+          font-size: clamp(34px, 5vw, 56px);
+          font-weight: 700;
+          color: #ffffff;
+          letter-spacing: -0.03em;
+          line-height: 1.05;
+          margin: 0 0 22px;
+          max-width: 640px;
+        }
+        .ap-panel-desc {
+          font-size: clamp(16px, 1.6vw, 19px);
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.6);
+          line-height: 1.75;
           margin: 0;
+          max-width: 560px;
+        }
+        .ap-panel-tags {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          animation: apBodyIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ap-panel-tag {
+          display: inline-block;
+          padding: 8px 16px;
+          border-radius: 999px;
+          border: 1px solid rgba(198, 232, 74, 0.22);
+          background: rgba(198, 232, 74, 0.06);
+          color: #dbe8bb;
+          font-size: 13px;
+          font-weight: 500;
+          letter-spacing: 0.2px;
+        }
+        @keyframes apBodyIn {
+          from {
+            opacity: 0;
+            transform: translateY(14px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
         @media (max-width: 1024px) {
-          .ap-scroller {
-            overflow-x: auto;
-            overscroll-behavior-x: contain;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
+          .ap-nav {
+            grid-template-columns: 1fr minmax(190px, 230px);
+            gap: 28px;
           }
-          .ap-scroller::-webkit-scrollbar { display: none; }
-          .ap-inner {
-            min-width: max-content;
-            padding-right: 8px;
+          .ap-nav-list::before { left: 31px; }
+          .ap-nav-item { gap: 14px; font-size: 15px; }
+          .ap-panel { min-height: 380px; border-radius: 24px; }
+          .ap-panel-body { margin: 44px 0 32px; }
+        }
+        @media (max-width: 768px) {
+          .ap-nav {
+            grid-template-columns: 1fr;
+            gap: 10px;
           }
-          .ap-track {
-            grid-template-columns: repeat(6, minmax(230px, 1fr));
+          .ap-nav-list {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 8px;
           }
-          .ap-step { scroll-snap-align: start; }
+          .ap-nav-list::before { display: none; }
+          .ap-nav-item {
+            width: auto;
+            padding: 8px 10px;
+            gap: 10px;
+            font-size: 14px;
+            border: 1px solid rgba(15, 23, 42, 0.1);
+          }
+          .ap-nav-item:hover:not(.is-active) { transform: none; }
+          .ap-nav-dot { width: 30px; height: 30px; font-size: 11px; }
+          .ap-panel { min-height: 0; border-radius: 20px; }
         }
 
         /* ── Ecosystem Row ───────────────────────────────── */
@@ -2041,9 +2311,10 @@ export default function SolutionsPage() {
         }
         @media (prefers-reduced-motion: reduce) {
           .sol-card, .sol-eco-item { transition: none; transform: none; }
-          .ap-step, .ap-node, .ap-rail-fill { transition: none !important; }
-          .ap-step { opacity: 1; transform: none; }
-          .ap-timeline .ap-node { background: #C6E84A; }
+          .ap-nav-item, .ap-nav-dot, .ap-panel-body, .ap-panel-tags { transition: none !important; }
+          .ap-panel-body { animation: none; }
+          .ap-panel-tags { animation: none; }
+          .ap-nav-item:hover:not(.is-active) { transform: none; }
           .de-card { transition: none; transform: none; }
           .de-card:hover { transform: none; }
           .de-card-visual svg { transition: none; transform: none; }
@@ -2950,7 +3221,7 @@ We work as an extension of your organization, bringing greater efficiency, consi
             where friction exists and what better performance should look like.
           </p>
 
-          <ApproachTimeline />
+          <ApproachNavigator />
         </div>
       </section>
 
