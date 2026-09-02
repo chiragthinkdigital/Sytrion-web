@@ -35,7 +35,7 @@ const ibsTabs = [
     num: "01",
     tab: "Claims",
     title: "Claims Operations",
-    lead: "Move claims through the lifecycle with greater accuracy and control.",
+    tagline: "Move claims through the lifecycle with greater accuracy and control.",
     items: [
       "Claims intake & data capture",
       "Claims validation & pre-processing",
@@ -44,12 +44,13 @@ const ibsTabs = [
       "Claims correspondence",
       "Quality & audit support",
     ],
+    image: "/healthcare/Claims Operations.jpg",
   },
   {
     num: "02",
     tab: "Enrollment",
     title: "Enrollment & Eligibility",
-    lead: "Simplify high-volume member administration.",
+    tagline: "Simplify high-volume member administration.",
     items: [
       "Enrollment processing",
       "Eligibility verification",
@@ -58,12 +59,13 @@ const ibsTabs = [
       "Documentation support",
       "Exception resolution",
     ],
+    image: "/healthcare/Enrollment & Eligibility.jpg",
   },
   {
     num: "03",
     tab: "Providers",
     title: "Provider Operations",
-    lead: "Build reliable provider information across the network.",
+    tagline: "Build reliable provider information across the network.",
     items: [
       "Provider onboarding support",
       "Provider data maintenance",
@@ -72,12 +74,13 @@ const ibsTabs = [
       "Provider updates",
       "Data-quality management",
     ],
+    image: "/healthcare/Provider Operations.jpg",
   },
   {
     num: "04",
     tab: "Authorizations",
     title: "Authorization Operations",
-    lead: "Improve the flow of information supporting authorization workflows.",
+    tagline: "Improve the flow of information supporting authorization workflows.",
     items: [
       "Request intake",
       "Document processing",
@@ -86,12 +89,13 @@ const ibsTabs = [
       "Status management",
       "Administrative follow-up",
     ],
+    image: "/healthcare/Authorization Operations.jpg",
   },
   {
     num: "05",
     tab: "Experience",
     title: "Member & Provider Experience",
-    lead: "Make every operational interaction easier to navigate.",
+    tagline: "Make every operational interaction easier to navigate.",
     items: [
       "Member query support",
       "Provider query support",
@@ -100,12 +104,13 @@ const ibsTabs = [
       "Correspondence management",
       "Service-request processing",
     ],
+    image: "/healthcare/Member & Provider Experience.jpg",
   },
   {
     num: "06",
     tab: "Data",
     title: "Healthcare Data Operations",
-    lead: "Turn fragmented healthcare information into reliable operational data.",
+    tagline: "Turn fragmented healthcare information into reliable operational data.",
     items: [
       "Data capture & validation",
       "Document indexing",
@@ -114,6 +119,7 @@ const ibsTabs = [
       "Reconciliation",
       "Operational reporting",
     ],
+    image: "/healthcare/Healthcare Data Operations.jpg",
   },
 ];
 
@@ -436,21 +442,23 @@ export default function HealthcareOperationsPage() {
         .hc-eco-link { display: inline-block; margin-top: 16px; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #ffffff; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: rgba(255,255,255,0.5); transition: color 0.3s ease, text-decoration-color 0.3s ease; }
         .hc-eco-card:hover .hc-eco-link { color: var(--hcc); text-decoration-color: var(--hcc); }
 
-        .hc-ibs-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 48px; border-bottom: 1px solid rgba(12,27,48,0.1); padding-bottom: 0; }
-        .hc-ibs-tab { appearance: none; background: transparent; border: none; cursor: pointer; font-family: inherit; position: relative; display: inline-flex; align-items: baseline; gap: 8px; padding: 14px 18px 16px; font-size: 15px; font-weight: 600; color: #7A8AA0; transition: color 0.25s ease; }
-        .hc-ibs-tab em { font-style: normal; font-size: 11.5px; font-weight: 700; color: #A9B6C6; font-variant-numeric: tabular-nums; transition: color 0.25s ease; }
-        .hc-ibs-tab::after { content: ""; position: absolute; left: 18px; right: 18px; bottom: -1px; height: 3px; border-radius: 2px 2px 0 0; background: var(--hcc); transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+        .hc-ibs-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 46px; border-bottom: 1px solid rgba(12,27,48,0.1); padding-bottom: 14px; }
+        .hc-ibs-tab { appearance: none; background: transparent; border: none; cursor: pointer; font-family: inherit; position: relative; display: inline-flex; align-items: center; padding: 12px 18px; font-size: 15px; font-weight: 600; color: #7A8AA0; transition: color 0.25s ease; }
+        .hc-ibs-tab::after { content: ""; position: absolute; left: 18px; right: 18px; bottom: -15px; height: 3px; border-radius: 2px 2px 0 0; background: var(--hcc); transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
         .hc-ibs-tab:hover { color: #14263C; }
         .hc-ibs-tab--active { color: #0C1B30; }
-        .hc-ibs-tab--active em { color: var(--hcc); }
         .hc-ibs-tab--active::after { transform: scaleX(1); }
-        .hc-ibs-panel { margin-top: 44px; animation: hcPanelIn 0.5s cubic-bezier(0.16,1,0.3,1); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(36px, 6vw, 100px); align-items: center; }
+        .hc-ibs-panel { margin-top: 44px; animation: hcPanelIn 0.5s cubic-bezier(0.16,1,0.3,1); display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
         @keyframes hcPanelIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-        .hc-ibs-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(24px, 2.6vw, 34px); font-weight: 700; line-height: 1.2; color: #0C1B30; margin: 0; }
-        .hc-ibs-lead { font-size: 18px; line-height: 1.7; color: #42556D; margin: 16px 0 0; }
-        .hc-ibs-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(28px, 4vw, 56px); }
-        .hc-ibs-item { display: flex; align-items: baseline; gap: 14px; padding: 15px 2px; border-top: 1px solid rgba(12,27,48,0.09); font-size: 16px; color: #33475E; }
-        .hc-ibs-item::before { content: ""; width: 6px; height: 6px; flex: 0 0 auto; border-radius: 50%; background: var(--hcc); align-self: center; }
+        .hc-ibs-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.04em; color: var(--hcc); display: block; margin: 0 0 14px; }
+        .hc-ibs-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(24px, 2.6vw, 34px); font-weight: 700; line-height: 1.2; color: #0C1B30; margin: 0 0 16px; }
+        .hc-ibs-tagline { font-style: italic; font-size: 16px; line-height: 1.6; color: #5A5D66; margin: 0 0 24px; }
+        .hc-ibs-list { list-style: none; margin: 0; padding: 0; }
+        .hc-ibs-item { display: flex; align-items: baseline; gap: 14px; padding: 13px 0; border-top: 1px solid rgba(12,27,48,0.09); font-size: 16px; color: #33475E; }
+        .hc-ibs-item::before { content: ""; width: 8px; height: 8px; flex: 0 0 auto; border-radius: 50%; background: var(--hcc); align-self: center; }
+        .hc-ibs-visual { position: relative; border-radius: 20px; overflow: hidden; min-height: 380px; }
+        .hc-ibs-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .hc-ibs-visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,27,48,0) 40%, rgba(12,27,48,0.32) 100%); }
 
         .hc-split { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(36px, 5vw, 80px); align-items: center; }
         .hc-feature-img { position: relative; overflow: hidden; border-radius: 22px; aspect-ratio: 4 / 4.6; }
@@ -736,30 +744,49 @@ export default function HealthcareOperationsPage() {
             <h2 className="hc-h2">From administrative complexity to <span style={{ color: "#C6E84A" }}>intelligent operations.</span></h2>
             <p className="hc-lede">Sytrion combines healthcare process expertise with intelligent workflows, automation and data to help organizations manage high-volume operations with greater accuracy, visibility and control.</p>
           </div>
-          <div className="hc-ibs-tabs hc-reveal" role="tablist" aria-label="Intelligent business services">
+
+          <div className="hc-ibs-tabs hc-reveal" role="tablist" aria-label="Intelligent Business Services journey">
             {ibsTabs.map((t, i) => (
               <button
                 key={t.num}
                 type="button"
                 role="tab"
+                id={`hc-tab-${i}`}
                 aria-selected={activeTab === i}
+                aria-controls={`hc-panel-${i}`}
                 className={`hc-ibs-tab${activeTab === i ? " hc-ibs-tab--active" : ""}`}
                 onClick={() => setActiveTab(i)}
               >
-                <em>{t.num}</em> {t.tab}
+                {t.tab}
               </button>
             ))}
           </div>
-          <div key={activeTab} className="hc-ibs-panel" role="tabpanel">
-            <div className="hc-ibs-intro">
+
+          <div
+            key={ibsTabs[activeTab].num}
+            className="hc-ibs-panel"
+            role="tabpanel"
+            id={`hc-panel-${activeTab}`}
+            aria-labelledby={`hc-tab-${activeTab}`}
+          >
+            <div className="hc-ibs-copy">
+              <span className="hc-ibs-num">{ibsTabs[activeTab].num} —</span>
               <h3 className="hc-ibs-title">{ibsTabs[activeTab].title}</h3>
-              <p className="hc-ibs-lead">{ibsTabs[activeTab].lead}</p>
+              <p className="hc-ibs-tagline">{ibsTabs[activeTab].tagline}</p>
+              <ul className="hc-ibs-list">
+                {ibsTabs[activeTab].items.map((item) => (
+                  <li key={item} className="hc-ibs-item">{item}</li>
+                ))}
+              </ul>
             </div>
-            <ul className="hc-ibs-list">
-              {ibsTabs[activeTab].items.map((item) => (
-                <li key={item} className="hc-ibs-item">{item}</li>
-              ))}
-            </ul>
+            <div className="hc-ibs-visual">
+              <img
+                src={ibsTabs[activeTab].image}
+                alt={ibsTabs[activeTab].title}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </div>
         </div>
       </section>

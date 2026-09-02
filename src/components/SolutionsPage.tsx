@@ -715,7 +715,7 @@ const aiCapabilities = [
 ];
 
 const opsCapabilities = [
-  { title: "Business Process Operations", desc: "Structured support for high-volume and business-critical operational processes.", image: "/solutions/Business Process Operations.png" },
+  { title: "Business Process Operations", desc: "Structured support for high-volume and business-critical operational processes.", image: "/solutions/Business Process Operations.jpeg" },
   { title: "Back-Office Operations", desc: "Improve efficiency across repetitive administrative and transaction-based activities.", image: "/solutions/Back-Office Operations.jpg" },
   { title: "Workflow & Exception Management", desc: "Manage workflows, exceptions and process dependencies with greater control.", image: "/solutions/Workflow & Exception Management.png" },
   { title: "Quality & Performance Management", desc: "Maintain consistent delivery through defined quality controls, reporting and continuous improvement.", image: "/solutions/Quality & Performance Management.png" },
@@ -738,12 +738,12 @@ const shippingCapabilities = [
 ];
 
 const healthcareCapabilities = [
-  { icon: "clipboard", title: "Claims Operations", desc: "Technology-enabled support for claims-related administrative workflows." },
-  { icon: "scan-text", title: "Document Intelligence", desc: "Capturing, classifying and extracting information from healthcare documents." },
-  { icon: "database", title: "Healthcare Data Processing", desc: "Structured processing and validation of operational healthcare data." },
-  { icon: "workflow", title: "Workflow Automation", desc: "Automating repetitive administrative tasks and intelligent routing." },
-  { icon: "shield-check", title: "Secure Operations", desc: "Delivery practices designed around confidentiality and controlled access." },
-  { icon: "bar-chart", title: "Operational Reporting", desc: "Visibility into volumes, turnaround times and exceptions." },
+  { icon: "clipboard", title: "Claims Operations", desc: "Technology-enabled support for claims-related administrative workflows.", image: "/solutions/healthcare operations section.png" },
+  { icon: "scan-text", title: "Document Intelligence", desc: "Capturing, classifying and extracting information from healthcare documents.", image: "/solutions/Document Intelligence.jpg" },
+  { icon: "database", title: "Healthcare Data Processing", desc: "Structured processing and validation of operational healthcare data.", image: "/solutions/Healthcare Data Processing.jpg" },
+  { icon: "workflow", title: "Workflow Automation", desc: "Automating repetitive administrative tasks and intelligent routing.", image: "/solutions/workflow automation.jpg" },
+  { icon: "shield-check", title: "Secure Operations", desc: "Delivery practices designed around confidentiality and controlled access.", image: "/solutions/Secure Operations.png" },
+  { icon: "bar-chart", title: "Operational Reporting", desc: "Visibility into volumes, turnaround times and exceptions.", image: "/solutions/Operational Reporting.jpg" },
 ];
 
 const ecosystem = [
@@ -929,6 +929,7 @@ function CapabilitiesRail() {
 }
 
 export default function SolutionsPage() {
+  const [activeHealthcareIdx, setActiveHealthcareIdx] = useState(0);
   return (
     <>
       <style>{`
@@ -2505,7 +2506,8 @@ export default function SolutionsPage() {
           transition: background 0.25s ease, border-color 0.25s ease;
         }
         .ho-item:hover,
-        .ho-item:active {
+        .ho-item:active,
+        .ho-item.is-active {
           background: #C6E84A;
           border-bottom-color: transparent;
         }
@@ -2517,7 +2519,8 @@ export default function SolutionsPage() {
           transition: color 0.25s ease;
         }
         .ho-item:hover .ho-num,
-        .ho-item:active .ho-num {
+        .ho-item:active .ho-num,
+        .ho-item.is-active .ho-num {
           color: #4d7c0f;
         }
         .ho-item-title {
@@ -2545,6 +2548,7 @@ export default function SolutionsPage() {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          transition: opacity 0.35s ease;
         }
         .ho-media::after {
           content: "";
@@ -3148,21 +3152,33 @@ We work as an extension of your organization, bringing greater efficiency, consi
 
           <div className="ho-grid">
             <ul className="ho-list">
-              {healthcareCapabilities.map((cap, i) => (
-                <li key={cap.title} className="ho-item">
-                  <span className="ho-num">{String(i + 1).padStart(2, "0")}</span>
-                  <div className="ho-item-body">
-                    <h3 className="ho-item-title">{cap.title}</h3>
-                    <p className="ho-item-desc">{cap.desc}</p>
-                  </div>
-                </li>
-              ))}
+              {healthcareCapabilities.map((cap, i) => {
+                const isActive = i === activeHealthcareIdx;
+                return (
+                  <li
+                    key={cap.title}
+                    className={"ho-item" + (isActive ? " is-active" : "")}
+                    onClick={() => setActiveHealthcareIdx(i)}
+                    onMouseEnter={() => setActiveHealthcareIdx(i)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setActiveHealthcareIdx(i)}
+                  >
+                    <span className="ho-num">{String(i + 1).padStart(2, "0")}</span>
+                    <div className="ho-item-body">
+                      <h3 className="ho-item-title">{cap.title}</h3>
+                      <p className="ho-item-desc">{cap.desc}</p>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
 
             <div className="ho-media">
               <img
-                src="/solutions/healthcare operations section.png"
-                alt="Healthcare professional reviewing documents on a tablet"
+                key={activeHealthcareIdx}
+                src={healthcareCapabilities[activeHealthcareIdx].image}
+                alt={healthcareCapabilities[activeHealthcareIdx].title}
                 loading="lazy"
                 decoding="async"
               />

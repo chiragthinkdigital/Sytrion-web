@@ -32,9 +32,9 @@ const navItems = [
     children: [
       { name: "Shipping & Logistics", href: "/shipping-logistics" },
       { name: "Healthcare", href: "/healthcare-operations" },
-      { name: "E-Commerce", href: "/#industries" },
+      { name: "E-Commerce", href: "/e-commerce" },
       { name: "Banking", href: "/banking" },
-      { name: "Digital Public Infrastructure", href: "/#industries" },
+      { name: "Digital Public Infrastructure", href: "/digital-public-infrastructure" },
       { name: "Travel", href: "/travel-hospitality" },
     ],
   },
@@ -240,12 +240,13 @@ export default function Navbar() {
 
         .desktop-tab {
           position: relative;
+          display: inline-block;
           font-size: 15px;
           font-weight: 500;
           color: #0F0F0F;
           text-decoration: none;
           transition: color 0.2s ease;
-          padding: 4px 0;
+          padding: 12px 16px;
         }
         .desktop-tab::after {
           content: "";
@@ -258,10 +259,14 @@ export default function Navbar() {
           border-radius: 1px;
           transition: width 0.3s ease;
         }
-        .desktop-tab:hover {
+        .desktop-tab:hover,
+        .desktop-tab.open,
+        li:hover .desktop-tab {
           color: #C6E84A;
         }
-        .desktop-tab:hover::after {
+        .desktop-tab:hover::after,
+        .desktop-tab.open::after,
+        li:hover .desktop-tab::after {
           width: 100%;
         }
         .desktop-tab.active {
@@ -282,33 +287,39 @@ export default function Navbar() {
           opacity: 0.8;
         }
 
-        .desktop-dropdown-panel {
+        .desktop-nav-item .desktop-dropdown-panel {
           position: absolute;
           top: 100%;
           left: 50%;
-          transform: translateX(-50%);
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transform: translateX(-50%) translateY(-8px);
           background: #ffffff;
           border: 1px solid rgba(0,0,0,0.06);
           border-radius: 12px;
           box-shadow: 0 12px 40px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.04);
           padding: 8px 0;
-          animation: dropdownIn 0.2s ease-out;
+          transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
           z-index: 51;
           min-width: 200px;
           width: max-content;
-          margin-top: 16px;
+          margin-top: 8px;
+        }
+        .desktop-nav-item:hover .desktop-dropdown-panel,
+        .desktop-nav-item .desktop-dropdown-panel.open {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+          transform: translateX(-50%) translateY(0);
         }
         .desktop-dropdown-panel::before {
           content: "";
           position: absolute;
-          top: -20px;
+          top: -24px;
           left: 0;
           right: 0;
-          height: 20px;
-        }
-        @keyframes dropdownIn {
-          from { opacity: 0; transform: translateX(-50%) translateY(-8px); }
-          to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+          height: 32px;
         }
 
         .desktop-dropdown-list {
@@ -582,24 +593,25 @@ export default function Navbar() {
           {/* Desktop tabs */}
           <ul className="hidden lg:flex items-center" style={{ gap: "36px", listStyle: "none", margin: 0, padding: 0 }}>
             {navItems.map((item) => (
-              <li
-                key={item.name}
-                style={{ position: "relative" }}
-                onMouseEnter={() => {
-                  if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
-                  if (item.children) setDesktopDropdown(item.name);
-                }}
-                onMouseLeave={() => {
-                  if (item.children) {
-                    dropdownTimeoutRef.current = setTimeout(() => setDesktopDropdown(null), 150);
-                  }
-                }}
-              >
-                <a
-                  href={item.href}
-                  className={"desktop-tab" + (isNavActive(item) ? " active" : "")}
-                  onClick={() => setDesktopDropdown(null)}
-                >
+               <li
+                 key={item.name}
+                 className="desktop-nav-item"
+                 style={{ position: "relative" }}
+                 onMouseEnter={() => {
+                   if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+                   if (item.children) setDesktopDropdown(item.name);
+                 }}
+                 onMouseLeave={() => {
+                   if (item.children) {
+                     dropdownTimeoutRef.current = setTimeout(() => setDesktopDropdown(null), 200);
+                   }
+                 }}
+               >
+                 <a
+                   href={item.href}
+                   className={"desktop-tab" + (isNavActive(item) ? " active" : "") + (desktopDropdown === item.name ? " open" : "")}
+                   onClick={() => setDesktopDropdown(null)}
+                 >
                   {item.name}
                   {item.children && (
                     <svg
@@ -621,9 +633,9 @@ export default function Navbar() {
                   )}
                 </a>
 
-                {item.children && desktopDropdown === item.name && (
+                {item.children && (
                   <div
-                    className="desktop-dropdown-panel"
+                    className={"desktop-dropdown-panel" + (desktopDropdown === item.name ? " open" : "")}
                     onMouseEnter={() => {
                       if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
                     }}
