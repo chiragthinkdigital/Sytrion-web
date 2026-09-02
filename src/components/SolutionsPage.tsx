@@ -353,8 +353,6 @@ function SolutionCard({
   const cardBg = isLight ? "#EEF3D8" : undefined;
   const titleColor = isLight ? "#20260B" : undefined;
   const descColor = isLight ? "#5B6142" : undefined;
-  const iconBg = isLight ? "rgba(0, 0, 0, 0.06)" : undefined;
-  const iconColor = isLight ? "#5A6B1C" : undefined;
   return (
     <div className={"sol-card sol-card--" + variant} style={{ backgroundColor: cardBg }}>
       {image && (
@@ -362,7 +360,7 @@ function SolutionCard({
           <img src={image} alt={title} loading="lazy" decoding="async" />
         </div>
       )}
-      <div className={"sol-card-icon sol-card-icon--" + iconStyle} style={{ backgroundColor: iconBg, color: iconColor }}>
+      <div className={"sol-card-icon sol-card-icon--" + iconStyle}>
         <SolIcon name={icon} size={22} />
       </div>
       <h4 className={"sol-card-title" + (variant === "dark" ? " sol-card-title--dark" : "")} style={{ color: titleColor }}>
@@ -394,12 +392,11 @@ function AnalyticsGridCard({
     image: string;
   };
 }) {
-  const gridColumn = analyticsPlacements[card.index] || "auto";
-  const isBig = card.index === "01" || card.index === "04";
+  const isBig = card.index === "01";
+  const isSecondary = card.index === "05";
   return (
     <div
-      className={"analytics-grid-card" + (isBig ? " is-big" : "")}
-      style={{ gridColumn: gridColumn }}
+      className={"analytics-grid-card" + (isBig ? " is-big" : "") + (isSecondary ? " is-secondary" : "")}
     >
       <img
         src={card.image}
@@ -757,31 +754,51 @@ const ecosystem = [
 const analyticsCapabilities = [
   {
     index: "01",
-    title: "Business Intelligence",
-    description:
-      "Bring critical business information together for easier analysis and decision-making.",
-    image: "/solutions/Decision Intelligence.jpg",
-  },
-  {
-    index: "02",
-    title: "Dashboards & Reporting",
-    description:
-      "Create clear executive and operational visibility across key performance indicators.",
+    title: "Executive dashboards",
+    description: "One view of the business, built for leadership decisions, not analyst deep-dives.",
     image: "/solutions/Executive Dashboards.jpg",
   },
   {
+    index: "02",
+    title: "KPI monitoring",
+    description: "Live thresholds on the metrics that move the business.",
+    image: "/solutions/KPI Monitoring.jpg",
+  },
+  {
     index: "03",
-    title: "Performance Analytics",
-    description:
-      "Identify trends, exceptions and opportunities across business operations.",
-    image: "/solutions/Trend Analysis.jpg",
+    title: "Automated reporting",
+    description: "Reports send on the schedule your team runs on.",
+    image: "/solutions/Automated Reporting.jpg",
   },
   {
     index: "04",
-    title: "Predictive & Decision Intelligence",
-    description:
-      "Use data to anticipate outcomes and support faster, informed decisions.",
+    title: "Trend analysis",
+    description: "Surfaces a shift before it becomes a problem.",
+    image: "/solutions/Trend Analysis.jpg",
+  },
+  {
+    index: "05",
+    title: "Operational dashboards",
+    description: "One screen per team, showing only what it needs.",
+    image: "/solutions/Operational Dashboards.jpg",
+  },
+  {
+    index: "06",
+    title: "Predictive analytics",
+    description: "Forecasts from your own history, not generic curves.",
     image: "/solutions/Predictive Analytics.jpg",
+  },
+  {
+    index: "07",
+    title: "Data visualization",
+    description: "Charts readable at a glance, not just technically correct.",
+    image: "/solutions/Data Visualization.jpg",
+  },
+  {
+    index: "08",
+    title: "Decision intelligence",
+    description: "Turns raw operational data into recommendations a team can act on the same day.",
+    image: "/solutions/Decision Intelligence.jpg",
   },
 ];
 
@@ -2694,18 +2711,26 @@ export default function SolutionsPage() {
         .analytics-grid {
           position: relative;
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          grid-auto-rows: 320px;
-          grid-auto-flow: row;
-          gap: 22px;
+          grid-template-columns: repeat(12, 1fr);
+          grid-template-rows: repeat(4, 168px);
+          gap: 14px;
           margin-top: 48px;
           -webkit-font-smoothing: antialiased;
         }
 
+        .analytics-grid > :nth-child(1) { grid-column: 1 / 7; grid-row: 1 / 3; }
+        .analytics-grid > :nth-child(2) { grid-column: 7 / 13; grid-row: 1 / 2; }
+        .analytics-grid > :nth-child(3) { grid-column: 7 / 10; grid-row: 2 / 5; }
+        .analytics-grid > :nth-child(4) { grid-column: 10 / 13; grid-row: 2 / 3; }
+        .analytics-grid > :nth-child(5) { grid-column: 1 / 4; grid-row: 3 / 4; }
+        .analytics-grid > :nth-child(6) { grid-column: 4 / 7; grid-row: 3 / 4; }
+        .analytics-grid > :nth-child(7) { grid-column: 10 / 13; grid-row: 3 / 5; }
+        .analytics-grid > :nth-child(8) { grid-column: 1 / 7; grid-row: 4 / 5; }
+
         .analytics-grid-card {
           position: relative;
           display: block;
-          border-radius: 16px;
+          border-radius: 14px;
           overflow: hidden;
           background: #0d0e10;
           text-decoration: none;
@@ -2746,7 +2771,7 @@ export default function SolutionsPage() {
           left: 0;
           right: 0;
           bottom: 0;
-          padding: 28px;
+          padding: 22px 24px;
           display: flex;
           flex-direction: column;
           z-index: 2;
@@ -2792,6 +2817,10 @@ export default function SolutionsPage() {
           font-size: 15px;
           max-width: 60ch;
         }
+        /* Secondary emphasis */
+        .analytics-grid-card.is-secondary .analytics-grid-overlay {
+          background: linear-gradient(180deg, rgba(10,12,18,0.04) 35%, rgba(10,12,18,0.60) 68%, rgba(10,12,18,0.80) 100%);
+        }
 
         /* Tablet: 2-column bento */
         @media (max-width: 900px) {
@@ -2801,6 +2830,18 @@ export default function SolutionsPage() {
           }
           .analytics-grid-card.is-big {
             grid-column: auto !important;
+          }
+        }
+        /* Responsive collapse below 780px */
+        @media (max-width: 780px) {
+          .analytics-grid {
+            grid-template-columns: 1fr;
+            grid-template-rows: none;
+            grid-auto-rows: auto;
+          }
+          .analytics-grid > * {
+            grid-column: 1 / -1 !important;
+            grid-row: auto !important;
           }
         }
         /* Mobile: single column */
