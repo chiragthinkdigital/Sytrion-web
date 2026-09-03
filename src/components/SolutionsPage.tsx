@@ -1811,6 +1811,13 @@ export default function SolutionsPage() {
           display: flex;
           align-items: center;
           justify-content: center;
+          transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+        }
+        .sol-eco-item:hover .sol-eco-icon {
+          background: #C6E84A;
+          border-color: #C6E84A;
+          color: #0f0f0f;
+          transform: scale(1.05);
         }
         .sol-eco-title {
           font-family: var(--font-syne), sans-serif;
@@ -3306,8 +3313,10 @@ We work as an extension of your organization, bringing greater efficiency, consi
           Whether the opportunity lies in AI, automation, data, analytics or operations, we'll help you identify the right approach and build a solution around your business.
           </p>
 
-           <button className="cta-primary">Schedule a Consultation</button>
+          <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap", marginTop: "24px" }}>
+            <button className="cta-primary">Schedule a Consultation</button>
             <button className="cta-secondary">Talk to Our Experts</button>
+          </div>
         </div>
       </section>
     </>
