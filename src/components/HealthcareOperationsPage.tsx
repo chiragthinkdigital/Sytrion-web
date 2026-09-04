@@ -4,12 +4,12 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const challenges = [
-  "High-volume claims",
-  "Complex administrative workflows",
-  "Fragmented provider data",
-  "Document-intensive processes",
-  "Cross-system workflow complexity",
-  "Rising experience expectations",
+  { label: "High-volume claims", color: "#6366F1", gradient: "linear-gradient(135deg, rgba(99,102,241,0.18), rgba(99,102,241,0.04))" },
+  { label: "Complex administrative workflows", color: "#F59E0B", gradient: "linear-gradient(135deg, rgba(245,158,11,0.18), rgba(245,158,11,0.04))" },
+  { label: "Fragmented provider data", color: "#10B981", gradient: "linear-gradient(135deg, rgba(16,185,129,0.18), rgba(16,185,129,0.04))" },
+  { label: "Document-intensive processes", color: "#EF4444", gradient: "linear-gradient(135deg, rgba(239,68,68,0.18), rgba(239,68,68,0.04))" },
+  { label: "Cross-system workflow complexity", color: "#8B5CF6", gradient: "linear-gradient(135deg, rgba(139,92,246,0.18), rgba(139,92,246,0.04))" },
+  { label: "Rising experience expectations", color: "#06B6D4", gradient: "linear-gradient(135deg, rgba(6,182,212,0.18), rgba(6,182,212,0.04))" },
 ];
 
 const ecosystemCards = [
@@ -420,28 +420,104 @@ export default function HealthcareOperationsPage() {
 
         .hc-land-grid { margin-bottom: 0; }
         .hc-land-row { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; margin-top: 40px; }
-        .hc-section-landscape { background: linear-gradient(135deg, #09182C 0%, #061120 100%); padding-bottom: clamp(60px, 7vw, 90px); }
-        .hc-landscape-text { color: rgba(255, 255, 255, 0.85); }
+        .hc-section-landscape { padding-bottom: clamp(40px, 5vw, 60px); position: relative; background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f0fdf4 100%); }
+        .hc-section-landscape::before { content: ""; position: absolute; top: 80px; right: 60px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%); pointer-events: none; }
+        .hc-section-landscape::after { content: ""; position: absolute; bottom: 40px; left: 100px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%); pointer-events: none; }
+        .hc-landscape-text { }
         .hc-landscape-left { }
         .hc-head h2 { position: relative; padding-bottom: 12px; }
         .hc-head h2::after { content: ""; display: block; width: 64px; height: 4px; background: #C4E538; margin-top: 14px; }
-        .hc-landscape-left p { color: rgba(255, 255, 255, 0.7); max-width: 440px; }
-        .hc-landscape-right { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-        .hc-challenge-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 18px 20px; position: relative; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); overflow: hidden; }
-        .hc-challenge-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #C6E84A; transform: scaleY(0); transform-origin: bottom; transition: transform 0.3s ease; }
-        .hc-challenge-card:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(198, 232, 74, 0.6); box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(198, 232, 74, 0.15); transform: translateY(-2px); }
-        .hc-challenge-card:hover::before { transform: scaleY(1); }
-        .hc-challenge-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-        .hc-challenge-num { font-family: var(--font-syne), sans-serif; font-size: 12px; font-weight: 800; color: #C6E84A; background: rgba(198, 232, 74, 0.15); border: 1px solid rgba(198, 232, 74, 0.3); padding: 2px 8px; border-radius: 999px; font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
-        .hc-challenge-icon { width: 34px; height: 34px; border-radius: 9px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.15); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
-        .hc-challenge-card:hover .hc-challenge-icon { background: #C6E84A; border-color: #C6E84A; }
-        .hc-challenge-icon svg { width: 16px; height: 16px; stroke: #C6E84A; fill: none; stroke-width: 2; transition: stroke 0.3s ease; }
-        .hc-challenge-card:hover .hc-challenge-icon svg { stroke: #09182C; }
-        .hc-challenge-label { font-family: var(--font-syne), sans-serif; font-size: 15.5px; font-weight: 700; color: #FFFFFF; line-height: 1.35; }
-        .hc-approach { border-top: 1px solid rgba(255, 255, 255, 0.12); padding: 40px 0 0; display: grid; grid-template-columns: 260px 1fr; gap: 40px; align-items: start; }
-        .hc-approach-label { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #C6E84A; }
-        .hc-approach-text { font-size: 30px; line-height: 1.55; color: #FFFFFF; font-weight: 500; max-width: 760px; }
-        .hc-approach-text em { font-style: normal; font-weight: 600; }
+        .hc-landscape-left p { color: #5B6472; max-width: 440px; }
+        .hc-landscape-right { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .hc-challenge-card {
+          background: rgba(255, 255, 255, 0.55);
+          backdrop-filter: blur(20px) saturate(1.4);
+          -webkit-backdrop-filter: blur(20px) saturate(1.4);
+          border: 1px solid rgba(255, 255, 255, 0.7);
+          border-radius: 16px;
+          padding: 22px 22px 20px;
+          position: relative;
+          overflow: hidden;
+          transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s ease, border-color .3s ease;
+          box-shadow: 0 4px 24px -8px rgba(10,22,40,0.06), inset 0 1px 0 rgba(255,255,255,0.6);
+        }
+        .hc-challenge-card::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: 16px;
+          opacity: 0;
+          transition: opacity .3s ease;
+          pointer-events: none;
+        }
+        .hc-challenge-card:hover {
+          transform: translateY(-5px) scale(1.01);
+          box-shadow: 0 16px 40px -10px rgba(10,22,40,0.14), inset 0 1px 0 rgba(255,255,255,0.8);
+          border-color: rgba(255,255,255,0.9);
+        }
+        .hc-challenge-card:hover::before { opacity: 1; }
+        .hc-challenge-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .hc-challenge-icon {
+          width: 42px;
+          height: 42px;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          box-shadow: 0 2px 12px -3px currentColor;
+          flex-shrink: 0;
+        }
+        .hc-challenge-icon::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: 12px;
+          background: inherit;
+          filter: blur(10px);
+          opacity: 0.35;
+          z-index: -1;
+          transition: opacity .3s ease;
+        }
+        .hc-challenge-card:hover .hc-challenge-icon::after { opacity: 0.55; }
+        .hc-challenge-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .hc-challenge-label { font-size: 15px; font-weight: 600; color: #1A2540; line-height: 1.4; }
+        .hc-approach {
+          margin-top: 48px;
+          background: linear-gradient(135deg, #0B1D35 0%, #132742 40%, #0F2035 100%);
+          border-radius: 20px;
+          padding: 44px 48px 40px;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 8px 40px -12px rgba(10,22,40,0.25);
+        }
+        .hc-approach::before {
+          content: "";
+          position: absolute;
+          top: -60px;
+          right: -40px;
+          width: 260px;
+          height: 260px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(196,229,56,0.12) 0%, transparent 70%);
+          pointer-events: none;
+        }
+        .hc-approach::after {
+          content: "";
+          position: absolute;
+          bottom: -40px;
+          left: 30%;
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%);
+          pointer-events: none;
+        }
+        .hc-approach-top { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; position: relative; z-index: 1; }
+        .hc-approach-dot { width: 8px; height: 8px; border-radius: 50%; background: #C4E538; flex-shrink: 0; box-shadow: 0 0 12px rgba(196,229,56,0.5); }
+        .hc-approach-label { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(196,229,56,0.7); }
+        .hc-approach-text { font-size: clamp(18px, 1.8vw, 26px); line-height: 1.4; color: rgba(255,255,255,0.92); font-weight: 500; margin: 0; position: relative; z-index: 1; white-space: nowrap; }
+        .hc-approach-text em { font-style: normal; color: #C4E538; font-weight: 600; }
 
         .hc-eco-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
         .hc-eco-card { position: relative; overflow: hidden; border-radius: 20px; aspect-ratio: 4 / 5; background: var(--hcn2); }
@@ -592,33 +668,32 @@ export default function HealthcareOperationsPage() {
         .hc-why-card h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 23px; font-weight: 700; color: #0C1B30; margin: 4px 0 0; }
         .hc-why-card p { font-size: 14px; line-height: 1.65; color: #5A6B7F; margin: 8px 0 0; }
 
-        .hc-transform { display:grid; grid-template-columns:1fr 1fr; min-height:700px; isolation:isolate; overflow:hidden; }
-        .hc-transform-panel { padding:56px 64px; display:flex; }
-        .hc-transform-panel--dark { position:relative; background:radial-gradient(circle at 30% 20%, #132745 0%, #0A1628 55%, #050B14 100%); color:#F5F7FA; overflow:hidden; }
-        .hc-transform-panel--dark::before { content:""; position:absolute; left:-80px; bottom:-80px; width:380px; height:380px; background:radial-gradient(circle, rgba(196,229,56,0.12), transparent 70%); pointer-events:none; }
-        .hc-transform-panel--light { background:#FFFFFF; color:#0A1628; }
-        .hc-transform-panel-inner { width:100%; display:flex; flex-direction:column; }
-        .hc-transform-panel--light .hc-transform-panel-inner { justify-content:center; }
-        .hc-transform-badge { display:inline-block; align-self:flex-start; background:#C4E538; color:#2B3B0A; padding:5px 14px; border-radius:999px; font-weight:700; font-size:11px; letter-spacing:.04em; text-transform:uppercase; margin-bottom:24px; }
-        .hc-transform h3 { font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:clamp(22px,2.4vw,30px); font-weight:600; margin:22px 0 0; color:inherit; }
-        .hc-transform-panel--dark > .hc-transform-panel-inner > p { font-size:16px; line-height:1.75; margin:14px 0 0; max-width:340px; color:#93A0B4; }
-        .hc-transform-panel--light > .hc-transform-panel-inner > p { font-size:16px; line-height:1.75; margin:14px 0 0; max-width:460px; color:#5B6472; }
+        .hc-transform { display:grid; grid-template-columns:1fr 1fr; isolation:isolate; overflow:hidden; }
+        .hc-transform-left { display:flex; flex-direction:column; }
+        .hc-transform-panel { padding:44px 48px; display:flex; flex:1; }
+        .hc-transform-panel--dark { position:relative; background:radial-gradient(circle at 25% 15%, #132745 0%, #0A1628 55%, #050B14 100%); color:#F5F7FA; overflow:hidden; }
+        .hc-transform-panel--dark::before { content:""; position:absolute; left:-60px; bottom:-60px; width:340px; height:340px; background:radial-gradient(circle, rgba(196,229,56,0.1), transparent 70%); pointer-events:none; }
+        .hc-transform-panel--light { background:#F8FAFC; color:#0A1628; border-top:1px solid #EDF0F4; }
+        .hc-transform-panel--right { background:#EFF3F7; color:#0A1628; }
+        .hc-transform-panel-inner { width:100%; display:flex; flex-direction:column; justify-content:center; }
+        .hc-transform-badge { display:inline-block; align-self:flex-start; background:#C6E84A; color:#0f0f0f; padding:8px 20px; border-radius:999px; font-size:14px; font-weight:600; letter-spacing:0.5px; font-variant:small-caps; margin-bottom:24px; }
+        .hc-transform h3 { font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:clamp(24px,2.6vw,32px); font-weight:700; margin:0; color:inherit; line-height:1.25; }
+        .hc-transform-panel--dark > .hc-transform-panel-inner > p { font-size:15px; line-height:1.7; margin:14px 0 0; max-width:440px; color:#8B9AB5; }
+        .hc-transform-panel--light > .hc-transform-panel-inner > p { font-size:15px; line-height:1.7; margin:14px 0 0; max-width:440px; color:#5B6472; }
         .hc-transform-illustration { flex:1; display:flex; align-items:flex-end; justify-content:center; margin-top:32px; }
-        .hc-transform-illustration svg { width:100%; max-width:480px; height:auto; }
-        .hc-pot-heading { display:flex; align-items:center; gap:12px; margin:28px 0 16px; font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:19px; font-weight:700; color:#0A1628; text-transform:uppercase; letter-spacing:.04em; }
-        .hc-pot-heading span { white-space:nowrap; }
-        .hc-pot-heading::after { content:""; flex:1; height:1px; background:linear-gradient(90deg, #C4E538, #E5E8EC 60%); }
-        .hc-pot-checklist { list-style:none; margin:0; padding:0; }
-        .hc-pot-checklist li { display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid #EEF0F3; font-size:15px; font-weight:600; color:#1D2733; transition:background .2s ease, border-left .2s ease; border-left:2px solid transparent; }
-        .hc-pot-checklist li:last-child { border-top: 1px solid #EEF0F3; }
-        .hc-pot-checklist li:hover { background:#FAFBF6; border-left-color:#C4E538; }
-        .hc-pot-badge { width:26px; height:26px; border-radius:50%; background:#0A1628; color:#C4E538; display:flex; align-items:center; justify-content:center; flex:0 0 auto; font-weight:700; font-size:14px; }
-        .hc-transform-cta { display:inline-flex; align-items:center; gap:10px; align-self:flex-start; background:#0A1628; color:#F5F7FA; padding:12px 22px; border-radius:100px; font-weight:700; text-decoration:none; margin-top:28px; transition:background .15s ease, transform .15s ease; }
+        .hc-transform-illustration svg { width:100%; max-width:440px; height:auto; }
+        .hc-pot-title { font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:clamp(24px,2.6vw,32px); font-weight:700; margin:0 0 16px; color:#0A1628; line-height:1.25; }
+        .hc-pot-checklist { list-style:none; margin:0; padding:0; background:#FFFFFF; border:1px solid #E8EBF0; border-radius:16px; overflow:hidden; box-shadow:0 6px 20px -12px rgba(10,22,40,0.15); }
+        .hc-pot-checklist li { display:flex; align-items:center; gap:14px; padding:15px 20px; border-top:1px solid #EEF1F5; font-size:14.5px; font-weight:600; color:#1D2733; transition:background .2s ease; }
+        .hc-pot-checklist li:first-child { border-top:none; }
+        .hc-pot-checklist li:hover { background:#FAFDF5; }
+        .hc-pot-badge { width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg, #0A1628 0%, #1A2B45 100%); color:#C4E538; display:flex; align-items:center; justify-content:center; flex:0 0 auto; font-weight:700; font-size:13px; }
+        .hc-transform-cta { display:inline-flex; align-items:center; gap:10px; align-self:flex-start; background:#0A1628; color:#F5F7FA; padding:14px 28px; border-radius:12px; font-weight:700; font-size:14px; text-decoration:none; margin-top:28px; transition:background .15s ease, transform .15s ease, box-shadow .15s ease; box-shadow:0 2px 12px -4px rgba(10,22,40,0.2); }
         .hc-transform-cta span { display:inline-block; transition:transform .15s ease; }
-        .hc-transform-cta:hover { background:#142544; transform:translateY(-1px); }
+        .hc-transform-cta:hover { background:#142544; transform:translateY(-2px); box-shadow:0 6px 20px -6px rgba(10,22,40,0.3); }
         .hc-transform-cta:hover span { transform:translateX(3px); }
-        @media (prefers-reduced-motion:reduce){ .hc-pot-checklist li:hover{ border-left-color:#C4E538; } .hc-transform-cta:hover{ transform:none; } .hc-transform-cta:hover span{ transform:none; } }
-        @media (max-width:900px){ .hc-transform{ grid-template-columns:1fr; min-height:auto; } .hc-transform-panel{ padding:32px 24px; } }
+        @media (prefers-reduced-motion:reduce){ .hc-pot-checklist li:hover{ background:transparent; } .hc-transform-cta:hover{ transform:none; } .hc-transform-cta:hover span{ transform:none; } }
+        @media (max-width:900px){ .hc-transform{ grid-template-columns:1fr; min-height:auto; } .hc-transform-panel{ padding:36px 24px; } .hc-transform-panel--light{ border-top:1px solid #EDF0F4; border-left:none; } }
 
         .hc-final { position: relative; overflow: hidden; background: #0f0f0f; text-align: center; padding: 100px 80px; }
         .hc-final-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 400px; background: radial-gradient(circle, rgba(198,232,74,0.12) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
@@ -649,10 +724,6 @@ export default function HealthcareOperationsPage() {
           .hc-node::before, .hc-node::after { display: none; }
           .hc-node { transform: none; }
           .hc-tree-row { grid-template-columns: 1fr 1fr; gap: 14px; }
-          .hc-transform-half { width: 100%; height: 50%; bottom: auto; }
-          .hc-transform-half--light { top: 50%; bottom: 0; }
-          .hc-transform-grid { grid-template-columns: 1fr; gap: 44px; }
-          .hc-transform-cta { left: 50%; bottom: 24px; }
           .hc-intel-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
           .hc-intel-lede { max-width: none; }
           .hc-intel-card-content { grid-template-columns: 1fr; gap: 32px; padding: 40px 32px; }
@@ -770,27 +841,29 @@ export default function HealthcareOperationsPage() {
             </div>
             <div className="hc-landscape-right">
               {challenges.map((c, i) => (
-                <article key={c} className="hc-challenge-card">
+                <article key={c.label} className="hc-challenge-card" style={{ background: c.gradient } as React.CSSProperties}>
                   <div className="hc-challenge-top">
-                    <span className="hc-challenge-num">{String(i + 1).padStart(2, "0")}</span>
-                    <div className="hc-challenge-icon" aria-hidden="true">
+                    <div className="hc-challenge-icon" style={{ background: c.color, color: "#fff" }} aria-hidden="true">
                       <svg viewBox="0 0 24 24">
-                        {i === 0 && <><path d="M4 7h16v10H4z" /><path d="M8 7v10M12 7v10M16 7v10" /></>}
-                        {i === 1 && <><circle cx="12" cy="12" r="8" /><path d="M12 8v4l3 2" /></>}
-                        {i === 2 && <><circle cx="7" cy="12" r="3" /><circle cx="17" cy="12" r="3" /><line x1="10" y1="12" x2="14" y2="12" /></>}
-                        {i === 3 && <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M7 9h10M7 13h10" /></>}
-                        {i === 4 && <><circle cx="12" cy="12" r="9" /><path d="M12 7v10M7 12h10" /></>}
-                        {i === 5 && <><path d="M4 17l5-5 3 3 7-7" /><path d="M4 14h14" /></>}
+                        {i === 0 && <><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" /><rect x="9" y="3" width="6" height="4" rx="1" /><path d="M9 14l2 2 4-4" /></>}
+                        {i === 1 && <><circle cx="12" cy="12" r="3" /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" /></>}
+                        {i === 2 && <><circle cx="6" cy="6" r="3" /><circle cx="18" cy="6" r="3" /><circle cx="12" cy="18" r="3" /><path d="M8.6 7.4L10.4 16M15.4 7.4L13.6 16M9 6h6" /></>}
+                        {i === 3 && <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6" /><path d="M8 13h3M8 17h3M14 13h2M14 17h2" /></>}
+                        {i === 4 && <><rect x="2" y="6" width="6" height="6" rx="1" /><rect x="16" y="6" width="6" height="6" rx="1" /><rect x="9" y="14" width="6" height="6" rx="1" /><path d="M8 9h1M15 9h1M12 14v-2" /></>}
+                        {i === 5 && <><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /><path d="M22 12h-4M6 12H2" /></>}
                       </svg>
                     </div>
                   </div>
-                  <div className="hc-challenge-label">{c}</div>
+                  <div className="hc-challenge-label">{c.label}</div>
                 </article>
               ))}
             </div>
           </div>
           <div className="hc-approach hc-reveal">
-            <div className="hc-approach-label">OUR APPROACH</div>
+            <div className="hc-approach-top">
+              <div className="hc-approach-dot" />
+              <div className="hc-approach-label">Our Approach</div>
+            </div>
             <p className="hc-approach-text">We connect <em>people, processes, data</em> and <em>intelligence</em> to make healthcare operations simpler.</p>
           </div>
         </div>
@@ -1138,48 +1211,24 @@ export default function HealthcareOperationsPage() {
       </section>
 
       <section className="hc-transform">
-        <div className="hc-transform-panel hc-transform-panel--dark">
-          <div className="hc-transform-panel-inner">
-            <span className="hc-transform-badge">Transformation in Action</span>
-            <h3>The Challenge</h3>
-            <p>High-volume healthcare workflows can involve fragmented information, manual document processing, repetitive validations and significant exception handling.</p>
-            <div className="hc-transform-illustration" aria-hidden="true">
-              <svg viewBox="0 0 520 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="20" y="40" width="160" height="120" rx="12" stroke="#2E4266" strokeWidth="1.5" transform="rotate(-5 100 100)" />
-                <rect x="45" y="55" width="160" height="120" rx="12" stroke="#3D5170" strokeWidth="1.5" transform="rotate(4 125 115)" />
-                <line x1="55" y1="75" x2="155" y2="75" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2" />
-                <line x1="55" y1="95" x2="170" y2="95" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2" />
-                <line x1="55" y1="115" x2="140" y2="115" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2" />
-                <line x1="55" y1="135" x2="130" y2="135" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2" />
-                <line x1="80" y1="80" x2="180" y2="80" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2" />
-                <line x1="80" y1="100" x2="190" y2="100" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2" />
-                <line x1="80" y1="120" x2="160" y2="120" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2" />
-                <line x1="80" y1="140" x2="150" y2="140" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2" />
-                <rect x="60" y="170" width="120" height="6" rx="3" fill="#1A2B45" fillOpacity="0.5" />
-                <rect x="60" y="182" width="80" height="6" rx="3" fill="#1A2B45" fillOpacity="0.35" />
-                <path d="M220 110 C280 70, 320 150, 380 110" stroke="#C4E538" strokeWidth="2" strokeDasharray="8 6" fill="none" />
-                <circle cx="440" cy="110" r="42" stroke="#1A2B45" strokeWidth="1.5" fill="none" />
-                <circle cx="440" cy="110" r="28" fill="#0A1628" stroke="#C4E538" strokeWidth="2.5" />
-                <path d="M426 110 l 10 11 l 20 -22" stroke="#C4E538" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                <text x="65" y="220" fontSize="12" fill="#5B6C87">fragmented records</text>
-                <text x="395" y="170" fontSize="12" fontWeight="700" fill="#C4E538">validated outcome</text>
-                <circle cx="440" cy="110" r="50" stroke="#C4E538" strokeOpacity="0.15" strokeWidth="1" fill="none" />
-                <path d="M210 200 l 30 -30 l 25 20 l 35 -25 l 30 15" stroke="#2E4266" strokeWidth="1" strokeOpacity="0.4" fill="none" />
-                <circle cx="210" cy="200" r="3" fill="#C4E538" fillOpacity="0.5" />
-                <circle cx="240" cy="170" r="3" fill="#C4E538" fillOpacity="0.5" />
-                <circle cx="265" cy="190" r="3" fill="#C4E538" fillOpacity="0.5" />
-                <circle cx="300" cy="165" r="3" fill="#C4E538" fillOpacity="0.5" />
-                <circle cx="330" cy="180" r="3" fill="#C4E538" fillOpacity="0.5" />
-                <text x="200" y="245" fontSize="11" fill="#5B6C87" fillOpacity="0.7">processing pipeline</text>
-              </svg>
+        <div className="hc-transform-left">
+          <div className="hc-transform-panel hc-transform-panel--dark">
+            <div className="hc-transform-panel-inner">
+              <span className="hc-transform-badge">Transformation in Action</span>
+              <h3>The Challenge</h3>
+              <p>High-volume healthcare workflows can involve fragmented information, manual document processing, repetitive validations and significant exception handling.</p>
+            </div>
+          </div>
+          <div className="hc-transform-panel hc-transform-panel--light">
+            <div className="hc-transform-panel-inner">
+              <h3>The Sytrion Approach</h3>
+              <p>Combine domain-led operations with document intelligence, workflow automation, structured validation and operational analytics.</p>
             </div>
           </div>
         </div>
-        <div className="hc-transform-panel hc-transform-panel--light">
-          <div className="hc-transform-panel-inner" style={{ justifyContent: "center" }}>
-            <h3>The Sytrion Approach</h3>
-            <p>Combine domain-led operations with document intelligence, workflow automation, structured validation and operational analytics.</p>
-            <div className="hc-pot-heading"><span>THE POTENTIAL</span></div>
+        <div className="hc-transform-panel hc-transform-panel--right">
+          <div className="hc-transform-panel-inner">
+            <h3 className="hc-pot-title">The Potential</h3>
             <ul className="hc-pot-checklist">
               <li><span className="hc-pot-badge" aria-hidden="true">✓</span> Faster Processing</li>
               <li><span className="hc-pot-badge" aria-hidden="true">✓</span> Reduced Manual Touchpoints</li>
