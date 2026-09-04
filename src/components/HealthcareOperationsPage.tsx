@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const challenges = [
   "High-volume claims",
@@ -45,7 +44,7 @@ const ibsTabs = [
       "Claims correspondence",
       "Quality & audit support",
     ],
-    image: "/healthcare/Claims Operations.jpg",
+    image: "/healthcare/Claims Operations.webp",
   },
   {
     num: "02",
@@ -60,7 +59,7 @@ const ibsTabs = [
       "Documentation support",
       "Exception resolution",
     ],
-    image: "/healthcare/Enrollment & Eligibility.jpg",
+    image: "/healthcare/Enrollment & Eligibility.webp",
   },
   {
     num: "03",
@@ -75,7 +74,7 @@ const ibsTabs = [
       "Provider updates",
       "Data-quality management",
     ],
-    image: "/healthcare/Provider Operations.jpg",
+    image: "/healthcare/Provider Operations.webp",
   },
   {
     num: "04",
@@ -90,7 +89,7 @@ const ibsTabs = [
       "Status management",
       "Administrative follow-up",
     ],
-    image: "/healthcare/Authorization Operations.jpg",
+    image: "/healthcare/Authorization Operations.webp",
   },
   {
     num: "05",
@@ -105,7 +104,7 @@ const ibsTabs = [
       "Correspondence management",
       "Service-request processing",
     ],
-    image: "/healthcare/Member & Provider Experience.jpg",
+    image: "/healthcare/Member & Provider Experience.webp",
   },
   {
     num: "06",
@@ -120,7 +119,7 @@ const ibsTabs = [
       "Reconciliation",
       "Operational reporting",
     ],
-    image: "/healthcare/Healthcare Data Operations.jpg",
+    image: "/healthcare/Healthcare Data Operations.webp",
   },
 ];
 
@@ -152,12 +151,12 @@ const intelligenceNodes = [
 ];
 
 const intelCapabilities = [
-  { num: "01", title: "Document Intelligence", desc: "Transform unstructured clinical and administrative documents into structured, validated information that teams can act on.", tags: "Extract / Classify / Validate", bg: "linear-gradient(135deg, #0F172A 0%, #0369A1 100%)", tabColor: "#0284C7", image: "/healthcare/Document Intelligence.jpg" },
-  { num: "02", title: "Workflow Automation", desc: "Connect repetitive operational steps into intelligent workflows that route work, reduce friction and keep processes moving.", tags: "Route / Process / Update", bg: "linear-gradient(135deg, #1E1B4B 0%, #6D28D9 100%)", tabColor: "#7C3AED", image: "/healthcare/Workflow Automation.jpg" },
-  { num: "03", title: "Claims Intelligence", desc: "Surface anomalies and opportunities earlier, helping teams validate claims and prioritize the work that matters most.", tags: "Identify / Validate / Prioritize", bg: "linear-gradient(135deg, #142E11 0%, #4D7C0F 100%)", tabColor: "#65A30D", image: "/healthcare/Claims Intelligence.jpg" },
-  { num: "04", title: "Data Intelligence", desc: "Clean, reconcile and enrich fragmented data so healthcare teams can work from information they can trust.", tags: "Clean / Reconcile / Enrich", bg: "linear-gradient(135deg, #431407 0%, #C2410C 100%)", tabColor: "#EA580C", image: "/healthcare/Data Intelligence.jpg" },
-  { num: "05", title: "AI-Assisted Operations", desc: "Give operational teams intelligent assistance for summarization, resolution and everyday decisions without adding complexity.", tags: "Summarize / Assist / Resolve", bg: "linear-gradient(135deg, #0B192C 0%, #1D4ED8 100%)", tabColor: "#2563EB", image: "/healthcare/AI-Assisted Operations.jpg" },
-  { num: "06", title: "Operational Analytics", desc: "Measure performance, surface patterns and turn operational data into continuous opportunities for improvement.", tags: "Measure / Analyze / Improve", bg: "linear-gradient(135deg, #3B0764 0%, #BE185D 100%)", tabColor: "#DB2777", image: "/healthcare/Operational Analytics.jpg" },
+  { num: "01", title: "Document Intelligence", desc: "Transform unstructured clinical and administrative documents into structured, validated information that teams can act on.", tags: "Extract / Classify / Validate", bg: "linear-gradient(135deg, #0F172A 0%, #0369A1 100%)", tabColor: "#0284C7", image: "/healthcare/Document Intelligence.webp" },
+  { num: "02", title: "Workflow Automation", desc: "Connect repetitive operational steps into intelligent workflows that route work, reduce friction and keep processes moving.", tags: "Route / Process / Update", bg: "linear-gradient(135deg, #1E1B4B 0%, #6D28D9 100%)", tabColor: "#7C3AED", image: "/healthcare/Workflow Automation.webp" },
+  { num: "03", title: "Claims Intelligence", desc: "Surface anomalies and opportunities earlier, helping teams validate claims and prioritize the work that matters most.", tags: "Identify / Validate / Prioritize", bg: "linear-gradient(135deg, #142E11 0%, #4D7C0F 100%)", tabColor: "#65A30D", image: "/healthcare/Claims Intelligence.webp" },
+  { num: "04", title: "Data Intelligence", desc: "Clean, reconcile and enrich fragmented data so healthcare teams can work from information they can trust.", tags: "Clean / Reconcile / Enrich", bg: "linear-gradient(135deg, #431407 0%, #C2410C 100%)", tabColor: "#EA580C", image: "/healthcare/Data Intelligence.webp" },
+  { num: "05", title: "AI-Assisted Operations", desc: "Give operational teams intelligent assistance for summarization, resolution and everyday decisions without adding complexity.", tags: "Summarize / Assist / Resolve", bg: "linear-gradient(135deg, #0B192C 0%, #1D4ED8 100%)", tabColor: "#2563EB", image: "/healthcare/AI-Assisted Operations.webp" },
+  { num: "06", title: "Operational Analytics", desc: "Measure performance, surface patterns and turn operational data into continuous opportunities for improvement.", tags: "Measure / Analyze / Improve", bg: "linear-gradient(135deg, #3B0764 0%, #BE185D 100%)", tabColor: "#DB2777", image: "/healthcare/Operational Analytics.webp" },
 ];
 
 const clinicalItems = [
@@ -300,37 +299,37 @@ const whyPoints = [
     num: "01",
     name: "Domain-led",
     desc: "Operations designed around healthcare's complex administrative workflows.",
-    lottie: "/healthcare/Domain led.json",
+    icon: "/healthcare/domain led.svg",
   },
   {
     num: "02",
     name: "AI-first",
     desc: "Intelligence applied where it can simplify work and improve operational decision support.",
-    lottie: "/healthcare/Ai first.json",
+    icon: "/healthcare/ai first.svg",
   },
   {
     num: "03",
     name: "Human + Digital",
     desc: "Automation and skilled teams working together.",
-    lottie: "/healthcare/Human + Digital.json",
+    icon: "/healthcare/Human + Digital.svg",
   },
   {
     num: "04",
     name: "Data-driven",
     desc: "Better information supporting better operational decisions.",
-    lottie: "/healthcare/Data-driven.json",
+    icon: "/healthcare/Data-driven.svg",
   },
   {
     num: "05",
     name: "Secure by Design",
     desc: "Controlled processes, access and governance embedded into delivery.",
-    lottie: "/healthcare/secure by design.json",
+    icon: "/healthcare/Secure by Design.svg",
   },
   {
     num: "06",
     name: "Built to Scale",
     desc: "Flexible models designed around changing operational requirements.",
-    lottie: "/healthcare/build to scale.json",
+    icon: "/healthcare/Built to Scale.svg",
   },
 ];
 
@@ -466,7 +465,7 @@ export default function HealthcareOperationsPage() {
         .hc-ibs-tagline { font-style: italic; font-size: 16px; line-height: 1.6; color: #5A5D66; margin: 0 0 24px; }
         .hc-ibs-list { list-style: none; margin: 0; padding: 0; }
         .hc-ibs-item { display: flex; align-items: baseline; gap: 14px; padding: 13px 0; border-top: 1px solid rgba(12,27,48,0.09); font-size: 16px; color: #33475E; }
-        .hc-ibs-item::before { content: ""; width: 8px; height: 8px; flex: 0 0 auto; border-radius: 50%; background: var(--hcc); align-self: center; }
+        .hc-ibs-item::before { content: ""; width: 9px; height: 9px; flex: 0 0 auto; background: #7AA306; transform: rotate(45deg); align-self: center; }
         .hc-ibs-visual { position: relative; border-radius: 20px; overflow: hidden; min-height: 380px; }
         .hc-ibs-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .hc-ibs-visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,27,48,0) 40%, rgba(12,27,48,0.32) 100%); }
@@ -543,15 +542,18 @@ export default function HealthcareOperationsPage() {
         .hc-cont-rule::before, .hc-cont-rule::after { content: ""; height: 1px; flex: 1; background: linear-gradient(90deg, rgba(198,232,74,0), rgba(198,232,74,0.5), rgba(198,232,74,0)); }
         .hc-cont-label { font-size: 11px; font-weight: 700; letter-spacing: 0.3em; color: var(--hcc); }
 
-        .hc-clin-accordion { margin-top:48px; }
-        .hc-clin-item { background:#0B1729; border:1px solid #173049; border-radius:10px; margin-bottom:8px; overflow:hidden; }
-        .hc-clin-header { width:100%; display:flex; align-items:center; justify-content:space-between; padding:16px 20px; background:transparent; border:none; color:#F5F7FA; font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:15px; font-weight:600; text-align:left; cursor:pointer; }
+        .hc-clin-accordion { margin-top:48px; display:flex; flex-direction:column; gap:8px; }
+        .hc-clin-item { background:#0B1729; border:1px solid #173049; border-radius:10px; overflow:hidden; transition:border-color .35s ease, box-shadow .35s ease, background .35s ease; }
+        .hc-clin-item.is-active { border-color:rgba(198,232,74,0.45); background:#0D1F35; box-shadow:0 0 20px -4px rgba(198,232,74,0.12); }
+        .hc-clin-header { width:100%; display:flex; align-items:center; justify-content:space-between; padding:16px 20px; background:transparent; border:none; color:#F5F7FA; font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:15px; font-weight:600; text-align:left; cursor:pointer; transition:color .3s ease; }
         .hc-clin-header:focus { outline:none; }
-        .hc-clin-chevron { color:#5EE6FF; transition:transform .25s ease; flex:0 0 auto; margin-left:12px; }
+        .hc-clin-item.is-active .hc-clin-header { color:#C6E84A; }
+        .hc-clin-chevron { color:#5EE6FF; transition:transform .35s cubic-bezier(0.16,1,0.3,1), color .3s ease; flex:0 0 auto; margin-left:12px; }
+        .hc-clin-item.is-active .hc-clin-chevron { color:#C6E84A; }
         .hc-clin-chevron[data-open="true"] { transform:rotate(180deg); }
-        .hc-clin-panel { max-height:0; overflow:hidden; transition:max-height .25s ease; }
-        .hc-clin-panel.is-open { max-height:500px; }
-        .hc-clin-panel-inner { padding:0 20px 16px; color:#9AA7B8; font-size:13px; line-height:1.6; }
+        .hc-clin-panel { max-height:0; overflow:hidden; transition:max-height .4s cubic-bezier(0.16,1,0.3,1), opacity .3s ease; opacity:0; }
+        .hc-clin-panel.is-open { max-height:500px; opacity:1; }
+        .hc-clin-panel-inner { padding:0 20px 18px; color:#9AA7B8; font-size:13.5px; line-height:1.7; }
 
         .hc-out-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 56px; }
         .hc-outcome { position: relative; overflow: hidden; background: #ffffff; border: 1px solid rgba(12,27,48,0.08); border-radius: 20px; padding: clamp(28px, 2.5vw, 36px); display: flex; flex-direction: column; box-shadow: 0 4px 20px -6px rgba(12,27,48,0.04); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease; }
@@ -566,25 +568,26 @@ export default function HealthcareOperationsPage() {
         .hc-outcome-desc { font-size: 14.5px; line-height: 1.65; color: #5A6B7F; margin: 12px 0 0; }
 
         .hc-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 56px; }
-        .hc-layer { display: grid; grid-template-columns: 90px 320px 1fr; align-items: center; gap: 20px; border-radius: 14px; padding: 24px 30px; background: #0C2036; border: 1px solid rgba(198,232,74,0.12); transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
-        .hc-layer:nth-child(2), .hc-layer:nth-child(4) { background: #10294A; }
-        .hc-layer:hover { border-color: rgba(198,232,74,0.4); transform: translateX(6px); }
-        .hc-layer--core { background: linear-gradient(90deg, #C6E84A, #7AA306); border-color: rgba(222,248,150,0.8); box-shadow: 0 0 50px rgba(198,232,74,0.3); }
-        .hc-layer--core .hc-layer-num, .hc-layer--core .hc-layer-items { color: #06344B; }
-        .hc-layer--core .hc-layer-name { color: #04202F; }
+        .hc-layer { display: grid; grid-template-columns: 90px 320px 1fr; align-items: center; gap: 20px; border-radius: 14px; padding: 24px 30px; background: #10294A; border: 1px solid rgba(198,232,74,0.12); transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
+        .hc-layer:hover { background:#C6E84A; border-color: rgba(198,232,74,0.8); box-shadow: 0 0 40px -6px rgba(198,232,74,0.4); transform: translateX(6px); }
+        .hc-layer:hover .hc-layer-num, .hc-layer:hover .hc-layer-name, .hc-layer:hover .hc-layer-items { color:#0C1B30; }
+        .hc-layer--core .hc-layer-num, .hc-layer--core .hc-layer-items { color: var(--hcc); }
+        .hc-layer--core .hc-layer-name { color: #ffffff; }
         .hc-layer-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: var(--hcc); font-variant-numeric: tabular-nums; }
         .hc-layer-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #ffffff; }
         .hc-layer-items { font-size: 12.5px; letter-spacing: 0.05em; color: rgba(255,255,255,0.62); }
 
         .hc-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
-        .hc-why-card { position: relative; border-radius: 16px; padding: 28px 24px 26px; background: #FAFBFC; border: 1px solid #EDF0F3; display: flex; flex-direction: column; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease; }
+        .hc-why-card { position: relative; border-radius: 16px; padding: 28px 24px 26px; background: #FAFBFC; border: 2px solid #D1D9E6; display: flex; flex-direction: column; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease; }
         .hc-why-card::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; border-radius: 0 0 16px 16px; background: linear-gradient(90deg, #7AA306, #C6E84A); opacity: 0; transition: opacity 0.35s ease; }
-        .hc-why-card:hover { transform: translateY(-4px); border-color: rgba(122,163,6,0.35); box-shadow: 0 12px 30px -12px rgba(10,22,40,0.12); }
+        .hc-why-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px -12px rgba(10,22,40,0.12); }
         .hc-why-card:hover::after { opacity: 1; }
-        .hc-why-icon { width: 84px; height: 84px; border-radius: 18px; background: rgba(198,232,74,0.12); border: 1px solid rgba(122,163,6,0.2); display: flex; align-items: center; justify-content: center; color: #618300; margin-bottom: 18px; transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.35s ease; }
+        .hc-why-head { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+        .hc-why-head-text { display: flex; flex-direction: column; }
+        .hc-why-icon { width: 64px; height: 64px; border-radius: 16px; background: rgba(198,232,74,0.12); border: 1px solid rgba(122,163,6,0.2); display: flex; align-items: center; justify-content: center; color: #618300; flex: 0 0 auto; transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.35s ease; }
         .hc-why-card:hover .hc-why-icon { background: #C6E84A; border-color: #C6E84A; color: #0C1B30; transform: scale(1.06); }
         .hc-why-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; color: #7AA306; font-variant-numeric: tabular-nums; }
-        .hc-why-card h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 17px; font-weight: 700; color: #0C1B30; margin: 8px 0 0; }
+        .hc-why-card h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 23px; font-weight: 700; color: #0C1B30; margin: 4px 0 0; }
         .hc-why-card p { font-size: 14px; line-height: 1.65; color: #5A6B7F; margin: 8px 0 0; }
 
         .hc-transform { display:grid; grid-template-columns:1fr 1fr; min-height:700px; isolation:isolate; overflow:hidden; }
@@ -831,6 +834,7 @@ export default function HealthcareOperationsPage() {
                 aria-selected={activeTab === i}
                 aria-controls={`hc-panel-${i}`}
                 className={`hc-ibs-tab${activeTab === i ? " hc-ibs-tab--active" : ""}`}
+                onMouseEnter={() => setActiveTab(i)}
                 onClick={() => setActiveTab(i)}
               >
                 {t.tab}
@@ -882,12 +886,12 @@ export default function HealthcareOperationsPage() {
               <div className="hc-claims-wf-grid">
                 {claimsSteps.map((s, i) => {
                   const stepIcons: Record<string, React.ReactNode> = {
-                    inbox: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 12h-6l-2 3h-4l-2-3H2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6z"/><path d="M5.45 5.11 2 12v0h20v0l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>,
-                    scan: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="7" y1="12" x2="17" y2="12"/></svg>,
-                    check: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>,
-                    "git-branch": <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>,
-                    cpu: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="15" x2="23" y2="15"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="15" x2="4" y2="15"/></svg>,
-                    "bar-chart": <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>,
+                    inbox: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 12h-6l-2 3h-4l-2-3H2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6z" /><path d="M5.45 5.11 2 12v0h20v0l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" /></svg>,
+                    scan: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 7V5a2 2 0 0 1 2-2h2" /><path d="M17 3h2a2 2 0 0 1 2 2v2" /><path d="M21 17v2a2 2 0 0 1-2 2h-2" /><path d="M7 21H5a2 2 0 0 1-2-2v-2" /><line x1="7" y1="12" x2="17" y2="12" /></svg>,
+                    check: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>,
+                    "git-branch": <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="6" y1="3" x2="6" y2="15" /><circle cx="18" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M18 9a9 9 0 0 1-9 9" /></svg>,
+                    cpu: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="4" width="16" height="16" rx="2" /><rect x="9" y="9" width="6" height="6" /><line x1="9" y1="1" x2="9" y2="4" /><line x1="15" y1="1" x2="15" y2="4" /><line x1="9" y1="20" x2="9" y2="23" /><line x1="15" y1="20" x2="15" y2="23" /><line x1="20" y1="9" x2="23" y2="9" /><line x1="20" y1="15" x2="23" y2="15" /><line x1="1" y1="9" x2="4" y2="9" /><line x1="1" y1="15" x2="4" y2="15" /></svg>,
+                    "bar-chart": <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="20" x2="12" y2="10" /><line x1="18" y1="20" x2="18" y2="4" /><line x1="6" y1="20" x2="6" y2="16" /></svg>,
                   };
 
                   return (
@@ -1043,10 +1047,11 @@ export default function HealthcareOperationsPage() {
             {clinicalItems.map((c, i) => {
               const isOpen = clinicalOpen === i;
               return (
-                <div key={c.title} className="hc-clin-item">
+                <div key={c.title} className={`hc-clin-item${isOpen ? " is-active" : ""}`}>
                   <button
                     className="hc-clin-header"
                     aria-expanded={isOpen}
+                    onMouseEnter={() => setClinicalOpen(i)}
                     onClick={() => setClinicalOpen(isOpen ? -1 : i)}
                   >
                     <span>{c.title}</span>
@@ -1095,7 +1100,7 @@ export default function HealthcareOperationsPage() {
           </div>
           <div className="hc-stack hc-reveal">
             {modelLayers.map((layer) => (
-              <div key={layer.num} className={`hc-layer${layer.name === "Sytrion Intelligence Layer" ? " hc-layer--core" : ""}`}>
+              <div key={layer.num} className={`hc-layer`}>
                 <span className="hc-layer-num">{layer.num}</span>
                 <span className="hc-layer-name">{layer.name}</span>
                 <span className="hc-layer-items">{layer.items}</span>
@@ -1114,10 +1119,15 @@ export default function HealthcareOperationsPage() {
           <div className="hc-why-grid hc-reveal">
             {whyPoints.map((w) => (
               <article key={w.num} className="hc-why-card">
-                <div className="hc-why-icon" aria-hidden="true">
-                  <DotLottieReact src={w.lottie} loop autoplay style={{ width: '100%', height: '100%' }} />
+                <div className="hc-why-head">
+                  <div className="hc-why-icon" aria-hidden="true">
+                    <img src={w.icon} alt="" width="52" height="52" />
+                  </div>
+                  <div className="hc-why-head-text">
+                    <span className="hc-why-num">{w.num}</span>
+                    <h3>{w.name}</h3>
+                  </div>
                 </div>
-                <h3>{w.name}</h3>
                 <p>{w.desc}</p>
               </article>
             ))}
