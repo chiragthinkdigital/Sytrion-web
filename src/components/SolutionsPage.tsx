@@ -1,7 +1,7 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import WhySytrion from "./WhySytrion";
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -849,65 +849,82 @@ function CapabilitiesOrbit() {
    ───────────────────────────────────────────────────────────────────────────── */
 
 function CapabilitiesRail() {
-  const [active, setActive] = useState(0);
-  const [outgoing, setOutgoing] = useState<(typeof capabilities)[number] | null>(null);
-  const cap = capabilities[active];
+  const stageRef = useRef<HTMLDivElement>(null);
+  const railRef = useRef<HTMLDivElement>(null);
+  const animatingRef = useRef(false);
 
-  const selectItem = (i: number) => {
-    if (i === active) return;
-    setOutgoing(capabilities[active]);
-    setActive(i);
+  const paint = () => {
+    if (!stageRef.current || !railRef.current) return;
+    const cards = Array.from(stageRef.current.children) as HTMLElement[];
+    cards.forEach((c, i) => {
+      c.style.setProperty("--depth", String(i));
+    });
+    if (cards.length > 0) {
+      const frontIdx = cards[0].dataset.idx;
+      const buttons = Array.from(railRef.current.children) as HTMLElement[];
+      buttons.forEach((b) => {
+        const numEl = b.querySelector(".sol-rail-num");
+        const isAct = numEl?.textContent === frontIdx;
+        b.classList.toggle("active", isAct);
+        b.setAttribute("aria-pressed", String(isAct));
+      });
+      cards.forEach((c) => {
+        const dots = c.querySelectorAll(".sol-preview-dot");
+        dots.forEach((dot) => {
+          dot.classList.toggle("active", dot.getAttribute("data-num") === frontIdx);
+        });
+      });
+    }
   };
 
-  const renderBody = (c: (typeof capabilities)[number]) => (
-    <>
-      <div className="sol-deck-bg" aria-hidden="true">
-        <img src={c.image} alt="" loading="eager" decoding="async" />
-      </div>
-      <div className="sol-deck-overlay" aria-hidden="true" />
-    <div className="sol-preview-body">
-      <div className="sol-preview-icon">
-        <SolIcon name={c.icon} size={34} />
-      </div>
-      <h3 className="sol-preview-title">{c.title}</h3>
-      <p className="sol-preview-tagline">{c.tagline}</p>
-      <p className="sol-preview-desc">{c.description}</p>
-      <div className="sol-preview-chips">
-        {c.chips.map((chip) => (
-          <span key={chip} className="sol-preview-chip">{chip}</span>
-        ))}
-      </div>
-      <div className="sol-preview-divider" />
-      <div className="sol-preview-foot">
-        <Link href={c.href} className="sol-preview-cta">
-          Explore capability
-          <ArrowIcon />
-        </Link>
-        <div className="sol-preview-dots" aria-hidden="true">
-          {capabilities.map((item, i) => (
-            <span
-              key={item.number}
-              className={"sol-preview-dot" + (i === active ? " active" : "")}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-    </>
-  );
+  useEffect(() => {
+    paint();
+  }, []);
+
+  const selectItem = (targetIndex: number) => {
+    if (animatingRef.current || !stageRef.current) return;
+    const targetN = capabilities[targetIndex].number;
+    const cards = Array.from(stageRef.current.children) as HTMLElement[];
+    const front = cards[0];
+    if (!front || front.dataset.idx === targetN) return;
+
+    const targetEl = cards.find((c) => c.dataset.idx === targetN);
+    if (!targetEl) return;
+
+    animatingRef.current = true;
+
+    // Move target element to the top of stage container
+    stageRef.current.insertBefore(targetEl, stageRef.current.firstChild);
+    paint();
+
+    front.classList.add("sending");
+
+    const handler = (e: TransitionEvent) => {
+      if (e.target !== front) return;
+      front.removeEventListener("transitionend", handler);
+      front.classList.remove("sending");
+      if (stageRef.current) {
+        stageRef.current.appendChild(front);
+        paint();
+      }
+      animatingRef.current = false;
+    };
+
+    front.addEventListener("transitionend", handler);
+  };
 
   return (
     <div className="sol-rail-layout">
-      <div className="sol-rail" role="group" aria-label="Capabilities">
+      <div className="sol-rail" ref={railRef} role="group" aria-label="Capabilities">
         {capabilities.map((item, i) => (
           <button
             key={item.number}
             type="button"
-            className={"sol-rail-item" + (i === active ? " active" : "")}
+            className={"sol-rail-item" + (i === 0 ? " active" : "")}
             onMouseEnter={() => selectItem(i)}
             onClick={() => selectItem(i)}
             onFocus={() => selectItem(i)}
-            aria-pressed={i === active}
+            aria-pressed={i === 0}
           >
             <span className="sol-rail-num">{item.number}</span>
             <span className="sol-rail-body">
@@ -918,28 +935,48 @@ function CapabilitiesRail() {
               <ArrowIcon />
             </span>
           </button>
-            ))}
-          </div>
-
-      <div className="sol-stage" aria-live="polite" aria-atomic="true">
-        {[1, 2, 3, 4, 5].map((l) => (
-          <div key={l} className={"deck-card l" + l} aria-hidden="true" />
         ))}
-        {outgoing && (
-          <div
-            className="deck-card l0 l0-exit"
-            key={"exit-" + outgoing.number}
-            aria-hidden="true"
-            onAnimationEnd={() => setOutgoing(null)}
-          >
-            <span className="sol-preview-ghost">{outgoing.number}</span>
-            {renderBody(outgoing)}
+      </div>
+
+      <div className="sol-stage" ref={stageRef} aria-live="polite" aria-atomic="true">
+        {capabilities.map((c) => (
+          <div key={c.number} className="deck-card" data-idx={c.number}>
+            <div className="sol-deck-bg" aria-hidden="true">
+              <img src={c.image} alt="" loading="eager" decoding="async" />
+            </div>
+            <div className="sol-deck-overlay" aria-hidden="true" />
+            <span className="sol-preview-ghost" aria-hidden="true">{c.number}</span>
+            <div className="sol-preview-body">
+              <div className="sol-preview-icon">
+                <SolIcon name={c.icon} size={34} />
+              </div>
+              <h3 className="sol-preview-title">{c.title}</h3>
+              <p className="sol-preview-tagline">{c.tagline}</p>
+              <p className="sol-preview-desc">{c.description}</p>
+              <div className="sol-preview-chips">
+                {c.chips.map((chip) => (
+                  <span key={chip} className="sol-preview-chip">{chip}</span>
+                ))}
+              </div>
+              <div className="sol-preview-divider" />
+              <div className="sol-preview-foot">
+                <Link href={c.href} className="sol-preview-cta">
+                  Explore capability
+                  <ArrowIcon />
+                </Link>
+                <div className="sol-preview-dots" aria-hidden="true">
+                  {capabilities.map((item) => (
+                    <span
+                      key={item.number}
+                      data-num={item.number}
+                      className={"sol-preview-dot" + (item.number === capabilities[0].number ? " active" : "")}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-        )}
-        <div className="deck-card l0" key={cap.number}>
-          <span className="sol-preview-ghost" aria-hidden="true">{cap.number}</span>
-          {renderBody(cap)}
-        </div>
+        ))}
       </div>
     </div>
   );
@@ -1254,81 +1291,26 @@ export default function SolutionsPage() {
           height: 100%;
           border-radius: 24px;
           background: #0f0f0f;
-          border: 2px solid #C6F135;
+          border: 2px solid rgba(198,241,53,0.85);
           overflow: hidden;
           box-sizing: border-box;
-        }
-        .deck-card.l0 {
           padding: 56px 48px 40px;
-          transform: translateX(0) scale(1);
-          filter: brightness(1);
-          z-index: 6;
-          border-color: rgba(198,241,53,0.85);
           display: flex;
           flex-direction: column;
+          transform:
+            translateX(calc(var(--depth, 0) * 22px))
+            scale(calc(1 - var(--depth, 0) * 0.025));
+          z-index: calc(10 - var(--depth, 0));
+          filter: brightness(calc(1 - var(--depth, 0) * 0.09));
           will-change: transform, opacity, filter;
-          animation: solDeckIn 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+          transition: transform 0.5s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.5s, filter 0.5s;
         }
-        @keyframes solDeckIn {
-          0% {
-            transform: translateX(90px) scale(0.9);
-            opacity: 0;
-            filter: brightness(0.6);
-          }
-          60% {
-            filter: brightness(0.92);
-          }
-          100% {
-            transform: translateX(0) scale(1);
-            opacity: 1;
-            filter: brightness(1);
-          }
-        }
-        .deck-card.l0-exit {
-          will-change: transform, opacity, filter;
-          animation: solDeckOut 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-        @keyframes solDeckOut {
-          0% {
-            transform: translateX(0) scale(1);
-            opacity: 1;
-            filter: brightness(1);
-          }
-          100% {
-            transform: translateX(90px) scale(0.88);
-            opacity: 0;
-            filter: brightness(0.5);
-          }
-        }
-        .deck-card.l1 {
-          transform: translateX(22px) scale(0.975);
-          filter: brightness(0.9);
-          z-index: 5;
-          border-color: rgba(198,241,53,0.68);
-        }
-        .deck-card.l2 {
-          transform: translateX(44px) scale(0.95);
-          filter: brightness(0.8);
-          z-index: 4;
-          border-color: rgba(198,241,53,0.5);
-        }
-        .deck-card.l3 {
-          transform: translateX(66px) scale(0.925);
-          filter: brightness(0.7);
-          z-index: 3;
-          border-color: rgba(198,241,53,0.35);
-        }
-        .deck-card.l4 {
-          transform: translateX(88px) scale(0.90);
-          filter: brightness(0.62);
-          z-index: 2;
-          border-color: rgba(198,241,53,0.2);
-        }
-        .deck-card.l5 {
-          transform: translateX(110px) scale(0.875);
-          filter: brightness(0.55);
-          z-index: 1;
-          border-color: rgba(198,241,53,0.2);
+        .deck-card.sending {
+          transform: translateX(130%) translateY(-10%) rotate(12deg);
+          opacity: 0;
+          filter: brightness(1);
+          z-index: 20;
+          transition: transform 0.45s ease-in, opacity 0.45s;
         }
         .sol-deck-bg {
           position: absolute;
@@ -1483,24 +1465,24 @@ export default function SolutionsPage() {
           .deck-card {
             height: auto;
             position: relative;
-          }
-          .deck-card.l1,
-          .deck-card.l2,
-          .deck-card.l3,
-          .deck-card.l4,
-          .deck-card.l5 {
-            display: none;
-          }
-          .deck-card.l0 {
             padding: 44px 32px 32px;
+            transform: none !important;
+            filter: none !important;
+            z-index: 1;
+          }
+          .deck-card + .deck-card {
+            display: none;
           }
         }
         @media (prefers-reduced-motion: reduce) {
           .sol-preview-body {
             animation: none;
           }
-          .deck-card.l0:not(.l0-exit) {
-            animation: none;
+          .deck-card {
+            transition: transform 0.2s, opacity 0.2s, filter 0.2s;
+          }
+          .deck-card.sol-sending {
+            transition: transform 0.2s, opacity 0.2s;
           }
           .sol-rail-arrow,
           .sol-rail-item:hover .sol-rail-arrow,

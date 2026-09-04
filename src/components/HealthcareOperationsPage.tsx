@@ -1,7 +1,8 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const challenges = [
   "High-volume claims",
@@ -124,12 +125,12 @@ const ibsTabs = [
 ];
 
 const claimsSteps = [
-  { name: "RECEIVE", sub: "Claim & documents" },
-  { name: "EXTRACT", sub: "Relevant information" },
-  { name: "VALIDATE", sub: "Data & completeness" },
-  { name: "ROUTE", sub: "Workflow & exceptions" },
-  { name: "PROCESS", sub: "Administrative actions" },
-  { name: "ANALYZE", sub: "Quality & insights" },
+  { name: "RECEIVE", sub: "Claim & documents", bg: "linear-gradient(135deg, #0EA5E9, #0284C7)", text: "#FFFFFF", icon: "inbox" },
+  { name: "EXTRACT", sub: "Relevant information", bg: "linear-gradient(135deg, #9333EA, #7E22CE)", text: "#FFFFFF", icon: "scan" },
+  { name: "VALIDATE", sub: "Data & completeness", bg: "linear-gradient(135deg, #C6E84A, #9ECC12)", text: "#0F172A", icon: "check" },
+  { name: "ROUTE", sub: "Workflow & exceptions", bg: "linear-gradient(135deg, #F97316, #EA580C)", text: "#FFFFFF", icon: "git-branch" },
+  { name: "PROCESS", sub: "Administrative actions", bg: "linear-gradient(135deg, #2563EB, #1D4ED8)", text: "#FFFFFF", icon: "cpu" },
+  { name: "ANALYZE", sub: "Quality & insights", bg: "linear-gradient(135deg, #EC4899, #DB2777)", text: "#FFFFFF", icon: "bar-chart" },
 ];
 
 const providerSteps = [
@@ -148,6 +149,15 @@ const intelligenceNodes = [
   { title: "Data Intelligence", verbs: "Clean • Reconcile • Enrich" },
   { title: "AI-Assisted Operations", verbs: "Summarize • Assist • Resolve" },
   { title: "Operational Analytics", verbs: "Measure • Analyze • Improve" },
+];
+
+const intelCapabilities = [
+  { num: "01", title: "Document Intelligence", desc: "Transform unstructured clinical and administrative documents into structured, validated information that teams can act on.", tags: "Extract / Classify / Validate", bg: "linear-gradient(135deg, #0F172A 0%, #0369A1 100%)", tabColor: "#0284C7", image: "/healthcare/Document Intelligence.jpg" },
+  { num: "02", title: "Workflow Automation", desc: "Connect repetitive operational steps into intelligent workflows that route work, reduce friction and keep processes moving.", tags: "Route / Process / Update", bg: "linear-gradient(135deg, #1E1B4B 0%, #6D28D9 100%)", tabColor: "#7C3AED", image: "/healthcare/Workflow Automation.jpg" },
+  { num: "03", title: "Claims Intelligence", desc: "Surface anomalies and opportunities earlier, helping teams validate claims and prioritize the work that matters most.", tags: "Identify / Validate / Prioritize", bg: "linear-gradient(135deg, #142E11 0%, #4D7C0F 100%)", tabColor: "#65A30D", image: "/healthcare/Claims Intelligence.jpg" },
+  { num: "04", title: "Data Intelligence", desc: "Clean, reconcile and enrich fragmented data so healthcare teams can work from information they can trust.", tags: "Clean / Reconcile / Enrich", bg: "linear-gradient(135deg, #431407 0%, #C2410C 100%)", tabColor: "#EA580C", image: "/healthcare/Data Intelligence.jpg" },
+  { num: "05", title: "AI-Assisted Operations", desc: "Give operational teams intelligent assistance for summarization, resolution and everyday decisions without adding complexity.", tags: "Summarize / Assist / Resolve", bg: "linear-gradient(135deg, #0B192C 0%, #1D4ED8 100%)", tabColor: "#2563EB", image: "/healthcare/AI-Assisted Operations.jpg" },
+  { num: "06", title: "Operational Analytics", desc: "Measure performance, surface patterns and turn operational data into continuous opportunities for improvement.", tags: "Measure / Analyze / Improve", bg: "linear-gradient(135deg, #3B0764 0%, #BE185D 100%)", tabColor: "#DB2777", image: "/healthcare/Operational Analytics.jpg" },
 ];
 
 const clinicalItems = [
@@ -290,37 +300,37 @@ const whyPoints = [
     num: "01",
     name: "Domain-led",
     desc: "Operations designed around healthcare's complex administrative workflows.",
-    icon: <svg key="domain" {...whyIconProps}><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>,
+    lottie: "/healthcare/Domain led.json",
   },
   {
     num: "02",
     name: "AI-first",
     desc: "Intelligence applied where it can simplify work and improve operational decision support.",
-    icon: <svg key="ai" {...whyIconProps}><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.5"/><circle cx="12" cy="16" r="4"/><path d="M12 12v-2"/><path d="M8 20h8"/></svg>,
+    lottie: "/healthcare/Ai first.json",
   },
   {
     num: "03",
     name: "Human + Digital",
     desc: "Automation and skilled teams working together.",
-    icon: <svg key="human" {...whyIconProps}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+    lottie: "/healthcare/Human + Digital.json",
   },
   {
     num: "04",
     name: "Data-driven",
     desc: "Better information supporting better operational decisions.",
-    icon: <svg key="data" {...whyIconProps}><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg>,
+    lottie: "/healthcare/Data-driven.json",
   },
   {
     num: "05",
     name: "Secure by Design",
     desc: "Controlled processes, access and governance embedded into delivery.",
-    icon: <svg key="secure" {...whyIconProps}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>,
+    lottie: "/healthcare/secure by design.json",
   },
   {
     num: "06",
     name: "Built to Scale",
     desc: "Flexible models designed around changing operational requirements.",
-    icon: <svg key="scale" {...whyIconProps}><path d="M3 17.5l5.5-5.5 3.5 3.5L20.5 7"/><path d="M14.5 7h6v6"/><path d="M3 7h4v4"/><path d="M17 13v4h-4"/></svg>,
+    lottie: "/healthcare/build to scale.json",
   },
 ];
 
@@ -335,6 +345,7 @@ function HcLabel({ text, light }: { text: string; light?: boolean }) {
 export default function HealthcareOperationsPage() {
   const [activeTab, setActiveTab] = useState(0);
   const [clinicalOpen, setClinicalOpen] = useState(0);
+  const [intelActive, setIntelActive] = useState(0);
   const revealRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -382,7 +393,7 @@ export default function HealthcareOperationsPage() {
         .hc-btn--ghost { background: transparent; border: 1px solid rgba(255,255,255,0.45); color: #fff; }
         .hc-btn--ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); box-shadow: none; }
 
-        .hc-hero { position: relative; min-height: 94vh; display: flex; align-items: center; overflow: hidden; background: var(--hcn); }
+        .hc-hero { position: relative; min-height: 94vh; display: flex; align-items: flex-start; justify-content: flex-start; overflow: hidden; background: var(--hcn); }
         .hc-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .hc-hero-scrim { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(4,12,24,0.94) 8%, rgba(6,18,36,0.72) 48%, rgba(7,22,44,0.32) 100%); }
         .hc-hero-scrim::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 220px; background: linear-gradient(180deg, rgba(4,12,24,0), rgba(4,12,24,0.85)); }
@@ -464,12 +475,24 @@ export default function HealthcareOperationsPage() {
         .hc-feature-img { position: relative; overflow: hidden; border-radius: 22px; aspect-ratio: 4 / 4.6; }
         .hc-feature-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .hc-feature-tint { position: absolute; inset: 0; background: linear-gradient(200deg, rgba(198,232,74,0.16) 0%, rgba(7,20,38,0.05) 40%, rgba(7,20,38,0.55) 100%); }
-        .hc-steps { list-style: none; margin: 36px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 18px; counter-reset: step; }
-        .hc-step { position: relative; padding-left: 18px; }
-        .hc-step::before { content: ""; position: absolute; left: 0; top: 4px; bottom: 4px; width: 2px; border-radius: 2px; background: linear-gradient(180deg, var(--hcc), rgba(198,232,74,0.15)); }
-        .hc-step-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; color: var(--hcc); font-variant-numeric: tabular-nums; }
-        .hc-step-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 16.5px; font-weight: 700; letter-spacing: 0.06em; color: #ffffff; margin: 5px 0 0; }
-        .hc-step-sub { font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.6); margin: 4px 0 0; }
+        .hc-claims-wf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 14px; margin-top: 36px; }
+        .hc-claims-wf-step { position: relative; display: flex; align-items: center; }
+        .hc-claims-wf-card { flex: 1; border-radius: 16px; padding: 18px 16px; border: 1px solid rgba(255, 255, 255, 0.15); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease, filter 0.35s ease; position: relative; box-shadow: 0 10px 24px -6px rgba(0,0,0,0.4); }
+        .hc-claims-wf-card:hover { transform: translateY(-5px); box-shadow: 0 16px 36px -8px rgba(0,0,0,0.6); filter: brightness(1.08); }
+        .hc-claims-wf-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+        .hc-claims-wf-icon { width: 34px; height: 34px; border-radius: 10px; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.25); display: flex; align-items: center; justify-content: center; color: inherit; transition: transform 0.3s ease; }
+        .hc-claims-wf-card:hover .hc-claims-wf-icon { transform: scale(1.1); }
+        .hc-claims-wf-num { font-family: var(--font-syne), sans-serif; font-size: 11.5px; font-weight: 800; color: inherit; letter-spacing: 0.08em; background: rgba(0, 0, 0, 0.2); padding: 4px 9px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.2); }
+        .hc-claims-wf-title { font-family: var(--font-syne), sans-serif; font-size: 15px; font-weight: 700; color: inherit; letter-spacing: 0.04em; }
+        .hc-claims-wf-sub { font-size: 12.5px; line-height: 1.45; color: inherit; opacity: 0.85; margin-top: 4px; }
+        .hc-claims-wf-connector { position: absolute; right: -13px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; border-radius: 50%; background: #071426; border: 1.5px solid rgba(255, 255, 255, 0.3); display: flex; align-items: center; justify-content: center; color: #ffffff; z-index: 3; box-shadow: 0 0 10px rgba(0,0,0,0.6); }
+        @media (max-width: 1100px) {
+          .hc-claims-wf-grid { grid-template-columns: repeat(2, 1fr); }
+          .hc-claims-wf-connector { display: none; }
+        }
+        @media (max-width: 640px) {
+          .hc-claims-wf-grid { grid-template-columns: 1fr; }
+        }
 
         .hc-prov-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(36px, 5vw, 90px); align-items: center; }
         .hc-prov-img { position: relative; overflow: hidden; border-radius: 22px; aspect-ratio: 4 / 4.8; box-shadow: 0 34px 70px -40px rgba(12,27,48,0.45); }
@@ -558,7 +581,7 @@ export default function HealthcareOperationsPage() {
         .hc-why-card::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; border-radius: 0 0 16px 16px; background: linear-gradient(90deg, #7AA306, #C6E84A); opacity: 0; transition: opacity 0.35s ease; }
         .hc-why-card:hover { transform: translateY(-4px); border-color: rgba(122,163,6,0.35); box-shadow: 0 12px 30px -12px rgba(10,22,40,0.12); }
         .hc-why-card:hover::after { opacity: 1; }
-        .hc-why-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(198,232,74,0.12); border: 1px solid rgba(122,163,6,0.2); display: flex; align-items: center; justify-content: center; color: #618300; margin-bottom: 18px; transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.35s ease; }
+        .hc-why-icon { width: 84px; height: 84px; border-radius: 18px; background: rgba(198,232,74,0.12); border: 1px solid rgba(122,163,6,0.2); display: flex; align-items: center; justify-content: center; color: #618300; margin-bottom: 18px; transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.35s ease; }
         .hc-why-card:hover .hc-why-icon { background: #C6E84A; border-color: #C6E84A; color: #0C1B30; transform: scale(1.06); }
         .hc-why-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; color: #7AA306; font-variant-numeric: tabular-nums; }
         .hc-why-card h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 17px; font-weight: 700; color: #0C1B30; margin: 8px 0 0; }
@@ -606,9 +629,7 @@ export default function HealthcareOperationsPage() {
         .hc-final .hc-btn-ghost { background: transparent; color: #FFFFFF; border: 1.5px solid #FFFFFF; }
         .hc-final .hc-btn-ghost:hover { background: #FFFFFF; color: #0f0f0f; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.15); }
 
-        @media (max-width: 1080px) {
-          .hc-steps { grid-template-columns: repeat(2, 1fr); }
-        }
+
         @media (max-width: 900px) {
           .hc-land-grid, .hc-split, .hc-prov-grid, .hc-clin-hero { grid-template-columns: 1fr; }
           .hc-land-row { grid-template-columns: 1fr; }
@@ -627,6 +648,10 @@ export default function HealthcareOperationsPage() {
           .hc-transform-half--light { top: 50%; bottom: 0; }
           .hc-transform-grid { grid-template-columns: 1fr; gap: 44px; }
           .hc-transform-cta { left: 50%; bottom: 24px; }
+          .hc-intel-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
+          .hc-intel-lede { max-width: none; }
+          .hc-intel-card-content { grid-template-columns: 1fr; gap: 32px; padding: 40px 32px; }
+          .hc-intel-visual { height: 240px; }
         }
         @media (max-width: 800px) {
           .hc-approach { grid-template-columns: 1fr; padding: 48px 0 80px; }
@@ -640,6 +665,12 @@ export default function HealthcareOperationsPage() {
           .hc-layer { grid-template-columns: 1fr; gap: 8px; padding: 20px; }
           .hc-hero-ctas .hc-btn, .hc-final-ctas .hc-btn { width: 100%; }
           .hc-tree-row { grid-template-columns: 1fr; }
+          .hc-intel-tabs { gap: 8px; }
+          .hc-intel-tab { padding: 10px 14px; font-size: 13px; }
+          .hc-intel-card-content { padding: 28px 20px; }
+          .hc-intel-card-title { font-size: 24px; }
+          .hc-intel-visual { display: none; }
+          .hc-intel-card { min-height: 380px; }
         }
         @media (max-width: 560px) {
           .hc-landscape-right { grid-template-columns: 1fr; }
@@ -652,9 +683,54 @@ export default function HealthcareOperationsPage() {
           .hc-final-ctas { flex-direction: column; align-items: center; }
           .hc-final .hc-btn { width: 100%; max-width: 320px; }
         }
+
+        /* Dynamic Tabbed Stack Deck — Intelligence Built Into Operations */
+        .hc-intel-header { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; margin-bottom: 48px; }
+        .hc-intel-header .hc-h2 { white-space: normal; }
+        .hc-intel-lede { font-size: 18px; line-height: 1.8; color: rgba(255,255,255,0.7); max-width: 640px; margin: 8px 0 0; }
+        .scd-deck-wrapper { position: relative; width: 100%; margin-top: 20px; }
+        .scd-deck { position: relative; width: 100%; min-height: 480px; }
+        .scd-tabs-bar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; position: relative; z-index: 10; width: 100%; }
+        .scd-tab { appearance: none; border: none; background: var(--c); border-radius: 14px 14px 0 0; padding: 14px 12px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #ffffff; font-family: inherit; font-size: 13.5px; font-weight: 700; filter: brightness(0.55); opacity: 0.85; transition: filter 0.3s ease, transform 0.3s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.3s ease; text-align: center; }
+        .scd-tab:hover { filter: brightness(0.85); opacity: 1; }
+        .scd-tab.is-active { filter: brightness(1); opacity: 1; transform: translateY(-4px); box-shadow: 0 -8px 20px rgba(0,0,0,0.3); }
+        .scd-tab-num { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; background: rgba(0,0,0,0.25); padding: 2px 6px; border-radius: 999px; }
+        .scd-tab-text { font-family: var(--font-syne), sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .scd-cards-stack { position: relative; width: 100%; min-height: 400px; }
+        .scd-card { position: absolute; inset: 0; border-radius: 0 0 24px 24px; padding: 52px 56px; color: #ffffff; overflow: hidden; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7); transform: translateY(24px) scale(0.95); opacity: 0; pointer-events: none; transition: transform 0.45s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.45s ease; z-index: 1; }
+        .scd-card.is-active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; z-index: 5; }
+        .scd-card-bg-img { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+        .scd-card-bg-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.28; filter: saturate(1.2); }
+        .scd-card-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(6,14,25,0.7) 0%, rgba(6,14,25,0.4) 100%); }
+        .scd-card-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 320px; gap: 48px; align-items: center; height: 100%; }
+        .scd-card-num { display: inline-block; font-family: var(--font-syne), sans-serif; font-size: 13px; font-weight: 800; letter-spacing: 0.16em; background: rgba(0,0,0,0.35); padding: 4px 12px; border-radius: 999px; margin-bottom: 16px; backdrop-filter: blur(4px); }
+        .scd-card-title { font-family: var(--font-syne), sans-serif; font-size: clamp(28px, 3.2vw, 42px); font-weight: 800; line-height: 1.12; margin: 0 0 16px; letter-spacing: -0.02em; }
+        .scd-card-desc { font-size: 17px; line-height: 1.75; opacity: 0.92; max-width: 580px; margin: 0 0 24px; }
+        .scd-card-tags { font-size: 13.5px; font-weight: 700; letter-spacing: 0.08em; background: rgba(0,0,0,0.35); padding: 8px 16px; border-radius: 999px; display: inline-block; backdrop-filter: blur(4px); }
+        .scd-card-visual { position: relative; height: 250px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .scd-visual-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: transform 0.4s ease; }
+        .scd-card:hover .scd-visual-thumb { transform: scale(1.05); }
+        @media (max-width: 1024px) {
+          .scd-tabs-bar { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+          .scd-tab { border-radius: 12px; }
+          .scd-card-inner { grid-template-columns: 1fr; gap: 24px; }
+          .scd-card-visual { display: none; }
+          .scd-card { padding: 40px 32px; border-radius: 20px; }
+        }
+        @media (max-width: 640px) {
+          .scd-tabs-bar { grid-template-columns: repeat(2, 1fr); }
+          .scd-tab-text { font-size: 12px; }
+          .scd-card { padding: 32px 24px; }
+        }
+        .hc-intel-nodes::after { right: 28%; top: 42%; }
+        .hc-intel-nodes span { left: 58%; bottom: 30%; }
+        @keyframes hcRingSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
         @media (prefers-reduced-motion: reduce) {
           .hc-reveal { opacity: 1; transform: none; transition: none; animation: none; }
           .hc-core { animation: none; }
+          .hc-intel-rings::before, .hc-intel-rings::after { animation: none !important; }
+          .hc-intel-card-panel { transition: none; }
         }
 
 
@@ -694,12 +770,12 @@ export default function HealthcareOperationsPage() {
                     <span className="hc-challenge-num">{String(i + 1).padStart(2, "0")}</span>
                     <div className="hc-challenge-icon" aria-hidden="true">
                       <svg viewBox="0 0 24 24">
-                        {i===0 && <><path d="M4 7h16v10H4z"/><path d="M8 7v10M12 7v10M16 7v10"/></>}
-                        {i===1 && <><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></>}
-                        {i===2 && <><circle cx="7" cy="12" r="3"/><circle cx="17" cy="12" r="3"/><line x1="10" y1="12" x2="14" y2="12"/></>}
-                        {i===3 && <><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h10M7 13h10"/></>}
-                        {i===4 && <><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/></>}
-                        {i===5 && <><path d="M4 17l5-5 3 3 7-7"/><path d="M4 14h14"/></>}
+                        {i === 0 && <><path d="M4 7h16v10H4z" /><path d="M8 7v10M12 7v10M16 7v10" /></>}
+                        {i === 1 && <><circle cx="12" cy="12" r="8" /><path d="M12 8v4l3 2" /></>}
+                        {i === 2 && <><circle cx="7" cy="12" r="3" /><circle cx="17" cy="12" r="3" /><line x1="10" y1="12" x2="14" y2="12" /></>}
+                        {i === 3 && <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M7 9h10M7 13h10" /></>}
+                        {i === 4 && <><circle cx="12" cy="12" r="9" /><path d="M12 7v10M7 12h10" /></>}
+                        {i === 5 && <><path d="M4 17l5-5 3 3 7-7" /><path d="M4 14h14" /></>}
                       </svg>
                     </div>
                   </div>
@@ -803,15 +879,46 @@ export default function HealthcareOperationsPage() {
               <h2 className="hc-h2">Smarter claims. Less <span style={{ color: "#C6E84A" }}>operational friction.</span></h2>
               <p className="hc-lede">Claims operations sit at the intersection of members, providers, policies, documentation and complex administrative workflows.</p>
               <p className="hc-copy">Sytrion combines structured workflows, document intelligence, automation and human expertise to help streamline administrative claims processes while improving visibility and operational control.</p>
-              <ol className="hc-steps">
-                {claimsSteps.map((s, i) => (
-                  <li key={s.name} className="hc-step">
-                    <span className="hc-step-num">{String(i + 1).padStart(2, "0")}</span>
-                    <div className="hc-step-name">{s.name}</div>
-                    <div className="hc-step-sub">{s.sub}</div>
-                  </li>
-                ))}
-              </ol>
+              <div className="hc-claims-wf-grid">
+                {claimsSteps.map((s, i) => {
+                  const stepIcons: Record<string, React.ReactNode> = {
+                    inbox: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 12h-6l-2 3h-4l-2-3H2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6z"/><path d="M5.45 5.11 2 12v0h20v0l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>,
+                    scan: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="7" y1="12" x2="17" y2="12"/></svg>,
+                    check: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>,
+                    "git-branch": <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>,
+                    cpu: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="15" x2="23" y2="15"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="15" x2="4" y2="15"/></svg>,
+                    "bar-chart": <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>,
+                  };
+
+                  return (
+                    <div key={s.name} className="hc-claims-wf-step">
+                      <div
+                        className="hc-claims-wf-card"
+                        style={{
+                          background: s.bg,
+                          color: s.text,
+                        }}
+                      >
+                        <div className="hc-claims-wf-top">
+                          <div className="hc-claims-wf-icon">
+                            {stepIcons[s.icon]}
+                          </div>
+                          <span className="hc-claims-wf-num">0{i + 1}</span>
+                        </div>
+                        <div className="hc-claims-wf-title">{s.name}</div>
+                        <div className="hc-claims-wf-sub">{s.sub}</div>
+                      </div>
+                      {i < claimsSteps.length - 1 && (
+                        <div className="hc-claims-wf-connector" aria-hidden="true">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                            <polyline points="9 18 15 12 9 6" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -842,30 +949,72 @@ export default function HealthcareOperationsPage() {
         </div>
       </section>
 
-      <section className="hc-section-dark hc-intel">
-        <img className="hc-intel-bg" src="/healthcare/ai-intelligence.jpg" alt="" aria-hidden="true" />
-        <div className="hc-intel-veil" />
+      <section className="hc-section-dark">
         <div className="hc-wrap">
-          <div className="hc-head hc-reveal">
-            <HcLabel text="Intelligence Built Into Operations" />
-            <h2 className="hc-h2">AI that works behind the <span style={{ color: "#C6E84A" }}> healthcare experience.</span></h2>
+          <div className="hc-intel-header hc-reveal">
+            <div className="hc-intel-head-left">
+              <HcLabel text="Intelligence Built Into Operations" />
+              <h2 className="hc-h2">AI that works behind the <span style={{ color: "#C6E84A" }}>healthcare experience.</span></h2>
+            </div>
+            <p className="hc-intel-lede">Six connected capabilities that turn complex healthcare information into clearer decisions and more efficient operations.</p>
           </div>
-          <div className="hc-tree hc-reveal">
-            <div className="hc-core">
-              <span className="hc-core-name">SYTRION INTELLIGENCE CORE</span>
-              <span className="hc-core-sub">HEALTHCARE OPS</span>
-            </div>
-            <div className="hc-tree-links" aria-hidden="true">
-              <span className="hc-tree-trunk" />
-              <span className="hc-tree-bar" />
-            </div>
-            <div className="hc-tree-row">
-              {intelligenceNodes.map((node) => (
-                <div key={node.title} className="hc-node">
-                  <h3 className="hc-node-title">{node.title}</h3>
-                  <p className="hc-node-verbs">{node.verbs}</p>
-                </div>
-              ))}
+
+          <div className="scd-deck-wrapper hc-reveal">
+            <div className="scd-deck">
+              {/* Tabs navigation attached directly to top of deck */}
+              <div className="scd-tabs-bar" role="tablist" aria-label="Intelligence capabilities">
+                {intelCapabilities.map((cap, i) => (
+                  <button
+                    key={cap.title}
+                    role="tab"
+                    id={`scd-tab-${i}`}
+                    aria-selected={intelActive === i}
+                    aria-controls={`scd-card-${i}`}
+                    className={`scd-tab ${intelActive === i ? "is-active" : ""}`}
+                    style={{ "--c": cap.tabColor } as React.CSSProperties}
+                    onClick={() => setIntelActive(i)}
+                    onMouseEnter={() => setIntelActive(i)}
+                    onFocus={() => setIntelActive(i)}
+                  >
+                    <span className="scd-tab-num">{cap.num}</span>
+                    <span className="scd-tab-text">{cap.title}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Cards stacked underneath */}
+              <div className="scd-cards-stack">
+                {intelCapabilities.map((cap, i) => {
+                  const isActive = intelActive === i;
+                  return (
+                    <article
+                      key={cap.title}
+                      id={`scd-card-${i}`}
+                      role="tabpanel"
+                      aria-labelledby={`scd-tab-${i}`}
+                      className={`scd-card ${isActive ? "is-active" : ""}`}
+                      style={{ background: cap.bg }}
+                    >
+                      <div className="scd-card-bg-img">
+                        <img src={cap.image} alt={cap.title} loading="lazy" decoding="async" />
+                        <div className="scd-card-overlay" />
+                      </div>
+
+                      <div className="scd-card-inner">
+                        <div className="scd-card-main">
+                          <span className="scd-card-num">{cap.num}</span>
+                          <h3 className="scd-card-title">{cap.title}</h3>
+                          <p className="scd-card-desc">{cap.desc}</p>
+                          <div className="scd-card-tags">{cap.tags}</div>
+                        </div>
+                        <div className="scd-card-visual" aria-hidden="true">
+                          <img src={cap.image} alt="" className="scd-visual-thumb" />
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -966,9 +1115,8 @@ export default function HealthcareOperationsPage() {
             {whyPoints.map((w) => (
               <article key={w.num} className="hc-why-card">
                 <div className="hc-why-icon" aria-hidden="true">
-                  {w.icon}
+                  <DotLottieReact src={w.lottie} loop autoplay style={{ width: '100%', height: '100%' }} />
                 </div>
-                <span className="hc-why-num">{w.num}</span>
                 <h3>{w.name}</h3>
                 <p>{w.desc}</p>
               </article>
@@ -985,38 +1133,38 @@ export default function HealthcareOperationsPage() {
             <p>High-volume healthcare workflows can involve fragmented information, manual document processing, repetitive validations and significant exception handling.</p>
             <div className="hc-transform-illustration" aria-hidden="true">
               <svg viewBox="0 0 520 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="20" y="40" width="160" height="120" rx="12" stroke="#2E4266" strokeWidth="1.5" transform="rotate(-5 100 100)"/>
-                <rect x="45" y="55" width="160" height="120" rx="12" stroke="#3D5170" strokeWidth="1.5" transform="rotate(4 125 115)"/>
-                <line x1="55" y1="75" x2="155" y2="75" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2"/>
-                <line x1="55" y1="95" x2="170" y2="95" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2"/>
-                <line x1="55" y1="115" x2="140" y2="115" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2"/>
-                <line x1="55" y1="135" x2="130" y2="135" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2"/>
-                <line x1="80" y1="80" x2="180" y2="80" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2"/>
-                <line x1="80" y1="100" x2="190" y2="100" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2"/>
-                <line x1="80" y1="120" x2="160" y2="120" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2"/>
-                <line x1="80" y1="140" x2="150" y2="140" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2"/>
-                <rect x="60" y="170" width="120" height="6" rx="3" fill="#1A2B45" fillOpacity="0.5"/>
-                <rect x="60" y="182" width="80" height="6" rx="3" fill="#1A2B45" fillOpacity="0.35"/>
-                <path d="M220 110 C280 70, 320 150, 380 110" stroke="#C4E538" strokeWidth="2" strokeDasharray="8 6" fill="none"/>
-                <circle cx="440" cy="110" r="42" stroke="#1A2B45" strokeWidth="1.5" fill="none"/>
-                <circle cx="440" cy="110" r="28" fill="#0A1628" stroke="#C4E538" strokeWidth="2.5"/>
-                <path d="M426 110 l 10 11 l 20 -22" stroke="#C4E538" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                <rect x="20" y="40" width="160" height="120" rx="12" stroke="#2E4266" strokeWidth="1.5" transform="rotate(-5 100 100)" />
+                <rect x="45" y="55" width="160" height="120" rx="12" stroke="#3D5170" strokeWidth="1.5" transform="rotate(4 125 115)" />
+                <line x1="55" y1="75" x2="155" y2="75" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2" />
+                <line x1="55" y1="95" x2="170" y2="95" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2" />
+                <line x1="55" y1="115" x2="140" y2="115" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2" />
+                <line x1="55" y1="135" x2="130" y2="135" stroke="#2E4266" strokeOpacity="0.6" strokeWidth="1.2" />
+                <line x1="80" y1="80" x2="180" y2="80" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2" />
+                <line x1="80" y1="100" x2="190" y2="100" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2" />
+                <line x1="80" y1="120" x2="160" y2="120" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2" />
+                <line x1="80" y1="140" x2="150" y2="140" stroke="#3D5170" strokeOpacity="0.6" strokeWidth="1.2" />
+                <rect x="60" y="170" width="120" height="6" rx="3" fill="#1A2B45" fillOpacity="0.5" />
+                <rect x="60" y="182" width="80" height="6" rx="3" fill="#1A2B45" fillOpacity="0.35" />
+                <path d="M220 110 C280 70, 320 150, 380 110" stroke="#C4E538" strokeWidth="2" strokeDasharray="8 6" fill="none" />
+                <circle cx="440" cy="110" r="42" stroke="#1A2B45" strokeWidth="1.5" fill="none" />
+                <circle cx="440" cy="110" r="28" fill="#0A1628" stroke="#C4E538" strokeWidth="2.5" />
+                <path d="M426 110 l 10 11 l 20 -22" stroke="#C4E538" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" />
                 <text x="65" y="220" fontSize="12" fill="#5B6C87">fragmented records</text>
                 <text x="395" y="170" fontSize="12" fontWeight="700" fill="#C4E538">validated outcome</text>
-                <circle cx="440" cy="110" r="50" stroke="#C4E538" strokeOpacity="0.15" strokeWidth="1" fill="none"/>
-                <path d="M210 200 l 30 -30 l 25 20 l 35 -25 l 30 15" stroke="#2E4266" strokeWidth="1" strokeOpacity="0.4" fill="none"/>
-                <circle cx="210" cy="200" r="3" fill="#C4E538" fillOpacity="0.5"/>
-                <circle cx="240" cy="170" r="3" fill="#C4E538" fillOpacity="0.5"/>
-                <circle cx="265" cy="190" r="3" fill="#C4E538" fillOpacity="0.5"/>
-                <circle cx="300" cy="165" r="3" fill="#C4E538" fillOpacity="0.5"/>
-                <circle cx="330" cy="180" r="3" fill="#C4E538" fillOpacity="0.5"/>
+                <circle cx="440" cy="110" r="50" stroke="#C4E538" strokeOpacity="0.15" strokeWidth="1" fill="none" />
+                <path d="M210 200 l 30 -30 l 25 20 l 35 -25 l 30 15" stroke="#2E4266" strokeWidth="1" strokeOpacity="0.4" fill="none" />
+                <circle cx="210" cy="200" r="3" fill="#C4E538" fillOpacity="0.5" />
+                <circle cx="240" cy="170" r="3" fill="#C4E538" fillOpacity="0.5" />
+                <circle cx="265" cy="190" r="3" fill="#C4E538" fillOpacity="0.5" />
+                <circle cx="300" cy="165" r="3" fill="#C4E538" fillOpacity="0.5" />
+                <circle cx="330" cy="180" r="3" fill="#C4E538" fillOpacity="0.5" />
                 <text x="200" y="245" fontSize="11" fill="#5B6C87" fillOpacity="0.7">processing pipeline</text>
               </svg>
             </div>
           </div>
         </div>
         <div className="hc-transform-panel hc-transform-panel--light">
-          <div className="hc-transform-panel-inner" style={{justifyContent:"center"}}>
+          <div className="hc-transform-panel-inner" style={{ justifyContent: "center" }}>
             <h3>The Sytrion Approach</h3>
             <p>Combine domain-led operations with document intelligence, workflow automation, structured validation and operational analytics.</p>
             <div className="hc-pot-heading"><span>THE POTENTIAL</span></div>
