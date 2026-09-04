@@ -420,28 +420,27 @@ export default function HealthcareOperationsPage() {
 
         .hc-land-grid { margin-bottom: 0; }
         .hc-land-row { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; margin-top: 40px; }
-        .hc-section-landscape { padding-bottom: clamp(40px, 5vw, 60px); }
-        .hc-landscape-text { }
+        .hc-section-landscape { background: linear-gradient(135deg, #09182C 0%, #061120 100%); padding-bottom: clamp(60px, 7vw, 90px); }
+        .hc-landscape-text { color: rgba(255, 255, 255, 0.85); }
         .hc-landscape-left { }
         .hc-head h2 { position: relative; padding-bottom: 12px; }
         .hc-head h2::after { content: ""; display: block; width: 64px; height: 4px; background: #C4E538; margin-top: 14px; }
-        .hc-landscape-left p { color: #5B6472; max-width: 440px; }
+        .hc-landscape-left p { color: rgba(255, 255, 255, 0.7); max-width: 440px; }
         .hc-landscape-right { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-        .hc-challenge-card { background: rgba(255, 255, 255, 0.9); border: 1.5px solid rgba(10, 22, 40, 0.08); border-radius: 18px; padding: 22px 24px; position: relative; transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 6px 20px -6px rgba(10, 22, 40, 0.05); overflow: hidden; backdrop-filter: blur(8px); }
-        .hc-challenge-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #618300, #C6E84A); opacity: 0; transition: opacity 0.35s ease; }
-        .hc-challenge-card:hover { transform: translateY(-4px); background: #FFFFFF; border-color: rgba(198, 232, 74, 0.9); box-shadow: 0 16px 36px -10px rgba(10, 22, 40, 0.12), 0 0 20px rgba(198, 232, 74, 0.2); }
-        .hc-challenge-card:hover::before { opacity: 1; }
-        .hc-challenge-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-        .hc-challenge-num { font-family: var(--font-syne), sans-serif; font-size: 12px; font-weight: 800; color: #5B7B00; background: rgba(198, 232, 74, 0.2); border: 1px solid rgba(198, 232, 74, 0.4); padding: 3px 10px; border-radius: 999px; font-variant-numeric: tabular-nums; letter-spacing: 0.05em; transition: all 0.3s ease; }
-        .hc-challenge-card:hover .hc-challenge-num { background: #C6E84A; color: #0A1628; border-color: #C6E84A; }
-        .hc-challenge-icon { width: 42px; height: 42px; border-radius: 12px; background: #0A1628; display: flex; align-items: center; justify-content: center; transition: all 0.35s ease; box-shadow: 0 4px 12px rgba(10, 22, 40, 0.15); }
-        .hc-challenge-card:hover .hc-challenge-icon { background: #C6E84A; transform: scale(1.08) rotate(-3deg); box-shadow: 0 6px 16px rgba(198, 232, 74, 0.35); }
-        .hc-challenge-icon svg { width: 19px; height: 19px; stroke: #C6E84A; fill: none; stroke-width: 2; transition: stroke 0.35s ease; }
-        .hc-challenge-card:hover .hc-challenge-icon svg { stroke: #0A1628; }
-        .hc-challenge-label { font-family: var(--font-syne), sans-serif; font-size: 16.5px; font-weight: 700; color: #0A1628; line-height: 1.35; }
-        .hc-approach { border-top: 1px solid #E2E5E9; padding: 40px 0 0; display: grid; grid-template-columns: 260px 1fr; gap: 40px; align-items: start; }
-        .hc-approach-label { font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #8A93A3; }
-        .hc-approach-text { font-size: 30px; line-height: 1.55; color: #0A1628; font-weight: 500; max-width: 760px; }
+        .hc-challenge-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 18px 20px; position: relative; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); overflow: hidden; }
+        .hc-challenge-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #C6E84A; transform: scaleY(0); transform-origin: bottom; transition: transform 0.3s ease; }
+        .hc-challenge-card:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(198, 232, 74, 0.6); box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(198, 232, 74, 0.15); transform: translateY(-2px); }
+        .hc-challenge-card:hover::before { transform: scaleY(1); }
+        .hc-challenge-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .hc-challenge-num { font-family: var(--font-syne), sans-serif; font-size: 12px; font-weight: 800; color: #C6E84A; background: rgba(198, 232, 74, 0.15); border: 1px solid rgba(198, 232, 74, 0.3); padding: 2px 8px; border-radius: 999px; font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+        .hc-challenge-icon { width: 34px; height: 34px; border-radius: 9px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.15); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+        .hc-challenge-card:hover .hc-challenge-icon { background: #C6E84A; border-color: #C6E84A; }
+        .hc-challenge-icon svg { width: 16px; height: 16px; stroke: #C6E84A; fill: none; stroke-width: 2; transition: stroke 0.3s ease; }
+        .hc-challenge-card:hover .hc-challenge-icon svg { stroke: #09182C; }
+        .hc-challenge-label { font-family: var(--font-syne), sans-serif; font-size: 15.5px; font-weight: 700; color: #FFFFFF; line-height: 1.35; }
+        .hc-approach { border-top: 1px solid rgba(255, 255, 255, 0.12); padding: 40px 0 0; display: grid; grid-template-columns: 260px 1fr; gap: 40px; align-items: start; }
+        .hc-approach-label { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #C6E84A; }
+        .hc-approach-text { font-size: 30px; line-height: 1.55; color: #FFFFFF; font-weight: 500; max-width: 760px; }
         .hc-approach-text em { font-style: normal; font-weight: 600; }
 
         .hc-eco-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
