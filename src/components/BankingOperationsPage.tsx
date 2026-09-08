@@ -470,7 +470,7 @@ export default function BankingOperationsPage() {
       {/* S01 — HERO: 42/58 split, bleeding photo                          */}
       {/* ══════════════════════════════════════════════════════════════════ */}
       <section className="bk-hero">
-        <img src="/services/banking/banking_hero.png" alt="" className="bk-hero-img" fetchPriority="high" />
+        <video className="bk-hero-img" src="/services/banking/bankinghero.mp4" autoPlay muted loop playsInline />
         <div className="bk-hero-overlay" aria-hidden="true" />
         <div className="bk-hero-content bk-reveal">
           <span className="bk-hero-eyebrow">BANKING</span>

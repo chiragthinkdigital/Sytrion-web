@@ -5,7 +5,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import WhySytrion from "@/components/WhySytrion";
-import Founder from "@/components/Founder";
 import FutureCards from "@/components/FutureCards";
 import CallToAction from "@/components/CallToAction";
 import GlobalPresence from "@/components/GlobalPresence";
@@ -20,10 +19,10 @@ const stats = [
 ];
 
 const operatingPrinciples = [
-  { title: "Customer First", image: "/about/Customer First.jpg", desc: "Every solution begins with understanding our client's business objectives and desired outcomes." },
-  { title: "Operational Excellence", image: "/about/Operational Excellence.jpg", desc: "We continuously improve processes to deliver consistent, measurable results." },
-  { title: "Innovation with Purpose", image: "/about/Innovation with Purpose.jpg", desc: "Technology is applied where it creates real business value â€” not for its own sake." },
-  { title: "Integrity & Trust", image: "/about/integrit and trust.jpg", desc: "We build lasting relationships through transparency, accountability, and ethical business practices." },
+  { title: "Customer First", image: "/about/Customer First.png", desc: "Every solution begins with understanding our client's business objectives and desired outcomes." },
+  { title: "Operational Excellence", image: "/about/Operational Excellence.png", desc: "We continuously improve processes to deliver consistent, measurable results." },
+  { title: "Innovation with Purpose", image: "/about/Innovation with Purpose.png", desc: "Technology is applied where it creates real business value â€” not for its own sake." },
+  { title: "Integrity & Trust", image: "/about/Integrity and Trust.png", desc: "We build lasting relationships through transparency, accountability, and ethical business practices." },
   { title: "Continuous Improvement", image: "/about/Continuous Improvement.jpg", desc: "We embrace change and continuously evolve to help our clients stay ahead." },
 ];
 
@@ -119,9 +118,9 @@ const timeline = [
 ];
 
 const valueImages = [
-  "/about/integrity.jpg",         // Integrity
-  "/about/innovation1.jpg",       // Innovation
-  "/about/excellence.jpg",        // Excellence
+  "/about/integrity.png",         // Integrity
+  "/about/innovation1.png",       // Innovation
+  "/about/excellence.png",        // Excellence
   "/about/ownership.jpg",         // Ownership
   "/about/collaboration.jpg",     // Collaboration
   "/about/customer success.png",  // Customer Success
@@ -488,7 +487,7 @@ function MissionCollage() {
           pointerEvents: "none",
         }} />
         <img
-          src="/about/Transforming Complexity into Competitive Advantage2.jpg"
+          src="/about/Transforming Complexity into Competitive Advantage2.png"
           alt="Advanced technological enterprise operations"
           style={{
             width: "100%",
@@ -514,7 +513,7 @@ function MissionCollage() {
         border: "1px solid rgba(77, 124, 15, 0.12)",
       }}>
         <img
-          src="/about/Transforming Complexity into Competitive Advantage1.jpg"
+          src="/about/Transforming Complexity into Competitive Advantage1.png"
           alt="Intelligent business transformation workflow"
           style={{
             width: "100%",
@@ -540,7 +539,7 @@ function MissionCollage() {
         border: "1px solid rgba(77, 124, 15, 0.12)",
       }}>
         <img
-          src="/about/Transforming Complexity into Competitive Advantage3.jpg"
+          src="/about/Transforming Complexity into Competitive Advantage3.png"
           alt="Analytics and automated digital solution execution"
           style={{
             width: "100%",
@@ -2794,8 +2793,6 @@ export default function AboutPage() {
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             FOUNDER'S MESSAGE (HOME SECTION)
             â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-        <Founder />
-
         {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             CTA
             â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}

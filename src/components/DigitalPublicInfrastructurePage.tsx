@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -274,6 +273,7 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-hero { position:relative; overflow:hidden; background:linear-gradient(115deg, ${NAVY} 0%, ${NAVY2} 55%, #14263f 100%); padding: clamp(110px, 13vh, 150px) 0 clamp(70px, 8vh, 100px); display:flex; align-items:center; min-height:100dvh; }
         .dpi-hero > .dpi-wrap { width:100%; }
         .dpi-hero-bg { position:absolute; inset:0; z-index:0; }
+        .dpi-hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
         .dpi-hero-overlay { position:absolute; inset:0; background:linear-gradient(90deg, rgba(10,12,16,0.92) 0%, rgba(10,12,16,0.72) 45%, rgba(10,12,16,0.45) 100%); }
         .dpi-hero-inner { position:relative; z-index:2; max-width: 720px; text-align:left; margin:0; }
         .dpi-hero-ctas { display:flex; flex-wrap:wrap; gap:16px; margin-top:32px; justify-content:flex-start; }
@@ -486,13 +486,13 @@ export default function DigitalPublicInfrastructurePage() {
       {/* ─────────────────────────── 01 HERO ─────────────────────────── */}
       <section className="dpi-hero">
         <div className="dpi-hero-bg">
-          <Image
-            src="/dpi/dpihero3.jpg"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            style={{ objectFit: "cover" }}
+          <video
+            className="dpi-hero-video"
+            src="/dpi/dpihero.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
           />
           <span className="dpi-hero-overlay" aria-hidden="true" />
         </div>

@@ -63,8 +63,8 @@ export default function PhilosophyCards() {
         }
 
         .phil-card {
-          flex: 0 0 440px;
-          width: 440px;
+          flex: 0 0 calc(25% - 15px);
+          width: calc(25% - 15px);
           border-radius: 6px;
           overflow: hidden;
           background: #2b2e35;
@@ -72,10 +72,10 @@ export default function PhilosophyCards() {
           flex-direction: column;
         }
         .phil-card-img {
-          height: 290px;
+          height: 250px;
           overflow: hidden;
         }
-.phil-card-img img {
+        .phil-card-img img {
           width: 100%;
           height: 100%;
           object-fit: cover;
@@ -87,24 +87,22 @@ export default function PhilosophyCards() {
         .phil-card-body {
           position: relative;
           flex: 1;
-          min-height: 220px;
-          padding: 26px 24px;
+          padding: 22px 20px;
           display: flex;
           flex-direction: column;
         }
         .phil-card-letter {
-          font-size: 32px;
+          font-size: 28px;
           font-weight: 700;
           color: #c6ff3d;
           line-height: 1.1;
-          margin: 0 0 14px;
+          margin: 0 0 10px;
         }
         .phil-card-name {
-          font-size: 32px;
+          font-size: 28px;
           font-weight: 700;
           color: #fffffe;
           line-height: 1.1;
-          margin: 0 0 14px;
         }
         .phil-card-copy {
           font-size: 14px;
@@ -112,14 +110,18 @@ export default function PhilosophyCards() {
           color: #9ca3af;
           line-height: 1.6;
           margin: 0;
-          padding-right: 40px;
         }
 
-
+        @media (max-width: 900px) {
+          .phil-card {
+            flex: 0 0 calc(50% - 10px);
+            width: calc(50% - 10px);
+          }
+        }
         @media (max-width: 600px) {
           .phil-card {
-            flex: 0 0 320px;
-            width: 320px;
+            flex: 0 0 80vw;
+            width: 80vw;
           }
         }
       `}</style>
@@ -136,7 +138,7 @@ export default function PhilosophyCards() {
               />
             </div>
             <div className="phil-card-body">
-              <h3 className="phil-card-letter">{card.letter}<span className="phil-card-name">{card.letter && ` — ${card.name}` }</span></h3>
+              <h3 className="phil-card-letter">{card.letter}<span className="phil-card-name">{card.letter && ` — ${card.name}`}</span></h3>
               <p className="phil-card-copy">{card.description}</p>
             </div>
           </div>

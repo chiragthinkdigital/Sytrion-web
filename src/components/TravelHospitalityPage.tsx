@@ -377,7 +377,7 @@ export default function TravelHospitalityPage() {
       `}</style>
 
       <section className="tv-hero">
-        <img src="/services/travel/travelhero.png" alt="" className="tv-hero-img" fetchPriority="high" />
+        <video className="tv-hero-img" src="/services/travel/travelhero.mp4" autoPlay muted loop playsInline />
         <div className="tv-hero-overlay" aria-hidden="true" />
         <div className="tv-hero-content tv-reveal">
           <span className="tv-hero-eyebrow">TRAVEL &amp; HOSPITALITY</span>

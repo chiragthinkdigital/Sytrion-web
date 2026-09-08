@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import React, { useEffect, useMemo, useRef, useState } from "react";
@@ -2379,102 +2379,111 @@ export default function SolutionsPage() {
             width: 320px;
           }
         }
-          .cta-primary {
-          position: relative;
-          overflow: hidden;
-          background: #C6E84A;
-          color: #0f0f0f;
+          /* ── Final CTA (banner) ─────────────────────────── */
+        .sol-section--cta {
+          background: #D4E83A;
+          padding: 56px 80px;
+        }
+        .sol-cta-inner {
+          max-width: 1280px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 48px;
+        }
+        .sol-cta-content {
+          flex: 1 1 58%;
+          max-width: 640px;
+          text-align: left;
+        }
+        .sol-cta-badge {
+          display: inline-block;
+          background: #7A8B2E;
+          color: #111111;
+          padding: 9px 18px;
+          border-radius: 999px;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          margin-bottom: 18px;
+        }
+        .sol-cta-heading {
+          font-family: var(--font-syne), sans-serif;
+          font-size: clamp(25px, 3vw, 33px);
+          font-weight: 700;
+          color: #141414;
+          line-height: 1.25;
+          letter-spacing: -0.01em;
+          margin: 0 0 16px;
+        }
+        .sol-cta-body {
+          font-size: 16px;
+          color: #4B5320;
+          line-height: 1.65;
+          margin: 0;
+          max-width: 56ch;
+        }
+        .sol-cta-actions {
+          flex: 0 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 14px;
+          flex-wrap: wrap;
+        }
+        .cta-primary {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background: #141414;
+          color: #FFFFFF;
           border: none;
-          padding: 16px 32px;
-          border-radius: 9999px;
+          padding: 16px 30px;
+          border-radius: 999px;
           font-size: 16px;
           font-weight: 700;
           cursor: pointer;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .cta-primary::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 60%;
-          background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 100%);
-          pointer-events: none;
-          border-radius: inherit;
-          transition: opacity 0.3s ease;
-        }
-        .cta-primary::after {
-          content: '';
-          position: absolute;
-          top: 0; left: -100%; right: 0;
-          width: 60%;
-          height: 100%;
-          background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.25) 45%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.25) 55%, transparent 100%);
-          pointer-events: none;
-          border-radius: inherit;
-          transition: left 0.6s ease;
+          transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
         }
         .cta-primary:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(198,232,74,0.35);
-        }
-        .cta-primary:hover::before {
-          opacity: 1.2;
-        }
-        .cta-primary:hover::after {
-          left: 120%;
+          box-shadow: 0 8px 24px rgba(20, 20, 20, 0.25);
         }
         .cta-primary:active {
           transform: translateY(0) scale(0.98);
         }
-
         .cta-secondary {
-          position: relative;
-          overflow: hidden;
+          display: inline-flex;
+          align-items: center;
           background: transparent;
-          color: #FFFFFF;
-          border: 1.5px solid #FFFFFF;
-          padding: 16px 32px;
-          border-radius: 9999px;
+          color: #141414;
+          border: 1.5px solid #141414;
+          padding: 15px 30px;
+          border-radius: 999px;
           font-size: 16px;
           font-weight: 700;
           cursor: pointer;
-          transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .cta-secondary::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 60%;
-          background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 100%);
-          pointer-events: none;
-          border-radius: inherit;
-          transition: opacity 0.3s ease;
-        }
-        .cta-secondary::after {
-          content: '';
-          position: absolute;
-          top: 0; left: -100%; right: 0;
-          width: 60%;
-          height: 100%;
-          background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.15) 55%, transparent 100%);
-          pointer-events: none;
-          border-radius: inherit;
-          transition: left 0.6s ease;
+          transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
         .cta-secondary:hover {
-          background: #FFFFFF;
-          color: #0f0f0f;
+          background: rgba(20, 20, 20, 0.06);
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(255,255,255,0.15);
-        }
-        .cta-secondary:hover::before {
-          background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 100%);
-        }
-        .cta-secondary:hover::after {
-          left: 120%;
         }
         .cta-secondary:active {
           transform: translateY(0) scale(0.98);
+        }
+        @media (max-width: 1024px) {
+          .sol-section--cta { padding: 48px 40px; }
+          .sol-cta-inner { gap: 32px; }
+          .sol-cta-actions { gap: 12px; }
+        }
+        @media (max-width: 768px) {
+          .sol-section--cta { padding: 40px 20px; }
+          .sol-cta-inner { flex-direction: column; align-items: flex-start; gap: 28px; }
+          .sol-cta-content { max-width: 100%; }
+          .sol-cta-actions { width: 100%; justify-content: flex-start; }
         }
 
         /* ── Healthcare Operations (editorial two-column) ── */
@@ -2858,7 +2867,7 @@ export default function SolutionsPage() {
           loop
           playsInline
         >
-          <source src="/solutions/solutionshero.mp4" type="video/mp4" />
+          <source src="/solutions/solutionshero1.mp4" type="video/mp4" />
         </video>
 
         <div className="sol-hero-content">
@@ -3285,18 +3294,40 @@ We work as an extension of your organization, bringing greater efficiency, consi
       </section>
 
       {/* ══════════════════════ 13. FINAL CTA ══════════════════════ */}
-      <section className="sol-section sol-section--dark" style={{ textAlign: "center" }}>
-        <div className="sol-wrap" style={{ maxWidth: "780px" }}>
-          <Eyebrow>Get started</Eyebrow>
-          <SectionTitle dark>
-            Start with the challenge. <span>We&apos;ll help you find the solution.</span>
-          </SectionTitle>
-          <p className="sol-lead" style={{ maxWidth: "640px", margin: "20px auto" }}>
-          Whether the opportunity lies in AI, automation, data, analytics or operations, we'll help you identify the right approach and build a solution around your business.
-          </p>
+      <section className="sol-section sol-section--cta">
+        <div className="sol-wrap sol-cta-inner">
+          <div className="sol-cta-content">
+            <span className="sol-cta-badge">Get started</span>
+            <h2 className="sol-cta-heading">
+              Start with the challenge.
+              <br />
+              We&apos;ll help you find the solution.
+            </h2>
+            <p className="sol-cta-body">
+              Whether the opportunity lies in AI, automation, data, analytics
+              or operations, we&apos;ll help you identify the right approach and
+              build a solution around your business.
+            </p>
+          </div>
 
-          <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap", marginTop: "24px" }}>
-            <button className="cta-primary">Schedule a Consultation</button>
+          <div className="sol-cta-actions">
+            <button className="cta-primary">
+              Schedule a Consultation
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </button>
             <button className="cta-secondary">Talk to Our Experts</button>
           </div>
         </div>

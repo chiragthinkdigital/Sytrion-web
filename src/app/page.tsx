@@ -5,7 +5,6 @@ import Philosophy from "@/components/Philosophy";
 import Solutions from "@/components/Solutions";
 import Industries from "@/components/Industries";
 import WhySytrion from "@/components/WhySytrion";
-import Founder from "@/components/Founder";
 import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
@@ -21,7 +20,6 @@ export default function Home() {
         <Industries />
         <Solutions />
         <WhySytrion />
-        <Founder />
         <CallToAction />
       </main>
       <Footer />

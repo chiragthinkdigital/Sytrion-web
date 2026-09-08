@@ -377,6 +377,7 @@ export default function HealthcareOperationsPage() {
         }
         @media (max-width: 640px) {
           .hc-section-light, .hc-section-dark, .hc-section-navy, .hc-hero .hc-wrap, .hc-banner, .hc-transform .hc-wrap, .hc-final .hc-wrap { padding-left: 20px; padding-right: 20px; }
+          .hc-hero .hc-wrap { padding: 120px 24px 90px; }
         }
 
         .hc-label { display: inline-block; background: #C6E84A; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: 24px; }
@@ -392,16 +393,23 @@ export default function HealthcareOperationsPage() {
         .hc-btn--ghost { background: transparent; border: 1px solid rgba(255,255,255,0.45); color: #fff; }
         .hc-btn--ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); box-shadow: none; }
 
-        .hc-hero { position: relative; min-height: 94vh; display: flex; align-items: flex-start; justify-content: flex-start; overflow: hidden; background: var(--hcn); }
+        .hc-hero { position: relative; height: 100vh; height: 100dvh; min-height: 600px; overflow: hidden; isolation: isolate; background: var(--hcn); }
         .hc-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .hc-hero-scrim { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(4,12,24,0.94) 8%, rgba(6,18,36,0.72) 48%, rgba(7,22,44,0.32) 100%); }
         .hc-hero-scrim::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 220px; background: linear-gradient(180deg, rgba(4,12,24,0), rgba(4,12,24,0.85)); }
-        .hc-hero .hc-wrap { position: relative; z-index: 1; width: 100%; padding: 140px 80px 120px; }
+        .hc-hero .hc-wrap { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 100px clamp(24px, 8vw, 120px) 0; max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
         .hc-hero-inner { max-width: 900px; }
-        .hc-h1 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(42px, 6vw, 82px); line-height: 1.02; letter-spacing: -0.02em; font-weight: 700; color: #ffffff; margin: 28px 0 0; max-width: 780px; text-wrap: balance; }
-        .hc-hero-sub { font-size: clamp(17px, 1.6vw, 21px); line-height: 1.65; color: rgba(255,255,255,0.88); max-width: 720px; margin: 26px 0 0; }
-        .hc-hero-body { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.68); max-width: 660px; margin: 18px 0 0; }
-        .hc-hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 40px; }
+        .hc-h1 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(38px, 5.6vw, 68px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; color: #ffffff; margin: 0 0 26px; max-width: 780px; text-wrap: balance; }
+        .hc-hero-sub { font-size: clamp(17px, 1.6vw, 21px); font-weight: 600; line-height: 1.55; color: rgba(255,255,255,0.92); max-width: 640px; margin: 0 0 18px; }
+        .hc-hero-body { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.68); max-width: 520px; margin: 0 0 38px; }
+        .hc-hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; }
+        @media (max-height: 860px) {
+          .hc-hero .hc-wrap { padding-top: 72px; padding-bottom: 48px; }
+        }
+        @media (max-height: 700px) {
+          .hc-hero .hc-wrap { padding-top: 56px; padding-bottom: 40px; }
+          .hc-hero .hc-h1 { max-width: 920px; }
+        }
 
         .hc-section-light { background: #ffffff; padding: clamp(76px, 9vw, 128px) 80px; }
         .hc-section-dark { background: var(--hcn); padding: clamp(76px, 9vw, 128px) 80px; }
@@ -812,7 +820,7 @@ export default function HealthcareOperationsPage() {
 
       `}</style>
       <section className="hc-hero">
-        <img className="hc-hero-img" src="/healthcare/Healthcare services hero.png" alt="Healthcare professionals working in a modern hospital environment" />
+        <video className="hc-hero-img" src="/healthcare/healthcarehero.mp4" autoPlay muted loop playsInline />
         <div className="hc-hero-scrim" />
         <div className="hc-wrap">
           <div className="hc-hero-inner hc-reveal">

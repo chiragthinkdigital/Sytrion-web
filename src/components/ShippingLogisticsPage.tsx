@@ -576,7 +576,7 @@ export default function ShippingLogisticsPage() {
 
       {/* ══════════ 01 HERO ══════════ */}
       <section className="sl-hero">
-        <img src="/services/slhero.jpg" alt="" className="sl-hero-img" fetchPriority="high" />
+        <video className="sl-hero-img" src="/services/shippinghero.mp4" autoPlay muted loop playsInline />
         <div className="sl-hero-overlay" aria-hidden="true" />
         <div className="sl-float-words" aria-hidden="true">
           <span className="sl-float-word">OPERATIONS</span>
