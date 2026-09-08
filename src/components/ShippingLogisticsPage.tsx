@@ -341,9 +341,6 @@ export default function ShippingLogisticsPage() {
         /* ── 01 HERO ── */
         .sl-hero { position: relative; height: 100vh; height: 100dvh; min-height: 600px; background: #0A1424; overflow: hidden; isolation: isolate; }
         .sl-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; z-index: -2; }
-        .sl-hero-overlay { position: absolute; inset: 0; z-index: -1; background:
-          linear-gradient(90deg, rgba(5,10,20,0.96) 0%, rgba(5,10,20,0.88) 28%, rgba(5,10,20,0.55) 55%, rgba(5,10,20,0.14) 82%, rgba(5,10,20,0.06) 100%),
-          linear-gradient(180deg, rgba(5,10,20,0.32) 0%, rgba(5,10,20,0) 34%, rgba(5,10,20,0.48) 100%); }
         .sl-hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; z-index: 1; padding: 100px clamp(24px, 8vw, 120px) 0; max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
         .sl-hero-eyebrow { display: inline-block; background: #C6E84A; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: 24px; }
         .sl-hero h1 { font-size: clamp(38px, 5.6vw, 68px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; color: #ffffff; margin: 0 0 26px; max-width: 780px; text-wrap: balance; }
@@ -577,7 +574,6 @@ export default function ShippingLogisticsPage() {
       {/* ══════════ 01 HERO ══════════ */}
       <section className="sl-hero">
         <video className="sl-hero-img" src="/services/shippinghero.mp4" autoPlay muted loop playsInline />
-        <div className="sl-hero-overlay" aria-hidden="true" />
         <div className="sl-float-words" aria-hidden="true">
           <span className="sl-float-word">OPERATIONS</span>
           <span className="sl-float-dot">·</span>

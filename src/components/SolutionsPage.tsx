@@ -1145,7 +1145,7 @@ export default function SolutionsPage() {
           top: 0; left: 0;
           width: 100%; height: 100%;
           object-fit: cover;
-          opacity: 0.65;
+          opacity: 1;
         }
         .sol-hero-grid {
           position: absolute;

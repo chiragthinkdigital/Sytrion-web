@@ -159,9 +159,6 @@ export default function TravelHospitalityPage() {
 
         .tv-hero { position: relative; height: 100vh; height: 100dvh; min-height: 600px; background: #0A1628; overflow: hidden; isolation: isolate; }
         .tv-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; z-index: -2; }
-        .tv-hero-overlay { position: absolute; inset: 0; z-index: -1; background:
-          linear-gradient(90deg, rgba(5,10,20,0.96) 0%, rgba(5,10,20,0.88) 28%, rgba(5,10,20,0.55) 55%, rgba(5,10,20,0.14) 82%, rgba(5,10,20,0.06) 100%),
-          linear-gradient(180deg, rgba(5,10,20,0.32) 0%, rgba(5,10,20,0) 34%, rgba(5,10,20,0.48) 100%); }
         .tv-hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; z-index: 1; padding: 100px clamp(24px, 8vw, 120px) 0; max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
         .tv-hero-eyebrow { display: inline-block; background: #C6E84A; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: 24px; }
         .tv-hero h1 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(38px, 5.6vw, 68px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; color: #ffffff; margin: 0 0 26px; max-width: 780px; text-wrap: balance; }
@@ -378,7 +375,6 @@ export default function TravelHospitalityPage() {
 
       <section className="tv-hero">
         <video className="tv-hero-img" src="/services/travel/travelhero.mp4" autoPlay muted loop playsInline />
-        <div className="tv-hero-overlay" aria-hidden="true" />
         <div className="tv-hero-content tv-reveal">
           <span className="tv-hero-eyebrow">TRAVEL &amp; HOSPITALITY</span>
           <h1>Intelligent operations behind every journey.</h1>

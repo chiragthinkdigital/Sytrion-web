@@ -274,7 +274,6 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-hero > .dpi-wrap { width:100%; }
         .dpi-hero-bg { position:absolute; inset:0; z-index:0; }
         .dpi-hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-        .dpi-hero-overlay { position:absolute; inset:0; background:linear-gradient(90deg, rgba(10,12,16,0.92) 0%, rgba(10,12,16,0.72) 45%, rgba(10,12,16,0.45) 100%); }
         .dpi-hero-inner { position:relative; z-index:2; max-width: 720px; text-align:left; margin:0; }
         .dpi-hero-ctas { display:flex; flex-wrap:wrap; gap:16px; margin-top:32px; justify-content:flex-start; }
 
@@ -494,7 +493,6 @@ export default function DigitalPublicInfrastructurePage() {
             loop
             playsInline
           />
-          <span className="dpi-hero-overlay" aria-hidden="true" />
         </div>
         <div className="dpi-wrap dpi-hero-grid">
           <div className="dpi-hero-inner">

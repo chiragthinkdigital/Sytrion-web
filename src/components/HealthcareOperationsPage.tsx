@@ -395,8 +395,6 @@ export default function HealthcareOperationsPage() {
 
         .hc-hero { position: relative; height: 100vh; height: 100dvh; min-height: 600px; overflow: hidden; isolation: isolate; background: var(--hcn); }
         .hc-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-        .hc-hero-scrim { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(4,12,24,0.94) 8%, rgba(6,18,36,0.72) 48%, rgba(7,22,44,0.32) 100%); }
-        .hc-hero-scrim::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 220px; background: linear-gradient(180deg, rgba(4,12,24,0), rgba(4,12,24,0.85)); }
         .hc-hero .hc-wrap { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 100px clamp(24px, 8vw, 120px) 0; max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
         .hc-hero-inner { max-width: 900px; }
         .hc-h1 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(38px, 5.6vw, 68px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; color: #ffffff; margin: 0 0 26px; max-width: 780px; text-wrap: balance; }
@@ -821,7 +819,6 @@ export default function HealthcareOperationsPage() {
       `}</style>
       <section className="hc-hero">
         <video className="hc-hero-img" src="/healthcare/healthcarehero.mp4" autoPlay muted loop playsInline />
-        <div className="hc-hero-scrim" />
         <div className="hc-wrap">
           <div className="hc-hero-inner hc-reveal">
             <HcLabel text="Healthcare Operations" />

@@ -183,14 +183,6 @@ export default function Hero() {
           <source src="/home/hero.mp4" type="video/mp4" />
         </video>
 
-        {/* Dark overlay for text readability */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 120px, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.55) 100%)",
-          }}
-        />
-
         {/* Subtle grain */}
         <div className="grain-overlay absolute inset-0 pointer-events-none" />
 
