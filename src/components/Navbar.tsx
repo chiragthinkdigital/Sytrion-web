@@ -27,7 +27,7 @@ const navItems = [
     ],
   },
   {
-    name: "Services",
+    name: "Industries",
     href: "/#industries",
     children: [
       { name: "Shipping & Logistics", href: "/shipping-logistics" },
@@ -326,11 +326,6 @@ export default function Navbar() {
           display: flex;
           flex-direction: column;
           gap: 0;
-        }
-        .desktop-dropdown-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 0 32px;
         }
 
         .desktop-dropdown-link {
@@ -643,7 +638,7 @@ export default function Navbar() {
                       dropdownTimeoutRef.current = setTimeout(() => setDesktopDropdown(null), 150);
                     }}
                   >
-                    <div className={item.children.length > 4 ? "desktop-dropdown-grid" : "desktop-dropdown-list"}>
+                    <div className="desktop-dropdown-list">
                       {item.children.map((child) => (
                         <a
                           key={child.name}

@@ -12,7 +12,7 @@ export default function Hero() {
           align-items: flex-start;
           justify-content: center;
           z-index: 1;
-          padding: 100px clamp(24px, 8vw, 120px) 0;
+          padding: 100px clamp(16px, 3vw, 48px) 0;
           max-width: 1440px;
           margin: 0 auto;
           left: 0;
@@ -173,15 +173,11 @@ export default function Hero() {
       `}</style>
 
       <section className="relative w-full h-[100dvh] overflow-hidden bg-[#0f0f0f]">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
+        <img
+          src="/home/Home Page.jpeg"
+          alt="Intelligent operations engineering"
           className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/home/hero.mp4" type="video/mp4" />
-        </video>
+        />
 
         {/* Subtle grain */}
         <div className="grain-overlay absolute inset-0 pointer-events-none" />

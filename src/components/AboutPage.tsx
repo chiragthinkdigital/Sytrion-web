@@ -924,12 +924,12 @@ export default function AboutPage() {
         .ab-hero {
           position: relative;
           background: var(--ab-base);
-          padding: 120px 48px 100px;
+          padding: 120px clamp(16px, 3vw, 48px) 100px;
           overflow: hidden;
           min-height: 100dvh;
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-start;
         }
         .ab-hero-orb {
           position: absolute;
@@ -1499,7 +1499,7 @@ export default function AboutPage() {
           <div className="orbit-ring r2"><div className="orb" /></div>
           <div className="orbit-ring r3" />
 
-          <div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "left", position: "relative", zIndex: 2 }}>
+          <div style={{ maxWidth: "900px", margin: "0", textAlign: "left", position: "relative", zIndex: 2 }}>
             <div className="hero-badge" style={{ marginBottom: "16px" }}>
               <span className="eyebrow-badge">About Sytrion</span>
             </div>

@@ -9,7 +9,7 @@ const industryCards = [
     name: "Shipping & Logistics",
     tagline: "IBS & F&A",
     description: "Freight forwarding, customs documentation & supply chain intelligence.",
-    image: "/home/shipping.jpg",
+    image: "/home/shipping.png",
     imageAlt: "Shipping containers at port",
     href: "/shipping-logistics",
   },

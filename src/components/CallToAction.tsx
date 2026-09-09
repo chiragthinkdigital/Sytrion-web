@@ -1,152 +1,95 @@
+import Link from "next/link";
+
 export default function CallToAction() {
   return (
     <>
       <style>{`
         .cta-section {
-          width: 100%;
-          background: #D4E83A;
-          padding: 56px 80px;
           position: relative;
+          background: #0f0f0f;
+          color: #ffffff;
           overflow: hidden;
+          isolation: isolate;
+          padding: clamp(76px, 9vw, 128px) 80px;
+          text-align: center;
+        }
+        .cta-glow {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 600px;
+          height: 400px;
+          background: radial-gradient(circle, rgba(198,232,74,0.12) 0%, transparent 70%);
+          border-radius: 50%;
+          pointer-events: none;
         }
         .cta-inner {
           position: relative;
           z-index: 1;
-          max-width: 1280px;
+          max-width: 780px;
           margin: 0 auto;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 48px;
-        }
-        .cta-content {
-          flex: 1 1 58%;
-          max-width: 640px;
-          text-align: left;
         }
         .cta-badge {
           display: inline-block;
-          background: #7A8B2E;
-          color: #111111;
-          padding: 9px 18px;
+          background: #C6E84A;
+          color: #0f0f0f;
+          padding: 8px 20px;
           border-radius: 999px;
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          margin-bottom: 18px;
+          font-size: 14px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          font-variant: small-caps;
+          margin-bottom: 24px;
         }
         .cta-heading {
-          font-size: clamp(25px, 3vw, 33px);
+          font-family: var(--font-syne), Arial, Helvetica, sans-serif;
+          font-size: clamp(32px, 5vw, 48px);
           font-weight: 700;
-          color: #141414;
-          line-height: 1.25;
-          letter-spacing: -0.01em;
+          letter-spacing: -0.02em;
+          line-height: 1.15;
+          margin: 0 0 20px;
+          color: #ffffff;
         }
         .cta-body {
-          font-size: 16px;
-          color: #4B5320;
-          line-height: 1.65;
-          margin-top: 16px;
-          max-width: 56ch;
+          font-size: 17px;
+          line-height: 1.8;
+          color: rgba(255,255,255,0.6);
+          margin: 20px auto 40px;
+          max-width: 640px;
         }
         .cta-actions {
-          flex: 0 0 auto;
           display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          gap: 14px;
           flex-wrap: wrap;
-        }
-        .cta-primary {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          background: #141414;
-          color: #FFFFFF;
-          border: none;
-          padding: 16px 30px;
-          border-radius: 999px;
-          font-size: 16px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-        }
-        .cta-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(20, 20, 20, 0.25);
-        }
-        .cta-primary:active {
-          transform: translateY(0) scale(0.98);
-        }
-        .cta-secondary {
-          display: inline-flex;
-          align-items: center;
-          background: transparent;
-          color: #141414;
-          border: 1.5px solid #141414;
-          padding: 15px 30px;
-          border-radius: 999px;
-          font-size: 16px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .cta-secondary:hover {
-          background: rgba(20, 20, 20, 0.06);
-          transform: translateY(-2px);
-        }
-        .cta-secondary:active {
-          transform: translateY(0) scale(0.98);
+          gap: 16px;
+          justify-content: center;
         }
         @media (max-width: 1024px) {
-          .cta-section {
-            padding: 48px 40px;
-          }
-          .cta-inner {
-            gap: 32px;
-          }
-          .cta-actions {
-            gap: 12px;
-          }
+          .cta-section { padding-left: 40px; padding-right: 40px; }
         }
         @media (max-width: 768px) {
-          .cta-section {
-            padding: 40px 20px;
-          }
-          .cta-inner {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 28px;
-          }
-          .cta-content {
-            max-width: 100%;
-          }
-          .cta-actions {
-            width: 100%;
-            justify-content: flex-start;
-          }
+          .cta-section { padding-left: 20px; padding-right: 20px; }
+          .cta-actions { flex-direction: column; align-items: center; }
         }
       `}</style>
 
       <section className="cta-section">
+        <div className="cta-glow" aria-hidden="true" />
         <div className="cta-inner">
-          <div className="cta-content">
-            <span className="cta-badge">Get started</span>
+          <span className="cta-badge">Get started</span>
 
-            <h2 className="cta-heading">
-              Ready to transform the way your business operates?
-            </h2>
+          <h2 className="cta-heading">
+            Ready to transform the way your business operates?
+          </h2>
 
-            <p className="cta-body">
-              Whether you are exploring AI-driven transformation, intelligent
-              operations, data engineering, or industry-specific solutions, our
-              team is ready to help you unlock new possibilities.
-            </p>
-          </div>
+          <p className="cta-body">
+            Whether you are exploring AI-driven transformation, intelligent
+            operations, data engineering, or industry-specific solutions, our
+            team is ready to help you unlock new possibilities.
+          </p>
 
           <div className="cta-actions">
-            <button className="cta-primary">
+            <Link href="/contact" className="btn-primary">
               Schedule a Consultation
               <svg
                 width="16"
@@ -162,8 +105,10 @@ export default function CallToAction() {
                 <path d="M5 12h14" />
                 <path d="m12 5 7 7-7 7" />
               </svg>
-            </button>
-            <button className="cta-secondary">Talk to Our Experts</button>
+            </Link>
+            <Link href="/contact" className="btn-secondary">
+              Talk to Our Experts ↗
+            </Link>
           </div>
         </div>
       </section>

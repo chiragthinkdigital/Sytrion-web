@@ -159,7 +159,7 @@ export default function TravelHospitalityPage() {
 
         .tv-hero { position: relative; height: 100vh; height: 100dvh; min-height: 600px; background: #0A1628; overflow: hidden; isolation: isolate; }
         .tv-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; z-index: -2; }
-        .tv-hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; z-index: 1; padding: 100px clamp(24px, 8vw, 120px) 0; max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
+        .tv-hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; z-index: 1; padding: 100px clamp(16px, 3vw, 48px) 0; max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
         .tv-hero-eyebrow { display: inline-block; background: #C6E84A; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: 24px; }
         .tv-hero h1 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(38px, 5.6vw, 68px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; color: #ffffff; margin: 0 0 26px; max-width: 780px; text-wrap: balance; }
         .tv-hero-sub { font-size: clamp(17px, 1.6vw, 21px); font-weight: 600; line-height: 1.55; color: rgba(255,255,255,0.92); margin: 0 0 18px; max-width: 640px; }
@@ -446,7 +446,7 @@ export default function TravelHospitalityPage() {
           </div>
           <div className="tv-s04-tabbar tv-reveal" role="tablist">
             {tabs.map((t, i) => (
-              <button key={t.num} role="tab" aria-selected={activeTab === i} className={activeTab === i ? "tv-tab-active" : ""} onClick={() => setActiveTab(i)}>
+              <button key={t.num} role="tab" aria-selected={activeTab === i} className={activeTab === i ? "tv-tab-active" : ""} onClick={() => setActiveTab(i)} onMouseEnter={() => setActiveTab(i)}>
                 <em>{t.num}</em> {t.tab}
               </button>
             ))}

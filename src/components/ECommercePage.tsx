@@ -16,17 +16,17 @@ const ecosystemCards = [
   {
     title: "Retailers & Brands",
     desc: "Connected operations across products, orders, customers, fulfillment and digital channels.",
-    image: "/healthcare/payer.png",
+    image: "/services/ecommerce/Retailers & Brands.jpg",
   },
   {
     title: "Marketplaces",
     desc: "Scalable catalog, seller, order, customer and marketplace-support operations.",
-    image: "/healthcare/providers.png",
+    image: "/services/ecommerce/Marketplaces.jpg",
   },
   {
     title: "D2C Businesses",
     desc: "End-to-end operational support designed for fast-growing direct-to-consumer brands.",
-    image: "/healthcare/digital-health.png",
+    image: "/services/ecommerce/D2C Businesses.png",
   },
 ];
 
@@ -44,7 +44,7 @@ const ibsTabs = [
       "Product classification & tagging",
       "Image/content quality checks",
     ],
-    image: "/healthcare/Claims Operations.webp",
+    image: "/services/ecommerce/Products.png",
   },
   {
     num: "02",
@@ -59,7 +59,7 @@ const ibsTabs = [
       "Listing-quality management",
       "Marketplace issue resolution",
     ],
-    image: "/healthcare/Enrollment & Eligibility.webp",
+    image: "/services/ecommerce/Marketplace.png",
   },
   {
     num: "03",
@@ -74,7 +74,7 @@ const ibsTabs = [
       "Cancellation processing",
       "Exception management",
     ],
-    image: "/healthcare/Provider Operations.webp",
+    image: "/services/ecommerce/Orders.png",
   },
   {
     num: "04",
@@ -89,7 +89,7 @@ const ibsTabs = [
       "Order tracking",
       "Operational reconciliation",
     ],
-    image: "/healthcare/Authorization Operations.webp",
+    image: "/services/ecommerce/Fulfillment.png",
   },
   {
     num: "05",
@@ -104,7 +104,7 @@ const ibsTabs = [
       "Payment queries",
       "Complaint management",
     ],
-    image: "/healthcare/Member & Provider Experience.webp",
+    image: "/services/ecommerce/Customer.png",
   },
   {
     num: "06",
@@ -119,7 +119,7 @@ const ibsTabs = [
       "Return trends",
       "Operational dashboards",
     ],
-    image: "/healthcare/Healthcare Data Operations.webp",
+    image: "/services/ecommerce/Data.png",
   },
 ];
 
@@ -142,12 +142,12 @@ const orderSteps = [
 ];
 
 const intelCapabilities = [
-  { num: "01", title: "Product Data Enrichment & Classification", desc: "Ingest, classify and enrich product information so catalogs are accurate, complete and commerce-ready across every channel and marketplace.", tags: "Classify / Enrich / Optimize", bg: "linear-gradient(135deg, #0F172A 0%, #0369A1 100%)", tabColor: "#0284C7", image: "/healthcare/Document Intelligence.webp" },
-  { num: "02", title: "Order & Fulfillment Workflow Automation", desc: "Automate order validation, status management, fulfillment coordination and exception routing to reduce manual touchpoints and improve order accuracy.", tags: "Monitor / Prioritize / Resolve", bg: "linear-gradient(135deg, #1E1B4B 0%, #6D28D9 100%)", tabColor: "#7C3AED", image: "/healthcare/Workflow Automation.webp" },
-  { num: "03", title: "Returns & Refund Processing", desc: "Structure return initiation, validation, authorization, refund processing and inventory reconciliation into connected, visible workflows.", tags: "Analyze / Predict / Improve", bg: "linear-gradient(135deg, #142E11 0%, #4D7C0F 100%)", tabColor: "#65A30D", image: "/healthcare/Claims Intelligence.webp" },
-  { num: "04", title: "Marketplace Listing Quality", desc: "Review listings for completeness, accuracy, policy compliance and content quality across multiple marketplace platforms.", tags: "Generate / Tag / Validate", bg: "linear-gradient(135deg, #431407 0%, #C2410C 100%)", tabColor: "#EA580C", image: "/healthcare/Data Intelligence.webp" },
-  { num: "05", title: "Customer Query Resolution", desc: "Combine AI-assisted support with skilled teams to resolve product, order, delivery and post-purchase queries across omnichannel touchpoints.", tags: "Understand / Personalize / Assist", bg: "linear-gradient(135deg, #0B192C 0%, #1D4ED8 100%)", tabColor: "#2563EB", image: "/healthcare/AI-Assisted Operations.webp" },
-  { num: "06", title: "Commerce Finance Reconciliation", desc: "Support order-to-cash, marketplace settlements, fee reconciliation, refund administration and financial exception management.", tags: "Analyze / Forecast / Replenish", bg: "linear-gradient(135deg, #3B0764 0%, #BE185D 100%)", tabColor: "#DB2777", image: "/healthcare/Operational Analytics.webp" },
+  { num: "01", title: "Product Data Enrichment & Classification", desc: "Ingest, classify and enrich product information so catalogs are accurate, complete and commerce-ready across every channel and marketplace.", tags: "Classify / Enrich / Optimize", bg: "linear-gradient(135deg, #0F172A 0%, #0369A1 100%)", tabColor: "#0284C7", image: "/services/ecommerce/Product & Catalog Operations.jpg" },
+  { num: "02", title: "Order & Fulfillment Workflow Automation", desc: "Automate order validation, status management, fulfillment coordination and exception routing to reduce manual touchpoints and improve order accuracy.", tags: "Monitor / Prioritize / Resolve", bg: "linear-gradient(135deg, #1E1B4B 0%, #6D28D9 100%)", tabColor: "#7C3AED", image: "/services/ecommerce/Order Management.jpg" },
+  { num: "03", title: "Returns & Refund Processing", desc: "Structure return initiation, validation, authorization, refund processing and inventory reconciliation into connected, visible workflows.", tags: "Analyze / Predict / Improve", bg: "linear-gradient(135deg, #142E11 0%, #4D7C0F 100%)", tabColor: "#65A30D", image: "/services/ecommerce/Fulfillment Operations (2).jpg" },
+  { num: "04", title: "Marketplace Listing Quality", desc: "Review listings for completeness, accuracy, policy compliance and content quality across multiple marketplace platforms.", tags: "Generate / Tag / Validate", bg: "linear-gradient(135deg, #431407 0%, #C2410C 100%)", tabColor: "#EA580C", image: "/services/ecommerce/Marketplace Operations.jpg" },
+  { num: "05", title: "Customer Query Resolution", desc: "Combine AI-assisted support with skilled teams to resolve product, order, delivery and post-purchase queries across omnichannel touchpoints.", tags: "Understand / Personalize / Assist", bg: "linear-gradient(135deg, #0B192C 0%, #1D4ED8 100%)", tabColor: "#2563EB", image: "/services/ecommerce/Customer Operations.jpg" },
+  { num: "06", title: "Commerce Finance Reconciliation", desc: "Support order-to-cash, marketplace settlements, fee reconciliation, refund administration and financial exception management.", tags: "Analyze / Forecast / Replenish", bg: "linear-gradient(135deg, #3B0764 0%, #BE185D 100%)", tabColor: "#DB2777", image: "/services/ecommerce/Commerce Data & Insights.jpg" },
 ];
 
 const outcomeIconProps = {
@@ -387,7 +387,7 @@ export default function ECommercePage() {
         .ec-hero { position: relative; height: 100vh; height: 100dvh; min-height: 600px; overflow: hidden; isolation: isolate; background: var(--ecn); }
         .ec-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .ec-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, rgba(7,20,38,0.55) 0%, rgba(7,20,38,0.12) 55%, rgba(7,20,38,0.02) 100%); pointer-events: none; }
-        .ec-hero .ec-wrap { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 0 clamp(24px, 8vw, 120px); max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
+        .ec-hero .ec-wrap { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 120px clamp(16px, 3vw, 48px) 24px; max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
         .ec-hero-inner { max-width: 900px; display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
         .ec-label { align-self: flex-start; }
         .ec-h1 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(38px, 5.6vw, 68px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; color: #ffffff; margin: 0 0 26px; max-width: 780px; text-wrap: balance; }
@@ -395,10 +395,10 @@ export default function ECommercePage() {
         .ec-hero-body { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.68); max-width: 520px; margin: 0 0 38px; }
         .ec-hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; margin: 0; }
         @media (max-height: 860px) {
-          .ec-hero .ec-wrap { padding-top: 24px; padding-bottom: 24px; }
+          .ec-hero .ec-wrap { padding-top: 88px; padding-bottom: 24px; }
         }
         @media (max-height: 700px) {
-          .ec-hero .ec-wrap { padding-top: 16px; padding-bottom: 16px; }
+          .ec-hero .ec-wrap { padding-top: 84px; padding-bottom: 16px; }
         }
 
         .ec-section-light { background: #ffffff; padding: clamp(76px, 9vw, 128px) 80px; }
@@ -606,7 +606,6 @@ export default function ECommercePage() {
         .ec-clin-hero { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 4.5vw, 72px); align-items: center; }
         .ec-clin-img { position: relative; overflow: hidden; border-radius: 22px; aspect-ratio: 16 / 11; }
         .ec-clin-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-        .ec-clin-tint { position: absolute; inset: 0; background: linear-gradient(190deg, rgba(16,49,92,0.18), rgba(5,13,25,0.62) 85%); }
         .ec-chip-row { position: absolute; left: 18px; right: 18px; bottom: 18px; display: flex; flex-wrap: wrap; gap: 8px; z-index: 1; }
         .ec-chip { font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; color: var(--ecc); background: rgba(5,17,32,0.78); border: 1px solid rgba(198,232,74,0.35); border-radius: 999px; padding: 7px 12px; backdrop-filter: blur(4px); }
         .ec-cards2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 54px; }
@@ -797,7 +796,14 @@ export default function ECommercePage() {
       `}</style>
 
       <section className="ec-hero">
-        <img className="ec-hero-img" src="/ecommerce/ecommerce-hero.png" alt="Modern e-commerce fulfillment center with digital operations" />
+        <video
+            className="dpi-hero-video"
+            src="services/ecommerce/ecommercehero.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
         <div className="ec-wrap">
           <div className="ec-hero-inner ec-reveal">
             <EcLabel text="E-Commerce Operations" />
@@ -934,7 +940,7 @@ export default function ECommercePage() {
         <div className="ec-wrap">
           <div className="ec-split">
             <div className="ec-feature-img ec-reveal">
-              <img src="/healthcare/claims.png" alt="Digital commerce professional working with product and order documentation" />
+              <img src="services/ecommerce/Digital Shelf Operations.jpg" alt="Digital commerce professional working with product and order documentation" />
               <div className="ec-feature-tint" />
             </div>
             <div className="ec-reveal">
@@ -991,7 +997,7 @@ export default function ECommercePage() {
         <div className="ec-wrap">
           <div className="ec-prov-grid">
             <div className="ec-prov-img ec-reveal">
-              <img src="/healthcare/provider-lifecycle.png" alt="Order and fulfillment operations in a modern fulfillment center" />
+              <img src="/services/ecommerce/Order & Fulfillment.jpg" alt="Order and fulfillment operations in a modern fulfillment center" />
               <div className="ec-prov-net" />
             </div>
             <div className="ec-reveal">
@@ -1085,8 +1091,7 @@ export default function ECommercePage() {
         <div className="ec-wrap">
           <div className="ec-clin-hero">
             <div className="ec-clin-img ec-reveal">
-              <img src="/healthcare/ai-clinical.png" alt="Specialist working through commerce operations at a workstation" />
-              <div className="ec-clin-tint" />
+              <img src="/services/ecommerce/Commerce Capabilities.jpg" alt="Specialist working through commerce operations at a workstation" />
               <div className="ec-chip-row">
                 <span className="ec-chip">PRODUCT DATA → COMMERCE-READY</span>
                 <span className="ec-chip">ORDER AUTOMATION</span>

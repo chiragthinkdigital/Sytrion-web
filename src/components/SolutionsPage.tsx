@@ -1136,7 +1136,7 @@ export default function SolutionsPage() {
           min-height: 100dvh;
           display: flex;
           align-items: center;
-          padding: 160px 80px 120px;
+          padding: 160px clamp(16px, 3vw, 48px) 120px;
           background: #0f0f0f;
           overflow: hidden;
         }
@@ -2381,109 +2381,76 @@ export default function SolutionsPage() {
         }
           /* ── Final CTA (banner) ─────────────────────────── */
         .sol-section--cta {
-          background: #D4E83A;
-          padding: 56px 80px;
+          position: relative;
+          background: #0f0f0f;
+          color: #ffffff;
+          overflow: hidden;
+          isolation: isolate;
+          padding: clamp(76px, 9vw, 128px) 80px;
+          text-align: center;
+        }
+        .sol-cta-glow {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 600px;
+          height: 400px;
+          background: radial-gradient(circle, rgba(198,232,74,0.12) 0%, transparent 70%);
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 0;
         }
         .sol-cta-inner {
-          max-width: 1280px;
+          position: relative;
+          z-index: 1;
+          max-width: 780px;
           margin: 0 auto;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 48px;
         }
         .sol-cta-content {
-          flex: 1 1 58%;
-          max-width: 640px;
-          text-align: left;
+          text-align: center;
         }
         .sol-cta-badge {
           display: inline-block;
-          background: #7A8B2E;
-          color: #111111;
-          padding: 9px 18px;
+          background: #C6E84A;
+          color: #0f0f0f;
+          padding: 8px 20px;
           border-radius: 999px;
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          margin-bottom: 18px;
+          font-size: 14px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          font-variant: small-caps;
+          margin-bottom: 24px;
         }
         .sol-cta-heading {
           font-family: var(--font-syne), sans-serif;
-          font-size: clamp(25px, 3vw, 33px);
+          font-size: clamp(32px, 5vw, 48px);
           font-weight: 700;
-          color: #141414;
-          line-height: 1.25;
-          letter-spacing: -0.01em;
-          margin: 0 0 16px;
+          color: #ffffff;
+          line-height: 1.15;
+          letter-spacing: -0.02em;
+          margin: 0 0 20px;
         }
         .sol-cta-body {
-          font-size: 16px;
-          color: #4B5320;
-          line-height: 1.65;
-          margin: 0;
-          max-width: 56ch;
+          font-size: 17px;
+          color: rgba(255,255,255,0.6);
+          line-height: 1.8;
+          margin: 20px auto 40px;
+          max-width: 640px;
         }
         .sol-cta-actions {
-          flex: 0 0 auto;
           display: flex;
           align-items: center;
-          justify-content: flex-end;
-          gap: 14px;
+          justify-content: center;
+          gap: 16px;
           flex-wrap: wrap;
         }
-        .cta-primary {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          background: #141414;
-          color: #FFFFFF;
-          border: none;
-          padding: 16px 30px;
-          border-radius: 999px;
-          font-size: 16px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-        }
-        .cta-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(20, 20, 20, 0.25);
-        }
-        .cta-primary:active {
-          transform: translateY(0) scale(0.98);
-        }
-        .cta-secondary {
-          display: inline-flex;
-          align-items: center;
-          background: transparent;
-          color: #141414;
-          border: 1.5px solid #141414;
-          padding: 15px 30px;
-          border-radius: 999px;
-          font-size: 16px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .cta-secondary:hover {
-          background: rgba(20, 20, 20, 0.06);
-          transform: translateY(-2px);
-        }
-        .cta-secondary:active {
-          transform: translateY(0) scale(0.98);
-        }
         @media (max-width: 1024px) {
-          .sol-section--cta { padding: 48px 40px; }
-          .sol-cta-inner { gap: 32px; }
-          .sol-cta-actions { gap: 12px; }
+          .sol-section--cta { padding-left: 40px; padding-right: 40px; }
         }
         @media (max-width: 768px) {
-          .sol-section--cta { padding: 40px 20px; }
-          .sol-cta-inner { flex-direction: column; align-items: flex-start; gap: 28px; }
-          .sol-cta-content { max-width: 100%; }
-          .sol-cta-actions { width: 100%; justify-content: flex-start; }
+          .sol-section--cta { padding-left: 20px; padding-right: 20px; }
+          .sol-cta-actions { flex-direction: column; align-items: center; }
         }
 
         /* ── Healthcare Operations (editorial two-column) ── */
@@ -3295,6 +3262,7 @@ We work as an extension of your organization, bringing greater efficiency, consi
 
       {/* ══════════════════════ 13. FINAL CTA ══════════════════════ */}
       <section className="sol-section sol-section--cta">
+        <div className="sol-cta-glow" aria-hidden="true" />
         <div className="sol-wrap sol-cta-inner">
           <div className="sol-cta-content">
             <span className="sol-cta-badge">Get started</span>
@@ -3311,7 +3279,7 @@ We work as an extension of your organization, bringing greater efficiency, consi
           </div>
 
           <div className="sol-cta-actions">
-            <button className="cta-primary">
+            <Link href="/contact" className="btn-primary">
               Schedule a Consultation
               <svg
                 width="16"
@@ -3327,8 +3295,10 @@ We work as an extension of your organization, bringing greater efficiency, consi
                 <path d="M5 12h14" />
                 <path d="m12 5 7 7-7 7" />
               </svg>
-            </button>
-            <button className="cta-secondary">Talk to Our Experts</button>
+            </Link>
+            <Link href="/contact" className="btn-secondary">
+              Talk to Our Experts ↗
+            </Link>
           </div>
         </div>
       </section>

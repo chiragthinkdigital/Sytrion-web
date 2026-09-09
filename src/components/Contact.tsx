@@ -217,10 +217,10 @@ export default function Contact() {
         style={{
           width: "100%",
           background: "#ffffff",
-          padding: "140px 80px 80px",
+          padding: "140px clamp(16px, 3vw, 48px) 80px",
         }}
       >
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1200px", margin: "0" }}>
           <span className="eyebrow-badge" style={{ marginBottom: "18px" }}>
             Contact us
           </span>
