@@ -46,7 +46,7 @@ export default function Footer() {
           display: grid;
           grid-template-columns: 2.2fr 1fr 1fr 1.6fr;
           gap: 0;
-          align-items: flex-start;
+          align-items: stretch;
           position: relative;
         }
 
@@ -64,12 +64,32 @@ export default function Footer() {
 
         /* Column dividers */
         .fl-col-divider {
-          border-right: 1px solid rgba(0, 0, 0, 0.07);
+          border-right: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         /* Push right columns down to align headings with brand content */
         .fl-col-top {
           padding-top: 56px;
+        }
+
+        /* Bottom-align elements in brand and contact columns */
+        .fl-col:first-child {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .fl-col:first-child .fl-motto-row {
+          margin-top: auto;
+        }
+
+        .fl-col:last-child {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .fl-callout-wrap {
+          margin-top: auto;
+          position: relative;
         }
 
         .fl-heading {
@@ -189,7 +209,7 @@ export default function Footer() {
           display: flex;
           flex-direction: column;
           gap: 12px;
-          margin-bottom: 20px;
+          margin-bottom: 24px;
         }
 
         .fl-contact-item {
@@ -213,11 +233,19 @@ export default function Footer() {
           flex-shrink: 0;
         }
 
-        .fl-contact-divider {
-          width: 100%;
-          height: 1px;
-          background: rgba(0, 0, 0, 0.08);
-          margin-bottom: 14px;
+        .fl-callout-wrap {
+          margin-top: auto;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .fl-callout-bar {
+          width: 38px;
+          height: 3px;
+          background: #BCE328;
+          border-radius: 1px;
+          flex-shrink: 0;
         }
 
         .fl-callout-text {
@@ -226,15 +254,7 @@ export default function Footer() {
           letter-spacing: 1.4px;
           color: #787C86;
           text-transform: uppercase;
-          line-height: 1.5;
-          margin-bottom: 6px;
-        }
-
-        .fl-callout-bar {
-          width: 65px;
-          height: 3px;
-          background: #BCE328;
-          border-radius: 1px;
+          line-height: 1.4;
         }
 
         /* Bottom Section with Full Width Green Line */
@@ -254,7 +274,7 @@ export default function Footer() {
         .fl-bottom-bar {
           max-width: 1360px;
           margin: 0 auto;
-          padding: 14px 40px 0;
+          padding: 14px 40px 18px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -486,13 +506,13 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="fl-contact-divider"></div>
-
-            <div className="fl-callout-text">
-              LET'S BUILD A<br />
-              SMARTER TOMORROW TOGETHER.
+            <div className="fl-callout-wrap">
+              <div className="fl-callout-bar"></div>
+              <div className="fl-callout-text">
+                LET'S BUILD A<br />
+                SMARTER TOMORROW TOGETHER.
+              </div>
             </div>
-            <div className="fl-callout-bar"></div>
           </div>
         </div>
       </div>

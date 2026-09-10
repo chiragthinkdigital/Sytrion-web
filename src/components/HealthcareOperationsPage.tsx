@@ -371,7 +371,7 @@ export default function HealthcareOperationsPage() {
         }
         @media (max-width: 640px) {
           .hc-section-light, .hc-section-dark, .hc-section-navy, .hc-hero .hc-wrap, .hc-banner, .hc-transform .hc-wrap, .hc-final .hc-wrap { padding-left: 20px; padding-right: 20px; }
-          .hc-hero .hc-wrap { padding: 120px 24px 90px; }
+          .hc-hero .hc-wrap { padding: 168px 24px 90px; }
         }
 
         .hc-label { display: inline-block; background: #C6E84A; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: 24px; }
@@ -389,17 +389,17 @@ export default function HealthcareOperationsPage() {
 
         .hc-hero { position: relative; height: 100vh; height: 100dvh; min-height: 600px; overflow: hidden; isolation: isolate; background: var(--hcn); }
         .hc-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-        .hc-hero .hc-wrap { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 100px clamp(16px, 3vw, 48px) 0; max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
+        .hc-hero .hc-wrap { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 148px clamp(16px, 3vw, 48px) 0; max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
         .hc-hero-inner { max-width: 900px; }
         .hc-h1 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(38px, 5.6vw, 68px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; color: #ffffff; margin: 0 0 26px; max-width: 780px; text-wrap: balance; }
         .hc-hero-sub { font-size: clamp(17px, 1.6vw, 21px); font-weight: 600; line-height: 1.55; color: rgba(255,255,255,0.92); max-width: 640px; margin: 0 0 18px; }
         .hc-hero-body { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.68); max-width: 520px; margin: 0 0 38px; }
         .hc-hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; }
         @media (max-height: 860px) {
-          .hc-hero .hc-wrap { padding-top: 72px; padding-bottom: 48px; }
+          .hc-hero .hc-wrap { padding-top: 120px; padding-bottom: 48px; }
         }
         @media (max-height: 700px) {
-          .hc-hero .hc-wrap { padding-top: 56px; padding-bottom: 40px; }
+          .hc-hero .hc-wrap { padding-top: 104px; padding-bottom: 40px; }
           .hc-hero .hc-h1 { max-width: 920px; }
         }
 
@@ -420,7 +420,7 @@ export default function HealthcareOperationsPage() {
 
         .hc-land-grid { margin-bottom: 0; }
         .hc-land-row { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; margin-top: 40px; }
-        .hc-section-landscape { padding-bottom: clamp(40px, 5vw, 60px); position: relative; background: #ffffff; }
+        .hc-section-landscape { padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(40px, 5vw, 60px); position: relative; background: #ffffff; }
         .hc-section-landscape::before { content: none; }
         .hc-section-landscape::after { content: none; }
         .hc-landscape-text { }
@@ -614,6 +614,8 @@ export default function HealthcareOperationsPage() {
         .hc-node-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 15.5px; font-weight: 700; color: #ffffff; margin: 0; }
         .hc-node-verbs { font-size: 11.5px; letter-spacing: 0.08em; font-weight: 600; color: var(--hcc); margin: 8px 0 0; }
 
+        .hc-intel-deck { padding-bottom: clamp(28px, 4vw, 44px); }
+        .hc-clin-section { padding-top: clamp(12px, 2vw, 24px); }
         .hc-clin-hero { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 4.5vw, 72px); align-items: center; }
         .hc-clin-img { position: relative; overflow: hidden; border-radius: 22px; aspect-ratio: 16 / 11; }
         .hc-clin-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -1029,7 +1031,7 @@ export default function HealthcareOperationsPage() {
         </div>
       </section>
 
-      <section className="hc-section-dark">
+      <section className="hc-section-dark hc-intel-deck">
         <div className="hc-wrap">
           <div className="hc-intel-header hc-reveal">
             <div className="hc-intel-head-left">
@@ -1099,7 +1101,7 @@ export default function HealthcareOperationsPage() {
         </div>
       </section>
 
-      <section className="hc-section-dark">
+      <section className="hc-section-dark hc-clin-section">
         <div className="hc-wrap">
           <div className="hc-clin-hero">
             <div className="hc-clin-img hc-reveal">

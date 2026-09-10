@@ -134,12 +134,12 @@ const faCapabilities = [
 ];
 
 const aiCapabilities = [
-  { name: "Document Intelligence", verbs: "Extract • Classify • Validate" },
-  { name: "Workflow Automation", verbs: "Route • Process • Update" },
-  { name: "Exception Intelligence", verbs: "Detect • Prioritize • Resolve" },
-  { name: "Reconciliation Intelligence", verbs: "Match • Validate • Flag" },
-  { name: "AI-Assisted Operations", verbs: "Summarize • Assist • Decide" },
-  { name: "Decision Intelligence", verbs: "Measure • Analyze • Improve" },
+  { name: "Document Intelligence", verbs: "Extract • Classify • Validate", desc: "Turns unstructured documents into structured, reliable operational data.", img: "/services/Document Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="9" y1="15" x2="15" y2="15" /></svg> },
+  { name: "Workflow Automation", verbs: "Route • Process • Update", desc: "Orchestrates repetitive, high-volume steps end-to-end without manual handoffs.", img: "/services/Workflow Automation.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" /><path d="M10 6.5h3a3 3 0 0 1 3 3V14" /></svg> },
+  { name: "Exception Intelligence", verbs: "Detect • Prioritize • Resolve", desc: "Catches anomalies early and routes them to the right people or resolution path.", img: "/services/Exception Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 4 22 20 2 20 12 4" /><line x1="12" y1="10" x2="12" y2="14" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg> },
+  { name: "Reconciliation Intelligence", verbs: "Match • Validate • Flag", desc: "Matches financial and operational records to surface discrepancies fast.", img: "/services/Reconciliation Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="9" r="6" /><path d="M13.5 13.5 21 21" /></svg> },
+  { name: "AI-Assisted Operations", verbs: "Summarize • Assist • Decide", desc: "Puts AI-driven context and recommendations at the moment your teams act.", img: "/services/AI-Assisted Operations.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3a9 9 0 1 0 9 9" /><circle cx="12" cy="12" r="3" /><path d="M19 3l-6 6" /></svg> },
+  { name: "Decision Intelligence", verbs: "Measure • Analyze • Improve", desc: "Turns operational data into insight that continuously improves outcomes.", img: "/services/Decision Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="20" x2="12" y2="10" /><line x1="18" y1="20" x2="18" y2="4" /><line x1="6" y1="20" x2="6" y2="16" /></svg> },
 ];
 
 const outcomes = [
@@ -231,26 +231,35 @@ const ecosystemTiles = [
     num: "01",
     title: "Ocean Shipping",
     desc: "Operational, documentation and finance support across complex global shipping environments.",
-    image: "/services/Ocean Shipping.jpg",
+    image: "/services/Ocean Shipping.png",
   },
   {
     num: "02",
     title: "Freight Forwarding",
     desc: "Intelligent support across booking, documentation, freight data, billing and shipment workflows.",
-    image: "/services/Freight Forwarding.jpg",
+    image: "/services/Freight Forwarding.png",
   },
   {
     num: "03",
     title: "3PL & Logistics",
     desc: "Scalable operational and financial services supporting high-volume logistics networks.",
-    image: "/services/3PL & Logistics.jpg",
+    image: "/services/3 PL & Logistics.png",
   },
   {
     num: "04",
     title: "Customs & Trade",
     desc: "Document-intensive operational support for efficient international trade workflows.",
-    image: "/services/Customs & Trade.jpg",
+    image: "/services/Customs & Trade.png",
   },
+];
+
+const landCards = [
+  { num: "01", name: "High-volume documentation", image: "/services/01-documentation.png" },
+  { num: "02", name: "Fragmented operational data", image: "/services/02-fragmented-data.png" },
+  { num: "03", name: "Complex freight billing", image: "/services/03-freight-billing.png" },
+  { num: "04", name: "Manual reconciliations", image: "/services/04-reconciliation.png" },
+  { num: "05", name: "Time-sensitive exceptions", image: "/services/05-exceptions.png" },
+  { num: "06", name: "Growing cost pressures", image: "/services/06-cost-pressures.png" },
 ];
 
 function SectionLabel({ text, dark }: { num?: string; text: string; dark?: boolean }) {
@@ -319,6 +328,15 @@ export default function ShippingLogisticsPage() {
 
   const active = ibsTabs[activeTab];
 
+  const [sqIndex, setSqIndex] = useState(0);
+  const [sqPaused, setSqPaused] = useState(false);
+
+  useEffect(() => {
+    if (sqPaused) return;
+    const id = setInterval(() => setSqIndex(prev => (prev + 1) % aiCapabilities.length), 4000);
+    return () => clearInterval(id);
+  }, [sqPaused, sqIndex]);
+
   return (
     <div className="sl-page">
       <style>{`
@@ -348,22 +366,28 @@ export default function ShippingLogisticsPage() {
         .sl-hero-body { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.68); margin: 0 0 38px; max-width: 520px; }
         .sl-hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; }
         .sl-float-words { position: absolute; left: auto !important; top: auto !important; right: clamp(24px, 3vw, 56px) !important; bottom: clamp(20px, 3.5vh, 44px) !important; z-index: 2; display: flex; flex-direction: row; align-items: center; justify-content: flex-end; gap: clamp(14px, 1.8vw, 28px); pointer-events: none; flex-wrap: nowrap; white-space: nowrap; }
-        .sl-float-word { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-weight: 700; font-size: clamp(11px, 1.0vw, 18px); letter-spacing: 0.22em; color: transparent; -webkit-text-stroke: 1px rgba(198,232,74,0.85); white-space: nowrap; text-shadow: 0 0 12px rgba(198,232,74,0.25); }
+        .sl-float-word { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-weight: 700; font-size: clamp(11px, 1.0vw, 18px); letter-spacing: 0.22em; color: #ffffff; white-space: nowrap; text-shadow: 0 0 8px rgba(255,255,255,0.6), 0 0 22px rgba(255,255,255,0.35); }
         .sl-float-dot { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 0; }
 
         /* ── section rhythm ── */
         .sl-section { padding: clamp(76px, 9vw, 128px) 80px; }
 
         /* ── 02 LANDSCAPE ── */
-        .sl-land-grid { display: grid; grid-template-columns: 42% 1fr; gap: clamp(40px, 6vw, 96px); align-items: start; }
+        .sl-land { position: relative; overflow-x: clip; }
+        .sl-land-hero { position: relative; display: flex; align-items: center; }
+        .sl-land-copy { position: relative; z-index: 2; width: min(46%, 620px); }
         .sl-land-copy p { font-size: 19px; line-height: 1.8; color: #5A5D66; margin: 0 0 12px; }
-        .sl-land-figure { margin: 34px 0 0; border-radius: 20px; overflow: hidden; aspect-ratio: 4 / 5; max-width: 420px; }
-        .sl-land-figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .sl-challenge-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(28px, 4vw, 56px); }
-        .sl-challenge-item { border-top: 1px solid rgba(0,0,0,0.1); padding: 22px 4px; display: flex; gap: 16px; align-items: baseline; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease; }
-        .sl-challenge-item:hover { transform: translateY(-4px); border-top-color: #C6E84A; }
-        .sl-challenge-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-weight: 700; font-size: 14px; color: #7AA306; font-variant-numeric: tabular-nums; }
-        .sl-challenge-name { font-size: clamp(16px, 1.4vw, 19px); font-weight: 600; color: #16181d; }
+        .sl-land-hero-media { position: absolute; top: 0; bottom: 0; right: -80px; width: 60%; z-index: 1; }
+        .sl-land-hero-media::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, #ffffff 3%, rgba(255,255,255,0.9) 20%, rgba(255,255,255,0) 48%); }
+        .sl-land-hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+        .sl-land-grid { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .sl-land-card { background: #F5F6F0; border-radius: 14px; padding: 0 0 16px; overflow: hidden; display: flex; flex-direction: column; align-items: center; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+        .sl-land-card:hover { transform: translateY(-4px); }
+        .sl-land-card-media { width: 100%; aspect-ratio: 4 / 3; overflow: hidden; }
+        .sl-land-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+        .sl-land-card:hover .sl-land-card-media img { transform: scale(1.05); }
+        .sl-land-card-cap { margin: 14px 0 0; padding: 0 14px; font-size: 14px; font-weight: 700; color: #1F2226; text-align: center; letter-spacing: -0.01em; }
+        .sl-land-card-num { color: #7AA306; font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-weight: 700; }
         .sl-closing { margin-top: 40px; border-left: 3px solid #C6E84A; background: #F5F6F0; padding: 22px 28px; font-size: clamp(16px, 1.5vw, 19px); font-weight: 600; line-height: 1.6; color: #16181d; border-radius: 0 14px 14px 0; }
 
         /* ── 03 ECOSYSTEM ── */
@@ -425,36 +449,49 @@ export default function ShippingLogisticsPage() {
 
         /* ── 06 AI ── */
         .sl-ai { background: #05070D; color: #ffffff; position: relative; overflow: hidden; }
-        .sl-ai-core-zone { display: grid; grid-template-columns: 1fr minmax(300px, 460px) 1fr; gap: clamp(20px, 3vw, 44px); align-items: center; margin-top: 60px; }
-        .sl-ai-col { display: flex; flex-direction: column; gap: clamp(28px, 4vh, 52px); }
-        .sl-ai-col--right { align-items: flex-start; }
-        .sl-ai-col--left { align-items: flex-end; }
-        .sl-ai-card { position: relative; background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 18px 22px; max-width: 320px; transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
-        .sl-ai-card:hover { border-color: rgba(198,232,74,0.5); transform: translateY(-3px); }
-        .sl-ai-card-name { font-size: 15.5px; font-weight: 700; color: #ffffff; }
-        .sl-ai-card-verbs { font-size: 12.5px; letter-spacing: 0.08em; color: #C6E84A; margin-top: 6px; }
-        .sl-ai-card::after { content: ""; position: absolute; top: 50%; width: clamp(16px, 2.4vw, 40px); height: 2px; background-image: repeating-linear-gradient(90deg, rgba(198,232,74,0.7) 0 5px, transparent 5px 11px); background-size: 11px 2px; }
-        .sl-ai-col--left .sl-ai-card::after { right: -1px; transform: translateX(100%); }
-        .sl-ai-col--right .sl-ai-card::after { left: -1px; transform: translateX(-100%); }
-        .sl-ai-core { position: relative; aspect-ratio: 1 / 1; width: 100%; max-width: 460px; justify-self: center; }
-        .sl-ai-core svg { width: 100%; height: 100%; display: block; }
-        .sl-orbit { transform-origin: 250px 250px; animation: slSpin 60s linear infinite; }
-        .sl-orbit--rev { animation-direction: reverse; animation-duration: 80s; }
+        .sl-ai::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px); background-size: 26px 26px; }
+        .sl-ai .sl-wrap { position: relative; z-index: 1; }
+
+        .sl-sq { display: flex; align-items: stretch; gap: 10px; height: 410px; margin-top: 56px; }
+        .sl-sq-panel { position: relative; flex: 1 1 0; min-width: 0; background: #0B1424; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; cursor: pointer; overflow: hidden; transition: flex-grow 0.65s cubic-bezier(0.32, 0.72, 0, 1), height 0.65s cubic-bezier(0.32, 0.72, 0, 1), border-color 0.3s ease, background 0.3s ease; }
+        .sl-sq-panel:not(.sl-sq-panel--open):hover { border-color: rgba(198,232,74,0.5); background: #0F1A2E; }
+        .sl-sq-panel--open { flex-grow: 8.2; background: #101B30; border-color: rgba(198,232,74,0.7); }
+        .sl-sq-panel--open::after { content: ""; position: absolute; right: -70px; bottom: -70px; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(circle, rgba(198,232,74,0.16) 0%, transparent 70%); pointer-events: none; }
+
+        .sl-sq-slat { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 44px 8px 20px; opacity: 1; transition: opacity 0.35s ease; }
+        .sl-sq-panel--open .sl-sq-slat { opacity: 0; visibility: hidden; }
+        .sl-sq-num { font-family: var(--font-syne), ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; position: absolute; top: 16px; left: 18px; }
+        .sl-sq-icon { display: flex; align-items: center; justify-content: center; color: #C6E84A; background: rgba(198,232,74,0.12); border-radius: 8px; }
+        .sl-sq-slat .sl-sq-icon { width: 40px; height: 40px; }
+        .sl-sq-slat .sl-sq-icon svg { width: 22px; height: 22px; }
+        .sl-sq-name-v { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 15px; font-weight: 700; color: #ffffff; letter-spacing: 0.06em; text-align: center; }
+
+        .sl-sq-pane { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; padding: 22px; opacity: 0; visibility: hidden; transition: opacity 0.35s ease 0.22s; }
+        .sl-sq-panel--open .sl-sq-pane { opacity: 1; visibility: visible; }
+        .sl-sq-pane .sl-sq-icon { width: 56px; height: 56px; margin-top: 40px; }
+        .sl-sq-pane .sl-sq-icon svg { width: 28px; height: 28px; }
+        .sl-sq-name-h { font-size: 20px; font-weight: 700; color: #ffffff; letter-spacing: -0.01em; margin-top: 18px; }
+        .sl-sq-tags { font-size: 13px; letter-spacing: 0.08em; color: #C6E84A; margin-top: 9px; }
+        .sl-sq-desc { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.6); margin-top: 16px; max-width: 340px; }
+        .sl-sq-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .sl-sq-pane::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(100deg, rgba(5,7,13,0.94) 0%, rgba(5,7,13,0.72) 48%, rgba(5,7,13,0.32) 80%, rgba(5,7,13,0.18) 100%); }
+        .sl-sq-pane .sl-sq-num { z-index: 2; }
+        .sl-sq-pane .sl-sq-icon, .sl-sq-pane .sl-sq-name-h, .sl-sq-pane .sl-sq-tags, .sl-sq-pane .sl-sq-desc { position: relative; z-index: 2; }
 
         /* ── 07 OUTCOMES ── */
         .sl-outcomes { background: #F7F8F4; }
-        .sl-outcome-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 52px; }
-        .sl-outcome { position: relative; overflow: hidden; background: #ffffff; border: 1px solid rgba(10,25,48,0.1); border-radius: 20px; padding: clamp(24px, 2.2vw, 32px); display: flex; flex-direction: column; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.35s ease; }
-        .sl-outcome:hover { transform: translateY(-5px); border-color: rgba(122,163,6,0.45); box-shadow: 0 22px 44px -26px rgba(10,25,48,0.3); }
+        .sl-outcome-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 52px; }
+        .sl-outcome { position: relative; overflow: hidden; background: #E9EAEC; border: 1px solid rgba(10,25,48,0.12); border-radius: 18px; padding: clamp(20px, 1.8vw, 24px); display: flex; flex-direction: column; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.35s ease; }
+        .sl-outcome:hover { transform: translateY(-4px); border-color: rgba(122,163,6,0.45); box-shadow: 0 18px 36px -24px rgba(10,25,48,0.28); }
         .sl-outcome::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, #C6E84A, rgba(198,232,74,0)); opacity: 0; transition: opacity 0.3s ease; }
         .sl-outcome:hover::after { opacity: 1; }
-        .sl-outcome-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid rgba(10,25,48,0.08); }
+        .sl-outcome-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid rgba(10,25,48,0.09); }
         .sl-outcome-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #7AA306; letter-spacing: 0.14em; font-variant-numeric: tabular-nums; }
-        .sl-outcome-chip { width: 52px; height: 52px; flex: 0 0 auto; border-radius: 50%; border: 1px solid rgba(10,25,48,0.14); display: flex; align-items: center; justify-content: center; color: #7AA306; transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
+        .sl-outcome-chip { width: 44px; height: 44px; flex: 0 0 auto; border-radius: 50%; border: 1px solid rgba(10,25,48,0.16); display: flex; align-items: center; justify-content: center; color: #7AA306; transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
         .sl-outcome:hover .sl-outcome-chip { background: var(--color-primary); border-color: var(--color-primary); color: #16181d; }
-        .sl-outcome-word { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(24px, 2.2vw, 32px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.05; color: #16181d; margin: 20px 0 0; }
-        .sl-outcome-sub { font-size: 15px; font-weight: 600; color: #7AA306; margin: 8px 0 0; }
-        .sl-outcome-desc { font-size: 15px; line-height: 1.7; color: #5A5D66; margin: 12px 0 0; }
+        .sl-outcome-word { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(20px, 1.6vw, 24px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; color: #16181d; margin: 16px 0 0; }
+        .sl-outcome-sub { font-size: 13.5px; font-weight: 600; color: #7AA306; margin: 7px 0 0; }
+        .sl-outcome-desc { font-size: 13.5px; line-height: 1.65; color: #5A5D66; margin: 10px 0 0; }
         @media (min-width: 700px) { .sl-outcome-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (min-width: 1081px) {
           .sl-outcome-grid { grid-template-columns: repeat(6, 1fr); gap: 20px; }
@@ -464,15 +501,14 @@ export default function ShippingLogisticsPage() {
 
         /* ── 08 MODEL ── */
         .sl-model { background: #081020; color: #ffffff; }
-        .sl-model-stack { max-width: 980px; margin: 56px auto 0; display: flex; flex-direction: column; align-items: stretch; }
-        .sl-layer { border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 24px clamp(20px, 3vw, 36px); background: rgba(255,255,255,0.03); display: grid; grid-template-columns: auto 1fr; gap: 14px clamp(32px, 5vw, 64px); align-items: center; transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1), background 0.3s ease; }
-        .sl-layer:hover { border-color: rgba(198,232,74,0.5); transform: translateY(-3px); background: linear-gradient(135deg, rgba(198,232,74,0.08), rgba(198,232,74,0.05)); }
-        .sl-layer-head { display: flex; align-items: baseline; gap: 12px; white-space: nowrap; width: 360px; }
-        .sl-layer-num { font-size: 13px; font-weight: 700; color: #C6E84A; letter-spacing: 0.12em; }
-        .sl-layer-name { font-size: clamp(13px, 1.4vw, 18px); font-weight: 700; letter-spacing: 0.04em; }
-        .sl-layer-items { display: flex; flex-wrap: nowrap; white-space: nowrap; row-gap: 8px; font-size: 13px; color: rgba(255,255,255,0.8); }
-        .sl-layer-pipe { color: rgba(198,232,74,0.55); padding: 0 7px; }
-        .sl-flow { align-self: center; height: 44px; width: 2px; background-image: repeating-linear-gradient(180deg, rgba(198,232,74,0.85) 0 6px, transparent 6px 14px); background-size: 2px 14px; animation: slFlowDown 1.1s linear infinite; }
+        .sl-model-stack { max-width: 980px; margin: 56px auto 0; display: flex; flex-direction: column; gap: 12px; }
+        .sl-layer { display: grid; grid-template-columns: 90px 320px 1fr; align-items: center; gap: 20px; border-radius: 14px; padding: 24px 30px; background: #10294A; border: 1px solid rgba(198,232,74,0.12); transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
+        .sl-layer:hover { background: #C6E84A; border-color: rgba(198,232,74,0.8); box-shadow: 0 0 40px -6px rgba(198,232,74,0.4); transform: translateX(6px); }
+        .sl-layer:hover .sl-layer-num, .sl-layer:hover .sl-layer-name, .sl-layer:hover .sl-layer-items { color: #0C1B30; }
+        .sl-layer-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #C6E84A; font-variant-numeric: tabular-nums; }
+        .sl-layer-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #ffffff; }
+        .sl-layer-items { font-size: 12.5px; letter-spacing: 0.05em; color: rgba(255,255,255,0.62); }
+        .sl-layer-pipe { color: inherit; padding: 0 7px; }
 
         /* ── 09 WHY ── */
         .sl-why-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(20px, 2.6vw, 36px); margin-top: 54px; }
@@ -506,67 +542,63 @@ export default function ShippingLogisticsPage() {
         .sl-final-ctas { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
 
         /* ── animations ── */
-        @keyframes slFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-        @keyframes slFlowDown { to { background-position-y: 14px; } }
-        @keyframes slSpin { to { transform: rotate(360deg); } }
-        @keyframes slDash { to { background-position-x: 11px; } }
-        .sl-float-word { animation: slFloat 7s ease-in-out infinite; }
-        .sl-float-word:nth-child(3n) { animation-delay: -2.4s; }
-        .sl-ai-card::after { animation: slDash 0.9s linear infinite; }
-
         @media (hover: none) {
           .sl-tile-desc { opacity: 1; transform: none; }
         }
 
-        @media (max-width: 1080px) {
+        @media (max-width: 1100px) {
           .sl-why-grid { grid-template-columns: repeat(3, 1fr); }
-          .sl-ai-core-zone { grid-template-columns: 1fr; }
-          .sl-ai-col--left { order: 2; align-items: stretch; }
-          .sl-ai-col--right { order: 3; align-items: stretch; }
-          .sl-ai-core { order: 1; max-width: 340px; }
-          .sl-ai-card { max-width: none; }
-          .sl-ai-card::after { display: none; }
+        }
+
+        @media (max-width: 860px) {
+          .sl-sq { flex-direction: column; height: auto; gap: 10px; }
+          .sl-sq-panel { flex: none; height: 68px; padding: 14px 16px; }
+          .sl-sq-panel--open { height: 330px; flex: none; }
+          .sl-sq-slat { flex-direction: row; align-items: center; justify-content: flex-start; gap: 14px; padding: 0 18px; }
+          .sl-sq-slat .sl-sq-num { position: static; flex: none; }
+          .sl-sq-slat .sl-sq-icon { flex: none; }
+          .sl-sq-name-v { writing-mode: horizontal-tb; transform: none; font-size: 16px; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left; }
+          .sl-sq-pane { padding: 18px; }
         }
 
         @media (max-width: 900px) {
           .sl-section { padding-left: 40px; padding-right: 40px; }
-          .sl-land-grid { grid-template-columns: 1fr; }
-          .sl-land-figure { max-width: 520px; aspect-ratio: 3 / 2; }
+          .sl-land-hero { display: block; }
+          .sl-land-copy { width: 100%; max-width: 720px; }
+          .sl-land-hero-media { position: static; width: 100%; margin-top: 36px; }
+          .sl-land-hero-media::before { display: none; }
+          .sl-land-grid { grid-template-columns: repeat(2, 1fr); }
           .sl-eco-grid { grid-template-columns: 1fr 1fr; }
+          .sl-outcome-grid { grid-template-columns: repeat(2, 1fr); }
           .sl-panel { grid-template-columns: 1fr; }
           .sl-panel-visual { min-height: 260px; }
           .sl-float-words { bottom: clamp(20px, 3vh, 40px) !important; top: auto !important; gap: 12px; right: clamp(20px, 3.5vw, 40px) !important; flex-wrap: nowrap; white-space: nowrap; }
-          .sl-float-word { font-size: clamp(10px, 1.1vw, 16px); -webkit-text-stroke: 1px rgba(198,232,74,0.8); }
+          .sl-float-word { font-size: clamp(10px, 1.1vw, 16px); }
           .sl-fa-grid-wrap { grid-template-columns: 1fr; }
           .sl-fa-cards { grid-template-columns: repeat(2, 1fr); }
           .sl-fa-bg { width: 100%; mask-image: linear-gradient(180deg, transparent 0%, #000 60%); -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 60%); }
           .sl-trans { grid-template-columns: 1fr; }
-          .sl-layer-name { font-size: 12px; letter-spacing: 0.03em; }
-          .sl-layer-head { gap: 8px; width: 270px; }
-          .sl-layer-items { font-size: 11.5px; }
-          .sl-layer-pipe { padding: 0 5px; }
         }
 
         @media (max-width: 640px) {
           .sl-section { padding-left: 20px; padding-right: 20px; }
-          .sl-challenge-list { grid-template-columns: 1fr; }
+          .sl-land-grid { grid-template-columns: 1fr; }
           .sl-eco-grid { grid-template-columns: 1fr; }
+          .sl-outcome-grid { grid-template-columns: 1fr; }
           .sl-fa-cards { grid-template-columns: 1fr; }
           .sl-why-grid { grid-template-columns: 1fr; }
           .sl-trans-block ul { grid-template-columns: 1fr; }
-          .sl-layer { grid-template-columns: 1fr; gap: 10px; }
-          .sl-layer-head { width: auto; }
-          .sl-layer-items { flex-wrap: wrap; white-space: normal; }
+          .sl-layer { grid-template-columns: 1fr; gap: 8px; padding: 20px; }
           .sl-float-words { right: 24px !important; bottom: 16px !important; top: auto !important; gap: 8px; flex-wrap: nowrap; white-space: nowrap; }
-          .sl-float-word { font-size: 9px; letter-spacing: 0.15em; -webkit-text-stroke: 1px rgba(198,232,74,0.85); }
+          .sl-float-word { font-size: 9px; letter-spacing: 0.15em; }
           .sl-hero-content { padding: 120px 24px 90px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
           .sl-reveal { opacity: 1; transform: none; transition: none; animation: none; }
           .sl-fa-card-inner { transition: none; }
-          .sl-float-word, .sl-flow, .sl-orbit, .sl-orbit--rev, .sl-ai-card::after { animation: none; }
-          .sl-tile img, .sl-tile-desc, .sl-challenge-item, .sl-fa-card, .sl-ai-card, .sl-layer, .sl-why-col { transition: none; }
+          .sl-float-word { animation: none; }
+          .sl-tile img, .sl-tile-desc, .sl-fa-card, .sl-sq-panel, .sl-layer, .sl-land-card, .sl-why-col { transition: none; }
           html { scroll-behavior: auto; }
         }
       `}</style>
@@ -603,15 +635,14 @@ export default function ShippingLogisticsPage() {
         </div>
       </section>
 
-      {/* ══════════ 02 LOGISTICS LANDSCAPE ══════════ */}
-      <section className="sl-section">
+{/* ══════════ 02 LOGISTICS LANDSCAPE ══════════ */}
+      <section className="sl-section sl-land">
         <div className="sl-wrap">
-          <div className="sl-land-grid">
+          <div className="sl-land-hero">
             <div className="sl-land-copy sl-reveal">
               <span className="eyebrow-badge">
-            THE LOGISTICS LANDSCAPE
-          </span>
-              {/* <SectionLabel num="02" text="THE LOGISTICS LANDSCAPE" /> */}
+                THE LOGISTICS LANDSCAPE
+              </span>
               <h2 className="sl-h2">Complexity moves with <span style={{ color: "#C6E84A", whiteSpace: "nowrap" }}>every shipment.</span></h2>
               <p>
                 &emsp;Global logistics connects carriers, customers, ports, customs authorities, agents, vendors and
@@ -622,22 +653,28 @@ export default function ShippingLogisticsPage() {
                 &emsp;Yet many of these processes still depend on fragmented systems, manual intervention and
                 document-intensive workflows.
               </p>
-             
             </div>
-            <div className="sl-reveal">
-              <ul className="sl-challenge-list">
-                <li className="sl-challenge-item"><span className="sl-challenge-num">01.</span><span className="sl-challenge-name">High-volume documentation</span></li>
-                <li className="sl-challenge-item"><span className="sl-challenge-num">02.</span><span className="sl-challenge-name">Fragmented operational data</span></li>
-                <li className="sl-challenge-item"><span className="sl-challenge-num">03.</span><span className="sl-challenge-name">Complex freight billing</span></li>
-                <li className="sl-challenge-item"><span className="sl-challenge-num">04.</span><span className="sl-challenge-name">Manual reconciliations</span></li>
-                <li className="sl-challenge-item"><span className="sl-challenge-num">05.</span><span className="sl-challenge-name">Time-sensitive exceptions</span></li>
-                <li className="sl-challenge-item"><span className="sl-challenge-num">06.</span><span className="sl-challenge-name">Growing cost pressures</span></li>
-              </ul>
-              <p className="sl-closing">
-                We bring operations, technology and intelligence together to make complexity easier to manage.
-              </p>
+            <div className="sl-land-hero-media" aria-hidden="true">
+              <img src="/services/00-ship-and-port.png" alt="" loading="lazy" decoding="async" />
             </div>
           </div>
+
+          <ul className="sl-land-grid sl-reveal">
+            {landCards.map((card) => (
+              <li key={card.num} className="sl-land-card">
+                <div className="sl-land-card-media">
+                  <img src={card.image} alt="" loading="lazy" decoding="async" />
+                </div>
+                <p className="sl-land-card-cap">
+                  <span className="sl-land-card-num">{card.num}.</span> {card.name}
+                </p>
+              </li>
+            ))}
+          </ul>
+
+          <p className="sl-closing sl-reveal">
+            We bring operations, technology and intelligence together to make complexity easier to manage.
+          </p>
         </div>
       </section>
 
@@ -694,6 +731,7 @@ export default function ShippingLogisticsPage() {
                 tabIndex={activeTab === i ? 0 : -1}
                 className="sl-tab"
                 onClick={() => setActiveTab(i)}
+                onMouseEnter={() => setActiveTab(i)}
                 onKeyDown={onTabKeyDown}
               >
                 {t.tab}
@@ -798,63 +836,31 @@ export default function ShippingLogisticsPage() {
             </p>
           </div>
 
-          <div className="sl-ai-core-zone">
-            <div className="sl-ai-col sl-ai-col--left">
-              {aiCapabilities.slice(0, 3).map((cap) => (
-                <div key={cap.name} className="sl-ai-card sl-reveal">
-                  <div className="sl-ai-card-name">{cap.name}</div>
-                  <div className="sl-ai-card-verbs">{cap.verbs}</div>
+          <div className="sl-sq" onMouseEnter={() => setSqPaused(true)} onMouseLeave={() => setSqPaused(false)}>
+            {aiCapabilities.map((cap, i) => (
+              <div
+                key={cap.name}
+                role="button"
+                tabIndex={0}
+                onClick={() => setSqIndex(i)}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSqIndex(i); } }}
+                className={`sl-sq-panel sl-reveal${sqIndex === i ? " sl-sq-panel--open" : ""}`}
+              >
+                <div className="sl-sq-slat">
+                  <span className="sl-sq-num">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="sl-sq-icon">{cap.icon}</span>
+                  <span className="sl-sq-name-v">{cap.name}</span>
                 </div>
-              ))}
-            </div>
-
-            <div className="sl-ai-core sl-reveal" aria-hidden="true">
-              <svg viewBox="0 0 500 500" fill="none">
-                <defs>
-                  <radialGradient id="slCoreGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#C6E84A" stopOpacity="0.16" />
-                    <stop offset="55%" stopColor="#C6E84A" stopOpacity="0.05" />
-                    <stop offset="100%" stopColor="#C6E84A" stopOpacity="0" />
-                  </radialGradient>
-                  <linearGradient id="slCoreRing" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#C6E84A" stopOpacity="0.7" />
-                    <stop offset="100%" stopColor="#C6E84A" stopOpacity="0.5" />
-                  </linearGradient>
-                </defs>
-                <circle cx="250" cy="250" r="240" fill="url(#slCoreGlow)" />
-                <g className="sl-orbit">
-                  <circle cx="250" cy="250" r="190" stroke="url(#slCoreRing)" strokeOpacity="0.35" strokeWidth="1" strokeDasharray="3 9" />
-                  <circle cx="250" cy="60" r="4" fill="#C6E84A" fillOpacity="0.9" />
-                  <circle cx="414" cy="345" r="3" fill="#C6E84A" fillOpacity="0.8" />
-                  <circle cx="86" cy="345" r="2.5" fill="#C6E84A" fillOpacity="0.6" />
-                </g>
-                <g className="sl-orbit sl-orbit--rev">
-                  <circle cx="250" cy="250" r="130" stroke="#C6E84A" strokeOpacity="0.3" strokeWidth="1" strokeDasharray="2 7" />
-                  <circle cx="380" cy="250" r="3" fill="#C6E84A" fillOpacity="0.85" />
-                  <circle cx="155" cy="137" r="2.5" fill="#C6E84A" fillOpacity="0.7" />
-                </g>
-                <g stroke="#C6E84A" strokeOpacity="0.35" strokeWidth="1">
-                  <line x1="250" y1="250" x2="250" y2="60" />
-                  <line x1="250" y1="250" x2="414" y2="345" />
-                  <line x1="250" y1="250" x2="86" y2="345" />
-                  <line x1="250" y1="250" x2="380" y2="250" />
-                  <line x1="250" y1="250" x2="155" y2="137" />
-                </g>
-                <circle cx="250" cy="250" r="58" fill="#0A1424" stroke="url(#slCoreRing)" strokeWidth="1.5" />
-                <circle cx="250" cy="250" r="34" fill="none" stroke="#C6E84A" strokeOpacity="0.7" strokeWidth="1" strokeDasharray="4 6" />
-                <circle cx="250" cy="250" r="12" fill="#C6E84A" fillOpacity="0.9" />
-                <circle cx="250" cy="250" r="22" stroke="#C6E84A" strokeOpacity="0.5" strokeWidth="1" fill="none" />
-              </svg>
-            </div>
-
-            <div className="sl-ai-col sl-ai-col--right">
-              {aiCapabilities.slice(3).map((cap) => (
-                <div key={cap.name} className="sl-ai-card sl-reveal">
-                  <div className="sl-ai-card-name">{cap.name}</div>
-                  <div className="sl-ai-card-verbs">{cap.verbs}</div>
+                <div className="sl-sq-pane">
+                  <span className="sl-sq-num">{String(i + 1).padStart(2, "0")}</span>
+                  <img src={cap.img} alt="" loading="lazy" className="sl-sq-img" />
+                  <span className="sl-sq-icon">{cap.icon}</span>
+                  <span className="sl-sq-name-h">{cap.name}</span>
+                  <span className="sl-sq-tags">{cap.verbs}</span>
+                  <span className="sl-sq-desc">{cap.desc}</span>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -890,23 +896,18 @@ export default function ShippingLogisticsPage() {
             <h2 className="sl-h2" style={{ color: "#ffffff" }}>One connected <span style={{ color: "#C6E84A" }}>operating model. </span></h2>
           </div>
           <div className="sl-model-stack">
-            {modelLayers.map((layer, i) => (
-              <div key={layer.num} style={{ display: "contents" }}>
-                {i > 0 && <div className="sl-flow" aria-hidden="true" />}
-                <div className="sl-layer sl-reveal">
-                  <div className="sl-layer-head">
-                    <span className="sl-layer-num">{layer.num} —</span>
-                    <span className="sl-layer-name">{layer.name}</span>
-                  </div>
-                  <div className="sl-layer-items">
-                    {layer.items.map((item, j, arr) => (
-                      <span key={item}>
-                        {item}
-                        {j < arr.length - 1 && <span className="sl-layer-pipe">|</span>}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+            {modelLayers.map((layer) => (
+              <div key={layer.num} className="sl-layer sl-reveal">
+                <span className="sl-layer-num">{layer.num} —</span>
+                <span className="sl-layer-name">{layer.name}</span>
+                <span className="sl-layer-items">
+                  {layer.items.map((item, j, arr) => (
+                    <span key={item}>
+                      {item}
+                      {j < arr.length - 1 && <span className="sl-layer-pipe">|</span>}
+                    </span>
+                  ))}
+                </span>
               </div>
             ))}
           </div>
@@ -936,7 +937,7 @@ export default function ShippingLogisticsPage() {
       <section className="sl-trans">
         <div className="sl-trans-media">
           <img
-            src="/solutions/Shipment Data Management.jpg"
+            src="/services/Reimagining document-intensive logistics operations.png"
             alt="Logistics operations team working with shipment documentation"
             loading="lazy"
             decoding="async"
