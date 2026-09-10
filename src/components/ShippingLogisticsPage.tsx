@@ -218,12 +218,43 @@ const modelLayers = [
   },
 ];
 
-const whyColumns = [
-  { num: "01", title: "Domain-led", desc: "Solutions designed around real shipping and logistics workflows." },
-  { num: "02", title: "AI-first", desc: "Intelligence applied where it creates measurable operational value." },
-  { num: "03", title: "Human + Digital", desc: "Technology and skilled professionals working as one operating model." },
-  { num: "04", title: "Built to Scale", desc: "Flexible delivery aligned with changing business volumes." },
-  { num: "05", title: "Secure by Design", desc: "Security, confidentiality and governance embedded into operations." },
+const whyPoints = [
+  {
+    num: "01",
+    name: "Domain-led",
+    desc: "Solutions designed around shipping and logistics complex administrative workflows.",
+    icon: "/healthcare/domain led.svg",
+  },
+  {
+    num: "02",
+    name: "AI-first",
+    desc: "Intelligence applied where it can simplify work and improve operational decision support.",
+    icon: "/healthcare/ai first.svg",
+  },
+  {
+    num: "03",
+    name: "Human + Digital",
+    desc: "Automation and skilled teams working together.",
+    icon: "/healthcare/human-digital.svg",
+  },
+  {
+    num: "04",
+    name: "Data-driven",
+    desc: "Better information supporting better operational decisions.",
+    icon: "/healthcare/Data-driven.svg",
+  },
+  {
+    num: "05",
+    name: "Secure by Design",
+    desc: "Controlled processes, access and governance embedded into delivery.",
+    icon: "/healthcare/Secure by Design.svg",
+  },
+  {
+    num: "06",
+    name: "Built to Scale",
+    desc: "Flexible models designed around changing operational requirements.",
+    icon: "/healthcare/Built to Scale.svg",
+  },
 ];
 
 const ecosystemTiles = [
@@ -511,12 +542,18 @@ export default function ShippingLogisticsPage() {
         .sl-layer-pipe { color: inherit; padding: 0 7px; }
 
         /* ── 09 WHY ── */
-        .sl-why-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(20px, 2.6vw, 36px); margin-top: 54px; }
-        .sl-why-col { border-top: 2px solid rgba(0,0,0,0.12); padding-top: 22px; transition: border-color 0.3s ease; }
-        .sl-why-col:hover { border-top-color: #C6E84A; }
-        .sl-why-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: #7AA306; }
-        .sl-why-title { font-size: clamp(17px, 1.5vw, 20px); font-weight: 700; margin: 10px 0 10px; }
-        .sl-why-desc { font-size: 14.5px; line-height: 1.7; color: #5A5D66; margin: 0; }
+        .sl-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+        .sl-why-card { position: relative; border-radius: 16px; padding: 28px 24px 26px; background: #FAFBFC; border: 2px solid #D1D9E6; display: flex; flex-direction: column; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease; }
+        .sl-why-card::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; border-radius: 0 0 16px 16px; background: linear-gradient(90deg, #7AA306, #C6E84A); opacity: 0; transition: opacity 0.35s ease; }
+        .sl-why-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px -12px rgba(10,22,40,0.12); }
+        .sl-why-card:hover::after { opacity: 1; }
+        .sl-why-head { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+        .sl-why-head-text { display: flex; flex-direction: column; }
+        .sl-why-icon { width: 64px; height: 64px; border-radius: 16px; background: rgba(198,232,74,0.12); border: 1px solid rgba(122,163,6,0.2); display: flex; align-items: center; justify-content: center; color: #618300; flex: 0 0 auto; transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.35s ease; }
+        .sl-why-card:hover .sl-why-icon { background: #C6E84A; border-color: #C6E84A; color: #0C1B30; transform: scale(1.06); }
+        .sl-why-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; color: #7AA306; font-variant-numeric: tabular-nums; }
+        .sl-why-card h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 23px; font-weight: 700; color: #0C1B30; margin: 4px 0 0; }
+        .sl-why-card p { font-size: 14px; line-height: 1.65; color: #5A6B7F; margin: 8px 0 0; }
 
         /* ── 10 TRANSFORMATION ── */
         .sl-trans { display: grid; grid-template-columns: 1fr 1fr; min-height: 640px; }
@@ -919,15 +956,22 @@ export default function ShippingLogisticsPage() {
         <div className="sl-wrap">
           <div className="sl-reveal">
             <SectionLabel num="09" text="WHY SYTRION" />
-            <h2 className="sl-h2">Domain understanding meets <span style={{ color: "#C6E84A" }}>intelligent execution</span>.</h2>
+            <h2 className="sl-h2">Shipping understanding. <span style={{ color: "#C6E84A" }}>Intelligent execution.</span></h2>
           </div>
-          <div className="sl-why-grid">
-            {whyColumns.map((col) => (
-              <div key={col.num} className="sl-why-col sl-reveal">
-                <span className="sl-why-num">{col.num}</span>
-                <h3 className="sl-why-title">{col.title}</h3>
-                <p className="sl-why-desc">{col.desc}</p>
-              </div>
+          <div className="sl-why-grid sl-reveal">
+            {whyPoints.map((w) => (
+              <article key={w.num} className="sl-why-card">
+                <div className="sl-why-head">
+                  <div className="sl-why-icon" aria-hidden="true">
+                    <img src={w.icon} alt="" width="52" height="52" />
+                  </div>
+                  <div className="sl-why-head-text">
+                    <span className="sl-why-num">{w.num}</span>
+                    <h3>{w.name}</h3>
+                  </div>
+                </div>
+                <p>{w.desc}</p>
+              </article>
             ))}
           </div>
         </div>
