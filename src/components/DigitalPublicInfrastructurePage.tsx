@@ -249,7 +249,7 @@ const dpiModelLayers = [
 const whySytrion = [
   { n: "01", title: "Ecosystem Thinking", desc: "Solutions designed around interconnected participants rather than isolated systems.", icon: "/healthcare/domain led.svg" },
   { n: "02", title: "AI-First", desc: "Intelligence embedded into workflows, data and service operations.", icon: "/healthcare/ai first.svg" },
-  { n: "03", title: "Technology + Operations", desc: "Digital platforms supported by the operational capabilities needed to make them work.", icon: "/healthcare/Human + Digital.svg" },
+  { n: "03", title: "Technology + Operations", desc: "Digital platforms supported by the operational capabilities needed to make them work.", icon: "/healthcare/human-digital.svg" },
   { n: "04", title: "Interoperability", desc: "Architecture designed around integration, reusable components and connected ecosystems.", icon: "/healthcare/Data-driven.svg" },
   { n: "05", title: "Trust by Design", desc: "Security, governance and responsible data practices incorporated into delivery.", icon: "/healthcare/Secure by Design.svg" },
   { n: "06", title: "Built to Evolve", desc: "Modular approaches that can adapt as ecosystems and requirements change.", icon: "/healthcare/Built to Scale.svg" },

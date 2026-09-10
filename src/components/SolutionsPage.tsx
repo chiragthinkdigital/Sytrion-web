@@ -392,28 +392,30 @@ function AnalyticsGridCard({
     image: string;
   };
 }) {
-  const isBig = card.index === "01";
-  const isSecondary = card.index === "05";
   return (
-    <div
-      className={"analytics-grid-card" + (isBig ? " is-big" : "") + (isSecondary ? " is-secondary" : "")}
-    >
-      <img
-        src={card.image}
-        alt={card.title}
-        className="analytics-grid-bg-img"
-        loading="lazy"
-        decoding="async"
-      />
-      <div className="analytics-grid-overlay" />
-      <div className="analytics-grid-text">
-        <span className="analytics-grid-index">{card.index}</span>
-        <div className="analytics-grid-content">
-          <h3 className="analytics-grid-title">{card.title}</h3>
-          <p className="analytics-grid-desc">{card.description}</p>
-        </div>
+    <Link href="/contact" className="analytics-grid-card" aria-label={card.title}>
+      <div className="analytics-grid-media">
+        <img
+          src={card.image}
+          alt={card.title}
+          loading="lazy"
+          decoding="async"
+        />
       </div>
-    </div>
+      <div className="analytics-grid-body">
+        <div className="analytics-grid-head">
+          <span className="analytics-grid-index">{card.index}</span>
+          <span className="analytics-grid-arrow">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </span>
+        </div>
+        <h3 className="analytics-grid-title">{card.title}</h3>
+        <p className="analytics-grid-desc">{card.description}</p>
+      </div>
+    </Link>
   );
 }
 
@@ -736,7 +738,7 @@ const shippingCapabilities = [
 
 const healthcareCapabilities = [
   { icon: "clipboard", title: "Claims Operations", desc: "Technology-enabled support for claims-related administrative workflows.", image: "/solutions/healthcare operations section.png" },
-  { icon: "scan-text", title: "Document Intelligence", desc: "Capturing, classifying and extracting information from healthcare documents.", image: "/solutions/Document Intelligence.jpg" },
+  { icon: "scan-text", title: "Document Intelligence", desc: "Capturing, classifying and extracting information from healthcare documents.", image: "/solutions/Document Intelligence.png" },
   { icon: "database", title: "Healthcare Data Processing", desc: "Structured processing and validation of operational healthcare data.", image: "/solutions/Healthcare Data Processing.jpg" },
   { icon: "workflow", title: "Workflow Automation", desc: "Automating repetitive administrative tasks and intelligent routing.", image: "/solutions/workflow automation.jpg" },
   { icon: "shield-check", title: "Secure Operations", desc: "Delivery practices designed around confidentiality and controlled access.", image: "/solutions/Secure Operations.png" },
@@ -755,50 +757,50 @@ const analyticsCapabilities = [
   {
     index: "01",
     title: "Executive dashboards",
-    description: "One view of the business, built for leadership decisions, not analyst deep-dives.",
-    image: "/solutions/Executive Dashboards.webp",
+    description: "Your business, in one clear view.",
+    image: "/solutions/01-executive-dashboards.png",
   },
   {
     index: "02",
     title: "KPI monitoring",
-    description: "Live thresholds on the metrics that move the business.",
-    image: "/solutions/KPI Monitoring.webp",
+    description: "Track performance. Catch changes early.",
+    image: "/solutions/02-kpi-monitoring.png",
   },
   {
     index: "03",
     title: "Automated reporting",
-    description: "Reports send on the schedule your team runs on.",
-    image: "/solutions/Automated Reporting.webp",
+    description: "The right reports, right on schedule.",
+    image: "/solutions/03-automated-reporting.png",
   },
   {
     index: "04",
     title: "Trend analysis",
-    description: "Surfaces a shift before it becomes a problem.",
-    image: "/solutions/Trend Analysis.webp",
+    description: "Spot shifts before they shape results.",
+    image: "/solutions/04-trend-analysis.png",
   },
   {
     index: "05",
     title: "Operational dashboards",
-    description: "One screen per team, showing only what it needs.",
-    image: "/solutions/Operational Dashboards.webp",
+    description: "Keep every team focused on what matters.",
+    image: "/solutions/05-operational-dashboards.png",
   },
   {
     index: "06",
     title: "Predictive analytics",
-    description: "Forecasts from your own history, not generic curves.",
-    image: "/solutions/Predictive Analytics.webp",
+    description: "Plan ahead with forecasts from your data.",
+    image: "/solutions/06-predictive-analytics.png",
   },
   {
     index: "07",
     title: "Data visualization",
-    description: "Charts readable at a glance, not just technically correct.",
-    image: "/solutions/Data Visualization.webp",
+    description: "Make complex data easy to understand.",
+    image: "/solutions/07-data-visualization.png",
   },
   {
     index: "08",
     title: "Decision intelligence",
-    description: "Turns raw operational data into recommendations a team can act on the same day.",
-    image: "/solutions/Decision Intelligence.webp",
+    description: "Turn insights into your next best action.",
+    image: "/solutions/08-decision-intelligence.png",
   },
 ];
 
@@ -996,6 +998,7 @@ export default function SolutionsPage() {
         }
         .sol-section--dark { background: #0a0a0a; }
         .sol-section--light { background: #f8faf5; }
+        .sol-section--cream { background: #F5F4F1; }
         .sol-wrap {
           max-width: 1400px;
           margin: 0 auto;
@@ -2049,7 +2052,7 @@ export default function SolutionsPage() {
           display: inline-flex;
           align-items: center;
           gap: 10px;
-          background: #93e857;
+          background: #C6E84A;
           color: #08090a;
           padding: 14px 28px;
           border-radius: 999px;
@@ -2063,7 +2066,7 @@ export default function SolutionsPage() {
         }
         .de-footer-cta:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 28px rgba(147,232,87,0.25);
+          box-shadow: 0 8px 28px rgba(198,232,74,0.25);
         }
         .de-footer-cta svg {
           transition: transform 0.3s ease;
@@ -2672,151 +2675,109 @@ export default function SolutionsPage() {
           }
         }
 
-        /* ── Analytics & Intelligence Grid ───────────────────────────────────────── */
+        /* ── Analytics & BI — Light 4×2 Grid ────────────── */
         .analytics-grid {
-          position: relative;
           display: grid;
-          grid-template-columns: repeat(12, 1fr);
-          grid-template-rows: repeat(4, 168px);
-          gap: 14px;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
           margin-top: 48px;
-          -webkit-font-smoothing: antialiased;
         }
-
-        .analytics-grid > :nth-child(1) { grid-column: 1 / 7; grid-row: 1 / 3; }
-        .analytics-grid > :nth-child(2) { grid-column: 7 / 13; grid-row: 1 / 2; }
-        .analytics-grid > :nth-child(3) { grid-column: 7 / 10; grid-row: 2 / 5; }
-        .analytics-grid > :nth-child(4) { grid-column: 10 / 13; grid-row: 2 / 3; }
-        .analytics-grid > :nth-child(5) { grid-column: 1 / 4; grid-row: 3 / 4; }
-        .analytics-grid > :nth-child(6) { grid-column: 4 / 7; grid-row: 3 / 4; }
-        .analytics-grid > :nth-child(7) { grid-column: 10 / 13; grid-row: 3 / 5; }
-        .analytics-grid > :nth-child(8) { grid-column: 1 / 7; grid-row: 4 / 5; }
 
         .analytics-grid-card {
           position: relative;
-          display: block;
-          border-radius: 14px;
+          display: flex;
+          flex-direction: column;
+          background: #ffffff;
+          border-radius: 16px;
+          border: 1px solid rgba(0,0,0,0.04);
           overflow: hidden;
-          background: #0d0e10;
           text-decoration: none;
           cursor: pointer;
-          transition: box-shadow 0.25s ease, transform 0.25s ease;
+          transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease;
         }
         .analytics-grid-card:hover {
-          box-shadow: 0 16px 44px rgba(0,0,0,0.28);
           transform: translateY(-4px);
+          box-shadow: 0 16px 36px rgba(26,32,16,0.10);
         }
 
-        .analytics-grid-bg-img {
-          position: absolute;
-          inset: 0;
+        .analytics-grid-media {
+          position: relative;
+          display: block;
+          background: #F5F1E8;
+          aspect-ratio: 4 / 3;
+          overflow: hidden;
+        }
+        .analytics-grid-media img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           display: block;
-          transition: transform 0.5s ease;
+          transition: transform 0.4s ease;
         }
-        .analytics-grid-card:hover .analytics-grid-bg-img {
-          transform: scale(1.04);
-        }
-
-        .analytics-grid-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(180deg, rgba(10,12,18,0.08) 35%, rgba(10,12,18,0.72) 68%, rgba(10,12,18,0.92) 100%);
-          pointer-events: none;
-          z-index: 1;
-        }
-        .analytics-grid-card:hover .analytics-grid-overlay {
-          background: linear-gradient(180deg, rgba(10,12,18,0.08) 35%, rgba(10,12,18,0.8) 68%, rgba(10,12,18,0.96) 100%);
+        .analytics-grid-card:hover .analytics-grid-media img {
+          transform: scale(1.05);
         }
 
-        .analytics-grid-text {
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          padding: 22px 24px;
+        .analytics-grid-body {
           display: flex;
           flex-direction: column;
-          z-index: 2;
+          flex: 1 1 auto;
+          padding: 18px 22px 24px;
+        }
+
+        .analytics-grid-head {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 8px;
         }
 
         .analytics-grid-index {
           font-family: var(--font-geist-mono), monospace;
-          font-size: 12px;
-          font-weight: 600;
+          font-size: 13px;
+          font-weight: 700;
           letter-spacing: 1px;
-          color: #C6E84A;
-          margin-bottom: 12px;
+          color: #7CB342;
         }
 
-        .analytics-grid-content {
-          display: flex;
-          flex-direction: column;
+        .analytics-grid-arrow {
+          display: inline-flex;
+          color: #16181d;
+          opacity: 0.45;
+          transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .analytics-grid-card:hover .analytics-grid-arrow {
+          transform: translateX(3px);
+          opacity: 1;
         }
 
         .analytics-grid-title {
           font-family: var(--font-syne), sans-serif;
-          font-size: 24px;
+          font-size: 19px;
           font-weight: 700;
-          color: #ffffff;
-          line-height: 1.25;
-          margin: 0 0 10px;
+          color: #16181d;
+          line-height: 1.3;
+          margin: 0 0 6px;
         }
 
         .analytics-grid-desc {
           font-size: 14px;
-          line-height: 1.6;
-          color: rgba(255, 255, 255, 0.82);
+          line-height: 1.5;
+          color: #6b6f76;
           margin: 0;
-          max-width: 90%;
         }
 
-        /* Big cards get more generous content scale */
-        .analytics-grid-card.is-big .analytics-grid-title {
-          font-size: 28px;
-          max-width: 18ch;
-        }
-        .analytics-grid-card.is-big .analytics-grid-desc {
-          font-size: 15px;
-          max-width: 60ch;
-        }
-        /* Secondary emphasis */
-        .analytics-grid-card.is-secondary .analytics-grid-overlay {
-          background: linear-gradient(180deg, rgba(10,12,18,0.04) 35%, rgba(10,12,18,0.60) 68%, rgba(10,12,18,0.80) 100%);
-        }
-
-        /* Tablet: 2-column bento */
-        @media (max-width: 900px) {
+        /* Tablet: 2 columns × 4 rows */
+        @media (max-width: 1024px) {
           .analytics-grid {
             grid-template-columns: repeat(2, 1fr);
-            grid-auto-rows: 280px;
-          }
-          .analytics-grid-card.is-big {
-            grid-column: auto !important;
           }
         }
-        /* Responsive collapse below 780px */
-        @media (max-width: 780px) {
-          .analytics-grid {
-            grid-template-columns: 1fr;
-            grid-template-rows: none;
-            grid-auto-rows: auto;
-          }
-          .analytics-grid > * {
-            grid-column: 1 / -1 !important;
-            grid-row: auto !important;
-          }
-        }
-        /* Mobile: single column */
+
+        /* Mobile: 1 column */
         @media (max-width: 640px) {
           .analytics-grid {
             grid-template-columns: 1fr;
-            grid-auto-rows: 300px;
-          }
-          .analytics-grid-card {
-            grid-column: auto !important;
           }
         }
       `}</style>
@@ -3021,7 +2982,7 @@ We work as an extension of your organization, bringing greater efficiency, consi
           </div>
 
           <div className="de-footer">
-            <p className="de-footer-text">Better intelligence begins with <span>better data.</span></p>
+            <p className="de-footer-text">Better intelligence begins with <span style={{ color: "#C6E84A" }}>better data.</span></p>
             <Link href="/contact" className="de-footer-cta">
               Strengthen your data foundation
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -3034,7 +2995,7 @@ We work as an extension of your organization, bringing greater efficiency, consi
       </section>
 
       {/* ══════════════════════ 6. ANALYTICS & BI ══════════════════════ */}
-      <section id="analytics-bi" className="sol-section sol-section--light">
+      <section id="analytics-bi" className="sol-section sol-section--light sol-section--cream">
         <div className="sol-wrap">
           <Eyebrow>Analytics &amp; Business Intelligence</Eyebrow>
           <SectionTitle>

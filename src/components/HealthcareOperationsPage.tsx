@@ -124,13 +124,58 @@ const ibsTabs = [
 ];
 
 const claimsSteps = [
-  { name: "RECEIVE", sub: "Claim & documents", bg: "linear-gradient(135deg, #0EA5E9, #0284C7)", text: "#FFFFFF", icon: "inbox" },
-  { name: "EXTRACT", sub: "Relevant information", bg: "linear-gradient(135deg, #9333EA, #7E22CE)", text: "#FFFFFF", icon: "scan" },
-  { name: "VALIDATE", sub: "Data & completeness", bg: "linear-gradient(135deg, #C6E84A, #9ECC12)", text: "#0F172A", icon: "check" },
-  { name: "ROUTE", sub: "Workflow & exceptions", bg: "linear-gradient(135deg, #F97316, #EA580C)", text: "#FFFFFF", icon: "git-branch" },
-  { name: "PROCESS", sub: "Administrative actions", bg: "linear-gradient(135deg, #2563EB, #1D4ED8)", text: "#FFFFFF", icon: "cpu" },
-  { name: "ANALYZE", sub: "Quality & insights", bg: "linear-gradient(135deg, #EC4899, #DB2777)", text: "#FFFFFF", icon: "bar-chart" },
+  { num: "01", name: "RECEIVE", sub: "Claim & documents", icon: "inbox", x: 14, y: 28 },
+  { num: "02", name: "EXTRACT", sub: "Relevant Information", icon: "scan", x: 50, y: 28 },
+  { num: "03", name: "VALIDATE", sub: "Data & completeness", icon: "check", x: 86, y: 28 },
+  { num: "04", name: "ROUTE", sub: "Workflow & exceptions", icon: "route", x: 86, y: 74 },
+  { num: "05", name: "PROCESS", sub: "Administrative actions", icon: "settings", x: 50, y: 74 },
+  { num: "06", name: "ANALYZE", sub: "Quality & insights", icon: "bar-chart", x: 14, y: 74 },
 ];
+
+const flowIcons: Record<string, React.ReactNode> = {
+  inbox: (
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 12h-6l-2 3h-4l-2-3H2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6z" />
+      <path d="M5.45 5.11 2 12v0h20v0l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+    </svg>
+  ),
+  scan: (
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+      <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+      <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+      <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+      <line x1="7" y1="12" x2="17" y2="12" />
+    </svg>
+  ),
+  check: (
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+      <polyline points="22 4 12 14.01 9 11.01" />
+    </svg>
+  ),
+  route: (
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="6" y1="3" x2="6" y2="15" />
+      <circle cx="18" cy="6" r="3" />
+      <circle cx="6" cy="18" r="3" />
+      <path d="M18 9a9 9 0 0 1-9 9" />
+    </svg>
+  ),
+  settings: (
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  ),
+  "bar-chart": (
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="12" y1="20" x2="12" y2="10" />
+      <line x1="18" y1="20" x2="18" y2="4" />
+      <line x1="6" y1="20" x2="6" y2="16" />
+    </svg>
+  ),
+};
 
 const providerSteps = [
   { name: "ONBOARD", sub: "Provider information intake" },
@@ -151,12 +196,12 @@ const intelligenceNodes = [
 ];
 
 const intelCapabilities = [
-  { num: "01", title: "Document Intelligence", desc: "Transform unstructured clinical and administrative documents into structured, validated information that teams can act on.", tags: "Extract / Classify / Validate", bg: "linear-gradient(135deg, #0F172A 0%, #0369A1 100%)", tabColor: "#0284C7", image: "/healthcare/Document Intelligence.webp" },
-  { num: "02", title: "Workflow Automation", desc: "Connect repetitive operational steps into intelligent workflows that route work, reduce friction and keep processes moving.", tags: "Route / Process / Update", bg: "linear-gradient(135deg, #1E1B4B 0%, #6D28D9 100%)", tabColor: "#7C3AED", image: "/healthcare/Workflow Automation.webp" },
-  { num: "03", title: "Claims Intelligence", desc: "Surface anomalies and opportunities earlier, helping teams validate claims and prioritize the work that matters most.", tags: "Identify / Validate / Prioritize", bg: "linear-gradient(135deg, #142E11 0%, #4D7C0F 100%)", tabColor: "#65A30D", image: "/healthcare/Claims Intelligence.webp" },
-  { num: "04", title: "Data Intelligence", desc: "Clean, reconcile and enrich fragmented data so healthcare teams can work from information they can trust.", tags: "Clean / Reconcile / Enrich", bg: "linear-gradient(135deg, #431407 0%, #C2410C 100%)", tabColor: "#EA580C", image: "/healthcare/Data Intelligence.webp" },
-  { num: "05", title: "AI-Assisted Operations", desc: "Give operational teams intelligent assistance for summarization, resolution and everyday decisions without adding complexity.", tags: "Summarize / Assist / Resolve", bg: "linear-gradient(135deg, #0B192C 0%, #1D4ED8 100%)", tabColor: "#2563EB", image: "/healthcare/AI-Assisted Operations.webp" },
-  { num: "06", title: "Operational Analytics", desc: "Measure performance, surface patterns and turn operational data into continuous opportunities for improvement.", tags: "Measure / Analyze / Improve", bg: "linear-gradient(135deg, #3B0764 0%, #BE185D 100%)", tabColor: "#DB2777", image: "/healthcare/Operational Analytics.webp" },
+  { num: "01", title: "Document Intelligence", desc: "Transform unstructured clinical and administrative documents into structured, validated information that teams can act on.", tags: "Extract / Classify / Validate", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/healthcare/Document Intelligence.webp" },
+  { num: "02", title: "Workflow Automation", desc: "Connect repetitive operational steps into intelligent workflows that route work, reduce friction and keep processes moving.", tags: "Route / Process / Update", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/healthcare/Workflow Automation.webp" },
+  { num: "03", title: "Claims Intelligence", desc: "Surface anomalies and opportunities earlier, helping teams validate claims and prioritize the work that matters most.", tags: "Identify / Validate / Prioritize", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/healthcare/Claims Intelligence.webp" },
+  { num: "04", title: "Data Intelligence", desc: "Clean, reconcile and enrich fragmented data so healthcare teams can work from information they can trust.", tags: "Clean / Reconcile / Enrich", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/healthcare/Data Intelligence.webp" },
+  { num: "05", title: "AI-Assisted Operations", desc: "Give operational teams intelligent assistance for summarization, resolution and everyday decisions without adding complexity.", tags: "Summarize / Assist / Resolve", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/healthcare/AI-Assisted Operations.webp" },
+  { num: "06", title: "Operational Analytics", desc: "Measure performance, surface patterns and turn operational data into continuous opportunities for improvement.", tags: "Measure / Analyze / Improve", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/healthcare/Operational Analytics.webp" },
 ];
 
 const clinicalItems = [
@@ -194,64 +239,13 @@ const clinicalItems = [
   },
 ];
 
-const outcomeIconProps = {
-  width: 24,
-  height: 24,
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 2,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-  "aria-hidden": true,
-};
-
-const outcomeIcons = [
-  <svg key="faster" {...outcomeIconProps}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>,
-  <svg key="accurate" {...outcomeIconProps}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>,
-  <svg key="efficient" {...outcomeIconProps}><rect width="18" height="18" x="3" y="3" rx="2" /><path d="M11 9h4" /><path d="M11 13h4" /><path d="M11 17h4" /><path d="M7 9h.01" /><path d="M7 13h.01" /><path d="M7 17h.01" /></svg>,
-  <svg key="visible" {...outcomeIconProps}><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0z" /><circle cx="12" cy="12" r="3" /></svg>,
-  <svg key="experienced" {...outcomeIconProps}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /></svg>,
-  <svg key="scalable" {...outcomeIconProps}><path d="M3 17.5l5.5-5.5 3.5 3.5L20.5 7" /><path d="M14.5 7h6v6" /></svg>,
-];
-
 const outcomes = [
-  {
-    num: "01",
-    word: "FASTER",
-    sub: "Faster processing",
-    desc: "Streamlined workflows help reduce administrative delays.",
-  },
-  {
-    num: "02",
-    word: "ACCURATE",
-    sub: "Greater accuracy",
-    desc: "Structured validation helps improve data and process quality.",
-  },
-  {
-    num: "03",
-    word: "EFFICIENT",
-    sub: "Lower administrative effort",
-    desc: "Automation reduces repetitive manual activity.",
-  },
-  {
-    num: "04",
-    word: "VISIBLE",
-    sub: "Better operational visibility",
-    desc: "Connected reporting makes performance and exceptions easier to understand.",
-  },
-  {
-    num: "05",
-    word: "EXPERIENCED",
-    sub: "Better experiences",
-    desc: "Simpler operations help create smoother interactions for members, patients and providers.",
-  },
-  {
-    num: "06",
-    word: "SCALABLE",
-    sub: "Built to adapt",
-    desc: "Flexible operations support changing volumes and evolving requirements.",
-  },
+  { num: "01", word: "FASTER", title: "Less waiting.", image: "/healthcare/faster (2).png", desc: "Streamlined workflows help reduce administrative delays." },
+  { num: "02", word: "ACCURATE", title: "Greater confidence.", image: "/healthcare/accurate.png", desc: "Structured validation helps improve data and process quality." },
+  { num: "03", word: "EFFICIENT", title: "Less repetitive work.", image: "/healthcare/efficient.png", desc: "Automation helps reduce manual administrative activity." },
+  { num: "04", word: "VISIBLE", title: "A clearer view.", image: "/healthcare/visible.png", desc: "Connected reporting makes performance and exceptions easier to understand." },
+  { num: "05", word: "BETTER EXPERIENCES", title: "Smoother interactions.", image: "/healthcare/better-experiences.png", desc: "Simpler operations support smoother interactions for members, patients and providers." },
+  { num: "06", word: "SCALABLE", title: "Room to adapt.", image: "/healthcare/scalable.png", desc: "Flexible operations support changing volumes and evolving requirements." },
 ];
 
 const modelLayers = [
@@ -311,7 +305,7 @@ const whyPoints = [
     num: "03",
     name: "Human + Digital",
     desc: "Automation and skilled teams working together.",
-    icon: "/healthcare/Human + Digital.svg",
+    icon: "/healthcare/human-digital.svg",
   },
   {
     num: "04",
@@ -426,9 +420,9 @@ export default function HealthcareOperationsPage() {
 
         .hc-land-grid { margin-bottom: 0; }
         .hc-land-row { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; margin-top: 40px; }
-        .hc-section-landscape { padding-bottom: clamp(40px, 5vw, 60px); position: relative; background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f0fdf4 100%); }
-        .hc-section-landscape::before { content: ""; position: absolute; top: 80px; right: 60px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%); pointer-events: none; }
-        .hc-section-landscape::after { content: ""; position: absolute; bottom: 40px; left: 100px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%); pointer-events: none; }
+        .hc-section-landscape { padding-bottom: clamp(40px, 5vw, 60px); position: relative; background: #ffffff; }
+        .hc-section-landscape::before { content: none; }
+        .hc-section-landscape::after { content: none; }
         .hc-landscape-text { }
         .hc-landscape-left { }
         .hc-head h2 { position: relative; padding-bottom: 12px; }
@@ -436,30 +430,29 @@ export default function HealthcareOperationsPage() {
         .hc-landscape-left p { color: #5B6472; max-width: 440px; }
         .hc-landscape-right { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
         .hc-challenge-card {
-          background: rgba(255, 255, 255, 0.55);
-          backdrop-filter: blur(20px) saturate(1.4);
-          -webkit-backdrop-filter: blur(20px) saturate(1.4);
-          border: 1px solid rgba(255, 255, 255, 0.7);
+          background: linear-gradient(160deg, #0E1B2E 0%, #1B2735 100%);
+          border: 1px solid rgba(198,232,74,0.14);
           border-radius: 16px;
           padding: 22px 22px 20px;
           position: relative;
           overflow: hidden;
           transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s ease, border-color .3s ease;
-          box-shadow: 0 4px 24px -8px rgba(10,22,40,0.06), inset 0 1px 0 rgba(255,255,255,0.6);
+          box-shadow: 0 10px 30px -12px rgba(12,27,48,0.35);
         }
         .hc-challenge-card::before {
           content: "";
           position: absolute;
           inset: 0;
           border-radius: 16px;
+          background: radial-gradient(120px 60px at 20% 0%, rgba(198,232,74,0.12), transparent 70%);
           opacity: 0;
           transition: opacity .3s ease;
           pointer-events: none;
         }
         .hc-challenge-card:hover {
           transform: translateY(-5px) scale(1.01);
-          box-shadow: 0 16px 40px -10px rgba(10,22,40,0.14), inset 0 1px 0 rgba(255,255,255,0.8);
-          border-color: rgba(255,255,255,0.9);
+          box-shadow: 0 20px 44px -12px rgba(12,27,48,0.45);
+          border-color: rgba(198,232,74,0.45);
         }
         .hc-challenge-card:hover::before { opacity: 1; }
         .hc-challenge-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
@@ -471,7 +464,9 @@ export default function HealthcareOperationsPage() {
           align-items: center;
           justify-content: center;
           position: relative;
-          box-shadow: 0 2px 12px -3px currentColor;
+          background: #C6E84A;
+          color: #0f0f0f;
+          box-shadow: 0 2px 12px -3px rgba(198,232,74,0.5);
           flex-shrink: 0;
         }
         .hc-challenge-icon::after {
@@ -487,7 +482,7 @@ export default function HealthcareOperationsPage() {
         }
         .hc-challenge-card:hover .hc-challenge-icon::after { opacity: 0.55; }
         .hc-challenge-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-        .hc-challenge-label { font-size: 15px; font-weight: 600; color: #1A2540; line-height: 1.4; }
+        .hc-challenge-label { font-size: 15px; font-weight: 600; color: #ffffff; line-height: 1.4; }
         .hc-approach {
           margin-top: 48px;
           background: linear-gradient(135deg, #0B1D35 0%, #132742 40%, #0F2035 100%);
@@ -558,24 +553,32 @@ export default function HealthcareOperationsPage() {
         .hc-feature-img { position: relative; overflow: hidden; border-radius: 22px; aspect-ratio: 4 / 4.6; }
         .hc-feature-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .hc-feature-tint { position: absolute; inset: 0; background: linear-gradient(200deg, rgba(198,232,74,0.16) 0%, rgba(7,20,38,0.05) 40%, rgba(7,20,38,0.55) 100%); }
-        .hc-claims-wf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 14px; margin-top: 36px; }
-        .hc-claims-wf-step { position: relative; display: flex; align-items: center; }
-        .hc-claims-wf-card { flex: 1; border-radius: 16px; padding: 18px 16px; border: 1px solid rgba(255, 255, 255, 0.15); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease, filter 0.35s ease; position: relative; box-shadow: 0 10px 24px -6px rgba(0,0,0,0.4); }
-        .hc-claims-wf-card:hover { transform: translateY(-5px); box-shadow: 0 16px 36px -8px rgba(0,0,0,0.6); filter: brightness(1.08); }
-        .hc-claims-wf-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-        .hc-claims-wf-icon { width: 34px; height: 34px; border-radius: 10px; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.25); display: flex; align-items: center; justify-content: center; color: inherit; transition: transform 0.3s ease; }
-        .hc-claims-wf-card:hover .hc-claims-wf-icon { transform: scale(1.1); }
-        .hc-claims-wf-num { font-family: var(--font-syne), sans-serif; font-size: 11.5px; font-weight: 800; color: inherit; letter-spacing: 0.08em; background: rgba(0, 0, 0, 0.2); padding: 4px 9px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.2); }
-        .hc-claims-wf-title { font-family: var(--font-syne), sans-serif; font-size: 15px; font-weight: 700; color: inherit; letter-spacing: 0.04em; }
-        .hc-claims-wf-sub { font-size: 12.5px; line-height: 1.45; color: inherit; opacity: 0.85; margin-top: 4px; }
-        .hc-claims-wf-connector { position: absolute; right: -13px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; border-radius: 50%; background: #071426; border: 1.5px solid rgba(255, 255, 255, 0.3); display: flex; align-items: center; justify-content: center; color: #ffffff; z-index: 3; box-shadow: 0 0 10px rgba(0,0,0,0.6); }
+        .hc-claims-flow { position: relative; margin-top: 40px; max-width: 640px; width: 100%; aspect-ratio: 16 / 11; }
+        .hc-cw-lines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .hc-cw-node { position: absolute; z-index: 2; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; }
+        .hc-cw-circle { width: 62px; height: 62px; border-radius: 50%; background: var(--hcn); border: 1.5px solid var(--hcc); display: flex; align-items: center; justify-content: center; color: #f4f7fb; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.3s ease; }
+        .hc-cw-node:hover .hc-cw-circle { transform: scale(1.08); border-color: #D9F77E; box-shadow: 0 0 0 7px rgba(198,232,74,0.12); }
+        .hc-cw-label { position: absolute; bottom: calc(100% + 12px); left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 3px; pointer-events: none; }
+        .hc-cw-num { font-family: var(--font-syne), Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: var(--hcc); line-height: 1; }
+        .hc-cw-name { font-family: var(--font-syne), Arial, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: #ffffff; text-transform: uppercase; white-space: nowrap; line-height: 1.15; }
+        .hc-cw-sub { position: absolute; top: calc(100% + 10px); left: 0; right: 0; text-align: center; font-size: 12px; line-height: 1.35; color: rgba(196,211,231,0.72); white-space: nowrap; padding: 0 4px; pointer-events: none; }
+        .hc-cw-arrow { position: absolute; z-index: 1; width: 0; height: 0; transform: translate(-50%, -50%); pointer-events: none; }
+        .hc-cw-arrow--r { border-left: 9px solid var(--hcc); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+        .hc-cw-arrow--l { border-right: 9px solid var(--hcc); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+        .hc-cw-arrow--d { border-top: 9px solid var(--hcc); border-left: 5px solid transparent; border-right: 5px solid transparent; }
+        .hc-cw-arrow--u { border-bottom: 9px solid var(--hcc); border-left: 5px solid transparent; border-right: 5px solid transparent; }
         @media (max-width: 1100px) {
-          .hc-claims-wf-grid { grid-template-columns: repeat(2, 1fr); }
-          .hc-claims-wf-connector { display: none; }
+          .hc-claims-flow { max-width: 100%; aspect-ratio: auto; }
+          .hc-cw-lines, .hc-cw-arrow { display: none; }
+          .hc-cw-node { position: relative; left: auto !important; top: auto !important; transform: none; width: 100%; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+          .hc-cw-label { position: static; bottom: auto; margin-bottom: 12px; }
+          .hc-cw-sub { position: static; top: auto; margin-top: 12px; white-space: normal; }
+          .hc-cw-node:not(:last-child)::after { content: ""; display: block; width: 0; height: 0; margin: 4px auto 0; border-top: 9px solid var(--hcc); border-left: 5px solid transparent; border-right: 5px solid transparent; }
         }
         @media (max-width: 640px) {
-          .hc-claims-wf-grid { grid-template-columns: 1fr; }
+          .hc-cw-circle { width: 58px; height: 58px; }
         }
+        @media (prefers-reduced-motion: reduce) { .hc-cw-node:hover .hc-cw-circle { transform: none; } }
 
         .hc-prov-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(36px, 5vw, 90px); align-items: center; }
         .hc-prov-img { position: relative; overflow: hidden; border-radius: 22px; aspect-ratio: 4 / 4.8; box-shadow: 0 34px 70px -40px rgba(12,27,48,0.45); }
@@ -639,17 +642,21 @@ export default function HealthcareOperationsPage() {
         .hc-clin-panel.is-open { max-height:500px; opacity:1; }
         .hc-clin-panel-inner { padding:0 20px 18px; color:#9AA7B8; font-size:13.5px; line-height:1.7; }
 
-        .hc-out-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 56px; }
-        .hc-outcome { position: relative; overflow: hidden; background: #ffffff; border: 1px solid rgba(12,27,48,0.08); border-radius: 20px; padding: clamp(28px, 2.5vw, 36px); display: flex; flex-direction: column; box-shadow: 0 4px 20px -6px rgba(12,27,48,0.04); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease; }
-        .hc-outcome::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, #7AA306, #C6E84A); opacity: 0; transition: opacity 0.35s ease; }
-        .hc-outcome:hover { transform: translateY(-6px); border-color: rgba(122,163,6,0.35); box-shadow: 0 24px 48px -18px rgba(12,27,48,0.12); }
-        .hc-outcome:hover::after { opacity: 1; }
-        .hc-outcome-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-        .hc-outcome-icon { width: 48px; height: 48px; border-radius: 14px; background: rgba(198,232,74,0.12); border: 1px solid rgba(122,163,6,0.2); display: flex; align-items: center; justify-content: center; color: #618300; transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.35s ease; }
-        .hc-outcome:hover .hc-outcome-icon { background: #C6E84A; border-color: #C6E84A; color: #0C1B30; transform: scale(1.06); }
-        .hc-outcome-word { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(22px, 2.2vw, 28px); font-weight: 700; letter-spacing: -0.01em; color: #0C1B30; margin: 0; }
-        .hc-outcome-sub { font-size: 15px; font-weight: 600; color: #7AA306; margin: 6px 0 0; }
-        .hc-outcome-desc { font-size: 14.5px; line-height: 1.65; color: #5A6B7F; margin: 12px 0 0; }
+        .hc-out-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 56px; }
+        .hc-outcome { position: relative; overflow: hidden; background: #f5f5f3; border-radius: 16px; display: flex; flex-direction: row; min-height: 220px; box-shadow: 0 2px 12px -4px rgba(12,27,48,0.08); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease; }
+        .hc-outcome--dark { background: #0c1b2e; }
+        .hc-outcome:hover { transform: translateY(-4px); box-shadow: 0 16px 40px -14px rgba(12,27,48,0.20); }
+        .hc-outcome-body { flex: 0 0 50%; padding: 24px 20px 24px 24px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; z-index: 2; pointer-events: none; }
+        .hc-outcome-body * { pointer-events: auto; }
+        .hc-outcome-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8a97a8; margin: 0 0 10px; }
+        .hc-outcome--dark .hc-outcome-eyebrow { color: #6b8299; }
+        .hc-outcome-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(20px, 1.8vw, 26px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #0a1628; margin: 0 0 10px; }
+        .hc-outcome--dark .hc-outcome-title { color: #ffffff; }
+        .hc-outcome-desc { font-size: 12.5px; line-height: 1.6; color: #5a6b7f; margin: 0; max-width: 24ch; }
+        .hc-outcome--dark .hc-outcome-desc { color: #7a96ae; }
+        .hc-outcome-media { position: absolute; right: 0; top: 0; bottom: 0; width: 68%; z-index: 1; overflow: hidden; }
+        .hc-outcome-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .hc-outcome:hover .hc-outcome-media img { transform: scale(1.05); }
 
         .hc-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 56px; }
         .hc-layer { display: grid; grid-template-columns: 90px 320px 1fr; align-items: center; gap: 20px; border-radius: 14px; padding: 24px 30px; background: #10294A; border: 1px solid rgba(198,232,74,0.12); transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
@@ -674,32 +681,33 @@ export default function HealthcareOperationsPage() {
         .hc-why-card h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 23px; font-weight: 700; color: #0C1B30; margin: 4px 0 0; }
         .hc-why-card p { font-size: 14px; line-height: 1.65; color: #5A6B7F; margin: 8px 0 0; }
 
-        .hc-transform { display:grid; grid-template-columns:1fr 1fr; isolation:isolate; overflow:hidden; }
-        .hc-transform-left { display:flex; flex-direction:column; }
-        .hc-transform-panel { padding:44px 48px; display:flex; flex:1; }
-        .hc-transform-panel--dark { position:relative; background:radial-gradient(circle at 25% 15%, #132745 0%, #0A1628 55%, #050B14 100%); color:#F5F7FA; overflow:hidden; }
-        .hc-transform-panel--dark::before { content:""; position:absolute; left:-60px; bottom:-60px; width:340px; height:340px; background:radial-gradient(circle, rgba(196,229,56,0.1), transparent 70%); pointer-events:none; }
-        .hc-transform-panel--light { background:#F8FAFC; color:#0A1628; border-top:1px solid #EDF0F4; }
-        .hc-transform-panel--right { background:#EFF3F7; color:#0A1628; }
-        .hc-transform-panel-inner { width:100%; display:flex; flex-direction:column; justify-content:center; }
-        .hc-transform-badge { display:inline-block; align-self:flex-start; background:#C6E84A; color:#0f0f0f; padding:8px 20px; border-radius:999px; font-size:14px; font-weight:600; letter-spacing:0.5px; font-variant:small-caps; margin-bottom:24px; }
-        .hc-transform h3 { font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:clamp(24px,2.6vw,32px); font-weight:700; margin:0; color:inherit; line-height:1.25; }
-        .hc-transform-panel--dark > .hc-transform-panel-inner > p { font-size:15px; line-height:1.7; margin:14px 0 0; max-width:440px; color:#8B9AB5; }
-        .hc-transform-panel--light > .hc-transform-panel-inner > p { font-size:15px; line-height:1.7; margin:14px 0 0; max-width:440px; color:#5B6472; }
-        .hc-transform-illustration { flex:1; display:flex; align-items:flex-end; justify-content:center; margin-top:32px; }
-        .hc-transform-illustration svg { width:100%; max-width:440px; height:auto; }
-        .hc-pot-title { font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:clamp(24px,2.6vw,32px); font-weight:700; margin:0 0 16px; color:#0A1628; line-height:1.25; }
-        .hc-pot-checklist { list-style:none; margin:0; padding:0; background:#FFFFFF; border:1px solid #E8EBF0; border-radius:16px; overflow:hidden; box-shadow:0 6px 20px -12px rgba(10,22,40,0.15); }
-        .hc-pot-checklist li { display:flex; align-items:center; gap:14px; padding:15px 20px; border-top:1px solid #EEF1F5; font-size:14.5px; font-weight:600; color:#1D2733; transition:background .2s ease; }
-        .hc-pot-checklist li:first-child { border-top:none; }
-        .hc-pot-checklist li:hover { background:#FAFDF5; }
-        .hc-pot-badge { width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg, #0A1628 0%, #1A2B45 100%); color:#C4E538; display:flex; align-items:center; justify-content:center; flex:0 0 auto; font-weight:700; font-size:13px; }
-        .hc-transform-cta { display:inline-flex; align-items:center; gap:10px; align-self:flex-start; background:#0A1628; color:#F5F7FA; padding:14px 28px; border-radius:12px; font-weight:700; font-size:14px; text-decoration:none; margin-top:28px; transition:background .15s ease, transform .15s ease, box-shadow .15s ease; box-shadow:0 2px 12px -4px rgba(10,22,40,0.2); }
-        .hc-transform-cta span { display:inline-block; transition:transform .15s ease; }
-        .hc-transform-cta:hover { background:#142544; transform:translateY(-2px); box-shadow:0 6px 20px -6px rgba(10,22,40,0.3); }
+        .hc-transform { margin-top:clamp(8px,1vw,16px); padding:0 clamp(28px,5vw,80px) clamp(64px,8vw,120px); background:#FFFFFF; overflow:hidden; }
+        .hc-transform-badge { display:inline-block; align-self:flex-start; background:#C6E84A; color:#0f0f0f; padding:8px 20px; border-radius:999px; font-size:14px; font-weight:600; letter-spacing:0.5px; font-variant:small-caps; margin-bottom:clamp(12px,1.6vw,16px); }
+        .hc-transform-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(40px,5vw,72px); align-items:flex-start; }
+        .hc-transform-left { display:flex; flex-direction:column; max-width:560px; padding-top:clamp(8px,1vw,16px); }
+        .hc-tl-step { display:flex; align-items:flex-start; gap:24px; }
+        .hc-tl-step--approach { align-items:center; }
+        .hc-tl-icon { flex:0 0 auto; width:52px; height:52px; border-radius:50%; border:1.5px solid #C8D1DD; background:#FFFFFF; color:#93A0B0; display:flex; align-items:center; justify-content:center; }
+        .hc-tl-icon svg { width:22px; height:22px; }
+        .hc-tl-body { flex:1; min-width:0; }
+        .hc-tl-body h3 { font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:clamp(20px,2vw,24px); font-weight:700; margin:0; color:#0C1B30; line-height:1.25; }
+        .hc-tl-body p { font-size:15px; line-height:1.7; margin:12px 0 0; color:#5A6B7F; }
+        .hc-tl-step--approach .hc-tl-body { background:#F3F5F7; border-left:4px solid var(--hcc); border-radius:16px; padding:24px 26px; }
+        .hc-tl-link { flex:0 0 auto; width:0; height:44px; margin:12px 0 12px 25px; border-left:2px dashed #C6E84A; }
+        .hc-pot-card { background:#0C1B30; border-radius:22px; padding:clamp(30px,3.5vw,44px); color:#FFFFFF; box-shadow:0 34px 70px -40px rgba(7,20,38,0.5); }
+        .hc-pot-title { font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:clamp(24px,2.6vw,32px); font-weight:700; margin:0 0 clamp(18px,2vw,24px); color:#FFFFFF; line-height:1.25; }
+        .hc-pot-checklist { list-style:none; margin:0; padding:0; }
+        .hc-pot-checklist li { display:flex; align-items:center; gap:14px; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.1); font-size:15px; font-weight:600; color:#FFFFFF; }
+        .hc-pot-checklist li:last-child { border-bottom:none; }
+        .hc-pot-tick { flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; color:var(--hcc); }
+        .hc-pot-tick svg { width:18px; height:18px; }
+        .hc-transform-cta { display:inline-flex; align-items:center; justify-content:center; gap:10px; align-self:flex-start; background:#C6E84A; color:#0f0f0f; padding:15px 30px; border-radius:999px; font-weight:700; font-size:15px; letter-spacing:0.02em; text-decoration:none; margin-top:28px; transition:background .25s ease, transform .25s cubic-bezier(0.16,1,0.3,1), box-shadow .25s ease; }
+        .hc-transform-cta span { display:inline-block; transition:transform .2s ease; }
+        .hc-transform-cta:hover { background:#D9F77E; transform:translateY(-2px); box-shadow:0 16px 34px -14px rgba(198,232,74,0.55); }
         .hc-transform-cta:hover span { transform:translateX(3px); }
-        @media (prefers-reduced-motion:reduce){ .hc-pot-checklist li:hover{ background:transparent; } .hc-transform-cta:hover{ transform:none; } .hc-transform-cta:hover span{ transform:none; } }
-        @media (max-width:900px){ .hc-transform{ grid-template-columns:1fr; min-height:auto; } .hc-transform-panel{ padding:36px 24px; } .hc-transform-panel--light{ border-top:1px solid #EDF0F4; border-left:none; } }
+        @media (prefers-reduced-motion:reduce){ .hc-transform-cta:hover{ transform:none; } .hc-transform-cta:hover span{ transform:none; } }
+        @media (max-width:900px){ .hc-transform{ margin-top:clamp(12px,3vw,24px); padding:0 24px clamp(48px,8vw,72px); } .hc-transform-grid{ grid-template-columns:1fr; gap:40px; } .hc-transform-left{ max-width:none; } }
+        @media (max-width:520px){ .hc-tl-step{ gap:16px; } .hc-tl-icon{ width:46px; height:46px; } .hc-tl-icon svg{ width:20px; height:20px; } .hc-tl-link{ margin-left:22px; height:36px; margin-top:10px; margin-bottom:10px; } .hc-tl-step--approach .hc-tl-body{ padding:20px 18px; } }
 
         .hc-final { position: relative; overflow: hidden; background: #0f0f0f; text-align: center; padding: 100px 80px; }
         .hc-final-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 400px; background: radial-gradient(circle, rgba(198,232,74,0.12) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
@@ -723,8 +731,7 @@ export default function HealthcareOperationsPage() {
           .hc-eco-grid { grid-template-columns: 1fr; }
           .hc-eco-card { aspect-ratio: 4 / 3; }
           .hc-cards2 { grid-template-columns: 1fr 1fr; }
-          .hc-out-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-          .hc-outcome:nth-child(5) { grid-column: span 1; }
+          .hc-out-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           .hc-why-grid { grid-template-columns: 1fr 1fr; }
           .hc-tree-links { display: none; }
           .hc-node::before, .hc-node::after { display: none; }
@@ -740,7 +747,6 @@ export default function HealthcareOperationsPage() {
         }
         @media (max-width: 640px) {
           .hc-cards2, .hc-out-grid, .hc-why-grid { grid-template-columns: 1fr; }
-          .hc-outcome:nth-child(5) { grid-column: span 1; }
           .hc-ibs-list { grid-template-columns: 1fr; }
           .hc-ibs-tabs { gap: 2px; }
           .hc-ibs-tab { padding: 12px 10px 14px; font-size: 13.5px; }
@@ -773,9 +779,10 @@ export default function HealthcareOperationsPage() {
         .scd-deck-wrapper { position: relative; width: 100%; margin-top: 20px; }
         .scd-deck { position: relative; width: 100%; min-height: 480px; }
         .scd-tabs-bar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; position: relative; z-index: 10; width: 100%; }
-        .scd-tab { appearance: none; border: none; background: var(--c); border-radius: 14px 14px 0 0; padding: 14px 12px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #ffffff; font-family: inherit; font-size: 13.5px; font-weight: 700; filter: brightness(0.55); opacity: 0.85; transition: filter 0.3s ease, transform 0.3s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.3s ease; text-align: center; }
-        .scd-tab:hover { filter: brightness(0.85); opacity: 1; }
-        .scd-tab.is-active { filter: brightness(1); opacity: 1; transform: translateY(-4px); box-shadow: 0 -8px 20px rgba(0,0,0,0.3); }
+        .scd-tab { appearance: none; border: none; background: #1B2530; border-radius: 14px 14px 0 0; padding: 14px 12px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #B7C3D0; font-family: inherit; font-size: 13.5px; font-weight: 700; opacity: 0.85; transition: background 0.3s ease, transform 0.3s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.3s ease, color 0.3s ease; text-align: center; }
+        .scd-tab:hover { background: #26303C; color: #ffffff; opacity: 1; }
+        .scd-tab.is-active { background: #C6E84A; color: #0f0f0f; opacity: 1; transform: translateY(-4px); box-shadow: 0 -8px 20px rgba(0,0,0,0.3); }
+        .scd-tab.is-active .scd-tab-num { background: rgba(15,23,42,0.16); color: #0f0f0f; }
         .scd-tab-num { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; background: rgba(0,0,0,0.25); padding: 2px 6px; border-radius: 999px; }
         .scd-tab-text { font-family: var(--font-syne), sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .scd-cards-stack { position: relative; width: 100%; min-height: 400px; }
@@ -841,14 +848,14 @@ export default function HealthcareOperationsPage() {
           </div>
           <div className="hc-land-row hc-reveal">
             <div className="hc-landscape-text">
-              <p className="hc-lede">Healthcare organizations manage enormous volumes of information, transactions and interactions across members, patients, providers and operational systems.</p>
-              <p className="hc-copy">Behind every healthcare experience sits a complex network of claims, authorizations, provider information, documentation and service workflows — often spread across multiple systems and teams.</p>
+              <p className="hc-lede">&emsp;Healthcare organizations manage enormous volumes of information, transactions and interactions across members, patients, providers and operational systems.</p>
+              <p className="hc-copy">&emsp;Behind every healthcare experience sits a complex network of claims, authorizations, provider information, documentation and service workflows — often spread across multiple systems and teams.</p>
             </div>
             <div className="hc-landscape-right">
               {challenges.map((c, i) => (
-                <article key={c.label} className="hc-challenge-card" style={{ background: c.gradient } as React.CSSProperties}>
+                <article key={c.label} className="hc-challenge-card">
                   <div className="hc-challenge-top">
-                    <div className="hc-challenge-icon" style={{ background: c.color, color: "#fff" }} aria-hidden="true">
+                    <div className="hc-challenge-icon" aria-hidden="true">
                       <svg viewBox="0 0 24 24">
                         {i === 0 && <><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" /><rect x="9" y="3" width="6" height="4" rx="1" /><path d="M9 14l2 2 4-4" /></>}
                         {i === 1 && <><circle cx="12" cy="12" r="3" /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" /></>}
@@ -961,47 +968,36 @@ export default function HealthcareOperationsPage() {
             <div className="hc-reveal">
               <HcLabel text="Claims Operations" />
               <h2 className="hc-h2">Smarter claims. Less <span style={{ color: "#C6E84A" }}>operational friction.</span></h2>
-              <p className="hc-lede">Claims operations sit at the intersection of members, providers, policies, documentation and complex administrative workflows.</p>
-              <p className="hc-copy">Sytrion combines structured workflows, document intelligence, automation and human expertise to help streamline administrative claims processes while improving visibility and operational control.</p>
-              <div className="hc-claims-wf-grid">
-                {claimsSteps.map((s, i) => {
-                  const stepIcons: Record<string, React.ReactNode> = {
-                    inbox: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 12h-6l-2 3h-4l-2-3H2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6z" /><path d="M5.45 5.11 2 12v0h20v0l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" /></svg>,
-                    scan: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 7V5a2 2 0 0 1 2-2h2" /><path d="M17 3h2a2 2 0 0 1 2 2v2" /><path d="M21 17v2a2 2 0 0 1-2 2h-2" /><path d="M7 21H5a2 2 0 0 1-2-2v-2" /><line x1="7" y1="12" x2="17" y2="12" /></svg>,
-                    check: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>,
-                    "git-branch": <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="6" y1="3" x2="6" y2="15" /><circle cx="18" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M18 9a9 9 0 0 1-9 9" /></svg>,
-                    cpu: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="4" width="16" height="16" rx="2" /><rect x="9" y="9" width="6" height="6" /><line x1="9" y1="1" x2="9" y2="4" /><line x1="15" y1="1" x2="15" y2="4" /><line x1="9" y1="20" x2="9" y2="23" /><line x1="15" y1="20" x2="15" y2="23" /><line x1="20" y1="9" x2="23" y2="9" /><line x1="20" y1="15" x2="23" y2="15" /><line x1="1" y1="9" x2="4" y2="9" /><line x1="1" y1="15" x2="4" y2="15" /></svg>,
-                    "bar-chart": <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="20" x2="12" y2="10" /><line x1="18" y1="20" x2="18" y2="4" /><line x1="6" y1="20" x2="6" y2="16" /></svg>,
-                  };
+              <p className="hc-lede">&emsp;Claims operations sit at the intersection of members, providers, policies, documentation and complex administrative workflows.</p>
+              <p className="hc-copy">&emsp;Sytrion combines structured workflows, document intelligence, automation and human expertise to help streamline administrative claims processes while improving visibility and operational control.</p>
+              <div className="hc-claims-flow">
+                <svg className="hc-cw-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <path
+                    d="M14 28 H50 M50 28 H86 M86 28 L86 67 M86 74 H50 M50 74 H14"
+                    stroke="#C6E84A"
+                    strokeOpacity="0.42"
+                    strokeWidth="1.2"
+                    vectorEffect="non-scaling-stroke"
+                    fill="none"
+                  />
+                </svg>
 
-                  return (
-                    <div key={s.name} className="hc-claims-wf-step">
-                      <div
-                        className="hc-claims-wf-card"
-                        style={{
-                          background: s.bg,
-                          color: s.text,
-                        }}
-                      >
-                        <div className="hc-claims-wf-top">
-                          <div className="hc-claims-wf-icon">
-                            {stepIcons[s.icon]}
-                          </div>
-                          <span className="hc-claims-wf-num">0{i + 1}</span>
-                        </div>
-                        <div className="hc-claims-wf-title">{s.name}</div>
-                        <div className="hc-claims-wf-sub">{s.sub}</div>
-                      </div>
-                      {i < claimsSteps.length - 1 && (
-                        <div className="hc-claims-wf-connector" aria-hidden="true">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                            <polyline points="9 18 15 12 9 6" />
-                          </svg>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                <span className="hc-cw-arrow hc-cw-arrow--r" style={{ left: "32%", top: "28%" }} aria-hidden="true" />
+                <span className="hc-cw-arrow hc-cw-arrow--r" style={{ left: "68%", top: "28%" }} aria-hidden="true" />
+                <span className="hc-cw-arrow hc-cw-arrow--d" style={{ left: "86%", top: "67%" }} aria-hidden="true" />
+                <span className="hc-cw-arrow hc-cw-arrow--l" style={{ left: "68%", top: "74%" }} aria-hidden="true" />
+                <span className="hc-cw-arrow hc-cw-arrow--l" style={{ left: "32%", top: "74%" }} aria-hidden="true" />
+
+                {claimsSteps.map((s) => (
+                  <div key={s.name} className="hc-cw-node" style={{ left: `${s.x}%`, top: `${s.y}%` }}>
+                    <div className="hc-cw-circle">{flowIcons[s.icon]}</div>
+                    <span className="hc-cw-label">
+                      <span className="hc-cw-num">{s.num}</span>
+                      <span className="hc-cw-name">{s.name}</span>
+                    </span>
+                    <span className="hc-cw-sub">{s.sub}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -1018,8 +1014,8 @@ export default function HealthcareOperationsPage() {
             <div className="hc-reveal">
               <HcLabel text="Provider Operations" light />
               <h2 className="hc-h2">Better provider data. Better <span style={{ color: "#C6E84A" }}>connected operations.</span></h2>
-              <p className="hc-lede">Accurate and current provider information is fundamental to claims, network operations and provider/member experiences.</p>
-              <p className="hc-copy">Sytrion supports provider lifecycle operations with structured workflows and data management designed to improve consistency, accuracy and visibility.</p>
+              <p className="hc-lede">&emsp;Accurate and current provider information is fundamental to claims, network operations and provider/member experiences.</p>
+              <p className="hc-copy">&emsp;Sytrion supports provider lifecycle operations with structured workflows and data management designed to improve consistency, accuracy and visibility.</p>
               <ol className="hc-timeline">
                 {providerSteps.map((s) => (
                   <li key={s.name} className="hc-tstep">
@@ -1055,7 +1051,6 @@ export default function HealthcareOperationsPage() {
                     aria-selected={intelActive === i}
                     aria-controls={`scd-card-${i}`}
                     className={`scd-tab ${intelActive === i ? "is-active" : ""}`}
-                    style={{ "--c": cap.tabColor } as React.CSSProperties}
                     onClick={() => setIntelActive(i)}
                     onMouseEnter={() => setIntelActive(i)}
                     onFocus={() => setIntelActive(i)}
@@ -1119,8 +1114,8 @@ export default function HealthcareOperationsPage() {
             <div className="hc-reveal">
               <HcLabel text="AI Clinical + Quality" />
               <h2 className="hc-h2">Turn complex records and quality workflows into clear,<span style={{ color: "#C6E84A" }}>review-ready intelligence. </span></h2>
-              <p className="hc-lede">Healthcare teams often work across lengthy clinical records, fragmented documentation and high-volume quality-review queues. Finding the relevant information can require significant manual effort before a qualified reviewer can act.</p>
-              <p className="hc-copy">Sytrion can combine healthcare operations expertise, generative AI, workflow automation and human review to organize information, prepare concise summaries and strengthen post-process quality controls — while keeping clinical judgment and final decisions with authorized professionals.</p>
+              <p className="hc-lede">&emsp;Healthcare teams often work across lengthy clinical records, fragmented documentation and high-volume quality-review queues. Finding the relevant information can require significant manual effort before a qualified reviewer can act.</p>
+              <p className="hc-copy">&emsp;Sytrion can combine healthcare operations expertise, generative AI, workflow automation and human review to organize information, prepare concise summaries and strengthen post-process quality controls — while keeping clinical judgment and final decisions with authorized professionals.</p>
             </div>
           </div>
           <div className="hc-clin-accordion hc-reveal">
@@ -1157,15 +1152,15 @@ export default function HealthcareOperationsPage() {
           </div>
           <div className="hc-out-grid hc-reveal">
             {outcomes.map((o, i) => (
-              <article key={o.word} className="hc-outcome">
-                <div className="hc-outcome-header">
-                  <div className="hc-outcome-icon" aria-hidden="true">
-                    {outcomeIcons[i]}
-                  </div>
+              <article key={o.word} className={`hc-outcome${i === 0 ? " hc-outcome--dark" : ""}`}>
+                <div className="hc-outcome-body">
+                  <p className="hc-outcome-eyebrow">{o.num} / {o.word}</p>
+                  <h3 className="hc-outcome-title">{o.title}</h3>
+                  <p className="hc-outcome-desc">{o.desc}</p>
                 </div>
-                <h3 className="hc-outcome-word">{o.word}</h3>
-                <p className="hc-outcome-sub">{o.sub}</p>
-                <p className="hc-outcome-desc">{o.desc}</p>
+                <div className="hc-outcome-media">
+                  <img src={o.image} alt={o.title} loading="lazy" decoding="async" />
+                </div>
               </article>
             ))}
           </div>
@@ -1216,33 +1211,48 @@ export default function HealthcareOperationsPage() {
       </section>
 
       <section className="hc-transform">
-        <div className="hc-transform-left">
-          <div className="hc-transform-panel hc-transform-panel--dark">
-            <div className="hc-transform-panel-inner">
-              <span className="hc-transform-badge">Transformation in Action</span>
+        <div className="hc-transform-grid">
+          <div className="hc-transform-left">
+          <span className="hc-transform-badge">Transformation in Action</span>
+          <div className="hc-tl-step">
+            <span className="hc-tl-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+              </svg>
+            </span>
+            <div className="hc-tl-body">
               <h3>The Challenge</h3>
               <p>High-volume healthcare workflows can involve fragmented information, manual document processing, repetitive validations and significant exception handling.</p>
             </div>
           </div>
-          <div className="hc-transform-panel hc-transform-panel--light">
-            <div className="hc-transform-panel-inner">
+          <div className="hc-tl-link" aria-hidden="true" />
+          <div className="hc-tl-step hc-tl-step--approach">
+            <span className="hc-tl-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+              </svg>
+            </span>
+            <div className="hc-tl-body">
               <h3>The Sytrion Approach</h3>
               <p>Combine domain-led operations with document intelligence, workflow automation, structured validation and operational analytics.</p>
             </div>
           </div>
         </div>
-        <div className="hc-transform-panel hc-transform-panel--right">
-          <div className="hc-transform-panel-inner">
-            <h3 className="hc-pot-title">The Potential</h3>
-            <ul className="hc-pot-checklist">
-              <li><span className="hc-pot-badge" aria-hidden="true">✓</span> Faster Processing</li>
-              <li><span className="hc-pot-badge" aria-hidden="true">✓</span> Reduced Manual Touchpoints</li>
-              <li><span className="hc-pot-badge" aria-hidden="true">✓</span> Improved Data Quality</li>
-              <li><span className="hc-pot-badge" aria-hidden="true">✓</span> Better Exception Visibility</li>
-              <li><span className="hc-pot-badge" aria-hidden="true">✓</span> More Scalable Operations</li>
-            </ul>
-            <Link href="/contact" className="hc-transform-cta">Discuss Your Use Case <span>→</span></Link>
-          </div>
+        <div className="hc-pot-card">
+          <h3 className="hc-pot-title">The Potential</h3>
+          <ul className="hc-pot-checklist">
+            <li><span className="hc-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Faster Processing</li>
+            <li><span className="hc-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Reduced Manual Touchpoints</li>
+            <li><span className="hc-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Improved Data Quality</li>
+            <li><span className="hc-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Better Exception Visibility</li>
+            <li><span className="hc-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> More Scalable Operations</li>
+          </ul>
+          <Link href="/contact" className="hc-transform-cta">Discuss Your Use Case <span>→</span></Link>
+        </div>
         </div>
       </section>
 

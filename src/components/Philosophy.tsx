@@ -167,7 +167,7 @@ export default function Philosophy() {
             style={{ marginTop: "48px" }}
           >
             <p className="philosophy-closing-text" style={{ color: "#D1D5DB" }}>
-              Together, these principles define <span className="phil-shimmer-text">Sytrion</span> — a company built on{" "}
+              Together, these principles define <span style={{ color: "#C6E84A" }}>Sytrion</span> — a company built on{" "}
               <strong className="phil-keyword">Synergy</strong>,{" "}
               <strong className="phil-keyword">Systems</strong>,{" "}
               <strong className="phil-keyword">Transformation</strong>,{" "}

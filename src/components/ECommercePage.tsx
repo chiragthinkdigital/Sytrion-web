@@ -267,7 +267,7 @@ const whyPoints = [
     num: "03",
     name: "Human + Digital",
     desc: "Automation and skilled teams working together.",
-    icon: "/healthcare/Human + Digital.svg",
+    icon: "/healthcare/human-digital.svg",
   },
   {
     num: "04",
