@@ -95,12 +95,12 @@ const disruptionSteps = [
 ];
 
 const outcomes = [
-  { num: "01", word: "FASTER", sub: "Faster response", desc: "Intelligent workflows help teams process requests and exceptions more quickly.", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> },
-  { num: "02", word: "SEAMLESS", sub: "Smoother journeys", desc: "Connected operations reduce friction across traveler touchpoints.", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M4 7h5a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/><path d="M11 9.5l4-2.5a2 2 0 0 1 3 1.7v7.6a2 2 0 0 1-3 1.7l-4-2.5"/><path d="M18 10.5a1.5 1.5 0 0 1 0 3"/></svg> },
-  { num: "03", word: "EFFICIENT", sub: "Lower operational effort", desc: "Automation reduces repetitive administrative activity.", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 17.5l5.5-5.5 3.5 3.5L20.5 7"/><path d="M14.5 7h6v6"/></svg> },
-  { num: "04", word: "PROTECTED", sub: "Better revenue control", desc: "Validation and reconciliation help identify discrepancies and revenue leakage.", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> },
-  { num: "05", word: "PERSONAL", sub: "More relevant experiences", desc: "Connected data helps organizations understand and serve travelers better.", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
-  { num: "06", word: "SCALABLE", sub: "Built for demand", desc: "Flexible operations help manage seasonal peaks and changing travel volumes.", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 5-8"/></svg> },
+  { num: "01", word: "FASTER", sub: "Faster response", desc: "Intelligent workflows help teams process requests and exceptions more quickly.", image: "/healthcare/faster (2).png" },
+  { num: "02", word: "SEAMLESS", sub: "Smoother journeys", desc: "Connected operations reduce friction across traveler touchpoints.", image: "/healthcare/better-experiences.png" },
+  { num: "03", word: "EFFICIENT", sub: "Lower operational effort", desc: "Automation reduces repetitive administrative activity.", image: "/healthcare/efficient.png" },
+  { num: "04", word: "PROTECTED", sub: "Better revenue control", desc: "Validation and reconciliation help identify discrepancies and revenue leakage.", image: "/healthcare/accurate.png" },
+  { num: "05", word: "PERSONAL", sub: "More relevant experiences", desc: "Connected data helps organizations understand and serve travelers better.", image: "/healthcare/visible.png" },
+  { num: "06", word: "SCALABLE", sub: "Built for demand", desc: "Flexible operations help manage seasonal peaks and changing travel volumes.", image: "/healthcare/scalable.png" },
 ];
 
 function TvLabel({ text, light }: { text: string; light?: boolean }) {
@@ -297,15 +297,21 @@ export default function TravelHospitalityPage() {
 
         .tv-s10 { background: #ffffff; padding: clamp(76px, 9vw, 128px) 80px; }
         .tv-s10 .tv-h2 { color: #0E1B2A; }
-        .tv-s10-cols { display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 56px; }
-        .tv-s10-col { padding: 0 20px; text-align: center; position: relative; }
-        .tv-s10-col:not(:last-child)::after { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 1px; background: #E2E8F0; }
-        .tv-s10-icon { width: 48px; height: 48px; border-radius: 14px; background: rgba(94,138,10,0.07); border: 1px solid rgba(94,138,10,0.2); display: flex; align-items: center; justify-content: center; color: var(--tv-blue); margin: 0 auto 16px; }
-        .tv-s10-icon svg { width: 22px; height: 22px; }
-        .tv-s10-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--tv-blue); margin-bottom: 6px; }
-        .tv-s10-word { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 17px; font-weight: 700; color: #0E1B2A; margin: 0; }
-        .tv-s10-sub { font-size: 13px; font-weight: 600; color: var(--tv-blue); margin: 6px 0 0; }
-        .tv-s10-desc { font-size: 13px; line-height: 1.6; color: #5A6B7F; margin: 10px 0 0; }
+        .tv-out-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 56px; }
+        .tv-outcome { position: relative; overflow: hidden; background: #f5f5f3; border-radius: 16px; display: flex; flex-direction: row; min-height: 220px; box-shadow: 0 2px 12px -4px rgba(12,27,48,0.08); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease; }
+        .tv-outcome--dark { background: #0c1b2e; }
+        .tv-outcome:hover { transform: translateY(-4px); box-shadow: 0 16px 40px -14px rgba(12,27,48,0.20); }
+        .tv-outcome-body { flex: 0 0 50%; padding: 24px 20px 24px 24px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; z-index: 2; pointer-events: none; }
+        .tv-outcome-body * { pointer-events: auto; }
+        .tv-outcome-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8a97a8; margin: 0 0 10px; }
+        .tv-outcome--dark .tv-outcome-eyebrow { color: #6b8299; }
+        .tv-outcome-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(20px, 1.8vw, 26px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #0a1628; margin: 0 0 10px; }
+        .tv-outcome--dark .tv-outcome-title { color: #ffffff; }
+        .tv-outcome-desc { font-size: 12.5px; line-height: 1.6; color: #5a6b7f; margin: 0; max-width: 24ch; }
+        .tv-outcome--dark .tv-outcome-desc { color: #7a96ae; }
+        .tv-outcome-media { position: absolute; right: 0; top: 0; bottom: 0; width: 68%; z-index: 1; overflow: hidden; }
+        .tv-outcome-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .tv-outcome:hover .tv-outcome-media img { transform: scale(1.05); }
 
         .tv-s11 { position: relative; min-height: 640px; display: flex; align-items: center; background:
           linear-gradient(180deg, rgba(6,14,28,0.82) 0%, rgba(6,14,28,0.68) 50%, rgba(6,14,28,0.88) 100%),
@@ -318,9 +324,6 @@ export default function TravelHospitalityPage() {
         .tv-s11-ctas { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
 
         @media (max-width: 1200px) {
-          .tv-s10-cols { grid-template-columns: repeat(3, 1fr); gap: 32px 0; }
-          .tv-s10-col:nth-child(3)::after { display: none; }
-          .tv-s10-col { padding: 0 24px; }
           .tv-s08-hub { width: 240px; height: 240px; }
           .tv-s08-core { width: 80px; height: 80px; }
           .tv-s08-sat { width: 44px; height: 44px; }
@@ -339,8 +342,6 @@ export default function TravelHospitalityPage() {
           .tv-s04-tabbar { grid-template-columns: repeat(3, 1fr); }
           .tv-s04-panel { grid-template-columns: 1fr; }
           .tv-s06-row { grid-template-columns: 1fr; }
-          .tv-s10-cols { grid-template-columns: repeat(2, 1fr); gap: 32px 0; }
-          .tv-s10-col::after { display: none !important; }
           .tv-s09-path { overflow-x: auto; padding-bottom: 12px; }
           .tv-s09-step { min-width: 108px; }
           .tv-s05-strip { grid-template-columns: repeat(3, 1fr); }
@@ -360,7 +361,7 @@ export default function TravelHospitalityPage() {
           .tv-s04-tabbar { grid-template-columns: repeat(2, 1fr); }
           .tv-s04-checklist { grid-template-columns: 1fr; }
           .tv-s02-items { grid-template-columns: 1fr; }
-          .tv-s10-cols { grid-template-columns: 1fr; }
+          .tv-out-grid { grid-template-columns: 1fr; }
           .tv-s08-human-content { padding: 40px 24px; }
           .tv-hero-ctas { flex-direction: column; }
           .tv-hero-ctas .tv-btn { width: 100%; }
@@ -377,7 +378,7 @@ export default function TravelHospitalityPage() {
         <video className="tv-hero-img" src="/services/travel/travelhero.mp4" autoPlay muted loop playsInline />
         <div className="tv-hero-content tv-reveal">
           <span className="tv-hero-eyebrow">TRAVEL &amp; HOSPITALITY</span>
-          <h1>Intelligent operations behind every journey.</h1>
+          <h1>Intelligent operations behind<span style={{ color: "#C6E84A" }}> every journey.</span></h1>
           <p className="tv-hero-sub">Transforming travel operations through domain expertise, AI, automation and data intelligence.</p>
           <p className="tv-hero-body">From reservations and traveler support to disruption management, revenue operations and finance, Sytrion helps travel enterprises simplify complexity, improve service and build connected operations designed around the modern traveler.</p>
           <div className="tv-hero-ctas">
@@ -391,7 +392,7 @@ export default function TravelHospitalityPage() {
         <div className="tv-wrap">
           <div className="tv-s02-head tv-reveal">
             <TvLabel text="A WORLD THAT NEVER STOPS MOVING" />
-            <h2 className="tv-h2">Every journey creates thousands of moments that need to work.</h2>
+            <h2 className="tv-h2">Every journey creates thousands of<span style={{ color: "#C6E84A" }}>moments that need to work.</span></h2>
           </div>
           <div className="tv-s02-grid tv-reveal">
             <div className="tv-s02-left">
@@ -423,7 +424,7 @@ export default function TravelHospitalityPage() {
         <div className="tv-wrap">
           <div className="tv-reveal">
             <TvLabel text="WHO WE SERVE" />
-            <h2 className="tv-h2">Built around the businesses that make travel possible.</h2>
+            <h2 className="tv-h2">Built around the businesses that <span style={{ color: "#C6E84A" }}>make travel possible.</span></h2>
           </div>
           <div className="tv-s03-cols tv-reveal">
             {serveCols.map((col) => (
@@ -441,7 +442,7 @@ export default function TravelHospitalityPage() {
         <div className="tv-wrap">
           <div className="tv-reveal">
             <TvLabel text="INTELLIGENT BUSINESS SERVICES" />
-            <h2 className="tv-h2">From individual transactions to connected journeys.</h2>
+            <h2 className="tv-h2">From individual transactions to <span style={{ color: "#C6E84A" }}>connected journeys.</span></h2>
             <p className="tv-lede">Sytrion combines travel-domain expertise with intelligent workflows, automation, AI and data to help enterprises manage high-volume travel operations with greater speed, accuracy and control.</p>
           </div>
           <div className="tv-s04-tabbar tv-reveal" role="tablist">
@@ -470,7 +471,7 @@ export default function TravelHospitalityPage() {
         <div className="tv-wrap">
           <div className="tv-s05-head tv-reveal">
             <TvLabel text="TRAVELER EXPERIENCE" />
-            <h2 className="tv-h2">Make every interaction feel effortless.</h2>
+            <h2 className="tv-h2">Make every interaction <span style={{ color: "#C6E84A" }}>feel effortless.</span></h2>
             <div className="tv-s05-lede-row">
               <p className="tv-lede">Travelers don&apos;t experience systems, processes or organizational boundaries.</p>
               <p className="tv-lede">They experience moments.</p>
@@ -494,8 +495,8 @@ export default function TravelHospitalityPage() {
         <div className="tv-wrap">
           <div className="tv-reveal">
             <TvLabel text="CORE TRAVEL OPERATIONS" />
-            <TvLabel text="AIRLINE OPERATIONS" />
-            <h2 className="tv-h2">Keeping complex airline operations connected.</h2>
+           
+            <h2 className="tv-h2">Keeping complex airline <span style={{ color: "#C6E84A" }}>operations connected.</span></h2>
             <p className="tv-lede">Airline operations bring together passengers, schedules, airports, crews, partners, baggage and financial systems in a highly time-sensitive environment.</p>
             <p className="tv-copy">Sytrion helps support the operational workflows behind reliable journeys through connected processes, intelligent automation and real-time information.</p>
           </div>
@@ -570,7 +571,7 @@ export default function TravelHospitalityPage() {
         <div className="tv-wrap">
           <div className="tv-s09-head tv-reveal">
             <TvLabel text="WHEN PLANS CHANGE" />
-            <h2 className="tv-h2">Turn disruption into intelligent service recovery.</h2>
+            <h2 className="tv-h2">Turn disruption into <span style={{ color: "#C6E84A" }}> intelligent service recovery.</span></h2>
             <p className="tv-lede">Travel disruptions create a cascade of operational decisions across schedules, bookings, travelers, channels and service teams.</p>
             <p className="tv-copy">Sytrion helps orchestrate the administrative workflows behind disruption management so teams can respond with greater speed and consistency.</p>
           </div>
@@ -594,21 +595,24 @@ export default function TravelHospitalityPage() {
         </div>
       </section>
 
-      <section className="tv-s10">
+<section className="tv-s10">
         <div className="tv-wrap">
           <div className="tv-reveal">
-            <TvLabel text="THE OUTCOME" />
-            <h2 className="tv-h2">Better operations create better journeys.</h2>
+            <TvLabel text="THE OUTCOME" light />
+            <h2 className="tv-h2">Better operations create better <span style={{ color: "#C6E84A" }}>travel experiences.</span></h2>
           </div>
-          <div className="tv-s10-cols tv-reveal">
-            {outcomes.map((o) => (
-              <div key={o.num} className="tv-s10-col">
-                <div className="tv-s10-icon" aria-hidden="true">{o.icon}</div>
-                <div className="tv-s10-num">{o.num}</div>
-                <h3 className="tv-s10-word">{o.word}</h3>
-                <p className="tv-s10-sub">{o.sub}</p>
-                <p className="tv-s10-desc">{o.desc}</p>
-              </div>
+          <div className="tv-out-grid tv-reveal">
+            {outcomes.map((o, i) => (
+              <article key={o.word} className={`tv-outcome${i === 0 ? " tv-outcome--dark" : ""}`}>
+                <div className="tv-outcome-body">
+                  <p className="tv-outcome-eyebrow">{o.num} / {o.word}</p>
+                  <h3 className="tv-outcome-title">{o.sub}</h3>
+                  <p className="tv-outcome-desc">{o.desc}</p>
+                </div>
+                <div className="tv-outcome-media">
+                  <img src={o.image} alt={o.sub} loading="lazy" decoding="async" />
+                </div>
+              </article>
             ))}
           </div>
         </div>
@@ -617,7 +621,7 @@ export default function TravelHospitalityPage() {
       <section className="tv-s11">
         <div className="tv-s11-content tv-reveal">
           <TvLabel text="LET'S MOVE TRAVEL FORWARD." />
-          <h2>Ready to build smarter travel operations?</h2>
+          <h2>Ready to build smarter<span style={{ color: "#C6E84A" }}>  travel operations?</span></h2>
           <p>From traveler experience and airline operations to disruption management, revenue, finance and AI, Sytrion can help create connected operations designed to keep every journey moving.</p>
           <div className="tv-s11-ctas">
             <Link href="/contact" className="tv-btn">Talk to Our Travel Experts ↗</Link>

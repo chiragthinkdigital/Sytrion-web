@@ -658,7 +658,7 @@ export default function ShippingLogisticsPage() {
         </div>
         <div className="sl-hero-content">
           <span className="sl-hero-eyebrow">SHIPPING &amp; LOGISTICS</span>
-            <h1>Intelligent operations for a world in motion.</h1>
+            <h1>Intelligent operations for <span style={{ color: "#C6E84A" }}>a world in motion.</span></h1>
             <p className="sl-hero-sub">
               Transforming shipping and logistics operations through domain expertise, AI, automation and data
               intelligence.

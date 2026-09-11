@@ -173,10 +173,13 @@ export default function Hero() {
       `}</style>
 
       <section className="relative w-full h-[100dvh] overflow-hidden bg-[#0f0f0f]">
-        <img
-          src="/home/Home Page.jpeg"
-          alt="Intelligent operations engineering"
+        <video
           className="absolute inset-0 w-full h-full object-cover"
+          src="/home/hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
         />
 
         {/* Subtle grain */}
