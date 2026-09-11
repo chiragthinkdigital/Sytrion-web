@@ -860,6 +860,8 @@ function CapabilitiesRail() {
     const cards = Array.from(stageRef.current.children) as HTMLElement[];
     cards.forEach((c, i) => {
       c.style.setProperty("--depth", String(i));
+      c.style.opacity = i >= 2 ? "0" : "1";
+      c.style.pointerEvents = i >= 2 ? "none" : "";
     });
     if (cards.length > 0) {
       const frontIdx = cards[0].dataset.idx;
