@@ -1,0 +1,51 @@
+{
+  "folder": "01-booking",
+  "tab": "BOOKING",
+  "title": "Booking & Shipment Processing",
+  "description": "Move shipments forward with greater speed and control.",
+  "bullets": [
+    "Booking creation & validation",
+    "Shipment data processing",
+    "Schedule & routing updates",
+    "Shipment status management",
+    "Exception handling"
+  ],
+  "icons": [
+    {
+      "label": "Booking creation & validation",
+      "svg": "icons/01-booking-creation-and-validation.svg",
+      "png": "icons/01-booking-creation-and-validation.png"
+    },
+    {
+      "label": "Shipment data processing",
+      "svg": "icons/02-shipment-data-processing.svg",
+      "png": "icons/02-shipment-data-processing.png"
+    },
+    {
+      "label": "Schedule & routing updates",
+      "svg": "icons/03-schedule-and-routing-updates.svg",
+      "png": "icons/03-schedule-and-routing-updates.png"
+    },
+    {
+      "label": "Shipment status management",
+      "svg": "icons/04-shipment-status-management.svg",
+      "png": "icons/04-shipment-status-management.png"
+    },
+    {
+      "label": "Exception handling",
+      "svg": "icons/05-exception-handling.svg",
+      "png": "icons/05-exception-handling.png"
+    }
+  ],
+  "elements": [
+    "elements/container.svg",
+    "elements/parcel.svg",
+    "elements/calendar.svg",
+    "elements/validated.svg",
+    "elements/status.svg",
+    "elements/alert.svg",
+    "elements/pin.svg",
+    "elements/route.svg",
+    "elements/platform.svg"
+  ]
+}

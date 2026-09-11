@@ -469,7 +469,6 @@ function MissionCollage() {
       {/* 1. Large Primary Image */}
       <div style={{
         width: "62%",
-        height: "78%",
         borderRadius: "20px",
         overflow: "hidden",
         boxShadow: "0 12px 30px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05)",
@@ -491,8 +490,8 @@ function MissionCollage() {
           alt="Advanced technological enterprise operations"
           style={{
             width: "100%",
-            height: "100%",
-            objectFit: "cover",
+            height: "auto",
+            display: "block",
           }}
         />
       </div>
@@ -501,7 +500,6 @@ function MissionCollage() {
       <div style={{
         position: "absolute",
         width: "42%",
-        height: "48%",
         top: "5%",
         right: "2%",
         borderRadius: "16px",
@@ -517,8 +515,8 @@ function MissionCollage() {
           alt="Intelligent business transformation workflow"
           style={{
             width: "100%",
-            height: "100%",
-            objectFit: "cover",
+            height: "auto",
+            display: "block",
           }}
         />
       </div>
@@ -527,7 +525,6 @@ function MissionCollage() {
       <div style={{
         position: "absolute",
         width: "42%",
-        height: "48%",
         bottom: "5%",
         left: "2%",
         borderRadius: "16px",
@@ -543,8 +540,8 @@ function MissionCollage() {
           alt="Analytics and automated digital solution execution"
           style={{
             width: "100%",
-            height: "100%",
-            objectFit: "cover",
+            height: "auto",
+            display: "block",
           }}
         />
       </div>

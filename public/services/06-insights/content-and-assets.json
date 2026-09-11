@@ -1,0 +1,52 @@
+{
+  "folder": "06-insights",
+  "tab": "INSIGHTS",
+  "title": "Analytics & Insights",
+  "description": "Turn operational activity into actionable intelligence.",
+  "bullets": [
+    "Performance dashboards",
+    "Volume reporting",
+    "Turnaround-time analysis",
+    "Exception trends",
+    "Operational insights"
+  ],
+  "icons": [
+    {
+      "label": "Performance dashboards",
+      "svg": "icons/01-performance-dashboards.svg",
+      "png": "icons/01-performance-dashboards.png"
+    },
+    {
+      "label": "Volume reporting",
+      "svg": "icons/02-volume-reporting.svg",
+      "png": "icons/02-volume-reporting.png"
+    },
+    {
+      "label": "Turnaround-time analysis",
+      "svg": "icons/03-turnaround-time-analysis.svg",
+      "png": "icons/03-turnaround-time-analysis.png"
+    },
+    {
+      "label": "Exception trends",
+      "svg": "icons/04-exception-trends.svg",
+      "png": "icons/04-exception-trends.png"
+    },
+    {
+      "label": "Operational insights",
+      "svg": "icons/05-operational-insights.svg",
+      "png": "icons/05-operational-insights.png"
+    }
+  ],
+  "elements": [
+    "elements/screen.svg",
+    "elements/container.svg",
+    "elements/clock.svg",
+    "elements/lens.svg",
+    "elements/cubes.svg",
+    "elements/bars.svg",
+    "elements/trend.svg",
+    "elements/donut.svg",
+    "elements/route.svg",
+    "elements/platform.svg"
+  ]
+}

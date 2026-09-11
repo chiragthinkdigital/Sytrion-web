@@ -1,0 +1,52 @@
+{
+  "folder": "04-trade",
+  "tab": "TRADE",
+  "title": "Customs & Trade",
+  "description": "Improve the flow of information supporting international trade.",
+  "bullets": [
+    "Trade documentation support",
+    "Data extraction & validation",
+    "Document completeness checks",
+    "Compliance data preparation",
+    "Exception processing"
+  ],
+  "icons": [
+    {
+      "label": "Trade documentation support",
+      "svg": "icons/01-trade-documentation-support.svg",
+      "png": "icons/01-trade-documentation-support.png"
+    },
+    {
+      "label": "Data extraction & validation",
+      "svg": "icons/02-data-extraction-and-validation.svg",
+      "png": "icons/02-data-extraction-and-validation.png"
+    },
+    {
+      "label": "Document completeness checks",
+      "svg": "icons/03-document-completeness-checks.svg",
+      "png": "icons/03-document-completeness-checks.png"
+    },
+    {
+      "label": "Compliance data preparation",
+      "svg": "icons/04-compliance-data-preparation.svg",
+      "png": "icons/04-compliance-data-preparation.png"
+    },
+    {
+      "label": "Exception processing",
+      "svg": "icons/05-exception-processing.svg",
+      "png": "icons/05-exception-processing.png"
+    }
+  ],
+  "elements": [
+    "elements/container.svg",
+    "elements/parcel.svg",
+    "elements/gateway.svg",
+    "elements/conveyor.svg",
+    "elements/globe.svg",
+    "elements/folder.svg",
+    "elements/checklist.svg",
+    "elements/lens.svg",
+    "elements/alert.svg",
+    "elements/connector.svg"
+  ]
+}

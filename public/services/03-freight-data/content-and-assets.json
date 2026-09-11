@@ -1,0 +1,49 @@
+{
+  "folder": "03-freight-data",
+  "tab": "FREIGHT DATA",
+  "title": "Freight Data",
+  "description": "Create reliable data across the shipment lifecycle.",
+  "bullets": [
+    "Freight data capture",
+    "Rate & tariff maintenance",
+    "Master data management",
+    "Data validation",
+    "Shipment reconciliation"
+  ],
+  "icons": [
+    {
+      "label": "Freight data capture",
+      "svg": "icons/01-freight-data-capture.svg",
+      "png": "icons/01-freight-data-capture.png"
+    },
+    {
+      "label": "Rate & tariff maintenance",
+      "svg": "icons/02-rate-and-tariff-maintenance.svg",
+      "png": "icons/02-rate-and-tariff-maintenance.png"
+    },
+    {
+      "label": "Master data management",
+      "svg": "icons/03-master-data-management.svg",
+      "png": "icons/03-master-data-management.png"
+    },
+    {
+      "label": "Data validation",
+      "svg": "icons/04-data-validation.svg",
+      "png": "icons/04-data-validation.png"
+    },
+    {
+      "label": "Shipment reconciliation",
+      "svg": "icons/05-shipment-reconciliation.svg",
+      "png": "icons/05-shipment-reconciliation.png"
+    }
+  ],
+  "elements": [
+    "elements/database.svg",
+    "elements/container.svg",
+    "elements/table.svg",
+    "elements/validated.svg",
+    "elements/records.svg",
+    "elements/connector.svg",
+    "elements/platform.svg"
+  ]
+}

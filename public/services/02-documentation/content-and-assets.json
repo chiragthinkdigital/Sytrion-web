@@ -1,0 +1,56 @@
+{
+  "folder": "02-documentation",
+  "tab": "DOCUMENTATION",
+  "title": "Documentation",
+  "description": "Simplify document-intensive shipping operations.",
+  "bullets": [
+    "Shipping instructions",
+    "Bill of Lading processing",
+    "Arrival documentation",
+    "Document validation & amendments",
+    "Proof of Delivery processing"
+  ],
+  "icons": [
+    {
+      "label": "Shipping instructions",
+      "svg": "icons/01-shipping-instructions.svg",
+      "png": "icons/01-shipping-instructions.png"
+    },
+    {
+      "label": "Bill of Lading processing",
+      "svg": "icons/02-bill-of-lading-processing.svg",
+      "png": "icons/02-bill-of-lading-processing.png"
+    },
+    {
+      "label": "Arrival documentation",
+      "svg": "icons/03-arrival-documentation.svg",
+      "png": "icons/03-arrival-documentation.png"
+    },
+    {
+      "label": "Document validation & amendments",
+      "svg": "icons/04-document-validation-and-amendments.svg",
+      "png": "icons/04-document-validation-and-amendments.png"
+    },
+    {
+      "label": "Proof of Delivery processing",
+      "svg": "icons/05-proof-of-delivery-processing.svg",
+      "png": "icons/05-proof-of-delivery-processing.png"
+    }
+  ],
+  "elements": [
+    "elements/folder.svg",
+    "elements/document.svg",
+    "elements/ship.svg",
+    "elements/validated.svg",
+    "elements/edit.svg",
+    "elements/box.svg",
+    "elements/scan.svg",
+    "elements/user.svg",
+    "elements/calendar.svg",
+    "elements/pin.svg",
+    "elements/bars.svg",
+    "elements/pen.svg",
+    "elements/parcel.svg",
+    "elements/connector.svg"
+  ]
+}

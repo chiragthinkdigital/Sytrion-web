@@ -6,87 +6,94 @@ import CallToAction from "./CallToAction";
 
 const ibsTabs = [
   {
+    id: "booking",
     tab: "BOOKING",
     num: "01",
     title: "Booking & Shipment Processing",
-    tagline: "Move shipments forward with greater speed and control.",
+    subtitle: "Move shipments forward with greater speed and control.",
+    image: "/services/01-booking/illustration/main-illustration.png",
     items: [
-      "Booking creation & validation",
-      "Shipment data processing",
-      "Schedule & routing updates",
-      "Shipment status management",
-      "Exception handling",
+      { text: "Booking creation & validation", icon: "/services/01-booking/icons/01-booking-creation-and-validation.svg" },
+      { text: "Shipment data processing", icon: "/services/01-booking/icons/02-shipment-data-processing.svg" },
+      { text: "Schedule & routing updates", icon: "/services/01-booking/icons/03-schedule-and-routing-updates.svg" },
+      { text: "Shipment status management", icon: "/services/01-booking/icons/04-shipment-status-management.svg" },
+      { text: "Exception handling", icon: "/services/01-booking/icons/05-exception-handling.svg" },
     ],
-    image: "/services/Booking & Shipment Processing.jpg",
   },
   {
+    id: "documentation",
     tab: "DOCUMENTATION",
     num: "02",
     title: "Documentation",
-    tagline: "Simplify document-intensive shipping operations.",
+    subtitle: "Simplify document-intensive shipping operations.",
+    image: "/services/02-documentation/illustration/main-illustration.png",
     items: [
-      "Shipping instructions",
-      "Bill of Lading processing",
-      "Arrival documentation",
-      "Document validation & amendments",
-      "Proof of Delivery processing",
+      { text: "Shipping instructions", icon: "/services/02-documentation/icons/01-shipping-instructions.svg" },
+      { text: "Bill of Lading processing", icon: "/services/02-documentation/icons/02-bill-of-lading-processing.svg" },
+      { text: "Arrival documentation", icon: "/services/02-documentation/icons/03-arrival-documentation.svg" },
+      { text: "Document validation & amendments", icon: "/services/02-documentation/icons/04-document-validation-and-amendments.svg" },
+      { text: "Proof of Delivery processing", icon: "/services/02-documentation/icons/05-proof-of-delivery-processing.svg" },
     ],
-    image: "/services/Documentation.jpg",
   },
   {
+    id: "freight-data",
     tab: "FREIGHT DATA",
     num: "03",
     title: "Freight Data",
-    tagline: "Create reliable data across the shipment lifecycle.",
+    subtitle: "Create reliable data across the shipment lifecycle.",
+    image: "/services/03-freight-data/illustration/main-illustration.png",
     items: [
-      "Freight data capture",
-      "Rate & tariff maintenance",
-      "Master data management",
-      "Data validation",
-      "Shipment reconciliation",
+      { text: "Freight data capture", icon: "/services/03-freight-data/icons/01-freight-data-capture.svg" },
+      { text: "Rate & tariff maintenance", icon: "/services/03-freight-data/icons/02-rate-and-tariff-maintenance.svg" },
+      { text: "Master data management", icon: "/services/03-freight-data/icons/03-master-data-management.svg" },
+      { text: "Data validation", icon: "/services/03-freight-data/icons/04-data-validation.svg" },
+      { text: "Shipment reconciliation", icon: "/services/03-freight-data/icons/05-shipment-reconciliation.svg" },
     ],
-    image: "/services/Freight Data.jpg",
   },
   {
+    id: "trade",
     tab: "TRADE",
     num: "04",
     title: "Customs & Trade",
-    tagline: "Improve the flow of information supporting international trade.",
+    subtitle: "Improve the flow of information supporting international trade.",
+    image: "/services/04-trade/illustration/main-illustration.png",
     items: [
-      "Trade documentation support",
-      "Data extraction & validation",
-      "Document completeness checks",
-      "Compliance data preparation",
-      "Exception processing",
+      { text: "Trade documentation support", icon: "/services/04-trade/icons/01-trade-documentation-support.svg" },
+      { text: "Data extraction & validation", icon: "/services/04-trade/icons/02-data-extraction-and-validation.svg" },
+      { text: "Document completeness checks", icon: "/services/04-trade/icons/03-document-completeness-checks.svg" },
+      { text: "Compliance data preparation", icon: "/services/04-trade/icons/04-compliance-data-preparation.svg" },
+      { text: "Exception processing", icon: "/services/04-trade/icons/05-exception-processing.svg" },
     ],
-    image: "/services/Customs & Trade (2).jpg",
   },
   {
+    id: "customer-ops",
     tab: "CUSTOMER OPS",
     num: "05",
     title: "Customer Operations",
-    tagline: "Keep customers informed and operations moving.",
+    subtitle: "Keep customers informed and operations moving.",
+    image: "/services/05-customer-ops/illustration/main-illustration.png",
     items: [
-      "Shipment tracking support",
-      "Customer queries",
-      "Operational exceptions",
-      "Email & workflow management",
-      "Service request processing",
+      { text: "Shipment tracking support", icon: "/services/05-customer-ops/icons/01-shipment-tracking-support.svg" },
+      { text: "Customer queries", icon: "/services/05-customer-ops/icons/02-customer-queries.svg" },
+      { text: "Operational exceptions", icon: "/services/05-customer-ops/icons/03-operational-exceptions.svg" },
+      { text: "Email & workflow management", icon: "/services/05-customer-ops/icons/04-email-and-workflow-management.svg" },
+      { text: "Service request processing", icon: "/services/05-customer-ops/icons/05-service-request-processing.svg" },
     ],
   },
   {
+    id: "insights",
     tab: "INSIGHTS",
     num: "06",
     title: "Analytics & Insights",
-    tagline: "Turn operational activity into actionable intelligence.",
+    subtitle: "Turn operational activity into actionable intelligence.",
+    image: "/services/06-insights/illustration/main-illustration.png",
     items: [
-      "Performance dashboards",
-      "Volume reporting",
-      "Turnaround-time analysis",
-      "Exception trends",
-      "Operational insights",
+      { text: "Performance dashboards", icon: "/services/06-insights/icons/01-performance-dashboards.svg" },
+      { text: "Volume reporting", icon: "/services/06-insights/icons/02-volume-reporting.svg" },
+      { text: "Turnaround-time analysis", icon: "/services/06-insights/icons/03-turnaround-time-analysis.svg" },
+      { text: "Exception trends", icon: "/services/06-insights/icons/04-exception-trends.svg" },
+      { text: "Operational insights", icon: "/services/06-insights/icons/05-operational-insights.svg" },
     ],
-    image: "/services/Analytics & Insights.jpg",
   },
 ];
 
@@ -412,12 +419,12 @@ export default function ShippingLogisticsPage() {
         .sl-land-hero-media::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, #ffffff 3%, rgba(255,255,255,0.9) 20%, rgba(255,255,255,0) 48%); }
         .sl-land-hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
         .sl-land-grid { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .sl-land-card { background: #F5F6F0; border-radius: 14px; padding: 0 0 16px; overflow: hidden; display: flex; flex-direction: column; align-items: center; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+        .sl-land-card { background: #F5F6F0; border-radius: 14px; padding: 0 0 12px; overflow: hidden; display: flex; flex-direction: column; align-items: center; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
         .sl-land-card:hover { transform: translateY(-4px); }
-        .sl-land-card-media { width: 100%; aspect-ratio: 4 / 3; overflow: hidden; }
+        .sl-land-card-media { width: 100%; aspect-ratio: 21 / 9; overflow: hidden; }
         .sl-land-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
         .sl-land-card:hover .sl-land-card-media img { transform: scale(1.05); }
-        .sl-land-card-cap { margin: 14px 0 0; padding: 0 14px; font-size: 14px; font-weight: 700; color: #1F2226; text-align: center; letter-spacing: -0.01em; }
+        .sl-land-card-cap { margin: 10px 0 0; padding: 0 14px; font-size: 13px; font-weight: 700; color: #1F2226; text-align: center; letter-spacing: -0.01em; }
         .sl-land-card-num { color: #7AA306; font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-weight: 700; }
         .sl-closing { margin-top: 40px; border-left: 3px solid #C6E84A; background: #F5F6F0; padding: 22px 28px; font-size: clamp(16px, 1.5vw, 19px); font-weight: 600; line-height: 1.6; color: #16181d; border-radius: 0 14px 14px 0; }
 
@@ -447,11 +454,10 @@ export default function ShippingLogisticsPage() {
         .sl-panel-title { font-size: clamp(24px, 2.6vw, 34px); font-weight: 700; letter-spacing: -0.015em; margin: 10px 0 8px; }
         .sl-panel-tagline { font-style: italic; font-size: 16px; color: #5A5D66; margin: 0 0 24px; }
         .sl-panel-list { list-style: none; margin: 0; padding: 0; }
-        .sl-panel-list li { display: flex; align-items: baseline; gap: 14px; padding: 13px 0; border-top: 1px solid rgba(0,0,0,0.08); font-size: 15.5px; color: #33363d; }
-        .sl-panel-list li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #C6E84A; box-shadow: 0 0 0 3px rgba(198,232,74,0.25); flex: 0 0 auto; align-self: center; }
-        .sl-panel-visual { position: relative; border-radius: 20px; overflow: hidden; min-height: 380px; }
-        .sl-panel-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-        .sl-panel-visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(200deg, rgba(6,12,24,0) 40%, rgba(6,12,24,0.55) 100%); }
+        .sl-panel-list li { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-top: 1px solid rgba(0,0,0,0.08); font-size: 15.5px; color: #33363d; }
+        .sl-panel-item-icon { flex: 0 0 auto; width: 32px; height: 32px; object-fit: contain; }
+        .sl-panel-visual { position: relative; border-radius: 20px; overflow: hidden; min-height: 380px; background: #F3F6FB; display: flex; align-items: center; justify-content: center; }
+        .sl-panel-visual img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
 
         /* ── 05 F&A ── */
         .sl-fa { position: relative; background: #0A1930; color: #ffffff; overflow: hidden; isolation: isolate; }
@@ -786,16 +792,19 @@ export default function ShippingLogisticsPage() {
             <div>
               <span className="sl-panel-num">{active.num} —</span>
               <h3 className="sl-panel-title">{active.title}</h3>
-              <p className="sl-panel-tagline">{active.tagline}</p>
+              <p className="sl-panel-tagline">{active.subtitle}</p>
               <ul className="sl-panel-list">
                 {active.items.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item.text}>
+                    <img className="sl-panel-item-icon" src={item.icon} alt="" width="32" height="32" loading="lazy" decoding="async" />
+                    <span>{item.text}</span>
+                  </li>
                 ))}
               </ul>
             </div>
             <div className="sl-panel-visual">
               <img
-                src={active.image || "/solutions/Shipment Data Management.jpg"}
+                src={active.image ?? "/solutions/Shipment Data Management.jpg"}
                 alt={active.title}
                 loading="lazy"
                 decoding="async"
@@ -879,6 +888,7 @@ export default function ShippingLogisticsPage() {
                 key={cap.name}
                 role="button"
                 tabIndex={0}
+                onMouseEnter={() => setSqIndex(i)}
                 onClick={() => setSqIndex(i)}
                 onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSqIndex(i); } }}
                 className={`sl-sq-panel sl-reveal${sqIndex === i ? " sl-sq-panel--open" : ""}`}
