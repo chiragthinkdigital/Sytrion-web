@@ -124,13 +124,66 @@ const ibsTabs = [
 ];
 
 const commerceSteps = [
-  { name: "INGEST", sub: "Product information", bg: "linear-gradient(135deg, #0EA5E9, #0284C7)", text: "#FFFFFF", icon: "inbox" },
-  { name: "CLASSIFY", sub: "Category & taxonomy", bg: "linear-gradient(135deg, #9333EA, #7E22CE)", text: "#FFFFFF", icon: "scan" },
-  { name: "ENRICH", sub: "Attributes & content", bg: "linear-gradient(135deg, #C6E84A, #9ECC12)", text: "#0F172A", icon: "check" },
-  { name: "VALIDATE", sub: "Quality & completeness", bg: "linear-gradient(135deg, #F97316, #EA580C)", text: "#FFFFFF", icon: "git-branch" },
-  { name: "PUBLISH", sub: "Channels & marketplaces", bg: "linear-gradient(135deg, #2563EB, #1D4ED8)", text: "#FFFFFF", icon: "cpu" },
-  { name: "MONITOR", sub: "Accuracy & updates", bg: "linear-gradient(135deg, #EC4899, #DB2777)", text: "#FFFFFF", icon: "bar-chart" },
+  { num: "01", name: "INGEST", sub: "Product information", icon: "inbox", x: 14, y: 28 },
+  { num: "02", name: "CLASSIFY", sub: "Category & taxonomy", icon: "scan", x: 50, y: 28 },
+  { num: "03", name: "ENRICH", sub: "Attributes & content", icon: "check", x: 86, y: 28 },
+  { num: "04", name: "VALIDATE", sub: "Quality & completeness", icon: "git-branch", x: 86, y: 74 },
+  { num: "05", name: "PUBLISH", sub: "Channels & marketplaces", icon: "cpu", x: 50, y: 74 },
+  { num: "06", name: "MONITOR", sub: "Accuracy & updates", icon: "bar-chart", x: 14, y: 74 },
 ];
+
+const flowIcons: Record<string, React.ReactNode> = {
+  inbox: (
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 12h-6l-2 3h-4l-2-3H2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6z" />
+      <path d="M5.45 5.11 2 12v0h20v0l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+    </svg>
+  ),
+  scan: (
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+      <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+      <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+      <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+      <line x1="7" y1="12" x2="17" y2="12" />
+    </svg>
+  ),
+  check: (
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+      <polyline points="22 4 12 14.01 9 11.01" />
+    </svg>
+  ),
+  "git-branch": (
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="6" y1="3" x2="6" y2="15" />
+      <circle cx="18" cy="6" r="3" />
+      <circle cx="6" cy="18" r="3" />
+      <path d="M18 9a9 9 0 0 1-9 9" />
+    </svg>
+  ),
+  cpu: (
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="4" y="4" width="16" height="16" rx="2" />
+      <rect x="9" y="9" width="6" height="6" />
+      <line x1="9" y1="1" x2="9" y2="4" />
+      <line x1="15" y1="1" x2="15" y2="4" />
+      <line x1="9" y1="20" x2="9" y2="23" />
+      <line x1="15" y1="20" x2="15" y2="23" />
+      <line x1="20" y1="9" x2="23" y2="9" />
+      <line x1="20" y1="15" x2="23" y2="15" />
+      <line x1="1" y1="9" x2="4" y2="9" />
+      <line x1="1" y1="15" x2="4" y2="15" />
+    </svg>
+  ),
+  "bar-chart": (
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="12" y1="20" x2="12" y2="10" />
+      <line x1="18" y1="20" x2="18" y2="4" />
+      <line x1="6" y1="20" x2="6" y2="16" />
+    </svg>
+  ),
+};
 
 const orderSteps = [
   { name: "ORDER", sub: "Capture & validate" },
@@ -142,33 +195,12 @@ const orderSteps = [
 ];
 
 const intelCapabilities = [
-  { num: "01", title: "Product Data Enrichment & Classification", desc: "Ingest, classify and enrich product information so catalogs are accurate, complete and commerce-ready across every channel and marketplace.", tags: "Classify / Enrich / Optimize", bg: "linear-gradient(135deg, #0F172A 0%, #0369A1 100%)", tabColor: "#0284C7", image: "/services/ecommerce/Product & Catalog Operations.jpg" },
-  { num: "02", title: "Order & Fulfillment Workflow Automation", desc: "Automate order validation, status management, fulfillment coordination and exception routing to reduce manual touchpoints and improve order accuracy.", tags: "Monitor / Prioritize / Resolve", bg: "linear-gradient(135deg, #1E1B4B 0%, #6D28D9 100%)", tabColor: "#7C3AED", image: "/services/ecommerce/Order Management.jpg" },
-  { num: "03", title: "Returns & Refund Processing", desc: "Structure return initiation, validation, authorization, refund processing and inventory reconciliation into connected, visible workflows.", tags: "Analyze / Predict / Improve", bg: "linear-gradient(135deg, #142E11 0%, #4D7C0F 100%)", tabColor: "#65A30D", image: "/services/ecommerce/Fulfillment Operations (2).jpg" },
-  { num: "04", title: "Marketplace Listing Quality", desc: "Review listings for completeness, accuracy, policy compliance and content quality across multiple marketplace platforms.", tags: "Generate / Tag / Validate", bg: "linear-gradient(135deg, #431407 0%, #C2410C 100%)", tabColor: "#EA580C", image: "/services/ecommerce/Marketplace Operations.jpg" },
-  { num: "05", title: "Customer Query Resolution", desc: "Combine AI-assisted support with skilled teams to resolve product, order, delivery and post-purchase queries across omnichannel touchpoints.", tags: "Understand / Personalize / Assist", bg: "linear-gradient(135deg, #0B192C 0%, #1D4ED8 100%)", tabColor: "#2563EB", image: "/services/ecommerce/Customer Operations.jpg" },
-  { num: "06", title: "Commerce Finance Reconciliation", desc: "Support order-to-cash, marketplace settlements, fee reconciliation, refund administration and financial exception management.", tags: "Analyze / Forecast / Replenish", bg: "linear-gradient(135deg, #3B0764 0%, #BE185D 100%)", tabColor: "#DB2777", image: "/services/ecommerce/Commerce Data & Insights.jpg" },
-];
-
-const outcomeIconProps = {
-  width: 24,
-  height: 24,
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 2,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-  "aria-hidden": true,
-};
-
-const outcomeIcons = [
-  <svg key="faster" {...outcomeIconProps}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>,
-  <svg key="accurate" {...outcomeIconProps}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>,
-  <svg key="efficient" {...outcomeIconProps}><rect width="18" height="18" x="3" y="3" rx="2" /><path d="M11 9h4" /><path d="M11 13h4" /><path d="M11 17h4" /><path d="M7 9h.01" /><path d="M7 13h.01" /><path d="M7 17h.01" /></svg>,
-  <svg key="visible" {...outcomeIconProps}><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0z" /><circle cx="12" cy="12" r="3" /></svg>,
-  <svg key="experienced" {...outcomeIconProps}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /></svg>,
-  <svg key="scalable" {...outcomeIconProps}><path d="M3 17.5l5.5-5.5 3.5 3.5L20.5 7" /><path d="M14.5 7h6v6" /></svg>,
+  { num: "01", title: "Product Data Enrichment & Classification", desc: "Ingest, classify and enrich product information so catalogs are accurate, complete and commerce-ready across every channel and marketplace.", tags: "Classify / Enrich / Optimize", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Product & Catalog Operations.jpg" },
+  { num: "02", title: "Order & Fulfillment Workflow Automation", desc: "Automate order validation, status management, fulfillment coordination and exception routing to reduce manual touchpoints and improve order accuracy.", tags: "Monitor / Prioritize / Resolve", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Order Management.jpg" },
+  { num: "03", title: "Returns & Refund Processing", desc: "Structure return initiation, validation, authorization, refund processing and inventory reconciliation into connected, visible workflows.", tags: "Analyze / Predict / Improve", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Fulfillment Operations (2).jpg" },
+  { num: "04", title: "Marketplace Listing Quality", desc: "Review listings for completeness, accuracy, policy compliance and content quality across multiple marketplace platforms.", tags: "Generate / Tag / Validate", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Marketplace Operations.jpg" },
+  { num: "05", title: "Customer Query Resolution", desc: "Combine AI-assisted support with skilled teams to resolve product, order, delivery and post-purchase queries across omnichannel touchpoints.", tags: "Understand / Personalize / Assist", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Customer Operations.jpg" },
+  { num: "06", title: "Commerce Finance Reconciliation", desc: "Support order-to-cash, marketplace settlements, fee reconciliation, refund administration and financial exception management.", tags: "Analyze / Forecast / Replenish", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Commerce Data & Insights.jpg" },
 ];
 
 const outcomes = [
@@ -176,36 +208,42 @@ const outcomes = [
     num: "01",
     word: "FASTER",
     sub: "Faster processing",
+    image: "/healthcare/faster (2).png",
     desc: "Streamlined workflows help reduce operational delays across orders, products and customer interactions.",
   },
   {
     num: "02",
     word: "ACCURATE",
     sub: "Greater accuracy",
+    image: "/healthcare/accurate.png",
     desc: "Structured validation helps improve product data, order processing and transaction quality.",
   },
   {
     num: "03",
     word: "EFFICIENT",
     sub: "Lower operational effort",
+    image: "/healthcare/efficient.png",
     desc: "Automation reduces repetitive manual activity across commerce operations.",
   },
   {
     num: "04",
     word: "VISIBLE",
     sub: "Better operational visibility",
+    image: "/healthcare/visible.png",
     desc: "Connected reporting makes performance and exceptions easier to understand across channels.",
   },
   {
     num: "05",
     word: "EXPERIENCED",
     sub: "Better experiences",
+    image: "/healthcare/better-experiences.png",
     desc: "Simpler operations help create smoother interactions for customers, sellers and partners.",
   },
   {
     num: "06",
     word: "SCALABLE",
     sub: "Built to adapt",
+    image: "/healthcare/scalable.png",
     desc: "Flexible operations support changing volumes, seasonal peaks and evolving requirements.",
   },
 ];
@@ -418,9 +456,9 @@ export default function ECommercePage() {
 
         .ec-land-grid { margin-bottom: 0; }
         .ec-land-row { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; margin-top: 40px; }
-        .ec-section-landscape { padding-bottom: clamp(40px, 5vw, 60px); position: relative; background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f0fdf4 100%); }
-        .ec-section-landscape::before { content: ""; position: absolute; top: 80px; right: 60px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%); pointer-events: none; }
-        .ec-section-landscape::after { content: ""; position: absolute; bottom: 40px; left: 100px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%); pointer-events: none; }
+        .ec-section-landscape { padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(40px, 5vw, 60px); position: relative; background: #ffffff; }
+        .ec-section-landscape::before { content: none; }
+        .ec-section-landscape::after { content: none; }
         .ec-landscape-text { }
         .ec-landscape-left { }
         .ec-head h2 { position: relative; padding-bottom: 12px; }
@@ -428,30 +466,29 @@ export default function ECommercePage() {
         .ec-landscape-left p { color: #5B6472; max-width: 440px; }
         .ec-landscape-right { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
         .ec-challenge-card {
-          background: rgba(255, 255, 255, 0.55);
-          backdrop-filter: blur(20px) saturate(1.4);
-          -webkit-backdrop-filter: blur(20px) saturate(1.4);
-          border: 1px solid rgba(255, 255, 255, 0.7);
+          background: linear-gradient(160deg, #0E1B2E 0%, #1B2735 100%);
+          border: 1px solid rgba(198,232,74,0.14);
           border-radius: 16px;
           padding: 22px 22px 20px;
           position: relative;
           overflow: hidden;
           transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s ease, border-color .3s ease;
-          box-shadow: 0 4px 24px -8px rgba(10,22,40,0.06), inset 0 1px 0 rgba(255,255,255,0.6);
+          box-shadow: 0 10px 30px -12px rgba(12,27,48,0.35);
         }
         .ec-challenge-card::before {
           content: "";
           position: absolute;
           inset: 0;
           border-radius: 16px;
+          background: radial-gradient(120px 60px at 20% 0%, rgba(198,232,74,0.12), transparent 70%);
           opacity: 0;
           transition: opacity .3s ease;
           pointer-events: none;
         }
         .ec-challenge-card:hover {
           transform: translateY(-5px) scale(1.01);
-          box-shadow: 0 16px 40px -10px rgba(10,22,40,0.14), inset 0 1px 0 rgba(255,255,255,0.8);
-          border-color: rgba(255,255,255,0.9);
+          box-shadow: 0 20px 44px -12px rgba(12,27,48,0.45);
+          border-color: rgba(198,232,74,0.45);
         }
         .ec-challenge-card:hover::before { opacity: 1; }
         .ec-challenge-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
@@ -463,7 +500,9 @@ export default function ECommercePage() {
           align-items: center;
           justify-content: center;
           position: relative;
-          box-shadow: 0 2px 12px -3px currentColor;
+          background: #C6E84A;
+          color: #0f0f0f;
+          box-shadow: 0 2px 12px -3px rgba(198,232,74,0.5);
           flex-shrink: 0;
         }
         .ec-challenge-icon::after {
@@ -479,7 +518,7 @@ export default function ECommercePage() {
         }
         .ec-challenge-card:hover .ec-challenge-icon::after { opacity: 0.55; }
         .ec-challenge-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-        .ec-challenge-label { font-size: 15px; font-weight: 600; color: #1A2540; line-height: 1.4; }
+        .ec-challenge-label { font-size: 15px; font-weight: 600; color: #ffffff; line-height: 1.4; }
         .ec-approach {
           margin-top: 48px;
           background: linear-gradient(135deg, #0B1D35 0%, #132742 40%, #0F2035 100%);
@@ -550,24 +589,32 @@ export default function ECommercePage() {
         .ec-feature-img { position: relative; overflow: hidden; border-radius: 22px; aspect-ratio: 4 / 4.6; }
         .ec-feature-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .ec-feature-tint { position: absolute; inset: 0; background: linear-gradient(200deg, rgba(198,232,74,0.16) 0%, rgba(7,20,38,0.05) 40%, rgba(7,20,38,0.55) 100%); }
-        .ec-claims-wf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 14px; margin-top: 36px; }
-        .ec-claims-wf-step { position: relative; display: flex; align-items: center; }
-        .ec-claims-wf-card { flex: 1; border-radius: 16px; padding: 18px 16px; border: 1px solid rgba(255, 255, 255, 0.15); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease, filter 0.35s ease; position: relative; box-shadow: 0 10px 24px -6px rgba(0,0,0,0.4); }
-        .ec-claims-wf-card:hover { transform: translateY(-5px); box-shadow: 0 16px 36px -8px rgba(0,0,0,0.6); filter: brightness(1.08); }
-        .ec-claims-wf-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-        .ec-claims-wf-icon { width: 34px; height: 34px; border-radius: 10px; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.25); display: flex; align-items: center; justify-content: center; color: inherit; transition: transform 0.3s ease; }
-        .ec-claims-wf-card:hover .ec-claims-wf-icon { transform: scale(1.1); }
-        .ec-claims-wf-num { font-family: var(--font-syne), sans-serif; font-size: 11.5px; font-weight: 800; color: inherit; letter-spacing: 0.08em; background: rgba(0, 0, 0, 0.2); padding: 4px 9px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.2); }
-        .ec-claims-wf-title { font-family: var(--font-syne), sans-serif; font-size: 15px; font-weight: 700; color: inherit; letter-spacing: 0.04em; }
-        .ec-claims-wf-sub { font-size: 12.5px; line-height: 1.45; color: inherit; opacity: 0.85; margin-top: 4px; }
-        .ec-claims-wf-connector { position: absolute; right: -13px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; border-radius: 50%; background: #071426; border: 1.5px solid rgba(255, 255, 255, 0.3); display: flex; align-items: center; justify-content: center; color: #ffffff; z-index: 3; box-shadow: 0 0 10px rgba(0,0,0,0.6); }
+        .ec-claims-flow { position: relative; margin-top: 40px; max-width: 640px; width: 100%; aspect-ratio: 16 / 11; }
+        .ec-cw-lines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .ec-cw-node { position: absolute; z-index: 2; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; }
+        .ec-cw-circle { width: 62px; height: 62px; border-radius: 50%; background: var(--ecn); border: 1.5px solid var(--ecc); display: flex; align-items: center; justify-content: center; color: #f4f7fb; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.3s ease; }
+        .ec-cw-node:hover .ec-cw-circle { transform: scale(1.08); border-color: #D9F77E; box-shadow: 0 0 0 7px rgba(198,232,74,0.12); }
+        .ec-cw-label { position: absolute; bottom: calc(100% + 12px); left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 3px; pointer-events: none; }
+        .ec-cw-num { font-family: var(--font-syne), Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: var(--ecc); line-height: 1; }
+        .ec-cw-name { font-family: var(--font-syne), Arial, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: #ffffff; text-transform: uppercase; white-space: nowrap; line-height: 1.15; }
+        .ec-cw-sub { position: absolute; top: calc(100% + 10px); left: 0; right: 0; text-align: center; font-size: 12px; line-height: 1.35; color: rgba(196,211,231,0.72); white-space: nowrap; padding: 0 4px; pointer-events: none; }
+        .ec-cw-arrow { position: absolute; z-index: 1; width: 0; height: 0; transform: translate(-50%, -50%); pointer-events: none; }
+        .ec-cw-arrow--r { border-left: 9px solid var(--ecc); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+        .ec-cw-arrow--l { border-right: 9px solid var(--ecc); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+        .ec-cw-arrow--d { border-top: 9px solid var(--ecc); border-left: 5px solid transparent; border-right: 5px solid transparent; }
+        .ec-cw-arrow--u { border-bottom: 9px solid var(--ecc); border-left: 5px solid transparent; border-right: 5px solid transparent; }
         @media (max-width: 1100px) {
-          .ec-claims-wf-grid { grid-template-columns: repeat(2, 1fr); }
-          .ec-claims-wf-connector { display: none; }
+          .ec-claims-flow { max-width: 100%; aspect-ratio: auto; }
+          .ec-cw-lines, .ec-cw-arrow { display: none; }
+          .ec-cw-node { position: relative; left: auto !important; top: auto !important; transform: none; width: 100%; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+          .ec-cw-label { position: static; bottom: auto; margin-bottom: 12px; }
+          .ec-cw-sub { position: static; top: auto; margin-top: 12px; white-space: normal; }
+          .ec-cw-node:not(:last-child)::after { content: ""; display: block; width: 0; height: 0; margin: 4px auto 0; border-top: 9px solid var(--ecc); border-left: 5px solid transparent; border-right: 5px solid transparent; }
         }
-        @media (max-width: 640px) {
-          .ec-claims-wf-grid { grid-template-columns: 1fr; }
+        @media (max-width: 540px) {
+          .ec-cw-circle { width: 58px; height: 58px; }
         }
+        @media (prefers-reduced-motion: reduce) { .ec-cw-node:hover .ec-cw-circle { transform: none; } }
 
         .ec-prov-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(36px, 5vw, 90px); align-items: center; }
         .ec-prov-img { position: relative; overflow: hidden; border-radius: 22px; aspect-ratio: 4 / 4.8; box-shadow: 0 34px 70px -40px rgba(12,27,48,0.45); }
@@ -630,17 +677,21 @@ export default function ECommercePage() {
         .ec-clin-panel.is-open { max-height:500px; opacity:1; }
         .ec-clin-panel-inner { padding:0 20px 18px; color:#9AA7B8; font-size:13.5px; line-height:1.7; }
 
-        .ec-out-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 56px; }
-        .ec-outcome { position: relative; overflow: hidden; background: #ffffff; border: 1px solid rgba(12,27,48,0.08); border-radius: 20px; padding: clamp(28px, 2.5vw, 36px); display: flex; flex-direction: column; box-shadow: 0 4px 20px -6px rgba(12,27,48,0.04); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease; }
-        .ec-outcome::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, #7AA306, #C6E84A); opacity: 0; transition: opacity 0.35s ease; }
-        .ec-outcome:hover { transform: translateY(-6px); border-color: rgba(122,163,6,0.35); box-shadow: 0 24px 48px -18px rgba(12,27,48,0.12); }
-        .ec-outcome:hover::after { opacity: 1; }
-        .ec-outcome-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-        .ec-outcome-icon { width: 48px; height: 48px; border-radius: 14px; background: rgba(198,232,74,0.12); border: 1px solid rgba(122,163,6,0.2); display: flex; align-items: center; justify-content: center; color: #618300; transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.35s ease; }
-        .ec-outcome:hover .ec-outcome-icon { background: #C6E84A; border-color: #C6E84A; color: #0C1B30; transform: scale(1.06); }
-        .ec-outcome-word { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(22px, 2.2vw, 28px); font-weight: 700; letter-spacing: -0.01em; color: #0C1B30; margin: 0; }
-        .ec-outcome-sub { font-size: 15px; font-weight: 600; color: #7AA306; margin: 6px 0 0; }
-        .ec-outcome-desc { font-size: 14.5px; line-height: 1.65; color: #5A6B7F; margin: 12px 0 0; }
+        .ec-out-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 56px; }
+        .ec-outcome { position: relative; overflow: hidden; background: #f5f5f3; border-radius: 16px; display: flex; flex-direction: row; min-height: 220px; box-shadow: 0 2px 12px -4px rgba(12,27,48,0.08); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease; }
+        .ec-outcome--dark { background: #0c1b2e; }
+        .ec-outcome:hover { transform: translateY(-4px); box-shadow: 0 16px 40px -14px rgba(12,27,48,0.20); }
+        .ec-outcome-body { flex: 0 0 50%; padding: 24px 20px 24px 24px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; z-index: 2; pointer-events: none; }
+        .ec-outcome-body * { pointer-events: auto; }
+        .ec-outcome-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8a97a8; margin: 0 0 10px; }
+        .ec-outcome--dark .ec-outcome-eyebrow { color: #6b8299; }
+        .ec-outcome-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(20px, 1.8vw, 26px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #0a1628; margin: 0 0 10px; }
+        .ec-outcome--dark .ec-outcome-title { color: #ffffff; }
+        .ec-outcome-desc { font-size: 12.5px; line-height: 1.6; color: #5a6b7f; margin: 0; max-width: 24ch; }
+        .ec-outcome--dark .ec-outcome-desc { color: #7a96ae; }
+        .ec-outcome-media { position: absolute; right: 0; top: 0; bottom: 0; width: 68%; z-index: 1; overflow: hidden; }
+        .ec-outcome-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .ec-outcome:hover .ec-outcome-media img { transform: scale(1.05); }
 
         .ec-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 56px; }
         .ec-layer { display: grid; grid-template-columns: 90px 320px 1fr; align-items: center; gap: 20px; border-radius: 14px; padding: 24px 30px; background: #10294A; border: 1px solid rgba(198,232,74,0.12); transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
@@ -665,32 +716,33 @@ export default function ECommercePage() {
         .ec-why-card h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 23px; font-weight: 700; color: #0C1B30; margin: 4px 0 0; }
         .ec-why-card p { font-size: 14px; line-height: 1.65; color: #5A6B7F; margin: 8px 0 0; }
 
-        .ec-transform { display:grid; grid-template-columns:1fr 1fr; isolation:isolate; overflow:hidden; }
-        .ec-transform-left { display:flex; flex-direction:column; }
-        .ec-transform-panel { padding:44px 48px; display:flex; flex:1; }
-        .ec-transform-panel--dark { position:relative; background:radial-gradient(circle at 25% 15%, #132745 0%, #0A1628 55%, #050B14 100%); color:#F5F7FA; overflow:hidden; }
-        .ec-transform-panel--dark::before { content:""; position:absolute; left:-60px; bottom:-60px; width:340px; height:340px; background:radial-gradient(circle, rgba(196,229,56,0.1), transparent 70%); pointer-events:none; }
-        .ec-transform-panel--light { background:#F8FAFC; color:#0A1628; border-top:1px solid #EDF0F4; }
-        .ec-transform-panel--right { background:#EFF3F7; color:#0A1628; }
-        .ec-transform-panel-inner { width:100%; display:flex; flex-direction:column; justify-content:center; }
-        .ec-transform-badge { display:inline-block; align-self:flex-start; background:#C6E84A; color:#0f0f0f; padding:8px 20px; border-radius:999px; font-size:14px; font-weight:600; letter-spacing:0.5px; font-variant:small-caps; margin-bottom:24px; }
-        .ec-transform h3 { font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:clamp(24px,2.6vw,32px); font-weight:700; margin:0; color:inherit; line-height:1.25; }
-        .ec-transform-panel--dark > .ec-transform-panel-inner > p { font-size:15px; line-height:1.7; margin:14px 0 0; max-width:440px; color:#8B9AB5; }
-        .ec-transform-panel--light > .ec-transform-panel-inner > p { font-size:15px; line-height:1.7; margin:14px 0 0; max-width:440px; color:#5B6472; }
-        .ec-transform-illustration { flex:1; display:flex; align-items:flex-end; justify-content:center; margin-top:32px; }
-        .ec-transform-illustration svg { width:100%; max-width:440px; height:auto; }
-        .ec-pot-title { font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:clamp(24px,2.6vw,32px); font-weight:700; margin:0 0 16px; color:#0A1628; line-height:1.25; }
-        .ec-pot-checklist { list-style:none; margin:0; padding:0; background:#FFFFFF; border:1px solid #E8EBF0; border-radius:16px; overflow:hidden; box-shadow:0 6px 20px -12px rgba(10,22,40,0.15); }
-        .ec-pot-checklist li { display:flex; align-items:center; gap:14px; padding:15px 20px; border-top:1px solid #EEF1F5; font-size:14.5px; font-weight:600; color:#1D2733; transition:background .2s ease; }
-        .ec-pot-checklist li:first-child { border-top:none; }
-        .ec-pot-checklist li:hover { background:#FAFDF5; }
-        .ec-pot-badge { width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg, #0A1628 0%, #1A2B45 100%); color:#C4E538; display:flex; align-items:center; justify-content:center; flex:0 0 auto; font-weight:700; font-size:13px; }
-        .ec-transform-cta { display:inline-flex; align-items:center; gap:10px; align-self:flex-start; background:#0A1628; color:#F5F7FA; padding:14px 28px; border-radius:12px; font-weight:700; font-size:14px; text-decoration:none; margin-top:28px; transition:background .15s ease, transform .15s ease, box-shadow .15s ease; box-shadow:0 2px 12px -4px rgba(10,22,40,0.2); }
-        .ec-transform-cta span { display:inline-block; transition:transform .15s ease; }
-        .ec-transform-cta:hover { background:#142544; transform:translateY(-2px); box-shadow:0 6px 20px -6px rgba(10,22,40,0.3); }
+        .ec-transform { margin-top:clamp(8px,1vw,16px); padding:0 clamp(28px,5vw,80px) clamp(64px,8vw,120px); background:#FFFFFF; overflow:hidden; }
+        .ec-transform-badge { display:inline-block; align-self:flex-start; background:#C6E84A; color:#0f0f0f; padding:8px 20px; border-radius:999px; font-size:14px; font-weight:600; letter-spacing:0.5px; font-variant:small-caps; margin-bottom:clamp(12px,1.6vw,16px); }
+        .ec-transform-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(40px,5vw,72px); align-items:flex-start; }
+        .ec-transform-left { display:flex; flex-direction:column; max-width:560px; padding-top:clamp(8px,1vw,16px); }
+        .ec-tl-step { display:flex; align-items:flex-start; gap:24px; }
+        .ec-tl-step--approach { align-items:center; }
+        .ec-tl-icon { flex:0 0 auto; width:52px; height:52px; border-radius:50%; border:1.5px solid #C8D1DD; background:#FFFFFF; color:#93A0B0; display:flex; align-items:center; justify-content:center; }
+        .ec-tl-icon svg { width:22px; height:22px; }
+        .ec-tl-body { flex:1; min-width:0; }
+        .ec-tl-body h3 { font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:clamp(20px,2vw,24px); font-weight:700; margin:0; color:#0C1B30; line-height:1.25; }
+        .ec-tl-body p { font-size:15px; line-height:1.7; margin:12px 0 0; color:#5A6B7F; }
+        .ec-tl-step--approach .ec-tl-body { background:#F3F5F7; border-left:4px solid var(--ecc); border-radius:16px; padding:24px 26px; }
+        .ec-tl-link { flex:0 0 auto; width:0; height:44px; margin:12px 0 12px 25px; border-left:2px dashed #C6E84A; }
+        .ec-pot-card { background:#0C1B30; border-radius:22px; padding:clamp(30px,3.5vw,44px); color:#FFFFFF; box-shadow:0 34px 70px -40px rgba(7,20,38,0.5); }
+        .ec-pot-title { font-family:var(--font-syne),Arial,Helvetica,sans-serif; font-size:clamp(24px,2.6vw,32px); font-weight:700; margin:0 0 clamp(18px,2vw,24px); color:#FFFFFF; line-height:1.25; }
+        .ec-pot-checklist { list-style:none; margin:0; padding:0; }
+        .ec-pot-checklist li { display:flex; align-items:center; gap:14px; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.1); font-size:15px; font-weight:600; color:#FFFFFF; }
+        .ec-pot-checklist li:last-child { border-bottom:none; }
+        .ec-pot-tick { flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; color:var(--ecc); }
+        .ec-pot-tick svg { width:18px; height:18px; }
+        .ec-transform-cta { display:inline-flex; align-items:center; justify-content:center; gap:10px; align-self:flex-start; background:#C6E84A; color:#0f0f0f; padding:15px 30px; border-radius:999px; font-weight:700; font-size:15px; letter-spacing:0.02em; text-decoration:none; margin-top:28px; transition:background .25s ease, transform .25s cubic-bezier(0.16,1,0.3,1), box-shadow .25s ease; }
+        .ec-transform-cta span { display:inline-block; transition:transform .2s ease; }
+        .ec-transform-cta:hover { background:#D9F77E; transform:translateY(-2px); box-shadow:0 16px 34px -14px rgba(198,232,74,0.55); }
         .ec-transform-cta:hover span { transform:translateX(3px); }
-        @media (prefers-reduced-motion:reduce){ .ec-pot-checklist li:hover{ background:transparent; } .ec-transform-cta:hover{ transform:none; } .ec-transform-cta:hover span{ transform:none; } }
-        @media (max-width:900px){ .ec-transform{ grid-template-columns:1fr; min-height:auto; } .ec-transform-panel{ padding:36px 24px; } .ec-transform-panel--light{ border-top:1px solid #EDF0F4; border-left:none; } }
+        @media (prefers-reduced-motion:reduce){ .ec-transform-cta:hover{ transform:none; } .ec-transform-cta:hover span{ transform:none; } }
+        @media (max-width:900px){ .ec-transform{ margin-top:clamp(12px,3vw,24px); padding:0 24px clamp(48px,8vw,72px); } .ec-transform-grid{ grid-template-columns:1fr; gap:40px; } .ec-transform-left{ max-width:none; } }
+        @media (max-width:520px){ .ec-tl-step{ gap:16px; } .ec-tl-icon{ width:46px; height:46px; } .ec-tl-icon svg{ width:20px; height:20px; } .ec-tl-link{ margin-left:22px; height:36px; margin-top:10px; margin-bottom:10px; } .ec-tl-step--approach .ec-tl-body{ padding:20px 18px; } }
 
         .ec-final { position: relative; overflow: hidden; background: #0f0f0f; text-align: center; padding: 100px 80px; }
         .ec-final-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 400px; background: radial-gradient(circle, rgba(198,232,74,0.12) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
@@ -756,9 +808,10 @@ export default function ECommercePage() {
         .scd-deck-wrapper { position: relative; width: 100%; max-width: 100%; overflow: hidden; margin-top: 20px; }
         .scd-deck { position: relative; width: 100%; max-width: 100%; min-height: 480px; }
         .scd-tabs-bar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; position: relative; z-index: 10; width: 100%; max-width: 100%; }
-        .scd-tab { appearance: none; border: none; background: var(--c); border-radius: 14px 14px 0 0; padding: 14px 12px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #ffffff; font-family: inherit; font-size: 13.5px; font-weight: 700; filter: brightness(0.55); opacity: 0.85; transition: filter 0.3s ease, transform 0.3s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.3s ease; text-align: center; min-width: 0; overflow: hidden; }
-        .scd-tab:hover { filter: brightness(0.85); opacity: 1; }
-        .scd-tab.is-active { filter: brightness(1); opacity: 1; transform: translateY(-4px); box-shadow: 0 -8px 20px rgba(0,0,0,0.3); }
+        .scd-tab { appearance: none; border: none; background: #1B2530; border-radius: 14px 14px 0 0; padding: 14px 12px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #B7C3D0; font-family: inherit; font-size: 13.5px; font-weight: 700; opacity: 0.85; transition: background 0.3s ease, transform 0.3s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.3s ease, color 0.3s ease; text-align: center; min-width: 0; overflow: hidden; }
+        .scd-tab:hover { background: #26303C; color: #ffffff; opacity: 1; }
+        .scd-tab.is-active { background: #C6E84A; color: #0f0f0f; opacity: 1; transform: translateY(-4px); box-shadow: 0 -8px 20px rgba(0,0,0,0.3); }
+        .scd-tab.is-active .scd-tab-num { background: rgba(15,23,42,0.16); color: #0f0f0f; }
         .scd-tab-num { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; background: rgba(0,0,0,0.25); padding: 2px 6px; border-radius: 999px; flex: 0 0 auto; }
         .scd-tab-text { font-family: var(--font-syne), sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1 1 auto; }
         .scd-cards-stack { position: relative; width: 100%; min-height: 420px; }
@@ -831,9 +884,9 @@ export default function ECommercePage() {
             </div>
             <div className="ec-landscape-right">
               {challenges.map((c, i) => (
-                <article key={c.label} className="ec-challenge-card" style={{ background: c.gradient } as React.CSSProperties}>
+                <article key={c.label} className="ec-challenge-card">
                   <div className="ec-challenge-top">
-                    <div className="ec-challenge-icon" style={{ background: c.color, color: "#fff" }} aria-hidden="true">
+                    <div className="ec-challenge-icon" aria-hidden="true">
                       <svg viewBox="0 0 24 24">
                         {i === 0 && <><path d="M4 7h16v10H4z" /><path d="M8 7v10M12 7v10M16 7v10" /></>}
                         {i === 1 && <><circle cx="12" cy="12" r="8" /><path d="M12 8v4l3 2" /></>}
@@ -948,45 +1001,34 @@ export default function ECommercePage() {
               <h2 className="ec-h2">Every great shopping experience starts with great <span style={{ color: "#C6E84A" }}>product data.</span></h2>
               <p className="ec-lede">Accurate titles, attributes, images, descriptions, categories and specifications influence how products are discovered, understood and purchased.</p>
               <p className="ec-copy">Sytrion combines structured operations, AI and human quality review to help businesses maintain accurate, enriched and commerce-ready product information.</p>
-              <div className="ec-claims-wf-grid">
-                {commerceSteps.map((s, i) => {
-                  const stepIcons: Record<string, React.ReactNode> = {
-                    inbox: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 12h-6l-2 3h-4l-2-3H2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6z" /><path d="M5.45 5.11 2 12v0h20v0l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" /></svg>,
-                    scan: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 7V5a2 2 0 0 1 2-2h2" /><path d="M17 3h2a2 2 0 0 1 2 2v2" /><path d="M21 17v2a2 2 0 0 1-2 2h-2" /><path d="M7 21H5a2 2 0 0 1-2-2v-2" /><line x1="7" y1="12" x2="17" y2="12" /></svg>,
-                    check: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>,
-                    "git-branch": <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="6" y1="3" x2="6" y2="15" /><circle cx="18" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M18 9a9 9 0 0 1-9 9" /></svg>,
-                    cpu: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="4" width="16" height="16" rx="2" /><rect x="9" y="9" width="6" height="6" /><line x1="9" y1="1" x2="9" y2="4" /><line x1="15" y1="1" x2="15" y2="4" /><line x1="9" y1="20" x2="9" y2="23" /><line x1="15" y1="20" x2="15" y2="23" /><line x1="20" y1="9" x2="23" y2="9" /><line x1="20" y1="15" x2="23" y2="15" /><line x1="1" y1="9" x2="4" y2="9" /><line x1="1" y1="15" x2="4" y2="15" /></svg>,
-                    "bar-chart": <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="20" x2="12" y2="10" /><line x1="18" y1="20" x2="18" y2="4" /><line x1="6" y1="20" x2="6" y2="16" /></svg>,
-                  };
+              <div className="ec-claims-flow">
+                <svg className="ec-cw-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <path
+                    d="M14 28 H50 M50 28 H86 M86 28 L86 67 M86 74 H50 M50 74 H14"
+                    stroke="#C6E84A"
+                    strokeOpacity="0.42"
+                    strokeWidth="1.2"
+                    vectorEffect="non-scaling-stroke"
+                    fill="none"
+                  />
+                </svg>
 
-                  return (
-                    <div key={s.name} className="ec-claims-wf-step">
-                      <div
-                        className="ec-claims-wf-card"
-                        style={{
-                          background: s.bg,
-                          color: s.text,
-                        }}
-                      >
-                        <div className="ec-claims-wf-top">
-                          <div className="ec-claims-wf-icon">
-                            {stepIcons[s.icon]}
-                          </div>
-                          <span className="ec-claims-wf-num">0{i + 1}</span>
-                        </div>
-                        <div className="ec-claims-wf-title">{s.name}</div>
-                        <div className="ec-claims-wf-sub">{s.sub}</div>
-                      </div>
-                      {i < commerceSteps.length - 1 && (
-                        <div className="ec-claims-wf-connector" aria-hidden="true">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                            <polyline points="9 18 15 12 9 6" />
-                          </svg>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                <span className="ec-cw-arrow ec-cw-arrow--r" style={{ left: "32%", top: "28%" }} aria-hidden="true" />
+                <span className="ec-cw-arrow ec-cw-arrow--r" style={{ left: "68%", top: "28%" }} aria-hidden="true" />
+                <span className="ec-cw-arrow ec-cw-arrow--d" style={{ left: "86%", top: "67%" }} aria-hidden="true" />
+                <span className="ec-cw-arrow ec-cw-arrow--l" style={{ left: "68%", top: "74%" }} aria-hidden="true" />
+                <span className="ec-cw-arrow ec-cw-arrow--l" style={{ left: "32%", top: "74%" }} aria-hidden="true" />
+
+                {commerceSteps.map((s) => (
+                  <div key={s.name} className="ec-cw-node" style={{ left: `${s.x}%`, top: `${s.y}%` }}>
+                    <div className="ec-cw-circle">{flowIcons[s.icon]}</div>
+                    <span className="ec-cw-label">
+                      <span className="ec-cw-num">{s.num}</span>
+                      <span className="ec-cw-name">{s.name}</span>
+                    </span>
+                    <span className="ec-cw-sub">{s.sub}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -1039,7 +1081,6 @@ export default function ECommercePage() {
                     aria-selected={intelActive === i}
                     aria-controls={`scd-card-${i}`}
                     className={`scd-tab ${intelActive === i ? "is-active" : ""}`}
-                    style={{ "--c": cap.tabColor } as React.CSSProperties}
                     onClick={() => setIntelActive(i)}
                     onMouseEnter={() => setIntelActive(i)}
                     onFocus={() => setIntelActive(i)}
@@ -1139,15 +1180,15 @@ export default function ECommercePage() {
           </div>
           <div className="ec-out-grid ec-reveal">
             {outcomes.map((o, i) => (
-              <article key={o.word} className="ec-outcome">
-                <div className="ec-outcome-header">
-                  <div className="ec-outcome-icon" aria-hidden="true">
-                    {outcomeIcons[i]}
-                  </div>
+              <article key={o.word} className={`ec-outcome${i === 0 ? " ec-outcome--dark" : ""}`}>
+                <div className="ec-outcome-body">
+                  <p className="ec-outcome-eyebrow">{o.num} / {o.word}</p>
+                  <h3 className="ec-outcome-title">{o.sub}</h3>
+                  <p className="ec-outcome-desc">{o.desc}</p>
                 </div>
-                <h3 className="ec-outcome-word">{o.word}</h3>
-                <p className="ec-outcome-sub">{o.sub}</p>
-                <p className="ec-outcome-desc">{o.desc}</p>
+                <div className="ec-outcome-media">
+                  <img src={o.image} alt={o.sub} loading="lazy" decoding="async" />
+                </div>
               </article>
             ))}
           </div>
@@ -1198,33 +1239,48 @@ export default function ECommercePage() {
       </section>
 
       <section className="ec-transform">
-        <div className="ec-transform-left">
-          <div className="ec-transform-panel ec-transform-panel--dark">
-            <div className="ec-transform-panel-inner">
-              <span className="ec-transform-badge">Transformation in Action</span>
+        <div className="ec-transform-grid">
+          <div className="ec-transform-left">
+          <span className="ec-transform-badge">Transformation in Action</span>
+          <div className="ec-tl-step">
+            <span className="ec-tl-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+              </svg>
+            </span>
+            <div className="ec-tl-body">
               <h3>The Challenge</h3>
               <p>High-volume commerce workflows can involve fragmented product information, manual order processing, repetitive validations and significant exception handling.</p>
             </div>
           </div>
-          <div className="ec-transform-panel ec-transform-panel--light">
-            <div className="ec-transform-panel-inner">
+          <div className="ec-tl-link" aria-hidden="true" />
+          <div className="ec-tl-step ec-tl-step--approach">
+            <span className="ec-tl-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+              </svg>
+            </span>
+            <div className="ec-tl-body">
               <h3>The Sytrion Approach</h3>
               <p>Combine domain-led operations with product intelligence, workflow automation, structured validation and operational analytics.</p>
             </div>
           </div>
         </div>
-        <div className="ec-transform-panel ec-transform-panel--right">
-          <div className="ec-transform-panel-inner">
-            <h3 className="ec-pot-title">The Potential</h3>
-            <ul className="ec-pot-checklist">
-              <li><span className="ec-pot-badge" aria-hidden="true">✓</span> Faster Order Processing</li>
-              <li><span className="ec-pot-badge" aria-hidden="true">✓</span> Reduced Manual Touchpoints</li>
-              <li><span className="ec-pot-badge" aria-hidden="true">✓</span> Improved Product Data Quality</li>
-              <li><span className="ec-pot-badge" aria-hidden="true">✓</span> Better Exception Visibility</li>
-              <li><span className="ec-pot-badge" aria-hidden="true">✓</span> More Scalable Operations</li>
-            </ul>
-            <Link href="/contact" className="ec-transform-cta">Discuss Your Use Case <span>→</span></Link>
-          </div>
+        <div className="ec-pot-card">
+          <h3 className="ec-pot-title">The Potential</h3>
+          <ul className="ec-pot-checklist">
+            <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Faster Order Processing</li>
+            <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Reduced Manual Touchpoints</li>
+            <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Improved Product Data Quality</li>
+            <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Better Exception Visibility</li>
+            <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> More Scalable Operations</li>
+          </ul>
+          <Link href="/contact" className="ec-transform-cta">Discuss Your Use Case <span>→</span></Link>
+        </div>
         </div>
       </section>
 
