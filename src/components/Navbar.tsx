@@ -28,7 +28,7 @@ const navItems = [
   },
   {
     name: "Industries",
-    href: "/#industries",
+    href: "",
     children: [
       { name: "Shipping & Logistics", href: "/shipping-logistics" },
       { name: "Healthcare", href: "/healthcare-operations" },
@@ -159,7 +159,7 @@ export default function Navbar() {
 
   const isNavActive = useCallback(
     (item: (typeof navItems)[number]) => {
-      if (item.href === "#" || item.href.includes("#")) return false;
+      if (!item.href || item.href === "#" || item.href.includes("#")) return false;
       if (item.href === "/") return pathname === "/";
       return pathname === item.href || pathname.startsWith(item.href);
     },
@@ -602,10 +602,17 @@ export default function Navbar() {
                    }
                  }}
                >
-                 <a
-                   href={item.href}
-                   className={"desktop-tab" + (isNavActive(item) ? " active" : "") + (desktopDropdown === item.name ? " open" : "")}
-                   onClick={() => setDesktopDropdown(null)}
+<a
+                    href={item.href || undefined}
+                    className={"desktop-tab" + (isNavActive(item) ? " active" : "") + (desktopDropdown === item.name ? " open" : "")}
+                    onClick={(e) => {
+                      if (item.children) {
+                        e.preventDefault();
+                        setDesktopDropdown(desktopDropdown === item.name ? null : item.name);
+                      } else {
+                        setDesktopDropdown(null);
+                      }
+                    }}
                  >
                   {item.name}
                   {item.children && (
