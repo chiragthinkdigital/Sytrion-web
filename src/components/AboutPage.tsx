@@ -939,6 +939,23 @@ export default function AboutPage() {
           pointer-events: none;
           border-radius: 50%;
         }
+        .ab-hero-video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: right center;
+          z-index: 0;
+        }
+        .ab-hero-scrim {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          background: linear-gradient(90deg, var(--ab-base) 0%, rgba(10, 22, 40, 0.55) 55%, rgba(10, 22, 40, 0.28) 100%);
+          pointer-events: none;
+        }
+        .ab-hero-orb, .ab-hero-orb-2, .orbit-ring { z-index: 0; }
         .ab-hero-orb-2 {
           position: absolute;
           bottom: -20%;
@@ -1490,6 +1507,8 @@ export default function AboutPage() {
             â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         <section className="ab-hero">
           <div className="ab-grid-overlay" />
+          <video className="ab-hero-video" src="/about/about us.mp4" autoPlay muted loop playsInline />
+          <div className="ab-hero-scrim" />
           <div className="ab-hero-orb" />
           <div className="ab-hero-orb-2" />
           <div className="orbit-ring r1"><div className="orb" /></div>
