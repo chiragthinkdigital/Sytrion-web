@@ -362,6 +362,151 @@ const qualityItems = [
   },
 ];
 
+const marketplaceCapabilities = [
+  {
+    title: "Seller Onboarding",
+    image: "/services/ecommerce/seller onboarding.jpg",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="8.5" cy="7" r="4" /><path d="M20 8v6" /><path d="M23 11h-6" /></svg>),
+    items: ["Seller information processing", "Documentation support", "Profile setup", "Data validation", "Onboarding workflow administration"],
+  },
+  {
+    title: "Listing Operations",
+    image: "/services/ecommerce/Listing operations.jpg",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.83z" /><line x1="7" y1="7" x2="7.01" y2="7" /></svg>),
+    items: ["Product listing", "Content updates", "Attribute maintenance", "Listing-quality checks", "Issue resolution"],
+  },
+  {
+    title: "Commercial Operations",
+    image: "/services/ecommerce/commercial operations.jpg",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg>),
+    items: ["Price updates", "Promotion administration", "Offer management support", "Marketplace reconciliation", "Exception handling"],
+  },
+  {
+    title: "Seller Support",
+    image: "/services/ecommerce/seller support.jpg",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6" /><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" /></svg>),
+    items: ["Seller queries", "Case management", "Listing issues", "Order-related support", "Performance reporting"],
+  },
+];
+
+const reverseStages = [
+  { num: "01", name: "REQUEST", desc: "Return initiation" },
+  { num: "02", name: "VALIDATE", desc: "Order & return information" },
+  { num: "03", name: "AUTHORIZE", desc: "Workflow administration" },
+  { num: "04", name: "RECEIVE", desc: "Return-status processing" },
+  { num: "05", name: "REFUND", desc: "Payment/refund support" },
+  { num: "06", name: "RECONCILE", desc: "Transaction & inventory" },
+  { num: "07", name: "ANALYZE", desc: "Return trends & insights" },
+];
+
+const customerCare = [
+  {
+    title: "Pre-Purchase",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>),
+    items: ["Product information", "Availability queries", "Purchase assistance"],
+  },
+  {
+    title: "Order Support",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /><polyline points="3.27 6.96 12 12.01 20.73 6.96" /><line x1="12" y1="22.08" x2="12" y2="12" /></svg>),
+    items: ["Order status", "Modifications", "Delivery queries"],
+  },
+  {
+    title: "Post-Purchase",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><polyline points="1 4 1 10 7 10" /><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" /></svg>),
+    items: ["Returns", "Refunds", "Warranty/service queries"],
+  },
+  {
+    title: "Customer Care",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg>),
+    items: ["Complaints", "Escalations", "Case management", "Customer feedback"],
+  },
+];
+
+const cxStages = [
+  {
+    num: "01",
+    label: "Pre-Purchase",
+    title: "Pre-Purchase",
+    desc: "Helping shoppers decide with confidence, before they ever add to cart.",
+    items: ["Product information", "Availability queries", "Purchase assistance"],
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>),
+  },
+  {
+    num: "02",
+    label: "Order Support",
+    title: "Order Support",
+    desc: "Keeping customers informed and in control from checkout to dispatch.",
+    items: ["Order status", "Modifications", "Delivery queries"],
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /><polyline points="3.27 6.96 12 12.01 20.73 6.96" /><line x1="12" y1="22.08" x2="12" y2="12" /></svg>),
+  },
+  {
+    num: "03",
+    label: "Post-Purchase",
+    title: "Post-Purchase",
+    desc: "Making it easy to resolve issues once an order has arrived.",
+    items: ["Returns", "Refunds", "Warranty/service queries"],
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><polyline points="1 4 1 10 7 10" /><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" /></svg>),
+  },
+  {
+    num: "04",
+    label: "Customer Care",
+    title: "Customer Care",
+    desc: "Giving every complaint or escalation a clear owner and a resolution path.",
+    items: ["Complaints", "Escalations", "Case management", "Customer feedback"],
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg>),
+  },
+];
+
+const financeCapabilities = [
+  {
+    title: "Order-to-Cash",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z" /><line x1="8" y1="7" x2="16" y2="7" /><line x1="8" y1="11" x2="16" y2="11" /><line x1="8" y1="15" x2="13" y2="15" /></svg>),
+    items: ["Payment processing support", "Receivables", "Cash application", "Refund administration", "Customer reconciliation"],
+  },
+  {
+    title: "Marketplace Reconciliation",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10" /><polyline points="1 20 1 14 7 14" /><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" /></svg>),
+    items: ["Marketplace settlements", "Fee reconciliation", "Commission reconciliation", "Payment discrepancies", "Exception management"],
+  },
+  {
+    title: "Procure-to-Pay",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>),
+    items: ["Supplier invoices", "Vendor administration", "Payment support", "Account reconciliation"],
+  },
+  {
+    title: "Financial Intelligence",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="20" x2="12" y2="10" /><line x1="18" y1="20" x2="18" y2="4" /><line x1="6" y1="20" x2="6" y2="16" /></svg>),
+    items: ["Sales reconciliation", "Refund trends", "Marketplace fees", "Receivables analysis", "Operational dashboards"],
+  },
+];
+
+const trustedCapabilities = [
+  {
+    title: "Transaction Support",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2" /><line x1="1" y1="10" x2="23" y2="10" /></svg>),
+    image: "/services/ecommerce/Transaction Support.jpg",
+    items: ["Payment exception workflows", "Transaction review support", "Dispute administration"],
+  },
+  {
+    title: "Fraud Operations",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>),
+    image: "/services/ecommerce/Fraud Operations.jpg",
+    items: ["Alert processing support", "Case administration", "Transaction review workflows", "Escalation support"],
+  },
+  {
+    title: "Content Quality",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><line x1="10" y1="11" x2="4" y2="11" /><line x1="10" y1="6" x2="4" y2="6" /><line x1="10" y1="16" x2="4" y2="16" /><path d="M20 7.5 15.5 12 13 9.5" /><path d="M20 15.5 15.5 20 13 17.5" /></svg>),
+    image: "/services/ecommerce/Content Quality.jpg",
+    items: ["Listing-quality review", "Product-content validation", "Policy workflow support", "Exception handling"],
+  },
+  {
+    title: "Marketplace Trust",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>),
+    image: "/services/ecommerce/Marketplace Trust.jpg",
+    items: ["Seller-data validation", "Listing issue management", "Case administration", "Operational reporting"],
+  },
+];
+
 function EcLabel({ text, light }: { text: string; light?: boolean }) {
   return (
     <span className={`ec-label${light ? " ec-label--light" : ""}`}>
@@ -375,6 +520,50 @@ export default function ECommercePage() {
   const [qualityOpen, setQualityOpen] = useState(0);
   const [intelActive, setIntelActive] = useState(0);
   const revealRef = useRef<HTMLDivElement | null>(null);
+  const hdStageRef = useRef<HTMLDivElement | null>(null);
+  const [cxActive, setCxActive] = useState(0);
+  const cxRailRef = useRef<HTMLDivElement | null>(null);
+  const cxLineRef = useRef<HTMLDivElement | null>(null);
+  const cxFillRef = useRef<HTMLSpanElement | null>(null);
+  const cxBtnRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const onHdTilt = (e: React.MouseEvent<HTMLElement>) => {
+    const stage = hdStageRef.current;
+    if (!stage) return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    stage.style.transform = `perspective(1200px) rotateY(${(x * 8).toFixed(2)}deg) rotateX(${(y * -8).toFixed(2)}deg)`;
+  };
+  const onHdTiltReset = () => {
+    if (hdStageRef.current) hdStageRef.current.style.transform = "";
+  };
+
+  useEffect(() => {
+    const rail = cxRailRef.current;
+    const line = cxLineRef.current;
+    const fill = cxFillRef.current;
+    if (!rail || !line || !fill) return;
+    const draw = () => {
+      const railRect = rail.getBoundingClientRect();
+      const centers = cxBtnRefs.current.map((el) => {
+        if (!el) return 0;
+        const r = el.getBoundingClientRect();
+        return r.left + r.width / 2 - railRect.left;
+      });
+      const first = centers[0] ?? 0;
+      const last = centers[centers.length - 1] ?? first;
+      line.style.left = `${first}px`;
+      line.style.width = `${Math.max(0, last - first)}px`;
+      const activeX = centers[cxActive] ?? first;
+      fill.style.left = `${first}px`;
+      fill.style.width = `${Math.max(0, activeX - first)}px`;
+    };
+    draw();
+    window.addEventListener("resize", draw);
+    return () => window.removeEventListener("resize", draw);
+  }, [cxActive]);
 
   useEffect(() => {
     const root = revealRef.current;
@@ -850,13 +1039,13 @@ export default function ECommercePage() {
 
       <section className="ec-hero">
         <video
-            className="dpi-hero-video"
-            src="services/ecommerce/ecommercehero.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
+          className="dpi-hero-video"
+          src="services/ecommerce/ecommercehero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
         <div className="ec-wrap">
           <div className="ec-hero-inner ec-reveal">
             <EcLabel text="E-Commerce Operations" />
@@ -1035,7 +1224,76 @@ export default function ECommercePage() {
         </div>
       </section>
 
-      <section className="ec-section-light">
+      <section className="ec-section-light ec-mp">
+        <div className="ec-wrap">
+          <div className="ec-reveal">
+            <EcLabel text="Marketplace & Seller Operations" light />
+            <h2 className="ec-h2">Make marketplace complexity <span style={{ color: "#C6E84A" }}>easier to manage.</span></h2>
+            <p className="ec-lede">Marketplaces bring together products, sellers, customers, transactions and service expectations at enormous scale.</p>
+            <p className="ec-copy">Sytrion supports the operational workflows behind marketplace growth, helping businesses maintain product quality, seller information and responsive marketplace operations.</p>
+
+          </div>
+          <div className="ec-ms-cards ec-reveal">
+            {marketplaceCapabilities.map((c) => (
+              <div key={c.title} className="ec-ms-card" tabIndex={0}>
+                <div className="ec-ms-card-inner">
+                  <div className="ec-ms-card-face ec-ms-card-face--front" style={{ backgroundImage: `url("${c.image}")` }}>
+                    <span className="ec-ms-card-icon" aria-hidden="true">{c.icon}</span>
+                    <h3 className="ec-ms-card-title">{c.title}</h3>
+                    <span className="ec-ms-card-hint">HOVER TO EXPLORE ↻</span>
+                  </div>
+                  <div className="ec-ms-card-face ec-ms-card-face--back">
+                    <h4 className="ec-ms-card-back-title">{c.title}</h4>
+                    <ul>
+                      {c.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+            <div className="ec-ms-strip">
+              <span className="ec-ms-strip-title">MARKETPLACE &amp; SELLER OPERATIONS</span>
+              <span className="ec-ms-strip-items">
+                {marketplaceCapabilities.map((c, i, arr) => (
+                  <span key={c.title}>
+                    {c.title}
+                    {i < arr.length - 1 && <span className="ec-ms-strip-pipe"> | </span>}
+                  </span>
+                ))}
+              </span>
+            </div>
+          </div>
+        </div>
+        <style>{`
+          .ec-ms-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #7AA306; margin: 24px 0 0; font-variant-numeric: tabular-nums; }
+          .ec-ms-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 56px; }
+          .ec-ms-card { perspective: 1400px; outline: none; cursor: pointer; }
+          .ec-ms-card-inner { position: relative; height: clamp(300px, 30vw, 370px); transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.25, 1); }
+          .ec-ms-card:hover .ec-ms-card-inner, .ec-ms-card:focus-visible .ec-ms-card-inner { transform: rotateY(180deg); }
+          .ec-ms-card-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 16px; border: 1px solid #D1D9E6; background: #FAFBFC; box-shadow: 0 2px 12px -4px rgba(12,27,48,0.08); padding: 26px 24px; display: flex; flex-direction: column; }
+          .ec-ms-card-face--back { transform: rotateY(180deg); border-color: rgba(122,163,6,0.45); background: linear-gradient(160deg, rgba(198,232,74,0.16), #ffffff); }
+          .ec-ms-card-face--front { justify-content: flex-end; align-items: center; text-align: center; background-size: cover; background-position: center; overflow: hidden; padding-bottom: 58px; }
+          .ec-ms-card-face--front::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,27,48,0.08) 0%, rgba(12,27,48,0.42) 50%, rgba(12,27,48,0.82) 100%); z-index: 0; }
+          .ec-ms-card-icon { position: relative; z-index: 1; width: 84px; height: 84px; flex: 0 0 auto; border-radius: 20px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.38); color: #ffffff; backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+          .ec-ms-card-icon svg { width: 38px; height: 38px; }
+          .ec-ms-card-title { position: relative; z-index: 1; font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 0.05em; color: #ffffff; text-shadow: 0 1px 10px rgba(0,0,0,0.4); margin: 0; line-height: 1.45; max-width: 220px; }
+          .ec-ms-card-hint { position: absolute; bottom: 18px; left: 0; right: 0; z-index: 1; text-align: center; font-size: 11.5px; letter-spacing: 0.14em; color: rgba(255,255,255,0.78); }
+          .ec-ms-card-back-title { font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; color: #618300; margin: 0 0 12px; }
+          .ec-ms-card ul { list-style: none; margin: 0; padding: 0; }
+          .ec-ms-card li { font-size: 14.5px; color: #33475E; padding: 7px 0; border-top: 1px solid rgba(12,27,48,0.07); }
+          .ec-ms-card li:first-child { border-top: none; }
+          .ec-ms-strip { margin-top: 26px; grid-column: 1 / -1; border: 1px solid rgba(122,163,6,0.35); background: rgba(198,232,74,0.07); border-radius: 16px; padding: 22px 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
+          .ec-ms-strip-title { font-size: 13.5px; font-weight: 700; letter-spacing: 0.14em; color: #4D7C0F; }
+          .ec-ms-strip-items { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; font-size: 14.5px; color: #33475E; text-transform: uppercase; letter-spacing: 0.06em; }
+          .ec-ms-strip-pipe { color: rgba(122,163,6,0.6); }
+          @media (max-width: 1080px) { .ec-ms-cards { grid-template-columns: repeat(2, 1fr); } }
+          @media (max-width: 640px) { .ec-ms-cards { grid-template-columns: 1fr; } }
+        `}</style>
+      </section>
+
+      <section className="ec-section-dark ec-of">
         <div className="ec-wrap">
           <div className="ec-prov-grid">
             <div className="ec-prov-img ec-reveal">
@@ -1058,6 +1316,188 @@ export default function ECommercePage() {
             </div>
           </div>
         </div>
+        <style>{`
+          .ec-of .ec-prov-net { background:
+            radial-gradient(circle at 78% 18%, rgba(198,232,74,0.20), rgba(198,232,74,0) 34%),
+            linear-gradient(210deg, rgba(16,49,92,0.16) 0%, rgba(7,20,38,0.62) 100%); }
+          .ec-of .ec-timeline::before { background: linear-gradient(180deg, var(--ecc), rgba(16,49,92,0.35)); }
+          .ec-of .ec-tstep::before { background: var(--ecn); }
+          .ec-of .ec-tstep-name { color: #ffffff; }
+          .ec-of .ec-tstep-sub { color: rgba(196,211,231,0.72); }
+        `}</style>
+      </section>
+
+      <section className="ec-section-light ec-rs">
+        <div className="ec-wrap">
+          <div className="ec-rs-head ec-reveal">
+            <EcLabel text="Returns & Refunds" light />
+            <h2 className="ec-h2">Make the journey back as seamless as the <span style={{ color: "#C6E84A" }}>journey out.</span></h2>
+            <p className="ec-lede">Returns are one of e-commerce&apos;s most operationally complex moments — connecting customers, orders, products, payments, inventory and logistics.</p>
+            <p className="ec-copy">Sytrion supports structured returns and refund operations designed to improve visibility, processing consistency and customer experience.</p>
+          </div>
+          <div className="ec-rs-flow ec-reveal">
+            <div className="ec-rs-rail">
+              <div className="ec-rs-rail-line" aria-hidden="true" />
+              {reverseStages.map((s, i) => {
+                const up = i % 2 === 0;
+                return (
+                  <div key={s.num} className="ec-rs-step">
+                    <div className="ec-rs-node" aria-hidden="true" />
+                    <div className={"ec-rs-stem ec-rs-stem--" + (up ? "up" : "down")} aria-hidden="true" />
+                    <div className={"ec-rs-label ec-rs-label--" + (up ? "up" : "down")}>
+                      <span className="ec-rs-lbl-num">{s.num}</span>
+                      <h3 className="ec-rs-name">{s.name}</h3>
+                      <p className="ec-rs-desc">{s.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        <style>{`
+          .ec-rs .ec-h2 { color: #0f172a; }
+          .ec-rs .ec-lede { color: #5A5D66; }
+          .ec-rs .ec-copy { color: #5A5D66; }
+          .ec-rs-head { max-width: 820px; }
+          .ec-rs-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #7AA306; margin: 22px 0 0; font-variant-numeric: tabular-nums; }
+          .ec-rs-flow { margin-top: 52px; background: linear-gradient(135deg, #2b2f1a, #0d0f08); border-radius: 20px; padding: 20px 44px; }
+          .ec-rs-rail { position: relative; display: flex; height: 330px; }
+          .ec-rs-rail-line { position: absolute; top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-50%); background: linear-gradient(90deg, rgba(198,232,74,0.12), rgba(198,232,74,0.95)); border-radius: 2px; z-index: 0; }
+          .ec-rs-step { position: relative; flex: 1; height: 100%; }
+          .ec-rs-node { position: absolute; top: 50%; left: 50%; width: 13px; height: 13px; border-radius: 50%; background: #C6E84A; transform: translate(-50%, -50%); z-index: 2; }
+          .ec-rs-stem { position: absolute; left: 50%; width: 1px; background: rgba(198,232,74,0.35); z-index: 1; }
+          .ec-rs-stem--up { bottom: 50%; height: 46px; }
+          .ec-rs-stem--down { top: 50%; height: 46px; }
+          .ec-rs-label { position: absolute; left: 50%; transform: translateX(-50%); width: 168px; text-align: center; z-index: 2; }
+          .ec-rs-label--up { bottom: calc(50% + 46px); }
+          .ec-rs-label--down { top: calc(50% + 46px); }
+          .ec-rs-lbl-num { display: block; font-family: var(--font-syne), Arial, sans-serif; font-size: 22px; font-weight: 800; color: #C6E84A; text-shadow: 0 0 18px rgba(198,232,74,0.5); margin-bottom: 4px; }
+          .ec-rs-name { font-family: var(--font-syne), Arial, sans-serif; font-size: 13.5px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: #f6f7ef; margin: 0 0 6px; }
+          .ec-rs-desc { font-size: 12.5px; color: #a9ab9a; margin: 0; line-height: 1.45; }
+          @media (max-width: 900px) {
+            .ec-rs-flow { padding: 36px 24px; }
+            .ec-rs-rail { flex-direction: column; height: auto; gap: 0; }
+            .ec-rs-rail-line { top: 0; bottom: 0; left: 16px; right: auto; width: 2px; height: auto; transform: translateY(0); background: linear-gradient(180deg, rgba(198,232,74,0.12), rgba(198,232,74,0.95)); }
+            .ec-rs-step { height: auto; padding: 0 0 32px 44px; }
+            .ec-rs-step:last-child { padding-bottom: 0; }
+            .ec-rs-node { top: 6px; left: 16px; transform: translate(-50%, 0); }
+            .ec-rs-stem { display: none; }
+            .ec-rs-label { position: static; transform: none; width: auto; text-align: left; }
+          }
+        `}</style>
+      </section>
+
+      <section className="ec-cx2">
+        <div className="ec-cx2-glow" aria-hidden="true" />
+        <div className="ec-cx2-wrap">
+          <div className="ec-cx2-head ec-reveal">
+            <span className="ec-cx2-pill">Customer Experience</span>
+            <h2 className="ec-cx2-title">
+              <span>Turn every interaction into an opportunity to&nbsp;</span>
+              <span className="ec-cx2-title-lime">build loyalty.</span>
+            </h2>
+            <div className="ec-cx2-cols">
+              <p className="ec-cx2-p ec-cx2-p--main">E-commerce customers expect answers wherever they choose to engage — before purchase, during fulfillment and after delivery.</p>
+              <p className="ec-cx2-p ec-cx2-p--dim">Sytrion combines digital channels, AI-assisted support and skilled customer-service teams to create responsive commerce operations across the customer journey.</p>
+            </div>
+          </div>
+
+          <div className="ec-cx2-rail" ref={cxRailRef}>
+            <div className="ec-cx2-line" ref={cxLineRef} aria-hidden="true" />
+            <span className="ec-cx2-fill" ref={cxFillRef} aria-hidden="true" />
+            {cxStages.map((s, i) => (
+              <button
+                key={s.num}
+                type="button"
+                ref={(el) => { cxBtnRefs.current[i] = el; }}
+                className={"ec-cx2-btn" + (cxActive === i ? " is-active" : "")}
+                onClick={() => setCxActive(i)}
+                aria-pressed={cxActive === i}
+              >
+                <span className="ec-cx2-marker" aria-hidden="true">
+                  <span className="ec-cx2-num">{s.num}</span>
+                </span>
+                <span className="ec-cx2-label">{s.label}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="ec-cx2-panel ec-reveal">
+            <div key={cxActive} className="ec-cx2-panel-in ec-cx2-anim">
+              <div className="ec-cx2-left">
+                <span className="ec-cx2-ghost" aria-hidden="true">{cxStages[cxActive].num}</span>
+                <span className="ec-cx2-icon" aria-hidden="true">{cxStages[cxActive].icon}</span>
+              </div>
+              <div className="ec-cx2-right">
+                <h3 className="ec-cx2-stage-title">{cxStages[cxActive].title}</h3>
+                <p className="ec-cx2-stage-desc">{cxStages[cxActive].desc}</p>
+                <ul className="ec-cx2-list">
+                  {cxStages[cxActive].items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <style>{`
+          .ec-cx2 { position: relative; overflow: hidden; background: #0B1220; }
+          .ec-cx2-glow { position: absolute; width: 900px; height: 500px; left: 85%; top: -10%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(198,241,53,0.06), rgba(198,241,53,0) 70%); pointer-events: none; }
+          .ec-cx2-wrap { position: relative; z-index: 1; width: 100%; max-width: 1400px; margin: 0 auto; padding: clamp(72px, 8vw, 96px) clamp(20px, 4vw, 64px); }
+
+          .ec-cx2-pill { display: inline-flex; align-items: center; background: #C6F135; color: #0B1220; font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 9px 20px; border-radius: 999px; margin: 0 0 28px; }
+          .ec-cx2-title { margin: 0 0 24px; }
+          .ec-cx2-title span { display: block; font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(34px, 4.4vw, 48px); font-weight: 700; line-height: 1.12; letter-spacing: -0.02em; color: #F4F5F2; }
+          .ec-cx2-title .ec-cx2-title-lime { color: #C6F135; }
+          .ec-cx2-cols { display: flex; gap: clamp(24px, 4vw, 48px); }
+          .ec-cx2-p { flex: 1; font-size: clamp(15.5px, 1.35vw, 18px); line-height: 1.8; margin: 0; }
+          .ec-cx2-p--main { color: #F4F5F2; }
+          .ec-cx2-p--dim { color: #93A0B0; }
+
+          .ec-cx2-rail { position: relative; display: flex; justify-content: space-between; margin-top: clamp(44px, 6vw, 72px); }
+          .ec-cx2-line { position: absolute; top: 18px; height: 2px; border-radius: 2px; background: #223148; z-index: 1; }
+          .ec-cx2-fill { position: absolute; top: 18px; height: 2px; border-radius: 2px; background: #C6F135; z-index: 1; box-shadow: 0 0 10px rgba(198,241,53,0.45); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+          .ec-cx2-btn { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 12px; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; }
+          .ec-cx2-marker { width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid #223148; background: #0B1220; display: flex; align-items: center; justify-content: center; transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+          .ec-cx2-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #93A0B0; transition: color 0.3s ease; font-variant-numeric: tabular-nums; }
+          .ec-cx2-btn:hover .ec-cx2-marker { border-color: rgba(198,241,53,0.5); }
+          .ec-cx2-btn:hover .ec-cx2-num { color: #F4F5F2; }
+          .ec-cx2-btn.is-active .ec-cx2-marker { background: #C6F135; border-color: #C6F135; box-shadow: 0 0 0 7px rgba(198,241,53,0.14), 0 0 26px rgba(198,241,53,0.4); }
+          .ec-cx2-btn.is-active .ec-cx2-num { color: #0B1220; }
+          .ec-cx2-label { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: #93A0B0; white-space: nowrap; transition: color 0.3s ease; }
+          .ec-cx2-btn:hover .ec-cx2-label { color: #F4F5F2; }
+          .ec-cx2-btn.is-active .ec-cx2-label { color: #F4F5F2; }
+
+          .ec-cx2-panel { margin-top: clamp(40px, 6vw, 64px); }
+          .ec-cx2-panel-in { display: grid; grid-template-columns: 200px 1fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+          .ec-cx2-anim { animation: ecCx2Swap 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+          @keyframes ecCx2Swap { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+          .ec-cx2-left { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+          .ec-cx2-ghost { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(96px, 11vw, 150px); font-weight: 700; line-height: 0.9; letter-spacing: -0.02em; color: transparent; -webkit-text-stroke: 1.5px #223148; font-variant-numeric: tabular-nums; }
+          .ec-cx2-icon { width: 56px; height: 56px; border-radius: 14px; border: 1px solid #223148; background: rgba(24, 36, 62, 0.35); display: flex; align-items: center; justify-content: center; color: #C6F135; }
+          .ec-cx2-icon svg { width: 26px; height: 26px; }
+          .ec-cx2-stage-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 28px; font-weight: 700; color: #F4F5F2; margin: 0 0 10px; }
+          .ec-cx2-stage-desc { font-size: clamp(15px, 1.2vw, 17px); line-height: 1.7; color: #93A0B0; margin: 0; max-width: 640px; }
+          .ec-cx2-list { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(32px, 5vw, 64px); }
+          .ec-cx2-list li { display: flex; align-items: center; gap: 14px; padding: 15px 0; border-bottom: 1px solid #223148; font-size: 15px; color: #F4F5F2; }
+          .ec-cx2-list li::before { content: ""; width: 8px; height: 8px; flex: 0 0 auto; background: #C6F135; transform: rotate(45deg); }
+
+          @media (max-width: 860px) {
+            .ec-cx2-cols { flex-direction: column; gap: 16px; }
+            .ec-cx2-rail { justify-content: flex-start; gap: clamp(28px, 7vw, 56px); overflow-x: auto; padding-bottom: 10px; margin-top: 40px; }
+            .ec-cx2-btn { flex: 0 0 auto; }
+            .ec-cx2-line, .ec-cx2-fill { display: none; }
+            .ec-cx2-panel-in { grid-template-columns: 1fr; gap: 32px; }
+            .ec-cx2-left { flex-direction: row; align-items: center; }
+            .ec-cx2-ghost { font-size: clamp(72px, 16vw, 120px); }
+            .ec-cx2-list { grid-template-columns: 1fr; }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .ec-cx2-fill { transition: none; }
+            .ec-cx2-anim { animation: none; }
+          }
+        `}</style>
       </section>
 
       <section className="ec-section-dark">
@@ -1126,6 +1566,307 @@ export default function ECommercePage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="ec-hd" onMouseMove={onHdTilt} onMouseLeave={onHdTiltReset}>
+        <div className="ec-hd-glow ec-hd-glow--lime" aria-hidden="true" />
+        <div className="ec-hd-glow ec-hd-glow--blue" aria-hidden="true" />
+        <div className="ec-wrap">
+          <div className="ec-hd-grid">
+            <div className="ec-hd-copy ec-reveal">
+              <p className="ec-hd-kicker">11 / Human + Digital</p>
+              <span className="ec-hd-pill">Human + Digital</span>
+              <h2 className="ec-hd-title">
+                <span className="ec-hd-title-white">Automation at scale.</span>
+                <span className="ec-hd-title-lime">Human judgment where it matters.</span>
+              </h2>
+              <p className="ec-hd-line">Automation can process routine updates.</p>
+              <p className="ec-hd-line">AI can classify products, understand customer intent and identify exceptions.</p>
+              <p className="ec-hd-line">People bring context, judgment and empathy to situations that are not routine.</p>
+              <p className="ec-hd-em">Sytrion brings them together.</p>
+            </div>
+            <div className="ec-hd-visual ec-reveal">
+              <div className="ec-hd-stage" ref={hdStageRef}>
+                <div className="ec-hd-halo" aria-hidden="true" />
+                <svg className="ec-hd-conn" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <line x1="24" y1="16" x2="36" y2="29" />
+                  <line x1="24" y1="54" x2="36" y2="46" />
+                  <line x1="52" y1="70" x2="62" y2="48" />
+                </svg>
+                <div className="ec-hd-globe" aria-hidden="true">
+                  <div className="ec-hd-solid" />
+                  <svg className="ec-hd-mesh" viewBox="0 0 400 400" fill="none">
+                    <ellipse cx="200" cy="200" rx="198" ry="198" stroke="rgba(198,241,53,0.30)" strokeWidth="1" />
+                    <ellipse cx="200" cy="200" rx="198" ry="126" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
+                    <ellipse cx="200" cy="200" rx="198" ry="62" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
+                    <ellipse cx="200" cy="200" rx="126" ry="198" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
+                    <ellipse cx="200" cy="200" rx="62" ry="198" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
+                    <ellipse cx="200" cy="200" rx="150" ry="198" stroke="rgba(110,160,255,0.10)" strokeWidth="1" />
+                    <path d="M2 200h396" stroke="rgba(198,241,53,0.20)" strokeWidth="1" />
+                  </svg>
+                  <div className="ec-hd-pts">
+                    {[
+                      [62, 22], [70, 30], [76, 40], [74, 52], [66, 62], [54, 68], [44, 66], [36, 60],
+                      [30, 50], [31, 38], [38, 28], [50, 24], [60, 36], [66, 48], [48, 56], [56, 40],
+                      [40, 44], [44, 52], [54, 30], [58, 58],
+                    ].map(([px, py], i) => (
+                      <span
+                        key={i}
+                        className={"ec-hd-pt" + (i % 5 === 0 ? " ec-hd-pt--glow" : "")}
+                        style={{ left: `${px}%`, top: `${py}%` }}
+                      />
+                    ))}
+                  </div>
+                  <div className="ec-hd-core" />
+                </div>
+                <div className="ec-hd-orbit ec-hd-orbit--a" aria-hidden="true">
+                  <span className="ec-hd-orbit-dot" />
+                </div>
+                <div className="ec-hd-orbit ec-hd-orbit--b" aria-hidden="true">
+                  <span className="ec-hd-orbit-dot" />
+                </div>
+                <svg className="ec-hd-hand" viewBox="0 0 320 170" fill="none" aria-hidden="true">
+                  <g stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M96 58 C74 64 56 78 48 94 C42 104 40 112 40 118 C40 130 50 138 64 138 L64 120 C52 118 48 112 50 106 C54 92 70 74 96 66" />
+                    <path d="M224 58 C246 64 264 78 272 94 C278 104 280 112 280 118 C280 130 270 138 256 138 L256 120 C268 118 272 112 270 106 C266 92 250 74 224 66" />
+                    <path d="M160 34 C136 40 114 54 100 74 C95 84 92 96 92 106 C92 120 100 130 112 131 C124 132 132 122 135 130 C138 138 148 146 160 146 C172 146 182 138 185 130 C188 122 196 132 208 131 C220 130 228 120 228 106 C228 96 225 84 220 74 C206 54 184 40 160 34 Z" />
+                  </g>
+                </svg>
+                <div className="ec-hd-card ec-hd-card--tl">
+                  <span className="ec-hd-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M22 12h-4M6 12H2" /><circle cx="12" cy="12" r="8" opacity="0.45" /></svg>
+                  </span>
+                  <div>
+                    <h3>Smarter decisions</h3>
+                    <p>AI analyzes patterns in real time.</p>
+                  </div>
+                </div>
+                <div className="ec-hd-card ec-hd-card--ml">
+                  <span className="ec-hd-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5" /><path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" /></svg>
+                  </span>
+                  <div>
+                    <h3>Automate at scale</h3>
+                    <p>Handle high volumes with speed and accuracy.</p>
+                  </div>
+                </div>
+                <div className="ec-hd-card ec-hd-card--r">
+                  <span className="ec-hd-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" /></svg>
+                  </span>
+                  <div>
+                    <h3>Human insight</h3>
+                    <p>Context, empathy and complex judgment.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <style>{`
+          .ec-hd { position: relative; overflow: hidden; background: #0B1220; }
+          .ec-hd-glow { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
+          .ec-hd-glow--lime { width: 46vw; height: 46vw; max-width: 720px; max-height: 720px; right: -9%; top: -14%; background: rgba(198,241,53,0.16); }
+          .ec-hd-glow--blue { width: 34vw; height: 34vw; max-width: 560px; max-height: 560px; right: 4%; bottom: -22%; background: rgba(96,146,255,0.10); }
+          .ec-hd .ec-wrap { position: relative; z-index: 2; padding: clamp(88px, 10vw, 140px) 40px; }
+          .ec-hd-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(28px, 4vw, 64px); align-items: center; min-height: clamp(600px, 84vh, 780px); }
+          .ec-hd-copy { position: relative; z-index: 2; }
+          .ec-hd-kicker { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #C6F135; margin: 0 0 16px; font-variant-numeric: tabular-nums; }
+          .ec-hd-pill { display: inline-flex; align-items: center; background: #C6F135; color: #0B1220; font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 9px 20px; border-radius: 999px; margin: 0 0 30px; }
+          .ec-hd-title { margin: 0 0 28px; }
+          .ec-hd-title-white { display: block; color: #ffffff; font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(40px, 5vw, 56px); font-weight: 700; line-height: 1.06; letter-spacing: -0.02em; }
+          .ec-hd-title-lime { display: block; color: #C6F135; font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(40px, 5vw, 56px); font-weight: 700; line-height: 1.06; letter-spacing: -0.02em; }
+          .ec-hd-line { font-size: clamp(15.5px, 1.35vw, 18px); line-height: 1.85; color: #93A0B0; margin: 0 0 10px; max-width: 540px; }
+          .ec-hd-em { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(19px, 1.9vw, 23px); font-weight: 700; color: #C6F135; margin: 24px 0 0; }
+
+          .ec-hd-visual { position: relative; display: flex; align-items: center; justify-content: center; min-height: clamp(420px, 52vw, 640px); }
+          .ec-hd-stage { position: relative; width: 100%; max-width: 660px; aspect-ratio: 1 / 1; transform-style: preserve-3d; transition: transform 0.12s ease-out; will-change: transform; }
+          .ec-hd-halo { position: absolute; left: 50%; top: 46%; width: 78%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(198,241,53,0.10) 0%, rgba(96,146,255,0.05) 45%, rgba(11,18,32,0) 70%); }
+
+          .ec-hd-globe { position: absolute; left: 50%; top: 46%; width: 62%; aspect-ratio: 1; transform: translate(-50%, -50%); }
+          .ec-hd-solid { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 34% 30%, rgba(198,241,53,0.10) 0%, rgba(11,18,32,0.55) 62%, rgba(11,18,32,0) 100%); animation: ecHdPulse 5s ease-in-out infinite; }
+          .ec-hd-mesh { position: absolute; inset: 0; width: 100%; height: 100%; animation: ecHdSpin 70s linear infinite; }
+          .ec-hd-pts { position: absolute; inset: 0; }
+          .ec-hd-pt { position: absolute; width: 4px; height: 4px; margin: -2px 0 0 -2px; border-radius: 50%; background: rgba(198,241,53,0.9); }
+          .ec-hd-pt--glow { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: #C6F135; box-shadow: 0 0 10px 2px rgba(198,241,53,0.75); animation: ecHdTwinkle 3.4s ease-in-out infinite; }
+          .ec-hd-core { position: absolute; left: 50%; top: 50%; width: 26%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(198,241,53,0.55) 0%, rgba(198,241,53,0) 70%); animation: ecHdPulse 5s ease-in-out infinite 0.4s; }
+
+          .ec-hd-orbit { position: absolute; left: 50%; top: 46%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; border: 1px solid rgba(198,241,53,0.28); transform-style: preserve-3d; }
+          .ec-hd-orbit--a { width: 82%; transform: translate(-50%, -50%) rotateX(68deg) rotateZ(-14deg); animation: ecHdOrbitA 18s linear infinite; }
+          .ec-hd-orbit--b { width: 54%; transform: translate(-50%, -50%) rotateX(76deg) rotateZ(24deg); border-color: rgba(198,241,53,0.18); animation: ecHdOrbitB 26s linear infinite; }
+          .ec-hd-orbit-dot { position: absolute; left: 50%; top: -4px; transform: translateX(-50%); width: 7px; height: 7px; border-radius: 50%; background: #C6F135; box-shadow: 0 0 14px 3px rgba(198,241,53,0.8); }
+
+          .ec-hd-hand { position: absolute; left: 50%; top: 88%; transform: translateX(-50%); width: 66%; z-index: 2; }
+          .ec-hd-conn { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+          .ec-hd-conn line { stroke: rgba(147,160,176,0.35); stroke-width: 1; stroke-dasharray: 2.5 3; }
+
+          .ec-hd-card { position: absolute; z-index: 3; display: flex; gap: 12px; align-items: flex-start; width: 232px; padding: 14px 16px; border-radius: 14px; background: rgba(16,26,44,0.6); border: 1px solid rgba(147,160,176,0.22); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+          .ec-hd-card-icon { width: 36px; height: 36px; flex: 0 0 auto; border-radius: 50%; background: rgba(11,18,32,0.9); border: 1.5px solid rgba(198,241,53,0.7); display: flex; align-items: center; justify-content: center; color: #C6F135; }
+          .ec-hd-card-icon svg { width: 16px; height: 16px; }
+          .ec-hd-card h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: #ffffff; margin: 0 0 4px; }
+          .ec-hd-card p { font-size: 12px; line-height: 1.5; color: #93A0B0; margin: 0; }
+          .ec-hd-card--tl { left: 0; top: 2%; }
+          .ec-hd-card--ml { left: -7%; top: 42%; }
+          .ec-hd-card--r { left: 56%; top: 56%; }
+
+          @keyframes ecHdSpin { to { transform: rotate(360deg); } }
+          @keyframes ecHdPulse { 0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 1; transform: translate(-50%, -50%) scale(1.06); } }
+          @keyframes ecHdTwinkle { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+          @keyframes ecHdOrbitA { to { transform: translate(-50%, -50%) rotateX(68deg) rotateZ(-14deg) rotate(360deg); } }
+          @keyframes ecHdOrbitB { to { transform: translate(-50%, -50%) rotateX(76deg) rotateZ(24deg) rotate(-360deg); } }
+
+          @media (max-width: 1080px) {
+            .ec-hd-grid { grid-template-columns: 1fr 1fr; }
+            .ec-hd-card { width: 200px; }
+            .ec-hd-card--ml { left: -4%; }
+          }
+          @media (max-width: 900px) {
+            .ec-hd-grid { grid-template-columns: 1fr; gap: 40px; min-height: 0; }
+            .ec-hd-visual { min-height: 0; }
+            .ec-hd-stage { max-width: 560px; aspect-ratio: 1 / 1; margin: 0 auto; }
+            .ec-hd-card { width: 212px; }
+            .ec-hd-card--tl { left: 0; top: 2%; }
+            .ec-hd-card--ml { left: -4%; top: 42%; }
+            .ec-hd-card--r { left: 58%; top: 58%; }
+          }
+          @media (max-width: 760px) {
+            .ec-hd-stage { max-width: 460px; }
+            .ec-hd-conn, .ec-hd-card--ml, .ec-hd-card--r { display: none; }
+            .ec-hd-card--tl { left: 4%; top: 6%; }
+          }
+          @media (max-width: 640px) {
+            .ec-hd .ec-wrap { padding: 72px 20px; }
+            .ec-hd-stage { max-width: 400px; }
+            .ec-hd-hand { width: 72%; }
+          }
+        `}</style>
+      </section>
+
+      <section className="ec-fin">
+        <div className="ec-wrap">
+          <div className="ec-prov-grid">
+            <div className="ec-reveal">
+              <EcLabel text="Commerce Finance Operations" light />
+              <h2 className="ec-h2">Control behind <span style={{ color: "#7AA306" }}>every transaction.</span></h2>
+              <p className="ec-lede">Digital commerce generates complex financial flows across customers, marketplaces, payment providers, sellers, logistics partners and suppliers.</p>
+
+            </div>
+            <div className="ec-reveal ec-fin-aside">
+              <div className="ec-fin-flow-box">
+                <span className="ec-fin-flow-title">Transaction Lifecycle</span>
+                <div className="ec-fin-flow">
+                  <span>Transactions</span><span className="ec-fin-flow-arrow" aria-hidden="true">→</span>
+                  <span>Settlements</span><span className="ec-fin-flow-arrow" aria-hidden="true">→</span>
+                  <span>Reconciliation</span><span className="ec-fin-flow-arrow" aria-hidden="true">→</span>
+                  <span>Visibility</span>
+                </div>
+              </div>
+              <p className="ec-fin-note">Structured finance operations connecting the full transaction lifecycle — from payment and settlement to reconciliation and reporting.</p>
+            </div>
+          </div>
+          <div className="ec-fin-grid ec-reveal">
+            {financeCapabilities.map((c, idx) => (
+              <article key={c.title} className="ec-fin-block">
+                <div className="ec-fin-badge">0{idx + 1}</div>
+                <div className="ec-fin-head">
+                  <div className="ec-fin-icon" aria-hidden="true">{c.icon}</div>
+                  <h3>{c.title}</h3>
+                </div>
+                <ul>
+                  {c.items.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+        <style>{`
+          .ec-fin { background: #FFFFFF; padding: clamp(48px, 5.5vw, 72px) 80px; border-top: 1px solid #E2E8F0; border-bottom: 1px solid #E2E8F0; }
+          .ec-fin .ec-h2 { color: #0f172a; margin-bottom: 14px; }
+          .ec-fin .ec-lede { color: #475569; margin-bottom: 12px; }
+          .ec-fin .ec-prov-grid { grid-template-columns: 1fr 1fr; align-items: start; gap: 40px; }
+          .ec-fin-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #7AA306; margin: 16px 0 0; font-variant-numeric: tabular-nums; }
+          .ec-fin-aside { padding-top: 6px; }
+          .ec-fin-flow-box { background: #FAFBFC; border: 1.5px solid #D1D9E6; border-radius: 14px; padding: 14px 18px; box-shadow: 0 2px 10px rgba(15,23,42,0.03); }
+          .ec-fin-flow-title { display: block; font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: #64748B; margin-bottom: 8px; }
+          .ec-fin-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #1E293B; }
+          .ec-fin-flow span { white-space: nowrap; }
+          .ec-fin-flow-arrow { color: #7AA306; font-weight: 900; }
+          .ec-fin-note { font-size: 14.5px; line-height: 1.7; color: #5A6B7F; margin: 14px 0 0; max-width: 460px; }
+          .ec-fin-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px; }
+          .ec-fin-block { position: relative; background: #FAFBFC; border: 1.5px solid #D1D9E6; border-radius: 14px; padding: 22px 20px 20px; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.3s ease; box-shadow: 0 2px 12px rgba(15,23,42,0.03); display: flex; flex-direction: column; justify-content: space-between; }
+          .ec-fin-block::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; border-radius: 14px 14px 0 0; background: linear-gradient(90deg, #7AA306, #C6E84A); }
+          .ec-fin-badge { position: absolute; top: 16px; right: 18px; font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 800; color: #64748B; letter-spacing: 0.1em; }
+          .ec-fin-block:hover { transform: translateY(-4px); box-shadow: 0 14px 32px -8px rgba(122,163,6,0.18); border-color: rgba(122,163,6,0.45); }
+          .ec-fin-head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+          .ec-fin-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(198,232,74,0.18); border: 1px solid rgba(122,163,6,0.25); display: flex; align-items: center; justify-content: center; color: #5B7A00; flex: 0 0 auto; }
+          .ec-fin-icon svg { width: 22px; height: 22px; }
+          .ec-fin-block h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 20px; font-weight: 700; color: #0C1B30; margin: 0; line-height: 1.35; }
+          .ec-fin-block ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid #E2E8F0; padding-top: 10px; }
+          .ec-fin-block li { display: flex; align-items: center; gap: 8px; padding: 6px 0; font-size: 14.5px; color: #33475E; font-weight: 500; }
+          .ec-fin-block li::before { content: ""; width: 6px; height: 6px; flex: 0 0 auto; background: #7AA306; border-radius: 50%; }
+          @media (max-width: 1100px) { .ec-fin-grid { grid-template-columns: repeat(2, 1fr); } }
+          @media (max-width: 900px) { .ec-fin .ec-prov-grid { grid-template-columns: 1fr; gap: 20px; } .ec-fin { padding-left: 40px; padding-right: 40px; } }
+          @media (max-width: 640px) { .ec-fin { padding-left: 20px; padding-right: 20px; } .ec-fin-grid { grid-template-columns: 1fr; } }
+        `}</style>
+      </section>
+
+      <section className="ec-tf">
+        <div className="ec-wrap">
+          <div className="ec-tf-head ec-reveal">
+
+            <EcLabel text="Trusted Commerce Operations" />
+            <h2 className="ec-h2">Protect the experience behind the <span style={{ color: "#C6E84A" }}>transaction.</span></h2>
+            <p className="ec-lede">As digital commerce grows, businesses must manage payment risk, marketplace quality, suspicious activity and increasingly complex content at scale.</p>
+          </div>
+          <div className="ec-tf-cards ec-reveal">
+            {trustedCapabilities.map((c) => (
+              <div key={c.title} className="ec-tf-card" tabIndex={0}>
+                <div className="ec-tf-card-inner">
+                  <div className="ec-tf-card-face ec-tf-card-face--front" style={{ backgroundImage: `url("${c.image}")` }}>
+                    <span className="ec-tf-card-icon" aria-hidden="true">{c.icon}</span>
+                    <h3 className="ec-tf-card-title">{c.title}</h3>
+                    <span className="ec-tf-card-hint">HOVER TO EXPLORE ↻</span>
+                  </div>
+                  <div className="ec-tf-card-face ec-tf-card-face--back">
+                    <h4 className="ec-tf-card-back-title">{c.title}</h4>
+                    <ul>
+                      {c.items.map((item) => <li key={item}>{item}</li>)}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <style>{`
+          .ec-tf { position: relative; overflow: hidden; background: #0A1628; padding: clamp(80px, 9vw, 128px) 80px; }
+          .ec-tf::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(198,232,74,0.1) 1px, transparent 1px); background-size: 30px 30px; opacity: 0.3; mask-image: radial-gradient(ellipse 65% 55% at 50% 30%, black, transparent 78%); -webkit-mask-image: radial-gradient(ellipse 65% 55% at 50% 30%, black, transparent 78%); pointer-events: none; }
+          .ec-tf .ec-wrap { position: relative; z-index: 1; }
+          .ec-tf-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #C6E84A; margin: 0 0 18px; font-variant-numeric: tabular-nums; }
+          .ec-tf-head { max-width: 800px; }
+          .ec-tf .ec-h2 { color: #ffffff; }
+          .ec-tf .ec-lede { color: rgba(255,255,255,0.6); }
+          .ec-tf-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 56px; }
+          .ec-tf-card { perspective: 1400px; outline: none; cursor: pointer; }
+          .ec-tf-card-inner { position: relative; height: clamp(300px, 30vw, 370px); transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.25, 1); }
+          .ec-tf-card:hover .ec-tf-card-inner, .ec-tf-card:focus-visible .ec-tf-card-inner { transform: rotateY(180deg); }
+          .ec-tf-card-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 16px; border: 1px solid #D1D9E6; background: #FAFBFC; box-shadow: 0 2px 12px -4px rgba(12,27,48,0.08); padding: 26px 24px; display: flex; flex-direction: column; }
+          .ec-tf-card-face--back { transform: rotateY(180deg); border-color: rgba(122,163,6,0.45); background: #ffffff; justify-content: center; }
+          .ec-tf-card-face--front { justify-content: flex-end; align-items: center; text-align: center; background-size: cover; background-position: center; overflow: hidden; padding-bottom: 58px; }
+          .ec-tf-card-face--front::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,27,48,0.08) 0%, rgba(12,27,48,0.42) 50%, rgba(12,27,48,0.82) 100%); z-index: 0; }
+          .ec-tf-card-icon { position: relative; z-index: 1; width: 84px; height: 84px; flex: 0 0 auto; border-radius: 20px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.38); color: #ffffff; backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+          .ec-tf-card-icon svg { width: 38px; height: 38px; }
+          .ec-tf-card-title { position: relative; z-index: 1; font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 0.05em; color: #ffffff; text-shadow: 0 1px 10px rgba(0,0,0,0.4); margin: 0; line-height: 1.45; max-width: 220px; }
+          .ec-tf-card-hint { position: absolute; bottom: 18px; left: 0; right: 0; z-index: 1; text-align: center; font-size: 11.5px; letter-spacing: 0.14em; color: rgba(255,255,255,0.78); }
+          .ec-tf-card-back-title { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0C1B30; margin: 0 0 14px; }
+          .ec-tf-card-back-title::before { content: ""; width: 8px; height: 8px; flex: 0 0 auto; background: #C6E84A; transform: rotate(45deg); }
+          .ec-tf-card ul { list-style: none; margin: 0; padding: 0; }
+          .ec-tf-card li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; font-weight: 500; color: #33475E; padding: 10px 0; border-top: 1px solid rgba(12,27,48,0.08); }
+          .ec-tf-card li::before { content: ""; width: 7px; height: 7px; flex: 0 0 auto; background: #7AA306; transform: rotate(45deg); margin-top: 6px; }
+          .ec-tf-card li:first-child { border-top: none; }
+          @media (max-width: 1080px) { .ec-tf-cards { grid-template-columns: 1fr 1fr; } }
+          @media (max-width: 640px) { .ec-tf { padding-left: 20px; padding-right: 20px; } .ec-tf-cards { grid-template-columns: 1fr; } }
+        `}</style>
       </section>
 
       <section className="ec-section-dark">
@@ -1241,46 +1982,46 @@ export default function ECommercePage() {
       <section className="ec-transform">
         <div className="ec-transform-grid">
           <div className="ec-transform-left">
-          <span className="ec-transform-badge">Transformation in Action</span>
-          <div className="ec-tl-step">
-            <span className="ec-tl-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-                <line x1="16" y1="13" x2="8" y2="13" />
-                <line x1="16" y1="17" x2="8" y2="17" />
-              </svg>
-            </span>
-            <div className="ec-tl-body">
-              <h3>The Challenge</h3>
-              <p>High-volume commerce workflows can involve fragmented product information, manual order processing, repetitive validations and significant exception handling.</p>
+            <span className="ec-transform-badge">Transformation in Action</span>
+            <div className="ec-tl-step">
+              <span className="ec-tl-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+              </span>
+              <div className="ec-tl-body">
+                <h3>The Challenge</h3>
+                <p>High-volume commerce workflows can involve fragmented product information, manual order processing, repetitive validations and significant exception handling.</p>
+              </div>
+            </div>
+            <div className="ec-tl-link" aria-hidden="true" />
+            <div className="ec-tl-step ec-tl-step--approach">
+              <span className="ec-tl-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg>
+              </span>
+              <div className="ec-tl-body">
+                <h3>The Sytrion Approach</h3>
+                <p>Combine domain-led operations with product intelligence, workflow automation, structured validation and operational analytics.</p>
+              </div>
             </div>
           </div>
-          <div className="ec-tl-link" aria-hidden="true" />
-          <div className="ec-tl-step ec-tl-step--approach">
-            <span className="ec-tl-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="3" />
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-              </svg>
-            </span>
-            <div className="ec-tl-body">
-              <h3>The Sytrion Approach</h3>
-              <p>Combine domain-led operations with product intelligence, workflow automation, structured validation and operational analytics.</p>
-            </div>
+          <div className="ec-pot-card">
+            <h3 className="ec-pot-title">The Potential</h3>
+            <ul className="ec-pot-checklist">
+              <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Faster Order Processing</li>
+              <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Reduced Manual Touchpoints</li>
+              <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Improved Product Data Quality</li>
+              <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Better Exception Visibility</li>
+              <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> More Scalable Operations</li>
+            </ul>
+            <Link href="/contact" className="ec-transform-cta">Discuss Your Use Case <span>→</span></Link>
           </div>
-        </div>
-        <div className="ec-pot-card">
-          <h3 className="ec-pot-title">The Potential</h3>
-          <ul className="ec-pot-checklist">
-            <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Faster Order Processing</li>
-            <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Reduced Manual Touchpoints</li>
-            <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Improved Product Data Quality</li>
-            <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Better Exception Visibility</li>
-            <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> More Scalable Operations</li>
-          </ul>
-          <Link href="/contact" className="ec-transform-cta">Discuss Your Use Case <span>→</span></Link>
-        </div>
         </div>
       </section>
 
