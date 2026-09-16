@@ -29,8 +29,8 @@ const ecosystemCards = [
 ];
 
 const ibsTabs = [
-  { num: "01", tab: "Onboarding", title: "Customer Onboarding", lead: "Make the first banking interaction simpler and smarter.", items: ["Application processing","Customer data capture","Document processing","KYC workflow support","Identity verification support","Account-opening administration"], img: "/services/banking/Customer Onboarding.png", alt: "Customer onboarding process" },
-  { num: "02", tab: "Accounts", title: "Account Operations", lead: "Keep customer accounts accurate, responsive and connected.", items: ["Account setup","Account maintenance","Customer information updates","Service requests","Deposit operations","Account closure support"], img: "/services/banking/Account Operations.png", alt: "Account operations management" },
+  { num: "01", tab: "Onboarding", title: "Customer Onboarding", lead: "Make the first banking interaction simpler and smarter.", items: ["Application processing","Customer data capture","Document processing","KYC workflow support","Identity verification support","Account-opening administration"], img: "/services/banking/Customer Onboarding.jpg", alt: "Customer onboarding process" },
+  { num: "02", tab: "Accounts", title: "Account Operations", lead: "Keep customer accounts accurate, responsive and connected.", items: ["Account setup","Account maintenance","Customer information updates","Service requests","Deposit operations","Account closure support"], img: "/services/banking/Account Operations.jpg", alt: "Account operations management" },
   { num: "03", tab: "Payments", title: "Payments Operations", lead: "Support the movement of money with greater control.", items: ["Payment processing","Transaction validation","Payment investigations","Exception handling","Settlement support","Reconciliation"], img: "/services/banking/Payments Operations.jpg", alt: "Payment operations processing" },
   { num: "04", tab: "Lending", title: "Lending Operations", lead: "Streamline operational workflows across the lending lifecycle.", items: ["Application processing","Document preparation","Credit administration support","Loan setup","Loan servicing","Post-disbursement administration"], img: "/services/banking/Lending Operations.jpg", alt: "Lending operations workflow" },
   { num: "05", tab: "Compliance", title: "Compliance Operations", lead: "Embed structured controls throughout the customer lifecycle.", items: ["KYC operations","Periodic reviews","Screening support","AML workflow support","Remediation","Exception management"], img: "/services/banking/Compliance Operations.jpg", alt: "Compliance operations monitoring" },
@@ -147,9 +147,9 @@ const outcomeImages = [
   "/healthcare/faster (2).png",
   "/healthcare/accurate.png",
   "/healthcare/efficient.png",
-  "/healthcare/visible.png",
-  "/healthcare/better-experiences.png",
-  "/healthcare/scalable.png",
+  "/healthcare/visible.webp",
+  "/healthcare/better-experiences.webp",
+  "/healthcare/scalable.webp",
 ];
 
 const modelLayers = [
@@ -508,7 +508,7 @@ export default function BankingOperationsPage() {
         /* ── S10 TRANSFORM + CTA ── */
         .bk-s10 { background: #0f0f0f; overflow: hidden; }
         .bk-tf { background: #ffffff; padding: clamp(64px, 8vw, 128px) clamp(28px, 5vw, 80px); }
-        .bk-tf-badge { display: inline-block; background: #C6E84A; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: clamp(12px, 1.6vw, 16px); }
+        .bk-tf-badge { display: inline-block; align-self: flex-start; background: #C6E84A; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: clamp(12px, 1.6vw, 16px); }
         .bk-tf-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(40px, 5vw, 72px); align-items: flex-start; }
         .bk-tf-left { display: flex; flex-direction: column; max-width: 560px; padding-top: clamp(8px, 1vw, 16px); }
         .bk-tl-step { display: flex; align-items: flex-start; gap: 24px; }
@@ -597,7 +597,7 @@ export default function BankingOperationsPage() {
       {/* S01 — HERO: 42/58 split, bleeding photo                          */}
       {/* ══════════════════════════════════════════════════════════════════ */}
       <section className="bk-hero">
-        <video className="bk-hero-img" src="/services/banking/bankinghero1.mp4" autoPlay muted loop playsInline />
+        <video className="bk-hero-img" src="/services/banking/banking hero.mp4" autoPlay muted loop playsInline />
         <div className="bk-hero-content bk-reveal">
           <span className="bk-hero-eyebrow">BANKING</span>
           <h2>Intelligent operations for <span style={{ color: "#C6E84A" }}>modern banking.</span></h2>
@@ -822,7 +822,7 @@ export default function BankingOperationsPage() {
               </g>
             </svg>
             {transitStops.map((stop) => (
-              <div key={stop.name} className={"bk-stop" + (stop.hub ? " bk-stop--hub" : "")} style={{ left: `${(stop.x / 1200) * 100}%`, top: `${(stop.y / 220) * 100}%` }}>
+              <div key={stop.name} className={"bk-stop" + (stop.hub ? " bk-stop--hub" : "") + (stop.y < 110 ? " bk-stop--up" : "")} style={{ left: `${(stop.x / 1200) * 100}%`, top: `${(stop.y / 220) * 100}%` }}>
                 <span className="bk-stop-dot" />
                 <div className="bk-stop-body">
                   <span className="bk-stop-name">{stop.name}</span>
@@ -841,7 +841,7 @@ export default function BankingOperationsPage() {
           <div className="bk-hd-wrap">
             <div className="bk-hd-grid">
               <div className="bk-hd-copy bk-reveal">
-                <p className="bk-hd-kicker">07 / Human + Digital</p>
+                
                 <span className="bk-hd-pill">Human + Digital</span>
                 <h2 className="bk-hd-title">
                   <span className="bk-hd-title-white">Smarter banking should</span>
@@ -892,13 +892,6 @@ export default function BankingOperationsPage() {
                   <div className="bk-hd-orbit bk-hd-orbit--b" aria-hidden="true">
                     <span className="bk-hd-orbit-dot" />
                   </div>
-                  <svg className="bk-hd-hand" viewBox="0 0 320 170" fill="none" aria-hidden="true">
-                    <g stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M96 58 C74 64 56 78 48 94 C42 104 40 112 40 118 C40 130 50 138 64 138 L64 120 C52 118 48 112 50 106 C54 92 70 74 96 66" />
-                      <path d="M224 58 C246 64 264 78 272 94 C278 104 280 112 280 118 C280 130 270 138 256 138 L256 120 C268 118 272 112 270 106 C266 92 250 74 224 66" />
-                      <path d="M160 34 C136 40 114 54 100 74 C95 84 92 96 92 106 C92 120 100 130 112 131 C124 132 132 122 135 130 C138 138 148 146 160 146 C172 146 182 138 185 130 C188 122 196 132 208 131 C220 130 228 120 228 106 C228 96 225 84 220 74 C206 54 184 40 160 34 Z" />
-                    </g>
-                  </svg>
                   <div className="bk-hd-card bk-hd-card--tl">
                     <span className="bk-hd-card-icon" aria-hidden="true">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M22 12h-4M6 12H2" /><circle cx="12" cy="12" r="8" opacity="0.45" /></svg>
@@ -952,6 +945,8 @@ export default function BankingOperationsPage() {
           .bk-stop--hub .bk-stop-dot { width: 24px; height: 24px; background: #C6F135; border-color: #C6F135; box-shadow: 0 0 20px rgba(198,241,53,0.55); }
           .bk-stop-body { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 150px; display: flex; flex-direction: column; align-items: center; text-align: center; }
           .bk-stop--hub .bk-stop-body { width: 200px; top: 15px; }
+          .bk-stop--up .bk-stop-body { top: auto; bottom: 24px; }
+          .bk-stop--up.bk-stop--hub .bk-stop-body { bottom: 26px; }
           .bk-stop-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: #F4F5F2; white-space: nowrap; }
           .bk-stop--hub .bk-stop-name { color: #C6F135; }
           .bk-stop-desc { font-size: 11.5px; line-height: 1.45; color: #93A0B0; margin-top: 4px; }
@@ -984,7 +979,6 @@ export default function BankingOperationsPage() {
           .bk-hd-orbit--a { width: 82%; transform: translate(-50%, -50%) rotateX(68deg) rotateZ(-14deg); animation: bkHdOrbitA 18s linear infinite; }
           .bk-hd-orbit--b { width: 54%; transform: translate(-50%, -50%) rotateX(76deg) rotateZ(24deg); border-color: rgba(198,241,53,0.18); animation: bkHdOrbitB 26s linear infinite; }
           .bk-hd-orbit-dot { position: absolute; left: 50%; top: -4px; transform: translateX(-50%); width: 7px; height: 7px; border-radius: 50%; background: #C6F135; box-shadow: 0 0 14px 3px rgba(198,241,53,0.8); }
-          .bk-hd-hand { position: absolute; left: 50%; top: 88%; transform: translateX(-50%); width: 66%; z-index: 2; }
           .bk-hd-conn { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
           .bk-hd-conn line { stroke: rgba(147,160,176,0.35); stroke-width: 1; stroke-dasharray: 2.5 3; }
           .bk-hd-card { position: absolute; z-index: 3; display: flex; gap: 12px; align-items: flex-start; width: 232px; padding: 14px 16px; border-radius: 14px; background: rgba(16,26,44,0.6); border: 1px solid rgba(147,160,176,0.22); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
@@ -1029,7 +1023,6 @@ export default function BankingOperationsPage() {
           @media (max-width: 640px) {
             .bk-hd-wrap { padding: 72px 20px; }
             .bk-hd-stage { max-width: 400px; }
-            .bk-hd-hand { width: 72%; }
             .bk-intel { padding: 72px 20px 88px; }
           }
           @media (prefers-reduced-motion: reduce) {
@@ -1045,7 +1038,7 @@ export default function BankingOperationsPage() {
         <div className="bk-cx-wrap">
           <div className="bk-cx-hero">
             <div className="bk-cx-copy bk-reveal">
-              <p className="bk-cx-kicker">12 / Customer Experience</p>
+              <BkLabel text="Customer Experience" />
               <h2 className="bk-cx-title">BEYOND THE <span>TRANSACTION.</span></h2>
               <p className="bk-cx-lede">Turn banking interactions into relationships.</p>
               <p className="bk-cx-para">Customers increasingly expect banking experiences to be simple, responsive and consistent across channels.</p>
@@ -1075,7 +1068,7 @@ export default function BankingOperationsPage() {
           .bk-cx { position: relative; overflow: hidden; background: linear-gradient(180deg, #0B1220 0%, #0E1E38 100%); }
           .bk-cx-wrap { position: relative; z-index: 1; max-width: 1400px; width: 100%; margin: 0 auto; padding: clamp(88px, 10vw, 140px) 40px; }
           .bk-cx-hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(36px, 5vw, 80px); align-items: center; }
-          .bk-cx-kicker { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #C6F135; margin: 0 0 16px; font-variant-numeric: tabular-nums; }
+          
           .bk-cx-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(40px, 5vw, 56px); font-weight: 700; line-height: 1.06; letter-spacing: -0.02em; color: #ffffff; margin: 0; }
           .bk-cx-title span { color: #C6F135; }
           .bk-cx-lede { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(19px, 1.9vw, 23px); font-weight: 700; color: #ffffff; margin: 26px 0 18px; }

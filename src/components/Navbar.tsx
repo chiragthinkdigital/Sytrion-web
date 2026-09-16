@@ -562,6 +562,25 @@ export default function Navbar() {
         .hamburger-open .c-line:nth-child(2) {
           transform: translateY(-6.5px) rotate(-45deg);
         }
+        @media (max-width: 1023px) {
+          .nav-cta-btn {
+            display: none;
+          }
+          .nav-collapsed {
+            opacity: 1 !important;
+            transform: none !important;
+            pointer-events: auto !important;
+            justify-content: flex-end;
+            padding-right: clamp(24px, 5vw, 80px);
+            transition: none;
+          }
+          .nav-header.scrolled:not(.nav-hovered) .nav-collapsed,
+          .nav-header.scrolled.nav-hovered .nav-collapsed {
+            opacity: 1 !important;
+            transform: none !important;
+            pointer-events: auto !important;
+          }
+        }
       `}</style>
 
       {/* ===== HEADER ===== */}

@@ -243,9 +243,9 @@ const outcomes = [
   { num: "01", word: "FASTER", title: "Less waiting.", image: "/healthcare/faster (2).png", desc: "Streamlined workflows help reduce administrative delays." },
   { num: "02", word: "ACCURATE", title: "Greater confidence.", image: "/healthcare/accurate.png", desc: "Structured validation helps improve data and process quality." },
   { num: "03", word: "EFFICIENT", title: "Less repetitive work.", image: "/healthcare/efficient.png", desc: "Automation helps reduce manual administrative activity." },
-  { num: "04", word: "VISIBLE", title: "A clearer view.", image: "/healthcare/visible.png", desc: "Connected reporting makes performance and exceptions easier to understand." },
-  { num: "05", word: "BETTER EXPERIENCES", title: "Smoother interactions.", image: "/healthcare/better-experiences.png", desc: "Simpler operations support smoother interactions for members, patients and providers." },
-  { num: "06", word: "SCALABLE", title: "Room to adapt.", image: "/healthcare/scalable.png", desc: "Flexible operations support changing volumes and evolving requirements." },
+  { num: "04", word: "VISIBLE", title: "A clearer view.", image: "/healthcare/visible.webp", desc: "Connected reporting makes performance and exceptions easier to understand." },
+  { num: "05", word: "BETTER EXPERIENCES", title: "Smoother interactions.", image: "/healthcare/better-experiences.webp", desc: "Simpler operations support smoother interactions for members, patients and providers." },
+  { num: "06", word: "SCALABLE", title: "Room to adapt.", image: "/healthcare/scalable.webp", desc: "Flexible operations support changing volumes and evolving requirements." },
 ];
 
 const modelLayers = [
@@ -372,6 +372,7 @@ export default function HealthcareOperationsPage() {
         @media (max-width: 640px) {
           .hc-section-light, .hc-section-dark, .hc-section-navy, .hc-hero .hc-wrap, .hc-banner, .hc-transform .hc-wrap, .hc-final .hc-wrap { padding-left: 20px; padding-right: 20px; }
           .hc-hero .hc-wrap { padding: 168px 24px 90px; }
+          .hc-model .hc-h2, .hc-why .hc-h2 { white-space: normal; }
         }
 
         .hc-label { display: inline-block; background: #C6E84A; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: 24px; }
@@ -408,6 +409,8 @@ export default function HealthcareOperationsPage() {
         .hc-section-navy { background: linear-gradient(180deg, #081A31 0%, #071426 100%); padding: clamp(76px, 9vw, 128px) 80px; }
         .hc-head { max-width: none; }
         .hc-h2 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 20px; }
+        .hc-model .hc-h2, .hc-why .hc-h2 { white-space: normal; }
+        @media (min-width: 1400px) { .hc-model .hc-h2, .hc-why .hc-h2 { white-space: nowrap; } }
         .hc-section-light .hc-h2 { color: #0f172a; }
         .hc-section-dark .hc-h2, .hc-section-navy .hc-h2 { color: #ffffff; }
         .hc-h2 span { color: #C6E84A; }
@@ -780,13 +783,13 @@ export default function HealthcareOperationsPage() {
         .hc-intel-lede { font-size: 18px; line-height: 1.8; color: rgba(255,255,255,0.7); max-width: 640px; margin: 8px 0 0; }
         .scd-deck-wrapper { position: relative; width: 100%; margin-top: 20px; }
         .scd-deck { position: relative; width: 100%; min-height: 480px; }
-        .scd-tabs-bar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; position: relative; z-index: 10; width: 100%; }
-        .scd-tab { appearance: none; border: none; background: #1B2530; border-radius: 14px 14px 0 0; padding: 14px 12px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #B7C3D0; font-family: inherit; font-size: 13.5px; font-weight: 700; opacity: 0.85; transition: background 0.3s ease, transform 0.3s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.3s ease, color 0.3s ease; text-align: center; }
+        .scd-tabs-bar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; position: relative; z-index: 10; width: 100%; }
+        .scd-tab { appearance: none; border: none; background: #1B2530; border-radius: 14px 14px 0 0; padding: 14px 12px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #B7C3D0; font-family: inherit; font-size: 13.5px; font-weight: 700; opacity: 0.85; transition: background 0.3s ease, transform 0.3s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.3s ease, color 0.3s ease; text-align: center; min-width: 0; overflow: hidden; }
         .scd-tab:hover { background: #26303C; color: #ffffff; opacity: 1; }
         .scd-tab.is-active { background: #C6E84A; color: #0f0f0f; opacity: 1; transform: translateY(-4px); box-shadow: 0 -8px 20px rgba(0,0,0,0.3); }
         .scd-tab.is-active .scd-tab-num { background: rgba(15,23,42,0.16); color: #0f0f0f; }
         .scd-tab-num { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; background: rgba(0,0,0,0.25); padding: 2px 6px; border-radius: 999px; }
-        .scd-tab-text { font-family: var(--font-syne), sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .scd-tab-text { font-family: var(--font-syne), sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
         .scd-cards-stack { position: relative; width: 100%; min-height: 400px; }
         .scd-card { position: absolute; inset: 0; border-radius: 0 0 24px 24px; padding: 52px 56px; color: #ffffff; overflow: hidden; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7); transform: translateY(24px) scale(0.95); opacity: 0; pointer-events: none; transition: transform 0.45s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.45s ease; z-index: 1; }
         .scd-card.is-active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; z-index: 5; }
@@ -802,14 +805,14 @@ export default function HealthcareOperationsPage() {
         .scd-visual-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: transform 0.4s ease; }
         .scd-card:hover .scd-visual-thumb { transform: scale(1.05); }
         @media (max-width: 1024px) {
-          .scd-tabs-bar { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+          .scd-tabs-bar { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
           .scd-tab { border-radius: 12px; }
           .scd-card-inner { grid-template-columns: 1fr; gap: 24px; }
           .scd-card-visual { display: none; }
           .scd-card { padding: 40px 32px; border-radius: 20px; }
         }
         @media (max-width: 640px) {
-          .scd-tabs-bar { grid-template-columns: repeat(2, 1fr); }
+          .scd-tabs-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           .scd-tab-text { font-size: 12px; }
           .scd-card { padding: 32px 24px; }
         }
@@ -1169,7 +1172,7 @@ export default function HealthcareOperationsPage() {
         </div>
       </section>
 
-      <section className="hc-section-dark">
+      <section className="hc-section-dark hc-model">
         <div className="hc-wrap">
           <div className="hc-head hc-reveal">
             <HcLabel text="The Sytrion Model" />
@@ -1187,7 +1190,7 @@ export default function HealthcareOperationsPage() {
         </div>
       </section>
 
-      <section className="hc-section-light">
+      <section className="hc-section-light hc-why">
         <div className="hc-wrap">
           <div className="hc-head hc-reveal">
             <HcLabel text="Why Sytrion" light />

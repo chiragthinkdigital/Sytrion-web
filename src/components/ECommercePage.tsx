@@ -26,7 +26,7 @@ const ecosystemCards = [
   {
     title: "D2C Businesses",
     desc: "End-to-end operational support designed for fast-growing direct-to-consumer brands.",
-    image: "/services/ecommerce/D2C Businesses.png",
+    image: "/services/ecommerce/D2C Businesses.jpg",
   },
 ];
 
@@ -44,7 +44,7 @@ const ibsTabs = [
       "Product classification & tagging",
       "Image/content quality checks",
     ],
-    image: "/services/ecommerce/Products.png",
+    image: "/services/ecommerce/Products.jpg",
   },
   {
     num: "02",
@@ -59,7 +59,7 @@ const ibsTabs = [
       "Listing-quality management",
       "Marketplace issue resolution",
     ],
-    image: "/services/ecommerce/Marketplace.png",
+    image: "/services/ecommerce/Marketplace.jpg",
   },
   {
     num: "03",
@@ -74,7 +74,7 @@ const ibsTabs = [
       "Cancellation processing",
       "Exception management",
     ],
-    image: "/services/ecommerce/Orders.png",
+    image: "/services/ecommerce/Orders.jpg",
   },
   {
     num: "04",
@@ -89,7 +89,7 @@ const ibsTabs = [
       "Order tracking",
       "Operational reconciliation",
     ],
-    image: "/services/ecommerce/Fulfillment.png",
+    image: "/services/ecommerce/Fulfillment.jpg",
   },
   {
     num: "05",
@@ -104,7 +104,7 @@ const ibsTabs = [
       "Payment queries",
       "Complaint management",
     ],
-    image: "/services/ecommerce/Customer.png",
+    image: "/services/ecommerce/Customer.jpg",
   },
   {
     num: "06",
@@ -119,7 +119,7 @@ const ibsTabs = [
       "Return trends",
       "Operational dashboards",
     ],
-    image: "/services/ecommerce/Data.png",
+    image: "/services/ecommerce/Data.jpg",
   },
 ];
 
@@ -229,21 +229,21 @@ const outcomes = [
     num: "04",
     word: "VISIBLE",
     sub: "Better operational visibility",
-    image: "/healthcare/visible.png",
+    image: "/healthcare/visible.webp",
     desc: "Connected reporting makes performance and exceptions easier to understand across channels.",
   },
   {
     num: "05",
     word: "EXPERIENCED",
     sub: "Better experiences",
-    image: "/healthcare/better-experiences.png",
+    image: "/healthcare/better-experiences.webp",
     desc: "Simpler operations help create smoother interactions for customers, sellers and partners.",
   },
   {
     num: "06",
     word: "SCALABLE",
     sub: "Built to adapt",
-    image: "/healthcare/scalable.png",
+    image: "/healthcare/scalable.webp",
     desc: "Flexible operations support changing volumes, seasonal peaks and evolving requirements.",
   },
 ];
@@ -633,6 +633,8 @@ export default function ECommercePage() {
         .ec-section-navy { background: linear-gradient(180deg, #081A31 0%, #071426 100%); padding: clamp(76px, 9vw, 128px) 80px; }
         .ec-head { max-width: none; }
         .ec-h2 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 20px; }
+        .ec-model .ec-h2, .ec-why .ec-h2 { white-space: normal; }
+        @media (min-width: 1400px) { .ec-model .ec-h2, .ec-why .ec-h2 { white-space: nowrap; } }
         .ec-section-light .ec-h2 { color: #0f172a; }
         .ec-section-dark .ec-h2, .ec-section-navy .ec-h2 { color: #ffffff; }
         .ec-h2 span { color: #C6E84A; }
@@ -840,7 +842,7 @@ export default function ECommercePage() {
         .ec-node-verbs { font-size: 11.5px; letter-spacing: 0.08em; font-weight: 600; color: var(--ecc); margin: 8px 0 0; }
 
         .ec-clin-hero { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 4.5vw, 72px); align-items: center; }
-        .ec-clin-img { position: relative; overflow: hidden; border-radius: 22px; aspect-ratio: 16 / 11; }
+        .ec-clin-img { position: relative; overflow: hidden; border-radius: 22px; aspect-ratio: 16 / 11; min-width: 0; }
         .ec-clin-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .ec-chip-row { position: absolute; left: 18px; right: 18px; bottom: 18px; display: flex; flex-wrap: wrap; gap: 8px; z-index: 1; }
         .ec-chip { font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; color: var(--ecc); background: rgba(5,17,32,0.78); border: 1px solid rgba(198,232,74,0.35); border-radius: 999px; padding: 7px 12px; backdrop-filter: blur(4px); }
@@ -949,7 +951,7 @@ export default function ECommercePage() {
 
 
         @media (max-width: 900px) {
-          .ec-land-grid, .ec-split, .ec-prov-grid, .ec-clin-hero { grid-template-columns: 1fr; }
+          .ec-land-grid, .ec-split, .ec-prov-grid, .ec-clin-hero { grid-template-columns: minmax(0, 1fr); }
           .ec-land-row { grid-template-columns: 1fr; }
           .ec-ibs-panel { grid-template-columns: 1fr; gap: 26px; }
           .ec-eco-grid { grid-template-columns: 1fr; }
@@ -1936,7 +1938,7 @@ export default function ECommercePage() {
         </div>
       </section>
 
-      <section className="ec-section-dark">
+      <section className="ec-section-dark ec-model">
         <div className="ec-wrap">
           <div className="ec-head ec-reveal">
             <EcLabel text="The Sytrion Model" />
@@ -1954,7 +1956,7 @@ export default function ECommercePage() {
         </div>
       </section>
 
-      <section className="ec-section-light">
+      <section className="ec-section-light ec-why">
         <div className="ec-wrap">
           <div className="ec-head ec-reveal">
             <EcLabel text="Why Sytrion" light />
@@ -2030,7 +2032,7 @@ export default function ECommercePage() {
         <div className="ec-wrap">
           <div className="ec-final-inner ec-reveal">
             <span className="ec-final-eyebrow">Let's Move Commerce Forward</span>
-            <h2 className="ec-final-h2">Ready to build smarter e-commerce operations?</h2>
+            <h2 className="ec-final-h2">Ready to build smarter <span style={{ color: "#C6E84A" }}>e-commerce operations?</span></h2>
             <p className="ec-final-body">From products and orders to fulfillment, customer experience and finance, Sytrion can help you create a more connected, intelligent and scalable operating model.</p>
             <div className="ec-final-ctas">
               <Link href="/contact" className="ec-btn ec-btn-primary">Talk to Our Commerce Experts ↗</Link>

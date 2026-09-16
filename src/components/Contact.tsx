@@ -545,59 +545,16 @@ export default function Contact() {
                   Email
                 </p>
                 <a
-                  href="mailto:hello@sytrionlabs.com"
+                  href="mailto:solutions@sytriondatalabs.com"
                   className="contact-detail-link"
                 >
-                  hello@sytrionlabs.com
+                   solutions@sytriondatalabs.com
                 </a>
               </div>
             </div>
 
             {/* Phone */}
-            <div
-              className="contact-detail-row"
-              style={{
-                display: "flex",
-                alignItems: "flex-start",
-                gap: "20px",
-                marginBottom: "36px",
-              }}
-            >
-              <div className="contact-detail-icon">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-              </div>
-              <div>
-                <p
-                  style={{
-                    fontSize: "13px",
-                    fontWeight: 700,
-                    color: "#0f0f0f",
-                    textTransform: "uppercase",
-                    letterSpacing: "1px",
-                    marginBottom: "6px",
-                  }}
-                >
-                  Phone
-                </p>
-                <a
-                  href="tel:+919876543210"
-                  className="contact-detail-link"
-                >
-                  +91 98765 43210
-                </a>
-              </div>
-            </div>
+           
 
             {/* Address */}
             <div
@@ -645,154 +602,13 @@ export default function Contact() {
             </div>
 
             {/* Social Links */}
-            <div
-              style={{
-                borderTop: "1px solid rgba(0,0,0,0.08)",
-                paddingTop: "36px",
-                marginTop: "12px",
-              }}
-            >
-              <p
-                style={{
-                  fontSize: "13px",
-                  fontWeight: 700,
-                  color: "#0f0f0f",
-                  textTransform: "uppercase",
-                  letterSpacing: "1px",
-                  marginBottom: "20px",
-                }}
-              >
-                Follow us
-              </p>
-              <div style={{ display: "flex", gap: "12px" }}>
-                <a
-                  href="#"
-                  className="contact-social-icon"
-                  aria-label="LinkedIn"
-                >
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                    <rect x="2" y="9" width="4" height="12" />
-                    <circle cx="4" cy="4" r="2" />
-                  </svg>
-                </a>
-                <a
-                  href="#"
-                  className="contact-social-icon"
-                  aria-label="X (Twitter)"
-                >
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M4 4l11.733 16h4.267l-11.733-16z" />
-                    <path d="M4 20l6.768-6.768m2.46-2.46L20 4" />
-                  </svg>
-                </a>
-                <a
-                  href="#"
-                  className="contact-social-icon"
-                  aria-label="Instagram"
-                >
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect x="2" y="2" width="20" height="20" rx="5" />
-                    <circle cx="12" cy="12" r="5" />
-                    <circle
-                      cx="17.5"
-                      cy="6.5"
-                      r="1"
-                      fill="currentColor"
-                      stroke="none"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
+
           </div>
         </div>
       </section>
 
       {/* Dark Banner */}
-      <section
-        className="contact-banner"
-        style={{
-          width: "100%",
-          background: "#0f0f0f",
-          padding: "80px 80px",
-          textAlign: "center",
-        }}
-      >
-        <div style={{ maxWidth: "750px", margin: "0 auto" }}>
-          <h2
-            style={{
-              fontSize: "clamp(28px, 4vw, 40px)",
-              fontWeight: 700,
-              color: "#ffffff",
-              lineHeight: 1.25,
-              letterSpacing: "-0.02em",
-              marginBottom: "20px",
-            }}
-          >
-            Prefer to talk directly?
-          </h2>
-          <p
-            style={{
-              fontSize: "17px",
-              fontWeight: 400,
-              color: "rgba(255,255,255,0.55)",
-              lineHeight: 1.7,
-              marginBottom: "40px",
-            }}
-          >
-            Our team is available for a quick call to discuss your project
-            requirements and how Sytrion can help transform your operations.
-          </p>
-          <a
-            href="tel:+919876543210"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "10px",
-              position: "relative",
-              overflow: "hidden",
-              background: "#C6E84A",
-              color: "#0f0f0f",
-              padding: "16px 32px",
-              borderRadius: "9999px",
-              fontSize: "16px",
-              fontWeight: 700,
-              textDecoration: "none",
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
-            }}
-          >
-            Call us now
-          </a>
-        </div>
-      </section>
+
     </>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 
 /* ─────────────────────────────────────────────────────────────
    SYTRION — DIGITAL PUBLIC INFRASTRUCTURE PAGE
@@ -212,9 +212,9 @@ const outcomes = [
   { num: "01", word: "ACCESSIBLE", title: "Easier access", image: "/healthcare/faster (2).png", desc: "Simpler digital journeys can make services easier to discover and use." },
   { num: "02", word: "CONNECTED", title: "Connected ecosystems", image: "/healthcare/accurate.png", desc: "Interoperability reduces barriers between systems and institutions." },
   { num: "03", word: "EFFICIENT", title: "More efficient operations", image: "/healthcare/efficient.png", desc: "Automation helps reduce repetitive administrative activity." },
-  { num: "04", word: "VISIBLE", title: "Greater visibility", image: "/healthcare/visible.png", desc: "Connected data creates better operational transparency." },
-  { num: "05", word: "SCALABLE", title: "Built for scale", image: "/healthcare/scalable.png", desc: "Modular digital foundations can evolve as participation and demand grow." },
-  { num: "06", word: "INNOVATIVE", title: "Enable innovation", image: "/healthcare/better-experiences.png", desc: "Open, reusable building blocks allow new services and experiences to emerge." },
+  { num: "04", word: "VISIBLE", title: "Greater visibility", image: "/healthcare/visible.webp", desc: "Connected data creates better operational transparency." },
+  { num: "05", word: "SCALABLE", title: "Built for scale", image: "/healthcare/scalable.webp", desc: "Modular digital foundations can evolve as participation and demand grow." },
+  { num: "06", word: "INNOVATIVE", title: "Enable innovation", image: "/healthcare/better-experiences.webp", desc: "Open, reusable building blocks allow new services and experiences to emerge." },
 ];
 
 const dpiModelLayers = [
@@ -350,6 +350,49 @@ export default function DigitalPublicInfrastructurePage() {
     return () => observer.disconnect();
   }, []);
 
+  /* ── Ecosystem carousel ─────────────────────────────────── */
+  const ecoTrackRef = useRef<HTMLDivElement | null>(null);
+  const [ecoPage, setEcoPage] = useState(0);
+  const [ecoVisible, setEcoVisible] = useState(4);
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      if (w < 640) setEcoVisible(1);
+      else if (w < 1024) setEcoVisible(2);
+      else setEcoVisible(4);
+    };
+    update();
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onMq = () => setEcoPage(0);
+    mq.addEventListener?.("change", onMq);
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("resize", update);
+      mq.removeEventListener?.("change", onMq);
+    };
+  }, []);
+
+  const ecoMaxPage = Math.max(0, Math.ceil(ecosystemModules.length / ecoVisible) - 1);
+
+  const scrollEcoToPage = useCallback(
+    (p: number) => {
+      const track = ecoTrackRef.current;
+      if (!track) return;
+      const clamped = Math.max(0, Math.min(ecoMaxPage, p));
+      const card = track.children[0] as HTMLElement | undefined;
+      if (!card) return;
+      const cardW = card.offsetWidth;
+      const gap = 24;
+      track.scrollTo({ left: clamped * (cardW + gap) * ecoVisible, behavior: "smooth" });
+      setEcoPage(clamped);
+    },
+    [ecoMaxPage, ecoVisible]
+  );
+
+  const canEcoLeft = ecoPage > 0;
+  const canEcoRight = ecoPage < ecoMaxPage;
+
   return (
     <div className="dpi-page" ref={revealRef}>
       <style>{`
@@ -374,6 +417,7 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-btn--ghost:hover { background:#fff; color:#1a1a1a; transform: translateY(-2px); }
         .dpi-reveal { opacity:0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
         .dpi-reveal.dpi-in { opacity:1; transform:none; }
+        .dpi-head-full .dpi-h2, .dpi-head-full .dpi-body { max-width: none; }
         .dpi-hero { position:relative; overflow:hidden; background:linear-gradient(115deg, ${NAVY} 0%, ${NAVY2} 55%, #14263f 100%); padding: clamp(110px, 13vh, 150px) 0 clamp(70px, 8vh, 100px); display:flex; align-items:center; min-height:100dvh; }
         .dpi-hero > .dpi-wrap { width:100%; }
         .dpi-hero-bg { position:absolute; inset:0; z-index:0; }
@@ -450,12 +494,23 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-approach-text em { font-style: normal; color: #C4E538; font-weight: 600; }
 
         .dpi-eco-band { background:linear-gradient(160deg, ${NAVY} 0%, ${NAVY2} 100%); }
-        .dpi-eco-grid { display:grid; grid-template-columns: repeat(5, 1fr); gap:20px; margin-top:48px; }
-        .dpi-eco-module { border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:28px 24px; background:rgba(255,255,255,0.03); position:relative; }
-        .dpi-eco-arrow { color:${CYAN}; margin-top:14px; font-size:18px; }
-        .dpi-eco-name { font-size:11.5px; font-weight:700; letter-spacing:0.14em; color:${CYAN}; margin:0 0 14px; }
-        .dpi-eco-title { font-family: var(--font-syne), Arial, sans-serif; font-size:18px; font-weight:700; color:#fff; margin:0 0 10px; }
-        .dpi-eco-desc { font-size:14px; line-height:1.6; color:rgba(255,255,255,0.7); margin:0; }
+        .dpi-eco-track { display:flex; gap:24px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; -ms-overflow-style:none; scroll-behavior:smooth; margin-top:56px; padding-bottom:4px; }
+        .dpi-eco-track::-webkit-scrollbar { display:none; }
+        .dpi-eco-module { flex:0 0 calc((100% - 72px) / 4); position:relative; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:#101a2c; margin:0; scroll-snap-align:start; scroll-snap-stop:always; cursor:default; transition:transform 0.2s ease, box-shadow 0.2s ease; box-shadow:0 4px 20px rgba(0,0,0,0.3); }
+        .dpi-eco-module:hover { transform:scale(1.02); box-shadow:0 8px 32px rgba(0,0,0,0.45); }
+        .dpi-eco-module img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+        .dpi-eco-overlay { position:absolute; inset:0; background:linear-gradient(180deg, rgba(6,12,24,0.05) 30%, rgba(6,12,24,0.82) 100%); transition:background 0.4s ease; }
+        .dpi-eco-module:hover img { transform:scale(1.06); }
+        .dpi-eco-module:hover .dpi-eco-overlay { background:linear-gradient(180deg, rgba(6,12,24,0.25) 0%, rgba(6,12,24,0.92) 100%); }
+        .dpi-eco-body { position:absolute; left:0; right:0; bottom:0; padding:28px; }
+        .dpi-eco-num { display:block; font-size:13px; font-weight:700; letter-spacing:0.14em; color:${CYAN}; margin-bottom:6px; }
+        .dpi-eco-title { font-size:clamp(17px, 1.45vw, 20px); font-weight:700; margin:0; color:#fff; }
+        .dpi-eco-desc { font-size:14px; line-height:1.65; color:rgba(255,255,255,0.75); margin:10px 0 0; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; overflow:hidden; min-height:calc(1.65em * 3); opacity:0; transform:translateY(12px); transition:opacity 0.45s ease, transform 0.45s cubic-bezier(0.16,1,0.3,1); }
+        .dpi-eco-module:hover .dpi-eco-desc, .dpi-eco-module:focus-within .dpi-eco-desc { opacity:1; transform:none; }
+        .dpi-eco-arrows { display:flex; gap:12px; margin-top:32px; justify-content:flex-end; }
+        .dpi-eco-arrow-btn { width:52px; height:52px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.2); background:transparent; color:#FFFFFF; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease; padding:0; }
+        .dpi-eco-arrow-btn:hover:not(:disabled) { background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.4); }
+        .dpi-eco-arrow-btn:disabled { opacity:0.25; cursor:default; }
 
         .dpi-impact-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; margin-top:48px; }
         .dpi-impact-card { position:relative; overflow:hidden; border-radius:18px; aspect-ratio: 4/3; }
@@ -509,8 +564,12 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-ecosys { background:#fafaf8; }
         .dpi-ecosys-flow { position:relative; margin-top:56px; background:linear-gradient(135deg, #2b2f1a, #0d0f08); border-radius:20px; padding:44px 36px 40px; }
         .dpi-ecosys-track { display:flex; align-items:stretch; }
-        .dpi-ecosys-tile { flex:1 1 0; min-width:0; display:flex; flex-direction:column; align-items:center; gap:14px; padding:20px 14px; border-radius:14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.14); }
+        .dpi-ecosys-tile { flex:1 1 0; min-width:0; display:flex; flex-direction:column; align-items:center; gap:14px; padding:20px 14px; border-radius:14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.14); transition:background 0.3s ease, border-color 0.3s ease; cursor:pointer; }
         .dpi-ecosys-tile--highlight { background:rgba(198,241,53,0.08); border:1px solid rgba(198,241,53,0.45); }
+        .dpi-ecosys-tile:hover { background:${CYAN}; border-color:${CYAN}; }
+        .dpi-ecosys-tile:hover .dpi-ecosys-label { color:#0f0f0f; }
+        .dpi-ecosys-tile:hover .dpi-ecosys-icon { background:rgba(15,15,15,0.08); border-color:rgba(15,15,15,0.3); }
+        .dpi-ecosys-tile:hover .dpi-ecosys-icon svg { stroke:#0f0f0f; }
         .dpi-ecosys-icon { width:42px; height:42px; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:rgba(198,232,74,0.12); border:1px solid rgba(198,232,74,0.35); }
         .dpi-ecosys-icon svg { display:block; }
         .dpi-ecosys-label { font-family: var(--font-syne), Arial, sans-serif; font-size:12.5px; font-weight:600; line-height:1.35; text-align:center; color:#F2F1E8; }
@@ -686,18 +745,28 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-final-body { font-size:17px; line-height:1.7; color:rgba(255,255,255,0.8); margin:0 auto 36px; max-width:60ch; }
         .dpi-final-ctas { display:flex; flex-wrap:wrap; gap:16px; justify-content:center; }
 
+        @media (hover:none) {
+          .dpi-eco-desc { opacity:1; transform:none; }
+        }
+
         @media (max-width: 1080px) {
-          .dpi-eco-grid { grid-template-columns: repeat(3, 1fr); }
           .dpi-impact-grid { grid-template-columns: repeat(2, 1fr); }
           .dpi-pension-cols { grid-template-columns: 1fr; }
+          .dpi-ai-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 1023px) {
+          .dpi-eco-module { flex: 0 0 calc((100% - 24px) / 2); }
+        }
+        @media (max-width: 639px) {
+          .dpi-eco-module { flex: 0 0 100%; }
         }
         @media (max-width: 900px) {
           .dpi-land-row { grid-template-columns: 1fr; }
           .dpi-section-cols { grid-template-columns: 1fr; }
           .dpi-cap-panel { grid-template-columns: 1fr; }
-          .dpi-ai-grid { grid-template-columns: repeat(2, 1fr); }
+          .dpi-ai-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           .dpi-out-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-          .dpi-why-grid { grid-template-columns: repeat(2, 1fr); }
+          .dpi-why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           .dpi-pstep-detail { grid-template-columns: 1fr; }
           .dpi-service-flow { padding:36px 24px; }
           .dpi-service-rail { flex-direction:column; height:auto; gap:0; }
@@ -709,13 +778,15 @@ export default function DigitalPublicInfrastructurePage() {
           .dpi-service-label { position:static; transform:none; width:auto; text-align:left; }
         }
         @media (max-width: 720px) {
-          .dpi-eco-grid { grid-template-columns: 1fr; }
           .dpi-impact-grid { grid-template-columns: 1fr; }
           .dpi-cap-list { grid-template-columns: 1fr; }
           .dpi-pstep-list { grid-template-columns: 1fr; }
           .dpi-ai-grid { grid-template-columns: 1fr; }
+          .dpi-ai-grid > .dpi-ai-node { min-width: 0; }
           .dpi-out-grid { grid-template-columns: 1fr; }
           .dpi-why-grid { grid-template-columns: 1fr; }
+          .dpi-why-grid > .dpi-why-card { min-width: 0; }
+          .dpi-why-card h3 { overflow-wrap: anywhere; }
           .dpi-layer { grid-template-columns: 1fr; gap: 8px; }
           .dpi-open-layer { flex-direction: column; align-items: flex-start; gap: 8px; padding: 20px; }
         }
@@ -805,15 +876,32 @@ export default function DigitalPublicInfrastructurePage() {
             <Eyebrow text="CONNECTED DIGITAL ECOSYSTEMS" dark />
             <h2 className="dpi-h2">One foundation. <span style={{ color: "#C6E84A" }}>Multiple possibilities.</span></h2>
           </div>
-          <div className="dpi-eco-grid dpi-reveal">
-            {ecosystemModules.map((m, i) => (
-              <div key={m.name} className="dpi-eco-module">
-                <p className="dpi-eco-name">{m.name}</p>
-                <h3 className="dpi-eco-title">{m.title}</h3>
-                <p className="dpi-eco-desc">{m.desc}</p>
-                {i < ecosystemModules.length - 1 && <div className="dpi-eco-arrow">→</div>}
-              </div>
-            ))}
+          <div className="dpi-eco dpi-reveal">
+            <div ref={ecoTrackRef} className="dpi-eco-track">
+              {ecosystemModules.map((m, i) => (
+                <figure key={m.name} className="dpi-eco-module">
+                  <img src={"/dpi/" + m.title + ".jpg"} alt={m.title} loading="lazy" decoding="async" />
+                  <div className="dpi-eco-overlay" aria-hidden="true" />
+                  <figcaption className="dpi-eco-body">
+                    <span className="dpi-eco-num">{String(i + 1).padStart(2, "0")}</span>
+                    <h3 className="dpi-eco-title">{m.title}</h3>
+                    <p className="dpi-eco-desc">{m.desc}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            <div className="dpi-eco-arrows">
+              <button className="dpi-eco-arrow-btn" disabled={!canEcoLeft} onClick={() => scrollEcoToPage(ecoPage - 1)} aria-label="Previous ecosystem">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+              <button className="dpi-eco-arrow-btn" disabled={!canEcoRight} onClick={() => scrollEcoToPage(ecoPage + 1)} aria-label="Next ecosystem">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -821,7 +909,7 @@ export default function DigitalPublicInfrastructurePage() {
       {/* ─────────────────── 04 WHERE DPI CREATES IMPACT ─────────────────── */}
       <section className="dpi-section">
         <div className="dpi-wrap">
-          <div className="dpi-reveal">
+          <div className="dpi-reveal dpi-head-full">
             <Eyebrow text="WHERE DPI CREATES IMPACT" />
             <h2 className="dpi-h2">Digital infrastructure that <span style={{ color: "#C6E84A" }}>works across society.</span></h2>
           </div>
@@ -849,7 +937,7 @@ export default function DigitalPublicInfrastructurePage() {
       {/* ─────────────────── 05 SYTRION DPI CAPABILITIES ─────────────────── */}
       <section className="dpi-section" id="capabilities">
         <div className="dpi-wrap">
-          <div className="dpi-reveal">
+          <div className="dpi-reveal dpi-head-full">
             <Eyebrow text="SYTRION DPI CAPABILITIES" />
             <h2 className="dpi-h2">From digital building blocks to <span style={{ color: "#C6E84A" }}>connected ecosystems.</span></h2>
             <p className="dpi-body" style={{ marginBottom: 0 }}>Sytrion combines technology architecture, data, AI and operational expertise to help institutions design and enable digital ecosystems that are scalable, interoperable and built around user needs.</p>
@@ -1078,7 +1166,7 @@ export default function DigitalPublicInfrastructurePage() {
       {/* ───────────── 12 TRUST, SECURITY & GOVERNANCE ───────────── */}
       <section className="dpi-section dpi-trust">
         <div className="dpi-wrap">
-          <div className="dpi-reveal">
+          <div className="dpi-reveal dpi-head-full">
             <Eyebrow text="TRUST, SECURITY & GOVERNANCE" dark />
             <h2 className="dpi-h2">Digital ecosystems need trust at <span style={{ color: "#C6E84A" }}>their core.</span></h2>
             <p className="dpi-body" style={{ color: "rgba(255,255,255,0.72)" }}>As digital services connect more institutions, systems and users, security, privacy, governance and accountability become fundamental to sustainable infrastructure.</p>

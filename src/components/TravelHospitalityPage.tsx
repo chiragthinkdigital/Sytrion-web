@@ -20,9 +20,9 @@ const serveCols = [
 ];
 
 const tabs = [
-  { num: "01", tab: "RESERVATIONS", title: "01 — Reservations & Ticketing", intro: "Make booking journeys simpler from search to service.", img: "/services/travel/Reservations & Ticketing.png", items: ["Reservation support", "Booking modifications", "Ticketing support", "Group bookings", "Cancellations & refunds", "Schedule-change processing"] },
-  { num: "02", tab: "TRAVELER CARE", title: "02 — Traveler Care", intro: "Support travelers across every stage of the journey.", img: "/services/travel/Traveler Care.png", items: ["Pre-travel assistance", "Booking queries", "Travel information", "Special-service requests", "Post-travel support", "Omnichannel service"] },
-  { num: "03", tab: "DISRUPTIONS", title: "03 — Disruption Management", intro: "Respond when journeys don't go as planned.", img: "/services/travel/Disruption Management.png", items: ["Schedule-change support", "Cancellation handling", "Rebooking assistance", "Traveler notifications", "Service recovery workflows", "Exception management"] },
+  { num: "01", tab: "RESERVATIONS", title: "01 — Reservations & Ticketing", intro: "Make booking journeys simpler from search to service.", img: "/services/travel/Reservations & Ticketing.jpg", items: ["Reservation support", "Booking modifications", "Ticketing support", "Group bookings", "Cancellations & refunds", "Schedule-change processing"] },
+  { num: "02", tab: "TRAVELER CARE", title: "02 — Traveler Care", intro: "Support travelers across every stage of the journey.", img: "/services/travel/Traveler Care.jpg", items: ["Pre-travel assistance", "Booking queries", "Travel information", "Special-service requests", "Post-travel support", "Omnichannel service"] },
+  { num: "03", tab: "DISRUPTIONS", title: "03 — Disruption Management", intro: "Respond when journeys don't go as planned.", img: "/services/travel/Disruption Management.jpg", items: ["Schedule-change support", "Cancellation handling", "Rebooking assistance", "Traveler notifications", "Service recovery workflows", "Exception management"] },
   { num: "04", tab: "FULFILLMENT", title: "04 — Fulfillment Operations", intro: "Keep the processes behind every journey moving.", img: "/services/travel/Fulfillment Operations.jpg", items: ["Fare & rate loading", "Booking validation", "Payment processing support", "Refund processing", "Travel-document workflows", "Back-office administration"] },
   { num: "05", tab: "LOYALTY", title: "05 — Loyalty Operations", intro: "Turn travel relationships into lasting engagement.", img: "/services/travel/Loyalty Operations.jpg", items: ["Member administration", "Points & miles support", "Partner transactions", "Redemption support", "Loyalty queries", "Data & reconciliation"] },
   { num: "06", tab: "DATA", title: "06 — Travel Data & Insights", intro: "Turn traveler and operational activity into actionable intelligence.", img: "/services/travel/Travel Data & Insights.jpg", items: ["Data management", "Operational reporting", "Traveler insights", "Service analytics", "Exception trends", "Performance dashboards"] },
@@ -50,7 +50,7 @@ const cardSections = [
   {
     title: "Airline Operations",
     desc: "Keeping complex airline operations connected.",
-    img: "/services/travel/Airline Operations.png",
+    img: "/services/travel/Airline Operations.jpg",
     groups: [
       { label: "Booking & Ticketing", items: ["Reservations", "Ticketing support", "Schedule changes", "Refunds"] },
       { label: "Airport & Passenger Support", items: ["Airport service workflows", "Passenger queries", "Baggage support", "Service requests"] },
@@ -61,7 +61,7 @@ const cardSections = [
   {
     title: "Revenue & Financial Operations",
     desc: "Protect revenue. Improve financial control.",
-    img: "/services/travel/Revenue & Financial Operations.png",
+    img: "/services/travel/Revenue & Financial Operations.jpg",
     groups: [
       { label: "Revenue Accounting", items: ["Passenger revenue support", "Revenue reconciliation", "Revenue recognition support", "Interline transaction support", "Revenue reporting"] },
       { label: "Order-to-Cash", items: ["Billing & receivables", "Cash application", "Collections support", "Refund administration", "Payment reconciliation"] },
@@ -73,7 +73,7 @@ const cardSections = [
   {
     title: "Loyalty & Personalization",
     desc: "Turn travelers into lasting relationships.",
-    img: "/services/travel/Loyalty & Personalization.png",
+    img: "/services/travel/Loyalty & Personalization.jpg",
     groups: [
       { label: "Member Operations", items: ["Enrollment", "Profile management", "Account servicing"] },
       { label: "Loyalty Transactions", items: ["Points & miles", "Partner transactions", "Redemptions"] },
@@ -115,11 +115,11 @@ const disruptionSteps = [
 
 const outcomes = [
   { num: "01", word: "FASTER", sub: "Faster response", desc: "Intelligent workflows help teams process requests and exceptions more quickly.", image: "/healthcare/faster (2).png" },
-  { num: "02", word: "SEAMLESS", sub: "Smoother journeys", desc: "Connected operations reduce friction across traveler touchpoints.", image: "/healthcare/better-experiences.png" },
+  { num: "02", word: "SEAMLESS", sub: "Smoother journeys", desc: "Connected operations reduce friction across traveler touchpoints.", image: "/healthcare/better-experiences.webp" },
   { num: "03", word: "EFFICIENT", sub: "Lower operational effort", desc: "Automation reduces repetitive administrative activity.", image: "/healthcare/efficient.png" },
   { num: "04", word: "PROTECTED", sub: "Better revenue control", desc: "Validation and reconciliation help identify discrepancies and revenue leakage.", image: "/healthcare/accurate.png" },
-  { num: "05", word: "PERSONAL", sub: "More relevant experiences", desc: "Connected data helps organizations understand and serve travelers better.", image: "/healthcare/visible.png" },
-  { num: "06", word: "SCALABLE", sub: "Built for demand", desc: "Flexible operations help manage seasonal peaks and changing travel volumes.", image: "/healthcare/scalable.png" },
+  { num: "05", word: "PERSONAL", sub: "More relevant experiences", desc: "Connected data helps organizations understand and serve travelers better.", image: "/healthcare/visible.webp" },
+  { num: "06", word: "SCALABLE", sub: "Built for demand", desc: "Flexible operations help manage seasonal peaks and changing travel volumes.", image: "/healthcare/scalable.webp" },
 ];
 
 const loyaltyCards = [
@@ -385,6 +385,8 @@ export default function TravelHospitalityPage() {
         .tv-stop--hub .tv-stop-dot { width: 24px; height: 24px; background: #C6F135; border-color: #C6F135; box-shadow: 0 0 20px rgba(198,241,53,0.55); }
         .tv-stop-body { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 150px; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .tv-stop--hub .tv-stop-body { width: 200px; top: 15px; }
+        .tv-stop--up .tv-stop-body { top: auto; bottom: 24px; }
+        .tv-stop--up.tv-stop--hub .tv-stop-body { bottom: 26px; }
         .tv-stop-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: #F4F5F2; white-space: nowrap; }
         .tv-stop--hub .tv-stop-name { color: #C6F135; }
         .tv-stop-desc { font-size: 11.5px; line-height: 1.45; color: #93A0B0; margin-top: 4px; }
@@ -417,7 +419,6 @@ export default function TravelHospitalityPage() {
         .tv-hd-orbit--a { width: 82%; transform: translate(-50%, -50%) rotateX(68deg) rotateZ(-14deg); animation: tvHdOrbitA 18s linear infinite; }
         .tv-hd-orbit--b { width: 54%; transform: translate(-50%, -50%) rotateX(76deg) rotateZ(24deg); border-color: rgba(198,241,53,0.18); animation: tvHdOrbitB 26s linear infinite; }
         .tv-hd-orbit-dot { position: absolute; left: 50%; top: -4px; transform: translateX(-50%); width: 7px; height: 7px; border-radius: 50%; background: #C6F135; box-shadow: 0 0 14px 3px rgba(198,241,53,0.8); }
-        .tv-hd-hand { position: absolute; left: 50%; top: 88%; transform: translateX(-50%); width: 66%; z-index: 2; }
         .tv-hd-conn { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
         .tv-hd-conn line { stroke: rgba(147,160,176,0.35); stroke-width: 1; stroke-dasharray: 2.5 3; }
         .tv-hd-card { position: absolute; z-index: 3; display: flex; gap: 12px; align-items: flex-start; width: 232px; padding: 14px 16px; border-radius: 14px; background: rgba(16,26,44,0.6); border: 1px solid rgba(147,160,176,0.22); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
@@ -540,7 +541,6 @@ export default function TravelHospitalityPage() {
           .tv-out-grid { grid-template-columns: 1fr; }
           .tv-hd-wrap { padding: 72px 20px; }
           .tv-hd-stage { max-width: 400px; }
-          .tv-hd-hand { width: 72%; }
           .tv-intel { padding: 72px 20px 88px; }
           .tv-hero-ctas { flex-direction: column; }
           .tv-hero-ctas .tv-btn { width: 100%; }
@@ -572,7 +572,7 @@ export default function TravelHospitalityPage() {
         <div className="tv-wrap">
           <div className="tv-s02-head tv-reveal">
             <TvLabel text="A WORLD THAT NEVER STOPS MOVING" />
-            <h2 className="tv-h2">Every journey creates thousands of<span style={{ color: "#C6E84A" }}>moments that need to work.</span></h2>
+            <h2 className="tv-h2">Every journey creates thousands of <span style={{ color: "#C6E84A" }}>moments that need to work.</span></h2>
           </div>
           <div className="tv-s02-row tv-reveal">
             <div className="tv-s02-text">
@@ -648,7 +648,7 @@ export default function TravelHospitalityPage() {
         <div className="tv-wrap">
           <div className="tv-s05-split">
             <div className="tv-s05-feature tv-reveal">
-              <img src="/services/travel/Traveler Care.png" alt="Traveler care representative supporting a traveler journey" />
+              <img src="/services/travel/TRAVELER EXPERIENCE.jpg" alt="Traveler care representative supporting a traveler journey" />
               <div className="tv-s05-tint" />
             </div>
             <div className="tv-reveal">
@@ -750,7 +750,7 @@ export default function TravelHospitalityPage() {
               </g>
             </svg>
             {tvTransitStops.map((stop) => (
-              <div key={stop.name} className={"tv-stop" + (stop.hub ? " tv-stop--hub" : "")} style={{ left: `${(stop.x / 1200) * 100}%`, top: `${(stop.y / 220) * 100}%` }}>
+              <div key={stop.name} className={"tv-stop" + (stop.hub ? " tv-stop--hub" : "") + (stop.y < 110 ? " tv-stop--up" : "")} style={{ left: `${(stop.x / 1200) * 100}%`, top: `${(stop.y / 220) * 100}%` }}>
                 <span className="tv-stop-dot" />
                 <div className="tv-stop-body">
                   <span className="tv-stop-name">{stop.name}</span>
@@ -769,7 +769,7 @@ export default function TravelHospitalityPage() {
           <div className="tv-hd-wrap">
             <div className="tv-hd-grid">
               <div className="tv-hd-copy tv-reveal">
-                <p className="tv-hd-kicker">08 / Human + Digital</p>
+                
                 <span className="tv-hd-pill">Human + Digital</span>
                 <h2 className="tv-hd-title">
                   <span className="tv-hd-title-white">Smarter travel should</span>
@@ -820,13 +820,6 @@ export default function TravelHospitalityPage() {
                   <div className="tv-hd-orbit tv-hd-orbit--b" aria-hidden="true">
                     <span className="tv-hd-orbit-dot" />
                   </div>
-                  <svg className="tv-hd-hand" viewBox="0 0 320 170" fill="none" aria-hidden="true">
-                    <g stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M96 58 C74 64 56 78 48 94 C42 104 40 112 40 118 C40 130 50 138 64 138 L64 120 C52 118 48 112 50 106 C54 92 70 74 96 66" />
-                      <path d="M224 58 C246 64 264 78 272 94 C278 104 280 112 280 118 C280 130 270 138 256 138 L256 120 C268 118 272 112 270 106 C266 92 250 74 224 66" />
-                      <path d="M160 34 C136 40 114 54 100 74 C95 84 92 96 92 106 C92 120 100 130 112 131 C124 132 132 122 135 130 C138 138 148 146 160 146 C172 146 182 138 185 130 C188 122 196 132 208 131 C220 130 228 120 228 106 C228 96 225 84 220 74 C206 54 184 40 160 34 Z" />
-                    </g>
-                  </svg>
                   <div className="tv-hd-card tv-hd-card--tl">
                     <span className="tv-hd-card-icon" aria-hidden="true">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M22 12h-4M6 12H2" /><circle cx="12" cy="12" r="8" opacity="0.45" /></svg>
@@ -918,7 +911,7 @@ export default function TravelHospitalityPage() {
         <div className="tv-wrap">
           <div className="tv-sec-head tv-reveal">
             <TvLabel text="Loyalty &amp; Personalization" />
-            <div className="tv-sec-theme">Beyond the Journey</div>
+            
             <h2 className="tv-h2">Turn travelers into <span style={{ color: "#C6E84A" }}>relationships.</span></h2>
             <div className="tv-sec-copy">
               <p className="tv-lede">Every journey creates information that can help travel brands understand preferences, anticipate needs and create more relevant experiences.</p>
@@ -943,7 +936,8 @@ export default function TravelHospitalityPage() {
           .tv-sec-copy { max-width: 720px; }
           .tv-loyalty { position: relative; background: radial-gradient(ellipse 80% 60% at 85% 10%, rgba(198,232,74,0.05), transparent 60%), var(--tv-navy); padding: clamp(76px, 9vw, 128px) 80px; overflow: hidden; }
           .tv-loyalty::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(198,232,74,0.11) 1px, transparent 1px); background-size: 34px 34px; opacity: 0.35; pointer-events: none; mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 75%); }
-          .tv-loyalty .tv-sec-head { position: relative; z-index: 1; }
+          .tv-loyalty .tv-sec-head { position: relative; z-index: 1; max-width: none; }
+          .tv-loyalty .tv-sec-copy { max-width: none; }
           .tv-loyalty .tv-h2 { color: #ffffff; }
           .tv-loyalty .tv-lede { color: rgba(255,255,255,0.85); }
           .tv-loyalty .tv-copy { color: rgba(255,255,255,0.58); }
@@ -995,6 +989,7 @@ export default function TravelHospitalityPage() {
           .tv-layer-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #ffffff; }
           .tv-layer-items { font-size: 12.5px; letter-spacing: 0.05em; color: rgba(255,255,255,0.62); }
           @media (max-width: 640px) { .tv-layer { grid-template-columns: 1fr; gap: 8px; padding: 20px; } }
+          @media (min-width: 1400px) { .tv-model .tv-h2 { white-space: nowrap; } .tv-model .tv-sec-head { max-width: none; } }
         `}</style>
       </section>
 
@@ -1041,7 +1036,9 @@ export default function TravelHospitalityPage() {
           @media (max-width: 640px) {
             .tv-why { padding-left: 20px; padding-right: 20px; }
             .tv-why-grid { grid-template-columns: 1fr; }
+            .tv-why .tv-h2 { white-space: normal; }
           }
+          @media (min-width: 1400px) { .tv-why .tv-h2 { white-space: nowrap; } .tv-why .tv-sec-head { max-width: none; } }
         `}</style>
       </section>
 
