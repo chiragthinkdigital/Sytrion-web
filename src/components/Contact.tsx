@@ -11,6 +11,8 @@ export default function Contact() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [serverError, setServerError] = useState("");
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -32,16 +34,46 @@ export default function Contact() {
     if (errors[name]) {
       setErrors({ ...errors, [name]: "" });
     }
+    if (serverError) setServerError("");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-    setSubmitted(true);
+
+    setSubmitting(true);
+    setServerError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setServerError(data.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      setSubmitted(true);
+      setFormData({ name: "", email: "", phone: "", message: "" });
+    } catch {
+      setServerError("Network error. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -457,8 +489,33 @@ export default function Contact() {
                   {errors.message && <p className="contact-error">{errors.message}</p>}
                 </div>
 
-                <button type="submit" className="contact-form-btn">
-                  Send message
+                {serverError && (
+                  <div
+                    style={{
+                      padding: "14px 18px",
+                      background: "rgba(229,62,62,0.08)",
+                      border: "1px solid rgba(229,62,62,0.2)",
+                      borderRadius: "12px",
+                      marginBottom: "24px",
+                      color: "#e53e3e",
+                      fontSize: "14px",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {serverError}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  className="contact-form-btn"
+                  disabled={submitting}
+                  style={{
+                    opacity: submitting ? 0.7 : 1,
+                    cursor: submitting ? "not-allowed" : "pointer",
+                  }}
+                >
+                  {submitting ? "Sending..." : "Send message"}
                 </button>
               </form>
             )}

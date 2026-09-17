@@ -28,6 +28,11 @@ const ecosystemCards = [
     desc: "End-to-end operational support designed for fast-growing direct-to-consumer brands.",
     image: "/services/ecommerce/D2C Businesses.jpg",
   },
+  {
+    title: "B2B Commerce",
+    desc: "Product, order, customer and transaction operations supporting complex business commerce.",
+    image: "/services/ecommerce/b2b Commerce.jpg",
+  },
 ];
 
 const ibsTabs = [
@@ -186,93 +191,94 @@ const flowIcons: Record<string, React.ReactNode> = {
 };
 
 const orderSteps = [
-  { name: "ORDER", sub: "Capture & validate" },
-  { name: "PAYMENT", sub: "Confirm & reconcile" },
-  { name: "ALLOCATE", sub: "Inventory & fulfillment" },
-  { name: "SHIP", sub: "Dispatch & track" },
-  { name: "DELIVER", sub: "Confirm completion" },
-  { name: "SUPPORT", sub: "Resolve exceptions" },
+  { name: "ORDER ", sub: " - Capture & validate" },
+  { name: "PAYMENT ", sub: " - Confirm & reconcile" },
+  { name: "ALLOCATE ", sub: " - Inventory & fulfillment" },
+  { name: "SHIP ", sub: " - Dispatch & track" },
+  { name: "DELIVER ", sub: " - Confirm completion" },
+  { name: "SUPPORT ", sub: " - Resolve exceptions" },
 ];
 
 const intelCapabilities = [
-  { num: "01", title: "Product Data Enrichment & Classification", desc: "Ingest, classify and enrich product information so catalogs are accurate, complete and commerce-ready across every channel and marketplace.", tags: "Classify / Enrich / Optimize", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Product & Catalog Operations.jpg" },
-  { num: "02", title: "Order & Fulfillment Workflow Automation", desc: "Automate order validation, status management, fulfillment coordination and exception routing to reduce manual touchpoints and improve order accuracy.", tags: "Monitor / Prioritize / Resolve", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Order Management.jpg" },
-  { num: "03", title: "Returns & Refund Processing", desc: "Structure return initiation, validation, authorization, refund processing and inventory reconciliation into connected, visible workflows.", tags: "Analyze / Predict / Improve", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Fulfillment Operations (2).jpg" },
-  { num: "04", title: "Marketplace Listing Quality", desc: "Review listings for completeness, accuracy, policy compliance and content quality across multiple marketplace platforms.", tags: "Generate / Tag / Validate", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Marketplace Operations.jpg" },
-  { num: "05", title: "Customer Query Resolution", desc: "Combine AI-assisted support with skilled teams to resolve product, order, delivery and post-purchase queries across omnichannel touchpoints.", tags: "Understand / Personalize / Assist", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Customer Operations.jpg" },
-  { num: "06", title: "Commerce Finance Reconciliation", desc: "Support order-to-cash, marketplace settlements, fee reconciliation, refund administration and financial exception management.", tags: "Analyze / Forecast / Replenish", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Commerce Data & Insights.jpg" },
+  { num: "01", title: "Product Intelligence",  tags: "Classify / Enrich / Optimize", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Product & Catalog Operations.jpg" },
+  { num: "02", title: "Order Intelligence",  tags: "Monitor / Prioritize / Resolve", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Order Management.jpg" },
+  { num: "03", title: "Decision Intelligence",  tags: "Analyze / Predict / Improve", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Fulfillment Operations (2).jpg" },
+  { num: "04", title: "Content Intelligence",  tags: "Generate / Tag / Validate", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Marketplace Operations.jpg" },
+  { num: "05", title: "Customer Intelligence",  tags: "Understand / Personalize / Assist", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Customer Operations.jpg" },
+  { num: "06", title: "Inventory Intelligence",  tags: "Analyze / Forecast / Replenish", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Commerce Data & Insights.jpg" },
+  { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Fraud & Risk Intelligence.jpg" },
 ];
 
 const outcomes = [
   {
     num: "01",
     word: "FASTER",
-    sub: "Faster processing",
+    sub: "Faster  execution",
     image: "/healthcare/faster (2).png",
-    desc: "Streamlined workflows help reduce operational delays across orders, products and customer interactions.",
+    desc: "Intelligent workflows help products, orders and requests move more quickly.",
   },
   {
     num: "02",
     word: "ACCURATE",
-    sub: "Greater accuracy",
+    sub: "Better data quality",
     image: "/healthcare/accurate.png",
-    desc: "Structured validation helps improve product data, order processing and transaction quality.",
+    desc: "Structured validation improves product and transaction informations.",
   },
   {
     num: "03",
     word: "EFFICIENT",
     sub: "Lower operational effort",
     image: "/healthcare/efficient.png",
-    desc: "Automation reduces repetitive manual activity across commerce operations.",
+    desc: "Automation reduces repetitive manual processing. ",
   },
   {
     num: "04",
     word: "VISIBLE",
-    sub: "Better operational visibility",
+    sub: "Greater operational visibility ",
     image: "/healthcare/visible.webp",
-    desc: "Connected reporting makes performance and exceptions easier to understand across channels.",
+    desc: "Connected data and dashboards help surface status and exceptions.",
   },
   {
     num: "05",
     word: "EXPERIENCED",
-    sub: "Better experiences",
+    sub: "Better customer experience",
     image: "/healthcare/better-experiences.webp",
-    desc: "Simpler operations help create smoother interactions for customers, sellers and partners.",
+    desc: "Connected operations help teams respond across the commerce journey. ",
   },
   {
     num: "06",
     word: "SCALABLE",
-    sub: "Built to adapt",
+    sub: "Built for growth ",
     image: "/healthcare/scalable.webp",
-    desc: "Flexible operations support changing volumes, seasonal peaks and evolving requirements.",
+    desc: "Flexible operations support changing volumes, channels and requirements.",
   },
 ];
 
 const modelLayers = [
   {
     num: "01",
-    name: "Commerce Ecosystem",
-    items: "Customers • Sellers • Partners • Brands",
+    name: "CUSTOMERS & BUSINESSES",
+    items: "Consumers • Business buyers • Sellers • Partners ",
   },
   {
     num: "02",
-    name: "Systems & Information",
-    items: "Core Platforms • Marketplaces • Catalogs • Data • Interactions",
+    name: "COMMERCE EXPERIENCE",
+    items: "Web • Mobile • Marketplaces • Social • Assisted channels",
   },
   {
     num: "03",
     name: "Sytrion Intelligence Layer",
-    items: "AI | Automation | Content Intelligence | Analytics",
+    items: "AI • Automation • Content intelligence • Data • Analytics ",
   },
   {
     num: "04",
     name: "Intelligent Operations",
-    items: "Products | Orders | Fulfillment | Customer | Finance",
+    items: "Products • Marketplace • Orders • Fulfillment • Customer • Finance ",
   },
   {
     num: "05",
     name: "Business Outcomes",
-    items: "SPEED • ACCURACY • VISIBILITY • EFFICIENCY • EXPERIENCE",
+    items: "EXPERIENCE • SPEED • ACCURACY • VISIBILITY • EFFICIENCY • SCALE",
   },
 ];
 
@@ -292,37 +298,37 @@ const whyPoints = [
   {
     num: "01",
     name: "Domain-led",
-    desc: "Operations designed around e-commerce's complex digital workflows.",
+    desc: "Solutions built around real digital commerce processes and operating environments. ",
     icon: "/healthcare/domain led.svg",
   },
   {
     num: "02",
     name: "AI-first",
-    desc: "Intelligence applied where it can simplify work and improve operational decision support.",
+    desc: "Intelligence embedded into products, content, workflows, transactions and operations. ",
     icon: "/healthcare/ai first.svg",
   },
   {
     num: "03",
     name: "Human + Digital",
-    desc: "Automation and skilled teams working together.",
+    desc: "Technology and skilled professionals working together. .",
     icon: "/healthcare/human-digital.svg",
   },
   {
     num: "04",
     name: "Data-driven",
-    desc: "Better information supporting better operational decisions.",
+    desc: "Reliable information supporting operations, service and decisions.",
     icon: "/healthcare/Data-driven.svg",
   },
   {
     num: "05",
-    name: "Secure by Design",
-    desc: "Controlled processes, access and governance embedded into delivery.",
+    name: "Control-focused",
+    desc: "Structured processes designed around accuracy, visibility and operational governance. ",
     icon: "/healthcare/Secure by Design.svg",
   },
   {
     num: "06",
     name: "Built to Scale",
-    desc: "Flexible models designed around changing operational requirements.",
+    desc: "Flexible models designed around changing order volumes, channels and business requirements. ",
     icon: "/healthcare/Built to Scale.svg",
   },
 ];
@@ -998,7 +1004,7 @@ export default function ECommercePage() {
         .ec-intel-lede { font-size: 18px; line-height: 1.8; color: rgba(255,255,255,0.7); max-width: 640px; margin: 8px 0 0; }
         .scd-deck-wrapper { position: relative; width: 100%; max-width: 100%; overflow: hidden; margin-top: 20px; }
         .scd-deck { position: relative; width: 100%; max-width: 100%; min-height: 480px; }
-        .scd-tabs-bar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; position: relative; z-index: 10; width: 100%; max-width: 100%; }
+        .scd-tabs-bar { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; position: relative; z-index: 10; width: 100%; max-width: 100%; }
         .scd-tab { appearance: none; border: none; background: #1B2530; border-radius: 14px 14px 0 0; padding: 14px 12px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #B7C3D0; font-family: inherit; font-size: 13.5px; font-weight: 700; opacity: 0.85; transition: background 0.3s ease, transform 0.3s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.3s ease, color 0.3s ease; text-align: center; min-width: 0; overflow: hidden; }
         .scd-tab:hover { background: #26303C; color: #ffffff; opacity: 1; }
         .scd-tab.is-active { background: #C6E84A; color: #0f0f0f; opacity: 1; transform: translateY(-4px); box-shadow: 0 -8px 20px rgba(0,0,0,0.3); }
@@ -1189,7 +1195,9 @@ export default function ECommercePage() {
             </div>
             <div className="ec-reveal">
               <EcLabel text="Digital Shelf Operations" />
+              
               <h2 className="ec-h2">Every great shopping experience starts with great <span style={{ color: "#C6E84A" }}>product data.</span></h2>
+              <p className="ec-lede">Customers cannot touch a products online. They depend on information.</p>
               <p className="ec-lede">Accurate titles, attributes, images, descriptions, categories and specifications influence how products are discovered, understood and purchased.</p>
               <p className="ec-copy">Sytrion combines structured operations, AI and human quality review to help businesses maintain accurate, enriched and commerce-ready product information.</p>
               <div className="ec-claims-flow">
@@ -1255,17 +1263,7 @@ export default function ECommercePage() {
                 </div>
               </div>
             ))}
-            <div className="ec-ms-strip">
-              <span className="ec-ms-strip-title">MARKETPLACE &amp; SELLER OPERATIONS</span>
-              <span className="ec-ms-strip-items">
-                {marketplaceCapabilities.map((c, i, arr) => (
-                  <span key={c.title}>
-                    {c.title}
-                    {i < arr.length - 1 && <span className="ec-ms-strip-pipe"> | </span>}
-                  </span>
-                ))}
-              </span>
-            </div>
+
           </div>
         </div>
         <style>{`
@@ -1303,7 +1301,7 @@ export default function ECommercePage() {
               <div className="ec-prov-net" />
             </div>
             <div className="ec-reveal">
-              <EcLabel text="Order & Fulfillment" light />
+              <EcLabel text="Order & Fulfillment Operations" light />
               <h2 className="ec-h2">From &quot;Buy Now&quot; to <span style={{ color: "#C6E84A" }}>delivered.</span></h2>
               <p className="ec-lede">The moment a customer places an order, multiple processes begin across payment, inventory, fulfillment, logistics and customer communication.</p>
               <p className="ec-copy">Sytrion helps connect those workflows so orders move through the lifecycle with greater visibility and control.</p>
@@ -1507,9 +1505,9 @@ export default function ECommercePage() {
           <div className="ec-intel-header ec-reveal">
             <div className="ec-intel-head-left">
               <EcLabel text="Intelligence Built Into Commerce" />
-              <h2 className="ec-h2">AI that works behind every <span style={{ color: "#C6E84A" }}>digital order.</span></h2>
+              <h2 className="ec-h2">AI that works behind <span style={{ color: "#C6E84A" }}>every order.</span></h2>
             </div>
-            <p className="ec-intel-lede">Six connected capabilities that turn complex commerce information into clearer decisions and more efficient operations.</p>
+            <p className="ec-intel-lede">Ai can help commerce operations understand products, customers and transactions- while automating repetitive work and identifying the exceptions that need human attention.</p>
           </div>
 
           <div className="scd-deck-wrapper ec-reveal">
@@ -1554,7 +1552,7 @@ export default function ECommercePage() {
                         <div className="scd-card-main">
                           <span className="scd-card-num">{cap.num}</span>
                           <h3 className="scd-card-title">{cap.title}</h3>
-                          <p className="scd-card-desc">{cap.desc}</p>
+                          
                           <div className="scd-card-tags">{cap.tags}</div>
                         </div>
                         <div className="scd-card-visual" aria-hidden="true">
@@ -1576,7 +1574,7 @@ export default function ECommercePage() {
         <div className="ec-wrap">
           <div className="ec-hd-grid">
             <div className="ec-hd-copy ec-reveal">
-              <p className="ec-hd-kicker">11 / Human + Digital</p>
+              
               <span className="ec-hd-pill">Human + Digital</span>
               <h2 className="ec-hd-title">
                 <span className="ec-hd-title-white">Automation at scale.</span>
@@ -1627,13 +1625,6 @@ export default function ECommercePage() {
                 <div className="ec-hd-orbit ec-hd-orbit--b" aria-hidden="true">
                   <span className="ec-hd-orbit-dot" />
                 </div>
-                <svg className="ec-hd-hand" viewBox="0 0 320 170" fill="none" aria-hidden="true">
-                  <g stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M96 58 C74 64 56 78 48 94 C42 104 40 112 40 118 C40 130 50 138 64 138 L64 120 C52 118 48 112 50 106 C54 92 70 74 96 66" />
-                    <path d="M224 58 C246 64 264 78 272 94 C278 104 280 112 280 118 C280 130 270 138 256 138 L256 120 C268 118 272 112 270 106 C266 92 250 74 224 66" />
-                    <path d="M160 34 C136 40 114 54 100 74 C95 84 92 96 92 106 C92 120 100 130 112 131 C124 132 132 122 135 130 C138 138 148 146 160 146 C172 146 182 138 185 130 C188 122 196 132 208 131 C220 130 228 120 228 106 C228 96 225 84 220 74 C206 54 184 40 160 34 Z" />
-                  </g>
-                </svg>
                 <div className="ec-hd-card ec-hd-card--tl">
                   <span className="ec-hd-card-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M22 12h-4M6 12H2" /><circle cx="12" cy="12" r="8" opacity="0.45" /></svg>
@@ -1698,7 +1689,6 @@ export default function ECommercePage() {
           .ec-hd-orbit--b { width: 54%; transform: translate(-50%, -50%) rotateX(76deg) rotateZ(24deg); border-color: rgba(198,241,53,0.18); animation: ecHdOrbitB 26s linear infinite; }
           .ec-hd-orbit-dot { position: absolute; left: 50%; top: -4px; transform: translateX(-50%); width: 7px; height: 7px; border-radius: 50%; background: #C6F135; box-shadow: 0 0 14px 3px rgba(198,241,53,0.8); }
 
-          .ec-hd-hand { position: absolute; left: 50%; top: 88%; transform: translateX(-50%); width: 66%; z-index: 2; }
           .ec-hd-conn { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
           .ec-hd-conn line { stroke: rgba(147,160,176,0.35); stroke-width: 1; stroke-dasharray: 2.5 3; }
 
@@ -1751,19 +1741,7 @@ export default function ECommercePage() {
               <EcLabel text="Commerce Finance Operations" light />
               <h2 className="ec-h2">Control behind <span style={{ color: "#7AA306" }}>every transaction.</span></h2>
               <p className="ec-lede">Digital commerce generates complex financial flows across customers, marketplaces, payment providers, sellers, logistics partners and suppliers.</p>
-
-            </div>
-            <div className="ec-reveal ec-fin-aside">
-              <div className="ec-fin-flow-box">
-                <span className="ec-fin-flow-title">Transaction Lifecycle</span>
-                <div className="ec-fin-flow">
-                  <span>Transactions</span><span className="ec-fin-flow-arrow" aria-hidden="true">→</span>
-                  <span>Settlements</span><span className="ec-fin-flow-arrow" aria-hidden="true">→</span>
-                  <span>Reconciliation</span><span className="ec-fin-flow-arrow" aria-hidden="true">→</span>
-                  <span>Visibility</span>
-                </div>
-              </div>
-              <p className="ec-fin-note">Structured finance operations connecting the full transaction lifecycle — from payment and settlement to reconciliation and reporting.</p>
+              <p className="ec-lede">Sytrion supports finance operations that help improve transaction accuracy, reconciliation and visibility</p>
             </div>
           </div>
           <div className="ec-fin-grid ec-reveal">
@@ -1918,7 +1896,7 @@ export default function ECommercePage() {
       <section className="ec-section-light">
         <div className="ec-wrap">
           <div className="ec-head ec-reveal">
-            <EcLabel text="The Outcome" light />
+            <EcLabel text="BUSINESS OUTCOMES" light />
             <h2 className="ec-h2">Better operations create better <span style={{ color: "#C6E84A" }}>commerce experiences.</span></h2>
           </div>
           <div className="ec-out-grid ec-reveal">
@@ -1996,7 +1974,7 @@ export default function ECommercePage() {
               </span>
               <div className="ec-tl-body">
                 <h3>The Challenge</h3>
-                <p>High-volume commerce workflows can involve fragmented product information, manual order processing, repetitive validations and significant exception handling.</p>
+                <p>Digital commerce operations can involve high SKU and order volumes, fragmented channels, inconsistent product data, repetitive updates and significant exception handling. </p>
               </div>
             </div>
             <div className="ec-tl-link" aria-hidden="true" />
@@ -2009,16 +1987,16 @@ export default function ECommercePage() {
               </span>
               <div className="ec-tl-body">
                 <h3>The Sytrion Approach</h3>
-                <p>Combine domain-led operations with product intelligence, workflow automation, structured validation and operational analytics.</p>
+                <p>Combine commerce-domain expertise with product and content intelligence, workflow automation, structured controls, AI and operational analytics. </p>
               </div>
             </div>
           </div>
           <div className="ec-pot-card">
             <h3 className="ec-pot-title">The Potential</h3>
             <ul className="ec-pot-checklist">
-              <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Faster Order Processing</li>
-              <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Reduced Manual Touchpoints</li>
-              <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Improved Product Data Quality</li>
+              <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Faster product and order processing</li>
+              <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Reduced manual touchpoints </li>
+              <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Improved data quality </li>
               <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Better Exception Visibility</li>
               <li><span className="ec-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> More Scalable Operations</li>
             </ul>
@@ -2032,8 +2010,8 @@ export default function ECommercePage() {
         <div className="ec-wrap">
           <div className="ec-final-inner ec-reveal">
             <span className="ec-final-eyebrow">Let's Move Commerce Forward</span>
-            <h2 className="ec-final-h2">Ready to build smarter <span style={{ color: "#C6E84A" }}>e-commerce operations?</span></h2>
-            <p className="ec-final-body">From products and orders to fulfillment, customer experience and finance, Sytrion can help you create a more connected, intelligent and scalable operating model.</p>
+            <h2 className="ec-final-h2">Ready to transform your <span style={{ color: "#C6E84A" }}>e-commerce operations?</span></h2>
+            <p className="ec-final-body">From product and marketplace operations to fulfillment, customer experience, finance and AI, Sytrion can help create connected commerce operations designed for greater speed, accuracy and control.</p>
             <div className="ec-final-ctas">
               <Link href="/contact" className="ec-btn ec-btn-primary">Talk to Our Commerce Experts ↗</Link>
               <Link href="/contact" className="ec-btn ec-btn-ghost">Schedule a Consultation</Link>

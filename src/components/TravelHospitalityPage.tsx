@@ -84,24 +84,14 @@ const cardSections = [
 ];
 
 const intelligenceNodes = [
-  { title: "Traveler Intelligence", verbs: "Understand • Personalize • Assist", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
-  { title: "Conversational AI", verbs: "Engage • Answer • Resolve", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
-  { title: "Workflow Intelligence", verbs: "Automate • Route • Process", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14M14 17.5H7a1 1 0 0 1-1-1V10"/></svg> },
-  { title: "Disruption Intelligence", verbs: "Detect • Prioritize • Respond", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg> },
-  { title: "Revenue Intelligence", verbs: "Validate • Reconcile • Protect", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> },
-  { title: "Document Intelligence", verbs: "Extract • Classify • Validate", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg> },
-  { title: "Decision Intelligence", verbs: "Analyze • Predict • Improve", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg> },
+  { title: "Traveler Intelligence", verbs: "Understand • Personalize • Assist", image: "/services/travel/Traveler Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
+  { title: "Conversational AI", verbs: "Engage • Answer • Resolve", image: "/services/travel/Conversational AI.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
+  { title: "Workflow Intelligence", verbs: "Automate • Route • Process", image: "/services/travel/Workflow Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14M14 17.5H7a1 1 0 0 1-1-1V10"/></svg> },
+  { title: "Disruption Intelligence", verbs: "Detect • Prioritize • Respond", image: "/services/travel/Disruption Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg> },
+  { title: "Revenue Intelligence", verbs: "Validate • Reconcile • Protect", image: "/services/travel/Revenue Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> },
+  { title: "Document Intelligence", verbs: "Extract • Classify • Validate", image: "/services/travel/Document Intelligence (3).jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg> },
+  { title: "Decision Intelligence", verbs: "Analyze • Predict • Improve", image: "/services/travel/Decision Intelligence (2).jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg> },
 ];
-
-const tvTransitStops = [
-  { name: "Reservation", desc: "Processes booking volume with speed", x: 150, y: 55, hub: false },
-  { name: "Sentiment", desc: "Understands traveler intent", x: 350, y: 170, hub: false },
-  { name: "Sytrion Intelligence", desc: "Core reasoning layer", x: 575, y: 55, hub: true },
-  { name: "Disruption", desc: "Detects and triages exceptions", x: 775, y: 170, hub: false },
-  { name: "Loyalty", desc: "Recognizes and rewards journeys", x: 975, y: 55, hub: false },
-  { name: "Revenue", desc: "Safeguards every transaction", x: 1100, y: 170, hub: false },
-];
-const tvTransitPath = "M150 55 C216.67 55 283.33 170 350 170 C425 170 500 55 575 55 C641.67 55 708.33 170 775 170 C841.67 170 908.33 55 975 55 C1016.67 55 1058.33 170 1100 170";
 
 const disruptionSteps = [
   { name: "DETECT", sub: "Schedule disruption", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> },
@@ -169,10 +159,10 @@ const loyaltyCards = [
 
 const modelLayers = [
   { num: "01", name: "Travel Ecosystem", items: "Travelers • Airlines • Airports • Hotels • Travel Partners" },
-  { num: "02", name: "Systems & Experience", items: "Core Platforms • Documents • Portals • Data • Interactions" },
-  { num: "03", name: "Sytrion Intelligence Layer", items: "AI | Automation | Document Intelligence | Analytics" },
-  { num: "04", name: "Intelligent Operations", items: "Reservations | Traveler Care | Disruptions | Loyalty | Revenue & Finance" },
-  { num: "05", name: "Business Outcomes", items: "SPEED • ACCURACY • VISIBILITY • EFFICIENCY • EXPERIENCE" },
+  { num: "02", name: "Experience", items: "Web • Mobile • Contact Center • Airport • Assisted Channels " },
+  { num: "03", name: "Sytrion Intelligence Layer", items: "AI • Automation • Document Intelligence • Data • Analytics " },
+  { num: "04", name: "Intelligent Operations", items: "Reservations • Traveler Care • Disruptions • Loyalty • Revenue & Finance " },
+  { num: "05", name: "Business Outcomes", items: "Experience • Speed • Revenue • Efficiency • Loyalty • Scale " },
 ];
 
 const whyPoints = [
@@ -190,6 +180,7 @@ function TvLabel({ text, light }: { text: string; light?: boolean }) {
 
 export default function TravelHospitalityPage() {
   const [activeTab, setActiveTab] = useState(0);
+  const [intelActive, setIntelActive] = useState(0);
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const revealRef = useRef<HTMLDivElement | null>(null);
   const tvHdStageRef = useRef<HTMLDivElement | null>(null);
@@ -370,26 +361,49 @@ export default function TravelHospitalityPage() {
         .tv-s08 { background: #0B1220; position: relative; }
         .tv-s08-sep { height: 1px; background: #223148; border: 0; margin: 0; }
 
-        .tv-intel { background: #0B1220; padding: clamp(76px, 9vw, 128px) 80px clamp(104px, 10vw, 150px); position: relative; }
-        .tv-intel-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 20px; color: #F4F5F2; }
-        .tv-intel-title span { color: #C6E84A; }
-        .tv-intel-sub { font-size: clamp(15px, 1.35vw, 17px); line-height: 1.8; color: #93A0B0; margin: 0; }
+        .tv-deck { position: relative; background: #0B1220; padding: clamp(76px, 9vw, 128px) 80px; }
+        .tv-deck-head { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; margin-bottom: 48px; }
+        .tv-deck-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 20px; color: #F4F5F2; white-space: normal; }
+        .tv-deck-title span { color: #C6E84A; }
+        .tv-deck-lede { font-size: 18px; line-height: 1.8; color: rgba(255,255,255,0.7); max-width: 640px; margin: 8px 0 0; }
 
-        .tv-transit { position: relative; width: 100%; margin: clamp(56px, 6.5vw, 84px) 0 40px; }
-        .tv-transit-line { display: block; width: 100%; height: 220px; }
-        .tv-transit-pulse .tv-transit-glow { fill: rgba(198,241,53,0.22); }
-        .tv-transit-pulse .tv-transit-dot { fill: #C6F135; filter: drop-shadow(0 0 8px rgba(198,241,53,0.9)); }
-
-        .tv-stop { position: absolute; transform: translate(-50%, -50%); z-index: 2; pointer-events: none; }
-        .tv-stop-dot { display: block; width: 14px; height: 14px; border-radius: 50%; background: #0B1220; border: 2px solid #C6F135; box-sizing: border-box; }
-        .tv-stop--hub .tv-stop-dot { width: 24px; height: 24px; background: #C6F135; border-color: #C6F135; box-shadow: 0 0 20px rgba(198,241,53,0.55); }
-        .tv-stop-body { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 150px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .tv-stop--hub .tv-stop-body { width: 200px; top: 15px; }
-        .tv-stop--up .tv-stop-body { top: auto; bottom: 24px; }
-        .tv-stop--up.tv-stop--hub .tv-stop-body { bottom: 26px; }
-        .tv-stop-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: #F4F5F2; white-space: nowrap; }
-        .tv-stop--hub .tv-stop-name { color: #C6F135; }
-        .tv-stop-desc { font-size: 11.5px; line-height: 1.45; color: #93A0B0; margin-top: 4px; }
+        .scd-deck-wrapper { position: relative; width: 100%; max-width: 100%; overflow: hidden; margin-top: 20px; }
+        .scd-deck { position: relative; width: 100%; max-width: 100%; min-height: 480px; }
+        .scd-tabs-bar { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; position: relative; z-index: 10; width: 100%; max-width: 100%; }
+        .scd-tab { appearance: none; border: none; background: #1B2530; border-radius: 14px 14px 0 0; padding: 14px 12px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #B7C3D0; font-family: inherit; font-size: 13.5px; font-weight: 700; opacity: 0.85; transition: background 0.3s ease, transform 0.3s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.3s ease, color 0.3s ease; text-align: center; min-width: 0; overflow: hidden; }
+        .scd-tab:hover { background: #26303C; color: #ffffff; opacity: 1; }
+        .scd-tab.is-active { background: #C6E84A; color: #0f0f0f; opacity: 1; transform: translateY(-4px); box-shadow: 0 -8px 20px rgba(0,0,0,0.3); }
+        .scd-tab.is-active .scd-tab-num { background: rgba(15,23,42,0.16); color: #0f0f0f; }
+        .scd-tab-num { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; background: rgba(0,0,0,0.25); padding: 2px 6px; border-radius: 999px; flex: 0 0 auto; }
+        .scd-tab-text { font-family: var(--font-syne), sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1 1 auto; }
+        .scd-cards-stack { position: relative; width: 100%; min-height: 420px; }
+        .scd-card { position: absolute; inset: 0; border-radius: 0 0 24px 24px; padding: 52px 56px; color: #ffffff; overflow: hidden; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7); transform: translateY(24px) scale(0.95); opacity: 0; pointer-events: none; transition: transform 0.45s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.45s ease; z-index: 1; }
+        .scd-card.is-active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; z-index: 5; }
+        .scd-card-bg-img { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+        .scd-card-bg-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.28; filter: saturate(1.2); }
+        .scd-card-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(6,14,25,0.7) 0%, rgba(6,14,25,0.4) 100%); }
+        .scd-card-inner { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; align-items: center; height: 100%; overflow: hidden; }
+        .scd-card-main { min-width: 0; }
+        .scd-card-num { display: inline-block; font-family: var(--font-syne), sans-serif; font-size: 13px; font-weight: 800; letter-spacing: 0.16em; background: rgba(0,0,0,0.35); padding: 4px 12px; border-radius: 999px; margin-bottom: 16px; backdrop-filter: blur(4px); }
+        .scd-card-title { font-family: var(--font-syne), sans-serif; font-size: clamp(24px, 2.6vw, 36px); font-weight: 800; line-height: 1.15; margin: 0 0 16px; letter-spacing: -0.02em; word-break: break-word; }
+        .scd-card-tags { font-size: 13.5px; font-weight: 700; letter-spacing: 0.08em; background: rgba(0,0,0,0.35); padding: 8px 16px; border-radius: 999px; display: inline-block; backdrop-filter: blur(4px); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .scd-card-visual { position: relative; height: 250px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 40px rgba(0,0,0,0.4); min-width: 0; }
+        .scd-visual-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: transform 0.4s ease; }
+        .scd-card:hover .scd-visual-thumb { transform: scale(1.05); }
+        @media (max-width: 1024px) {
+          .scd-tabs-bar { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+          .scd-tab { border-radius: 12px; }
+          .scd-card-inner { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+          .scd-card-visual { display: none; }
+          .scd-card { padding: 40px 32px; border-radius: 20px; }
+          .tv-deck { padding: clamp(60px, 8vw, 96px) 40px; }
+        }
+        @media (max-width: 640px) {
+          .scd-tabs-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .scd-tab-text { font-size: 12px; }
+          .scd-card { padding: 32px 24px; }
+          .tv-deck { padding: 72px 20px 88px; }
+        }
 
         .tv-hd { position: relative; overflow: hidden; background: #0B1220; }
         .tv-hd-glow { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
@@ -498,11 +512,6 @@ export default function TravelHospitalityPage() {
           .tv-hd-card--tl { left: 0; top: 2%; }
           .tv-hd-card--ml { left: -4%; top: 42%; }
           .tv-hd-card--r { left: 58%; top: 58%; }
-          .tv-transit-line { display: none; }
-          .tv-transit { margin: 48px auto 0; }
-          .tv-stop { position: relative !important; left: auto !important; top: auto !important; transform: none; margin: 26px auto 0; display: flex; flex-direction: column; align-items: center; }
-          .tv-stop-body { position: static; transform: none; margin-top: 8px; }
-          .tv-stop--hub .tv-stop-body { width: 200px; }
           .tv-s03-card { flex: 0 0 calc((100% - 24px) / 2); }
           .tv-s04-tabbar { grid-template-columns: repeat(3, 1fr); }
           .tv-s04-panel { grid-template-columns: 1fr; }
@@ -541,7 +550,6 @@ export default function TravelHospitalityPage() {
           .tv-out-grid { grid-template-columns: 1fr; }
           .tv-hd-wrap { padding: 72px 20px; }
           .tv-hd-stage { max-width: 400px; }
-          .tv-intel { padding: 72px 20px 88px; }
           .tv-hero-ctas { flex-direction: column; }
           .tv-hero-ctas .tv-btn { width: 100%; }
           .tv-s11-ctas { flex-direction: column; }
@@ -549,7 +557,6 @@ export default function TravelHospitalityPage() {
         }
         @media (prefers-reduced-motion: reduce) {
           .tv-reveal { opacity: 1; transform: none; transition: none; animation: none; }
-          .tv-transit-pulse { display: none; }
           .tv-s05-node:hover .tv-s05-circle { transform: none; }
         }
       `}</style>
@@ -734,30 +741,68 @@ export default function TravelHospitalityPage() {
       </section>
 
       <section className="tv-s08">
-        <div className="tv-intel">
-          <div className="tv-intel-hero tv-reveal">
-            <TvLabel text="AI THAT POWERS TRAVEL OPERATIONS" />
-            <h2 className="tv-intel-title">AI that works behind <span>every journey.</span></h2>
-            <p className="tv-intel-sub">AI can help travel enterprises understand intent, automate repetitive processes, identify exceptions and help operational teams respond faster.</p>
+        <div className="tv-deck">
+          <div className="tv-deck-head tv-reveal">
+            <div>
+              <TvLabel text="INTELLIGENCE BUILT INTO THE JOURNEY" />
+              <h2 className="tv-deck-title">AI that works behind <span>every travel experience.</span></h2>
+            </div>
+            <p className="tv-deck-lede">AI shouldn&apos;t simply answer traveler questions. It can help travel enterprises understand intent, automate repetitive processes, identify exceptions and help operational teams respond faster.</p>
           </div>
-          <div className="tv-transit tv-reveal">
-            <svg className="tv-transit-line" viewBox="0 0 1200 220" fill="none" preserveAspectRatio="none" aria-hidden="true">
-              <path d={tvTransitPath} stroke="rgba(198,241,53,0.55)" strokeWidth="2" />
-              <g className="tv-transit-pulse">
-                <circle className="tv-transit-glow" r="11" />
-                <circle className="tv-transit-dot" r="5" />
-                <animateMotion dur="6s" repeatCount="indefinite" path={tvTransitPath} />
-              </g>
-            </svg>
-            {tvTransitStops.map((stop) => (
-              <div key={stop.name} className={"tv-stop" + (stop.hub ? " tv-stop--hub" : "") + (stop.y < 110 ? " tv-stop--up" : "")} style={{ left: `${(stop.x / 1200) * 100}%`, top: `${(stop.y / 220) * 100}%` }}>
-                <span className="tv-stop-dot" />
-                <div className="tv-stop-body">
-                  <span className="tv-stop-name">{stop.name}</span>
-                  <span className="tv-stop-desc">{stop.desc}</span>
-                </div>
+
+          <div className="scd-deck-wrapper tv-reveal">
+            <div className="scd-deck">
+              <div className="scd-tabs-bar" role="tablist" aria-label="Travel intelligence capabilities">
+                {intelligenceNodes.map((cap, i) => (
+                  <button
+                    key={cap.title}
+                    role="tab"
+                    id={`scd-tab-${i}`}
+                    aria-selected={intelActive === i}
+                    aria-controls={`scd-card-${i}`}
+                    className={`scd-tab ${intelActive === i ? "is-active" : ""}`}
+                    onClick={() => setIntelActive(i)}
+                    onMouseEnter={() => setIntelActive(i)}
+                    onFocus={() => setIntelActive(i)}
+                  >
+                    <span className="scd-tab-num">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="scd-tab-text">{cap.title}</span>
+                  </button>
+                ))}
               </div>
-            ))}
+
+              <div className="scd-cards-stack">
+                {intelligenceNodes.map((cap, i) => {
+                  const isActive = intelActive === i;
+                  return (
+                    <article
+                      key={cap.title}
+                      id={`scd-card-${i}`}
+                      role="tabpanel"
+                      aria-labelledby={`scd-tab-${i}`}
+                      className={`scd-card ${isActive ? "is-active" : ""}`}
+                      style={{ background: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)" }}
+                    >
+                      <div className="scd-card-bg-img">
+                        <img src={cap.image} alt={cap.title} loading="lazy" decoding="async" />
+                        <div className="scd-card-overlay" />
+                      </div>
+
+                      <div className="scd-card-inner">
+                        <div className="scd-card-main">
+                          <span className="scd-card-num">{String(i + 1).padStart(2, "0")}</span>
+                          <h3 className="scd-card-title">{cap.title}</h3>
+                          <div className="scd-card-tags">{cap.verbs}</div>
+                        </div>
+                        <div className="scd-card-visual" aria-hidden="true">
+                          <img src={cap.image} alt="" className="scd-visual-thumb" />
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -772,13 +817,14 @@ export default function TravelHospitalityPage() {
                 
                 <span className="tv-hd-pill">Human + Digital</span>
                 <h2 className="tv-hd-title">
-                  <span className="tv-hd-title-white">Smarter travel should</span>
-                  <span className="tv-hd-title-lime">still feel personal.</span>
+                  <span className="tv-hd-title-white">Great travel experiences</span>
+                  <span className="tv-hd-title-lime">still feel human.</span>
                 </h2>
                 <p className="tv-hd-line">Automation can handle repetitive requests.</p>
-                <p className="tv-hd-line">AI can organize information and help surface what matters.</p>
-                <p className="tv-hd-line">People bring judgment, context and empathy to complex travel situations.</p>
+                <p className="tv-hd-line">AI can help understand intent and surface the right information. </p>
+                <p className="tv-hd-line">People bring empathy, judgment and reassurance — especially when journeys don't go as planned. </p>
                 <p className="tv-hd-em">Sytrion brings them together.</p>
+                <p className="tv-hd-line">This is particularly relevant during disruption. A chatbot is useful when everything works; human judgment becomes far more valuable when a passenger is stranded, connecting flights are affected or exceptions become complicated. </p>
               </div>
               <div className="tv-hd-visual tv-reveal">
                 <div className="tv-hd-stage" ref={tvHdStageRef}>
@@ -907,7 +953,7 @@ export default function TravelHospitalityPage() {
         </div>
       </section>
 
-      <section className="tv-loyalty">
+      {/* <section className="tv-loyalty">
         <div className="tv-wrap">
           <div className="tv-sec-head tv-reveal">
             <TvLabel text="Loyalty &amp; Personalization" />
@@ -960,7 +1006,7 @@ export default function TravelHospitalityPage() {
             .tv-loyalty-card { padding: 24px 22px; }
           }
         `}</style>
-      </section>
+      </section> */}
 
       <section className="tv-model">
         <div className="tv-wrap">

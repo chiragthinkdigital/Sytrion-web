@@ -102,15 +102,15 @@ const threeCardSections = [
   },
 ];
 
-const transitStops = [
-  { name: "Document", desc: "Reads and structures incoming paperwork", x: 150, y: 55, hub: false },
-  { name: "Fraud", desc: "Flags anomalies before they settle", x: 350, y: 170, hub: false },
-  { name: "Sytrion Intelligence", desc: "Core reasoning layer", x: 575, y: 55, hub: true },
-  { name: "Compliance", desc: "Checks activity against policy", x: 775, y: 170, hub: false },
-  { name: "Workflow", desc: "Routes exceptions automatically", x: 975, y: 55, hub: false },
-  { name: "Transaction", desc: "Processes volume with speed", x: 1100, y: 170, hub: false },
+const bankingIntelligenceNodes = [
+  { title: "Document Intelligence", verbs: "Extract • Classify • Validate", image: "/services/banking/Document Intelligence (4).jpg" },
+  { title: "Customer Intelligence", verbs: "Understand • Personalize • Assist", image: "/services/banking/Customer Intelligence.jpg" },
+  { title: "Workflow Intelligence", verbs: "Automate • Route • Resolve", image: "/services/banking/Workflow Intelligence (2).jpg" },
+  { title: "Transaction Intelligence", verbs: "Match • Validate • Reconcile", image: "/services/banking/Transaction Intelligence.jpg" },
+  { title: "Compliance Intelligence", verbs: "Screen • Prioritize • Review", image: "/services/banking/Compliance Intelligence.jpg" },
+  { title: "Fraud Intelligence", verbs: "Detect • Flag • Investigate", image: "/services/banking/Fraud Intelligence.jpg" },
+  { title: "Decision Intelligence", verbs: "Analyze • Predict • Improve", image: "/services/banking/Decision Intelligence (3).jpg" },
 ];
-const transitPath = "M150 55 C216.67 55 283.33 170 350 170 C425 170 500 55 575 55 C641.67 55 708.33 170 775 170 C841.67 170 908.33 55 975 55 C1016.67 55 1058.33 170 1100 170";
 
 const financeOps = [
   { title: "Reconciliation", items: ["Bank & GL reconciliation","Transaction matching","Suspense-account support","Exception resolution"] },
@@ -184,6 +184,7 @@ function BkLabel({ text, light }: { text: string; light?: boolean }) {
 
 export default function BankingOperationsPage() {
   const [activeTab, setActiveTab] = useState(0);
+  const [intelActive, setIntelActive] = useState(0);
   const [expandedStages, setExpandedStages] = useState<Set<string>>(new Set());
   const revealRef = useRef<HTMLDivElement | null>(null);
   const bkHdStageRef = useRef<HTMLDivElement | null>(null);
@@ -803,33 +804,71 @@ export default function BankingOperationsPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════ */}
-      {/* S07 — INTELLIGENCE TRANSIT HERO + HUMAN + DIGITAL                 */}
+      {/* S07 — INTELLIGENCE DECK + HUMAN + DIGITAL                         */}
       {/* ══════════════════════════════════════════════════════════════════ */}
       <section className="bk-s07">
-        <div className="bk-intel">
-          <div className="bk-intel-hero bk-reveal">
-            <BkLabel text="Intelligence Built Into Banking" />
-            <h2 className="bk-intel-title">AI that works behind <span>every transaction.</span></h2>
-            <p className="bk-intel-sub">AI can help banks move beyond automating repetitive tasks toward operations that understand information, identify exceptions and support faster decisions.</p>
+        <div className="bk-deck">
+          <div className="bk-deck-head bk-reveal">
+            <div>
+              <BkLabel text="INTELLIGENCE BUILT INTO BANKING" />
+              <h2 className="bk-deck-title">AI that works behind <span>every transaction.</span></h2>
+            </div>
+            <p className="bk-deck-lede">AI can help banks move beyond automating repetitive tasks toward operations that understand information, identify exceptions and support faster decisions.</p>
           </div>
-          <div className="bk-transit bk-reveal">
-            <svg className="bk-transit-line" viewBox="0 0 1200 220" fill="none" preserveAspectRatio="none" aria-hidden="true">
-              <path d={transitPath} stroke="rgba(198,241,53,0.55)" strokeWidth="2" />
-              <g className="bk-transit-pulse">
-                <circle className="bk-transit-glow" r="11" />
-                <circle className="bk-transit-dot" r="5" />
-                <animateMotion dur="6s" repeatCount="indefinite" path={transitPath} />
-              </g>
-            </svg>
-            {transitStops.map((stop) => (
-              <div key={stop.name} className={"bk-stop" + (stop.hub ? " bk-stop--hub" : "") + (stop.y < 110 ? " bk-stop--up" : "")} style={{ left: `${(stop.x / 1200) * 100}%`, top: `${(stop.y / 220) * 100}%` }}>
-                <span className="bk-stop-dot" />
-                <div className="bk-stop-body">
-                  <span className="bk-stop-name">{stop.name}</span>
-                  <span className="bk-stop-desc">{stop.desc}</span>
-                </div>
+
+          <div className="scd-deck-wrapper bk-reveal">
+            <div className="scd-deck">
+              <div className="scd-tabs-bar" role="tablist" aria-label="Banking intelligence capabilities">
+                {bankingIntelligenceNodes.map((cap, i) => (
+                  <button
+                    key={cap.title}
+                    role="tab"
+                    id={`scd-tab-${i}`}
+                    aria-selected={intelActive === i}
+                    aria-controls={`scd-card-${i}`}
+                    className={`scd-tab ${intelActive === i ? "is-active" : ""}`}
+                    onClick={() => setIntelActive(i)}
+                    onMouseEnter={() => setIntelActive(i)}
+                    onFocus={() => setIntelActive(i)}
+                  >
+                    <span className="scd-tab-num">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="scd-tab-text">{cap.title}</span>
+                  </button>
+                ))}
               </div>
-            ))}
+
+              <div className="scd-cards-stack">
+                {bankingIntelligenceNodes.map((cap, i) => {
+                  const isActive = intelActive === i;
+                  return (
+                    <article
+                      key={cap.title}
+                      id={`scd-card-${i}`}
+                      role="tabpanel"
+                      aria-labelledby={`scd-tab-${i}`}
+                      className={`scd-card ${isActive ? "is-active" : ""}`}
+                      style={{ background: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)" }}
+                    >
+                      <div className="scd-card-bg-img">
+                        <img src={cap.image} alt={cap.title} loading="lazy" decoding="async" />
+                        <div className="scd-card-overlay" />
+                      </div>
+
+                      <div className="scd-card-inner">
+                        <div className="scd-card-main">
+                          <span className="scd-card-num">{String(i + 1).padStart(2, "0")}</span>
+                          <h3 className="scd-card-title">{cap.title}</h3>
+                          <div className="scd-card-tags">{cap.verbs}</div>
+                        </div>
+                        <div className="scd-card-visual" aria-hidden="true">
+                          <img src={cap.image} alt="" className="scd-visual-thumb" />
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -929,27 +968,49 @@ export default function BankingOperationsPage() {
           .bk-s07 { background: #0B1220; position: relative; }
           .bk-s07-sep { height: 1px; background: #223148; border: 0; margin: 0; }
 
-          .bk-intel { background: #0B1220; padding: clamp(76px, 9vw, 128px) 80px clamp(104px, 10vw, 150px); position: relative; }
-          .bk-intel-hero { }
-          .bk-intel-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 20px; color: #F4F5F2; }
-          .bk-intel-title span { color: #C6E84A; }
-          .bk-intel-sub { font-size: clamp(15px, 1.35vw, 17px); line-height: 1.8; color: #93A0B0; margin: 0; }
+          .bk-deck { position: relative; background: #0B1220; padding: clamp(76px, 9vw, 128px) 80px; }
+          .bk-deck-head { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; margin-bottom: 48px; }
+          .bk-deck-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 20px; color: #F4F5F2; white-space: normal; }
+          .bk-deck-title span { color: #C6E84A; }
+          .bk-deck-lede { font-size: 18px; line-height: 1.8; color: rgba(255,255,255,0.7); max-width: 640px; margin: 8px 0 0; }
 
-          .bk-transit { position: relative; width: 100%; margin: clamp(56px, 6.5vw, 84px) 0 40px; }
-          .bk-transit-line { display: block; width: 100%; height: 220px; }
-          .bk-transit-pulse .bk-transit-glow { fill: rgba(198,241,53,0.22); }
-          .bk-transit-pulse .bk-transit-dot { fill: #C6F135; filter: drop-shadow(0 0 8px rgba(198,241,53,0.9)); }
-
-          .bk-stop { position: absolute; transform: translate(-50%, -50%); z-index: 2; pointer-events: none; }
-          .bk-stop-dot { display: block; width: 14px; height: 14px; border-radius: 50%; background: #0B1220; border: 2px solid #C6F135; box-sizing: border-box; }
-          .bk-stop--hub .bk-stop-dot { width: 24px; height: 24px; background: #C6F135; border-color: #C6F135; box-shadow: 0 0 20px rgba(198,241,53,0.55); }
-          .bk-stop-body { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 150px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-          .bk-stop--hub .bk-stop-body { width: 200px; top: 15px; }
-          .bk-stop--up .bk-stop-body { top: auto; bottom: 24px; }
-          .bk-stop--up.bk-stop--hub .bk-stop-body { bottom: 26px; }
-          .bk-stop-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: #F4F5F2; white-space: nowrap; }
-          .bk-stop--hub .bk-stop-name { color: #C6F135; }
-          .bk-stop-desc { font-size: 11.5px; line-height: 1.45; color: #93A0B0; margin-top: 4px; }
+          .scd-deck-wrapper { position: relative; width: 100%; max-width: 100%; overflow: hidden; margin-top: 20px; }
+          .scd-deck { position: relative; width: 100%; max-width: 100%; min-height: 480px; }
+          .scd-tabs-bar { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; position: relative; z-index: 10; width: 100%; max-width: 100%; }
+          .scd-tab { appearance: none; border: none; background: #1B2530; border-radius: 14px 14px 0 0; padding: 14px 12px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #B7C3D0; font-family: inherit; font-size: 13.5px; font-weight: 700; opacity: 0.85; transition: background 0.3s ease, transform 0.3s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.3s ease, color 0.3s ease; text-align: center; min-width: 0; overflow: hidden; }
+          .scd-tab:hover { background: #26303C; color: #ffffff; opacity: 1; }
+          .scd-tab.is-active { background: #C6E84A; color: #0f0f0f; opacity: 1; transform: translateY(-4px); box-shadow: 0 -8px 20px rgba(0,0,0,0.3); }
+          .scd-tab.is-active .scd-tab-num { background: rgba(15,23,42,0.16); color: #0f0f0f; }
+          .scd-tab-num { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; background: rgba(0,0,0,0.25); padding: 2px 6px; border-radius: 999px; flex: 0 0 auto; }
+          .scd-tab-text { font-family: var(--font-syne), sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1 1 auto; }
+          .scd-cards-stack { position: relative; width: 100%; min-height: 420px; }
+          .scd-card { position: absolute; inset: 0; border-radius: 0 0 24px 24px; padding: 52px 56px; color: #ffffff; overflow: hidden; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7); transform: translateY(24px) scale(0.95); opacity: 0; pointer-events: none; transition: transform 0.45s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.45s ease; z-index: 1; }
+          .scd-card.is-active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; z-index: 5; }
+          .scd-card-bg-img { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+          .scd-card-bg-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.28; filter: saturate(1.2); }
+          .scd-card-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(6,14,25,0.7) 0%, rgba(6,14,25,0.4) 100%); }
+          .scd-card-inner { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; align-items: center; height: 100%; overflow: hidden; }
+          .scd-card-main { min-width: 0; }
+          .scd-card-num { display: inline-block; font-family: var(--font-syne), sans-serif; font-size: 13px; font-weight: 800; letter-spacing: 0.16em; background: rgba(0,0,0,0.35); padding: 4px 12px; border-radius: 999px; margin-bottom: 16px; backdrop-filter: blur(4px); }
+          .scd-card-title { font-family: var(--font-syne), sans-serif; font-size: clamp(24px, 2.6vw, 36px); font-weight: 800; line-height: 1.15; margin: 0 0 16px; letter-spacing: -0.02em; word-break: break-word; }
+          .scd-card-tags { font-size: 13.5px; font-weight: 700; letter-spacing: 0.08em; background: rgba(0,0,0,0.35); padding: 8px 16px; border-radius: 999px; display: inline-block; backdrop-filter: blur(4px); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+          .scd-card-visual { position: relative; height: 250px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 40px rgba(0,0,0,0.4); min-width: 0; }
+          .scd-visual-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: transform 0.4s ease; }
+          .scd-card:hover .scd-visual-thumb { transform: scale(1.05); }
+          @media (max-width: 1024px) {
+            .scd-tabs-bar { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+            .scd-tab { border-radius: 12px; }
+            .scd-card-inner { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+            .scd-card-visual { display: none; }
+            .scd-card { padding: 40px 32px; border-radius: 20px; }
+            .bk-deck { padding: clamp(60px, 8vw, 96px) 40px; }
+          }
+          @media (max-width: 640px) {
+            .scd-tabs-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .scd-tab-text { font-size: 12px; }
+            .scd-card { padding: 32px 24px; }
+            .bk-deck { padding: 72px 20px 88px; }
+          }
 
           .bk-hd { position: relative; overflow: hidden; background: #0B1220; }
           .bk-hd-glow { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
@@ -1009,11 +1070,6 @@ export default function BankingOperationsPage() {
             .bk-hd-card--tl { left: 0; top: 2%; }
             .bk-hd-card--ml { left: -4%; top: 42%; }
             .bk-hd-card--r { left: 58%; top: 58%; }
-            .bk-transit-line { display: none; }
-            .bk-transit { margin: 48px auto 0; }
-            .bk-stop { position: relative !important; left: auto !important; top: auto !important; transform: none; margin: 26px auto 0; display: flex; flex-direction: column; align-items: center; }
-            .bk-stop-body { position: static; transform: none; margin-top: 8px; }
-            .bk-stop--hub .bk-stop-body { width: 200px; }
           }
           @media (max-width: 760px) {
             .bk-hd-stage { max-width: 460px; }
@@ -1023,10 +1079,6 @@ export default function BankingOperationsPage() {
           @media (max-width: 640px) {
             .bk-hd-wrap { padding: 72px 20px; }
             .bk-hd-stage { max-width: 400px; }
-            .bk-intel { padding: 72px 20px 88px; }
-          }
-          @media (prefers-reduced-motion: reduce) {
-            .bk-transit-pulse { display: none; }
           }
         `}</style>
       </section>

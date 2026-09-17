@@ -2,17 +2,1527 @@
 > sytrion@0.1.0 dev
 > next dev
 
-⚠ Port 3000 is in use by process 14672, using available port 3001 instead.
 ▲ Next.js 16.2.10 (Turbopack)
-- Local:         http://localhost:3001
-- Network:       http://192.168.1.17:3001
-✓ Ready in 808ms
-⨯ Another next dev server is already running.
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.19:3000
+- Environments: .env.local
+✓ Ready in 1109ms
 
-- Local:        http://localhost:3000
-- PID:          14672
-- Dir:          D:\sytrion\sytrion
-- Log:          .next\dev\logs\next-development.log
+ GET /e-commerce 200 in 2.8s (next.js: 1776ms, application-code: 977ms)
+ POST /api/contact 400 in 318ms (next.js: 273ms, application-code: 45ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /api/admin/contact-messages 401 in 2.9s (next.js: 2.9s, application-code: 11ms)
+ POST /api/admin/login 401 in 817ms (next.js: 805ms, application-code: 13ms)
+ POST /api/admin/login 200 in 14ms (next.js: 4ms, application-code: 10ms)
+ GET /api/admin/contact-messages 200 in 45ms (next.js: 4ms, application-code: 41ms)
+✓ Compiled in 230ms
+ GET /e-commerce 200 in 192ms (next.js: 110ms, application-code: 82ms)
+✓ Compiled in 252ms
+ GET /e-commerce 200 in 134ms (next.js: 65ms, application-code: 69ms)
+✓ Compiled in 97ms
+ GET /e-commerce 200 in 141ms (next.js: 69ms, application-code: 72ms)
+✓ Compiled in 105ms
+ GET /e-commerce 200 in 137ms (next.js: 81ms, application-code: 55ms)
+✓ Compiled in 105ms
+ GET /e-commerce 200 in 98ms (next.js: 63ms, application-code: 35ms)
+✓ Compiled in 83ms
+ GET /e-commerce 200 in 108ms (next.js: 72ms, application-code: 36ms)
+✓ Compiled in 81ms
+ GET /e-commerce 200 in 114ms (next.js: 71ms, application-code: 43ms)
+✓ Compiled in 107ms
+ GET /e-commerce 200 in 85ms (next.js: 51ms, application-code: 34ms)
+✓ Compiled in 106ms
+ GET /e-commerce 200 in 128ms (next.js: 76ms, application-code: 52ms)
+✓ Compiled in 82ms
+ GET /e-commerce 200 in 124ms (next.js: 82ms, application-code: 42ms)
+✓ Compiled in 104ms
+ GET /e-commerce 200 in 108ms (next.js: 73ms, application-code: 35ms)
+✓ Compiled in 81ms
+ GET /e-commerce 200 in 73ms (next.js: 47ms, application-code: 26ms)
+✓ Compiled in 84ms
+ GET /e-commerce 200 in 107ms (next.js: 58ms, application-code: 50ms)
+✓ Compiled in 164ms
+ GET /e-commerce 200 in 91ms (next.js: 52ms, application-code: 39ms)
+✓ Compiled in 89ms
+ GET /e-commerce 200 in 91ms (next.js: 63ms, application-code: 29ms)
+✓ Compiled in 102ms
+ GET /e-commerce 200 in 103ms (next.js: 71ms, application-code: 32ms)
+✓ Compiled in 759ms
+⨯ ./src/components/ECommercePage.tsx:1199:110
+Expected '</', got 'jsx text'
+  [90m1197 |[0m ...
+  [90m1198 |[0m ...lassName=[32m"ec-h2"[0m>[33mEvery[0m great shopping experience starts [36mwith[0m great <span style={{ col...
+[31m[1m>[0m [90m1199 |[0m ...lassName=[32m"ec-h2"[0m>[33mCustomers[0m cannot touch a products online. [33mThey[0m depend on information...
+  [90m     |[0m                                                                                              [31m[1m[0m
+[31m[1m>[0m [90m1200 |[0m ...assName=[32m"ec-lede"[0m>[33mAccurate[0m titles, attributes, images, descriptions, categories and s...
+  [90m     |[0m    [31m[1m^^^^^^^^^^^^^^[0m
+  [90m1201 |[0m ...assName=[32m"ec-copy"[0m>[33mSytrion[0m combines structured operations, [33mAI[0m and human quality review...
+  [90m1202 |[0m ...className=[32m"ec-claims-flow"[0m>
+  [90m1203 |[0m ...g className=[32m"ec-cw-lines"[0m viewBox=[32m"0 0 100 100"[0m preserveAspectRatio=[32m"none"[0m aria-hidde..[32m.[0m
 
-Run taskkill /PID 14672 /F to stop it.
-[?25h
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+ GET /e-commerce 500 in 560ms (next.js: 260ms, application-code: 300ms)
+⨯ ./src/components/ECommercePage.tsx:1199:110
+Expected '</', got 'jsx text'
+  [90m1197 |[0m ...
+  [90m1198 |[0m ...lassName=[32m"ec-h2"[0m>[33mEvery[0m great shopping experience starts [36mwith[0m great <span style={{ col...
+[31m[1m>[0m [90m1199 |[0m ...lassName=[32m"ec-h2"[0m>[33mCustomers[0m cannot touch a products online. [33mThey[0m depend on information...
+  [90m     |[0m                                                                                              [31m[1m[0m
+[31m[1m>[0m [90m1200 |[0m ...assName=[32m"ec-lede"[0m>[33mAccurate[0m titles, attributes, images, descriptions, categories and s...
+  [90m     |[0m    [31m[1m^^^^^^^^^^^^^^[0m
+  [90m1201 |[0m ...assName=[32m"ec-copy"[0m>[33mSytrion[0m combines structured operations, [33mAI[0m and human quality review...
+  [90m1202 |[0m ...className=[32m"ec-claims-flow"[0m>
+  [90m1203 |[0m ...g className=[32m"ec-cw-lines"[0m viewBox=[32m"0 0 100 100"[0m preserveAspectRatio=[32m"none"[0m aria-hidde..[32m.[0m
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+ GET /e-commerce 500 in 39ms (next.js: 18ms, application-code: 21ms)
+⨯ ./src/components/ECommercePage.tsx:1199:110
+Expected '</', got 'jsx text'
+  [90m1197 |[0m ...
+  [90m1198 |[0m ...lassName=[32m"ec-h2"[0m>[33mEvery[0m great shopping experience starts [36mwith[0m great <span style={{ col...
+[31m[1m>[0m [90m1199 |[0m ...lassName=[32m"ec-h2"[0m>[33mCustomers[0m cannot touch a products online. [33mThey[0m depend on information...
+  [90m     |[0m                                                                                              [31m[1m[0m
+[31m[1m>[0m [90m1200 |[0m ...assName=[32m"ec-lede"[0m>[33mAccurate[0m titles, attributes, images, descriptions, categories and s...
+  [90m     |[0m    [31m[1m^^^^^^^^^^^^^^[0m
+  [90m1201 |[0m ...assName=[32m"ec-copy"[0m>[33mSytrion[0m combines structured operations, [33mAI[0m and human quality review...
+  [90m1202 |[0m ...className=[32m"ec-claims-flow"[0m>
+  [90m1203 |[0m ...g className=[32m"ec-cw-lines"[0m viewBox=[32m"0 0 100 100"[0m preserveAspectRatio=[32m"none"[0m aria-hidde..[32m.[0m
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+ GET /e-commerce 500 in 39ms (next.js: 22ms, application-code: 16ms)
+[browser] Uncaught Error: ./src/components/ECommercePage.tsx:1199:110
+Expected '</', got 'jsx text'
+  1197 | ...
+  1198 | ...lassName="ec-h2">Every great shopping experience starts with great <span style={{ col...
+> 1199 | ...lassName="ec-h2">Customers cannot touch a products online. They depend on information...
+       |                                                                                              
+> 1200 | ...assName="ec-lede">Accurate titles, attributes, images, descriptions, categories and s...
+       |    ^^^^^^^^^^^^^^
+  1201 | ...assName="ec-copy">Sytrion combines structured operations, AI and human quality review...
+  1202 | ...className="ec-claims-flow">
+  1203 | ...g className="ec-cw-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidde...
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+    at <unknown> (Error: ./src/components/ECommercePage.tsx:1199:110)
+    at <unknown> (Error: (./src/components/ECommercePage.tsx:1199:110)
+✓ Compiled in 110ms
+ GET /e-commerce 200 in 438ms (next.js: 55ms, application-code: 383ms)
+✓ Compiled in 82ms
+ GET /e-commerce 200 in 98ms (next.js: 58ms, application-code: 40ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+✓ Compiled in 94ms
+ GET /e-commerce 200 in 104ms (next.js: 56ms, application-code: 48ms)
+✓ Compiled in 124ms
+ GET /e-commerce 200 in 102ms (next.js: 59ms, application-code: 42ms)
+✓ Compiled in 81ms
+ GET /e-commerce 200 in 93ms (next.js: 58ms, application-code: 34ms)
+✓ Compiled in 111ms
+ GET /e-commerce 200 in 105ms (next.js: 58ms, application-code: 47ms)
+✓ Compiled in 111ms
+ GET /e-commerce 200 in 134ms (next.js: 70ms, application-code: 64ms)
+✓ Compiled in 81ms
+ GET /e-commerce 200 in 90ms (next.js: 50ms, application-code: 40ms)
+✓ Compiled in 80ms
+ GET /e-commerce 200 in 98ms (next.js: 58ms, application-code: 40ms)
+✓ Compiled in 99ms
+ GET /e-commerce 200 in 146ms (next.js: 105ms, application-code: 41ms)
+✓ Compiled in 80ms
+ GET /e-commerce 200 in 73ms (next.js: 43ms, application-code: 30ms)
+✓ Compiled in 82ms
+ GET /e-commerce 200 in 97ms (next.js: 56ms, application-code: 41ms)
+✓ Compiled in 137ms
+ GET /e-commerce 200 in 124ms (next.js: 77ms, application-code: 47ms)
+✓ Compiled in 81ms
+ GET /e-commerce 200 in 92ms (next.js: 53ms, application-code: 38ms)
+✓ Compiled in 91ms
+ GET /e-commerce 200 in 84ms (next.js: 56ms, application-code: 28ms)
+✓ Compiled in 108ms
+ GET /e-commerce 200 in 223ms (next.js: 170ms, application-code: 53ms)
+✓ Compiled in 100ms
+ GET /e-commerce 200 in 99ms (next.js: 53ms, application-code: 46ms)
+✓ Compiled in 80ms
+ GET /e-commerce 200 in 78ms (next.js: 49ms, application-code: 30ms)
+✓ Compiled in 102ms
+ GET /e-commerce 200 in 106ms (next.js: 61ms, application-code: 45ms)
+✓ Compiled in 82ms
+ GET /e-commerce 200 in 82ms (next.js: 47ms, application-code: 35ms)
+✓ Compiled in 72ms
+ GET /e-commerce 200 in 94ms (next.js: 44ms, application-code: 50ms)
+✓ Compiled in 160ms
+ GET /e-commerce 200 in 115ms (next.js: 69ms, application-code: 46ms)
+✓ Compiled in 85ms
+ GET /e-commerce 200 in 93ms (next.js: 57ms, application-code: 36ms)
+✓ Compiled in 86ms
+ GET /e-commerce 200 in 103ms (next.js: 62ms, application-code: 41ms)
+✓ Compiled in 87ms
+ GET /e-commerce 200 in 96ms (next.js: 67ms, application-code: 29ms)
+✓ Compiled in 82ms
+ GET /e-commerce 200 in 106ms (next.js: 66ms, application-code: 40ms)
+✓ Compiled in 77ms
+ GET /e-commerce 200 in 134ms (next.js: 68ms, application-code: 66ms)
+✓ Compiled in 110ms
+ GET /e-commerce 200 in 109ms (next.js: 70ms, application-code: 39ms)
+✓ Compiled in 82ms
+ GET /e-commerce 200 in 91ms (next.js: 56ms, application-code: 36ms)
+✓ Compiled in 76ms
+ GET /e-commerce 200 in 85ms (next.js: 52ms, application-code: 33ms)
+✓ Compiled in 86ms
+ GET /e-commerce 200 in 97ms (next.js: 67ms, application-code: 31ms)
+✓ Compiled in 204ms
+ GET /e-commerce 200 in 109ms (next.js: 74ms, application-code: 35ms)
+✓ Compiled in 104ms
+ GET /e-commerce 200 in 91ms (next.js: 60ms, application-code: 31ms)
+✓ Compiled in 83ms
+ GET /e-commerce 200 in 81ms (next.js: 51ms, application-code: 30ms)
+✓ Compiled in 75ms
+ GET /e-commerce 200 in 88ms (next.js: 59ms, application-code: 30ms)
+✓ Compiled in 96ms
+ GET /e-commerce 200 in 91ms (next.js: 51ms, application-code: 40ms)
+✓ Compiled in 78ms
+ GET /e-commerce 200 in 88ms (next.js: 57ms, application-code: 31ms)
+✓ Compiled in 121ms
+ GET /e-commerce 200 in 139ms (next.js: 79ms, application-code: 60ms)
+✓ Compiled in 81ms
+ GET /e-commerce 200 in 80ms (next.js: 51ms, application-code: 29ms)
+✓ Compiled in 83ms
+ GET /e-commerce 200 in 106ms (next.js: 67ms, application-code: 39ms)
+✓ Compiled in 79ms
+ GET /e-commerce 200 in 84ms (next.js: 57ms, application-code: 26ms)
+✓ Compiled in 89ms
+ GET /e-commerce 200 in 138ms (next.js: 100ms, application-code: 38ms)
+✓ Compiled in 82ms
+ GET /e-commerce 200 in 92ms (next.js: 58ms, application-code: 34ms)
+✓ Compiled in 562ms
+ GET /e-commerce 200 in 441ms (next.js: 239ms, application-code: 203ms)
+✓ Compiled in 148ms
+ GET /e-commerce 200 in 283ms (next.js: 101ms, application-code: 182ms)
+✓ Compiled in 119ms
+ GET /e-commerce 200 in 159ms (next.js: 97ms, application-code: 63ms)
+✓ Compiled in 118ms
+ GET /e-commerce 200 in 162ms (next.js: 100ms, application-code: 62ms)
+✓ Compiled in 87ms
+ GET /e-commerce 200 in 96ms (next.js: 53ms, application-code: 43ms)
+✓ Compiled in 104ms
+ GET /e-commerce 200 in 109ms (next.js: 73ms, application-code: 36ms)
+✓ Compiled in 93ms
+ GET /e-commerce 200 in 106ms (next.js: 65ms, application-code: 41ms)
+✓ Compiled in 91ms
+ GET /e-commerce 200 in 86ms (next.js: 57ms, application-code: 29ms)
+✓ Compiled in 137ms
+ GET /e-commerce 200 in 106ms (next.js: 65ms, application-code: 40ms)
+✓ Compiled in 803ms
+⨯ ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  [90m209 |[0m   { num: [32m"06"[0m, title: [32m"Inventory Intelligence"[0m, desc: [32m"Support order-to-cash, marketplace...[0m
+  [90m210 |[0m ];
+[31m[1m>[0m [90m211 |[0m ];
+  [90m    |[0m [31m[1m^[0m
+  [90m212 |[0m
+  [90m213 |[0m [36mconst[0m outcomes = [
+  [90m214 |[0m   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+ GET /e-commerce 500 in 98ms (next.js: 43ms, application-code: 55ms)
+⨯ ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  [90m209 |[0m   { num: [32m"06"[0m, title: [32m"Inventory Intelligence"[0m, desc: [32m"Support order-to-cash, marketplace...[0m
+  [90m210 |[0m ];
+[31m[1m>[0m [90m211 |[0m ];
+  [90m    |[0m [31m[1m^[0m
+  [90m212 |[0m
+  [90m213 |[0m [36mconst[0m outcomes = [
+  [90m214 |[0m   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+ GET /e-commerce 500 in 48ms (next.js: 13ms, application-code: 34ms)
+⨯ ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  [90m209 |[0m   { num: [32m"06"[0m, title: [32m"Inventory Intelligence"[0m, desc: [32m"Support order-to-cash, marketplace...[0m
+  [90m210 |[0m ];
+[31m[1m>[0m [90m211 |[0m ];
+  [90m    |[0m [31m[1m^[0m
+  [90m212 |[0m
+  [90m213 |[0m [36mconst[0m outcomes = [
+  [90m214 |[0m   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+ GET /e-commerce 500 in 31ms (next.js: 13ms, application-code: 18ms)
+[browser] Uncaught Error: ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "06", title: "Inventory Intelligence", desc: "Support order-to-cash, marketplace...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+    at <unknown> (Error: ./src/components/ECommercePage.tsx:211:1)
+    at <unknown> (Error: (./src/components/ECommercePage.tsx:211:1)
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "06", title: "Inventory Intelligence", desc: "Support order-to-cash, marketplace...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "06", title: "Inventory Intelligence", desc: "Support order-to-cash, marketplace...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "0", title: "Inventory Intelligence", desc: "Support order-to-cash, marketplace ...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Inventory Intelligence", desc: "Support order-to-cash, marketplace...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence", desc: "Support order-to-cash, marketpl...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence", desc: "Support order-to-cash, marketpl...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence", desc: "Support order-to-cash, marketpl...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence", desc: "Support order-to-cash, marketpl...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence", desc: "Support order-to-cash, marketpl...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence", desc: "Support order-to-cash, marketpl...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence", desc: "Support order-to-cash, marketpl...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence", desc: "Support order-to-cash, marketpl...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence", desc: "Support order-to-cash, marketpl...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence", desc: "Support order-to-cash, marketpl...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+⨯ ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  [90m209 |[0m   { num: [32m"07"[0m, title: [32m"Fraud & Risk Intelligence"[0m,  tags: [32m"Detect/Flag/Review "[0m, bg: [32m"lin...[0m
+  [90m210 |[0m ];
+[31m[1m>[0m [90m211 |[0m ];
+  [90m    |[0m [31m[1m^[0m
+  [90m212 |[0m
+  [90m213 |[0m [36mconst[0m outcomes = [
+  [90m214 |[0m   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+ GET /e-commerce 500 in 31ms (next.js: 19ms, application-code: 12ms)
+[browser] Uncaught Error: ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+    at <unknown> (Error: ./src/components/ECommercePage.tsx:211:1)
+    at <unknown> (Error: (./src/components/ECommercePage.tsx:211:1)
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+⨯ ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  [90m209 |[0m   { num: [32m"07"[0m, title: [32m"Fraud & Risk Intelligence"[0m,  tags: [32m"Detect/Flag/Review "[0m, bg: [32m"lin...[0m
+  [90m210 |[0m ];
+[31m[1m>[0m [90m211 |[0m ];
+  [90m    |[0m [31m[1m^[0m
+  [90m212 |[0m
+  [90m213 |[0m [36mconst[0m outcomes = [
+  [90m214 |[0m   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+ GET /e-commerce 500 in 36ms (next.js: 12ms, application-code: 24ms)
+[browser] Uncaught Error: ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+    at <unknown> (Error: ./src/components/ECommercePage.tsx:211:1)
+    at <unknown> (Error: (./src/components/ECommercePage.tsx:211:1)
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+⨯ ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  [90m209 |[0m   { num: [32m"07"[0m, title: [32m"Fraud & Risk Intelligence"[0m,  tags: [32m"Detect/Flag/Review "[0m, bg: [32m"lin...[0m
+  [90m210 |[0m ];
+[31m[1m>[0m [90m211 |[0m ];
+  [90m    |[0m [31m[1m^[0m
+  [90m212 |[0m
+  [90m213 |[0m [36mconst[0m outcomes = [
+  [90m214 |[0m   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+ GET /e-commerce 500 in 18ms (next.js: 7ms, application-code: 11ms)
+[browser] Uncaught Error: ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+    at <unknown> (Error: ./src/components/ECommercePage.tsx:211:1)
+    at <unknown> (Error: (./src/components/ECommercePage.tsx:211:1)
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+⨯ ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  [90m209 |[0m   { num: [32m"07"[0m, title: [32m"Fraud & Risk Intelligence"[0m,  tags: [32m"Detect/Flag/Review "[0m, bg: [32m"lin...[0m
+  [90m210 |[0m ];
+[31m[1m>[0m [90m211 |[0m ];
+  [90m    |[0m [31m[1m^[0m
+  [90m212 |[0m
+  [90m213 |[0m [36mconst[0m outcomes = [
+  [90m214 |[0m   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+ GET /e-commerce 500 in 18ms (next.js: 8ms, application-code: 10ms)
+[browser] Uncaught Error: ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+    at <unknown> (Error: ./src/components/ECommercePage.tsx:211:1)
+    at <unknown> (Error: (./src/components/ECommercePage.tsx:211:1)
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+⨯ ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  [90m209 |[0m   { num: [32m"07"[0m, title: [32m"Fraud & Risk Intelligence"[0m,  tags: [32m"Detect/Flag/Review "[0m, bg: [32m"lin...[0m
+  [90m210 |[0m ];
+[31m[1m>[0m [90m211 |[0m ];
+  [90m    |[0m [31m[1m^[0m
+  [90m212 |[0m
+  [90m213 |[0m [36mconst[0m outcomes = [
+  [90m214 |[0m   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+ GET /e-commerce 500 in 18ms (next.js: 9ms, application-code: 9ms)
+[browser] Uncaught Error: ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+    at <unknown> (Error: ./src/components/ECommercePage.tsx:211:1)
+    at <unknown> (Error: (./src/components/ECommercePage.tsx:211:1)
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+⨯ ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  [90m209 |[0m   { num: [32m"07"[0m, title: [32m"Fraud & Risk Intelligence"[0m,  tags: [32m"Detect/Flag/Review "[0m, bg: [32m"lin...[0m
+  [90m210 |[0m ];
+[31m[1m>[0m [90m211 |[0m ];
+  [90m    |[0m [31m[1m^[0m
+  [90m212 |[0m
+  [90m213 |[0m [36mconst[0m outcomes = [
+  [90m214 |[0m   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+ GET /e-commerce 500 in 29ms (next.js: 18ms, application-code: 11ms)
+[browser] Uncaught Error: ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+    at <unknown> (Error: ./src/components/ECommercePage.tsx:211:1)
+    at <unknown> (Error: (./src/components/ECommercePage.tsx:211:1)
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+⨯ ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  [90m209 |[0m   { num: [32m"07"[0m, title: [32m"Fraud & Risk Intelligence"[0m,  tags: [32m"Detect/Flag/Review "[0m, bg: [32m"lin...[0m
+  [90m210 |[0m ];
+[31m[1m>[0m [90m211 |[0m ];
+  [90m    |[0m [31m[1m^[0m
+  [90m212 |[0m
+  [90m213 |[0m [36mconst[0m outcomes = [
+  [90m214 |[0m   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+ GET /e-commerce 500 in 18ms (next.js: 8ms, application-code: 11ms)
+[browser] Uncaught Error: ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx
+
+
+    at <unknown> (Error: ./src/components/ECommercePage.tsx:211:1)
+    at <unknown> (Error: (./src/components/ECommercePage.tsx:211:1)
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+[browser] ./src/components/ECommercePage.tsx:211:1
+Expression expected
+  209 |   { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "lin...
+  210 | ];
+> 211 | ];
+      | ^
+  212 |
+  213 | const outcomes = [
+  214 |   {
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/ECommercePage.tsx
+    ./src/app/e-commerce/page.tsx 
+✓ Compiled in 120ms
+ GET /e-commerce 200 in 729ms (next.js: 82ms, application-code: 647ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+✓ Compiled in 95ms
+ GET /e-commerce 200 in 273ms (next.js: 157ms, application-code: 117ms)
+ GET /e-commerce 200 in 1390ms (next.js: 53ms, application-code: 1337ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /e-commerce 200 in 161ms (next.js: 6ms, application-code: 155ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+✓ Compiled in 221ms
+ GET /e-commerce 200 in 479ms (next.js: 220ms, application-code: 259ms)
+ GET /e-commerce 200 in 485ms (next.js: 286ms, application-code: 199ms)
+ GET /e-commerce 200 in 1082ms (next.js: 23ms, application-code: 1059ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /e-commerce 200 in 293ms (next.js: 4ms, application-code: 289ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /e-commerce 200 in 215ms (next.js: 5ms, application-code: 209ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+✓ Compiled in 191ms
+ GET /e-commerce 200 in 162ms (next.js: 91ms, application-code: 71ms)
+ GET /e-commerce 200 in 413ms (next.js: 4ms, application-code: 408ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /e-commerce 200 in 386ms (next.js: 10ms, application-code: 375ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /e-commerce 200 in 155ms (next.js: 5ms, application-code: 151ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /e-commerce 200 in 163ms (next.js: 4ms, application-code: 159ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /e-commerce 200 in 172ms (next.js: 4ms, application-code: 168ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /e-commerce 200 in 190ms (next.js: 4ms, application-code: 186ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+✓ Compiled in 153ms
+ GET /e-commerce 200 in 129ms (next.js: 88ms, application-code: 41ms)
+✓ Compiled in 114ms
+ GET /e-commerce 200 in 103ms (next.js: 61ms, application-code: 42ms)
+✓ Compiled in 114ms
+ GET /e-commerce 200 in 123ms (next.js: 69ms, application-code: 55ms)
+✓ Compiled in 97ms
+ GET /e-commerce 200 in 129ms (next.js: 73ms, application-code: 56ms)
+✓ Compiled in 88ms
+ GET /e-commerce 200 in 118ms (next.js: 66ms, application-code: 52ms)
+✓ Compiled in 93ms
+ GET /e-commerce 200 in 87ms (next.js: 53ms, application-code: 34ms)
+✓ Compiled in 87ms
+ GET /e-commerce 200 in 100ms (next.js: 53ms, application-code: 48ms)
+✓ Compiled in 115ms
+ GET /e-commerce 200 in 80ms (next.js: 54ms, application-code: 26ms)
+✓ Compiled in 77ms
+ GET /e-commerce 200 in 77ms (next.js: 48ms, application-code: 28ms)
+✓ Compiled in 85ms
+ GET /e-commerce 200 in 126ms (next.js: 95ms, application-code: 31ms)
+✓ Compiled in 110ms
+ GET /e-commerce 200 in 119ms (next.js: 78ms, application-code: 42ms)
+✓ Compiled in 89ms
+ GET /e-commerce 200 in 162ms (next.js: 115ms, application-code: 48ms)
+✓ Compiled in 112ms
+ GET /e-commerce 200 in 192ms (next.js: 117ms, application-code: 75ms)
+✓ Compiled in 120ms
+ GET /e-commerce 200 in 183ms (next.js: 111ms, application-code: 72ms)
+✓ Compiled in 84ms
+ GET /e-commerce 200 in 127ms (next.js: 92ms, application-code: 35ms)
+✓ Compiled in 400ms
+ GET /e-commerce 200 in 190ms (next.js: 134ms, application-code: 56ms)
+✓ Compiled in 79ms
+ GET /e-commerce 200 in 120ms (next.js: 82ms, application-code: 38ms)
+✓ Compiled in 96ms
+ GET /e-commerce 200 in 240ms (next.js: 183ms, application-code: 57ms)
+✓ Compiled in 147ms
+ GET /e-commerce 200 in 140ms (next.js: 104ms, application-code: 36ms)
+✓ Compiled in 94ms
+ GET /e-commerce 200 in 172ms (next.js: 132ms, application-code: 40ms)
+✓ Compiled in 77ms
+ GET /e-commerce 200 in 154ms (next.js: 97ms, application-code: 57ms)
+✓ Compiled in 89ms
+ GET /e-commerce 200 in 109ms (next.js: 79ms, application-code: 29ms)
+✓ Compiled in 97ms
+ GET /e-commerce 200 in 175ms (next.js: 106ms, application-code: 70ms)
+✓ Compiled in 152ms
+ GET /e-commerce 200 in 177ms (next.js: 111ms, application-code: 66ms)
+✓ Compiled in 92ms
+ GET /e-commerce 200 in 103ms (next.js: 75ms, application-code: 28ms)
+✓ Compiled in 98ms
+ GET /e-commerce 200 in 182ms (next.js: 154ms, application-code: 28ms)
+✓ Compiled in 121ms
+ GET /e-commerce 200 in 146ms (next.js: 102ms, application-code: 44ms)
+✓ Compiled in 91ms
+ GET /e-commerce 200 in 143ms (next.js: 95ms, application-code: 47ms)
+✓ Compiled in 92ms
+ GET /e-commerce 200 in 194ms (next.js: 120ms, application-code: 74ms)
+✓ Compiled in 197ms
+ GET /e-commerce 200 in 124ms (next.js: 89ms, application-code: 35ms)
+✓ Compiled in 114ms
+ GET /e-commerce 200 in 151ms (next.js: 106ms, application-code: 45ms)
+✓ Compiled in 167ms
+ GET /e-commerce 200 in 99ms (next.js: 71ms, application-code: 27ms)
+✓ Compiled in 94ms
+ GET /e-commerce 200 in 129ms (next.js: 95ms, application-code: 34ms)
+✓ Compiled in 161ms
+ GET /e-commerce 200 in 169ms (next.js: 117ms, application-code: 52ms)
+✓ Compiled in 108ms
+ GET /e-commerce 200 in 162ms (next.js: 118ms, application-code: 43ms)
+✓ Compiled in 88ms
+ GET /e-commerce 200 in 109ms (next.js: 74ms, application-code: 35ms)
+✓ Compiled in 121ms
+ GET /e-commerce 200 in 174ms (next.js: 118ms, application-code: 55ms)
+✓ Compiled in 220ms
+ GET /e-commerce 200 in 179ms (next.js: 114ms, application-code: 65ms)
+✓ Compiled in 119ms
+ GET /e-commerce 200 in 228ms (next.js: 194ms, application-code: 35ms)
+✓ Compiled in 75ms
+ GET /e-commerce 200 in 110ms (next.js: 77ms, application-code: 33ms)
+✓ Compiled in 142ms
+ GET /e-commerce 200 in 144ms (next.js: 91ms, application-code: 52ms)
+✓ Compiled in 90ms
+ GET /e-commerce 200 in 129ms (next.js: 83ms, application-code: 45ms)
+✓ Compiled in 111ms
+ GET /e-commerce 200 in 140ms (next.js: 88ms, application-code: 52ms)
+✓ Compiled in 83ms
+ GET /e-commerce 200 in 112ms (next.js: 81ms, application-code: 31ms)
+✓ Compiled in 104ms
+ GET /e-commerce 200 in 376ms (next.js: 129ms, application-code: 247ms)
+✓ Compiled in 96ms
+ GET /e-commerce 200 in 157ms (next.js: 106ms, application-code: 51ms)
+✓ Compiled in 94ms
+ GET /e-commerce 200 in 122ms (next.js: 82ms, application-code: 40ms)
+✓ Compiled in 96ms
+ GET /e-commerce 200 in 138ms (next.js: 101ms, application-code: 37ms)
+✓ Compiled in 92ms
+ GET /e-commerce 200 in 160ms (next.js: 117ms, application-code: 43ms)
+○ Compiling /admin ...
+ GET /admin 200 in 7.0s (next.js: 6.2s, application-code: 838ms)
+ GET /api/admin/contact-messages 401 in 261ms (next.js: 233ms, application-code: 29ms)
+ POST /api/admin/login 200 in 80ms (next.js: 58ms, application-code: 22ms)
+ GET /api/admin/contact-messages 200 in 68ms (next.js: 20ms, application-code: 48ms)
+ POST /api/admin/logout 200 in 1043ms (next.js: 1038ms, application-code: 5ms)
+ GET /admin 200 in 328ms (next.js: 114ms, application-code: 213ms)
+ GET /admin 200 in 173ms (next.js: 4ms, application-code: 169ms)
+ GET /admin 200 in 294ms (next.js: 52ms, application-code: 242ms)
+ GET /admin 200 in 297ms (next.js: 5ms, application-code: 292ms)
+ GET /admin 200 in 297ms (next.js: 28ms, application-code: 269ms)
+ GET /admin 200 in 297ms (next.js: 85ms, application-code: 212ms)
+ GET /admin 200 in 176ms (next.js: 6ms, application-code: 169ms)
+ GET /admin 200 in 308ms (next.js: 94ms, application-code: 214ms)
+ GET /admin 200 in 178ms (next.js: 3ms, application-code: 175ms)
+ GET /admin 200 in 150ms (next.js: 8ms, application-code: 142ms)
+ GET /admin 200 in 151ms (next.js: 32ms, application-code: 119ms)
+ GET /admin 200 in 152ms (next.js: 58ms, application-code: 94ms)
+ GET /admin 200 in 152ms (next.js: 88ms, application-code: 64ms)
+ GET /admin 200 in 168ms (next.js: 67ms, application-code: 101ms)
+ GET /admin 200 in 70ms (next.js: 4ms, application-code: 67ms)
+ GET /admin 200 in 39ms (next.js: 4ms, application-code: 35ms)
+ GET /admin 200 in 113ms (next.js: 72ms, application-code: 41ms)
+✓ Compiled in 89ms
+ GET /admin 200 in 277ms (next.js: 66ms, application-code: 212ms)
+ GET /api/admin/contact-messages 401 in 317ms (next.js: 157ms, application-code: 160ms)
+✓ Compiled in 80ms
+ GET /admin 200 in 318ms (next.js: 93ms, application-code: 225ms)
+ GET /api/admin/contact-messages 401 in 190ms (next.js: 142ms, application-code: 48ms)
+✓ Compiled in 67ms
+ GET /api/admin/contact-messages 401 in 165ms (next.js: 136ms, application-code: 29ms)
+ GET /admin 200 in 305ms (next.js: 92ms, application-code: 213ms)
+ GET /api/admin/contact-messages 401 in 15ms (next.js: 3ms, application-code: 13ms)
+ POST /api/admin/login 401 in 279ms (next.js: 129ms, application-code: 149ms)
+ POST /api/admin/login 200 in 48ms (next.js: 1749µs, application-code: 47ms)
+ GET /api/admin/contact-messages 200 in 10ms (next.js: 2ms, application-code: 7ms)
+ POST /api/admin/login 200 in 55ms (next.js: 10ms, application-code: 45ms)
+ GET /api/admin/contact-messages 200 in 11ms (next.js: 3ms, application-code: 8ms)
+ POST /api/admin/logout 200 in 84ms (next.js: 75ms, application-code: 9ms)
+ GET / 200 in 825ms (next.js: 127ms, application-code: 698ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /digital-public-infrastructure 200 in 290ms (next.js: 76ms, application-code: 214ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /travel-hospitality 200 in 251ms (next.js: 88ms, application-code: 163ms)
+ GET /services/travel/travel%20cta.jpg 404 in 239ms (next.js: 110ms, application-code: 129ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /shipping-logistics 200 in 1352ms (next.js: 807ms, application-code: 545ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /e-commerce 200 in 320ms (next.js: 54ms, application-code: 266ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /travel-hospitality 200 in 280ms (next.js: 24ms, application-code: 255ms)
+ GET /services/travel/travel%20cta.jpg 404 in 241ms (next.js: 52ms, application-code: 190ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+✓ Compiled in 1537ms
+ GET /travel-hospitality 200 in 536ms (next.js: 401ms, application-code: 135ms)
+✓ Compiled in 120ms
+ GET /travel-hospitality 200 in 140ms (next.js: 89ms, application-code: 51ms)
+✓ Compiled in 120ms
+ GET /travel-hospitality 200 in 1381ms (next.js: 1265ms, application-code: 116ms)
+✓ Compiled in 137ms
+ GET /travel-hospitality 200 in 302ms (next.js: 192ms, application-code: 109ms)
+✓ Compiled in 102ms
+ GET /travel-hospitality 200 in 161ms (next.js: 111ms, application-code: 50ms)
+✓ Compiled in 114ms
+ GET /travel-hospitality 200 in 173ms (next.js: 112ms, application-code: 61ms)
+✓ Compiled in 107ms
+ GET /travel-hospitality 200 in 236ms (next.js: 131ms, application-code: 105ms)
+✓ Compiled in 141ms
+ GET /travel-hospitality 200 in 163ms (next.js: 105ms, application-code: 58ms)
+✓ Compiled in 231ms
+ GET /travel-hospitality 200 in 330ms (next.js: 144ms, application-code: 186ms)
+✓ Compiled in 117ms
+ GET /travel-hospitality 200 in 163ms (next.js: 95ms, application-code: 68ms)
+✓ Compiled in 142ms
+ GET /travel-hospitality 200 in 137ms (next.js: 88ms, application-code: 48ms)
+✓ Compiled in 141ms
+ GET /travel-hospitality 200 in 203ms (next.js: 118ms, application-code: 86ms)
+✓ Compiled in 141ms
+ GET /travel-hospitality 200 in 257ms (next.js: 138ms, application-code: 119ms)
+✓ Compiled in 147ms
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⨯ ReferenceError: tvTransitPath is not defined
+    at TravelHospitalityPage (src\components\TravelHospitalityPage.tsx:736:24)
+  734 |           <div className="tv-transit tv-reveal">
+  735 |             <svg className="tv-transit-line" viewBox="0 0 1200 220" fill="none" preserveA...
+> 736 |               <path d={tvTransitPath} stroke="rgba(198,241,53,0.55)" strokeWidth="2" />
+      |                        ^
+  737 |               <g className="tv-transit-pulse">
+  738 |                 <circle className="tv-transit-glow" r="11" />
+  739 |                 <circle className="tv-transit-dot" r="5" /> {
+  digest: '144370967'
+}
+ GET /travel-hospitality 500 in 854ms (next.js: 255ms, application-code: 599ms)
+✓ Compiled in 219ms
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /travel-hospitality 200 in 718ms (next.js: 175ms, application-code: 543ms)
+ GET /services/travel/travel%20cta.jpg 404 in 152ms (next.js: 47ms, application-code: 105ms)
+✓ Compiled in 92ms
+ GET /travel-hospitality 200 in 231ms (next.js: 119ms, application-code: 111ms)
+✓ Compiled in 103ms
+ GET /travel-hospitality 200 in 268ms (next.js: 173ms, application-code: 95ms)
+✓ Compiled in 335ms
+ GET /travel-hospitality 200 in 295ms (next.js: 199ms, application-code: 96ms)
+✓ Compiled in 248ms
+ GET /travel-hospitality 200 in 263ms (next.js: 155ms, application-code: 107ms)
+ GET /travel 404 in 315ms (next.js: 75ms, application-code: 240ms)
+ GET /travel 404 in 77ms (next.js: 11ms, application-code: 66ms)
+ GET /travel 404 in 77ms (next.js: 7ms, application-code: 70ms)
+ GET /travel 404 in 57ms (next.js: 6ms, application-code: 52ms)
+✓ Compiled in 105ms
+ GET /travel-hospitality 200 in 213ms (next.js: 145ms, application-code: 68ms)
+[browser] Uncaught ReferenceError: tvTransitPath is not defined
+    at TravelHospitalityPage (src/components/TravelHospitalityPage.tsx:736:24)
+    at TravelHospitality (src\app\travel-hospitality\page.tsx:25:7)
+  734 |           <div className="tv-transit tv-reveal">
+  735 |             <svg className="tv-transit-line" viewBox="0 0 1200 220" fill="none" preserveA...
+> 736 |               <path d={tvTransitPath} stroke="rgba(198,241,53,0.55)" strokeWidth="2" />
+      |                        ^
+  737 |               <g className="tv-transit-pulse">
+  738 |                 <circle className="tv-transit-glow" r="11" />
+  739 |                 <circle className="tv-transit-dot" r="5" />
+⨯ ReferenceError: tvTransitPath is not defined
+    at TravelHospitalityPage (src\components\TravelHospitalityPage.tsx:736:24)
+  734 |           <div className="tv-transit tv-reveal">
+  735 |             <svg className="tv-transit-line" viewBox="0 0 1200 220" fill="none" preserveA...
+> 736 |               <path d={tvTransitPath} stroke="rgba(198,241,53,0.55)" strokeWidth="2" />
+      |                        ^
+  737 |               <g className="tv-transit-pulse">
+  738 |                 <circle className="tv-transit-glow" r="11" />
+  739 |                 <circle className="tv-transit-dot" r="5" /> {
+  digest: '144370967'
+}
+ GET /travel-hospitality 500 in 397ms (next.js: 10ms, application-code: 387ms)
+[browser] Uncaught ReferenceError: tvTransitPath is not defined
+    at TravelHospitalityPage (src/components/TravelHospitalityPage.tsx:736:24)
+    at TravelHospitality (src\app\travel-hospitality\page.tsx:25:7)
+  734 |           <div className="tv-transit tv-reveal">
+  735 |             <svg className="tv-transit-line" viewBox="0 0 1200 220" fill="none" preserveA...
+> 736 |               <path d={tvTransitPath} stroke="rgba(198,241,53,0.55)" strokeWidth="2" />
+      |                        ^
+  737 |               <g className="tv-transit-pulse">
+  738 |                 <circle className="tv-transit-glow" r="11" />
+  739 |                 <circle className="tv-transit-dot" r="5" />
+⨯ ReferenceError: tvTransitPath is not defined
+    at TravelHospitalityPage (src\components\TravelHospitalityPage.tsx:736:24)
+  734 |           <div className="tv-transit tv-reveal">
+  735 |             <svg className="tv-transit-line" viewBox="0 0 1200 220" fill="none" preserveA...
+> 736 |               <path d={tvTransitPath} stroke="rgba(198,241,53,0.55)" strokeWidth="2" />
+      |                        ^
+  737 |               <g className="tv-transit-pulse">
+  738 |                 <circle className="tv-transit-glow" r="11" />
+  739 |                 <circle className="tv-transit-dot" r="5" /> {
+  digest: '144370967'
+}
+ GET /travel-hospitality 500 in 168ms (next.js: 6ms, application-code: 162ms)
+[browser] Uncaught ReferenceError: tvTransitPath is not defined
+    at TravelHospitalityPage (src/components/TravelHospitalityPage.tsx:736:24)
+    at TravelHospitality (src\app\travel-hospitality\page.tsx:25:7)
+  734 |           <div className="tv-transit tv-reveal">
+  735 |             <svg className="tv-transit-line" viewBox="0 0 1200 220" fill="none" preserveA...
+> 736 |               <path d={tvTransitPath} stroke="rgba(198,241,53,0.55)" strokeWidth="2" />
+      |                        ^
+  737 |               <g className="tv-transit-pulse">
+  738 |                 <circle className="tv-transit-glow" r="11" />
+  739 |                 <circle className="tv-transit-dot" r="5" />
+⨯ ReferenceError: tvTransitPath is not defined
+    at TravelHospitalityPage (src\components\TravelHospitalityPage.tsx:736:24)
+  734 |           <div className="tv-transit tv-reveal">
+  735 |             <svg className="tv-transit-line" viewBox="0 0 1200 220" fill="none" preserveA...
+> 736 |               <path d={tvTransitPath} stroke="rgba(198,241,53,0.55)" strokeWidth="2" />
+      |                        ^
+  737 |               <g className="tv-transit-pulse">
+  738 |                 <circle className="tv-transit-glow" r="11" />
+  739 |                 <circle className="tv-transit-dot" r="5" /> {
+  digest: '144370967'
+}
+ GET /travel-hospitality 500 in 125ms (next.js: 5ms, application-code: 119ms)
+[browser] Uncaught ReferenceError: tvTransitPath is not defined
+    at TravelHospitalityPage (src/components/TravelHospitalityPage.tsx:736:24)
+    at TravelHospitality (src\app\travel-hospitality\page.tsx:25:7)
+  734 |           <div className="tv-transit tv-reveal">
+  735 |             <svg className="tv-transit-line" viewBox="0 0 1200 220" fill="none" preserveA...
+> 736 |               <path d={tvTransitPath} stroke="rgba(198,241,53,0.55)" strokeWidth="2" />
+      |                        ^
+  737 |               <g className="tv-transit-pulse">
+  738 |                 <circle className="tv-transit-glow" r="11" />
+  739 |                 <circle className="tv-transit-dot" r="5" />
+⨯ ReferenceError: tvTransitPath is not defined
+    at TravelHospitalityPage (src\components\TravelHospitalityPage.tsx:736:24)
+  734 |           <div className="tv-transit tv-reveal">
+  735 |             <svg className="tv-transit-line" viewBox="0 0 1200 220" fill="none" preserveA...
+> 736 |               <path d={tvTransitPath} stroke="rgba(198,241,53,0.55)" strokeWidth="2" />
+      |                        ^
+  737 |               <g className="tv-transit-pulse">
+  738 |                 <circle className="tv-transit-glow" r="11" />
+  739 |                 <circle className="tv-transit-dot" r="5" /> {
+  digest: '144370967'
+}
+ GET /travel-hospitality 500 in 112ms (next.js: 3ms, application-code: 109ms)
+[browser] Uncaught ReferenceError: tvTransitPath is not defined
+    at TravelHospitalityPage (src/components/TravelHospitalityPage.tsx:736:24)
+    at TravelHospitality (src\app\travel-hospitality\page.tsx:25:7)
+  734 |           <div className="tv-transit tv-reveal">
+  735 |             <svg className="tv-transit-line" viewBox="0 0 1200 220" fill="none" preserveA...
+> 736 |               <path d={tvTransitPath} stroke="rgba(198,241,53,0.55)" strokeWidth="2" />
+      |                        ^
+  737 |               <g className="tv-transit-pulse">
+  738 |                 <circle className="tv-transit-glow" r="11" />
+  739 |                 <circle className="tv-transit-dot" r="5" />
+✓ Compiled in 121ms
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /travel-hospitality 200 in 697ms (next.js: 240ms, application-code: 457ms)
+ GET /services/travel/travel%20cta.jpg 404 in 155ms (next.js: 63ms, application-code: 92ms)
+✓ Compiled in 91ms
+ GET /travel-hospitality 200 in 151ms (next.js: 86ms, application-code: 65ms)
+✓ Compiled in 78ms
+ GET /travel-hospitality 200 in 133ms (next.js: 81ms, application-code: 52ms)
+✓ Compiled in 84ms
+ GET /travel-hospitality 200 in 245ms (next.js: 95ms, application-code: 149ms)
+✓ Compiled in 113ms
+ GET /travel-hospitality 200 in 244ms (next.js: 165ms, application-code: 79ms)
+ GET /travel-hospitality 200 in 440ms (next.js: 11ms, application-code: 430ms)
+ GET /services/travel/travel%20cta.jpg 404 in 159ms (next.js: 55ms, application-code: 103ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /travel-hospitality 200 in 237ms (next.js: 11ms, application-code: 226ms)
+ GET /services/travel/travel%20cta.jpg 404 in 97ms (next.js: 17ms, application-code: 80ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /travel-hospitality 200 in 156ms (next.js: 9ms, application-code: 147ms)
+ GET /services/travel/travel%20cta.jpg 404 in 115ms (next.js: 8ms, application-code: 106ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /travel-hospitality 200 in 218ms (next.js: 3ms, application-code: 215ms)
+ GET /services/travel/travel%20cta.jpg 404 in 81ms (next.js: 9ms, application-code: 72ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /travel-hospitality 200 in 292ms (next.js: 7ms, application-code: 285ms)
+ GET /services/travel/travel%20cta.jpg 404 in 105ms (next.js: 17ms, application-code: 87ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /travel-hospitality 200 in 321ms (next.js: 10ms, application-code: 312ms)
+ GET /services/travel/travel%20cta.jpg 404 in 101ms (next.js: 17ms, application-code: 84ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /travel-hospitality 200 in 104ms (next.js: 4ms, application-code: 100ms)
+ GET /services/travel/travel%20cta.jpg 404 in 77ms (next.js: 5ms, application-code: 72ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /travel-hospitality 200 in 115ms (next.js: 3ms, application-code: 113ms)
+ GET /services/travel/travel%20cta.jpg 404 in 68ms (next.js: 9ms, application-code: 59ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+✓ Compiled in 1752ms
+ GET /travel-hospitality 200 in 535ms (next.js: 440ms, application-code: 94ms)
+ GET /travel-hospitality 200 in 49ms (next.js: 5ms, application-code: 45ms)
+ GET /services/travel/travel%20cta.jpg 404 in 317ms (next.js: 41ms, application-code: 276ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET / 200 in 145ms (next.js: 92ms, application-code: 53ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /travel-hospitality 200 in 1634ms (next.js: 5ms, application-code: 1629ms)
+ GET /services/travel/travel%20cta.jpg 404 in 146ms (next.js: 10ms, application-code: 136ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+✓ Compiled in 330ms
+ GET /travel-hospitality 200 in 707ms (next.js: 474ms, application-code: 233ms)
+ GET /travel-hospitality 200 in 874ms (next.js: 43ms, application-code: 832ms)
+ GET /services/travel/travel%20cta.jpg 404 in 146ms (next.js: 52ms, application-code: 94ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /travel-hospitality 200 in 468ms (next.js: 18ms, application-code: 451ms)
+ GET /services/travel/travel%20cta.jpg 404 in 162ms (next.js: 23ms, application-code: 140ms)
+[browser] Image with src "/shared/Sytrion-Logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.

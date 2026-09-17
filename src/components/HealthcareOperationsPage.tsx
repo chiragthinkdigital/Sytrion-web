@@ -240,12 +240,12 @@ const clinicalItems = [
 ];
 
 const outcomes = [
-  { num: "01", word: "FASTER", title: "Less waiting.", image: "/healthcare/faster (2).png", desc: "Streamlined workflows help reduce administrative delays." },
-  { num: "02", word: "ACCURATE", title: "Greater confidence.", image: "/healthcare/accurate.png", desc: "Structured validation helps improve data and process quality." },
-  { num: "03", word: "EFFICIENT", title: "Less repetitive work.", image: "/healthcare/efficient.png", desc: "Automation helps reduce manual administrative activity." },
-  { num: "04", word: "VISIBLE", title: "A clearer view.", image: "/healthcare/visible.webp", desc: "Connected reporting makes performance and exceptions easier to understand." },
+  { num: "01", word: "FASTER", title: "Faster processing.", image: "/healthcare/faster (2).png", desc: "Streamlined workflows help reduce administrative delays." },
+  { num: "02", word: "ACCURATE", title: "Greater accuracy .", image: "/healthcare/accurate.png", desc: "Structured validation helps improve data and process quality." },
+  { num: "03", word: "EFFICIENT", title: "Lower administrative effort.", image: "/healthcare/efficient.png", desc: "Automation helps reduce manual administrative activity." },
+  { num: "04", word: "VISIBLE", title: "Better operational visibility.", image: "/healthcare/visible.webp", desc: "Connected reporting makes performance and exceptions easier to understand." },
   { num: "05", word: "BETTER EXPERIENCES", title: "Smoother interactions.", image: "/healthcare/better-experiences.webp", desc: "Simpler operations support smoother interactions for members, patients and providers." },
-  { num: "06", word: "SCALABLE", title: "Room to adapt.", image: "/healthcare/scalable.webp", desc: "Flexible operations support changing volumes and evolving requirements." },
+  { num: "06", word: "SCALABLE", title: "Built to adapt.", image: "/healthcare/scalable.webp", desc: "Flexible operations support changing volumes and evolving requirements." },
 ];
 
 const modelLayers = [
