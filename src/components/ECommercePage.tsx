@@ -1729,7 +1729,6 @@ export default function ECommercePage() {
           @media (max-width: 640px) {
             .ec-hd .ec-wrap { padding: 72px 20px; }
             .ec-hd-stage { max-width: 400px; }
-            .ec-hd-hand { width: 72%; }
           }
         `}</style>
       </section>

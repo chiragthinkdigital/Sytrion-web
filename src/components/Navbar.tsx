@@ -625,7 +625,7 @@ export default function Navbar() {
                     href={item.href || undefined}
                     className={"desktop-tab" + (isNavActive(item) ? " active" : "") + (desktopDropdown === item.name ? " open" : "")}
                     onClick={(e) => {
-                      if (item.children) {
+                      if (item.children && !item.href) {
                         e.preventDefault();
                         setDesktopDropdown(desktopDropdown === item.name ? null : item.name);
                       } else {

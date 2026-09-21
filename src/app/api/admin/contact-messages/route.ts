@@ -3,6 +3,8 @@ import mysql from "mysql2/promise";
 import pool, { ensureContactTable, ensureAdminUser } from "@/lib/db";
 import { createAdminToken, isAdminToken } from "@/lib/auth";
 
+export const dynamic = "force-static";
+
 export async function GET(request: Request) {
   const cookieHeader = request.headers.get("cookie");
 
