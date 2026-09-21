@@ -23,6 +23,7 @@
 # misc
 .DS_Store
 *.pem
+/sytrion.zip
 
 # debug
 npm-debug.log*
