@@ -235,13 +235,16 @@ export default function Footer() {
 
         .fl-callout-wrap {
           margin-top: auto;
+          margin-left: 0;
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 8px;
+          position: relative;
+          z-index: 2;
         }
 
         .fl-callout-bar {
-          width: 38px;
+          width: 18px;
           height: 3px;
           background: #BCE328;
           border-radius: 1px;
@@ -249,12 +252,13 @@ export default function Footer() {
         }
 
         .fl-callout-text {
-          font-size: 10.5px;
+          font-size: 11px;
           font-weight: 700;
-          letter-spacing: 1.4px;
+          letter-spacing: 0.1px;
           color: #787C86;
           text-transform: uppercase;
           line-height: 1.4;
+          white-space: nowrap;
         }
 
         /* Bottom Section with Full Width Green Line */
@@ -359,6 +363,20 @@ export default function Footer() {
             border-right: none;
           }
           .fl-brand-headline {
+            white-space: normal;
+          }
+          .fl-callout-wrap {
+            margin-left: 0;
+            gap: 8px;
+          }
+          .fl-callout-bar {
+            width: 18px;
+          }
+        }
+
+        /* Column is too narrow for one line here; let it wrap instead of overflowing */
+        @media (max-width: 764px) {
+          .fl-callout-text {
             white-space: normal;
           }
         }
@@ -503,10 +521,7 @@ export default function Footer() {
 
             <div className="fl-callout-wrap">
               <div className="fl-callout-bar"></div>
-              <div className="fl-callout-text">
-                LET'S BUILD A<br />
-                SMARTER TOMORROW TOGETHER.
-              </div>
+              <div className="fl-callout-text">LET'S BUILD A SMARTER TOMORROW TOGETHER.</div>
             </div>
           </div>
         </div>

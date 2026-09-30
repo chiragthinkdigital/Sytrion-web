@@ -13,12 +13,12 @@ const landscapeChallenges = [
 ];
 
 const landscapeIcons = [
-  <svg key="0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
-  <svg key="1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
-  <svg key="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>,
-  <svg key="3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>,
-  <svg key="4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg>,
-  <svg key="5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 17.5l5.5-5.5 3.5 3.5L20.5 7"/><path d="M14.5 7h6v6"/></svg>,
+  <svg key="0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>,
+  <svg key="1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>,
+  <svg key="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>,
+  <svg key="3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>,
+  <svg key="4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="6" width="20" height="12" rx="2" /><path d="M2 10h20" /></svg>,
+  <svg key="5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 17.5l5.5-5.5 3.5 3.5L20.5 7" /><path d="M14.5 7h6v6" /></svg>,
 ];
 
 const ecosystemCards = [
@@ -29,32 +29,32 @@ const ecosystemCards = [
 ];
 
 const ibsTabs = [
-  { num: "01", tab: "Onboarding", title: "Customer Onboarding", lead: "Make the first banking interaction simpler and smarter.", items: ["Application processing","Customer data capture","Document processing","KYC workflow support","Identity verification support","Account-opening administration"], img: "/services/banking/Customer Onboarding.jpg", alt: "Customer onboarding process" },
-  { num: "02", tab: "Accounts", title: "Account Operations", lead: "Keep customer accounts accurate, responsive and connected.", items: ["Account setup","Account maintenance","Customer information updates","Service requests","Deposit operations","Account closure support"], img: "/services/banking/Account Operations.jpg", alt: "Account operations management" },
-  { num: "03", tab: "Payments", title: "Payments Operations", lead: "Support the movement of money with greater control.", items: ["Payment processing","Transaction validation","Payment investigations","Exception handling","Settlement support","Reconciliation"], img: "/services/banking/Payments Operations.jpg", alt: "Payment operations processing" },
-  { num: "04", tab: "Lending", title: "Lending Operations", lead: "Streamline operational workflows across the lending lifecycle.", items: ["Application processing","Document preparation","Credit administration support","Loan setup","Loan servicing","Post-disbursement administration"], img: "/services/banking/Lending Operations.jpg", alt: "Lending operations workflow" },
-  { num: "05", tab: "Compliance", title: "Compliance Operations", lead: "Embed structured controls throughout the customer lifecycle.", items: ["KYC operations","Periodic reviews","Screening support","AML workflow support","Remediation","Exception management"], img: "/services/banking/Compliance Operations.jpg", alt: "Compliance operations monitoring" },
-  { num: "06", tab: "Data", title: "Banking Data & Insights", lead: "Turn operational data into better visibility.", items: ["Data capture & validation","Master-data support","Operational reporting","Exception analytics","Performance dashboards","Data-quality monitoring"], img: "/services/banking/Banking Data & Insights.jpg", alt: "Banking data and analytics" },
+  { num: "01", tab: "Onboarding", title: "Customer Onboarding", lead: "Make the first banking interaction simpler and smarter.", items: ["Application processing", "Customer data capture", "Document processing", "KYC workflow support", "Identity verification support", "Account-opening administration"], img: "/services/banking/Customer Onboarding.jpg", alt: "Customer onboarding process" },
+  { num: "02", tab: "Accounts", title: "Account Operations", lead: "Keep customer accounts accurate, responsive and connected.", items: ["Account setup", "Account maintenance", "Customer information updates", "Service requests", "Deposit operations", "Account closure support"], img: "/services/banking/Account Operations.jpg", alt: "Account operations management" },
+  { num: "03", tab: "Payments", title: "Payments Operations", lead: "Support the movement of money with greater control.", items: ["Payment processing", "Transaction validation", "Payment investigations", "Exception handling", "Settlement support", "Reconciliation"], img: "/services/banking/Payments Operations.jpg", alt: "Payment operations processing" },
+  { num: "04", tab: "Lending", title: "Lending Operations", lead: "Streamline operational workflows across the lending lifecycle.", items: ["Application processing", "Document preparation", "Credit administration support", "Loan setup", "Loan servicing", "Post-disbursement administration"], img: "/services/banking/Lending Operations.jpg", alt: "Lending operations workflow" },
+  { num: "05", tab: "Compliance", title: "Compliance Operations", lead: "Embed structured controls throughout the customer lifecycle.", items: ["KYC operations", "Periodic reviews", "Screening support", "AML workflow support", "Remediation", "Exception management"], img: "/services/banking/Compliance Operations.jpg", alt: "Compliance operations monitoring" },
+  { num: "06", tab: "Data", title: "Banking Data & Insights", lead: "Turn operational data into better visibility.", items: ["Data capture & validation", "Master-data support", "Operational reporting", "Exception analytics", "Performance dashboards", "Data-quality monitoring"], img: "/services/banking/Banking Data & Insights.jpg", alt: "Banking data and analytics" },
 ];
 
 const kycSteps = [
-  { name: "APPLY", sub: "Application intake", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> },
-  { name: "CAPTURE", sub: "Customer information", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
-  { name: "VERIFY", sub: "Identity & documents", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> },
-  { name: "SCREEN", sub: "Required checks", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> },
-  { name: "REVIEW", sub: "Exceptions", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> },
-  { name: "ONBOARD", sub: "Account setup", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg> },
-  { name: "MAINTAIN", sub: "Ongoing lifecycle", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> },
+  { name: "APPLY", sub: "Application intake", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg> },
+  { name: "CAPTURE", sub: "Customer information", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg> },
+  { name: "VERIFY", sub: "Identity & documents", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg> },
+  { name: "SCREEN", sub: "Required checks", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg> },
+  { name: "REVIEW", sub: "Exceptions", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></svg> },
+  { name: "ONBOARD", sub: "Account setup", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18" /><path d="M5 21V7l7-4 7 4v14" /><path d="M9 21v-6h6v6" /></svg> },
+  { name: "MAINTAIN", sub: "Ongoing lifecycle", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg> },
 ];
 
 const cwPositions = [
-  { x: 14, y: 28 },
-  { x: 50, y: 28 },
-  { x: 86, y: 28 },
-  { x: 86, y: 74 },
-  { x: 62, y: 74 },
-  { x: 38, y: 74 },
-  { x: 14, y: 74 },
+  { x: 14, y: 16 },
+  { x: 50, y: 16 },
+  { x: 86, y: 16 },
+  { x: 86, y: 50 },
+  { x: 86, y: 84 },
+  { x: 50, y: 84 },
+  { x: 14, y: 84 },
 ];
 
 const threeCardSections = [
@@ -63,10 +63,10 @@ const threeCardSections = [
     heading: "Make lending operations move faster.",
     desc: "Lending brings together customers, credit information, documents, decisions, payments and ongoing account servicing. Sytrion supports the operational processes across the lending lifecycle, helping banks improve workflow efficiency, data quality and servicing responsiveness.",
     stages: [
-      { title: "Origination", items: ["Application processing","Document processing","Data validation","Credit administration support","Pre-closing support"] },
-      { title: "Closing & Disbursement", items: ["Document preparation","Closing support","Loan setup","Disbursement administration","Quality review"] },
-      { title: "Servicing", items: ["Account maintenance","Payment processing","Customer servicing","Correspondence","Account updates"] },
-      { title: "Portfolio Operations", items: ["Document review","Portfolio data management","Monitoring support","Exception management","Operational reporting"] },
+      { title: "Origination", items: ["Application processing", "Document processing", "Data validation", "Credit administration support", "Pre-closing support"] },
+      { title: "Closing & Disbursement", items: ["Document preparation", "Closing support", "Loan setup", "Disbursement administration", "Quality review"] },
+      { title: "Servicing", items: ["Account maintenance", "Payment processing", "Customer servicing", "Correspondence", "Account updates"] },
+      { title: "Portfolio Operations", items: ["Document review", "Portfolio data management", "Monitoring support", "Exception management", "Operational reporting"] },
     ],
     img: "/services/banking/Lending Operations (2).jpg",
     alt: "Lending professional working with customer",
@@ -77,10 +77,10 @@ const threeCardSections = [
     heading: "Powering the transactions behind everyday banking.",
     desc: "Every payment creates a chain of processing, validation, settlement and reconciliation activities that must happen accurately and securely. Sytrion supports high-volume cards and payment operations with intelligent workflows designed to improve processing efficiency and operational control.",
     stages: [
-      { title: "Cards Operations", items: ["Application processing","Card servicing","Account maintenance","Transaction support","Dispute administration"] },
-      { title: "Payment Operations", items: ["Payment processing","Transaction validation","Wire/payment support","Exception processing","Payment investigations"] },
-      { title: "Reconciliation & Settlement", items: ["Transaction matching","Settlement support","Account reconciliation","GL reconciliation","Exception management"] },
-      { title: "Disputes & Chargebacks", items: ["Dispute intake","Document processing","Chargeback administration","Case workflow support","Resolution tracking"] },
+      { title: "Cards Operations", items: ["Application processing", "Card servicing", "Account maintenance", "Transaction support", "Dispute administration"] },
+      { title: "Payment Operations", items: ["Payment processing", "Transaction validation", "Wire/payment support", "Exception processing", "Payment investigations"] },
+      { title: "Reconciliation & Settlement", items: ["Transaction matching", "Settlement support", "Account reconciliation", "GL reconciliation", "Exception management"] },
+      { title: "Disputes & Chargebacks", items: ["Dispute intake", "Document processing", "Chargeback administration", "Case workflow support", "Resolution tracking"] },
     ],
     img: "/services/banking/Transaction Operations.jpg",
     alt: "Digital payment transaction operations",
@@ -91,10 +91,10 @@ const threeCardSections = [
     heading: "Strengthen controls without slowing the customer experience.",
     desc: "Banks must balance seamless customer experiences with increasingly complex requirements around customer due diligence, transaction monitoring and financial crime prevention. Sytrion supports structured operational workflows that help banks manage compliance processes with greater consistency, visibility and control.",
     stages: [
-      { title: "KYC", items: ["Customer onboarding support","Customer information verification","Periodic review support","KYC remediation","Document management"] },
-      { title: "Screening", items: ["Customer screening workflow support","Watchlist review administration","Alert processing","Exception routing","Case documentation"] },
-      { title: "AML Operations", items: ["Transaction-monitoring support","Alert administration","Case preparation","Investigation support","Remediation workflows"] },
-      { title: "Fraud & Disputes", items: ["Fraud-case administration","Transaction review support","Dispute processing","Chargeback workflows","Case tracking"] },
+      { title: "KYC", items: ["Customer onboarding support", "Customer information verification", "Periodic review support", "KYC remediation", "Document management"] },
+      { title: "Screening", items: ["Customer screening workflow support", "Watchlist review administration", "Alert processing", "Exception routing", "Case documentation"] },
+      { title: "AML Operations", items: ["Transaction-monitoring support", "Alert administration", "Case preparation", "Investigation support", "Remediation workflows"] },
+      { title: "Fraud & Disputes", items: ["Fraud-case administration", "Transaction review support", "Dispute processing", "Chargeback workflows", "Case tracking"] },
     ],
     img: "/services/banking/Financial Crime & Compliance Operations.jpg",
     alt: "Compliance operations workflow",
@@ -113,17 +113,17 @@ const bankingIntelligenceNodes = [
 ];
 
 const financeOps = [
-  { title: "Reconciliation", items: ["Bank & GL reconciliation","Transaction matching","Suspense-account support","Exception resolution"] },
-  { title: "Record-to-Report", items: ["Journal processing","General ledger support","Account reconciliation","Month-end support"] },
-  { title: "Financial Reporting Support", items: ["Data preparation","Management reporting","Variance analysis","Operational dashboards"] },
-  { title: "Financial Operations", items: ["Payment administration","Intercompany support","Account analysis","Exception management"] },
+  { title: "Reconciliation", items: ["Bank & GL reconciliation", "Transaction matching", "Suspense-account support", "Exception resolution"] },
+  { title: "Record-to-Report", items: ["Journal processing", "General ledger support", "Account reconciliation", "Month-end support"] },
+  { title: "Financial Reporting Support", items: ["Data preparation", "Management reporting", "Variance analysis", "Operational dashboards"] },
+  { title: "Financial Operations", items: ["Payment administration", "Intercompany support", "Account analysis", "Exception management"] },
 ];
 
 const cxOps = [
-  { title: "Customer Service", items: ["Account & transaction queries","Service requests","Product support"] },
-  { title: "Digital Support", items: ["Chat & messaging operations","Email support","Self-service assistance"] },
-  { title: "Complaints & Resolution", items: ["Complaint intake","Case management","Escalation workflows"] },
-  { title: "Customer Insights", items: ["Interaction analytics","Service trends","Customer feedback","Operational insights"] },
+  { title: "Customer Service", items: ["Account & transaction queries", "Service requests", "Product support"] },
+  { title: "Digital Support", items: ["Chat & messaging operations", "Email support", "Self-service assistance"] },
+  { title: "Complaints & Resolution", items: ["Complaint intake", "Case management", "Escalation workflows"] },
+  { title: "Customer Insights", items: ["Interaction analytics", "Service trends", "Customer feedback", "Operational insights"] },
 ];
 
 const outcomeIconProps = { width: 22, height: 22, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, "aria-hidden": true };
@@ -162,12 +162,12 @@ const modelLayers = [
 
 const whyIconProps = { width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, "aria-hidden": true };
 const whyPoints = [
-  { num: "01", name: "Domain-led", desc: "Solutions built around real banking processes and operating environments.", icon: <svg key="d" {...whyIconProps}><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg> },
-  { num: "02", name: "AI-first", desc: "Intelligence embedded into documents, workflows, transactions and operations.", icon: <svg key="a" {...whyIconProps}><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.5"/><circle cx="12" cy="16" r="4"/><path d="M12 12v-2"/><path d="M8 20h8"/></svg> },
-  { num: "03", name: "Human + Digital", desc: "Technology and skilled professionals working together.", icon: <svg key="h" {...whyIconProps}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> },
-  { num: "04", name: "Control-focused", desc: "Structured processes designed around accuracy, visibility and operational governance.", icon: <svg key="c" {...whyIconProps}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> },
-  { num: "05", name: "Data-driven", desc: "Reliable information supporting operations, service and decisions.", icon: <svg key="da" {...whyIconProps}><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg> },
-  { num: "06", name: "Built to Scale", desc: "Flexible models designed around changing transaction volumes and business requirements.", icon: <svg key="s" {...whyIconProps}><path d="M3 17.5l5.5-5.5 3.5 3.5L20.5 7"/><path d="M14.5 7h6v6"/><path d="M3 7h4v4"/><path d="M17 13v4h-4"/></svg> },
+  { num: "01", name: "Domain-led", desc: "Solutions built around real banking processes and operating environments.", icon: <svg key="d" {...whyIconProps}><path d="M3 21h18" /><path d="M5 21V7l7-4 7 4v14" /><path d="M9 21v-6h6v6" /></svg> },
+  { num: "02", name: "AI-first", desc: "Intelligence embedded into documents, workflows, transactions and operations.", icon: <svg key="a" {...whyIconProps}><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.5" /><circle cx="12" cy="16" r="4" /><path d="M12 12v-2" /><path d="M8 20h8" /></svg> },
+  { num: "03", name: "Human + Digital", desc: "Technology and skilled professionals working together.", icon: <svg key="h" {...whyIconProps}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg> },
+  { num: "04", name: "Control-focused", desc: "Structured processes designed around accuracy, visibility and operational governance.", icon: <svg key="c" {...whyIconProps}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg> },
+  { num: "05", name: "Data-driven", desc: "Reliable information supporting operations, service and decisions.", icon: <svg key="da" {...whyIconProps}><rect x="3" y="12" width="4" height="9" rx="1" /><rect x="10" y="7" width="4" height="14" rx="1" /><rect x="17" y="3" width="4" height="18" rx="1" /></svg> },
+  { num: "06", name: "Built to Scale", desc: "Flexible models designed around changing transaction volumes and business requirements.", icon: <svg key="s" {...whyIconProps}><path d="M3 17.5l5.5-5.5 3.5 3.5L20.5 7" /><path d="M14.5 7h6v6" /><path d="M3 7h4v4" /><path d="M17 13v4h-4" /></svg> },
 ];
 const whyImages = [
   "/healthcare/domain led.svg",
@@ -199,7 +199,7 @@ export default function BankingOperationsPage() {
     stage.style.transform = `perspective(1200px) rotateY(${(x * 8).toFixed(2)}deg) rotateX(${(y * -8).toFixed(2)}deg)`;
   };
   const onBkHdTiltReset = () => {
-    if (bkHdStageRef.current) bkHdStageRef.current.style.transform = "";
+    if (bkHdStageRef.current) bkHdStageRef.current.style.transform = "perspective(1000px) rotateY(-4deg)";
   };
 
   const toggleStage = (key: string) => {
@@ -449,18 +449,17 @@ export default function BankingOperationsPage() {
         /* ── S08 OUTCOMES ── */
         .bk-s08 { background: #ffffff; padding: clamp(76px, 9vw, 128px) 80px; }
         .bk-s08 .bk-h2 { color: #0f172a; }
-        .bk-s08-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 56px; }
-        .bk-s08-card { position: relative; overflow: hidden; background: #f5f5f3; border-radius: 16px; display: flex; flex-direction: row; min-height: 220px; box-shadow: 0 2px 12px -4px rgba(12,27,48,0.08); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease; }
-        .bk-s08-card--dark { background: #0c1b2e; }
-        .bk-s08-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px -14px rgba(12,27,48,0.20); }
-        .bk-s08-body { flex: 0 0 50%; padding: 24px 20px 24px 24px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; z-index: 2; pointer-events: none; }
+        .bk-s08-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
+        .bk-s08-card { position: relative; overflow: hidden; background: #f5f5f3; border-radius: 14px; display: flex; flex-direction: row; min-height: 180px; box-shadow: 0 2px 12px -4px rgba(12,27,48,0.08); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, background-color 0.4s cubic-bezier(0.16,1,0.3,1); }
+        .bk-s08-card:hover { transform: translateY(-4px); background: #0c1b2e; box-shadow: 0 16px 40px -14px rgba(12,27,48,0.20); }
+        .bk-s08-body { flex: 0 0 50%; padding: 18px 14px 18px 20px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; z-index: 2; pointer-events: none; }
         .bk-s08-body * { pointer-events: auto; }
-        .bk-s08-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8a97a8; margin: 0 0 10px; }
-        .bk-s08-card--dark .bk-s08-eyebrow { color: #6b8299; }
-        .bk-s08-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(20px, 1.8vw, 26px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #0a1628; margin: 0 0 10px; }
-        .bk-s08-card--dark .bk-s08-title { color: #ffffff; }
-        .bk-s08-desc { font-size: 12.5px; line-height: 1.6; color: #5a6b7f; margin: 0; max-width: 24ch; }
-        .bk-s08-card--dark .bk-s08-desc { color: #7a96ae; }
+        .bk-s08-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8a97a8; margin: 0 0 8px; transition: color 0.35s ease; }
+        .bk-s08-card:hover .bk-s08-eyebrow { color: #6b8299; }
+        .bk-s08-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(17px, 1.45vw, 21px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #0a1628; margin: 0 0 8px; transition: color 0.35s ease; }
+        .bk-s08-card:hover .bk-s08-title { color: #ffffff; }
+        .bk-s08-desc { font-size: 11.5px; line-height: 1.55; color: #5a6b7f; margin: 0; max-width: 26ch; transition: color 0.35s ease; }
+        .bk-s08-card:hover .bk-s08-desc { color: #7a96ae; }
         .bk-s08-media { position: absolute; right: 0; top: 0; bottom: 0; width: 68%; z-index: 1; overflow: hidden; }
         .bk-s08-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
         .bk-s08-card:hover .bk-s08-media img { transform: scale(1.05); }
@@ -702,8 +701,8 @@ export default function BankingOperationsPage() {
               <img key={activeTab} src={ibsTabs[activeTab].img} alt={ibsTabs[activeTab].alt} />
               <div className="bk-s04-photo-tint" />
               <div className="bk-s04-nav">
-                <button aria-label="Previous" onClick={() => setActiveTab(Math.max(0, activeTab - 1))}><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
-                <button aria-label="Next" onClick={() => setActiveTab(Math.min(5, activeTab + 1))}><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+                <button aria-label="Previous" onClick={() => setActiveTab(Math.max(0, activeTab - 1))}><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg></button>
+                <button aria-label="Next" onClick={() => setActiveTab(Math.min(5, activeTab + 1))}><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" /></svg></button>
               </div>
             </div>
           </div>
@@ -728,7 +727,7 @@ export default function BankingOperationsPage() {
               <div className="bk-cw">
                 <svg className="bk-cw-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
                   <path
-                    d="M14 28 H50 M50 28 H86 M86 28 L86 67 M86 74 H62 M62 74 H38 M38 74 H14"
+                    d="M14 16 H50 M50 16 H86 M86 16 L86 43 M86 50 L86 77 M86 84 H50 M50 84 H14"
                     stroke="#C6E84A"
                     strokeOpacity="0.42"
                     strokeWidth="1.2"
@@ -737,12 +736,12 @@ export default function BankingOperationsPage() {
                   />
                 </svg>
 
-                <span className="bk-cw-arrow bk-cw-arrow--r" style={{ left: "32%", top: "28%" }} aria-hidden="true" />
-                <span className="bk-cw-arrow bk-cw-arrow--r" style={{ left: "68%", top: "28%" }} aria-hidden="true" />
-                <span className="bk-cw-arrow bk-cw-arrow--d" style={{ left: "86%", top: "67%" }} aria-hidden="true" />
-                <span className="bk-cw-arrow bk-cw-arrow--l" style={{ left: "74%", top: "74%" }} aria-hidden="true" />
-                <span className="bk-cw-arrow bk-cw-arrow--l" style={{ left: "50%", top: "74%" }} aria-hidden="true" />
-                <span className="bk-cw-arrow bk-cw-arrow--l" style={{ left: "26%", top: "74%" }} aria-hidden="true" />
+                <span className="bk-cw-arrow bk-cw-arrow--r" style={{ left: "32%", top: "16%" }} aria-hidden="true" />
+                <span className="bk-cw-arrow bk-cw-arrow--r" style={{ left: "68%", top: "16%" }} aria-hidden="true" />
+                <span className="bk-cw-arrow bk-cw-arrow--d" style={{ left: "86%", top: "43%" }} aria-hidden="true" />
+                <span className="bk-cw-arrow bk-cw-arrow--d" style={{ left: "86%", top: "77%" }} aria-hidden="true" />
+                <span className="bk-cw-arrow bk-cw-arrow--l" style={{ left: "68%", top: "84%" }} aria-hidden="true" />
+                <span className="bk-cw-arrow bk-cw-arrow--l" style={{ left: "32%", top: "84%" }} aria-hidden="true" />
 
                 {kycSteps.map((s, i) => (
                   <div key={s.name} className="bk-cw-node" style={{ left: `${cwPositions[i].x}%`, top: `${cwPositions[i].y}%` }}>
@@ -880,7 +879,7 @@ export default function BankingOperationsPage() {
           <div className="bk-hd-wrap">
             <div className="bk-hd-grid">
               <div className="bk-hd-copy bk-reveal">
-                
+
                 <span className="bk-hd-pill">Human + Digital</span>
                 <h2 className="bk-hd-title">
                   <span className="bk-hd-title-white">Smarter banking should</span>
@@ -893,71 +892,13 @@ export default function BankingOperationsPage() {
               </div>
               <div className="bk-hd-visual bk-reveal">
                 <div className="bk-hd-stage" ref={bkHdStageRef}>
-                  <div className="bk-hd-halo" aria-hidden="true" />
-                  <svg className="bk-hd-conn" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                    <line x1="24" y1="16" x2="36" y2="29" />
-                    <line x1="24" y1="54" x2="36" y2="46" />
-                    <line x1="52" y1="70" x2="62" y2="48" />
-                  </svg>
-                  <div className="bk-hd-globe" aria-hidden="true">
-                    <div className="bk-hd-solid" />
-                    <svg className="bk-hd-mesh" viewBox="0 0 400 400" fill="none">
-                      <ellipse cx="200" cy="200" rx="198" ry="198" stroke="rgba(198,241,53,0.30)" strokeWidth="1" />
-                      <ellipse cx="200" cy="200" rx="198" ry="126" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
-                      <ellipse cx="200" cy="200" rx="198" ry="62" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
-                      <ellipse cx="200" cy="200" rx="126" ry="198" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
-                      <ellipse cx="200" cy="200" rx="62" ry="198" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
-                      <ellipse cx="200" cy="200" rx="150" ry="198" stroke="rgba(110,160,255,0.10)" strokeWidth="1" />
-                      <path d="M2 200h396" stroke="rgba(198,241,53,0.20)" strokeWidth="1" />
-                    </svg>
-                    <div className="bk-hd-pts">
-                      {[
-                        [62, 22], [70, 30], [76, 40], [74, 52], [66, 62], [54, 68], [44, 66], [36, 60],
-                        [30, 50], [31, 38], [38, 28], [50, 24], [60, 36], [66, 48], [48, 56], [56, 40],
-                        [40, 44], [44, 52], [54, 30], [58, 58],
-                      ].map(([px, py], i) => (
-                        <span
-                          key={i}
-                          className={"bk-hd-pt" + (i % 5 === 0 ? " bk-hd-pt--glow" : "")}
-                          style={{ left: `${px}%`, top: `${py}%` }}
-                        />
-                      ))}
-                    </div>
-                    <div className="bk-hd-core" />
-                  </div>
-                  <div className="bk-hd-orbit bk-hd-orbit--a" aria-hidden="true">
-                    <span className="bk-hd-orbit-dot" />
-                  </div>
-                  <div className="bk-hd-orbit bk-hd-orbit--b" aria-hidden="true">
-                    <span className="bk-hd-orbit-dot" />
-                  </div>
-                  <div className="bk-hd-card bk-hd-card--tl">
-                    <span className="bk-hd-card-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M22 12h-4M6 12H2" /><circle cx="12" cy="12" r="8" opacity="0.45" /></svg>
-                    </span>
-                    <div>
-                      <h3>Smarter decisions</h3>
-                      <p>AI analyzes patterns in real time.</p>
-                    </div>
-                  </div>
-                  <div className="bk-hd-card bk-hd-card--ml">
-                    <span className="bk-hd-card-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5" /><path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" /></svg>
-                    </span>
-                    <div>
-                      <h3>Automate at scale</h3>
-                      <p>Handle high volumes with speed and accuracy.</p>
-                    </div>
-                  </div>
-                  <div className="bk-hd-card bk-hd-card--r">
-                    <span className="bk-hd-card-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" /></svg>
-                    </span>
-                    <div>
-                      <h3>Human insight</h3>
-                      <p>Context, empathy and complex judgment.</p>
-                    </div>
-                  </div>
+                  <img
+                    className="bk-hd-img"
+                    src="/services/banking/Customer Experience.jpg"
+                    alt="Banking human plus digital operations"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
             </div>
@@ -1027,7 +968,9 @@ export default function BankingOperationsPage() {
           .bk-hd-line { font-size: clamp(15.5px, 1.35vw, 18px); line-height: 1.85; color: #93A0B0; margin: 0 0 10px; max-width: 540px; }
           .bk-hd-em { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(19px, 1.9vw, 23px); font-weight: 700; color: #C6F135; margin: 24px 0 0; }
           .bk-hd-visual { position: relative; display: flex; align-items: center; justify-content: center; min-height: clamp(420px, 52vw, 640px); }
-          .bk-hd-stage { position: relative; width: 100%; max-width: 660px; aspect-ratio: 1 / 1; transform-style: preserve-3d; transition: transform 0.12s ease-out; will-change: transform; }
+          .bk-hd-stage { position: relative; width: 100%; max-width: 560px; aspect-ratio: 4 / 3; border-radius: 26px; border: 1px solid rgba(255,255,255,0.12); background: rgba(11,18,32,0.4); box-shadow: 0 24px 48px rgba(0,0,0,0.4); transform-style: preserve-3d; transition: transform 0.12s ease-out; will-change: transform; overflow: hidden; }
+          .bk-hd-img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.001); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+          .bk-hd-stage:hover .bk-hd-img { transform: scale(1.05); }
           .bk-hd-halo { position: absolute; left: 50%; top: 46%; width: 78%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(198,241,53,0.10) 0%, rgba(96,146,255,0.05) 45%, rgba(11,18,32,0) 70%); }
           .bk-hd-globe { position: absolute; left: 50%; top: 46%; width: 62%; aspect-ratio: 1; transform: translate(-50%, -50%); }
           .bk-hd-solid { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 34% 30%, rgba(198,241,53,0.10) 0%, rgba(11,18,32,0.55) 62%, rgba(11,18,32,0) 100%); animation: bkHdPulse 5s ease-in-out infinite; }
@@ -1065,11 +1008,7 @@ export default function BankingOperationsPage() {
           @media (max-width: 900px) {
             .bk-hd-grid { grid-template-columns: 1fr; gap: 40px; min-height: 0; }
             .bk-hd-visual { min-height: 0; }
-            .bk-hd-stage { max-width: 560px; aspect-ratio: 1 / 1; margin: 0 auto; }
-            .bk-hd-card { width: 212px; }
-            .bk-hd-card--tl { left: 0; top: 2%; }
-            .bk-hd-card--ml { left: -4%; top: 42%; }
-            .bk-hd-card--r { left: 58%; top: 58%; }
+            .bk-hd-stage { max-width: 560px; margin: 0 auto; }
           }
           @media (max-width: 760px) {
             .bk-hd-stage { max-width: 460px; }
@@ -1097,7 +1036,7 @@ export default function BankingOperationsPage() {
               <p className="bk-cx-para">Sytrion helps banks create connected customer operations that combine digital self-service, AI-assisted support and human expertise.</p>
             </div>
             <div className="bk-cx-photo bk-reveal">
-              <img src="/services/banking/Customer Experience.jpg" alt="Service professional providing assisted customer support in a banking operations context" loading="lazy" decoding="async" />
+              <img src="/services/banking/Human + Digital banking.jpg" alt="Service professional providing assisted customer support in a banking operations context" loading="lazy" decoding="async" />
               <div className="bk-cx-photo-tint" />
             </div>
           </div>
@@ -1163,7 +1102,7 @@ export default function BankingOperationsPage() {
           </div>
           <div className="bk-s08-grid bk-reveal">
             {outcomes.map((o, i) => (
-              <article key={o.word} className={`bk-s08-card${i === 0 ? " bk-s08-card--dark" : ""}`}>
+              <article key={o.word} className="bk-s08-card">
                 <div className="bk-s08-body">
                   <p className="bk-s08-eyebrow">{o.num} / {o.word}</p>
                   <h3 className="bk-s08-title">{o.sub}</h3>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import StaircaseFlow from "./StaircaseFlow";
 
 const landscapeItems = [
   { num: "01", label: "Always-on traveler expectations", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> },
@@ -94,13 +95,13 @@ const intelligenceNodes = [
 ];
 
 const disruptionSteps = [
-  { name: "DETECT", sub: "Schedule disruption", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> },
-  { name: "IDENTIFY", sub: "Affected travelers", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> },
-  { name: "PRIORITIZE", sub: "Critical journeys", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> },
-  { name: "REBOOK", sub: "Alternative options", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg> },
-  { name: "INFORM", sub: "Traveler communication", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg> },
-  { name: "SUPPORT", sub: "Exception handling", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg> },
-  { name: "LEARN", sub: "Disruption analytics", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg> },
+  { name: "Detect", desc: "Schedule disruption" },
+  { name: "Identify", desc: "Affected travelers" },
+  { name: "Prioritize", desc: "Critical journeys" },
+  { name: "Rebook", desc: "Alternative options" },
+  { name: "Inform", desc: "Traveler communication" },
+  { name: "Support", desc: "Exception handling" },
+  { name: "Learn", desc: "Disruption analytics" },
 ];
 
 const outcomes = [
@@ -195,7 +196,7 @@ export default function TravelHospitalityPage() {
     stage.style.transform = `perspective(1200px) rotateY(${(x * 8).toFixed(2)}deg) rotateX(${(y * -8).toFixed(2)}deg)`;
   };
   const onTvHdTiltReset = () => {
-    if (tvHdStageRef.current) tvHdStageRef.current.style.transform = "";
+    if (tvHdStageRef.current) tvHdStageRef.current.style.transform = "perspective(1000px) rotateY(-4deg)";
   };
 
   const toggleGroup = (key: string) => {
@@ -420,70 +421,26 @@ export default function TravelHospitalityPage() {
         .tv-hd-line { font-size: clamp(15.5px, 1.35vw, 18px); line-height: 1.85; color: #93A0B0; margin: 0 0 10px; max-width: 540px; }
         .tv-hd-em { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(19px, 1.9vw, 23px); font-weight: 700; color: #C6F135; margin: 24px 0 0; }
         .tv-hd-visual { position: relative; display: flex; align-items: center; justify-content: center; min-height: clamp(420px, 52vw, 640px); }
-        .tv-hd-stage { position: relative; width: 100%; max-width: 660px; aspect-ratio: 1 / 1; transform-style: preserve-3d; transition: transform 0.12s ease-out; will-change: transform; }
-        .tv-hd-halo { position: absolute; left: 50%; top: 46%; width: 78%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(198,241,53,0.10) 0%, rgba(96,146,255,0.05) 45%, rgba(11,18,32,0) 70%); }
-        .tv-hd-globe { position: absolute; left: 50%; top: 46%; width: 62%; aspect-ratio: 1; transform: translate(-50%, -50%); }
-        .tv-hd-solid { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 34% 30%, rgba(198,241,53,0.10) 0%, rgba(11,18,32,0.55) 62%, rgba(11,18,32,0) 100%); animation: tvHdPulse 5s ease-in-out infinite; }
-        .tv-hd-mesh { position: absolute; inset: 0; width: 100%; height: 100%; animation: tvHdSpin 70s linear infinite; }
-        .tv-hd-pts { position: absolute; inset: 0; }
-        .tv-hd-pt { position: absolute; width: 4px; height: 4px; margin: -2px 0 0 -2px; border-radius: 50%; background: rgba(198,241,53,0.9); }
-        .tv-hd-pt--glow { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: #C6F135; box-shadow: 0 0 10px 2px rgba(198,241,53,0.75); animation: tvHdTwinkle 3.4s ease-in-out infinite; }
-        .tv-hd-core { position: absolute; left: 50%; top: 50%; width: 26%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(198,241,53,0.55) 0%, rgba(198,241,53,0) 70%); animation: tvHdPulse 5s ease-in-out infinite 0.4s; }
-        .tv-hd-orbit { position: absolute; left: 50%; top: 46%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; border: 1px solid rgba(198,241,53,0.28); transform-style: preserve-3d; }
-        .tv-hd-orbit--a { width: 82%; transform: translate(-50%, -50%) rotateX(68deg) rotateZ(-14deg); animation: tvHdOrbitA 18s linear infinite; }
-        .tv-hd-orbit--b { width: 54%; transform: translate(-50%, -50%) rotateX(76deg) rotateZ(24deg); border-color: rgba(198,241,53,0.18); animation: tvHdOrbitB 26s linear infinite; }
-        .tv-hd-orbit-dot { position: absolute; left: 50%; top: -4px; transform: translateX(-50%); width: 7px; height: 7px; border-radius: 50%; background: #C6F135; box-shadow: 0 0 14px 3px rgba(198,241,53,0.8); }
-        .tv-hd-conn { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-        .tv-hd-conn line { stroke: rgba(147,160,176,0.35); stroke-width: 1; stroke-dasharray: 2.5 3; }
-        .tv-hd-card { position: absolute; z-index: 3; display: flex; gap: 12px; align-items: flex-start; width: 232px; padding: 14px 16px; border-radius: 14px; background: rgba(16,26,44,0.6); border: 1px solid rgba(147,160,176,0.22); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-        .tv-hd-card-icon { width: 36px; height: 36px; flex: 0 0 auto; border-radius: 50%; background: rgba(11,18,32,0.9); border: 1.5px solid rgba(198,241,53,0.7); display: flex; align-items: center; justify-content: center; color: #C6F135; }
-        .tv-hd-card-icon svg { width: 16px; height: 16px; }
-        .tv-hd-card h3 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: #ffffff; margin: 0 0 4px; }
-        .tv-hd-card p { font-size: 12px; line-height: 1.5; color: #93A0B0; margin: 0; }
-        .tv-hd-card--tl { left: 0; top: 2%; }
-        .tv-hd-card--ml { left: -7%; top: 42%; }
-        .tv-hd-card--r { left: 56%; top: 56%; }
+        .tv-hd-stage { position: relative; width: 100%; max-width: 560px; aspect-ratio: 4 / 3; border-radius: 26px; border: 1px solid rgba(255,255,255,0.12); background: rgba(11,18,32,0.4); box-shadow: 0 24px 48px rgba(0,0,0,0.4); transform-style: preserve-3d; transition: transform 0.12s ease-out; will-change: transform; overflow: hidden; }
+        .tv-hd-img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.001); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+        .tv-hd-stage:hover .tv-hd-img { transform: scale(1.05); }
 
-        @keyframes tvHdSpin { to { transform: rotate(360deg); } }
-        @keyframes tvHdPulse { 0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 1; transform: translate(-50%, -50%) scale(1.06); } }
-        @keyframes tvHdTwinkle { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
-        @keyframes tvHdOrbitA { to { transform: translate(-50%, -50%) rotateX(68deg) rotateZ(-14deg) rotate(360deg); } }
-        @keyframes tvHdOrbitB { to { transform: translate(-50%, -50%) rotateX(76deg) rotateZ(24deg) rotate(-360deg); } }
 
-        .tv-s09 { background: #ffffff; padding: clamp(76px, 9vw, 128px) 80px; }
-        .tv-s09 .tv-h2 { color: #0f172a; }
-        .tv-s09 .tv-lede { color: #5A5D66; }
-        .tv-s09 .tv-copy { color: #5A5D66; }
-        .tv-s09-head { max-width: 1280px; }
-        .tv-s09-flow { margin-top: 52px; background: linear-gradient(135deg, #2b2f1a, #0d0f08); border-radius: 20px; padding: 20px 44px; }
-        .tv-s09-rail { position: relative; display: flex; height: 330px; }
-        .tv-s09-rail-line { position: absolute; top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-50%); background: linear-gradient(90deg, rgba(198,232,74,0.12), rgba(198,232,74,0.95)); border-radius: 2px; z-index: 0; }
-        .tv-s09-step { position: relative; flex: 1; height: 100%; }
-        .tv-s09-node { position: absolute; top: 50%; left: 50%; width: 13px; height: 13px; border-radius: 50%; background: #C6E84A; transform: translate(-50%, -50%); z-index: 2; }
-        .tv-s09-stem { position: absolute; left: 50%; width: 1px; background: rgba(198,232,74,0.35); z-index: 1; }
-        .tv-s09-stem--up { bottom: 50%; height: 46px; }
-        .tv-s09-stem--down { top: 50%; height: 46px; }
-        .tv-s09-label { position: absolute; left: 50%; transform: translateX(-50%); width: 168px; text-align: center; z-index: 2; }
-        .tv-s09-label--up { bottom: calc(50% + 46px); }
-        .tv-s09-label--down { top: calc(50% + 46px); }
-        .tv-s09-lbl-num { display: block; font-family: var(--font-syne), Arial, sans-serif; font-size: 22px; font-weight: 800; color: #C6E84A; text-shadow: 0 0 18px rgba(198,232,74,0.5); margin-bottom: 4px; }
-        .tv-s09-name { font-family: var(--font-syne), Arial, sans-serif; font-size: 13.5px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: #f6f7ef; margin: 0 0 6px; }
-        .tv-s09-desc { font-size: 12.5px; color: #a9ab9a; margin: 0; line-height: 1.45; }
+
 
         .tv-s10 { background: #ffffff; padding: clamp(76px, 9vw, 128px) 80px; }
         .tv-s10 .tv-h2 { color: #0E1B2A; }
-        .tv-out-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 56px; }
-        .tv-outcome { position: relative; overflow: hidden; background: #f5f5f3; border-radius: 16px; display: flex; flex-direction: row; min-height: 220px; box-shadow: 0 2px 12px -4px rgba(12,27,48,0.08); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease; }
-        .tv-outcome--dark { background: #0c1b2e; }
-        .tv-outcome:hover { transform: translateY(-4px); box-shadow: 0 16px 40px -14px rgba(12,27,48,0.20); }
-        .tv-outcome-body { flex: 0 0 50%; padding: 24px 20px 24px 24px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; z-index: 2; pointer-events: none; }
+        .tv-out-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
+        .tv-outcome { position: relative; overflow: hidden; background: #f5f5f3; border-radius: 14px; display: flex; flex-direction: row; min-height: 180px; box-shadow: 0 2px 12px -4px rgba(12,27,48,0.08); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, background-color 0.4s cubic-bezier(0.16,1,0.3,1); }
+        .tv-outcome:hover { transform: translateY(-4px); background: #0c1b2e; box-shadow: 0 16px 40px -14px rgba(12,27,48,0.20); }
+        .tv-outcome-body { flex: 0 0 50%; padding: 18px 14px 18px 20px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; z-index: 2; pointer-events: none; }
         .tv-outcome-body * { pointer-events: auto; }
-        .tv-outcome-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8a97a8; margin: 0 0 10px; }
-        .tv-outcome--dark .tv-outcome-eyebrow { color: #6b8299; }
-        .tv-outcome-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(20px, 1.8vw, 26px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #0a1628; margin: 0 0 10px; }
-        .tv-outcome--dark .tv-outcome-title { color: #ffffff; }
-        .tv-outcome-desc { font-size: 12.5px; line-height: 1.6; color: #5a6b7f; margin: 0; max-width: 24ch; }
-        .tv-outcome--dark .tv-outcome-desc { color: #7a96ae; }
+        .tv-outcome-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8a97a8; margin: 0 0 8px; transition: color 0.35s ease; }
+        .tv-outcome:hover .tv-outcome-eyebrow { color: #6b8299; }
+        .tv-outcome-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(17px, 1.45vw, 21px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #0a1628; margin: 0 0 8px; transition: color 0.35s ease; }
+        .tv-outcome:hover .tv-outcome-title { color: #ffffff; }
+        .tv-outcome-desc { font-size: 11.5px; line-height: 1.55; color: #5a6b7f; margin: 0; max-width: 26ch; transition: color 0.35s ease; }
+        .tv-outcome:hover .tv-outcome-desc { color: #7a96ae; }
         .tv-outcome-media { position: absolute; right: 0; top: 0; bottom: 0; width: 68%; z-index: 1; overflow: hidden; }
         .tv-outcome-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
         .tv-outcome:hover .tv-outcome-media img { transform: scale(1.05); }
@@ -501,29 +458,15 @@ export default function TravelHospitalityPage() {
         @media (max-width: 1080px) {
           .tv-s02-row { grid-template-columns: 1fr; gap: 40px; }
           .tv-hd-grid { grid-template-columns: 1fr 1fr; }
-          .tv-hd-card { width: 200px; }
-          .tv-hd-card--ml { left: -4%; }
         }
         @media (max-width: 900px) {
           .tv-hd-grid { grid-template-columns: 1fr; gap: 40px; min-height: 0; }
           .tv-hd-visual { min-height: 0; }
-          .tv-hd-stage { max-width: 560px; aspect-ratio: 1 / 1; margin: 0 auto; }
-          .tv-hd-card { width: 212px; }
-          .tv-hd-card--tl { left: 0; top: 2%; }
-          .tv-hd-card--ml { left: -4%; top: 42%; }
-          .tv-hd-card--r { left: 58%; top: 58%; }
+          .tv-hd-stage { max-width: 560px; margin: 0 auto; }
           .tv-s03-card { flex: 0 0 calc((100% - 24px) / 2); }
           .tv-s04-tabbar { grid-template-columns: repeat(3, 1fr); }
           .tv-s04-panel { grid-template-columns: 1fr; }
           .tv-s06-row { grid-template-columns: 1fr; }
-          .tv-s09-flow { padding: 36px 24px; }
-          .tv-s09-rail { flex-direction: column; height: auto; gap: 0; }
-          .tv-s09-rail-line { top: 0; bottom: 0; left: 16px; right: auto; width: 2px; height: auto; transform: translateY(0); background: linear-gradient(180deg, rgba(198,232,74,0.12), rgba(198,232,74,0.95)); }
-          .tv-s09-step { height: auto; padding: 0 0 32px 44px; }
-          .tv-s09-step:last-child { padding-bottom: 0; }
-          .tv-s09-node { top: 6px; left: 16px; transform: translate(-50%, 0); }
-          .tv-s09-stem { display: none; }
-          .tv-s09-label { position: static; transform: none; width: auto; text-align: left; }
           .tv-s05-split { grid-template-columns: 1fr; }
           .tv-s05-flow { max-width: 100%; aspect-ratio: auto; }
           .tv-s05-lines, .tv-s05-arrow { display: none; }
@@ -534,11 +477,9 @@ export default function TravelHospitalityPage() {
         }
         @media (max-width: 760px) {
           .tv-hd-stage { max-width: 460px; }
-          .tv-hd-conn, .tv-hd-card--ml, .tv-hd-card--r { display: none; }
-          .tv-hd-card--tl { left: 4%; top: 6%; }
         }
         @media (max-width: 640px) {
-          .tv-s02, .tv-s04, .tv-s06, .tv-s09, .tv-s10 { padding-left: 20px; padding-right: 20px; }
+          .tv-s02, .tv-s04, .tv-s06, .tv-s10 { padding-left: 20px; padding-right: 20px; }
           .tv-s03 { padding-left: 20px; padding-right: 20px; }
           .tv-s05 { padding-left: 20px; padding-right: 20px; }
           .tv-s05-circle { width: 58px; height: 58px; }
@@ -558,6 +499,8 @@ export default function TravelHospitalityPage() {
         @media (prefers-reduced-motion: reduce) {
           .tv-reveal { opacity: 1; transform: none; transition: none; animation: none; }
           .tv-s05-node:hover .tv-s05-circle { transform: none; }
+          .tv-hd-stage { transform: none !important; }
+          .tv-hd-img { transition: none; }
         }
       `}</style>
 
@@ -828,71 +771,13 @@ export default function TravelHospitalityPage() {
               </div>
               <div className="tv-hd-visual tv-reveal">
                 <div className="tv-hd-stage" ref={tvHdStageRef}>
-                  <div className="tv-hd-halo" aria-hidden="true" />
-                  <svg className="tv-hd-conn" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                    <line x1="24" y1="16" x2="36" y2="29" />
-                    <line x1="24" y1="54" x2="36" y2="46" />
-                    <line x1="52" y1="70" x2="62" y2="48" />
-                  </svg>
-                  <div className="tv-hd-globe" aria-hidden="true">
-                    <div className="tv-hd-solid" />
-                    <svg className="tv-hd-mesh" viewBox="0 0 400 400" fill="none">
-                      <ellipse cx="200" cy="200" rx="198" ry="198" stroke="rgba(198,241,53,0.30)" strokeWidth="1" />
-                      <ellipse cx="200" cy="200" rx="198" ry="126" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
-                      <ellipse cx="200" cy="200" rx="198" ry="62" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
-                      <ellipse cx="200" cy="200" rx="126" ry="198" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
-                      <ellipse cx="200" cy="200" rx="62" ry="198" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
-                      <ellipse cx="200" cy="200" rx="150" ry="198" stroke="rgba(110,160,255,0.10)" strokeWidth="1" />
-                      <path d="M2 200h396" stroke="rgba(198,241,53,0.20)" strokeWidth="1" />
-                    </svg>
-                    <div className="tv-hd-pts">
-                      {[
-                        [62, 22], [70, 30], [76, 40], [74, 52], [66, 62], [54, 68], [44, 66], [36, 60],
-                        [30, 50], [31, 38], [38, 28], [50, 24], [60, 36], [66, 48], [48, 56], [56, 40],
-                        [40, 44], [44, 52], [54, 30], [58, 58],
-                      ].map(([px, py], i) => (
-                        <span
-                          key={i}
-                          className={"tv-hd-pt" + (i % 5 === 0 ? " tv-hd-pt--glow" : "")}
-                          style={{ left: `${px}%`, top: `${py}%` }}
-                        />
-                      ))}
-                    </div>
-                    <div className="tv-hd-core" />
-                  </div>
-                  <div className="tv-hd-orbit tv-hd-orbit--a" aria-hidden="true">
-                    <span className="tv-hd-orbit-dot" />
-                  </div>
-                  <div className="tv-hd-orbit tv-hd-orbit--b" aria-hidden="true">
-                    <span className="tv-hd-orbit-dot" />
-                  </div>
-                  <div className="tv-hd-card tv-hd-card--tl">
-                    <span className="tv-hd-card-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M22 12h-4M6 12H2" /><circle cx="12" cy="12" r="8" opacity="0.45" /></svg>
-                    </span>
-                    <div>
-                      <h3>Smarter decisions</h3>
-                      <p>AI analyzes patterns in real time.</p>
-                    </div>
-                  </div>
-                  <div className="tv-hd-card tv-hd-card--ml">
-                    <span className="tv-hd-card-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5" /><path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" /></svg>
-                    </span>
-                    <div>
-                      <h3>Automate at scale</h3>
-                      <p>Handle high volumes with speed and accuracy.</p>
-                    </div>
-                  </div>
-                  <div className="tv-hd-card tv-hd-card--r">
-                    <span className="tv-hd-card-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" /></svg>
-                    </span>
-                    <div>
-                      <h3>Human insight</h3>
-                      <p>Context, empathy and complex judgment.</p>
-                    </div>
-                  </div>
+                  <img
+                    className="tv-hd-img"
+                    src="/dpi/Human + Digital.jpg"
+                    alt="Human + Digital travel and hospitality experience"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
             </div>
@@ -900,35 +785,26 @@ export default function TravelHospitalityPage() {
         </div>
       </section>
 
-      <section className="tv-s09">
-        <div className="tv-wrap">
-          <div className="tv-s09-head tv-reveal">
-            <TvLabel text="WHEN PLANS CHANGE" />
-            <h2 className="tv-h2">Turn disruption into <span style={{ color: "#C6E84A" }}> intelligent service recovery.</span></h2>
-            <p className="tv-lede">Travel disruptions create a cascade of operational decisions across schedules, bookings, travelers, channels and service teams.</p>
-            <p className="tv-copy">Sytrion helps orchestrate the administrative workflows behind disruption management so teams can respond with greater speed and consistency.</p>
-          </div>
-          <div className="tv-s09-flow tv-reveal">
-            <div className="tv-s09-rail">
-              <div className="tv-s09-rail-line" aria-hidden="true" />
-              {disruptionSteps.map((s, i) => {
-                const up = i % 2 === 0;
-                return (
-                  <div key={s.name} className="tv-s09-step">
-                    <div className="tv-s09-node" aria-hidden="true" />
-                    <div className={"tv-s09-stem tv-s09-stem--" + (up ? "up" : "down")} aria-hidden="true" />
-                    <div className={"tv-s09-label tv-s09-label--" + (up ? "up" : "down")}>
-                      <span className="tv-s09-lbl-num">{String(i + 1).padStart(2, "0")}</span>
-                      <h3 className="tv-s09-name">{s.name}</h3>
-                      <p className="tv-s09-desc">{s.sub}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
+      <StaircaseFlow
+        ariaLabel="When plans change"
+        eyebrow="WHEN PLANS CHANGE"
+        title={
+          <>
+            Turn disruption into{" "}
+            <span className="stf-h2-accent">intelligent service recovery.</span>
+          </>
+        }
+        description={
+          <>
+            Travel disruptions create a cascade of operational decisions across schedules,
+            bookings, travelers, channels and service teams. Sytrion helps orchestrate the
+            administrative workflows behind disruption management so teams can respond with
+            greater speed and consistency.
+          </>
+        }
+        steps={disruptionSteps}
+        revealClass="tv-reveal"
+      />
 
 <section className="tv-s10">
         <div className="tv-wrap">
@@ -937,8 +813,8 @@ export default function TravelHospitalityPage() {
             <h2 className="tv-h2">Better operations create better <span style={{ color: "#C6E84A" }}>travel experiences.</span></h2>
           </div>
           <div className="tv-out-grid tv-reveal">
-            {outcomes.map((o, i) => (
-              <article key={o.word} className={`tv-outcome${i === 0 ? " tv-outcome--dark" : ""}`}>
+            {outcomes.map((o) => (
+              <article key={o.word} className="tv-outcome">
                 <div className="tv-outcome-body">
                   <p className="tv-outcome-eyebrow">{o.num} / {o.word}</p>
                   <h3 className="tv-outcome-title">{o.sub}</h3>

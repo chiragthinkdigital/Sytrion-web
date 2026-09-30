@@ -517,24 +517,25 @@ export default function ShippingLogisticsPage() {
 
         /* ── 07 OUTCOMES ── */
         .sl-outcomes { background: #F7F8F4; }
-        .sl-outcome-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 52px; }
-        .sl-outcome { position: relative; overflow: hidden; background: #E9EAEC; border: 1px solid rgba(10,25,48,0.12); border-radius: 18px; padding: clamp(20px, 1.8vw, 24px); display: flex; flex-direction: column; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.35s ease; }
-        .sl-outcome:hover { transform: translateY(-4px); border-color: rgba(122,163,6,0.45); box-shadow: 0 18px 36px -24px rgba(10,25,48,0.28); }
+        .sl-outcome-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 40px; }
+        .sl-outcome { position: relative; overflow: hidden; background-color: #E9EAEC; border: 1px solid rgba(10,25,48,0.12); border-radius: 14px; padding: clamp(15px, 1.3vw, 18px); display: flex; flex-direction: column; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.35s ease, background-color 0.4s cubic-bezier(0.16,1,0.3,1); }
+        .sl-outcome:hover { transform: translateY(-4px); background-color: #0c1b2e; border-color: rgba(198,232,74,0.35); box-shadow: 0 20px 40px -20px rgba(12,27,48,0.45); }
         .sl-outcome::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, #C6E84A, rgba(198,232,74,0)); opacity: 0; transition: opacity 0.3s ease; }
         .sl-outcome:hover::after { opacity: 1; }
-        .sl-outcome-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid rgba(10,25,48,0.09); }
-        .sl-outcome-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #7AA306; letter-spacing: 0.14em; font-variant-numeric: tabular-nums; }
-        .sl-outcome-chip { width: 44px; height: 44px; flex: 0 0 auto; border-radius: 50%; border: 1px solid rgba(10,25,48,0.16); display: flex; align-items: center; justify-content: center; color: #7AA306; transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
+        .sl-outcome-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid rgba(10,25,48,0.09); transition: border-color 0.35s ease; }
+        .sl-outcome:hover .sl-outcome-top { border-bottom-color: rgba(255,255,255,0.14); }
+        .sl-outcome-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 700; color: #7AA306; letter-spacing: 0.14em; font-variant-numeric: tabular-nums; transition: color 0.35s ease; }
+        .sl-outcome:hover .sl-outcome-num { color: #C6E84A; }
+        .sl-outcome-chip { width: 36px; height: 36px; flex: 0 0 auto; border-radius: 50%; border: 1px solid rgba(10,25,48,0.16); display: flex; align-items: center; justify-content: center; color: #7AA306; transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
         .sl-outcome:hover .sl-outcome-chip { background: var(--color-primary); border-color: var(--color-primary); color: #16181d; }
-        .sl-outcome-word { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(20px, 1.6vw, 24px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; color: #16181d; margin: 16px 0 0; }
-        .sl-outcome-sub { font-size: 13.5px; font-weight: 600; color: #7AA306; margin: 7px 0 0; }
-        .sl-outcome-desc { font-size: 13.5px; line-height: 1.65; color: #5A5D66; margin: 10px 0 0; }
+        .sl-outcome-word { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(17px, 1.35vw, 20px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; color: #16181d; margin: 12px 0 0; transition: color 0.35s ease; }
+        .sl-outcome:hover .sl-outcome-word { color: #ffffff; }
+        .sl-outcome-sub { font-size: 12.5px; font-weight: 600; color: #7AA306; margin: 5px 0 0; transition: color 0.35s ease; }
+        .sl-outcome:hover .sl-outcome-sub { color: #C6E84A; }
+        .sl-outcome-desc { font-size: 12.5px; line-height: 1.55; color: #5A5D66; margin: 8px 0 0; transition: color 0.35s ease; }
+        .sl-outcome:hover .sl-outcome-desc { color: #9AA7B8; }
         @media (min-width: 700px) { .sl-outcome-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1081px) {
-          .sl-outcome-grid { grid-template-columns: repeat(6, 1fr); gap: 20px; }
-          .sl-outcome:nth-child(-n+3) { grid-column: span 2; }
-          .sl-outcome:nth-child(n+4) { grid-column: span 3; }
-        }
+        @media (min-width: 1081px) { .sl-outcome-grid { grid-template-columns: repeat(3, 1fr); } }
 
         /* ── 08 MODEL ── */
         .sl-model { background: #081020; color: #ffffff; }

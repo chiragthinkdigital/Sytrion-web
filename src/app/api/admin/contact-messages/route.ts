@@ -3,7 +3,7 @@ import mysql from "mysql2/promise";
 import pool, { ensureContactTable, ensureAdminUser } from "@/lib/db";
 import { createAdminToken, isAdminToken } from "@/lib/auth";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
   const cookieHeader = request.headers.get("cookie");
@@ -12,10 +12,14 @@ export async function GET(request: Request) {
     await ensureAdminUser();
 
     const [admins] = await pool.execute<mysql.RowDataPacket[]>(
-      "SELECT password_hash FROM admin_users LIMIT 1"
+      "SELECT password_hash FROM admin_users"
     );
 
-    if (admins.length === 0 || !isAdminToken(cookieHeader, createAdminToken(admins[0].password_hash))) {
+    const authorized = admins.some((a) =>
+      isAdminToken(cookieHeader, createAdminToken(a.password_hash))
+    );
+
+    if (admins.length === 0 || !authorized) {
       return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
     }
 

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import StaircaseFlow from "./StaircaseFlow";
 
 const challenges = [
   { label: "Growing product & SKU complexity", color: "#6366F1", gradient: "linear-gradient(135deg, rgba(99,102,241,0.18), rgba(99,102,241,0.04))" },
@@ -200,13 +201,13 @@ const orderSteps = [
 ];
 
 const intelCapabilities = [
-  { num: "01", title: "Product Intelligence",  tags: "Classify / Enrich / Optimize", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Product & Catalog Operations.jpg" },
-  { num: "02", title: "Order Intelligence",  tags: "Monitor / Prioritize / Resolve", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Order Management.jpg" },
-  { num: "03", title: "Decision Intelligence",  tags: "Analyze / Predict / Improve", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Fulfillment Operations (2).jpg" },
-  { num: "04", title: "Content Intelligence",  tags: "Generate / Tag / Validate", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Marketplace Operations.jpg" },
-  { num: "05", title: "Customer Intelligence",  tags: "Understand / Personalize / Assist", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Customer Operations.jpg" },
-  { num: "06", title: "Inventory Intelligence",  tags: "Analyze / Forecast / Replenish", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Commerce Data & Insights.jpg" },
-  { num: "07", title: "Fraud & Risk Intelligence",  tags: "Detect/Flag/Review ", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Fraud & Risk Intelligence.jpg" },
+  { num: "01", title: "Product Intelligence", tags: "Classify / Enrich / Optimize", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Product & Catalog Operations.jpg" },
+  { num: "02", title: "Order Intelligence", tags: "Monitor / Prioritize / Resolve", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Order Management.jpg" },
+  { num: "03", title: "Decision Intelligence", tags: "Analyze / Predict / Improve", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Fulfillment Operations (2).jpg" },
+  { num: "04", title: "Content Intelligence", tags: "Generate / Tag / Validate", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Marketplace Operations.jpg" },
+  { num: "05", title: "Customer Intelligence", tags: "Understand / Personalize / Assist", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Customer Operations.jpg" },
+  { num: "06", title: "Inventory Intelligence", tags: "Analyze / Forecast / Replenish", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Commerce Data & Insights.jpg" },
+  { num: "07", title: "Fraud & Risk Intelligence", tags: "Detect/Flag/Review ", bg: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)", image: "/services/ecommerce/Fraud & Risk Intelligence.jpg" },
 ];
 
 const outcomes = [
@@ -396,13 +397,13 @@ const marketplaceCapabilities = [
 ];
 
 const reverseStages = [
-  { num: "01", name: "REQUEST", desc: "Return initiation" },
-  { num: "02", name: "VALIDATE", desc: "Order & return information" },
-  { num: "03", name: "AUTHORIZE", desc: "Workflow administration" },
-  { num: "04", name: "RECEIVE", desc: "Return-status processing" },
-  { num: "05", name: "REFUND", desc: "Payment/refund support" },
-  { num: "06", name: "RECONCILE", desc: "Transaction & inventory" },
-  { num: "07", name: "ANALYZE", desc: "Return trends & insights" },
+  { name: "Request", desc: "Return initiation" },
+  { name: "Validate", desc: "Order & return information" },
+  { name: "Authorize", desc: "Workflow administration" },
+  { name: "Receive", desc: "Return-status processing" },
+  { name: "Refund", desc: "Payment/refund support" },
+  { name: "Reconcile", desc: "Transaction & inventory" },
+  { name: "Analyze", desc: "Return trends & insights" },
 ];
 
 const customerCare = [
@@ -529,6 +530,11 @@ export default function ECommercePage() {
   const hdStageRef = useRef<HTMLDivElement | null>(null);
   const [cxActive, setCxActive] = useState(0);
   const cxRailRef = useRef<HTMLDivElement | null>(null);
+  const ecoTrackRef = useRef<HTMLDivElement | null>(null);
+  const [ecoVisible, setEcoVisible] = useState(4);
+  const [ecoPage, setEcoPage] = useState(0);
+  const [ecoScrollable, setEcoScrollable] = useState(false);
+  const ecoMaxPage = Math.max(0, Math.ceil(ecosystemCards.length / ecoVisible) - 1);
   const cxLineRef = useRef<HTMLDivElement | null>(null);
   const cxFillRef = useRef<HTMLSpanElement | null>(null);
   const cxBtnRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -543,7 +549,7 @@ export default function ECommercePage() {
     stage.style.transform = `perspective(1200px) rotateY(${(x * 8).toFixed(2)}deg) rotateX(${(y * -8).toFixed(2)}deg)`;
   };
   const onHdTiltReset = () => {
-    if (hdStageRef.current) hdStageRef.current.style.transform = "";
+    if (hdStageRef.current) hdStageRef.current.style.transform = "perspective(1000px) rotateY(-4deg)";
   };
 
   useEffect(() => {
@@ -589,6 +595,45 @@ export default function ECommercePage() {
     targets.forEach((t) => observer.observe(t));
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const measure = () => {
+      const track = ecoTrackRef.current;
+      if (!track) return;
+      setEcoScrollable(track.scrollWidth - track.clientWidth > 4);
+    };
+    const update = () => {
+      const w = window.innerWidth;
+      setEcoVisible(w < 640 ? 1 : w < 1024 ? 2 : 4);
+      setEcoPage(0);
+      measure();
+    };
+    update();
+    window.addEventListener("resize", update);
+    const track = ecoTrackRef.current;
+    let ro: ResizeObserver | null = null;
+    if (track && typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(measure);
+      ro.observe(track);
+    }
+    return () => {
+      window.removeEventListener("resize", update);
+      ro?.disconnect();
+    };
+  }, []);
+
+  const scrollEcoToPage = (p: number) => {
+    const track = ecoTrackRef.current;
+    if (!track) return;
+    const clamped = Math.max(0, Math.min(ecoMaxPage, p));
+    const card = track.children[0] as HTMLElement | undefined;
+    if (!card) return;
+    track.scrollTo({
+      left: clamped * (card.offsetWidth + 20) * ecoVisible,
+      behavior: "smooth",
+    });
+    setEcoPage(clamped);
+  };
 
   return (
     <div className="ec-page" ref={revealRef}>
@@ -753,8 +798,9 @@ export default function ECommercePage() {
         .ec-approach-text { font-size: clamp(18px, 1.8vw, 26px); line-height: 1.4; color: rgba(255,255,255,0.92); font-weight: 500; margin: 0; position: relative; z-index: 1; white-space: nowrap; }
         .ec-approach-text em { font-style: normal; color: #C4E538; font-weight: 600; }
 
-        .ec-eco-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
-        .ec-eco-card { position: relative; overflow: hidden; border-radius: 20px; aspect-ratio: 4 / 5; background: var(--ecn2); }
+        .ec-eco-track { display: flex; gap: 20px; margin-top: 56px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; padding-bottom: 4px; }
+        .ec-eco-track::-webkit-scrollbar { display: none; }
+        .ec-eco-card { flex: 0 0 calc((100% - 60px) / 4); align-self: flex-start; scroll-snap-align: start; scroll-snap-stop: always; position: relative; overflow: hidden; border-radius: 20px; aspect-ratio: 4 / 5; background: var(--ecn2); }
         .ec-eco-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
         .ec-eco-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,20,38,0.05) 35%, rgba(6,16,31,0.88) 88%); }
         .ec-eco-card:hover img { transform: scale(1.06); }
@@ -763,6 +809,16 @@ export default function ECommercePage() {
         .ec-eco-desc { font-size: 13.5px; line-height: 1.6; color: rgba(255,255,255,0.72); margin: 10px 0 0; }
         .ec-eco-link { display: inline-block; margin-top: 16px; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #ffffff; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: rgba(255,255,255,0.5); transition: color 0.3s ease, text-decoration-color 0.3s ease; }
         .ec-eco-card:hover .ec-eco-link { color: var(--ecc); text-decoration-color: var(--ecc); }
+        .ec-eco-arrows { display: flex; gap: 12px; margin-top: 32px; justify-content: flex-end; }
+        .ec-eco-arrow-btn { width: 52px; height: 52px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.2); background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease; }
+        .ec-eco-arrow-btn:hover:not(:disabled) { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
+        .ec-eco-arrow-btn:disabled { opacity: 0.25; cursor: default; }
+        @media (max-width: 1023px) {
+          .ec-eco-card { flex: 0 0 calc((100% - 20px) / 2); aspect-ratio: 4 / 3; }
+        }
+        @media (max-width: 639px) {
+          .ec-eco-card { flex: 0 0 100%; }
+        }
 
         .ec-ibs-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 46px; border-bottom: 1px solid rgba(12,27,48,0.1); padding-bottom: 14px; }
         .ec-ibs-tab { appearance: none; background: transparent; border: none; cursor: pointer; font-family: inherit; position: relative; display: inline-flex; align-items: center; padding: 12px 18px; font-size: 15px; font-weight: 600; color: #7A8AA0; transition: color 0.25s ease; }
@@ -874,18 +930,17 @@ export default function ECommercePage() {
         .ec-clin-panel.is-open { max-height:500px; opacity:1; }
         .ec-clin-panel-inner { padding:0 20px 18px; color:#9AA7B8; font-size:13.5px; line-height:1.7; }
 
-        .ec-out-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 56px; }
-        .ec-outcome { position: relative; overflow: hidden; background: #f5f5f3; border-radius: 16px; display: flex; flex-direction: row; min-height: 220px; box-shadow: 0 2px 12px -4px rgba(12,27,48,0.08); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease; }
-        .ec-outcome--dark { background: #0c1b2e; }
-        .ec-outcome:hover { transform: translateY(-4px); box-shadow: 0 16px 40px -14px rgba(12,27,48,0.20); }
-        .ec-outcome-body { flex: 0 0 50%; padding: 24px 20px 24px 24px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; z-index: 2; pointer-events: none; }
+        .ec-out-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
+        .ec-outcome { position: relative; overflow: hidden; background: #f5f5f3; border-radius: 14px; display: flex; flex-direction: row; min-height: 180px; box-shadow: 0 2px 12px -4px rgba(12,27,48,0.08); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, background-color 0.4s cubic-bezier(0.16,1,0.3,1); }
+        .ec-outcome:hover { transform: translateY(-4px); background: #0c1b2e; box-shadow: 0 16px 40px -14px rgba(12,27,48,0.20); }
+        .ec-outcome-body { flex: 0 0 50%; padding: 18px 14px 18px 20px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; z-index: 2; pointer-events: none; }
         .ec-outcome-body * { pointer-events: auto; }
-        .ec-outcome-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8a97a8; margin: 0 0 10px; }
-        .ec-outcome--dark .ec-outcome-eyebrow { color: #6b8299; }
-        .ec-outcome-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(20px, 1.8vw, 26px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #0a1628; margin: 0 0 10px; }
-        .ec-outcome--dark .ec-outcome-title { color: #ffffff; }
-        .ec-outcome-desc { font-size: 12.5px; line-height: 1.6; color: #5a6b7f; margin: 0; max-width: 24ch; }
-        .ec-outcome--dark .ec-outcome-desc { color: #7a96ae; }
+        .ec-outcome-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8a97a8; margin: 0 0 8px; transition: color 0.35s ease; }
+        .ec-outcome:hover .ec-outcome-eyebrow { color: #6b8299; }
+        .ec-outcome-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(17px, 1.45vw, 21px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #0a1628; margin: 0 0 8px; transition: color 0.35s ease; }
+        .ec-outcome:hover .ec-outcome-title { color: #ffffff; }
+        .ec-outcome-desc { font-size: 11.5px; line-height: 1.55; color: #5a6b7f; margin: 0; max-width: 26ch; transition: color 0.35s ease; }
+        .ec-outcome:hover .ec-outcome-desc { color: #7a96ae; }
         .ec-outcome-media { position: absolute; right: 0; top: 0; bottom: 0; width: 68%; z-index: 1; overflow: hidden; }
         .ec-outcome-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
         .ec-outcome:hover .ec-outcome-media img { transform: scale(1.05); }
@@ -960,8 +1015,6 @@ export default function ECommercePage() {
           .ec-land-grid, .ec-split, .ec-prov-grid, .ec-clin-hero { grid-template-columns: minmax(0, 1fr); }
           .ec-land-row { grid-template-columns: 1fr; }
           .ec-ibs-panel { grid-template-columns: 1fr; gap: 26px; }
-          .ec-eco-grid { grid-template-columns: 1fr; }
-          .ec-eco-card { aspect-ratio: 4 / 3; }
           .ec-cards2 { grid-template-columns: 1fr 1fr; }
           .ec-out-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
           .ec-outcome:nth-child(5) { grid-column: span 1; }
@@ -1115,18 +1168,44 @@ export default function ECommercePage() {
             <EcLabel text="Across the Digital Commerce Ecosystem" />
             <h2 className="ec-h2">Built around the businesses shaping how the world <span style={{ color: "#C6E84A" }}>shops.</span></h2>
           </div>
-          <div className="ec-eco-grid ec-reveal">
-            {ecosystemCards.map((card) => (
-              <article key={card.title} className="ec-eco-card">
-                <img src={card.image} alt={card.title} />
-                <div className="ec-eco-overlay" />
-                <div className="ec-eco-body">
-                  <h3 className="ec-eco-title">{card.title}</h3>
-                  <p className="ec-eco-desc">{card.desc}</p>
-                  <a href="#capabilities" className="ec-eco-link">Explore →</a>
-                </div>
-              </article>
-            ))}
+          <div className="ec-reveal">
+            <div ref={ecoTrackRef} className="ec-eco-track">
+              {ecosystemCards.map((card) => (
+                <article key={card.title} className="ec-eco-card">
+                  <img src={card.image} alt={card.title} loading="lazy" decoding="async" />
+                  <div className="ec-eco-overlay" />
+                  <div className="ec-eco-body">
+                    <h3 className="ec-eco-title">{card.title}</h3>
+                    <p className="ec-eco-desc">{card.desc}</p>
+                    <a href="#capabilities" className="ec-eco-link">Explore →</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+            {ecoScrollable && (
+              <div className="ec-eco-arrows">
+                <button
+                  className="ec-eco-arrow-btn"
+                  disabled={ecoPage === 0}
+                  onClick={() => scrollEcoToPage(ecoPage - 1)}
+                  aria-label="Previous ecosystem"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                </button>
+                <button
+                  className="ec-eco-arrow-btn"
+                  disabled={ecoPage >= ecoMaxPage}
+                  onClick={() => scrollEcoToPage(ecoPage + 1)}
+                  aria-label="Next ecosystem"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -1195,7 +1274,7 @@ export default function ECommercePage() {
             </div>
             <div className="ec-reveal">
               <EcLabel text="Digital Shelf Operations" />
-              
+
               <h2 className="ec-h2">Every great shopping experience starts with great <span style={{ color: "#C6E84A" }}>product data.</span></h2>
               <p className="ec-lede">Customers cannot touch a products online. They depend on information.</p>
               <p className="ec-lede">Accurate titles, attributes, images, descriptions, categories and specifications influence how products are discovered, understood and purchased.</p>
@@ -1327,66 +1406,27 @@ export default function ECommercePage() {
         `}</style>
       </section>
 
-      <section className="ec-section-light ec-rs">
-        <div className="ec-wrap">
-          <div className="ec-rs-head ec-reveal">
-            <EcLabel text="Returns & Refunds" light />
-            <h2 className="ec-h2">Make the journey back as seamless as the <span style={{ color: "#C6E84A" }}>journey out.</span></h2>
-            <p className="ec-lede">Returns are one of e-commerce&apos;s most operationally complex moments — connecting customers, orders, products, payments, inventory and logistics.</p>
-            <p className="ec-copy">Sytrion supports structured returns and refund operations designed to improve visibility, processing consistency and customer experience.</p>
-          </div>
-          <div className="ec-rs-flow ec-reveal">
-            <div className="ec-rs-rail">
-              <div className="ec-rs-rail-line" aria-hidden="true" />
-              {reverseStages.map((s, i) => {
-                const up = i % 2 === 0;
-                return (
-                  <div key={s.num} className="ec-rs-step">
-                    <div className="ec-rs-node" aria-hidden="true" />
-                    <div className={"ec-rs-stem ec-rs-stem--" + (up ? "up" : "down")} aria-hidden="true" />
-                    <div className={"ec-rs-label ec-rs-label--" + (up ? "up" : "down")}>
-                      <span className="ec-rs-lbl-num">{s.num}</span>
-                      <h3 className="ec-rs-name">{s.name}</h3>
-                      <p className="ec-rs-desc">{s.desc}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-        <style>{`
-          .ec-rs .ec-h2 { color: #0f172a; }
-          .ec-rs .ec-lede { color: #5A5D66; }
-          .ec-rs .ec-copy { color: #5A5D66; }
-          .ec-rs-head { max-width: 820px; }
-          .ec-rs-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #7AA306; margin: 22px 0 0; font-variant-numeric: tabular-nums; }
-          .ec-rs-flow { margin-top: 52px; background: linear-gradient(135deg, #2b2f1a, #0d0f08); border-radius: 20px; padding: 20px 44px; }
-          .ec-rs-rail { position: relative; display: flex; height: 330px; }
-          .ec-rs-rail-line { position: absolute; top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-50%); background: linear-gradient(90deg, rgba(198,232,74,0.12), rgba(198,232,74,0.95)); border-radius: 2px; z-index: 0; }
-          .ec-rs-step { position: relative; flex: 1; height: 100%; }
-          .ec-rs-node { position: absolute; top: 50%; left: 50%; width: 13px; height: 13px; border-radius: 50%; background: #C6E84A; transform: translate(-50%, -50%); z-index: 2; }
-          .ec-rs-stem { position: absolute; left: 50%; width: 1px; background: rgba(198,232,74,0.35); z-index: 1; }
-          .ec-rs-stem--up { bottom: 50%; height: 46px; }
-          .ec-rs-stem--down { top: 50%; height: 46px; }
-          .ec-rs-label { position: absolute; left: 50%; transform: translateX(-50%); width: 168px; text-align: center; z-index: 2; }
-          .ec-rs-label--up { bottom: calc(50% + 46px); }
-          .ec-rs-label--down { top: calc(50% + 46px); }
-          .ec-rs-lbl-num { display: block; font-family: var(--font-syne), Arial, sans-serif; font-size: 22px; font-weight: 800; color: #C6E84A; text-shadow: 0 0 18px rgba(198,232,74,0.5); margin-bottom: 4px; }
-          .ec-rs-name { font-family: var(--font-syne), Arial, sans-serif; font-size: 13.5px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: #f6f7ef; margin: 0 0 6px; }
-          .ec-rs-desc { font-size: 12.5px; color: #a9ab9a; margin: 0; line-height: 1.45; }
-          @media (max-width: 900px) {
-            .ec-rs-flow { padding: 36px 24px; }
-            .ec-rs-rail { flex-direction: column; height: auto; gap: 0; }
-            .ec-rs-rail-line { top: 0; bottom: 0; left: 16px; right: auto; width: 2px; height: auto; transform: translateY(0); background: linear-gradient(180deg, rgba(198,232,74,0.12), rgba(198,232,74,0.95)); }
-            .ec-rs-step { height: auto; padding: 0 0 32px 44px; }
-            .ec-rs-step:last-child { padding-bottom: 0; }
-            .ec-rs-node { top: 6px; left: 16px; transform: translate(-50%, 0); }
-            .ec-rs-stem { display: none; }
-            .ec-rs-label { position: static; transform: none; width: auto; text-align: left; }
-          }
-        `}</style>
-      </section>
+      <StaircaseFlow
+        ariaLabel="Returns and refunds"
+        eyebrow="RETURNS &amp; REFUNDS"
+        title={
+          <>
+            Make the journey back as seamless as the{" "}
+            <span className="stf-h2-accent">journey out.</span>
+          </>
+        }
+        description={
+          <>
+            Returns are one of e-commerce&apos;s most operationally complex moments — connecting
+            customers, orders, products, payments, inventory and logistics. Sytrion supports
+            structured returns and refund operations designed to improve visibility, processing
+            consistency and customer experience.
+          </>
+        }
+        steps={reverseStages}
+        revealClass="ec-reveal"
+      />
+
 
       <section className="ec-cx2">
         <div className="ec-cx2-glow" aria-hidden="true" />
@@ -1552,7 +1592,7 @@ export default function ECommercePage() {
                         <div className="scd-card-main">
                           <span className="scd-card-num">{cap.num}</span>
                           <h3 className="scd-card-title">{cap.title}</h3>
-                          
+
                           <div className="scd-card-tags">{cap.tags}</div>
                         </div>
                         <div className="scd-card-visual" aria-hidden="true">
@@ -1574,7 +1614,7 @@ export default function ECommercePage() {
         <div className="ec-wrap">
           <div className="ec-hd-grid">
             <div className="ec-hd-copy ec-reveal">
-              
+
               <span className="ec-hd-pill">Human + Digital</span>
               <h2 className="ec-hd-title">
                 <span className="ec-hd-title-white">Automation at scale.</span>
@@ -1587,71 +1627,13 @@ export default function ECommercePage() {
             </div>
             <div className="ec-hd-visual ec-reveal">
               <div className="ec-hd-stage" ref={hdStageRef}>
-                <div className="ec-hd-halo" aria-hidden="true" />
-                <svg className="ec-hd-conn" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                  <line x1="24" y1="16" x2="36" y2="29" />
-                  <line x1="24" y1="54" x2="36" y2="46" />
-                  <line x1="52" y1="70" x2="62" y2="48" />
-                </svg>
-                <div className="ec-hd-globe" aria-hidden="true">
-                  <div className="ec-hd-solid" />
-                  <svg className="ec-hd-mesh" viewBox="0 0 400 400" fill="none">
-                    <ellipse cx="200" cy="200" rx="198" ry="198" stroke="rgba(198,241,53,0.30)" strokeWidth="1" />
-                    <ellipse cx="200" cy="200" rx="198" ry="126" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
-                    <ellipse cx="200" cy="200" rx="198" ry="62" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
-                    <ellipse cx="200" cy="200" rx="126" ry="198" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
-                    <ellipse cx="200" cy="200" rx="62" ry="198" stroke="rgba(198,241,53,0.15)" strokeWidth="1" />
-                    <ellipse cx="200" cy="200" rx="150" ry="198" stroke="rgba(110,160,255,0.10)" strokeWidth="1" />
-                    <path d="M2 200h396" stroke="rgba(198,241,53,0.20)" strokeWidth="1" />
-                  </svg>
-                  <div className="ec-hd-pts">
-                    {[
-                      [62, 22], [70, 30], [76, 40], [74, 52], [66, 62], [54, 68], [44, 66], [36, 60],
-                      [30, 50], [31, 38], [38, 28], [50, 24], [60, 36], [66, 48], [48, 56], [56, 40],
-                      [40, 44], [44, 52], [54, 30], [58, 58],
-                    ].map(([px, py], i) => (
-                      <span
-                        key={i}
-                        className={"ec-hd-pt" + (i % 5 === 0 ? " ec-hd-pt--glow" : "")}
-                        style={{ left: `${px}%`, top: `${py}%` }}
-                      />
-                    ))}
-                  </div>
-                  <div className="ec-hd-core" />
-                </div>
-                <div className="ec-hd-orbit ec-hd-orbit--a" aria-hidden="true">
-                  <span className="ec-hd-orbit-dot" />
-                </div>
-                <div className="ec-hd-orbit ec-hd-orbit--b" aria-hidden="true">
-                  <span className="ec-hd-orbit-dot" />
-                </div>
-                <div className="ec-hd-card ec-hd-card--tl">
-                  <span className="ec-hd-card-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M22 12h-4M6 12H2" /><circle cx="12" cy="12" r="8" opacity="0.45" /></svg>
-                  </span>
-                  <div>
-                    <h3>Smarter decisions</h3>
-                    <p>AI analyzes patterns in real time.</p>
-                  </div>
-                </div>
-                <div className="ec-hd-card ec-hd-card--ml">
-                  <span className="ec-hd-card-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5" /><path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" /></svg>
-                  </span>
-                  <div>
-                    <h3>Automate at scale</h3>
-                    <p>Handle high volumes with speed and accuracy.</p>
-                  </div>
-                </div>
-                <div className="ec-hd-card ec-hd-card--r">
-                  <span className="ec-hd-card-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" /></svg>
-                  </span>
-                  <div>
-                    <h3>Human insight</h3>
-                    <p>Context, empathy and complex judgment.</p>
-                  </div>
-                </div>
+                <img
+                  className="ec-hd-img"
+                  src="/services/ecommerce/Human + Digital ecommerce.jpg"
+                  alt="Ecommerce human plus digital operations"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </div>
           </div>
@@ -1673,7 +1655,9 @@ export default function ECommercePage() {
           .ec-hd-em { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(19px, 1.9vw, 23px); font-weight: 700; color: #C6F135; margin: 24px 0 0; }
 
           .ec-hd-visual { position: relative; display: flex; align-items: center; justify-content: center; min-height: clamp(420px, 52vw, 640px); }
-          .ec-hd-stage { position: relative; width: 100%; max-width: 660px; aspect-ratio: 1 / 1; transform-style: preserve-3d; transition: transform 0.12s ease-out; will-change: transform; }
+          .ec-hd-stage { position: relative; width: 100%; max-width: 560px; aspect-ratio: 4 / 3; border-radius: 26px; border: 1px solid rgba(255,255,255,0.12); background: rgba(11,18,32,0.4); box-shadow: 0 24px 48px rgba(0,0,0,0.4); transform-style: preserve-3d; transition: transform 0.12s ease-out; will-change: transform; overflow: hidden; }
+          .ec-hd-img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.001); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+          .ec-hd-stage:hover .ec-hd-img { transform: scale(1.05); }
           .ec-hd-halo { position: absolute; left: 50%; top: 46%; width: 78%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(198,241,53,0.10) 0%, rgba(96,146,255,0.05) 45%, rgba(11,18,32,0) 70%); }
 
           .ec-hd-globe { position: absolute; left: 50%; top: 46%; width: 62%; aspect-ratio: 1; transform: translate(-50%, -50%); }
@@ -1715,11 +1699,7 @@ export default function ECommercePage() {
           @media (max-width: 900px) {
             .ec-hd-grid { grid-template-columns: 1fr; gap: 40px; min-height: 0; }
             .ec-hd-visual { min-height: 0; }
-            .ec-hd-stage { max-width: 560px; aspect-ratio: 1 / 1; margin: 0 auto; }
-            .ec-hd-card { width: 212px; }
-            .ec-hd-card--tl { left: 0; top: 2%; }
-            .ec-hd-card--ml { left: -4%; top: 42%; }
-            .ec-hd-card--r { left: 58%; top: 58%; }
+            .ec-hd-stage { max-width: 560px; margin: 0 auto; }
           }
           @media (max-width: 760px) {
             .ec-hd-stage { max-width: 460px; }
@@ -1899,8 +1879,8 @@ export default function ECommercePage() {
             <h2 className="ec-h2">Better operations create better <span style={{ color: "#C6E84A" }}>commerce experiences.</span></h2>
           </div>
           <div className="ec-out-grid ec-reveal">
-            {outcomes.map((o, i) => (
-              <article key={o.word} className={`ec-outcome${i === 0 ? " ec-outcome--dark" : ""}`}>
+            {outcomes.map((o) => (
+              <article key={o.word} className="ec-outcome">
                 <div className="ec-outcome-body">
                   <p className="ec-outcome-eyebrow">{o.num} / {o.word}</p>
                   <h3 className="ec-outcome-title">{o.sub}</h3>

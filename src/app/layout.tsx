@@ -26,6 +26,9 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: "Sytrion Data Labs | Intelligent Operations & AI Solutions",
+  icons: {
+    icon: "/shared/Sytrionlogo-favicon.png",
+  },
   description:
     "AI-powered intelligent operations company helping enterprises automate workflows, strengthen data foundations, and transform business processes across shipping, healthcare, and banking.",
   keywords: [

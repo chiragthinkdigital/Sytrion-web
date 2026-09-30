@@ -647,18 +647,17 @@ export default function HealthcareOperationsPage() {
         .hc-clin-panel.is-open { max-height:500px; opacity:1; }
         .hc-clin-panel-inner { padding:0 20px 18px; color:#9AA7B8; font-size:13.5px; line-height:1.7; }
 
-        .hc-out-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 56px; }
-        .hc-outcome { position: relative; overflow: hidden; background: #f5f5f3; border-radius: 16px; display: flex; flex-direction: row; min-height: 220px; box-shadow: 0 2px 12px -4px rgba(12,27,48,0.08); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease; }
-        .hc-outcome--dark { background: #0c1b2e; }
-        .hc-outcome:hover { transform: translateY(-4px); box-shadow: 0 16px 40px -14px rgba(12,27,48,0.20); }
-        .hc-outcome-body { flex: 0 0 50%; padding: 24px 20px 24px 24px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; z-index: 2; pointer-events: none; }
+        .hc-out-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
+        .hc-outcome { position: relative; overflow: hidden; background: #f5f5f3; border-radius: 14px; display: flex; flex-direction: row; min-height: 180px; box-shadow: 0 2px 12px -4px rgba(12,27,48,0.08); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, background-color 0.4s cubic-bezier(0.16,1,0.3,1); }
+        .hc-outcome:hover { transform: translateY(-4px); background: #0c1b2e; box-shadow: 0 16px 40px -14px rgba(12,27,48,0.20); }
+        .hc-outcome-body { flex: 0 0 50%; padding: 18px 14px 18px 20px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; z-index: 2; pointer-events: none; }
         .hc-outcome-body * { pointer-events: auto; }
-        .hc-outcome-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8a97a8; margin: 0 0 10px; }
-        .hc-outcome--dark .hc-outcome-eyebrow { color: #6b8299; }
-        .hc-outcome-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(20px, 1.8vw, 26px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #0a1628; margin: 0 0 10px; }
-        .hc-outcome--dark .hc-outcome-title { color: #ffffff; }
-        .hc-outcome-desc { font-size: 12.5px; line-height: 1.6; color: #5a6b7f; margin: 0; max-width: 24ch; }
-        .hc-outcome--dark .hc-outcome-desc { color: #7a96ae; }
+        .hc-outcome-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8a97a8; margin: 0 0 8px; transition: color 0.35s ease; }
+        .hc-outcome:hover .hc-outcome-eyebrow { color: #6b8299; }
+        .hc-outcome-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(17px, 1.45vw, 21px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #0a1628; margin: 0 0 8px; transition: color 0.35s ease; }
+        .hc-outcome:hover .hc-outcome-title { color: #ffffff; }
+        .hc-outcome-desc { font-size: 11.5px; line-height: 1.55; color: #5a6b7f; margin: 0; max-width: 26ch; transition: color 0.35s ease; }
+        .hc-outcome:hover .hc-outcome-desc { color: #7a96ae; }
         .hc-outcome-media { position: absolute; right: 0; top: 0; bottom: 0; width: 68%; z-index: 1; overflow: hidden; }
         .hc-outcome-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
         .hc-outcome:hover .hc-outcome-media img { transform: scale(1.05); }
@@ -1156,8 +1155,8 @@ export default function HealthcareOperationsPage() {
             <h2 className="hc-h2">Better operations create better <span style={{ color: "#C6E84A" }}>healthcare experiences.</span></h2>
           </div>
           <div className="hc-out-grid hc-reveal">
-            {outcomes.map((o, i) => (
-              <article key={o.word} className={`hc-outcome${i === 0 ? " hc-outcome--dark" : ""}`}>
+            {outcomes.map((o) => (
+              <article key={o.word} className="hc-outcome">
                 <div className="hc-outcome-body">
                   <p className="hc-outcome-eyebrow">{o.num} / {o.word}</p>
                   <h3 className="hc-outcome-title">{o.title}</h3>

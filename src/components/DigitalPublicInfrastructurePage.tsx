@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import EcosystemHoneycomb from "./EcosystemHoneycomb";
+import ServiceStaircase from "./ServiceStaircase";
 
 /* ─────────────────────────────────────────────────────────────
    SYTRION — DIGITAL PUBLIC INFRASTRUCTURE PAGE
@@ -44,6 +46,7 @@ const capabilityTabs = [
   {
     tab: "Identity",
     title: "Identity",
+    image: "/dpi/DPI_Identify.png",
     lead: "Create trusted foundations for digital interaction.",
     items: [
       "Digital onboarding",
@@ -57,6 +60,7 @@ const capabilityTabs = [
   {
     tab: "Registries",
     title: "Registries",
+    image: "/dpi/DPI_Registries.png",
     lead: "Create reliable information foundations.",
     items: [
       "Registry operations",
@@ -70,6 +74,7 @@ const capabilityTabs = [
   {
     tab: "Exchange",
     title: "Exchange",
+    image: "/dpi/DPI_Exchange.png",
     lead: "Connect information across ecosystems.",
     items: [
       "API integration",
@@ -83,6 +88,7 @@ const capabilityTabs = [
   {
     tab: "Services",
     title: "Services",
+    image: "/dpi/DPI_Services.png",
     lead: "Make essential services easier to access.",
     items: [
       "Digital applications",
@@ -96,6 +102,7 @@ const capabilityTabs = [
   {
     tab: "Operations",
     title: "Operations",
+    image: "/dpi/DPI_Operations.png",
     lead: "Keep population-scale digital services moving.",
     items: [
       "Transaction processing",
@@ -109,6 +116,7 @@ const capabilityTabs = [
   {
     tab: "Insights",
     title: "Insights",
+    image: "/dpi/DPI_Insights.png",
     lead: "Turn ecosystem activity into actionable intelligence.",
     items: [
       "Operational dashboards",
@@ -131,43 +139,23 @@ const pensionJourney = [
   { name: "ANALYZE", long: "Pension Operations Intelligence", items: ["Operational dashboards", "Contribution analytics", "Service-performance reporting", "Exception trends", "Data-quality monitoring"] },
 ];
 
-const ecosysIconProps = { width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "#c6e84a", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, "aria-hidden": true };
-const ecosysIcons = [
-  <svg key="p-subscribers" {...ecosysIconProps}><circle cx="12" cy="8" r="3.5" /><path d="M4.5 20c1.3-3 4-4.5 7.5-4.5s6.2 1.5 7.5 4.5" /></svg>,
-  <svg key="p-channels" {...ecosysIconProps}><rect x="4" y="4" width="6.5" height="6.5" rx="1.5" /><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" /><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" /><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" /></svg>,
-  <svg key="p-recordkeeping" {...ecosysIconProps}><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" /><path d="M14 3v5h5" /><path d="M9 13h6M9 16.5h4" /></svg>,
-  <svg key="p-contributions" {...ecosysIconProps}><circle cx="8.5" cy="8.5" r="4.5" /><circle cx="15.5" cy="15.5" r="4.5" /></svg>,
-  <svg key="p-institutions" {...ecosysIconProps}><path d="M3.5 10.5L12 4l8.5 6.5" /><path d="M5.5 10.5V20h13v-9.5" /><path d="M10 20v-5h4v5" /></svg>,
-  <svg key="p-retirement" {...ecosysIconProps}><circle cx="12" cy="12" r="8.5" /><path d="M12 7v5.2l3.4 2" /></svg>,
-];
-
-const pensionEcosystem = [
-  { name: "Subscribers", icon: 0, highlight: true },
-  { name: "Service & Access Channels", icon: 1, highlight: false },
-  { name: "Recordkeeping & Administration", icon: 2, highlight: false },
-  { name: "Contribution & Transaction Ecosystem", icon: 3, highlight: false },
-  { name: "Pension / Financial Institutions", icon: 4, highlight: false },
-  { name: "Retirement & Service Ecosystem", icon: 5, highlight: true },
-];
-
-const intelligenceLayer = ["AI", "Automation", "Data", "Workflow", "Analytics"];
 
 const openEcosystemLayers = [
-  "People & Businesses",
-  "Applications & Services",
-  "Open APIs & Protocols",
-  "Registries, Identity & Data Exchange",
-  "Digital Public Infrastructure",
-  "Institutions & Ecosystem Participants",
+  { name: "People & Businesses", image: "/dpi/People & Businesses.jpg" },
+  { name: "Applications & Services", image: "/dpi/Applications & Services.jpg" },
+  { name: "Open APIs & Protocols", image: "/dpi/Open APIs & Protocols.jpg" },
+  { name: "Registries, Identity & Data Exchange", image: "/dpi/Registries, Identity & Data Exchange.jpg" },
+  { name: "Digital Public Infrastructure", image: "/dpi/Digital Public Infrastructure.jpg" },
+  { name: "Institutions & Ecosystem Participants", image: "/dpi/Institutions & Ecosystem Participants.jpg" },
 ];
 
 const aiNodes = [
-  { title: "Document Intelligence", verbs: "Extract • Classify • Validate" },
-  { title: "Service Intelligence", verbs: "Understand • Route • Assist" },
-  { title: "Data Intelligence", verbs: "Clean • Connect • Enrich" },
-  { title: "Workflow Intelligence", verbs: "Automate • Orchestrate • Resolve" },
-  { title: "Risk & Anomaly Intelligence", verbs: "Identify • Prioritize • Review" },
-  { title: "Decision Intelligence", verbs: "Analyze • Predict • Improve" },
+  { title: "Document Intelligence", verbs: "Extract • Classify • Validate", image: "/dpi/Document Intelligence (5).jpg" },
+  { title: "Service Intelligence", verbs: "Understand • Route • Assist", image: "/dpi/Service Intelligence.jpg" },
+  { title: "Data Intelligence", verbs: "Clean • Connect • Enrich", image: "/dpi/Data Intelligence (2).jpg" },
+  { title: "Workflow Intelligence", verbs: "Automate • Orchestrate • Resolve", image: "/dpi/Workflow Intelligence (3).jpg" },
+  { title: "Risk & Anomaly Intelligence", verbs: "Identify • Prioritize • Review", image: "/dpi/Risk & Anomaly Intelligence.jpg" },
+  { title: "Decision Intelligence", verbs: "Analyze • Predict • Improve", image: "/dpi/Decision Intelligence (4).jpg" },
 ];
 
 const humanIconProps = { width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "#c6e84a", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, "aria-hidden": true };
@@ -181,16 +169,6 @@ const humanDigitalPillars = [
   { num: "01", title: "Accessible by design", desc: "Simple digital journeys that work the first time, for everyone." },
   { num: "02", title: "Inclusive by design", desc: "Services that hold up across diverse needs, devices and abilities." },
   { num: "03", title: "Connected by design", desc: "Fewer barriers standing between institutions and the services they offer." },
-];
-
-const serviceFlow = [
-  { name: "DISCOVER", desc: "Find the right service" },
-  { name: "IDENTIFY", desc: "Establish trusted identity" },
-  { name: "APPLY", desc: "Submit information digitally" },
-  { name: "VALIDATE", desc: "Verify data and documents" },
-  { name: "PROCESS", desc: "Orchestrate workflows" },
-  { name: "DELIVER", desc: "Complete the service" },
-  { name: "INFORM", desc: "Provide status and communication" },
 ];
 
 const trustPillars = [
@@ -249,80 +227,6 @@ function Eyebrow({ text, dark }: { text: string; dark?: boolean }) {
   );
 }
 
-/* --- Capability preview glyphs -----------------------------------------
-   One icon per capability tab, rendered inside the same dark card frame.
-   Icon language stays constant across variants: thin lime strokes,
-   hollow circles for nodes, filled circles for emphasis. */
-function CapabilityIcon({ variant }: { variant: string }) {
-  const color = "currentColor";
-  const line = { fill: "none" as const, stroke: color, strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
-  const node = { fill: "none" as const, stroke: color, strokeWidth: 1.5 };
-  const dot = { fill: color, stroke: "none" as const };
-
-  switch (variant) {
-    case "identity":
-      return (
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke={color} strokeWidth="1.5">
-          <circle cx="60" cy="60" r="44" {...node} />
-          <path d="M60 16v24M60 80v24M16 60h24M80 60h24" {...line} />
-          <circle cx="60" cy="60" r="12" {...dot} />
-          <circle cx="60" cy="16" r="5" {...dot} />
-          <circle cx="60" cy="104" r="5" {...dot} />
-          <circle cx="16" cy="60" r="5" {...dot} />
-          <circle cx="104" cy="60" r="5" {...dot} />
-        </svg>
-      );
-    case "registries":
-      return (
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke={color} strokeWidth="1.5">
-          <rect x="30" y="30" width="60" height="15" rx="7.5" {...node} />
-          <rect x="30" y="52.5" width="60" height="15" rx="7.5" fill={color} stroke="none" />
-          <rect x="30" y="75" width="60" height="15" rx="7.5" {...node} />
-        </svg>
-      );
-    case "exchange":
-      return (
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke={color} strokeWidth="1.5">
-          <circle cx="26" cy="60" r="15" {...node} />
-          <circle cx="94" cy="60" r="15" {...node} />
-          <path d="M42 48h30" {...line} />
-          <path d="M72 43l6 5-6 5" {...line} />
-          <path d="M78 72H48" {...line} />
-          <path d="M48 67l-6 5 6 5" {...line} />
-        </svg>
-      );
-    case "services":
-      return (
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke={color} strokeWidth="1.5">
-          <circle cx="40" cy="34" r="14" {...node} />
-          <circle cx="80" cy="34" r="14" {...node} />
-          <circle cx="60" cy="88" r="14" {...dot} />
-          <path d="M40 48L54 74" {...line} />
-          <path d="M80 48L66 74" {...line} />
-        </svg>
-      );
-    case "operations":
-      return (
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke={color} strokeWidth="1.5">
-          <circle cx="24" cy="60" r="12" {...node} />
-          <circle cx="60" cy="60" r="12" {...node} />
-          <circle cx="96" cy="60" r="12" {...node} />
-          <path d="M38 54l8 6-8 6" {...line} />
-          <path d="M74 54l8 6-8 6" {...line} />
-        </svg>
-      );
-    case "insights":
-      return (
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke={color} strokeWidth="1.5">
-          <rect x="32" y="58" width="16" height="30" fill={color} stroke="none" fillOpacity="0.4" />
-          <rect x="60" y="43" width="16" height="45" fill={color} stroke="none" fillOpacity="0.7" />
-          <rect x="88" y="24" width="16" height="64" fill={color} stroke="none" />
-        </svg>
-      );
-    default:
-      return null;
-  }
-}
 
 export default function DigitalPublicInfrastructurePage() {
   const [capTab, setCapTab] = useState(0);
@@ -354,6 +258,8 @@ export default function DigitalPublicInfrastructurePage() {
   const ecoTrackRef = useRef<HTMLDivElement | null>(null);
   const [ecoPage, setEcoPage] = useState(0);
   const [ecoVisible, setEcoVisible] = useState(4);
+
+  const [aiActive, setAiActive] = useState(0);
 
   useEffect(() => {
     const update = () => {
@@ -533,9 +439,9 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-cap-list { list-style:none; margin:0 0 0 -18px; padding:0; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:0 clamp(20px,3vw,40px); }
         .dpi-cap-item { display:flex; align-items:baseline; gap:12px; padding:11px 0; font-size:15px; color:#1a1a1a; border-bottom:1px solid rgba(15,15,15,0.08); }
         .dpi-cap-item::before { content:""; width:7px; height:7px; flex:0 0 auto; border-radius:50%; background:${CYAN}; align-self:center; margin-left:18px; }
-        .dpi-cap-visual { position:relative; border-radius:16px; overflow:hidden; min-height:420px; background:linear-gradient(135deg, #2b2f1a 0%, #0d0f08 100%); display:flex; align-items:center; justify-content:center; }
-        .dpi-cap-glyph { position:relative; z-index:2; color:#c9e94a; animation: dpiGlyphIn 0.22s cubic-bezier(0.16,1,0.3,1); }
-        @keyframes dpiGlyphIn { from { opacity:0; transform: scale(0.95); } to { opacity:1; transform:none; } }
+        .dpi-cap-visual { position:relative; border-radius:16px; overflow:hidden; aspect-ratio:1; min-height:420px; background:linear-gradient(135deg, #2b2f1a 0%, #0d0f08 100%); }
+        .dpi-cap-preview { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; object-position:center; animation: dpiCapFade 0.32s cubic-bezier(0.16,1,0.3,1); }
+        @keyframes dpiCapFade { from { opacity:0; transform: scale(1.03); } to { opacity:1; transform:none; } }
 
         /* --- Pension & Social Security --- */
         .dpi-pension { background:linear-gradient(160deg, #1f1f1f 0%, ${NAVY} 60%, ${NAVY2} 100%); }
@@ -560,55 +466,60 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-pstep-list li { position:relative; padding:11px 0 11px 22px; font-size:15px; color:rgba(255,255,255,0.85); border-bottom:1px solid rgba(255,255,255,0.1); }
         .dpi-pstep-list li::before { content:""; position:absolute; left:0; top:20px; width:7px; height:7px; border-radius:50%; background:${CYAN}; }
 
-        /* --- 07 Pension Ecosystem --- */
-        .dpi-ecosys { background:#fafaf8; }
-        .dpi-ecosys-flow { position:relative; margin-top:56px; background:linear-gradient(135deg, #2b2f1a, #0d0f08); border-radius:20px; padding:44px 36px 40px; }
-        .dpi-ecosys-track { display:flex; align-items:stretch; }
-        .dpi-ecosys-tile { flex:1 1 0; min-width:0; display:flex; flex-direction:column; align-items:center; gap:14px; padding:20px 14px; border-radius:14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.14); transition:background 0.3s ease, border-color 0.3s ease; cursor:pointer; }
-        .dpi-ecosys-tile--highlight { background:rgba(198,241,53,0.08); border:1px solid rgba(198,241,53,0.45); }
-        .dpi-ecosys-tile:hover { background:${CYAN}; border-color:${CYAN}; }
-        .dpi-ecosys-tile:hover .dpi-ecosys-label { color:#0f0f0f; }
-        .dpi-ecosys-tile:hover .dpi-ecosys-icon { background:rgba(15,15,15,0.08); border-color:rgba(15,15,15,0.3); }
-        .dpi-ecosys-tile:hover .dpi-ecosys-icon svg { stroke:#0f0f0f; }
-        .dpi-ecosys-icon { width:42px; height:42px; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:rgba(198,232,74,0.12); border:1px solid rgba(198,232,74,0.35); }
-        .dpi-ecosys-icon svg { display:block; }
-        .dpi-ecosys-label { font-family: var(--font-syne), Arial, sans-serif; font-size:12.5px; font-weight:600; line-height:1.35; text-align:center; color:#F2F1E8; }
-        .dpi-ecosys-arrow { flex:0 0 28px; display:flex; align-items:center; justify-content:center; color:rgba(198,232,74,0.6); }
-        .dpi-ecosys-arrow svg { display:block; flex-shrink:0; }
-        @media (max-width: 960px) {
-          .dpi-ecosys-track { flex-direction:column; align-items:stretch; }
-          .dpi-ecosys-tile { flex:1 1 auto; width:100%; }
-          .dpi-ecosys-arrow { flex:0 0 auto; width:100%; height:34px; }
-          .dpi-ecosys-arrow svg { transform:rotate(90deg); }
-        }
-        .dpi-ilband { margin-top:34px; background:linear-gradient(90deg, rgba(201,233,74,0.14), rgba(201,233,74,0.04)); border:1px solid rgba(201,233,74,0.25); border-radius:16px; padding:20px 28px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
-        .dpi-ilband-label { font-size:12px; font-weight:700; letter-spacing:0.14em; color:#6b8a1a; }
-        .dpi-ilband-item { display:inline-flex; align-items:center; gap:8px; background:#fff; border:0.5px solid #e5e4dc; border-radius:100px; padding:7px 16px; font-size:13px; font-weight:600; color:#1a1a1a; }
-        .dpi-ilband-item::before { content:""; width:5px; height:5px; border-radius:50%; background:#c9e94a; flex:0 0 auto; }
 
         /* --- 08 Open Digital Ecosystems --- */
-        .dpi-section-cols { display:grid; grid-template-columns: 1fr 1fr; }
-        .dpi-col { min-width:0; }
-        .dpi-open, .dpi-ai { padding: clamp(76px, 8vw, 120px) 0; height:100%; }
-        .dpi-open { background:linear-gradient(180deg, ${NAVY} 0%, #141414 100%); }
-        .dpi-open-stack { margin-top:48px; position:relative; }
-        .dpi-open-layer { display:flex; align-items:center; gap:18px; border:1px solid rgba(255,255,255,0.14); border-bottom:none; padding:26px 30px; background:rgba(255,255,255,0.03); position:relative; transition:border-color .3s ease, background .3s ease, transform .3s cubic-bezier(.16,1,.3,1); }
-        .dpi-open-layer:last-child { border-bottom:1px solid rgba(255,255,255,0.14); }
-        .dpi-open-layer:hover { background:rgba(198,232,74,0.1); border-color:rgba(198,232,74,0.55); transform:translateX(6px); }
-        .dpi-open-layer:hover .dpi-open-layer-num { color:#fff; }
-        .dpi-open-layer:hover .dpi-open-layer-name { color:#c9e94a; }
-        .dpi-open-layer-num { font-family: var(--font-syne), Arial, sans-serif; font-size:13px; font-weight:700; color:${CYAN}; min-width:34px; transition:color .3s ease; }
-        .dpi-open-layer-name { font-family: var(--font-syne), Arial, sans-serif; font-size:19px; font-weight:700; color:#fff; transition:color .3s ease; }
+        .dpi-open { padding: clamp(76px, 8vw, 120px) 0; background:linear-gradient(180deg, ${NAVY} 0%, #141414 100%); }
+        .dpi-open-grid { display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:16px; margin-top:48px; }
+        .dpi-open-card { position:relative; overflow:hidden; display:flex; flex-direction:row; min-height:180px; border:1px solid rgba(255,255,255,0.14); border-radius:16px; background:rgba(255,255,255,0.03); transition:border-color .3s ease, background .3s ease, transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease; }
+        .dpi-open-card:hover { background:rgba(198,232,74,0.1); border-color:rgba(198,232,74,0.55); transform:translateY(-4px); box-shadow:0 18px 40px -20px rgba(198,232,74,0.32); }
+        .dpi-open-card-body { flex:0 0 56%; padding:20px 12px 20px 22px; display:flex; flex-direction:column; justify-content:flex-end; gap:8px; position:relative; z-index:2; }
+        .dpi-open-card-num { font-family: var(--font-syne), Arial, sans-serif; font-size:13px; font-weight:700; letter-spacing:0.08em; color:${CYAN}; transition:color .3s ease; }
+        .dpi-open-card:hover .dpi-open-card-num { color:#c9e94a; }
+        .dpi-open-card-name { font-family: var(--font-syne), Arial, sans-serif; font-size:18px; font-weight:700; line-height:1.2; color:#fff; margin:0; transition:color .3s ease; }
+        .dpi-open-card:hover .dpi-open-card-name { color:#c9e94a; }
+        .dpi-open-card-media { position:absolute; right:0; top:0; bottom:0; width:50%; z-index:1; overflow:hidden; -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 46%); mask-image:linear-gradient(to right, transparent 0%, #000 46%); }
+        .dpi-open-card-media img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:right center; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1); }
+        .dpi-open-card:hover .dpi-open-card-media img { transform:scale(1.06); }
 
-        /* --- 09 AI + DPI --- */
-        .dpi-ai { background:linear-gradient(150deg, #141414 0%, #141414 60%, ${NAVY2} 100%); }
-        .dpi-ai-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; margin-top:48px; }
-        .dpi-ai-node { border:1px solid rgba(198,232,74,0.25); border-radius:14px; padding:24px; background:rgba(15,15,15,0.5); transition:border-color .3s ease, background .3s ease, transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease; }
-        .dpi-ai-node:hover { background:rgba(198,232,74,0.08); border-color:rgba(198,232,74,0.6); transform:translateY(-4px); box-shadow:0 16px 40px -16px rgba(198,232,74,0.25); }
-        .dpi-ai-title { font-family: var(--font-syne), Arial, sans-serif; font-size:17px; font-weight:700; color:#fff; margin:0 0 8px; transition:color .3s ease; }
-        .dpi-ai-node:hover .dpi-ai-title { color:#c9e94a; }
-        .dpi-ai-verbs { font-size:13px; letter-spacing:0.04em; color:${CYAN}; transition:color .3s ease; }
-        .dpi-ai-node:hover .dpi-ai-verbs { color:#fff; }
+        /* --- 09 AI + DPI (intelligence deck) --- */
+        .dpi-ai { padding: clamp(76px, 8vw, 120px) 0; background:linear-gradient(150deg, #0B1220 0%, #141414 60%, ${NAVY2} 100%); }
+        .dpi-ai-head { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; margin-bottom: 48px; }
+        .dpi-ai-lede { font-size: 18px; line-height: 1.8; color: rgba(255,255,255,0.7); max-width: 640px; margin: 8px 0 0; }
+
+        .scd-deck-wrapper { position: relative; width: 100%; max-width: 100%; overflow: hidden; margin-top: 20px; }
+        .scd-deck { position: relative; width: 100%; max-width: 100%; min-height: 480px; }
+        .scd-tabs-bar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; position: relative; z-index: 10; width: 100%; max-width: 100%; }
+        .scd-tab { appearance: none; border: none; background: #1B2530; border-radius: 14px 14px 0 0; padding: 14px 12px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #B7C3D0; font-family: inherit; font-size: 13.5px; font-weight: 700; opacity: 0.85; transition: background 0.3s ease, transform 0.3s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.3s ease, color 0.3s ease; text-align: center; min-width: 0; overflow: hidden; }
+        .scd-tab:hover { background: #26303C; color: #ffffff; opacity: 1; }
+        .scd-tab.is-active { background: #C6E84A; color: #0f0f0f; opacity: 1; transform: translateY(-4px); box-shadow: 0 -8px 20px rgba(0,0,0,0.3); }
+        .scd-tab.is-active .scd-tab-num { background: rgba(15,23,42,0.16); color: #0f0f0f; }
+        .scd-tab-num { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; background: rgba(0,0,0,0.25); padding: 2px 6px; border-radius: 999px; flex: 0 0 auto; }
+        .scd-tab-text { font-family: var(--font-syne), sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1 1 auto; }
+        .scd-cards-stack { position: relative; width: 100%; min-height: 420px; }
+        .scd-card { position: absolute; inset: 0; border-radius: 0 0 24px 24px; padding: 52px 56px; color: #ffffff; overflow: hidden; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7); transform: translateY(24px) scale(0.95); opacity: 0; pointer-events: none; transition: transform 0.45s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.45s ease; z-index: 1; }
+        .scd-card.is-active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; z-index: 5; }
+        .scd-card-bg-img { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+        .scd-card-bg-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.28; filter: saturate(1.2); }
+        .scd-card-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(6,14,25,0.7) 0%, rgba(6,14,25,0.4) 100%); }
+        .scd-card-inner { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; align-items: center; height: 100%; overflow: hidden; }
+        .scd-card-main { min-width: 0; }
+        .scd-card-num { display: inline-block; font-family: var(--font-syne), sans-serif; font-size: 13px; font-weight: 800; letter-spacing: 0.16em; background: rgba(0,0,0,0.35); padding: 4px 12px; border-radius: 999px; margin-bottom: 16px; backdrop-filter: blur(4px); }
+        .scd-card-title { font-family: var(--font-syne), sans-serif; font-size: clamp(24px, 2.6vw, 36px); font-weight: 800; line-height: 1.15; margin: 0 0 16px; letter-spacing: -0.02em; word-break: break-word; }
+        .scd-card-tags { font-size: 13.5px; font-weight: 700; letter-spacing: 0.08em; background: rgba(0,0,0,0.35); padding: 8px 16px; border-radius: 999px; display: inline-block; backdrop-filter: blur(4px); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .scd-card-visual { position: relative; height: 250px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 40px rgba(0,0,0,0.4); min-width: 0; }
+        .scd-visual-thumb { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.3, 0.9, 0.3, 1); }
+        .scd-card:hover .scd-visual-thumb { transform: scale(1.05); }
+        @media (max-width: 900px) {
+          .scd-tabs-bar { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+          .scd-deck { min-height: 420px; }
+          .scd-card-inner { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+          .scd-card-visual { display: none; }
+          .scd-card { padding: 40px 32px; border-radius: 20px; }
+        }
+        @media (max-width: 640px) {
+          .scd-tabs-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .scd-card { padding: 32px 24px; }
+        }
 
         /* --- 10 Human + Digital --- */
         .dpi-human { background:#fafaf8; }
@@ -634,22 +545,6 @@ export default function DigitalPublicInfrastructurePage() {
           .dpi-human-ghost { display:none; }
         }
 
-        /* --- 11 Intelligent Service Delivery --- */
-        .dpi-service { background:#fafaf8; }
-        .dpi-service-flow { margin-top:52px; background:linear-gradient(135deg, #2b2f1a, #0d0f08); border-radius:20px; padding:20px 44px; }
-        .dpi-service-rail { position:relative; display:flex; height:330px; }
-        .dpi-service-rail-line { position:absolute; top:50%; left:0; right:0; height:2px; transform:translateY(-50%); background:linear-gradient(90deg, rgba(201,233,74,0.12), rgba(201,233,74,0.95)); border-radius:2px; z-index:0; }
-        .dpi-service-step { position:relative; flex:1; height:100%; }
-        .dpi-service-node { position:absolute; top:50%; left:50%; width:13px; height:13px; border-radius:50%; background:#c9e94a; transform:translate(-50%,-50%); z-index:2; }
-        .dpi-service-stem { position:absolute; left:50%; width:1px; background:rgba(201,233,74,0.35); z-index:1; }
-        .dpi-service-stem--up { bottom:50%; height:46px; }
-        .dpi-service-stem--down { top:50%; height:46px; }
-        .dpi-service-label { position:absolute; left:50%; transform:translateX(-50%); width:168px; text-align:center; z-index:2; }
-        .dpi-service-label--up { bottom:calc(50% + 46px); }
-        .dpi-service-label--down { top:calc(50% + 46px); }
-        .dpi-service-num { display:block; font-family: var(--font-syne), Arial, sans-serif; font-size:22px; font-weight:800; color:#c9e94a; text-shadow:0 0 18px rgba(201,233,74,0.5); margin-bottom:4px; }
-        .dpi-service-name { font-family: var(--font-syne), Arial, sans-serif; font-size:13.5px; font-weight:700; letter-spacing:0.03em; text-transform:uppercase; color:#f6f7ef; margin:0 0 6px; }
-        .dpi-service-desc { font-size:12.5px; color:#a9ab9a; margin:0; line-height:1.45; }
 
         /* --- 12 Trust, Security & Governance --- */
         .dpi-trust { background:linear-gradient(160deg, ${NAVY} 0%, ${NAVY2} 100%); }
@@ -668,18 +563,17 @@ export default function DigitalPublicInfrastructurePage() {
 
         /* --- 13 Outcomes --- */
         .dpi-outcomes { background: #ffffff; }
-        .dpi-out-grid { display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:16px; margin-top:56px; }
-        .dpi-outcome { position:relative; overflow:hidden; background:#f5f5f3; border-radius:16px; display:flex; flex-direction:row; min-height:220px; box-shadow:0 2px 12px -4px rgba(12,27,48,0.08); transition:transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease; }
-        .dpi-outcome--dark { background:#0c1b2e; }
-        .dpi-outcome:hover { transform:translateY(-4px); box-shadow:0 16px 40px -14px rgba(12,27,48,0.20); }
-        .dpi-outcome-body { flex:0 0 50%; padding:24px 20px 24px 24px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; z-index:2; pointer-events:none; }
+        .dpi-out-grid { display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:14px; margin-top:40px; }
+        .dpi-outcome { position:relative; overflow:hidden; background:#f5f5f3; border-radius:14px; display:flex; flex-direction:row; min-height:180px; box-shadow:0 2px 12px -4px rgba(12,27,48,0.08); transition:transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, background-color 0.4s cubic-bezier(0.16,1,0.3,1); }
+        .dpi-outcome:hover { transform:translateY(-4px); background:#0c1b2e; box-shadow:0 16px 40px -14px rgba(12,27,48,0.20); }
+        .dpi-outcome-body { flex:0 0 50%; padding:18px 14px 18px 20px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; z-index:2; pointer-events:none; }
         .dpi-outcome-body * { pointer-events:auto; }
-        .dpi-outcome-eyebrow { font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#8a97a8; margin:0 0 10px; }
-        .dpi-outcome--dark .dpi-outcome-eyebrow { color:#6b8299; }
-        .dpi-outcome-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size:clamp(20px, 1.8vw, 26px); font-weight:800; letter-spacing:-0.03em; line-height:1.1; color:#0a1628; margin:0 0 10px; }
-        .dpi-outcome--dark .dpi-outcome-title { color:#ffffff; }
-        .dpi-outcome-desc { font-size:12.5px; line-height:1.6; color:#5a6b7f; margin:0; max-width:24ch; }
-        .dpi-outcome--dark .dpi-outcome-desc { color:#7a96ae; }
+        .dpi-outcome-eyebrow { font-size:9px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#8a97a8; margin:0 0 8px; transition:color 0.35s ease; }
+        .dpi-outcome:hover .dpi-outcome-eyebrow { color:#6b8299; }
+        .dpi-outcome-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size:clamp(17px, 1.45vw, 21px); font-weight:800; letter-spacing:-0.03em; line-height:1.1; color:#0a1628; margin:0 0 8px; transition:color 0.35s ease; }
+        .dpi-outcome:hover .dpi-outcome-title { color:#ffffff; }
+        .dpi-outcome-desc { font-size:11.5px; line-height:1.55; color:#5a6b7f; margin:0; max-width:26ch; transition:color 0.35s ease; }
+        .dpi-outcome:hover .dpi-outcome-desc { color:#7a96ae; }
         .dpi-outcome-media { position:absolute; right:0; top:0; bottom:0; width:68%; z-index:1; overflow:hidden; }
         .dpi-outcome-media img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:right center; display:block; transition:transform 0.7s cubic-bezier(0.16,1,0.3,1); }
         .dpi-outcome:hover .dpi-outcome-media img { transform:scale(1.05); }
@@ -752,7 +646,7 @@ export default function DigitalPublicInfrastructurePage() {
         @media (max-width: 1080px) {
           .dpi-impact-grid { grid-template-columns: repeat(2, 1fr); }
           .dpi-pension-cols { grid-template-columns: 1fr; }
-          .dpi-ai-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .dpi-open-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
         @media (max-width: 1023px) {
           .dpi-eco-module { flex: 0 0 calc((100% - 24px) / 2); }
@@ -762,33 +656,23 @@ export default function DigitalPublicInfrastructurePage() {
         }
         @media (max-width: 900px) {
           .dpi-land-row { grid-template-columns: 1fr; }
-          .dpi-section-cols { grid-template-columns: 1fr; }
           .dpi-cap-panel { grid-template-columns: 1fr; }
-          .dpi-ai-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           .dpi-out-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           .dpi-why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           .dpi-pstep-detail { grid-template-columns: 1fr; }
-          .dpi-service-flow { padding:36px 24px; }
-          .dpi-service-rail { flex-direction:column; height:auto; gap:0; }
-          .dpi-service-rail-line { top:0; bottom:0; left:16px; right:auto; width:2px; height:auto; transform:translateY(0); background:linear-gradient(180deg, rgba(201,233,74,0.12), rgba(201,233,74,0.95)); }
-          .dpi-service-step { height:auto; padding:0 0 32px 44px; }
-          .dpi-service-step:last-child { padding-bottom:0; }
-          .dpi-service-node { top:6px; left:16px; transform:translate(-50%, 0); }
-          .dpi-service-stem { display:none; }
-          .dpi-service-label { position:static; transform:none; width:auto; text-align:left; }
         }
         @media (max-width: 720px) {
           .dpi-impact-grid { grid-template-columns: 1fr; }
           .dpi-cap-list { grid-template-columns: 1fr; }
           .dpi-pstep-list { grid-template-columns: 1fr; }
-          .dpi-ai-grid { grid-template-columns: 1fr; }
-          .dpi-ai-grid > .dpi-ai-node { min-width: 0; }
           .dpi-out-grid { grid-template-columns: 1fr; }
           .dpi-why-grid { grid-template-columns: 1fr; }
           .dpi-why-grid > .dpi-why-card { min-width: 0; }
           .dpi-why-card h3 { overflow-wrap: anywhere; }
           .dpi-layer { grid-template-columns: 1fr; gap: 8px; }
-          .dpi-open-layer { flex-direction: column; align-items: flex-start; gap: 8px; padding: 20px; }
+          .dpi-open-grid { grid-template-columns: 1fr; }
+          .dpi-open-card-media { display: none; }
+          .dpi-open-card-body { flex: 1 1 auto; }
         }
         @media (max-width: 780px) {
           .dpi-trust-stage { padding: 0; }
@@ -969,9 +853,14 @@ export default function DigitalPublicInfrastructurePage() {
               </ul>
             </div>
             <div className="dpi-cap-visual">
-              <div key={capTab} className="dpi-cap-glyph" aria-hidden="true">
-                <CapabilityIcon variant={capabilityTabs[capTab].tab.toLowerCase()} />
-              </div>
+              <img
+                className="dpi-cap-preview"
+                src={capabilityTabs[capTab].image}
+                alt={capabilityTabs[capTab].title + " capability preview"}
+                width={627}
+                height={627}
+                decoding="async"
+              />
             </div>
           </div>
         </div>
@@ -1030,78 +919,97 @@ export default function DigitalPublicInfrastructurePage() {
       </section>
 
       {/* ─────────────────── 07 CONNECTED PENSION ECOSYSTEM ─────────────────── */}
-      <section className="dpi-section dpi-ecosys">
+      <EcosystemHoneycomb />
+
+      {/* ───────────── 08 OPEN DIGITAL ECOSYSTEMS ───────────── */}
+      <section className="dpi-open">
         <div className="dpi-wrap">
           <div className="dpi-reveal">
-            <Eyebrow text="CONNECTED PENSION ECOSYSTEM" />
-            <h2 className="dpi-h2">One ecosystem. Multiple participants. <span style={{ color: "#C6E84A" }}>One continuous flow of information.</span></h2>
+            <Eyebrow text="OPEN DIGITAL ECOSYSTEMS" dark />
+            <h2 className="dpi-h2">Build ecosystems.<span style={{ color: "#C6E84A" }}> Not silos.</span></h2>
+            <p className="dpi-body" style={{ color: "rgba(255,255,255,0.72)" }}>The next generation of digital infrastructure is not built around one application or institution. It connects participants through common standards, interoperable systems and shared digital building blocks — allowing innovation to happen across the ecosystem.</p>
           </div>
-          <div className="dpi-ecosys-flow dpi-reveal">
-            <div className="dpi-ecosys-track">
-              {pensionEcosystem.map((s, i) => (
-                <Fragment key={s.name}>
-                  <div className={"dpi-ecosys-tile" + (s.highlight ? " dpi-ecosys-tile--highlight" : "")}>
-                    <span className="dpi-ecosys-icon">{ecosysIcons[s.icon]}</span>
-                    <span className="dpi-ecosys-label">{s.name}</span>
-                  </div>
-                  {i < pensionEcosystem.length - 1 && (
-                    <span className="dpi-ecosys-arrow" aria-hidden="true">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
-                    </span>
-                  )}
-                </Fragment>
-              ))}
-            </div>
-          </div>
-          <div className="dpi-ilband dpi-reveal">
-            <span className="dpi-ilband-label">SYTRION INTELLIGENCE LAYER</span>
-            {intelligenceLayer.map((x) => (
-              <span key={x} className="dpi-ilband-item">{x}</span>
+          <div className="dpi-open-grid dpi-reveal">
+            {openEcosystemLayers.map((l, i) => (
+              <article key={l.name} className="dpi-open-card">
+                <div className="dpi-open-card-body">
+                  <span className="dpi-open-card-num">{String(i + 1).padStart(2, "0")}</span>
+                  <h3 className="dpi-open-card-name">{l.name}</h3>
+                </div>
+                <div className="dpi-open-card-media" aria-hidden="true">
+                  <img src={l.image} alt="" loading="lazy" decoding="async" />
+                </div>
+              </article>
             ))}
           </div>
-          <p className="dpi-body dpi-reveal" style={{ marginTop: 28, maxWidth: "none" }}>A connected ecosystem of participants working together to deliver better outcomes for subscribers.</p>
         </div>
       </section>
 
-      {/* ───────────── 08 OPEN DIGITAL ECOSYSTEMS + 09 AI + DPI ───────────── */}
-      <section className="dpi-section-cols">
-        <div className="dpi-col dpi-open-col">
-          <section className="dpi-open">
-            <div className="dpi-wrap">
-              <div className="dpi-reveal">
-                <Eyebrow text="OPEN DIGITAL ECOSYSTEMS" dark />
-                <h2 className="dpi-h2">Build ecosystems.<span style={{ color: "#C6E84A" }}> Not silos.</span></h2>
-                <p className="dpi-body" style={{ color: "rgba(255,255,255,0.72)" }}>The next generation of digital infrastructure is not built around one application or institution. It connects participants through common standards, interoperable systems and shared digital building blocks — allowing innovation to happen across the ecosystem.</p>
-              </div>
-              <div className="dpi-open-stack dpi-reveal">
-                {openEcosystemLayers.map((l, i) => (
-                  <div key={l} className="dpi-open-layer">
-                    <span className="dpi-open-layer-num">{String(i + 1).padStart(2, "0")}</span>
-                    <span className="dpi-open-layer-name">{l}</span>
-                  </div>
+      {/* ───────────── 09 AI + DPI ───────────── */}
+      <section className="dpi-ai">
+        <div className="dpi-wrap">
+          <div className="dpi-ai-head dpi-reveal">
+            <div>
+              <Eyebrow text="AI + DPI" dark />
+              <h2 className="dpi-h2">From digital infrastructure to <span style={{ color: "#C6E84A" }}>intelligent infrastructure.</span></h2>
+            </div>
+            <p className="dpi-ai-lede">Digital infrastructure connects systems. AI can help make those systems more responsive, efficient and intelligent.</p>
+          </div>
+
+          <div className="scd-deck-wrapper dpi-reveal">
+            <div className="scd-deck">
+              <div className="scd-tabs-bar" role="tablist" aria-label="AI and digital public infrastructure capabilities">
+                {aiNodes.map((n, i) => (
+                  <button
+                    key={n.title}
+                    role="tab"
+                    id={`dpi-ai-tab-${i}`}
+                    aria-selected={aiActive === i}
+                    aria-controls={`dpi-ai-card-${i}`}
+                    className={`scd-tab ${aiActive === i ? "is-active" : ""}`}
+                    onClick={() => setAiActive(i)}
+                    onMouseEnter={() => setAiActive(i)}
+                    onFocus={() => setAiActive(i)}
+                  >
+                    <span className="scd-tab-num">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="scd-tab-text">{n.title}</span>
+                  </button>
                 ))}
               </div>
-            </div>
-          </section>
-        </div>
-        <div className="dpi-col dpi-ai-col">
-          <section className="dpi-ai">
-            <div className="dpi-wrap">
-              <div className="dpi-reveal">
-                <Eyebrow text="AI + DPI" dark />
-                <h2 className="dpi-h2">From digital infrastructure to <span style={{ color: "#C6E84A" }}>intelligent infrastructure.</span></h2>
-                <p className="dpi-body" style={{ color: "rgba(255,255,255,0.72)" }}>Digital infrastructure connects systems. AI can help make those systems more responsive, efficient and intelligent.</p>
+
+              <div className="scd-cards-stack">
+                {aiNodes.map((n, i) => {
+                  const isActive = aiActive === i;
+                  return (
+                    <article
+                      key={n.title}
+                      id={`dpi-ai-card-${i}`}
+                      role="tabpanel"
+                      aria-labelledby={`dpi-ai-tab-${i}`}
+                      className={`scd-card ${isActive ? "is-active" : ""}`}
+                      style={{ background: "linear-gradient(135deg, #0C1B30 0%, #243142 100%)" }}
+                    >
+                      <div className="scd-card-bg-img">
+                        <img src={n.image} alt={n.title} loading="lazy" decoding="async" />
+                        <div className="scd-card-overlay" />
+                      </div>
+
+                      <div className="scd-card-inner">
+                        <div className="scd-card-main">
+                          <span className="scd-card-num">{String(i + 1).padStart(2, "0")}</span>
+                          <h3 className="scd-card-title">{n.title}</h3>
+                          <div className="scd-card-tags">{n.verbs}</div>
+                        </div>
+                        <div className="scd-card-visual" aria-hidden="true">
+                          <img src={n.image} alt="" className="scd-visual-thumb" />
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
-              <div className="dpi-ai-grid dpi-reveal">
-                {aiNodes.map((n) => (
-                  <div key={n.title} className="dpi-ai-node">
-                    <h3 className="dpi-ai-title">{n.title}</h3>
-                    <p className="dpi-ai-verbs">{n.verbs}</p>
-                  </div>
-                ))}
-              </div>
             </div>
-          </section>
+          </div>
         </div>
       </section>
 
@@ -1119,7 +1027,7 @@ export default function DigitalPublicInfrastructurePage() {
               <div className="dpi-human-rows">
                 {humanDigitalPillars.map((p, i) => (
                   <article key={p.title} className="dpi-human-row">
-                    <span className="dpi-human-ghost" aria-hidden="true">{p.num}</span>
+                    <span className="dpi-human-ghost" aria-hidden="true"></span>
                     <div className="dpi-human-icon">{humanIcons[i]}</div>
                     <div className="dpi-human-text">
                       <h3 className="dpi-human-title">{p.title}</h3>
@@ -1135,33 +1043,7 @@ export default function DigitalPublicInfrastructurePage() {
       </section>
 
       {/* ─────────────────── 11 INTELLIGENT SERVICE DELIVERY ─────────────────── */}
-      <section className="dpi-section dpi-service">
-        <div className="dpi-wrap">
-          <div className="dpi-reveal">
-            <Eyebrow text="INTELLIGENT SERVICE DELIVERY" />
-            <h2 className="dpi-h2">Make every interaction <span style={{ color: "#C6E84A" }}>easier to navigate.</span></h2>
-          </div>
-          <div className="dpi-service-flow dpi-reveal">
-            <div className="dpi-service-rail">
-              <div className="dpi-service-rail-line" aria-hidden="true" />
-              {serviceFlow.map((s, i) => {
-                const up = i % 2 === 0;
-                return (
-                  <div key={s.name} className="dpi-service-step">
-                    <div className="dpi-service-node" aria-hidden="true" />
-                    <div className={"dpi-service-stem dpi-service-stem--" + (up ? "up" : "down")} aria-hidden="true" />
-                    <div className={"dpi-service-label dpi-service-label--" + (up ? "up" : "down")}>
-                      <span className="dpi-service-num">{String(i + 1).padStart(2, "0")}</span>
-                      <h3 className="dpi-service-name">{s.name}</h3>
-                      <p className="dpi-service-desc">{s.desc}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
+      <ServiceStaircase />
 
       {/* ───────────── 12 TRUST, SECURITY & GOVERNANCE ───────────── */}
       <section className="dpi-section dpi-trust">
@@ -1201,8 +1083,8 @@ export default function DigitalPublicInfrastructurePage() {
             <h2 className="dpi-h2">Infrastructure designed to create impact <span style={{ color: "#C6E84A" }}>at scale.</span></h2>
           </div>
           <div className="dpi-out-grid dpi-reveal">
-            {outcomes.map((o, i) => (
-              <article key={o.word} className={`dpi-outcome${i === 0 ? " dpi-outcome--dark" : ""}`}>
+            {outcomes.map((o) => (
+              <article key={o.word} className="dpi-outcome">
                 <div className="dpi-outcome-body">
                   <p className="dpi-outcome-eyebrow">{o.num} / {o.word}</p>
                   <h3 className="dpi-outcome-title">{o.title}</h3>
