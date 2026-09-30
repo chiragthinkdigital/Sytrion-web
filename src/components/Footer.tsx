@@ -90,6 +90,9 @@ export default function Footer() {
         .fl-callout-wrap {
           margin-top: auto;
           position: relative;
+          display: flex;
+          align-items: center;
+          gap: 8px;
         }
 
         .fl-heading {
@@ -507,7 +510,7 @@ export default function Footer() {
                 <span>solutions@sytriondatalabs.com</span>
               </div>
 
-              
+
               <div className="fl-contact-item">
                 <div className="fl-contact-icon">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -519,7 +522,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="fl-callout-wrap">
+            <div className="fl-callout-wrap" style={{ marginLeft: "-28px", width: "calc(100% + 28px)" }}>
               <div className="fl-callout-bar"></div>
               <div className="fl-callout-text">LET'S BUILD A SMARTER TOMORROW TOGETHER.</div>
             </div>
