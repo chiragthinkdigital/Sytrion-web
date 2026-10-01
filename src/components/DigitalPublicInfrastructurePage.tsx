@@ -46,7 +46,7 @@ const capabilityTabs = [
   {
     tab: "Identity",
     title: "Identity",
-    image: "/dpi/DPI_Identify.png",
+    image: "/dpi/DPI_Identify.jpeg",
     lead: "Create trusted foundations for digital interaction.",
     items: [
       "Digital onboarding",
@@ -60,7 +60,7 @@ const capabilityTabs = [
   {
     tab: "Registries",
     title: "Registries",
-    image: "/dpi/DPI_Registries.png",
+    image: "/dpi/DPI_Registries.jpeg",
     lead: "Create reliable information foundations.",
     items: [
       "Registry operations",
@@ -74,7 +74,7 @@ const capabilityTabs = [
   {
     tab: "Exchange",
     title: "Exchange",
-    image: "/dpi/DPI_Exchange.png",
+    image: "/dpi/DPI_Exchange.jpeg",
     lead: "Connect information across ecosystems.",
     items: [
       "API integration",
@@ -88,7 +88,7 @@ const capabilityTabs = [
   {
     tab: "Services",
     title: "Services",
-    image: "/dpi/DPI_Services.png",
+    image: "/dpi/DPI_Services.jpeg",
     lead: "Make essential services easier to access.",
     items: [
       "Digital applications",
@@ -102,7 +102,7 @@ const capabilityTabs = [
   {
     tab: "Operations",
     title: "Operations",
-    image: "/dpi/DPI_Operations.png",
+    image: "/dpi/DPI_Operations.jpeg",
     lead: "Keep population-scale digital services moving.",
     items: [
       "Transaction processing",
@@ -116,7 +116,7 @@ const capabilityTabs = [
   {
     tab: "Insights",
     title: "Insights",
-    image: "/dpi/DPI_Insights.png",
+    image: "/dpi/DPI_Insights.jpeg",
     lead: "Turn ecosystem activity into actionable intelligence.",
     items: [
       "Operational dashboards",
