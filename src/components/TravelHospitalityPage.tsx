@@ -773,7 +773,7 @@ export default function TravelHospitalityPage() {
                 <div className="tv-hd-stage" ref={tvHdStageRef}>
                   <img
                     className="tv-hd-img"
-                    src="/dpi/Human + Digital.jpg"
+                    src="services/travel/Human + Digital travel.jpg"
                     alt="Human + Digital travel and hospitality experience"
                     loading="lazy"
                     decoding="async"
