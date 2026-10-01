@@ -1101,7 +1101,7 @@ export default function ECommercePage() {
       <section className="ec-hero">
         <video
           className="dpi-hero-video"
-          src="services/ecommerce/ecommercehero.mp4"
+          src="/services/ecommerce/ecommercehero.mp4"
           autoPlay
           muted
           loop
@@ -1269,7 +1269,7 @@ export default function ECommercePage() {
         <div className="ec-wrap">
           <div className="ec-split">
             <div className="ec-feature-img ec-reveal">
-              <img src="services/ecommerce/Digital Shelf Operations.jpg" alt="Digital commerce professional working with product and order documentation" />
+              <img src="/services/ecommerce/Digital Shelf Operations.jpg" alt="Digital commerce professional working with product and order documentation" />
               <div className="ec-feature-tint" />
             </div>
             <div className="ec-reveal">
