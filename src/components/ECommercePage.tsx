@@ -5,29 +5,29 @@ import { useEffect, useRef, useState } from "react";
 import StaircaseFlow from "./StaircaseFlow";
 
 const challenges = [
-  { label: "Growing product & SKU complexity", color: "#6366F1", gradient: "linear-gradient(135deg, rgba(99,102,241,0.18), rgba(99,102,241,0.04))" },
-  { label: "Multiple marketplaces & channels", color: "#F59E0B", gradient: "linear-gradient(135deg, rgba(245,158,11,0.18), rgba(245,158,11,0.04))" },
-  { label: "Real-time inventory expectations", color: "#10B981", gradient: "linear-gradient(135deg, rgba(16,185,129,0.18), rgba(16,185,129,0.04))" },
-  { label: "Rising customer expectations", color: "#EF4444", gradient: "linear-gradient(135deg, rgba(239,68,68,0.18), rgba(239,68,68,0.04))" },
-  { label: "Returns, refunds & payment complexity", color: "#8B5CF6", gradient: "linear-gradient(135deg, rgba(139,92,246,0.18), rgba(139,92,246,0.04))" },
-  { label: "Seasonal and promotional demand peaks", color: "#06B6D4", gradient: "linear-gradient(135deg, rgba(6,182,212,0.18), rgba(6,182,212,0.04))" },
+  { label: "Growing product & SKU complexity", image: "/services/ecommerce/Growing product & SKU complexity.png" },
+  { label: "Multiple marketplaces & channels", image: "/services/ecommerce/Multiple marketplaces & channels.png" },
+  { label: "Real-time inventory expectations", image: "/services/ecommerce/Real-time inventory expectations.png" },
+  { label: "Rising customer expectations", image: "/services/ecommerce/Rising customer expectations.png" },
+  { label: "Returns, refunds & payment complexity", image: "/services/ecommerce/Returns, refunds & payment complexity.png" },
+  { label: "Seasonal and promotional demand peaks", image: "/services/ecommerce/Seasonal and promotional demand peaks.png" },
 ];
 
 const ecosystemCards = [
   {
     title: "Retailers & Brands",
     desc: "Connected operations across products, orders, customers, fulfillment and digital channels.",
-    image: "/services/ecommerce/Retailers & Brands.jpg",
+    image: "/services/ecommerce/Retailers & Brands.png",
   },
   {
     title: "Marketplaces",
     desc: "Scalable catalog, seller, order, customer and marketplace-support operations.",
-    image: "/services/ecommerce/Marketplaces.jpg",
+    image: "/services/ecommerce/Marketplaces.png",
   },
   {
     title: "D2C Businesses",
     desc: "End-to-end operational support designed for fast-growing direct-to-consumer brands.",
-    image: "/services/ecommerce/D2C Businesses.jpg",
+    image: "/services/ecommerce/D2C Businesses.png",
   },
   {
     title: "B2B Commerce",
@@ -129,67 +129,32 @@ const ibsTabs = [
   },
 ];
 
-const commerceSteps = [
-  { num: "01", name: "INGEST", sub: "Product information", icon: "inbox", x: 14, y: 28 },
-  { num: "02", name: "CLASSIFY", sub: "Category & taxonomy", icon: "scan", x: 50, y: 28 },
-  { num: "03", name: "ENRICH", sub: "Attributes & content", icon: "check", x: 86, y: 28 },
-  { num: "04", name: "VALIDATE", sub: "Quality & completeness", icon: "git-branch", x: 86, y: 74 },
-  { num: "05", name: "PUBLISH", sub: "Channels & marketplaces", icon: "cpu", x: 50, y: 74 },
-  { num: "06", name: "MONITOR", sub: "Accuracy & updates", icon: "bar-chart", x: 14, y: 74 },
+const processSteps = [
+  {
+    num: "01", name: "INGEST", title: "Ingest", sub: "Product information", caption: "Raw file arrives",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6z" /><path d="M5.45 5.11 2 12v0h20v0l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" /></svg>),
+  },
+  {
+    num: "02", name: "CLASSIFY", title: "Classify", sub: "Category & taxonomy", caption: "Sorted into the right category",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2" /><path d="M17 3h2a2 2 0 0 1 2 2v2" /><path d="M21 17v2a2 2 0 0 1-2 2h-2" /><path d="M7 21H5a2 2 0 0 1-2-2v-2" /><line x1="7" y1="12" x2="17" y2="12" /></svg>),
+  },
+  {
+    num: "03", name: "ENRICH", title: "Enrich", sub: "Attributes & content", caption: "Titles, attributes and content added",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>),
+  },
+  {
+    num: "04", name: "VALIDATE", title: "Validate", sub: "Quality & completeness", caption: "Checked by a human reviewer",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><line x1="6" y1="3" x2="6" y2="15" /><circle cx="18" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M18 9a9 9 0 0 1-9 9" /></svg>),
+  },
+  {
+    num: "05", name: "PUBLISH", title: "Publish", sub: "Channels & marketplaces", caption: "Sent to every channel",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" /><rect x="9" y="9" width="6" height="6" /><line x1="9" y1="1" x2="9" y2="4" /><line x1="15" y1="1" x2="15" y2="4" /><line x1="9" y1="20" x2="9" y2="23" /><line x1="15" y1="20" x2="15" y2="23" /><line x1="20" y1="9" x2="23" y2="9" /><line x1="20" y1="15" x2="23" y2="15" /><line x1="1" y1="9" x2="4" y2="9" /><line x1="1" y1="15" x2="4" y2="15" /></svg>),
+  },
+  {
+    num: "06", name: "MONITOR", title: "Monitor", sub: "Accuracy & updates", caption: "Watched and kept accurate",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="20" x2="12" y2="10" /><line x1="18" y1="20" x2="18" y2="4" /><line x1="6" y1="20" x2="6" y2="16" /></svg>),
+  },
 ];
-
-const flowIcons: Record<string, React.ReactNode> = {
-  inbox: (
-    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M22 12h-6l-2 3h-4l-2-3H2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6z" />
-      <path d="M5.45 5.11 2 12v0h20v0l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
-    </svg>
-  ),
-  scan: (
-    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M3 7V5a2 2 0 0 1 2-2h2" />
-      <path d="M17 3h2a2 2 0 0 1 2 2v2" />
-      <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
-      <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
-      <line x1="7" y1="12" x2="17" y2="12" />
-    </svg>
-  ),
-  check: (
-    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-      <polyline points="22 4 12 14.01 9 11.01" />
-    </svg>
-  ),
-  "git-branch": (
-    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <line x1="6" y1="3" x2="6" y2="15" />
-      <circle cx="18" cy="6" r="3" />
-      <circle cx="6" cy="18" r="3" />
-      <path d="M18 9a9 9 0 0 1-9 9" />
-    </svg>
-  ),
-  cpu: (
-    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="4" y="4" width="16" height="16" rx="2" />
-      <rect x="9" y="9" width="6" height="6" />
-      <line x1="9" y1="1" x2="9" y2="4" />
-      <line x1="15" y1="1" x2="15" y2="4" />
-      <line x1="9" y1="20" x2="9" y2="23" />
-      <line x1="15" y1="20" x2="15" y2="23" />
-      <line x1="20" y1="9" x2="23" y2="9" />
-      <line x1="20" y1="15" x2="23" y2="15" />
-      <line x1="1" y1="9" x2="4" y2="9" />
-      <line x1="1" y1="15" x2="4" y2="15" />
-    </svg>
-  ),
-  "bar-chart": (
-    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <line x1="12" y1="20" x2="12" y2="10" />
-      <line x1="18" y1="20" x2="18" y2="4" />
-      <line x1="6" y1="20" x2="6" y2="16" />
-    </svg>
-  ),
-};
 
 const orderSteps = [
   { name: "ORDER ", sub: " - Capture & validate" },
@@ -436,7 +401,7 @@ const cxStages = [
     title: "Pre-Purchase",
     desc: "Helping shoppers decide with confidence, before they ever add to cart.",
     items: ["Product information", "Availability queries", "Purchase assistance"],
-    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>),
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" /><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" /></svg>),
   },
   {
     num: "02",
@@ -519,6 +484,227 @@ function EcLabel({ text, light }: { text: string; light?: boolean }) {
     <span className={`ec-label${light ? " ec-label--light" : ""}`}>
       {text}
     </span>
+  );
+}
+
+const PC_TOTAL = processSteps.length;
+
+function ProcessConveyor() {
+  const [active, setActive] = useState(0);
+  const [cycle, setCycle] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const [wrapKey, setWrapKey] = useState(0);
+  const [fading, setFading] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setActive(3);
+    }
+  }, []);
+
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.15 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visible) return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const t = window.setTimeout(() => {
+      if (active >= PC_TOTAL - 1) {
+        setFading(true);
+        window.setTimeout(() => {
+          setWrapKey((k) => k + 1);
+          setActive(0);
+          setFading(false);
+        }, 400);
+      } else {
+        setActive((a) => a + 1);
+      }
+    }, 2100);
+    return () => window.clearTimeout(t);
+  }, [active, cycle, visible]);
+
+  const jump = (i: number) => {
+    setFading(false);
+    setActive(i);
+    setCycle((c) => c + 1);
+  };
+
+  const step = processSteps[active];
+  const leftPct = `calc((100% / ${PC_TOTAL}) * ${active + 0.5})`;
+
+  return (
+    <div ref={rootRef} className={"process-conveyor" + (visible ? "" : " is-off")}>
+      <div className="process-conveyor__stations">
+        {processSteps.map((s, i) => (
+          <button
+            key={s.num}
+            type="button"
+            className={"process-conveyor__station" + (i === active ? " is-active" : "")}
+            onClick={() => jump(i)}
+            aria-label={`Step ${i + 1}: ${s.title}`}
+          >
+            <span className="process-conveyor__pod" aria-hidden="true">{s.icon}</span>
+            <span className="process-conveyor__name">{s.name}</span>
+            <span className="process-conveyor__sub">{s.sub}</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="process-conveyor__track" aria-hidden="true">
+        <span key={`beam-${wrapKey}`} className="process-conveyor__beam" style={{ left: leftPct }} />
+        <div className="process-conveyor__belt">
+          <span className="process-conveyor__stripes" />
+        </div>
+        <div
+          key={wrapKey}
+          className={`process-conveyor__box process-conveyor__box--step${active + 1}${fading ? " is-fading" : ""}`}
+          style={{ left: leftPct }}
+        >
+          <span className="process-conveyor__tag" />
+          <span className="process-conveyor__lines"><i /><i /></span>
+          <span className="process-conveyor__mark">?</span>
+          <span className="process-conveyor__check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </span>
+          <span className="process-conveyor__pulse" />
+        </div>
+      </div>
+
+      <p className="process-conveyor__caption" aria-live="polite">
+        <span className="process-conveyor__cap-num">{step.num}</span> {step.caption}
+      </p>
+
+      <style>{`
+        .process-conveyor { margin-top: 40px; max-width: 640px; width: 100%; }
+        .process-conveyor__stations { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+        .process-conveyor__station {
+          display: flex; flex-direction: column; align-items: center; gap: 8px;
+          background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit;
+          opacity: 0.45; transition: opacity 0.3s ease;
+        }
+        .process-conveyor__station:hover, .process-conveyor__station.is-active { opacity: 1; }
+        .process-conveyor__station:focus-visible { outline: 2px solid #C6E84A; outline-offset: 3px; border-radius: 14px; }
+        .process-conveyor__pod {
+          width: 54px; height: 54px; border-radius: 16px;
+          border: 1.5px solid rgba(198,238,59,0.22); background: #0c1e31;
+          display: flex; align-items: center; justify-content: center; color: #C6E84A;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .process-conveyor__station.is-active .process-conveyor__pod {
+          border-color: #C6E84A;
+          box-shadow: 0 0 0 4px rgba(198,238,59,0.1), 0 0 18px rgba(198,238,59,0.25);
+        }
+        .process-conveyor__pod svg { width: 22px; height: 22px; }
+        .process-conveyor__name { font-family: var(--font-syne), Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #eaf0f6; line-height: 1.1; text-align: center; }
+        .process-conveyor__sub { font-size: 11px; line-height: 1.25; color: #8fa1b4; text-align: center; }
+
+        .process-conveyor__track { position: relative; height: 118px; margin-top: 14px; }
+        .process-conveyor__beam {
+          position: absolute; top: 0; width: 44px; height: 66px; transform: translateX(-50%);
+          background: linear-gradient(180deg, rgba(198,238,59,0) 0%, rgba(198,238,59,0.22) 100%);
+          clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+          transition: left 1.2s cubic-bezier(0.6, 0, 0.3, 1);
+          pointer-events: none; z-index: 1;
+        }
+        .process-conveyor__belt {
+          position: absolute; left: 0; right: 0; bottom: 12px; height: 18px;
+          border-radius: 9px; background: #0e2236; border: 1px solid #17324d;
+          overflow: hidden; z-index: 1;
+        }
+        .process-conveyor__stripes {
+          position: absolute; inset: 0;
+          background: repeating-linear-gradient(90deg, #17324d 0 10px, #0e2236 10px 20px);
+          background-size: 20px 100%;
+          animation: pcBeltScroll 1s linear infinite;
+        }
+        .process-conveyor.is-off .process-conveyor__stripes { animation-play-state: paused; }
+        @keyframes pcBeltScroll { to { background-position: -20px 0; } }
+
+        .process-conveyor__box {
+          position: absolute; bottom: 28px; width: 58px; height: 48px; border-radius: 7px;
+          background: #0c1e31; border: 1.5px dashed #3c5069;
+          transform: translateX(-50%); z-index: 2;
+          transition: left 1.2s cubic-bezier(0.6, 0, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease, opacity 0.4s ease;
+          animation: pcBoxIn 0.4s ease;
+        }
+        @keyframes pcBoxIn { from { opacity: 0; } to { opacity: 1; } }
+        .process-conveyor__box.is-fading { opacity: 0; transition: opacity 0.35s ease; }
+        .process-conveyor__beam.is-wrapping { transition: none; }
+        .process-conveyor__mark {
+          position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+          font-family: var(--font-syne), Arial, sans-serif; font-size: 18px; font-weight: 700; color: #8fa1b4;
+        }
+        .process-conveyor__tag {
+          position: absolute; top: -5px; left: -5px; width: 16px; height: 16px; border-radius: 4px 4px 4px 8px;
+          background: #C6E84A; opacity: 0; transform: scale(0.6); transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .process-conveyor__lines {
+          position: absolute; left: 10px; right: 10px; top: 16px; display: flex; flex-direction: column; gap: 6px;
+          opacity: 0; transition: opacity 0.3s ease;
+        }
+        .process-conveyor__lines i { display: block; height: 4px; border-radius: 2px; background: #3c5069; }
+        .process-conveyor__lines i:first-child { width: 80%; }
+        .process-conveyor__lines i:last-child { width: 55%; }
+        .process-conveyor__check {
+          position: absolute; top: -8px; right: -8px; width: 20px; height: 20px; border-radius: 50%;
+          background: #C6E84A; color: #06121f; display: flex; align-items: center; justify-content: center;
+          opacity: 0; transform: scale(0.5); transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .process-conveyor__check svg { width: 11px; height: 11px; }
+        .process-conveyor__pulse {
+          position: absolute; inset: -6px; border-radius: 12px; border: 2px solid rgba(198,238,59,0.5);
+          opacity: 0;
+        }
+        .process-conveyor__box--step2 { border-style: solid; border-color: #C6E84A; }
+        .process-conveyor__box--step2 .process-conveyor__tag,
+        .process-conveyor__box--step3 .process-conveyor__tag,
+        .process-conveyor__box--step4 .process-conveyor__tag,
+        .process-conveyor__box--step5 .process-conveyor__tag,
+        .process-conveyor__box--step6 .process-conveyor__tag { opacity: 1; transform: scale(1); }
+        .process-conveyor__box--step3, .process-conveyor__box--step4, .process-conveyor__box--step5, .process-conveyor__box--step6 { border-style: solid; border-color: #C6E84A; }
+        .process-conveyor__box--step3 .process-conveyor__lines,
+        .process-conveyor__box--step4 .process-conveyor__lines,
+        .process-conveyor__box--step5 .process-conveyor__lines,
+        .process-conveyor__box--step6 .process-conveyor__lines { opacity: 1; }
+        .process-conveyor__box--step3 .process-conveyor__mark,
+        .process-conveyor__box--step4 .process-conveyor__mark,
+        .process-conveyor__box--step5 .process-conveyor__mark,
+        .process-conveyor__box--step6 .process-conveyor__mark { opacity: 0; }
+        .process-conveyor__box--step4 .process-conveyor__check,
+        .process-conveyor__box--step5 .process-conveyor__check,
+        .process-conveyor__box--step6 .process-conveyor__check { opacity: 1; transform: scale(1); }
+        .process-conveyor__box--step5 { box-shadow: 0 0 16px rgba(198,238,59,0.35); }
+        .process-conveyor__box--step6 { box-shadow: 0 0 26px rgba(198,238,59,0.55); }
+        .process-conveyor__box--step6 .process-conveyor__pulse { animation: pcPulseRing 1.4s ease-out infinite; }
+        @keyframes pcPulseRing {
+          0% { opacity: 0.8; transform: scale(0.92); }
+          100% { opacity: 0; transform: scale(1.25); }
+        }
+
+        .process-conveyor__caption { margin: 16px 0 0; font-size: 13px; color: #8fa1b4; text-align: center; }
+        .process-conveyor__cap-num { font-family: var(--font-syne), Arial, sans-serif; font-weight: 700; color: #C6E84A; margin-right: 4px; }
+
+        @media (max-width: 700px) {
+          .process-conveyor__stations { min-width: 600px; }
+          .process-conveyor { overflow-x: auto; }
+          .process-conveyor__track, .process-conveyor__caption { min-width: 600px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .process-conveyor__stripes { animation: none; }
+          .process-conveyor__box { transition: none; animation: none; }
+          .process-conveyor__beam { transition: none; }
+          .process-conveyor__box--step6 .process-conveyor__pulse { animation: none; opacity: 0.5; }
+        }
+      `}</style>
+    </div>
   );
 }
 
@@ -711,61 +897,50 @@ export default function ECommercePage() {
           background: linear-gradient(160deg, #0E1B2E 0%, #1B2735 100%);
           border: 1px solid rgba(198,232,74,0.14);
           border-radius: 16px;
-          padding: 22px 22px 20px;
+          padding: 0;
           position: relative;
           overflow: hidden;
+          aspect-ratio: 4 / 3;
           transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s ease, border-color .3s ease;
           box-shadow: 0 10px 30px -12px rgba(12,27,48,0.35);
-        }
-        .ec-challenge-card::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          border-radius: 16px;
-          background: radial-gradient(120px 60px at 20% 0%, rgba(198,232,74,0.12), transparent 70%);
-          opacity: 0;
-          transition: opacity .3s ease;
-          pointer-events: none;
         }
         .ec-challenge-card:hover {
           transform: translateY(-5px) scale(1.01);
           box-shadow: 0 20px 44px -12px rgba(12,27,48,0.45);
           border-color: rgba(198,232,74,0.45);
         }
-        .ec-challenge-card:hover::before { opacity: 1; }
-        .ec-challenge-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-        .ec-challenge-icon {
-          width: 42px;
-          height: 42px;
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          background: #C6E84A;
-          color: #0f0f0f;
-          box-shadow: 0 2px 12px -3px rgba(198,232,74,0.5);
-          flex-shrink: 0;
-        }
-        .ec-challenge-icon::after {
-          content: "";
+        .ec-challenge-img {
           position: absolute;
           inset: 0;
-          border-radius: 12px;
-          background: inherit;
-          filter: blur(10px);
-          opacity: 0.35;
-          z-index: -1;
-          transition: opacity .3s ease;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform .45s cubic-bezier(.4,0,.2,1);
         }
-        .ec-challenge-card:hover .ec-challenge-icon::after { opacity: 0.55; }
-        .ec-challenge-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-        .ec-challenge-label { font-size: 15px; font-weight: 600; color: #ffffff; line-height: 1.4; }
+        .ec-challenge-card:hover .ec-challenge-img { transform: scale(1.06); }
+        .ec-challenge-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(10,20,35,0.92) 0%, rgba(10,20,35,0.55) 35%, transparent 65%);
+          pointer-events: none;
+        }
+        .ec-challenge-label {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          padding: 16px 18px;
+          font-size: 15px;
+          font-weight: 600;
+          color: #ffffff;
+          line-height: 1.4;
+        }
         .ec-approach {
-          margin-top: 48px;
+          margin-top: 32px;
           background: linear-gradient(135deg, #0B1D35 0%, #132742 40%, #0F2035 100%);
-          border-radius: 20px;
-          padding: 44px 48px 40px;
+          border-radius: 14px;
+          padding: 22px 28px 20px;
           position: relative;
           overflow: hidden;
           box-shadow: 0 8px 40px -12px rgba(10,22,40,0.25);
@@ -792,10 +967,10 @@ export default function ECommercePage() {
           background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%);
           pointer-events: none;
         }
-        .ec-approach-top { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; position: relative; z-index: 1; }
-        .ec-approach-dot { width: 8px; height: 8px; border-radius: 50%; background: #C4E538; flex-shrink: 0; box-shadow: 0 0 12px rgba(196,229,56,0.5); }
-        .ec-approach-label { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(196,229,56,0.7); }
-        .ec-approach-text { font-size: clamp(18px, 1.8vw, 26px); line-height: 1.4; color: rgba(255,255,255,0.92); font-weight: 500; margin: 0; position: relative; z-index: 1; white-space: nowrap; }
+        .ec-approach-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; position: relative; z-index: 1; }
+        .ec-approach-dot { width: 7px; height: 7px; border-radius: 50%; background: #C4E538; flex-shrink: 0; box-shadow: 0 0 12px rgba(196,229,56,0.5); }
+        .ec-approach-label { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(196,229,56,0.7); }
+        .ec-approach-text { font-size: clamp(15px, 1.4vw, 19px); line-height: 1.4; color: rgba(255,255,255,0.92); font-weight: 500; margin: 0; position: relative; z-index: 1; white-space: nowrap; }
         .ec-approach-text em { font-style: normal; color: #C4E538; font-weight: 600; }
 
         .ec-eco-track { display: flex; gap: 20px; margin-top: 56px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; padding-bottom: 4px; }
@@ -842,32 +1017,6 @@ export default function ECommercePage() {
         .ec-feature-img { position: relative; overflow: hidden; border-radius: 22px; aspect-ratio: 4 / 4.6; }
         .ec-feature-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .ec-feature-tint { position: absolute; inset: 0; background: linear-gradient(200deg, rgba(198,232,74,0.16) 0%, rgba(7,20,38,0.05) 40%, rgba(7,20,38,0.55) 100%); }
-        .ec-claims-flow { position: relative; margin-top: 40px; max-width: 640px; width: 100%; aspect-ratio: 16 / 11; }
-        .ec-cw-lines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-        .ec-cw-node { position: absolute; z-index: 2; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; }
-        .ec-cw-circle { width: 62px; height: 62px; border-radius: 50%; background: var(--ecn); border: 1.5px solid var(--ecc); display: flex; align-items: center; justify-content: center; color: #f4f7fb; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.3s ease; }
-        .ec-cw-node:hover .ec-cw-circle { transform: scale(1.08); border-color: #D9F77E; box-shadow: 0 0 0 7px rgba(198,232,74,0.12); }
-        .ec-cw-label { position: absolute; bottom: calc(100% + 12px); left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 3px; pointer-events: none; }
-        .ec-cw-num { font-family: var(--font-syne), Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: var(--ecc); line-height: 1; }
-        .ec-cw-name { font-family: var(--font-syne), Arial, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: #ffffff; text-transform: uppercase; white-space: nowrap; line-height: 1.15; }
-        .ec-cw-sub { position: absolute; top: calc(100% + 10px); left: 0; right: 0; text-align: center; font-size: 12px; line-height: 1.35; color: rgba(196,211,231,0.72); white-space: nowrap; padding: 0 4px; pointer-events: none; }
-        .ec-cw-arrow { position: absolute; z-index: 1; width: 0; height: 0; transform: translate(-50%, -50%); pointer-events: none; }
-        .ec-cw-arrow--r { border-left: 9px solid var(--ecc); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
-        .ec-cw-arrow--l { border-right: 9px solid var(--ecc); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
-        .ec-cw-arrow--d { border-top: 9px solid var(--ecc); border-left: 5px solid transparent; border-right: 5px solid transparent; }
-        .ec-cw-arrow--u { border-bottom: 9px solid var(--ecc); border-left: 5px solid transparent; border-right: 5px solid transparent; }
-        @media (max-width: 1100px) {
-          .ec-claims-flow { max-width: 100%; aspect-ratio: auto; }
-          .ec-cw-lines, .ec-cw-arrow { display: none; }
-          .ec-cw-node { position: relative; left: auto !important; top: auto !important; transform: none; width: 100%; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-          .ec-cw-label { position: static; bottom: auto; margin-bottom: 12px; }
-          .ec-cw-sub { position: static; top: auto; margin-top: 12px; white-space: normal; }
-          .ec-cw-node:not(:last-child)::after { content: ""; display: block; width: 0; height: 0; margin: 4px auto 0; border-top: 9px solid var(--ecc); border-left: 5px solid transparent; border-right: 5px solid transparent; }
-        }
-        @media (max-width: 540px) {
-          .ec-cw-circle { width: 58px; height: 58px; }
-        }
-        @media (prefers-reduced-motion: reduce) { .ec-cw-node:hover .ec-cw-circle { transform: none; } }
 
         .ec-prov-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(36px, 5vw, 90px); align-items: center; }
         .ec-prov-img { position: relative; overflow: hidden; border-radius: 22px; aspect-ratio: 4 / 4.8; box-shadow: 0 34px 70px -40px rgba(12,27,48,0.45); }
@@ -1129,24 +1278,14 @@ export default function ECommercePage() {
           </div>
           <div className="ec-land-row ec-reveal">
             <div className="ec-landscape-text">
-              <p className="ec-lede">Today's customers expect products to be easy to discover, simple to purchase and delivered exactly when promised.</p>
-              <p className="ec-copy">Behind that experience sits a complex network of catalogs, marketplaces, inventory, orders, payments, fulfillment, returns and customer interactions — operating continuously across channels and geographies.</p>
+              <p className="ec-lede">&emsp;Today's customers expect products to be easy to discover, simple to purchase and delivered exactly when promised.</p>
+              <p className="ec-copy">&emsp;Behind that experience sits a complex network of catalogs, marketplaces, inventory, orders, payments, fulfillment, returns and customer interactions — operating continuously across channels and geographies.</p>
             </div>
             <div className="ec-landscape-right">
-              {challenges.map((c, i) => (
+              {challenges.map((c) => (
                 <article key={c.label} className="ec-challenge-card">
-                  <div className="ec-challenge-top">
-                    <div className="ec-challenge-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24">
-                        {i === 0 && <><path d="M4 7h16v10H4z" /><path d="M8 7v10M12 7v10M16 7v10" /></>}
-                        {i === 1 && <><circle cx="12" cy="12" r="8" /><path d="M12 8v4l3 2" /></>}
-                        {i === 2 && <><circle cx="7" cy="12" r="3" /><circle cx="17" cy="12" r="3" /><line x1="10" y1="12" x2="14" y2="12" /></>}
-                        {i === 3 && <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M7 9h10M7 13h10" /></>}
-                        {i === 4 && <><circle cx="12" cy="12" r="9" /><path d="M12 7v10M7 12h10" /></>}
-                        {i === 5 && <><path d="M4 17l5-5 3 3 7-7" /><path d="M4 14h14" /></>}
-                      </svg>
-                    </div>
-                  </div>
+                  <img className="ec-challenge-img" src={c.image} alt={c.label} loading="lazy" decoding="async" />
+                  <div className="ec-challenge-overlay" />
                   <div className="ec-challenge-label">{c.label}</div>
                 </article>
               ))}
@@ -1279,35 +1418,7 @@ export default function ECommercePage() {
               <p className="ec-lede">Customers cannot touch a products online. They depend on information.</p>
               <p className="ec-lede">Accurate titles, attributes, images, descriptions, categories and specifications influence how products are discovered, understood and purchased.</p>
               <p className="ec-copy">Sytrion combines structured operations, AI and human quality review to help businesses maintain accurate, enriched and commerce-ready product information.</p>
-              <div className="ec-claims-flow">
-                <svg className="ec-cw-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                  <path
-                    d="M14 28 H50 M50 28 H86 M86 28 L86 67 M86 74 H50 M50 74 H14"
-                    stroke="#C6E84A"
-                    strokeOpacity="0.42"
-                    strokeWidth="1.2"
-                    vectorEffect="non-scaling-stroke"
-                    fill="none"
-                  />
-                </svg>
-
-                <span className="ec-cw-arrow ec-cw-arrow--r" style={{ left: "32%", top: "28%" }} aria-hidden="true" />
-                <span className="ec-cw-arrow ec-cw-arrow--r" style={{ left: "68%", top: "28%" }} aria-hidden="true" />
-                <span className="ec-cw-arrow ec-cw-arrow--d" style={{ left: "86%", top: "67%" }} aria-hidden="true" />
-                <span className="ec-cw-arrow ec-cw-arrow--l" style={{ left: "68%", top: "74%" }} aria-hidden="true" />
-                <span className="ec-cw-arrow ec-cw-arrow--l" style={{ left: "32%", top: "74%" }} aria-hidden="true" />
-
-                {commerceSteps.map((s) => (
-                  <div key={s.name} className="ec-cw-node" style={{ left: `${s.x}%`, top: `${s.y}%` }}>
-                    <div className="ec-cw-circle">{flowIcons[s.icon]}</div>
-                    <span className="ec-cw-label">
-                      <span className="ec-cw-num">{s.num}</span>
-                      <span className="ec-cw-name">{s.name}</span>
-                    </span>
-                    <span className="ec-cw-sub">{s.sub}</span>
-                  </div>
-                ))}
-              </div>
+              <ProcessConveyor />
             </div>
           </div>
         </div>
@@ -1453,6 +1564,8 @@ export default function ECommercePage() {
                 ref={(el) => { cxBtnRefs.current[i] = el; }}
                 className={"ec-cx2-btn" + (cxActive === i ? " is-active" : "")}
                 onClick={() => setCxActive(i)}
+                onMouseEnter={() => setCxActive(i)}
+                onFocus={() => setCxActive(i)}
                 aria-pressed={cxActive === i}
               >
                 <span className="ec-cx2-marker" aria-hidden="true">
@@ -1514,7 +1627,7 @@ export default function ECommercePage() {
           .ec-cx2-anim { animation: ecCx2Swap 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
           @keyframes ecCx2Swap { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
           .ec-cx2-left { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
-          .ec-cx2-ghost { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(96px, 11vw, 150px); font-weight: 700; line-height: 0.9; letter-spacing: -0.02em; color: transparent; -webkit-text-stroke: 1.5px #223148; font-variant-numeric: tabular-nums; }
+          .ec-cx2-ghost { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(96px, 11vw, 150px); font-weight: 700; line-height: 0.9; letter-spacing: -0.02em; color: transparent; -webkit-text-stroke: 1.5px rgba(198, 241, 53, 0.6); font-variant-numeric: tabular-nums; }
           .ec-cx2-icon { width: 56px; height: 56px; border-radius: 14px; border: 1px solid #223148; background: rgba(24, 36, 62, 0.35); display: flex; align-items: center; justify-content: center; color: #C6F135; }
           .ec-cx2-icon svg { width: 26px; height: 26px; }
           .ec-cx2-stage-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 28px; font-weight: 700; color: #F4F5F2; margin: 0 0 10px; }
