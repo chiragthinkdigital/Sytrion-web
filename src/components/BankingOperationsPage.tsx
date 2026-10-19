@@ -38,23 +38,34 @@ const ibsTabs = [
 ];
 
 const kycSteps = [
-  { name: "APPLY", sub: "Application intake", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg> },
-  { name: "CAPTURE", sub: "Customer information", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg> },
-  { name: "VERIFY", sub: "Identity & documents", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg> },
-  { name: "SCREEN", sub: "Required checks", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg> },
-  { name: "REVIEW", sub: "Exceptions", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></svg> },
-  { name: "ONBOARD", sub: "Account setup", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18" /><path d="M5 21V7l7-4 7 4v14" /><path d="M9 21v-6h6v6" /></svg> },
-  { name: "MAINTAIN", sub: "Ongoing lifecycle", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg> },
-];
-
-const cwPositions = [
-  { x: 14, y: 16 },
-  { x: 50, y: 16 },
-  { x: 86, y: 16 },
-  { x: 86, y: 50 },
-  { x: 86, y: 84 },
-  { x: 50, y: 84 },
-  { x: 14, y: 84 },
+  {
+    num: "01", name: "APPLY", title: "Apply", sub: "Application intake", caption: "Application submitted",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>),
+  },
+  {
+    num: "02", name: "CAPTURE", title: "Capture", sub: "Customer information", caption: "Customer details captured",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>),
+  },
+  {
+    num: "03", name: "VERIFY", title: "Verify", sub: "Identity & documents", caption: "Identity and documents verified",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>),
+  },
+  {
+    num: "04", name: "SCREEN", title: "Screen", sub: "Required checks", caption: "Screening checks completed",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>),
+  },
+  {
+    num: "05", name: "REVIEW", title: "Review", sub: "Exceptions", caption: "Exceptions reviewed by an analyst",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></svg>),
+  },
+  {
+    num: "06", name: "ONBOARD", title: "Onboard", sub: "Account setup", caption: "Account opened and ready",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18" /><path d="M5 21V7l7-4 7 4v14" /><path d="M9 21v-6h6v6" /></svg>),
+  },
+  {
+    num: "07", name: "MAINTAIN", title: "Maintain", sub: "Ongoing lifecycle", caption: "Relationship kept up to date",
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>),
+  },
 ];
 
 const threeCardSections = [
@@ -180,6 +191,217 @@ const whyImages = [
 
 function BkLabel({ text, light }: { text: string; light?: boolean }) {
   return <span className={`bk-label${light ? " bk-label--light" : ""}`}>{text}</span>;
+}
+
+const LC_TOTAL = kycSteps.length;
+
+function LifecycleConveyor() {
+  const [active, setActive] = useState(0);
+  const [cycle, setCycle] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const [wrapKey, setWrapKey] = useState(0);
+  const [fading, setFading] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setActive(3);
+    }
+  }, []);
+
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.15 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visible) return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const t = window.setTimeout(() => {
+      if (active >= LC_TOTAL - 1) {
+        setFading(true);
+        window.setTimeout(() => {
+          setWrapKey((k) => k + 1);
+          setActive(0);
+          setFading(false);
+        }, 400);
+      } else {
+        setActive((a) => a + 1);
+      }
+    }, 2100);
+    return () => window.clearTimeout(t);
+  }, [active, cycle, visible]);
+
+  const jump = (i: number) => {
+    setFading(false);
+    setActive(i);
+    setCycle((c) => c + 1);
+  };
+
+  const step = kycSteps[active];
+  const leftPct = `calc((100% / ${LC_TOTAL}) * ${active + 0.5})`;
+
+  return (
+    <div ref={rootRef} className={"bk-lc" + (visible ? "" : " is-off")}>
+      <div className="bk-lc__stations">
+        {kycSteps.map((s, i) => (
+          <button
+            key={s.num}
+            type="button"
+            className={"bk-lc__station" + (i === active ? " is-active" : "")}
+            onClick={() => jump(i)}
+            aria-label={`Step ${i + 1}: ${s.title}`}
+          >
+            <span className="bk-lc__pod" aria-hidden="true">{s.icon}</span>
+            <span className="bk-lc__name">{s.name}</span>
+            <span className="bk-lc__sub">{s.sub}</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="bk-lc__track" aria-hidden="true">
+        <span key={`beam-${wrapKey}`} className="bk-lc__beam" style={{ left: leftPct }} />
+        <div className="bk-lc__belt">
+          <span className="bk-lc__stripes" />
+        </div>
+        <div
+          key={wrapKey}
+          className={`bk-lc__box bk-lc__box--step${active + 1}${fading ? " is-fading" : ""}`}
+          style={{ left: leftPct }}
+        >
+          <span className="bk-lc__tag" />
+          <span className="bk-lc__lines"><i /><i /></span>
+          <span className="bk-lc__mark">?</span>
+          <span className="bk-lc__check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </span>
+          <span className="bk-lc__pulse" />
+        </div>
+      </div>
+
+      <p className="bk-lc__caption" aria-live="polite">
+        <span className="bk-lc__cap-num">{step.num}</span> {step.caption}
+      </p>
+
+      <style>{`
+        .bk-lc { margin-top: 40px; max-width: 680px; width: 100%; }
+        .bk-lc__stations { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+        .bk-lc__station {
+          display: flex; flex-direction: column; align-items: center; gap: 7px;
+          background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit;
+          opacity: 0.45; transition: opacity 0.3s ease;
+        }
+        .bk-lc__station:hover, .bk-lc__station.is-active { opacity: 1; }
+        .bk-lc__station:focus-visible { outline: 2px solid #C6E84A; outline-offset: 3px; border-radius: 14px; }
+        .bk-lc__pod {
+          width: 50px; height: 50px; border-radius: 15px;
+          border: 1.5px solid rgba(198,232,74,0.22); background: #0F1B30;
+          display: flex; align-items: center; justify-content: center; color: #C6E84A;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .bk-lc__station.is-active .bk-lc__pod {
+          border-color: #C6E84A;
+          box-shadow: 0 0 0 4px rgba(198,232,74,0.1), 0 0 18px rgba(198,232,74,0.25);
+        }
+        .bk-lc__pod svg { width: 20px; height: 20px; }
+        .bk-lc__name { font-family: var(--font-syne), Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #ffffff; line-height: 1.1; text-align: center; }
+        .bk-lc__sub { font-size: 10.5px; line-height: 1.25; color: rgba(196,211,231,0.72); text-align: center; }
+
+        .bk-lc__track { position: relative; height: 118px; margin-top: 14px; }
+        .bk-lc__beam {
+          position: absolute; top: 0; width: 40px; height: 64px; transform: translateX(-50%);
+          background: linear-gradient(180deg, rgba(198,232,74,0) 0%, rgba(198,232,74,0.22) 100%);
+          clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+          transition: left 1.2s cubic-bezier(0.6, 0, 0.3, 1);
+          pointer-events: none; z-index: 1;
+        }
+        .bk-lc__belt {
+          position: absolute; left: 0; right: 0; bottom: 12px; height: 18px;
+          border-radius: 9px; background: #0F1B30; border: 1px solid #223148;
+          overflow: hidden; z-index: 1;
+        }
+        .bk-lc__stripes {
+          position: absolute; inset: 0;
+          background: repeating-linear-gradient(90deg, #223148 0 10px, #0F1B30 10px 20px);
+          background-size: 20px 100%;
+          animation: bkLcBeltScroll 1s linear infinite;
+        }
+        .bk-lc.is-off .bk-lc__stripes { animation-play-state: paused; }
+        @keyframes bkLcBeltScroll { to { background-position: -20px 0; } }
+
+        .bk-lc__box {
+          position: absolute; bottom: 28px; width: 56px; height: 46px; border-radius: 7px;
+          background: #0F1B30; border: 1.5px dashed #3c5069;
+          transform: translateX(-50%); z-index: 2;
+          transition: left 1.2s cubic-bezier(0.6, 0, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease, opacity 0.4s ease;
+          animation: bkLcBoxIn 0.4s ease;
+        }
+        @keyframes bkLcBoxIn { from { opacity: 0; } to { opacity: 1; } }
+        .bk-lc__box.is-fading { opacity: 0; transition: opacity 0.35s ease; }
+        .bk-lc__mark {
+          position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+          font-family: var(--font-syne), Arial, sans-serif; font-size: 17px; font-weight: 700; color: rgba(196,211,231,0.72);
+        }
+        .bk-lc__tag {
+          position: absolute; top: -5px; left: -5px; width: 15px; height: 15px; border-radius: 4px 4px 4px 8px;
+          background: #C6E84A; opacity: 0; transform: scale(0.6); transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .bk-lc__lines {
+          position: absolute; left: 10px; right: 10px; top: 15px; display: flex; flex-direction: column; gap: 6px;
+          opacity: 0; transition: opacity 0.3s ease;
+        }
+        .bk-lc__lines i { display: block; height: 4px; border-radius: 2px; background: #3c5069; }
+        .bk-lc__lines i:first-child { width: 80%; }
+        .bk-lc__lines i:last-child { width: 55%; }
+        .bk-lc__check {
+          position: absolute; top: -8px; right: -8px; width: 19px; height: 19px; border-radius: 50%;
+          background: #C6E84A; color: #0B1220; display: flex; align-items: center; justify-content: center;
+          opacity: 0; transform: scale(0.5); transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .bk-lc__check svg { width: 10px; height: 10px; }
+        .bk-lc__pulse {
+          position: absolute; inset: -6px; border-radius: 12px; border: 2px solid rgba(198,232,74,0.5);
+          opacity: 0;
+        }
+        .bk-lc__box--step2, .bk-lc__box--step3, .bk-lc__box--step4, .bk-lc__box--step5, .bk-lc__box--step6, .bk-lc__box--step7 { border-style: solid; border-color: #C6E84A; }
+        .bk-lc__box--step2 .bk-lc__tag, .bk-lc__box--step3 .bk-lc__tag, .bk-lc__box--step4 .bk-lc__tag,
+        .bk-lc__box--step5 .bk-lc__tag, .bk-lc__box--step6 .bk-lc__tag, .bk-lc__box--step7 .bk-lc__tag { opacity: 1; transform: scale(1); }
+        .bk-lc__box--step3 .bk-lc__lines, .bk-lc__box--step4 .bk-lc__lines, .bk-lc__box--step5 .bk-lc__lines,
+        .bk-lc__box--step6 .bk-lc__lines, .bk-lc__box--step7 .bk-lc__lines { opacity: 1; }
+        .bk-lc__box--step3 .bk-lc__mark, .bk-lc__box--step4 .bk-lc__mark, .bk-lc__box--step5 .bk-lc__mark,
+        .bk-lc__box--step6 .bk-lc__mark, .bk-lc__box--step7 .bk-lc__mark { opacity: 0; }
+        .bk-lc__box--step4 .bk-lc__check, .bk-lc__box--step5 .bk-lc__check, .bk-lc__box--step6 .bk-lc__check,
+        .bk-lc__box--step7 .bk-lc__check { opacity: 1; transform: scale(1); }
+        .bk-lc__box--step5 { box-shadow: 0 0 16px rgba(198,232,74,0.35); }
+        .bk-lc__box--step6 { box-shadow: 0 0 24px rgba(198,232,74,0.5); }
+        .bk-lc__box--step7 { box-shadow: 0 0 30px rgba(198,232,74,0.6); }
+        .bk-lc__box--step7 .bk-lc__pulse { animation: bkLcPulseRing 1.4s ease-out infinite; }
+        @keyframes bkLcPulseRing {
+          0% { opacity: 0.8; transform: scale(0.92); }
+          100% { opacity: 0; transform: scale(1.25); }
+        }
+
+        .bk-lc__caption { margin: 16px 0 0; font-size: 13px; color: rgba(196,211,231,0.72); text-align: center; }
+        .bk-lc__cap-num { font-family: var(--font-syne), Arial, sans-serif; font-weight: 700; color: #C6E84A; margin-right: 4px; }
+
+        @media (max-width: 760px) {
+          .bk-lc { overflow-x: auto; }
+          .bk-lc__stations, .bk-lc__track, .bk-lc__caption { min-width: 680px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .bk-lc__stripes { animation: none; }
+          .bk-lc__box { transition: none; animation: none; }
+          .bk-lc__beam { transition: none; }
+          .bk-lc__box--step7 .bk-lc__pulse { animation: none; opacity: 0.5; }
+        }
+      `}</style>
+    </div>
+  );
 }
 
 export default function BankingOperationsPage() {
@@ -322,10 +544,10 @@ export default function BankingOperationsPage() {
         .bk-s02-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
         .bk-s02-card-label { font-size: 15px; font-weight: 600; color: #ffffff; line-height: 1.4; }
         .bk-s02-callout {
-          margin-top: 48px;
+          margin-top: 32px;
           background: linear-gradient(135deg, #0B1D35 0%, #132742 40%, #0F2035 100%);
-          border-radius: 20px;
-          padding: 44px 48px 40px;
+          border-radius: 14px;
+          padding: 22px 28px 20px;
           position: relative;
           overflow: hidden;
           box-shadow: 0 8px 40px -12px rgba(10,22,40,0.25);
@@ -352,10 +574,10 @@ export default function BankingOperationsPage() {
           background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%);
           pointer-events: none;
         }
-        .bk-s02-callout-top { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; position: relative; z-index: 1; }
-        .bk-s02-callout-dot { width: 8px; height: 8px; border-radius: 50%; background: #C4E538; flex-shrink: 0; box-shadow: 0 0 12px rgba(196,229,56,0.5); }
-        .bk-s02-callout-label { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(196,229,56,0.7); }
-        .bk-s02-callout-text { font-size: clamp(18px, 1.8vw, 26px); line-height: 1.4; color: rgba(255,255,255,0.92); font-weight: 500; margin: 0; position: relative; z-index: 1; }
+        .bk-s02-callout-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; position: relative; z-index: 1; }
+        .bk-s02-callout-dot { width: 7px; height: 7px; border-radius: 50%; background: #C4E538; flex-shrink: 0; box-shadow: 0 0 12px rgba(196,229,56,0.5); }
+        .bk-s02-callout-label { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(196,229,56,0.7); }
+        .bk-s02-callout-text { font-size: clamp(15px, 1.4vw, 19px); line-height: 1.4; color: rgba(255,255,255,0.92); font-weight: 500; margin: 0; position: relative; z-index: 1; }
         .bk-s02-callout-text em { font-style: normal; color: #C4E538; font-weight: 600; }
 
         /* ── S03 ECOSYSTEM ── */
@@ -406,21 +628,6 @@ export default function BankingOperationsPage() {
         .bk-s05 .bk-h2 { color: #ffffff; margin: 0; }
         .bk-s05 .bk-lede { color: rgba(255,255,255,0.8); font-size: 17px; margin-top: 22px; }
         .bk-s05 .bk-copy { color: rgba(255,255,255,0.55); font-size: 16px; }
-        .bk-cw { position: relative; margin-top: 40px; max-width: 640px; width: 100%; aspect-ratio: 16 / 11; }
-        .bk-cw-lines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-        .bk-cw-node { position: absolute; z-index: 2; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; }
-        .bk-cw-circle { width: 62px; height: 62px; border-radius: 50%; background: #0F1B30; border: 1.5px solid #C6E84A; display: flex; align-items: center; justify-content: center; color: #f4f7fb; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.3s ease; }
-        .bk-cw-node:hover .bk-cw-circle { transform: scale(1.08); border-color: #D9F77E; box-shadow: 0 0 0 7px rgba(198,232,74,0.12); }
-        .bk-cw-circle svg { width: 22px; height: 22px; }
-        .bk-cw-label { position: absolute; bottom: calc(100% + 12px); left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 3px; pointer-events: none; }
-        .bk-cw-num { font-family: var(--font-syne), Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: #C6E84A; line-height: 1; }
-        .bk-cw-name { font-family: var(--font-syne), Arial, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: #ffffff; text-transform: uppercase; white-space: nowrap; line-height: 1.15; }
-        .bk-cw-sub { position: absolute; top: calc(100% + 10px); left: 0; right: 0; text-align: center; font-size: 12px; line-height: 1.35; color: rgba(196,211,231,0.72); white-space: nowrap; padding: 0 4px; pointer-events: none; }
-        .bk-cw-arrow { position: absolute; z-index: 1; width: 0; height: 0; transform: translate(-50%, -50%); pointer-events: none; }
-        .bk-cw-arrow--r { border-left: 9px solid #C6E84A; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
-        .bk-cw-arrow--l { border-right: 9px solid #C6E84A; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
-        .bk-cw-arrow--d { border-top: 9px solid #C6E84A; border-left: 5px solid transparent; border-right: 5px solid transparent; }
-        .bk-cw-arrow--u { border-bottom: 9px solid #C6E84A; border-left: 5px solid transparent; border-right: 5px solid transparent; }
 
         /* ── S06 THREE CARD ROW ── */
         .bk-s06 { background: #ffffff; padding: clamp(76px, 9vw, 128px) 80px; }
@@ -575,19 +782,12 @@ export default function BankingOperationsPage() {
           .bk-tl-step--approach .bk-tl-body { padding: 20px 18px; }
           .bk-hero-ctas { flex-direction: column; }
           .bk-hero-ctas .bk-btn { width: 100%; }
-          .bk-cw { max-width: 100%; aspect-ratio: auto; }
-          .bk-cw-lines, .bk-cw-arrow { display: none; }
-          .bk-cw-node { position: relative; left: auto !important; top: auto !important; transform: none; width: 100%; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-          .bk-cw-label { position: static; bottom: auto; margin-bottom: 12px; }
-          .bk-cw-sub { position: static; top: auto; margin-top: 12px; white-space: normal; }
-          .bk-cw-node:not(:last-child)::after { content: ""; display: block; width: 0; height: 0; margin: 4px auto 0; border-top: 9px solid #C6E84A; border-left: 5px solid transparent; border-right: 5px solid transparent; }
         }
         @media (max-width: 560px) {
           .bk-s02-grid-inner { grid-template-columns: 1fr; }
         }
         @media (prefers-reduced-motion: reduce) {
           .bk-reveal { opacity: 1; transform: none; transition: none; animation: none; }
-          .bk-cw-node:hover .bk-cw-circle { transform: none; }
           .bk-transform-cta:hover { transform: none; }
           .bk-transform-cta:hover span { transform: none; }
         }
@@ -682,7 +882,7 @@ export default function BankingOperationsPage() {
           </div>
           <div className="bk-s04-tabbar bk-reveal" role="tablist">
             {ibsTabs.map((t, i) => (
-              <button key={t.num} role="tab" aria-selected={activeTab === i} className={activeTab === i ? "bk-tab-active" : ""} onClick={() => setActiveTab(i)}>
+              <button key={t.num} role="tab" aria-selected={activeTab === i} className={activeTab === i ? "bk-tab-active" : ""} onClick={() => setActiveTab(i)} onMouseEnter={() => setActiveTab(i)} onFocus={() => setActiveTab(i)}>
                 <em>{t.num}</em> {t.tab}
               </button>
             ))}
@@ -724,36 +924,7 @@ export default function BankingOperationsPage() {
               <h2 className="bk-h2">Start every banking relationship with <span style={{ color: "#C6E84A" }}>confidence.</span></h2>
               <p className="bk-lede">Customer onboarding sits at the intersection of experience, compliance, identity and data.</p>
               <p className="bk-copy">Sytrion helps banks streamline the administrative workflows behind onboarding and ongoing customer lifecycle management through structured processes, document intelligence, automation and human expertise.</p>
-              <div className="bk-cw">
-                <svg className="bk-cw-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                  <path
-                    d="M14 16 H50 M50 16 H86 M86 16 L86 43 M86 50 L86 77 M86 84 H50 M50 84 H14"
-                    stroke="#C6E84A"
-                    strokeOpacity="0.42"
-                    strokeWidth="1.2"
-                    vectorEffect="non-scaling-stroke"
-                    fill="none"
-                  />
-                </svg>
-
-                <span className="bk-cw-arrow bk-cw-arrow--r" style={{ left: "32%", top: "16%" }} aria-hidden="true" />
-                <span className="bk-cw-arrow bk-cw-arrow--r" style={{ left: "68%", top: "16%" }} aria-hidden="true" />
-                <span className="bk-cw-arrow bk-cw-arrow--d" style={{ left: "86%", top: "43%" }} aria-hidden="true" />
-                <span className="bk-cw-arrow bk-cw-arrow--d" style={{ left: "86%", top: "77%" }} aria-hidden="true" />
-                <span className="bk-cw-arrow bk-cw-arrow--l" style={{ left: "68%", top: "84%" }} aria-hidden="true" />
-                <span className="bk-cw-arrow bk-cw-arrow--l" style={{ left: "32%", top: "84%" }} aria-hidden="true" />
-
-                {kycSteps.map((s, i) => (
-                  <div key={s.name} className="bk-cw-node" style={{ left: `${cwPositions[i].x}%`, top: `${cwPositions[i].y}%` }}>
-                    <div className="bk-cw-circle">{s.icon}</div>
-                    <span className="bk-cw-label">
-                      <span className="bk-cw-num">{String(i + 1).padStart(2, "0")}</span>
-                      <span className="bk-cw-name">{s.name}</span>
-                    </span>
-                    <span className="bk-cw-sub">{s.sub}</span>
-                  </div>
-                ))}
-              </div>
+              <LifecycleConveyor />
             </div>
           </div>
         </div>
@@ -913,7 +1084,7 @@ export default function BankingOperationsPage() {
           .bk-deck-head { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; margin-bottom: 48px; }
           .bk-deck-title { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 20px; color: #F4F5F2; white-space: normal; }
           .bk-deck-title span { color: #C6E84A; }
-          .bk-deck-lede { font-size: 18px; line-height: 1.8; color: rgba(255,255,255,0.7); max-width: 640px; margin: 8px 0 0; }
+          .bk-deck-lede { font-size: 18px; line-height: 1.8; color: rgba(255,255,255,0.7); max-width: none; margin: 8px 0 0; }
 
           .scd-deck-wrapper { position: relative; width: 100%; max-width: 100%; overflow: hidden; margin-top: 20px; }
           .scd-deck { position: relative; width: 100%; max-width: 100%; min-height: 480px; }
