@@ -32,7 +32,7 @@ const ecosystemCards = [
   {
     title: "B2B Commerce",
     desc: "Product, order, customer and transaction operations supporting complex business commerce.",
-    image: "/services/ecommerce/b2b Commerce.jpg",
+    image: "/services/ecommerce/b2b-commerce.jpg",
   },
 ];
 
@@ -1742,7 +1742,7 @@ export default function ECommercePage() {
               <div className="ec-hd-stage" ref={hdStageRef}>
                 <img
                   className="ec-hd-img"
-                  src="/services/ecommerce/Human + Digital ecommerce.jpg"
+                  src="/services/ecommerce/Human-Digital-ecommerce.jpg"
                   alt="Ecommerce human plus digital operations"
                   loading="lazy"
                   decoding="async"
