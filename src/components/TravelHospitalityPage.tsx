@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import StaircaseFlow from "./StaircaseFlow";
+import { BarChart3, CalendarX, LifeBuoy, ListOrdered, Megaphone, Route, Users } from "lucide-react";
+import ProgressTracker from "./ProgressTracker";
 
 const landscapeItems = [
   { num: "01", label: "Always-on traveler expectations", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> },
@@ -30,22 +31,234 @@ const tabs = [
 ];
 
 const journeyStages = [
-  { name: "DREAM", sub: "Explore & discover", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16.2 7.8l-2 6.3-6.4 1.9 2-6.3z"/></svg> },
-  { name: "BOOK", sub: "Reserve & pay", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> },
-  { name: "PREPARE", sub: "Manage the journey", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> },
-  { name: "TRAVEL", sub: "Receive support", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
-  { name: "RECOVER", sub: "Resolve disruptions", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg> },
-  { name: "RETURN", sub: "Engage & stay loyal", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg> },
+  { num: "01", name: "DREAM", title: "Dream", sub: "Explore & discover", caption: "Traveler starts exploring", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16.2 7.8l-2 6.3-6.4 1.9 2-6.3z"/></svg> },
+  { num: "02", name: "BOOK", title: "Book", sub: "Reserve & pay", caption: "Reservation confirmed", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> },
+  { num: "03", name: "PREPARE", title: "Prepare", sub: "Manage the journey", caption: "Journey details organized", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> },
+  { num: "04", name: "TRAVEL", title: "Travel", sub: "Receive support", caption: "Support available in transit", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
+  { num: "05", name: "RECOVER", title: "Recover", sub: "Resolve disruptions", caption: "Disruption resolved", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg> },
+  { num: "06", name: "RETURN", title: "Return", sub: "Engage & stay loyal", caption: "Loyalty relationship continues", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg> },
 ];
 
-const journeyFlowPos = [
-  { x: 14, y: 28 },
-  { x: 50, y: 28 },
-  { x: 86, y: 28 },
-  { x: 86, y: 74 },
-  { x: 50, y: 74 },
-  { x: 14, y: 74 },
-];
+const PC_TOTAL = journeyStages.length;
+
+function JourneyProcessConveyor() {
+  const [active, setActive] = useState(0);
+  const [cycle, setCycle] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const [wrapKey, setWrapKey] = useState(0);
+  const [fading, setFading] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setActive(3);
+    }
+  }, []);
+
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.15 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visible) return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const t = window.setTimeout(() => {
+      if (active >= PC_TOTAL - 1) {
+        setFading(true);
+        window.setTimeout(() => {
+          setWrapKey((k) => k + 1);
+          setActive(0);
+          setFading(false);
+        }, 400);
+      } else {
+        setActive((a) => a + 1);
+      }
+    }, 2100);
+    return () => window.clearTimeout(t);
+  }, [active, cycle, visible]);
+
+  const jump = (i: number) => {
+    setFading(false);
+    setActive(i);
+    setCycle((c) => c + 1);
+  };
+
+  const step = journeyStages[active];
+  const leftPct = `calc((100% / ${PC_TOTAL}) * ${active + 0.5})`;
+
+  return (
+    <div ref={rootRef} className={"process-conveyor" + (visible ? "" : " is-off")}>
+      <div className="process-conveyor__stations">
+        {journeyStages.map((s, i) => (
+          <button
+            key={s.num}
+            type="button"
+            className={"process-conveyor__station" + (i === active ? " is-active" : "")}
+            onClick={() => jump(i)}
+            aria-label={`Step ${i + 1}: ${s.title}`}
+          >
+            <span className="process-conveyor__pod" aria-hidden="true">{s.icon}</span>
+            <span className="process-conveyor__name">{s.name}</span>
+            <span className="process-conveyor__sub">{s.sub}</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="process-conveyor__track" aria-hidden="true">
+        <span key={`beam-${wrapKey}`} className="process-conveyor__beam" style={{ left: leftPct }} />
+        <div className="process-conveyor__belt">
+          <span className="process-conveyor__stripes" />
+        </div>
+        <div
+          key={wrapKey}
+          className={`process-conveyor__box process-conveyor__box--step${active + 1}${fading ? " is-fading" : ""}`}
+          style={{ left: leftPct }}
+        >
+          <span className="process-conveyor__tag" />
+          <span className="process-conveyor__lines"><i /><i /></span>
+          <span className="process-conveyor__mark">?</span>
+          <span className="process-conveyor__check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </span>
+          <span className="process-conveyor__pulse" />
+        </div>
+      </div>
+
+      <p className="process-conveyor__caption" aria-live="polite">
+        <span className="process-conveyor__cap-num">{step.num}</span> {step.caption}
+      </p>
+
+      <style>{`
+        .process-conveyor { margin-top: 40px; max-width: 640px; width: 100%; }
+        .process-conveyor__stations { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+        .process-conveyor__station {
+          display: flex; flex-direction: column; align-items: center; gap: 8px;
+          background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit;
+          opacity: 0.45; transition: opacity 0.3s ease;
+        }
+        .process-conveyor__station:hover, .process-conveyor__station.is-active { opacity: 1; }
+        .process-conveyor__station:focus-visible { outline: 2px solid #C6E84A; outline-offset: 3px; border-radius: 14px; }
+        .process-conveyor__pod {
+          width: 54px; height: 54px; border-radius: 16px;
+          border: 1.5px solid rgba(198,238,59,0.22); background: #0c1e31;
+          display: flex; align-items: center; justify-content: center; color: #C6E84A;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .process-conveyor__station.is-active .process-conveyor__pod {
+          border-color: #C6E84A;
+          box-shadow: 0 0 0 4px rgba(198,238,59,0.1), 0 0 18px rgba(198,238,59,0.25);
+        }
+        .process-conveyor__pod svg { width: 22px; height: 22px; }
+        .process-conveyor__name { font-family: var(--font-syne), Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #eaf0f6; line-height: 1.1; text-align: center; }
+        .process-conveyor__sub { font-size: 11px; line-height: 1.25; color: #8fa1b4; text-align: center; }
+
+        .process-conveyor__track { position: relative; height: 118px; margin-top: 14px; }
+        .process-conveyor__beam {
+          position: absolute; top: 0; width: 44px; height: 66px; transform: translateX(-50%);
+          background: linear-gradient(180deg, rgba(198,238,59,0) 0%, rgba(198,238,59,0.22) 100%);
+          clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+          transition: left 1.2s cubic-bezier(0.6, 0, 0.3, 1);
+          pointer-events: none; z-index: 1;
+        }
+        .process-conveyor__belt {
+          position: absolute; left: 0; right: 0; bottom: 12px; height: 18px;
+          border-radius: 9px; background: #0e2236; border: 1px solid #17324d;
+          overflow: hidden; z-index: 1;
+        }
+        .process-conveyor__stripes {
+          position: absolute; inset: 0;
+          background: repeating-linear-gradient(90deg, #17324d 0 10px, #0e2236 10px 20px);
+          background-size: 20px 100%;
+          animation: pcBeltScroll 1s linear infinite;
+        }
+        .process-conveyor.is-off .process-conveyor__stripes { animation-play-state: paused; }
+        @keyframes pcBeltScroll { to { background-position: -20px 0; } }
+
+        .process-conveyor__box {
+          position: absolute; bottom: 28px; width: 58px; height: 48px; border-radius: 7px;
+          background: #0c1e31; border: 1.5px dashed #3c5069;
+          transform: translateX(-50%); z-index: 2;
+          transition: left 1.2s cubic-bezier(0.6, 0, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease, opacity 0.4s ease;
+          animation: pcBoxIn 0.4s ease;
+        }
+        @keyframes pcBoxIn { from { opacity: 0; } to { opacity: 1; } }
+        .process-conveyor__box.is-fading { opacity: 0; transition: opacity 0.35s ease; }
+        .process-conveyor__beam.is-wrapping { transition: none; }
+        .process-conveyor__mark {
+          position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+          font-family: var(--font-syne), Arial, sans-serif; font-size: 18px; font-weight: 700; color: #8fa1b4;
+        }
+        .process-conveyor__tag {
+          position: absolute; top: -5px; left: -5px; width: 16px; height: 16px; border-radius: 4px 4px 4px 8px;
+          background: #C6E84A; opacity: 0; transform: scale(0.6); transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .process-conveyor__lines {
+          position: absolute; left: 10px; right: 10px; top: 16px; display: flex; flex-direction: column; gap: 6px;
+          opacity: 0; transition: opacity 0.3s ease;
+        }
+        .process-conveyor__lines i { display: block; height: 4px; border-radius: 2px; background: #3c5069; }
+        .process-conveyor__lines i:first-child { width: 80%; }
+        .process-conveyor__lines i:last-child { width: 55%; }
+        .process-conveyor__check {
+          position: absolute; top: -8px; right: -8px; width: 20px; height: 20px; border-radius: 50%;
+          background: #C6E84A; color: #06121f; display: flex; align-items: center; justify-content: center;
+          opacity: 0; transform: scale(0.5); transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .process-conveyor__check svg { width: 11px; height: 11px; }
+        .process-conveyor__pulse {
+          position: absolute; inset: -6px; border-radius: 12px; border: 2px solid rgba(198,238,59,0.5);
+          opacity: 0;
+        }
+        .process-conveyor__box--step2 { border-style: solid; border-color: #C6E84A; }
+        .process-conveyor__box--step2 .process-conveyor__tag,
+        .process-conveyor__box--step3 .process-conveyor__tag,
+        .process-conveyor__box--step4 .process-conveyor__tag,
+        .process-conveyor__box--step5 .process-conveyor__tag,
+        .process-conveyor__box--step6 .process-conveyor__tag { opacity: 1; transform: scale(1); }
+        .process-conveyor__box--step3, .process-conveyor__box--step4, .process-conveyor__box--step5, .process-conveyor__box--step6 { border-style: solid; border-color: #C6E84A; }
+        .process-conveyor__box--step3 .process-conveyor__lines,
+        .process-conveyor__box--step4 .process-conveyor__lines,
+        .process-conveyor__box--step5 .process-conveyor__lines,
+        .process-conveyor__box--step6 .process-conveyor__lines { opacity: 1; }
+        .process-conveyor__box--step3 .process-conveyor__mark,
+        .process-conveyor__box--step4 .process-conveyor__mark,
+        .process-conveyor__box--step5 .process-conveyor__mark,
+        .process-conveyor__box--step6 .process-conveyor__mark { opacity: 0; }
+        .process-conveyor__box--step4 .process-conveyor__check,
+        .process-conveyor__box--step5 .process-conveyor__check,
+        .process-conveyor__box--step6 .process-conveyor__check { opacity: 1; transform: scale(1); }
+        .process-conveyor__box--step5 { box-shadow: 0 0 16px rgba(198,238,59,0.35); }
+        .process-conveyor__box--step6 { box-shadow: 0 0 26px rgba(198,238,59,0.55); }
+        .process-conveyor__box--step6 .process-conveyor__pulse { animation: pcPulseRing 1.4s ease-out infinite; }
+        @keyframes pcPulseRing {
+          0% { opacity: 0.8; transform: scale(0.92); }
+          100% { opacity: 0; transform: scale(1.25); }
+        }
+
+        .process-conveyor__caption { margin: 16px 0 0; font-size: 13px; color: #8fa1b4; text-align: center; }
+        .process-conveyor__cap-num { font-family: var(--font-syne), Arial, sans-serif; font-weight: 700; color: #C6E84A; margin-right: 4px; }
+
+        @media (max-width: 700px) {
+          .process-conveyor__stations { min-width: 600px; }
+          .process-conveyor { overflow-x: auto; }
+          .process-conveyor__track, .process-conveyor__caption { min-width: 600px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .process-conveyor__stripes { animation: none; }
+          .process-conveyor__box { transition: none; animation: none; }
+          .process-conveyor__beam { transition: none; }
+          .process-conveyor__box--step6 .process-conveyor__pulse { animation: none; opacity: 0.5; }
+        }
+      `}</style>
+    </div>
+  );
+}
 
 const cardSections = [
   {
@@ -103,6 +316,8 @@ const disruptionSteps = [
   { name: "Support", desc: "Exception handling" },
   { name: "Learn", desc: "Disruption analytics" },
 ];
+
+const DISRUPTION_ICONS = [CalendarX, Users, ListOrdered, Route, Megaphone, LifeBuoy, BarChart3];
 
 const outcomes = [
   { num: "01", word: "FASTER", sub: "Faster response", desc: "Intelligent workflows help teams process requests and exceptions more quickly.", image: "/healthcare/faster (2).png" },
@@ -321,20 +536,6 @@ export default function TravelHospitalityPage() {
         .tv-s05-feature { position: relative; overflow: hidden; border-radius: 22px; aspect-ratio: 4 / 4.6; }
         .tv-s05-feature img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .tv-s05-tint { position: absolute; inset: 0; background: linear-gradient(200deg, rgba(198,232,74,0.16) 0%, rgba(7,20,38,0.05) 40%, rgba(7,20,38,0.55) 100%); }
-        .tv-s05-flow { position: relative; margin-top: 40px; max-width: 640px; width: 100%; aspect-ratio: 16 / 11; }
-        .tv-s05-lines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-        .tv-s05-node { position: absolute; z-index: 2; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; }
-        .tv-s05-circle { width: 62px; height: 62px; border-radius: 50%; background: var(--tv-navy2); border: 1.5px solid var(--tv-cyan); display: flex; align-items: center; justify-content: center; color: #f4f7fb; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.3s ease; }
-        .tv-s05-circle svg { width: 22px; height: 22px; }
-        .tv-s05-node:hover .tv-s05-circle { transform: scale(1.08); border-color: #D9F77E; box-shadow: 0 0 0 7px rgba(198,232,74,0.12); }
-        .tv-s05-label { position: absolute; bottom: calc(100% + 12px); left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 3px; pointer-events: none; }
-        .tv-s05-num { font-family: var(--font-syne), Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: var(--tv-cyan); line-height: 1; }
-        .tv-s05-name { font-family: var(--font-syne), Arial, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: #ffffff; text-transform: uppercase; white-space: nowrap; line-height: 1.15; }
-        .tv-s05-sub { position: absolute; top: calc(100% + 10px); left: 0; right: 0; text-align: center; font-size: 12px; line-height: 1.35; color: rgba(196,211,231,0.72); white-space: nowrap; padding: 0 4px; pointer-events: none; }
-        .tv-s05-arrow { position: absolute; z-index: 1; width: 0; height: 0; transform: translate(-50%, -50%); pointer-events: none; }
-        .tv-s05-arrow--r { border-left: 9px solid var(--tv-cyan); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
-        .tv-s05-arrow--l { border-right: 9px solid var(--tv-cyan); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
-        .tv-s05-arrow--d { border-top: 9px solid var(--tv-cyan); border-left: 5px solid transparent; border-right: 5px solid transparent; }
 
         .tv-s06 { background: #ffffff; padding: clamp(76px, 9vw, 128px) 80px; }
         .tv-s06 .tv-h2 { color: #0E1B2A; }
@@ -468,12 +669,6 @@ export default function TravelHospitalityPage() {
           .tv-s04-panel { grid-template-columns: 1fr; }
           .tv-s06-row { grid-template-columns: 1fr; }
           .tv-s05-split { grid-template-columns: 1fr; }
-          .tv-s05-flow { max-width: 100%; aspect-ratio: auto; }
-          .tv-s05-lines, .tv-s05-arrow { display: none; }
-          .tv-s05-node { position: relative; left: auto !important; top: auto !important; transform: none; width: 100%; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-          .tv-s05-label { position: static; bottom: auto; margin-bottom: 12px; }
-          .tv-s05-sub { position: static; top: auto; margin-top: 12px; white-space: normal; }
-          .tv-s05-node:not(:last-child)::after { content: ""; display: block; width: 0; height: 0; margin: 4px auto 0; border-top: 9px solid var(--tv-cyan); border-left: 5px solid transparent; border-right: 5px solid transparent; }
         }
         @media (max-width: 760px) {
           .tv-hd-stage { max-width: 460px; }
@@ -482,7 +677,6 @@ export default function TravelHospitalityPage() {
           .tv-s02, .tv-s04, .tv-s06, .tv-s10 { padding-left: 20px; padding-right: 20px; }
           .tv-s03 { padding-left: 20px; padding-right: 20px; }
           .tv-s05 { padding-left: 20px; padding-right: 20px; }
-          .tv-s05-circle { width: 58px; height: 58px; }
           .tv-s03-card { flex: 0 0 100%; }
           .tv-s04-tabbar { grid-template-columns: repeat(2, 1fr); }
           .tv-s04-checklist { grid-template-columns: 1fr; }
@@ -498,7 +692,6 @@ export default function TravelHospitalityPage() {
         }
         @media (prefers-reduced-motion: reduce) {
           .tv-reveal { opacity: 1; transform: none; transition: none; animation: none; }
-          .tv-s05-node:hover .tv-s05-circle { transform: none; }
           .tv-hd-stage { transform: none !important; }
           .tv-hd-img { transition: none; }
         }
@@ -611,33 +804,7 @@ export default function TravelHospitalityPage() {
                 </div>
                 <p className="tv-copy">From booking and departure to disruption and arrival, Sytrion helps travel organizations create connected service operations that make those moments easier to navigate.</p>
               </div>
-              <div className="tv-s05-flow">
-                <svg className="tv-s05-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                  <path
-                    d="M14 28 H50 M50 28 H86 M86 28 L86 67 M86 74 H50 M50 74 H14"
-                    stroke="#C6E84A"
-                    strokeOpacity="0.42"
-                    strokeWidth="1.2"
-                    vectorEffect="non-scaling-stroke"
-                    fill="none"
-                  />
-                </svg>
-                <span className="tv-s05-arrow tv-s05-arrow--r" style={{ left: "32%", top: "28%" }} aria-hidden="true" />
-                <span className="tv-s05-arrow tv-s05-arrow--r" style={{ left: "68%", top: "28%" }} aria-hidden="true" />
-                <span className="tv-s05-arrow tv-s05-arrow--d" style={{ left: "86%", top: "67%" }} aria-hidden="true" />
-                <span className="tv-s05-arrow tv-s05-arrow--l" style={{ left: "68%", top: "74%" }} aria-hidden="true" />
-                <span className="tv-s05-arrow tv-s05-arrow--l" style={{ left: "32%", top: "74%" }} aria-hidden="true" />
-                {journeyStages.map((s, i) => (
-                  <div key={s.name} className="tv-s05-node" style={{ left: `${journeyFlowPos[i].x}%`, top: `${journeyFlowPos[i].y}%` }}>
-                    <div className="tv-s05-circle">{s.icon}</div>
-                    <span className="tv-s05-label">
-                      <span className="tv-s05-num">{String(i + 1).padStart(2, "0")}</span>
-                      <span className="tv-s05-name">{s.name}</span>
-                    </span>
-                    <span className="tv-s05-sub">{s.sub}</span>
-                  </div>
-                ))}
-              </div>
+              <JourneyProcessConveyor />
             </div>
           </div>
         </div>
@@ -785,7 +952,7 @@ export default function TravelHospitalityPage() {
         </div>
       </section>
 
-      <StaircaseFlow
+      <ProgressTracker
         ariaLabel="When plans change"
         eyebrow="WHEN PLANS CHANGE"
         title={
@@ -803,6 +970,7 @@ export default function TravelHospitalityPage() {
           </>
         }
         steps={disruptionSteps}
+        icons={DISRUPTION_ICONS}
         revealClass="tv-reveal"
       />
 

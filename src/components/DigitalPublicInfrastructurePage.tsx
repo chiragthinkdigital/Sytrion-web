@@ -178,7 +178,7 @@ const trustPillars = [
   { title: "Resilient Operations", desc: "Operational models designed for availability, monitoring and continuity." },
 ];
 
-const trustIconProps = { width: 32, height: 32, viewBox: "0 0 32 32", fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, "aria-hidden": true };
+const trustIconProps = { width: 30, height: 30, viewBox: "0 0 32 32", fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, "aria-hidden": true };
 const trustIcons = [
   <svg key="trust-shield" {...trustIconProps}><path d="M16 4l9 3.5V14c0 5.5-3.8 10.3-9 12-5.2-1.7-9-6.5-9-12V7.5L16 4z" /><circle cx="16" cy="13.5" r="3" fill="currentColor" stroke="none" /></svg>,
   <svg key="trust-governance" {...trustIconProps}><rect x="6" y="8" width="20" height="6" rx="3" /><rect x="6" y="15" width="20" height="6" rx="3" fill="currentColor" stroke="none" /><rect x="6" y="22" width="20" height="6" rx="3" /></svg>,
@@ -547,19 +547,16 @@ export default function DigitalPublicInfrastructurePage() {
 
 
         /* --- 12 Trust, Security & Governance --- */
-        .dpi-trust { background:linear-gradient(160deg, ${NAVY} 0%, ${NAVY2} 100%); }
-        .dpi-trust-stage { position:relative; margin-top:48px; padding:0 40px; }
-        .dpi-trust-grid { position:relative; display:grid; grid-template-columns: repeat(2, 1fr); gap:64px 72px; }
-        .dpi-trust-line-h, .dpi-trust-line-v { position:absolute; background:rgba(201,233,74,0.22); pointer-events:none; z-index:1; }
-        .dpi-trust-line-h { left:0; right:0; top:50%; height:1px; }
-        .dpi-trust-line-v { top:0; bottom:0; left:50%; width:1px; }
-        .dpi-trust-pillar { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:26px 24px; }
-        .dpi-trust-icon { width:32px; height:32px; color:#c9e94a; margin-bottom:14px; }
-        .dpi-trust-title { font-family: var(--font-syne), Arial, sans-serif; font-size:16px; font-weight:700; color:#f6f7ef; margin:0 0 8px; }
-        .dpi-trust-desc { font-size:13.5px; line-height:1.6; color:#9a9c8d; margin:0; }
-        .dpi-trust-hub { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:3; display:flex; flex-direction:column; align-items:center; gap:12px; }
-        .dpi-trust-hub-circle { width:108px; height:108px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #3a4420, #0a0b06 70%); border:1.5px solid #c9e94a; box-shadow:0 0 0 10px rgba(201,233,74,0.06), 0 0 40px rgba(201,233,74,0.15); display:flex; align-items:center; justify-content:center; color:#c9e94a; }
-        .dpi-trust-hub-label { background:#0a0b06; border:1px solid rgba(201,233,74,0.35); color:#fff; font-size:12px; font-weight:700; letter-spacing:0.08em; padding:8px 18px; border-radius:999px; white-space:nowrap; }
+        .dpi-trust { background:linear-gradient(160deg, ${NAVY} 0%, ${NAVY2} 100%); --t-accent:${BLUE}; --t-card:#1f1f1f; --t-border:#2e2e2e; --t-muted:#b8b8b8; }
+        .dpi-trust-cards { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:20px; margin-top:36px; }
+        .dpi-trust-card { display:flex; align-items:center; gap:20px; min-width:0; background:var(--t-card); border:1px solid var(--t-border); border-radius:20px; padding:20px; transition: border-color .2s ease, transform .2s ease; }
+        .dpi-trust-card:hover { border-color:var(--t-accent); transform:translateY(-2px); }
+        .dpi-trust-card:focus-visible { outline:2px solid var(--t-accent); outline-offset:3px; }
+        .dpi-trust-tile { flex:0 0 64px; width:64px; height:64px; border-radius:16px; background:var(--t-accent); color:${NAVY}; display:flex; align-items:center; justify-content:center; }
+        .dpi-trust-tile svg { width:30px; height:30px; }
+        .dpi-trust-text { min-width:0; }
+        .dpi-trust-title { font-family:var(--font-syne), Arial, sans-serif; font-size:18px; font-weight:700; color:#f6f7ef; margin:0 0 4px; }
+        .dpi-trust-desc { font-size:15px; line-height:1.5; color:var(--t-muted); margin:0; }
 
         /* --- 13 Outcomes --- */
         .dpi-outcomes { background: #ffffff; }
@@ -674,11 +671,11 @@ export default function DigitalPublicInfrastructurePage() {
           .dpi-open-card-media { display: none; }
           .dpi-open-card-body { flex: 1 1 auto; }
         }
-        @media (max-width: 780px) {
-          .dpi-trust-stage { padding: 0; }
-          .dpi-trust-grid { grid-template-columns: 1fr; gap: 24px; }
-          .dpi-trust-line-h, .dpi-trust-line-v { display: none; }
-          .dpi-trust-hub { position: static; transform: none; }
+        @media (max-width: 768px) {
+          .dpi-trust-cards { grid-template-columns: 1fr; }
+          .dpi-trust-tile { flex-basis:52px; width:52px; height:52px; border-radius:14px; }
+          .dpi-trust-tile svg { width:26px; height:26px; }
+          .dpi-trust .dpi-h2 { font-size: clamp(26px, 6.5vw, 40px); }
         }
         @media (max-width: 560px) {
           .dpi-land-cards { grid-template-columns: 1fr; }
@@ -1053,24 +1050,16 @@ export default function DigitalPublicInfrastructurePage() {
             <h2 className="dpi-h2">Digital ecosystems need trust at <span style={{ color: "#C6E84A" }}>their core.</span></h2>
             <p className="dpi-body" style={{ color: "rgba(255,255,255,0.72)" }}>As digital services connect more institutions, systems and users, security, privacy, governance and accountability become fundamental to sustainable infrastructure.</p>
           </div>
-          <div className="dpi-trust-stage dpi-reveal">
-            <div className="dpi-trust-grid">
-              <div className="dpi-trust-line-h" aria-hidden="true" />
-              <div className="dpi-trust-line-v" aria-hidden="true" />
-              <div className="dpi-trust-hub">
-                <div className="dpi-trust-hub-circle" aria-hidden="true">
-                  {trustIcons[0]}
-                </div>
-                <span className="dpi-trust-hub-label">Trust by Design</span>
-              </div>
-              {trustPillars.map((p, i) => (
-                <div key={p.title} className="dpi-trust-pillar">
-                  <div className="dpi-trust-icon" aria-hidden="true">{trustIcons[i]}</div>
+          <div className="dpi-trust-cards dpi-reveal">
+            {trustPillars.map((p, i) => (
+              <article key={p.title} className="dpi-trust-card">
+                <span className="dpi-trust-tile" aria-hidden="true">{trustIcons[i]}</span>
+                <div className="dpi-trust-text">
                   <h3 className="dpi-trust-title">{p.title}</h3>
                   <p className="dpi-trust-desc">{p.desc}</p>
                 </div>
-              ))}
-            </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>

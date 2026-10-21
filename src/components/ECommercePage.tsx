@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import StaircaseFlow from "./StaircaseFlow";
+import { BarChart3, Check, MessageSquare, Package, RotateCcw, Scale, Shield } from "lucide-react";
+import ProgressTracker from "./ProgressTracker";
 
 const challenges = [
   { label: "Growing product & SKU complexity", image: "/services/ecommerce/Growing product & SKU complexity.png" },
@@ -370,6 +371,8 @@ const reverseStages = [
   { name: "Reconcile", desc: "Transaction & inventory" },
   { name: "Analyze", desc: "Return trends & insights" },
 ];
+
+const RETURN_ICONS = [MessageSquare, Check, Shield, Package, RotateCcw, Scale, BarChart3];
 
 const customerCare = [
   {
@@ -1517,7 +1520,7 @@ export default function ECommercePage() {
         `}</style>
       </section>
 
-      <StaircaseFlow
+      <ProgressTracker
         ariaLabel="Returns and refunds"
         eyebrow="RETURNS &amp; REFUNDS"
         title={
@@ -1535,6 +1538,7 @@ export default function ECommercePage() {
           </>
         }
         steps={reverseStages}
+        icons={RETURN_ICONS}
         revealClass="ec-reveal"
       />
 

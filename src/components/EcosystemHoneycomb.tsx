@@ -3,143 +3,133 @@
 import { Clock, Coins, FileText, House, LayoutGrid, Sparkles, User } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-/* ─────────────────────────────────────────────────────────────
-   CONNECTED PENSION ECOSYSTEM — honeycomb
-   Regular pointy-top hexagonal cells in a 2-3-2 flower.
-
-   Geometry (exact, not approximated). For a regular pointy-top
-   hexagon of width w, the height is 2w/√3 = 1.1547w, which is
-   what makes the clip-path vertices below produce true regular
-   hexagons rather than stretched ones:
-
-     --w : cell width
-     --g : gap between neighbours
-     --h : cell height = w * 1.1547
-
-   A tight hex grid stacks rows at a pitch of 0.75h = 0.866w, so
-   each row after the first pulls up by (0.25h) = 0.2887w and then
-   pushes back down by the gap allowance, which is what makes the
-   rows interlock.
-   ───────────────────────────────────────────────────────────── */
-
 type Participant = {
-  /** Position in the clockwise walk around the centre cell. */
   step: number;
-  label: string;
+  title: string;
+  desc: string;
   icon: LucideIcon;
+  col: number;
+  row: number;
 };
 
-/* Clockwise from the top-left: 1 → 2 across the top, 3 down the
-   right, 4 → 5 across the bottom, 6 back up the left. */
 const PARTICIPANTS: readonly Participant[] = [
-  { step: 1, label: "Subscribers", icon: User },
-  { step: 2, label: "Service & Access Channels", icon: LayoutGrid },
-  { step: 3, label: "Recordkeeping & Administration", icon: FileText },
-  { step: 4, label: "Contribution & Transaction Ecosystem", icon: Coins },
-  { step: 5, label: "Pension / Financial Institutions", icon: House },
-  { step: 6, label: "Retirement & Service Ecosystem", icon: Clock },
+  { step: 1, title: "Subscribers", desc: "People at the heart of the system", icon: User, col: 1, row: 1 },
+  { step: 2, title: "Service & access channels", desc: "Digital, human, and partner touchpoints", icon: LayoutGrid, col: 2, row: 1 },
+  { step: 3, title: "Recordkeeping & administration", desc: "Accurate records and administration", icon: FileText, col: 3, row: 1 },
+  { step: 4, title: "Contribution & transaction ecosystem", desc: "Money movement across the ecosystem", icon: Coins, col: 3, row: 3 },
+  { step: 5, title: "Pension / financial institutions", desc: "Plans, providers, and financial partners", icon: House, col: 2, row: 3 },
+  { step: 6, title: "Retirement & service ecosystem", desc: "Guidance through retirement decisions", icon: Clock, col: 1, row: 3 },
 ];
-
-const CENTRE: Participant = { step: 0, label: "Sytrion Intelligence", icon: Sparkles };
 
 const INTELLIGENCE_LAYER = ["AI", "Automation", "Data", "Workflow", "Analytics"];
 
-const ROWS: readonly (readonly Participant[])[] = [
-  [PARTICIPANTS[0], PARTICIPANTS[1]],
-  [PARTICIPANTS[5], CENTRE, PARTICIPANTS[2]],
-  [PARTICIPANTS[4], PARTICIPANTS[3]],
-];
-
-function HexCell({ participant, centre = false }: { participant: Participant; centre?: boolean }) {
-  const Icon = participant.icon;
-  const name = centre ? participant.label : `${participant.step}. ${participant.label}`;
-
-  return (
-    /* The drop-shadow lives on this wrapper: clip-path on the cell
-       itself would cut the shadow off along the hexagon edges. */
-    <li className="pns-eco-cellwrap">
-      <div
-        className={"pns-eco-cell" + (centre ? " pns-eco-cell--centre" : "")}
-        role="img"
-        aria-label={name}
-        tabIndex={0}
-      >
-        <div className="pns-eco-in">
-          <span className="pns-eco-ic">
-            <Icon size={24} strokeWidth={1.6} aria-hidden="true" />
-          </span>
-          <span className="pns-eco-lb">{centre ? "Sytrion Intelligence" : participant.label}</span>
-          {!centre && <span className="pns-eco-num">{participant.step}</span>}
-        </div>
-      </div>
-    </li>
-  );
-}
-
 export default function EcosystemHoneycomb() {
   return (
-    <section className="pns-eco" aria-label="Connected Pension Ecosystem">
-      <div className="pns-eco-inner">
-        <div className="pns-eco-card">
-          <header className="pns-eco-head dpi-reveal">
-            <span className="dpi-eyebrow">CONNECTED PENSION ECOSYSTEM</span>
-            <h2 className="pns-eco-h2">
-              <span>One ecosystem. Multiple participants.</span>
-              <span className="pns-eco-h2-lime">One continuous flow of information.</span>
-            </h2>
-            <p className="pns-eco-copy">
-              A connected ecosystem of participants working together to deliver better outcomes for subscribers.
-            </p>
-          </header>
+    <section className="pns-eco" aria-labelledby="pns-eco-title">
+      <div className="pns-eco-glow" aria-hidden="true" />
 
-          <div className="pns-eco-body dpi-reveal">
-            <ul className="pns-eco-comb" aria-label="Pension ecosystem participants and the Sytrion Intelligence layer">
-              {ROWS.map((row, i) => (
-                <li className="pns-eco-rowwrap" key={i}>
-                  <ul className="pns-eco-row">
-                    {row.map((p) => (
-                      <HexCell key={p.step} participant={p} centre={p === CENTRE} />
-                    ))}
-                  </ul>
-                </li>
+      <div className="pns-eco-inner">
+        <header className="pns-eco-head dpi-reveal">
+          <span className="dpi-eyebrow">CONNECTED PENSION ECOSYSTEM</span>
+          <h2 className="pns-eco-h2" id="pns-eco-title">
+            <span>One ecosystem. Multiple participants.</span>
+            <span className="pns-eco-h2-lime">One continuous flow of information.</span>
+          </h2>
+          <p className="pns-eco-sub">
+            A connected ecosystem of participants working together to deliver better outcomes for subscribers.
+          </p>
+        </header>
+
+        <div className="pns-eco-diagram dpi-reveal">
+          <svg className="pns-eco-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M50 50 L16.7 12.5" />
+            <path d="M50 50 L50 12.5" />
+            <path d="M50 50 L83.3 12.5" />
+            <path d="M50 50 L16.7 87.5" />
+            <path d="M50 50 L50 87.5" />
+            <path d="M50 50 L83.3 87.5" />
+          </svg>
+
+          <div className="pns-eco-hub">
+            <span className="pns-eco-ring1" aria-hidden="true" />
+            <span className="pns-eco-ring2" aria-hidden="true" />
+            <Sparkles size={40} strokeWidth={1.6} aria-hidden="true" />
+            <span className="pns-eco-hub-title">
+              <span>Sytrion</span>
+              <span>Intelligence</span>
+            </span>
+            <span className="pns-eco-hub-tag">THE CONNECTIVE LAYER</span>
+          </div>
+
+          {PARTICIPANTS.map((p) => {
+            const Icon = p.icon;
+            return (
+              <article
+                key={p.step}
+                className="pns-eco-card"
+                style={{ gridColumn: p.col, gridRow: p.row }}
+              >
+                <span className="pns-eco-tile" aria-hidden="true">
+                  <Icon size={24} strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" />
+                </span>
+                <div className="pns-eco-copy">
+                  <h3 className="pns-eco-card-title">{p.title}</h3>
+                  <p className="pns-eco-card-desc">{p.desc}</p>
+                </div>
+                <span className="pns-eco-badge" aria-hidden="true">{p.step}</span>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="pns-eco-layer">
+          <div className="pns-eco-layerbar">
+            <span className="pns-eco-layerlabel">SYTRION INTELLIGENCE LAYER</span>
+            <ul className="pns-eco-chips" aria-label="Sytrion Intelligence Layer capabilities">
+              {INTELLIGENCE_LAYER.map((x) => (
+                <li className="pns-eco-chip" key={x}>{x}</li>
               ))}
             </ul>
-
-            <aside className="pns-eco-panel">
-              <h3 className="pns-eco-pt">Sytrion Intelligence Layer</h3>
-              <ul className="pns-eco-chips">
-                {INTELLIGENCE_LAYER.map((x) => (
-                  <li className="pns-eco-chip" key={x}>
-                    {x}
-                  </li>
-                ))}
-              </ul>
-            </aside>
           </div>
         </div>
       </div>
 
       <style>{`
         .pns-eco {
-          --pns-lime: #C6E84A;
-          --pns-ink: #15180d;
-          --pns-olive: #4b6112;
-          --pns-on-dark: #f1f4e6;
-          --pns-card: #ffffff;
-          --pns-line: rgba(15, 15, 15, 0.08);
-          --pns-heading: #1a1a1a;
-          --pns-shell: #fafaf8;
-          background: var(--pns-shell);
+          --pns-bg: #f7f8f3;
+          --pns-dark: #141a0f;
+          --pns-lime: #c5e84d;
+          --pns-green: #8fb312;
+          --pns-line: #a9c93a;
+          --pns-text: #4a5043;
+          --pns-desc: #515847;
+          --pns-border: #e3e7d8;
+          position: relative;
+          overflow: hidden;
+          background: var(--pns-bg);
           font-family: var(--font-geist-sans), Arial, sans-serif;
         }
         .pns-eco * { box-sizing: border-box; }
-        .pns-eco-inner { max-width: 1400px; margin: 0 auto; padding: clamp(76px, 9vw, 128px) clamp(20px, 4vw, 40px); }
 
-        .pns-eco-card {
-          background: var(--pns-card);
-          border: 1px solid var(--pns-line);
-          border-radius: 28px;
-          padding: clamp(20px, 4vw, 48px);
+        .pns-eco-glow {
+          position: absolute;
+          left: 50%;
+          top: 640px;
+          width: 1000px;
+          height: 1000px;
+          transform: translateX(-50%);
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(197,232,77,0.22) 0%, rgba(197,232,77,0) 62%);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .pns-eco-inner {
+          position: relative;
+          z-index: 1;
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: clamp(76px, 9vw, 128px) clamp(20px, 4vw, 40px);
         }
 
         .pns-eco-h2 {
@@ -148,208 +138,231 @@ export default function EcosystemHoneycomb() {
           font-weight: 700;
           letter-spacing: -0.02em;
           line-height: 1.08;
-          color: var(--pns-heading);
+          color: #1a1a1a;
           margin: 0 0 24px;
         }
         .pns-eco-h2 > span { display: inline; }
-        .pns-eco-h2-lime { color: var(--pns-lime); }
-        .pns-eco-copy {
+        .pns-eco-h2-lime { color: #C6E84A; }
+        .pns-eco-sub {
           font-size: 17px;
           line-height: 1.7;
-          color: var(--pns-heading);
+          color: #1a1a1a;
           opacity: 0.75;
           max-width: none;
           margin: 0;
         }
 
-        .pns-eco-body {
-          margin-top: clamp(28px, 4vw, 48px);
+        .pns-eco-diagram {
+          position: relative;
           display: grid;
-          grid-template-columns: auto 1fr;
-          gap: clamp(24px, 5vw, 64px);
-          align-items: center;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 150px 300px 150px;
+          height: 600px;
+          margin-top: 56px;
         }
-
-        /* --- honeycomb ------------------------------------------------ */
-        .pns-eco-comb {
-          --w: clamp(84px, 13.5vw, 158px);
-          --g: 8px;
-          --h: calc(var(--w) * 1.1547);
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        .pns-eco-rowwrap { list-style: none; margin: 0; padding: 0; display: flex; }
-        .pns-eco-row {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          display: flex;
-          gap: var(--g);
-          justify-content: center;
-        }
-        .pns-eco-rowwrap + .pns-eco-rowwrap {
-          margin-top: calc(var(--w) * -0.2887 + var(--g) * 0.866);
-        }
-
-        .pns-eco-cellwrap {
-          list-style: none;
-          display: block;
-          /* drop-shadow, not box-shadow: clip-path cuts box-shadow away */
-          filter: drop-shadow(0 6px 8px rgba(20, 30, 0, 0.18));
-          transition: transform 0.25s ease, filter 0.25s ease;
-        }
-        .pns-eco-cellwrap:has(.pns-eco-cell:hover) { transform: scale(1.08); z-index: 2; }
-        .pns-eco-cellwrap:focus-within {
-          transform: scale(1.08);
-          z-index: 2;
-          filter: drop-shadow(0 6px 8px rgba(20, 30, 0, 0.18)) drop-shadow(0 0 0 3px var(--pns-lime));
-        }
-
-        .pns-eco-cell {
-          --pns-fill: var(--pns-ink);
-          --pns-fg: var(--pns-on-dark);
-          --pns-icon: var(--pns-lime);
-          position: relative;
-          width: var(--w);
-          height: var(--h);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 0 16%;
-          text-align: center;
-          background: var(--pns-olive);
-          clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-          outline: none;
-          cursor: default;
-        }
-        .pns-eco-cell::before {
-          content: "";
+        .pns-eco-lines {
           position: absolute;
-          inset: 3px;
-          background: var(--pns-fill);
-          clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-          transition: background-color 0.25s ease;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+          pointer-events: none;
+        }
+        .pns-eco-lines path {
+          stroke: var(--pns-line);
+          stroke-width: 1.5;
+          stroke-dasharray: 3 6;
+          stroke-linecap: round;
+          vector-effect: non-scaling-stroke;
+          fill: none;
         }
 
-        .pns-eco-in {
+        .pns-eco-hub {
           position: relative;
+          grid-column: 1 / -1;
+          grid-row: 2;
+          justify-self: center;
+          align-self: center;
+          width: 290px;
+          height: 290px;
           z-index: 1;
-          width: 100%;
+          border-radius: 50%;
+          background: radial-gradient(circle at 30% 25%, #27331b 0%, #141a0f 65%);
+          box-shadow: 0 0 0 8px rgba(197,232,77,0.28), 0 24px 60px rgba(20,26,15,0.35);
+          color: #ffffff;
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 5px;
+          justify-content: center;
+          text-align: center;
         }
-        .pns-eco-ic { display: block; color: var(--pns-icon); transition: color 0.25s ease; }
-        .pns-eco-ic svg { display: block; width: 24px; height: 24px; }
-        .pns-eco-lb {
-          display: block;
-          font-family: var(--font-syne), Arial, sans-serif;
-          font-size: clamp(8.5px, 1.15vw, 13px);
-          font-weight: 600;
-          line-height: 1.15;
-          color: var(--pns-fg);
-          transition: color 0.25s ease;
-          overflow-wrap: anywhere;
+        .pns-eco-hub > svg { color: var(--pns-lime); display: block; }
+        .pns-eco-ring1,
+        .pns-eco-ring2 {
+          position: absolute;
+          border-radius: 50%;
+          pointer-events: none;
         }
-        .pns-eco-num {
-          display: block;
+        .pns-eco-ring1 { inset: -26px; border: 1.5px dashed var(--pns-line); }
+        .pns-eco-ring2 { inset: -52px; border: 1px solid rgba(169,201,58,0.35); }
+        .pns-eco-hub-title {
           font-family: var(--font-syne), Arial, sans-serif;
-          font-size: 9px;
+          font-weight: 800;
+          font-size: 27px;
+          line-height: 1.1;
+          color: #ffffff;
+          margin-top: 12px;
+        }
+        .pns-eco-hub-title > span { display: block; }
+        .pns-eco-hub-tag {
+          color: var(--pns-lime);
           font-weight: 700;
+          font-size: 11px;
           letter-spacing: 0.16em;
-          color: var(--pns-fg);
-          opacity: 0.55;
-          transition: color 0.25s ease;
+          margin-top: 14px;
         }
 
-        /* Only the targeted cell reacts. Siblings are never dimmed,
-           blurred or faded. */
-        .pns-eco-cell:hover,
-        .pns-eco-cell:focus-visible {
-          --pns-fill: var(--pns-lime);
-          --pns-fg: var(--pns-ink);
-          --pns-icon: var(--pns-ink);
-        }
-        .pns-eco-cell--centre {
-          --pns-fill: var(--pns-lime);
-          --pns-fg: var(--pns-ink);
-          --pns-icon: var(--pns-ink);
-        }
-        .pns-eco-cell--centre .pns-eco-lb { font-weight: 800; }
-        .pns-eco-cell--centre:hover,
-        .pns-eco-cell--centre:focus-visible {
-          --pns-fill: var(--pns-ink);
-          --pns-fg: var(--pns-lime);
-          --pns-icon: var(--pns-lime);
-        }
-
-        /* --- info panel ----------------------------------------------- */
-        .pns-eco-panel {
+        .pns-eco-card {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+          width: 300px;
+          max-width: 92%;
+          justify-self: center;
           align-self: center;
-          background: var(--pns-ink);
-          color: var(--pns-on-dark);
-          border-radius: 24px;
-          padding: 28px;
+          background: #ffffff;
+          border: 1px solid var(--pns-border);
+          border-radius: 20px;
+          padding: 20px 22px;
+          box-shadow: 0 10px 30px rgba(20,26,15,0.06);
+          transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
-        .pns-eco-pt {
-          font-family: var(--font-syne), Arial, sans-serif;
-          font-size: clamp(22px, 2.6vw, 32px);
-          font-weight: 700;
-          letter-spacing: -0.02em;
-          line-height: 1.15;
-          color: inherit;
-          margin: 0 0 20px;
+        .pns-eco-card:hover {
+          transform: translateY(-4px);
+          border-color: var(--pns-lime);
+          box-shadow: 0 16px 40px rgba(111,140,10,0.18);
         }
-        .pns-eco-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
-        .pns-eco-chip {
-          display: inline-flex;
+        .pns-eco-tile {
+          flex: 0 0 48px;
+          width: 48px;
+          height: 48px;
+          border-radius: 14px;
+          background: var(--pns-dark);
+          color: var(--pns-lime);
+          display: flex;
           align-items: center;
-          gap: 8px;
-          background: rgba(255, 255, 255, 0.1);
-          color: var(--pns-on-dark);
-          border-radius: 99px;
-          padding: 7px 14px;
-          font-size: 13.5px;
-          font-weight: 600;
+          justify-content: center;
+        }
+        .pns-eco-tile svg {
+          width: 24px;
+          height: 24px;
+          stroke: var(--pns-lime);
+          stroke-width: 1.7;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        .pns-eco-copy { min-width: 0; }
+        .pns-eco-card-title {
+          font-family: var(--font-syne), Arial, sans-serif;
+          font-weight: 700;
+          font-size: 17px;
           line-height: 1.2;
+          color: var(--pns-dark);
+          margin: 0;
+        }
+        .pns-eco-card-desc {
+          font-size: 13.5px;
+          line-height: 1.5;
+          color: var(--pns-desc);
+          margin: 6px 0 0;
+        }
+        .pns-eco-badge {
+          position: absolute;
+          top: -11px;
+          right: 18px;
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          background: var(--pns-lime);
+          border: 3px solid var(--pns-bg);
+          color: var(--pns-dark);
+          font-weight: 800;
+          font-size: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .pns-eco-layer {
+          margin-top: 56px;
+          display: flex;
+          justify-content: center;
+        }
+        .pns-eco-layerbar {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 10px;
+          width: fit-content;
+          max-width: 100%;
+          background: var(--pns-dark);
+          border-radius: 999px;
+          padding: 12px;
+        }
+        .pns-eco-layerlabel {
+          color: var(--pns-lime);
+          font-weight: 700;
+          font-size: 12px;
+          letter-spacing: 0.14em;
+          padding: 0 14px;
+        }
+        .pns-eco-chips {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .pns-eco-chip {
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          background: rgba(255,255,255,0.08);
+          color: #ffffff;
+          font-weight: 600;
+          font-size: 14px;
+          padding: 10px 20px;
+          border-radius: 999px;
         }
         .pns-eco-chip::before {
           content: "";
           flex: 0 0 auto;
-          width: 7px;
-          height: 7px;
+          width: 8px;
+          height: 8px;
           border-radius: 50%;
           background: var(--pns-lime);
         }
 
-        @media (max-width: 820px) {
-          .pns-eco-comb { --w: clamp(84px, 27vw, 150px); }
-          .pns-eco-body { grid-template-columns: 1fr; justify-items: center; }
-          .pns-eco-panel { width: 100%; }
-        }
-
-        @media (prefers-color-scheme: dark) {
-          .pns-eco {
-            --pns-card: #14140f;
-            --pns-line: rgba(255, 255, 255, 0.12);
-            --pns-heading: #ffffff;
-            --pns-shell: #0c0c0a;
+        @media (max-width: 860px) {
+          .pns-eco-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 34px;
+            height: auto;
           }
+          .pns-eco-lines { display: none; }
+          .pns-eco-hub { flex: 0 0 auto; margin: 50px 0; }
+          .pns-eco-card { width: 100%; max-width: 420px; }
+          .pns-eco-layerbar { border-radius: 28px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .pns-eco-cellwrap,
-          .pns-eco-cell::before,
-          .pns-eco-ic,
-          .pns-eco-lb,
-          .pns-eco-num { transition: none; }
-          .pns-eco-cellwrap:has(.pns-eco-cell:hover),
-          .pns-eco-cellwrap:focus-within { transform: none; }
+          .pns-eco-card { transition: none; }
+          .pns-eco-card:hover { transform: none; }
         }
       `}</style>
     </section>

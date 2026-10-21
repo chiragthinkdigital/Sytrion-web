@@ -1,10 +1,10 @@
 "use client";
 
-import StaircaseFlow, { type StaircaseVariant } from "./StaircaseFlow";
+import { Bell, FileText, Fingerprint, PackageCheck, Search, ShieldCheck, Workflow } from "lucide-react";
+import ProgressTracker from "./ProgressTracker";
 
 /* ─────────────────────────────────────────────────────────────
-   INTELLIGENT SERVICE DELIVERY — DPI page copy of the shared
-   rising staircase. See StaircaseFlow.tsx for the design.
+   INTELLIGENT SERVICE DELIVERY — DPI page progress tracker.
    ───────────────────────────────────────────────────────────── */
 
 const STEPS = [
@@ -17,11 +17,11 @@ const STEPS = [
   { name: "Inform", desc: "Provide status and communication" },
 ];
 
-export type { StaircaseVariant };
+const SERVICE_ICONS = [Search, Fingerprint, FileText, ShieldCheck, Workflow, PackageCheck, Bell];
 
-export default function ServiceStaircase({ variant = "white" }: { variant?: StaircaseVariant }) {
+export default function ServiceStaircase() {
   return (
-    <StaircaseFlow
+    <ProgressTracker
       ariaLabel="Intelligent Service Delivery"
       eyebrow="INTELLIGENT SERVICE DELIVERY"
       title={
@@ -30,7 +30,7 @@ export default function ServiceStaircase({ variant = "white" }: { variant?: Stai
         </>
       }
       steps={STEPS}
-      variant={variant}
+      icons={SERVICE_ICONS}
       revealClass="dpi-reveal"
     />
   );
