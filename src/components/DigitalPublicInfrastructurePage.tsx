@@ -336,7 +336,7 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-land-section { padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(40px, 5vw, 60px); position: relative; background: #ffffff; }
         .dpi-land-section::before { content: none; }
         .dpi-land-section::after { content: none; }
-        .dpi-land-text p { color: #5B6472; max-width: 440px; font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; }
+        .dpi-land-text p { color: #5B6472; max-width: 500px; font-size: 19px; font-weight: 460; line-height: 1.8; margin: 0 0 12px; }
         .dpi-land-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
         .dpi-challenge-card {
           background: linear-gradient(160deg, #0E1B2E 0%, #1B2735 100%);
