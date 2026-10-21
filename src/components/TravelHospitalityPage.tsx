@@ -484,13 +484,13 @@ export default function TravelHospitalityPage() {
         .tv-s02-card:hover .tv-s02-icon::after { opacity: 0.55; }
         .tv-s02-icon svg { width: 20px; height: 20px; }
         .tv-s02-label { font-size: 15px; font-weight: 600; color: #ffffff; line-height: 1.4; }
-        .tv-s02-approach { margin-top: 48px; background: linear-gradient(135deg, #0B1D35 0%, #132742 40%, #0F2035 100%); border-radius: 20px; padding: 44px 48px 40px; position: relative; overflow: hidden; box-shadow: 0 8px 40px -12px rgba(10,22,40,0.25); }
+        .tv-s02-approach { margin-top: 32px; background: linear-gradient(135deg, #0B1D35 0%, #132742 40%, #0F2035 100%); border-radius: 14px; padding: 22px 28px 20px; position: relative; overflow: hidden; box-shadow: 0 8px 40px -12px rgba(10,22,40,0.25); }
         .tv-s02-approach::before { content: ""; position: absolute; top: -60px; right: -40px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(196,229,56,0.12) 0%, transparent 70%); pointer-events: none; }
         .tv-s02-approach::after { content: ""; position: absolute; bottom: -40px; left: 30%; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%); pointer-events: none; }
-        .tv-s02-approach-top { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; position: relative; z-index: 1; }
-        .tv-s02-approach-dot { width: 8px; height: 8px; border-radius: 50%; background: #C4E538; flex-shrink: 0; box-shadow: 0 0 12px rgba(196,229,56,0.5); }
-        .tv-s02-approach-label { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(196,229,56,0.7); }
-        .tv-s02-approach-text { font-size: clamp(18px, 1.8vw, 26px); line-height: 1.4; color: rgba(255,255,255,0.92); font-weight: 500; margin: 0; position: relative; z-index: 1; max-width: 900px; }
+        .tv-s02-approach-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; position: relative; z-index: 1; }
+        .tv-s02-approach-dot { width: 7px; height: 7px; border-radius: 50%; background: #C4E538; flex-shrink: 0; box-shadow: 0 0 12px rgba(196,229,56,0.5); }
+        .tv-s02-approach-label { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(196,229,56,0.7); }
+        .tv-s02-approach-text { font-size: clamp(15px, 1.4vw, 19px); line-height: 1.4; color: rgba(255,255,255,0.92); font-weight: 500; margin: 0; position: relative; z-index: 1; }
         .tv-s02-approach-text em { font-style: normal; color: #C4E538; font-weight: 600; }
 
         .tv-s03 { background: var(--tv-navy); padding: clamp(76px, 9vw, 128px) 80px; }
@@ -681,7 +681,7 @@ export default function TravelHospitalityPage() {
           .tv-s04-tabbar { grid-template-columns: repeat(2, 1fr); }
           .tv-s04-checklist { grid-template-columns: 1fr; }
           .tv-s02-right { grid-template-columns: 1fr 1fr; }
-          .tv-s02-approach { padding: 36px 24px 32px; }
+          .tv-s02-approach { padding: 18px 20px 16px; }
           .tv-out-grid { grid-template-columns: 1fr; }
           .tv-hd-wrap { padding: 72px 20px; }
           .tv-hd-stage { max-width: 400px; }

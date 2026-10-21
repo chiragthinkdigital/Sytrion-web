@@ -383,20 +383,20 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-challenge-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
         .dpi-challenge-label { font-size: 15px; font-weight: 600; color: #ffffff; line-height: 1.4; }
         .dpi-approach {
-          margin-top: 48px;
+          margin-top: 32px;
           background: linear-gradient(135deg, #0B1D35 0%, #132742 40%, #0F2035 100%);
-          border-radius: 20px;
-          padding: 44px 48px 40px;
+          border-radius: 14px;
+          padding: 22px 28px 20px;
           position: relative;
           overflow: hidden;
           box-shadow: 0 8px 40px -12px rgba(10,22,40,0.25);
         }
         .dpi-approach::before { content: ""; position: absolute; top: -60px; right: -40px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(196,229,56,0.12) 0%, transparent 70%); pointer-events: none; }
         .dpi-approach::after { content: ""; position: absolute; bottom: -40px; left: 30%; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%); pointer-events: none; }
-        .dpi-approach-top { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; position: relative; z-index: 1; }
-        .dpi-approach-dot { width: 8px; height: 8px; border-radius: 50%; background: #C4E538; flex-shrink: 0; box-shadow: 0 0 12px rgba(196,229,56,0.5); }
-        .dpi-approach-label { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(196,229,56,0.7); }
-        .dpi-approach-text { font-size: clamp(18px, 1.8vw, 26px); line-height: 1.4; color: rgba(255,255,255,0.92); font-weight: 500; margin: 0; position: relative; z-index: 1; }
+        .dpi-approach-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; position: relative; z-index: 1; }
+        .dpi-approach-dot { width: 7px; height: 7px; border-radius: 50%; background: #C4E538; flex-shrink: 0; box-shadow: 0 0 12px rgba(196,229,56,0.5); }
+        .dpi-approach-label { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(196,229,56,0.7); }
+        .dpi-approach-text { font-size: clamp(15px, 1.4vw, 19px); line-height: 1.4; color: rgba(255,255,255,0.92); font-weight: 500; margin: 0; position: relative; z-index: 1; }
         .dpi-approach-text em { font-style: normal; color: #C4E538; font-weight: 600; }
 
         .dpi-eco-band { background:linear-gradient(160deg, ${NAVY} 0%, ${NAVY2} 100%); }
