@@ -821,9 +821,9 @@ export default function BankingOperationsPage() {
           </div>
           <div className="bk-s02-grid bk-reveal">
             <div className="bk-s02-left">
-              <p className="bk-lede">Customers expect banking to be instant, simple and always available.</p>
-              <p className="bk-copy">At the same time, banks must manage increasingly complex regulatory requirements, financial crime risks, legacy systems, high transaction volumes and pressure to improve efficiency.</p>
-              <p className="bk-copy">Behind every banking experience sits an interconnected network of customer data, documents, transactions, decisions and controls.</p>
+              <p className="bk-lede">&emsp;Customers expect banking to be instant, simple and always available.</p>
+              <p className="bk-copy">&emsp;At the same time, banks must manage increasingly complex regulatory requirements, financial crime risks, legacy systems, high transaction volumes and pressure to improve efficiency.</p>
+              <p className="bk-copy">&emsp;Behind every banking experience sits an interconnected network of customer data, documents, transactions, decisions and controls.</p>
             </div>
             <div className="bk-s02-grid-inner">
               {landscapeChallenges.map((c, i) => (

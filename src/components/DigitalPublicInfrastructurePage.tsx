@@ -717,8 +717,8 @@ export default function DigitalPublicInfrastructurePage() {
           </div>
           <div className="dpi-land-row dpi-reveal">
             <div className="dpi-land-text">
-              <p className="dpi-land-lede">People increasingly expect essential services to be simple, accessible and connected. Yet institutions often operate across fragmented systems, disconnected databases, manual processes and complex service-delivery environments.</p>
-              <p className="dpi-land-copy">Digital Public Infrastructure creates reusable foundations that allow identity, information, transactions and services to move securely across an ecosystem.</p>
+              <p className="dpi-land-lede">&emsp;People increasingly expect essential services to be simple, accessible and connected. Yet institutions often operate across fragmented systems, disconnected databases, manual processes and complex service-delivery environments.</p>
+              <p className="dpi-land-copy">&emsp;Digital Public Infrastructure creates reusable foundations that allow identity, information, transactions and services to move securely across an ecosystem.</p>
             </div>
             <div className="dpi-land-cards">
               {challengeList.map((item, i) => (

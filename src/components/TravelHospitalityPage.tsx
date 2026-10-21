@@ -719,8 +719,8 @@ export default function TravelHospitalityPage() {
           </div>
           <div className="tv-s02-row tv-reveal">
             <div className="tv-s02-text">
-              <p className="tv-lede">Travel businesses operate in an environment where customer expectations, operational complexity and commercial pressures intersect every day.</p>
-              <p className="tv-copy">Behind every booking is a network of reservations, payments, schedules, customer interactions, baggage, disruptions, partners and financial transactions that must work together — often in real time.</p>
+              <p className="tv-lede">&emsp;Travel businesses operate in an environment where customer expectations, operational complexity and commercial pressures intersect every day.</p>
+              <p className="tv-copy">&emsp;Behind every booking is a network of reservations, payments, schedules, customer interactions, baggage, disruptions, partners and financial transactions that must work together — often in real time.</p>
             </div>
             <div className="tv-s02-right">
               {landscapeItems.map((item) => (
