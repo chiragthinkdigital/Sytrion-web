@@ -1207,7 +1207,7 @@ export default function BankingOperationsPage() {
               <p className="bk-cx-para">Sytrion helps banks create connected customer operations that combine digital self-service, AI-assisted support and human expertise.</p>
             </div>
             <div className="bk-cx-photo bk-reveal">
-              <img src="/services/banking/Human + Digital banking.jpg" alt="Service professional providing assisted customer support in a banking operations context" loading="lazy" decoding="async" />
+              <img src="/services/banking/banking-customer-experience.jpg" alt="Service professional providing assisted customer support in a banking operations context" loading="lazy" decoding="async" />
               <div className="bk-cx-photo-tint" />
             </div>
           </div>
