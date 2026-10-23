@@ -315,6 +315,7 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-eco-band .dpi-body, .dpi-pension .dpi-body, .dpi-open .dpi-body, .dpi-ai .dpi-body, .dpi-trust .dpi-body, .dpi-model .dpi-body { color:rgba(255,255,255,0.72); }
         .dpi-sub { font-size: clamp(19px, 2.2vw, 24px); line-height: 1.5; color:rgba(255,255,255,0.85); max-width: 60ch; margin: 0 0 16px; }
         .dpi-body { font-size: 17px; line-height: 1.75; color:#5A5D66; max-width: 62ch; margin: 0; }
+        .dpi-pension .dpi-body { text-align: justify; text-justify: inter-word; hyphens: auto; }
         .dpi-section-dark .dpi-body, .dpi-section-navy .dpi-body { color:rgba(255,255,255,0.72); }
         .dpi-btn { display:inline-flex; align-items:center; gap:10px; padding: 15px 30px; border-radius:999px; font-size:15px; font-weight:700; text-decoration:none; transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease; }
         .dpi-btn--primary { background:${BLUE}; color:#0f0f0f; }
@@ -717,8 +718,8 @@ export default function DigitalPublicInfrastructurePage() {
           </div>
           <div className="dpi-land-row dpi-reveal">
             <div className="dpi-land-text">
-              <p className="dpi-land-lede">&emsp;People increasingly expect essential services to be simple, accessible and connected. Yet institutions often operate across fragmented systems, disconnected databases, manual processes and complex service-delivery environments.</p>
-              <p className="dpi-land-copy">&emsp;Digital Public Infrastructure creates reusable foundations that allow identity, information, transactions and services to move securely across an ecosystem.</p>
+              <p className="dpi-land-lede">People increasingly expect essential services to be simple, accessible and connected. Yet institutions often operate across fragmented systems, disconnected databases, manual processes and complex service-delivery environments.</p>
+              <p className="dpi-land-copy">Digital Public Infrastructure creates reusable foundations that allow identity, information, transactions and services to move securely across an ecosystem.</p>
             </div>
             <div className="dpi-land-cards">
               {challengeList.map((item, i) => (

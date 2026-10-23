@@ -463,8 +463,8 @@ export default function BankingOperationsPage() {
         .bk-reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1); }
         .bk-reveal.bk-in { opacity: 1; transform: none; }
         .bk-h2 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 20px; }
-        .bk-lede { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; }
-        .bk-copy { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; }
+        .bk-lede { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; text-align: justify; text-justify: inter-word; hyphens: auto; }
+        .bk-copy { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; text-align: justify; text-justify: inter-word; hyphens: auto; }
         .bk-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 30px; border-radius: 999px; background: #C6E84A; color: #0f0f0f; font-size: 15px; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, background 0.3s ease; }
         .bk-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(198,232,74,0.4); }
         .bk-btn--ghost { background: transparent; border: 1px solid rgba(255,255,255,0.45); color: #fff; }
@@ -821,9 +821,9 @@ export default function BankingOperationsPage() {
           </div>
           <div className="bk-s02-grid bk-reveal">
             <div className="bk-s02-left">
-              <p className="bk-lede">&emsp;Customers expect banking to be instant, simple and always available.</p>
-              <p className="bk-copy">&emsp;At the same time, banks must manage increasingly complex regulatory requirements, financial crime risks, legacy systems, high transaction volumes and pressure to improve efficiency.</p>
-              <p className="bk-copy">&emsp;Behind every banking experience sits an interconnected network of customer data, documents, transactions, decisions and controls.</p>
+              <p className="bk-lede">Customers expect banking to be instant, simple and always available.</p>
+              <p className="bk-copy">At the same time, banks must manage increasingly complex regulatory requirements, financial crime risks, legacy systems, high transaction volumes and pressure to improve efficiency.</p>
+              <p className="bk-copy">Behind every banking experience sits an interconnected network of customer data, documents, transactions, decisions and controls.</p>
             </div>
             <div className="bk-s02-grid-inner">
               {landscapeChallenges.map((c, i) => (

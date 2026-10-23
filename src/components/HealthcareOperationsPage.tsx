@@ -414,10 +414,10 @@ export default function HealthcareOperationsPage() {
         .hc-section-light .hc-h2 { color: #0f172a; }
         .hc-section-dark .hc-h2, .hc-section-navy .hc-h2 { color: #ffffff; }
         .hc-h2 span { color: #C6E84A; }
-        .hc-lede { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; }
+        .hc-lede { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; text-align: justify; text-justify: inter-word; hyphens: auto; }
         .hc-section-light .hc-lede { color: #5A5D66; }
         .hc-section-dark .hc-lede, .hc-section-navy .hc-lede { color: rgba(255,255,255,0.6); }
-        .hc-copy { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; }
+        .hc-copy { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; text-align: justify; text-justify: inter-word; hyphens: auto; }
         .hc-section-light .hc-copy { color: #5A5D66; }
         .hc-section-dark .hc-copy, .hc-section-navy .hc-copy { color: rgba(255,255,255,0.6); }
 
@@ -852,8 +852,8 @@ export default function HealthcareOperationsPage() {
           </div>
           <div className="hc-land-row hc-reveal">
             <div className="hc-landscape-text">
-              <p className="hc-lede">&emsp;Healthcare organizations manage enormous volumes of information, transactions and interactions across members, patients, providers and operational systems.</p>
-              <p className="hc-copy">&emsp;Behind every healthcare experience sits a complex network of claims, authorizations, provider information, documentation and service workflows — often spread across multiple systems and teams.</p>
+              <p className="hc-lede">Healthcare organizations manage enormous volumes of information, transactions and interactions across members, patients, providers and operational systems.</p>
+              <p className="hc-copy">Behind every healthcare experience sits a complex network of claims, authorizations, provider information, documentation and service workflows — often spread across multiple systems and teams.</p>
             </div>
             <div className="hc-landscape-right">
               {challenges.map((c, i) => (
@@ -972,8 +972,8 @@ export default function HealthcareOperationsPage() {
             <div className="hc-reveal">
               <HcLabel text="Claims Operations" />
               <h2 className="hc-h2">Smarter claims. Less <span style={{ color: "#C6E84A" }}>operational friction.</span></h2>
-              <p className="hc-lede">&emsp;Claims operations sit at the intersection of members, providers, policies, documentation and complex administrative workflows.</p>
-              <p className="hc-copy">&emsp;Sytrion combines structured workflows, document intelligence, automation and human expertise to help streamline administrative claims processes while improving visibility and operational control.</p>
+              <p className="hc-lede">Claims operations sit at the intersection of members, providers, policies, documentation and complex administrative workflows.</p>
+              <p className="hc-copy">Sytrion combines structured workflows, document intelligence, automation and human expertise to help streamline administrative claims processes while improving visibility and operational control.</p>
               <div className="hc-claims-flow">
                 <svg className="hc-cw-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
                   <path
@@ -1018,8 +1018,8 @@ export default function HealthcareOperationsPage() {
             <div className="hc-reveal">
               <HcLabel text="Provider Operations" light />
               <h2 className="hc-h2">Better provider data. Better <span style={{ color: "#C6E84A" }}>connected operations.</span></h2>
-              <p className="hc-lede">&emsp;Accurate and current provider information is fundamental to claims, network operations and provider/member experiences.</p>
-              <p className="hc-copy">&emsp;Sytrion supports provider lifecycle operations with structured workflows and data management designed to improve consistency, accuracy and visibility.</p>
+              <p className="hc-lede">Accurate and current provider information is fundamental to claims, network operations and provider/member experiences.</p>
+              <p className="hc-copy">Sytrion supports provider lifecycle operations with structured workflows and data management designed to improve consistency, accuracy and visibility.</p>
               <ol className="hc-timeline">
                 {providerSteps.map((s) => (
                   <li key={s.name} className="hc-tstep">
@@ -1118,8 +1118,8 @@ export default function HealthcareOperationsPage() {
             <div className="hc-reveal">
               <HcLabel text="AI Clinical + Quality" />
               <h2 className="hc-h2">Turn complex records and quality workflows into clear,<span style={{ color: "#C6E84A" }}>review-ready intelligence. </span></h2>
-              <p className="hc-lede">&emsp;Healthcare teams often work across lengthy clinical records, fragmented documentation and high-volume quality-review queues. Finding the relevant information can require significant manual effort before a qualified reviewer can act.</p>
-              <p className="hc-copy">&emsp;Sytrion can combine healthcare operations expertise, generative AI, workflow automation and human review to organize information, prepare concise summaries and strengthen post-process quality controls — while keeping clinical judgment and final decisions with authorized professionals.</p>
+              <p className="hc-lede">Healthcare teams often work across lengthy clinical records, fragmented documentation and high-volume quality-review queues. Finding the relevant information can require significant manual effort before a qualified reviewer can act.</p>
+              <p className="hc-copy">Sytrion can combine healthcare operations expertise, generative AI, workflow automation and human review to organize information, prepare concise summaries and strengthen post-process quality controls — while keeping clinical judgment and final decisions with authorized professionals.</p>
             </div>
           </div>
           <div className="hc-clin-accordion hc-reveal">

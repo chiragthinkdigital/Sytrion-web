@@ -414,7 +414,7 @@ export default function ShippingLogisticsPage() {
         .sl-land { position: relative; overflow-x: clip; }
         .sl-land-hero { position: relative; display: flex; align-items: center; }
         .sl-land-copy { position: relative; z-index: 2; width: min(46%, 620px); }
-        .sl-land-copy p { font-size: 19px; line-height: 1.8; color: #5A5D66; margin: 0 0 12px; }
+        .sl-land-copy p { font-size: 19px; line-height: 1.8; color: #5A5D66; margin: 0 0 12px; text-align: justify; text-justify: inter-word; hyphens: auto; }
         .sl-land-hero-media { position: absolute; top: 0; bottom: 0; right: -80px; width: 60%; z-index: 1; }
         .sl-land-hero-media::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, #ffffff 3%, rgba(255,255,255,0.9) 20%, rgba(255,255,255,0) 48%); }
         .sl-land-hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
@@ -689,12 +689,12 @@ export default function ShippingLogisticsPage() {
               </span>
               <h2 className="sl-h2">Complexity moves with <span style={{ color: "#C6E84A", whiteSpace: "nowrap" }}>every shipment.</span></h2>
               <p>
-                &emsp;Global logistics connects carriers, customers, ports, customs authorities, agents, vendors and
+                Global logistics connects carriers, customers, ports, customs authorities, agents, vendors and
                 financial systems — creating thousands of operational and financial interactions behind every
                 shipment.
               </p>
               <p>
-                &emsp;Yet many of these processes still depend on fragmented systems, manual intervention and
+                Yet many of these processes still depend on fragmented systems, manual intervention and
                 document-intensive workflows.
               </p>
             </div>

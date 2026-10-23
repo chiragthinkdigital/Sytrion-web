@@ -878,10 +878,10 @@ export default function ECommercePage() {
         .ec-section-light .ec-h2 { color: #0f172a; }
         .ec-section-dark .ec-h2, .ec-section-navy .ec-h2 { color: #ffffff; }
         .ec-h2 span { color: #C6E84A; }
-        .ec-lede { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; }
+        .ec-lede { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; text-align: justify; text-justify: inter-word; hyphens: auto; }
         .ec-section-light .ec-lede { color: #5A5D66; }
         .ec-section-dark .ec-lede, .ec-section-navy .ec-lede { color: rgba(255,255,255,0.6); }
-        .ec-copy { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; }
+        .ec-copy { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; text-align: justify; text-justify: inter-word; hyphens: auto; }
         .ec-section-light .ec-copy { color: #5A5D66; }
         .ec-section-dark .ec-copy, .ec-section-navy .ec-copy { color: rgba(255,255,255,0.6); }
 
@@ -1281,8 +1281,8 @@ export default function ECommercePage() {
           </div>
           <div className="ec-land-row ec-reveal">
             <div className="ec-landscape-text">
-              <p className="ec-lede">&emsp;Today's customers expect products to be easy to discover, simple to purchase and delivered exactly when promised.</p>
-              <p className="ec-copy">&emsp;Behind that experience sits a complex network of catalogs, marketplaces, inventory, orders, payments, fulfillment, returns and customer interactions — operating continuously across channels and geographies.</p>
+              <p className="ec-lede">Today's customers expect products to be easy to discover, simple to purchase and delivered exactly when promised.</p>
+              <p className="ec-copy">Behind that experience sits a complex network of catalogs, marketplaces, inventory, orders, payments, fulfillment, returns and customer interactions — operating continuously across channels and geographies.</p>
             </div>
             <div className="ec-landscape-right">
               {challenges.map((c) => (
