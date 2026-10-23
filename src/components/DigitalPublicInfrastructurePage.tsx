@@ -449,9 +449,9 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-pension-cols { display:grid; grid-template-columns: 1.1fr 1fr; gap:clamp(36px,6vw,80px); align-items:center; }
         .dpi-pension-text .dpi-body + .dpi-body { margin-top:16px; }
         .dpi-pension-text .dpi-btn { display:inline-flex; }
-        .dpi-visual-tile { position:relative; border-radius:18px; overflow:hidden; height:320px; background:linear-gradient(150deg, rgba(198,232,74,0.35), rgba(15,15,15,0.6)), ${NAVY}; }
+        .dpi-visual-tile { position:relative; border-radius:18px; overflow:hidden; height:320px;  }
         .dpi-visual-tile::after { content:""; position:absolute; inset:0; background:linear-gradient(176deg, rgba(15,15,15,0) 40%, rgba(15,15,15,0.75) 100%); pointer-events:none; }
-        .dpi-visual-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+        .dpi-visual-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; image-rendering:-webkit-optimize-contrast; backface-visibility:hidden; }
         .dpi-visual-label { position:absolute; left:24px; bottom:22px; z-index:2; font-size:11.5px; font-weight:700; letter-spacing:0.18em; color:${CYAN}; }
         .dpi-pension-steps { display:flex; flex-wrap:wrap; gap:10px; margin-top:52px; border-top:1px solid rgba(255,255,255,0.12); padding-top:30px; }
         .dpi-pstep { appearance:none; background:transparent; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:10px; padding:11px 18px; border-radius:999px; border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.6); font-family:inherit; font-size:13.5px; font-weight:600; transition: all .25s ease; }
@@ -880,7 +880,7 @@ export default function DigitalPublicInfrastructurePage() {
             </div>
             <div className="dpi-pension-visual dpi-reveal">
               <div className="dpi-visual-tile">
-                <img className="dpi-visual-img" src="/dpi/PENSION & SOCIAL SECURITY OPERATIONS.jpg" alt="Social Security & Pensions" loading="lazy" decoding="async" />
+                <img className="dpi-visual-img" src="/dpi/pension-social-security-operations.jpg" alt="Social Security & Pensions" loading="eager" decoding="sync" />
                 <span className="dpi-visual-label">PENSION JOURNEY</span>
               </div>
             </div>
