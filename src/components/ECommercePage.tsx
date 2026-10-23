@@ -854,7 +854,7 @@ export default function ECommercePage() {
         .ec-hero { position: relative; height: 100vh; height: 100dvh; min-height: 600px; overflow: hidden; isolation: isolate; background: var(--ecn); }
         .ec-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .ec-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, rgba(7,20,38,0.55) 0%, rgba(7,20,38,0.12) 55%, rgba(7,20,38,0.02) 100%); pointer-events: none; }
-        .ec-hero .ec-wrap { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 120px clamp(16px, 3vw, 48px) 24px; max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
+        .ec-hero .ec-wrap { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 120px clamp(16px, 2vw, 32px) 24px; max-width: none; margin: 0; left: 0; right: auto; }
         .ec-hero-inner { max-width: 900px; display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
         .ec-label { align-self: flex-start; }
         .ec-h1 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(38px, 5.6vw, 68px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; color: #ffffff; margin: 0 0 26px; max-width: 780px; text-wrap: balance; }

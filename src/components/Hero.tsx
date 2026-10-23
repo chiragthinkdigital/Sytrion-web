@@ -12,11 +12,11 @@ export default function Hero() {
           align-items: flex-start;
           justify-content: center;
           z-index: 1;
-          padding: 100px clamp(16px, 3vw, 48px) 0;
-          max-width: 1440px;
-          margin: 0 auto;
+          padding: 100px clamp(16px, 2vw, 32px) 0;
+          max-width: none;
+          margin: 0;
           left: 0;
-          right: 0;
+          right: auto;
         }
         .hero-eyebrow {
           display: inline-block;

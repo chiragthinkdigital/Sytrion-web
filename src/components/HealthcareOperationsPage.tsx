@@ -390,7 +390,7 @@ export default function HealthcareOperationsPage() {
 
         .hc-hero { position: relative; height: 100vh; height: 100dvh; min-height: 600px; overflow: hidden; isolation: isolate; background: var(--hcn); }
         .hc-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-        .hc-hero .hc-wrap { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 148px clamp(16px, 3vw, 48px) 0; max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
+        .hc-hero .hc-wrap { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 148px clamp(16px, 2vw, 32px) 0; max-width: none; margin: 0; left: 0; right: auto; }
         .hc-hero-inner { max-width: 900px; }
         .hc-h1 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(38px, 5.6vw, 68px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; color: #ffffff; margin: 0 0 26px; max-width: 780px; text-wrap: balance; }
         .hc-hero-sub { font-size: clamp(17px, 1.6vw, 21px); font-weight: 600; line-height: 1.55; color: rgba(255,255,255,0.92); max-width: 640px; margin: 0 0 18px; }

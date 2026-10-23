@@ -921,7 +921,7 @@ export default function AboutPage() {
         .ab-hero {
           position: relative;
           background: var(--ab-base);
-          padding: 120px clamp(16px, 3vw, 48px) 100px;
+          padding: 120px 0 100px;
           overflow: hidden;
           min-height: 100dvh;
           display: flex;
@@ -1460,7 +1460,7 @@ export default function AboutPage() {
           }
         }
         @media (max-width: 768px) {
-          .ab-hero { padding: 120px 24px 80px; min-height: auto; }
+          .ab-hero { padding: 120px 0 80px; min-height: auto; }
           .ab-section { padding: 80px 24px; }
           .ab-cta { padding: 80px 24px; }
           .ab-story-grid { flex-direction: column !important; gap: 48px !important; }
@@ -1515,7 +1515,7 @@ export default function AboutPage() {
           <div className="orbit-ring r2"><div className="orb" /></div>
           <div className="orbit-ring r3" />
 
-          <div style={{ maxWidth: "900px", margin: "0", textAlign: "left", position: "relative", zIndex: 2 }}>
+          <div style={{ maxWidth: "900px", margin: 0, textAlign: "left", position: "relative", zIndex: 2, paddingLeft: "clamp(16px, 2vw, 32px)", paddingRight: 0 }}>
             <div className="hero-badge" style={{ marginBottom: "16px" }}>
               <span className="eyebrow-badge">About Sytrion</span>
             </div>

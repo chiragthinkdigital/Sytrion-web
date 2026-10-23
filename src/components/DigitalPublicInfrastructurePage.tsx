@@ -324,8 +324,8 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-reveal { opacity:0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
         .dpi-reveal.dpi-in { opacity:1; transform:none; }
         .dpi-head-full .dpi-h2, .dpi-head-full .dpi-body { max-width: none; }
-        .dpi-hero { position:relative; overflow:hidden; background:linear-gradient(115deg, ${NAVY} 0%, ${NAVY2} 55%, #14263f 100%); padding: clamp(110px, 13vh, 150px) 0 clamp(70px, 8vh, 100px); display:flex; align-items:center; min-height:100dvh; }
-        .dpi-hero > .dpi-wrap { width:100%; }
+        .dpi-hero { position:relative; overflow:hidden; background:linear-gradient(115deg, ${NAVY} 0%, ${NAVY2} 55%, #14263f 100%); padding: clamp(110px, 13vh, 150px) clamp(16px, 2vw, 32px) clamp(70px, 8vh, 100px); display:flex; align-items:center; min-height:100dvh; }
+        .dpi-hero > .dpi-wrap { width:100%; max-width:none; margin:0; padding:0; }
         .dpi-hero-bg { position:absolute; inset:0; z-index:0; }
         .dpi-hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
         .dpi-hero-inner { position:relative; z-index:2; max-width: 720px; text-align:left; margin:0; }

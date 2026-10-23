@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -22,12 +22,12 @@ const serveCols = [
 ];
 
 const tabs = [
-  { num: "01", tab: "RESERVATIONS", title: "01 — Reservations & Ticketing", intro: "Make booking journeys simpler from search to service.", img: "/services/travel/Reservations & Ticketing.jpg", items: ["Reservation support", "Booking modifications", "Ticketing support", "Group bookings", "Cancellations & refunds", "Schedule-change processing"] },
-  { num: "02", tab: "TRAVELER CARE", title: "02 — Traveler Care", intro: "Support travelers across every stage of the journey.", img: "/services/travel/Traveler Care.jpg", items: ["Pre-travel assistance", "Booking queries", "Travel information", "Special-service requests", "Post-travel support", "Omnichannel service"] },
-  { num: "03", tab: "DISRUPTIONS", title: "03 — Disruption Management", intro: "Respond when journeys don't go as planned.", img: "/services/travel/Disruption Management.jpg", items: ["Schedule-change support", "Cancellation handling", "Rebooking assistance", "Traveler notifications", "Service recovery workflows", "Exception management"] },
-  { num: "04", tab: "FULFILLMENT", title: "04 — Fulfillment Operations", intro: "Keep the processes behind every journey moving.", img: "/services/travel/Fulfillment Operations.jpg", items: ["Fare & rate loading", "Booking validation", "Payment processing support", "Refund processing", "Travel-document workflows", "Back-office administration"] },
-  { num: "05", tab: "LOYALTY", title: "05 — Loyalty Operations", intro: "Turn travel relationships into lasting engagement.", img: "/services/travel/Loyalty Operations.jpg", items: ["Member administration", "Points & miles support", "Partner transactions", "Redemption support", "Loyalty queries", "Data & reconciliation"] },
-  { num: "06", tab: "DATA", title: "06 — Travel Data & Insights", intro: "Turn traveler and operational activity into actionable intelligence.", img: "/services/travel/Travel Data & Insights.jpg", items: ["Data management", "Operational reporting", "Traveler insights", "Service analytics", "Exception trends", "Performance dashboards"] },
+  { num: "01", tab: "RESERVATIONS", title: "01 � Reservations & Ticketing", intro: "Make booking journeys simpler from search to service.", img: "/services/travel/Reservations & Ticketing.jpg", items: ["Reservation support", "Booking modifications", "Ticketing support", "Group bookings", "Cancellations & refunds", "Schedule-change processing"] },
+  { num: "02", tab: "TRAVELER CARE", title: "02 � Traveler Care", intro: "Support travelers across every stage of the journey.", img: "/services/travel/Traveler Care.jpg", items: ["Pre-travel assistance", "Booking queries", "Travel information", "Special-service requests", "Post-travel support", "Omnichannel service"] },
+  { num: "03", tab: "DISRUPTIONS", title: "03 � Disruption Management", intro: "Respond when journeys don't go as planned.", img: "/services/travel/Disruption Management.jpg", items: ["Schedule-change support", "Cancellation handling", "Rebooking assistance", "Traveler notifications", "Service recovery workflows", "Exception management"] },
+  { num: "04", tab: "FULFILLMENT", title: "04 � Fulfillment Operations", intro: "Keep the processes behind every journey moving.", img: "/services/travel/Fulfillment Operations.jpg", items: ["Fare & rate loading", "Booking validation", "Payment processing support", "Refund processing", "Travel-document workflows", "Back-office administration"] },
+  { num: "05", tab: "LOYALTY", title: "05 � Loyalty Operations", intro: "Turn travel relationships into lasting engagement.", img: "/services/travel/Loyalty Operations.jpg", items: ["Member administration", "Points & miles support", "Partner transactions", "Redemption support", "Loyalty queries", "Data & reconciliation"] },
+  { num: "06", tab: "DATA", title: "06 � Travel Data & Insights", intro: "Turn traveler and operational activity into actionable intelligence.", img: "/services/travel/Travel Data & Insights.jpg", items: ["Data management", "Operational reporting", "Traveler insights", "Service analytics", "Exception trends", "Performance dashboards"] },
 ];
 
 const journeyStages = [
@@ -298,13 +298,13 @@ const cardSections = [
 ];
 
 const intelligenceNodes = [
-  { title: "Traveler Intelligence", verbs: "Understand • Personalize • Assist", image: "/services/travel/Traveler Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
-  { title: "Conversational AI", verbs: "Engage • Answer • Resolve", image: "/services/travel/Conversational AI.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
-  { title: "Workflow Intelligence", verbs: "Automate • Route • Process", image: "/services/travel/Workflow Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14M14 17.5H7a1 1 0 0 1-1-1V10"/></svg> },
-  { title: "Disruption Intelligence", verbs: "Detect • Prioritize • Respond", image: "/services/travel/Disruption Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg> },
-  { title: "Revenue Intelligence", verbs: "Validate • Reconcile • Protect", image: "/services/travel/Revenue Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> },
-  { title: "Document Intelligence", verbs: "Extract • Classify • Validate", image: "/services/travel/Document Intelligence (3).jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg> },
-  { title: "Decision Intelligence", verbs: "Analyze • Predict • Improve", image: "/services/travel/Decision Intelligence (2).jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg> },
+  { title: "Traveler Intelligence", verbs: "Understand � Personalize � Assist", image: "/services/travel/Traveler Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
+  { title: "Conversational AI", verbs: "Engage � Answer � Resolve", image: "/services/travel/Conversational AI.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
+  { title: "Workflow Intelligence", verbs: "Automate � Route � Process", image: "/services/travel/Workflow Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14M14 17.5H7a1 1 0 0 1-1-1V10"/></svg> },
+  { title: "Disruption Intelligence", verbs: "Detect � Prioritize � Respond", image: "/services/travel/Disruption Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg> },
+  { title: "Revenue Intelligence", verbs: "Validate � Reconcile � Protect", image: "/services/travel/Revenue Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> },
+  { title: "Document Intelligence", verbs: "Extract � Classify � Validate", image: "/services/travel/Document Intelligence (3).jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg> },
+  { title: "Decision Intelligence", verbs: "Analyze � Predict � Improve", image: "/services/travel/Decision Intelligence (2).jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg> },
 ];
 
 const disruptionSteps = [
@@ -374,11 +374,11 @@ const loyaltyCards = [
 ];
 
 const modelLayers = [
-  { num: "01", name: "Travel Ecosystem", items: "Travelers • Airlines • Airports • Hotels • Travel Partners" },
-  { num: "02", name: "Experience", items: "Web • Mobile • Contact Center • Airport • Assisted Channels " },
-  { num: "03", name: "Sytrion Intelligence Layer", items: "AI • Automation • Document Intelligence • Data • Analytics " },
-  { num: "04", name: "Intelligent Operations", items: "Reservations • Traveler Care • Disruptions • Loyalty • Revenue & Finance " },
-  { num: "05", name: "Business Outcomes", items: "Experience • Speed • Revenue • Efficiency • Loyalty • Scale " },
+  { num: "01", name: "Travel Ecosystem", items: "Travelers � Airlines � Airports � Hotels � Travel Partners" },
+  { num: "02", name: "Experience", items: "Web � Mobile � Contact Center � Airport � Assisted Channels " },
+  { num: "03", name: "Sytrion Intelligence Layer", items: "AI � Automation � Document Intelligence � Data � Analytics " },
+  { num: "04", name: "Intelligent Operations", items: "Reservations � Traveler Care � Disruptions � Loyalty � Revenue & Finance " },
+  { num: "05", name: "Business Outcomes", items: "Experience � Speed � Revenue � Efficiency � Loyalty � Scale " },
 ];
 
 const whyPoints = [
@@ -452,8 +452,8 @@ export default function TravelHospitalityPage() {
         .tv-reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1); }
         .tv-reveal.tv-in { opacity: 1; transform: none; }
         .tv-h2 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 20px; }
-        .tv-lede { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; }
-        .tv-copy { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; }
+        .tv-lede { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; text-align: justify; text-justify: inter-word; hyphens: auto; }
+        .tv-copy { font-size: 19px; font-weight: 400; line-height: 1.8; margin: 0 0 12px; text-align: justify; text-justify: inter-word; hyphens: auto; }
         .tv-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 30px; border-radius: 999px; background: #C6E84A; color: #0f0f0f; font-size: 15px; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease; }
         .tv-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(198,232,74,0.4); }
         .tv-btn--ghost { background: transparent; border: 1px solid rgba(255,255,255,0.45); color: #fff; }
@@ -461,7 +461,7 @@ export default function TravelHospitalityPage() {
 
         .tv-hero { position: relative; height: 100vh; height: 100dvh; min-height: 600px; background: #0A1628; overflow: hidden; isolation: isolate; }
         .tv-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; z-index: -2; }
-        .tv-hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; z-index: 1; padding: 100px clamp(16px, 3vw, 48px) 0; max-width: 1440px; margin: 0 auto; left: 0; right: 0; }
+        .tv-hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; z-index: 1; padding: 100px clamp(16px, 2vw, 32px) 0; max-width: none; margin: 0; left: 0; right: auto; }
         .tv-hero-eyebrow { display: inline-block; background: #C6E84A; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: 24px; }
         .tv-hero h1 { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: clamp(38px, 5.6vw, 68px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; color: #ffffff; margin: 0 0 26px; max-width: 780px; text-wrap: balance; }
         .tv-hero-sub { font-size: clamp(17px, 1.6vw, 21px); font-weight: 600; line-height: 1.55; color: rgba(255,255,255,0.92); margin: 0 0 18px; max-width: 640px; }
@@ -471,8 +471,8 @@ export default function TravelHospitalityPage() {
         .tv-s02 { background: #ffffff; padding: clamp(48px, 6vw, 80px) 80px clamp(40px, 5vw, 60px); }
         .tv-s02-head { margin-bottom: 8px; }
         .tv-s02-head .tv-h2 { font-size: clamp(28px, 2.8vw, 36px); }
-        .tv-s02-text .tv-lede { color: #5A5D66; }
-        .tv-s02-text .tv-copy { color: #5B6472; }
+        .tv-s02-text .tv-lede { color: #5A5D66; text-align: justify; text-justify: inter-word; hyphens: auto; }
+        .tv-s02-text .tv-copy { color: #5B6472; text-align: justify; text-justify: inter-word; hyphens: auto; }
         .tv-s02-row { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; margin-top: 40px; }
         .tv-s02-right { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
         .tv-s02-card { background: linear-gradient(160deg, #0E1B2E 0%, #1B2735 100%); border: 1px solid rgba(198,232,74,0.14); border-radius: 16px; padding: 22px 22px 20px; position: relative; overflow: hidden; transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s ease, border-color .3s ease; box-shadow: 0 10px 30px -12px rgba(12,27,48,0.35); }
@@ -705,8 +705,8 @@ export default function TravelHospitalityPage() {
           <p className="tv-hero-sub">Transforming travel operations through domain expertise, AI, automation and data intelligence.</p>
           <p className="tv-hero-body">From reservations and traveler support to disruption management, revenue operations and finance, Sytrion helps travel enterprises simplify complexity, improve service and build connected operations designed around the modern traveler.</p>
           <div className="tv-hero-ctas">
-            <Link href="#capabilities" className="tv-btn">Explore Our Capabilities ↓</Link>
-            <Link href="/contact" className="tv-btn tv-btn--ghost">Talk to Our Experts ↗</Link>
+            <Link href="#capabilities" className="tv-btn">Explore Our Capabilities ?</Link>
+            <Link href="/contact" className="tv-btn tv-btn--ghost">Talk to Our Experts ?</Link>
           </div>
         </div>
       </section>
@@ -719,8 +719,8 @@ export default function TravelHospitalityPage() {
           </div>
           <div className="tv-s02-row tv-reveal">
             <div className="tv-s02-text">
-              <p className="tv-lede">&emsp;Travel businesses operate in an environment where customer expectations, operational complexity and commercial pressures intersect every day.</p>
-              <p className="tv-copy">&emsp;Behind every booking is a network of reservations, payments, schedules, customer interactions, baggage, disruptions, partners and financial transactions that must work together — often in real time.</p>
+              <p className="tv-lede">Travel businesses operate in an environment where customer expectations, operational complexity and commercial pressures intersect every day.</p>
+              <p className="tv-copy">Behind every booking is a network of reservations, payments, schedules, customer interactions, baggage, disruptions, partners and financial transactions that must work together � often in real time.</p>
             </div>
             <div className="tv-s02-right">
               {landscapeItems.map((item) => (
@@ -932,7 +932,7 @@ export default function TravelHospitalityPage() {
                 </h2>
                 <p className="tv-hd-line">Automation can handle repetitive requests.</p>
                 <p className="tv-hd-line">AI can help understand intent and surface the right information. </p>
-                <p className="tv-hd-line">People bring empathy, judgment and reassurance — especially when journeys don't go as planned. </p>
+                <p className="tv-hd-line">People bring empathy, judgment and reassurance � especially when journeys don't go as planned. </p>
                 <p className="tv-hd-em">Sytrion brings them together.</p>
                 <p className="tv-hd-line">This is particularly relevant during disruption. A chatbot is useful when everything works; human judgment becomes far more valuable when a passenger is stranded, connecting flights are affected or exceptions become complicated. </p>
               </div>
@@ -1173,7 +1173,7 @@ export default function TravelHospitalityPage() {
               <li><span className="tv-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> Improved Revenue Visibility</li>
               <li><span className="tv-pot-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="#C6E84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span> More Scalable Operations</li>
             </ul>
-            <Link href="/contact" className="tv-transform-cta">Discuss Your Use Case <span aria-hidden="true">→</span></Link>
+            <Link href="/contact" className="tv-transform-cta">Discuss Your Use Case <span aria-hidden="true">?</span></Link>
           </div>
         </div>
         <style>{`
@@ -1213,7 +1213,7 @@ export default function TravelHospitalityPage() {
           <h2>Ready to build smarter<span style={{ color: "#C6E84A" }}>  travel operations?</span></h2>
           <p>From traveler experience and airline operations to disruption management, revenue, finance and AI, Sytrion can help create connected operations designed to keep every journey moving.</p>
           <div className="tv-s11-ctas">
-            <Link href="/contact" className="tv-btn">Talk to Our Travel Experts ↗</Link>
+            <Link href="/contact" className="tv-btn">Talk to Our Travel Experts ?</Link>
             <Link href="/contact" className="tv-btn tv-btn--ghost">Schedule a Consultation</Link>
           </div>
         </div>
