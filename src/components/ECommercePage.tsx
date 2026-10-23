@@ -570,8 +570,7 @@ function ProcessConveyor() {
           style={{ left: leftPct }}
         >
           <span className="process-conveyor__tag" />
-          <span className="process-conveyor__lines"><i /><i /></span>
-          <span className="process-conveyor__mark">?</span>
+          <span className="process-conveyor__mark" aria-hidden="true">{step.icon}</span>
           <span className="process-conveyor__check">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="20 6 9 17 4 12" />
@@ -643,8 +642,9 @@ function ProcessConveyor() {
         .process-conveyor__beam.is-wrapping { transition: none; }
         .process-conveyor__mark {
           position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-          font-family: var(--font-syne), Arial, sans-serif; font-size: 18px; font-weight: 700; color: #8fa1b4;
+          color: #C6E84A;
         }
+        .process-conveyor__mark svg { width: 23px; height: 23px; }
         .process-conveyor__tag {
           position: absolute; top: -5px; left: -5px; width: 16px; height: 16px; border-radius: 4px 4px 4px 8px;
           background: #C6E84A; opacity: 0; transform: scale(0.6); transition: opacity 0.3s ease, transform 0.3s ease;
@@ -677,10 +677,6 @@ function ProcessConveyor() {
         .process-conveyor__box--step4 .process-conveyor__lines,
         .process-conveyor__box--step5 .process-conveyor__lines,
         .process-conveyor__box--step6 .process-conveyor__lines { opacity: 1; }
-        .process-conveyor__box--step3 .process-conveyor__mark,
-        .process-conveyor__box--step4 .process-conveyor__mark,
-        .process-conveyor__box--step5 .process-conveyor__mark,
-        .process-conveyor__box--step6 .process-conveyor__mark { opacity: 0; }
         .process-conveyor__box--step4 .process-conveyor__check,
         .process-conveyor__box--step5 .process-conveyor__check,
         .process-conveyor__box--step6 .process-conveyor__check { opacity: 1; transform: scale(1); }

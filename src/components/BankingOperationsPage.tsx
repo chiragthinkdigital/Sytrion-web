@@ -273,8 +273,7 @@ function LifecycleConveyor() {
           style={{ left: leftPct }}
         >
           <span className="bk-lc__tag" />
-          <span className="bk-lc__lines"><i /><i /></span>
-          <span className="bk-lc__mark">?</span>
+          <span className="bk-lc__mark" aria-hidden="true">{step.icon}</span>
           <span className="bk-lc__check">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="20 6 9 17 4 12" />
@@ -345,8 +344,9 @@ function LifecycleConveyor() {
         .bk-lc__box.is-fading { opacity: 0; transition: opacity 0.35s ease; }
         .bk-lc__mark {
           position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-          font-family: var(--font-syne), Arial, sans-serif; font-size: 17px; font-weight: 700; color: rgba(196,211,231,0.72);
+          color: #C6E84A;
         }
+        .bk-lc__mark svg { width: 22px; height: 22px; }
         .bk-lc__tag {
           position: absolute; top: -5px; left: -5px; width: 15px; height: 15px; border-radius: 4px 4px 4px 8px;
           background: #C6E84A; opacity: 0; transform: scale(0.6); transition: opacity 0.3s ease, transform 0.3s ease;
@@ -373,8 +373,6 @@ function LifecycleConveyor() {
         .bk-lc__box--step5 .bk-lc__tag, .bk-lc__box--step6 .bk-lc__tag, .bk-lc__box--step7 .bk-lc__tag { opacity: 1; transform: scale(1); }
         .bk-lc__box--step3 .bk-lc__lines, .bk-lc__box--step4 .bk-lc__lines, .bk-lc__box--step5 .bk-lc__lines,
         .bk-lc__box--step6 .bk-lc__lines, .bk-lc__box--step7 .bk-lc__lines { opacity: 1; }
-        .bk-lc__box--step3 .bk-lc__mark, .bk-lc__box--step4 .bk-lc__mark, .bk-lc__box--step5 .bk-lc__mark,
-        .bk-lc__box--step6 .bk-lc__mark, .bk-lc__box--step7 .bk-lc__mark { opacity: 0; }
         .bk-lc__box--step4 .bk-lc__check, .bk-lc__box--step5 .bk-lc__check, .bk-lc__box--step6 .bk-lc__check,
         .bk-lc__box--step7 .bk-lc__check { opacity: 1; transform: scale(1); }
         .bk-lc__box--step5 { box-shadow: 0 0 16px rgba(198,232,74,0.35); }
