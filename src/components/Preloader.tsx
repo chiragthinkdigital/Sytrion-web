@@ -4,10 +4,12 @@ import { usePathname } from "next/navigation";
 import {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   useSyncExternalStore,
 } from "react";
+import { beginPreloader, completePreloader } from "@/lib/preloaderState";
 
 const FILM_SRC = "/Sytrion-brand-film.mp4";
 const FADE_MS = 700;
@@ -48,8 +50,19 @@ function HomeFilm() {
   const dismiss = useCallback(() => {
     if (closeTimerRef.current) return;
     setClosing(true);
-    closeTimerRef.current = setTimeout(() => setActive(false), FADE_MS);
+    closeTimerRef.current = setTimeout(() => {
+      setActive(false);
+      completePreloader();
+    }, FADE_MS);
   }, []);
+
+  useLayoutEffect(() => {
+    if (reducedMotion) {
+      completePreloader();
+    } else {
+      beginPreloader();
+    }
+  }, [reducedMotion]);
 
   useEffect(() => {
     return () => {

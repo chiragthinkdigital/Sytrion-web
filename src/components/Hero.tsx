@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeroVideo from "./HeroVideo";
 
 export default function Hero() {
   return (
@@ -173,14 +174,7 @@ export default function Hero() {
       `}</style>
 
       <section className="relative w-full h-[100dvh] overflow-hidden bg-[#0f0f0f]">
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          src="/home/hero1.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
+        <HeroVideo />
 
         {/* Subtle grain */}
         <div className="grain-overlay absolute inset-0 pointer-events-none" />
