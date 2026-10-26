@@ -315,7 +315,6 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-eco-band .dpi-body, .dpi-pension .dpi-body, .dpi-open .dpi-body, .dpi-ai .dpi-body, .dpi-trust .dpi-body, .dpi-model .dpi-body { color:rgba(255,255,255,0.72); }
         .dpi-sub { font-size: clamp(19px, 2.2vw, 24px); line-height: 1.5; color:rgba(255,255,255,0.85); max-width: 60ch; margin: 0 0 16px; }
         .dpi-body { font-size: 17px; line-height: 1.75; color:#5A5D66; max-width: 62ch; margin: 0; }
-        .dpi-pension .dpi-body { text-align: justify; text-justify: inter-word; hyphens: auto; }
         .dpi-section-dark .dpi-body, .dpi-section-navy .dpi-body { color:rgba(255,255,255,0.72); }
         .dpi-btn { display:inline-flex; align-items:center; gap:10px; padding: 15px 30px; border-radius:999px; font-size:15px; font-weight:700; text-decoration:none; transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease; }
         .dpi-btn--primary { background:${BLUE}; color:#0f0f0f; }
@@ -325,8 +324,8 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-reveal { opacity:0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
         .dpi-reveal.dpi-in { opacity:1; transform:none; }
         .dpi-head-full .dpi-h2, .dpi-head-full .dpi-body { max-width: none; }
-        .dpi-hero { position:relative; overflow:hidden; background:linear-gradient(115deg, ${NAVY} 0%, ${NAVY2} 55%, #14263f 100%); padding: clamp(110px, 13vh, 150px) clamp(16px, 2vw, 32px) clamp(70px, 8vh, 100px); display:flex; align-items:center; min-height:100dvh; }
-        .dpi-hero > .dpi-wrap { width:100%; max-width:none; margin:0; padding:0; }
+        .dpi-hero { position:relative; overflow:hidden; background:linear-gradient(115deg, ${NAVY} 0%, ${NAVY2} 55%, #14263f 100%); padding: clamp(110px, 13vh, 150px) 0 clamp(70px, 8vh, 100px); display:flex; align-items:center; min-height:100dvh; }
+        .dpi-hero > .dpi-wrap { width:100%; }
         .dpi-hero-bg { position:absolute; inset:0; z-index:0; }
         .dpi-hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
         .dpi-hero-inner { position:relative; z-index:2; max-width: 720px; text-align:left; margin:0; }
@@ -450,9 +449,9 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-pension-cols { display:grid; grid-template-columns: 1.1fr 1fr; gap:clamp(36px,6vw,80px); align-items:center; }
         .dpi-pension-text .dpi-body + .dpi-body { margin-top:16px; }
         .dpi-pension-text .dpi-btn { display:inline-flex; }
-        .dpi-visual-tile { position:relative; border-radius:18px; overflow:hidden; height:320px;  }
-        .dpi-visual-tile::after { content:""; position:absolute; inset:0; background:linear-gradient(176deg, rgba(15,15,15,0) 40%, rgba(15,15,15,0.75) 100%); pointer-events:none; }
-        .dpi-visual-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; image-rendering:-webkit-optimize-contrast; backface-visibility:hidden; }
+        .dpi-visual-tile { position:relative; border-radius:18px; overflow:hidden; height:320px; }
+        .dpi-visual-tile::after { content:""; position:absolute; inset:0;}
+        .dpi-visual-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
         .dpi-visual-label { position:absolute; left:24px; bottom:22px; z-index:2; font-size:11.5px; font-weight:700; letter-spacing:0.18em; color:${CYAN}; }
         .dpi-pension-steps { display:flex; flex-wrap:wrap; gap:10px; margin-top:52px; border-top:1px solid rgba(255,255,255,0.12); padding-top:30px; }
         .dpi-pstep { appearance:none; background:transparent; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:10px; padding:11px 18px; border-radius:999px; border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.6); font-family:inherit; font-size:13.5px; font-weight:600; transition: all .25s ease; }
@@ -718,8 +717,8 @@ export default function DigitalPublicInfrastructurePage() {
           </div>
           <div className="dpi-land-row dpi-reveal">
             <div className="dpi-land-text">
-              <p className="dpi-land-lede">People increasingly expect essential services to be simple, accessible and connected. Yet institutions often operate across fragmented systems, disconnected databases, manual processes and complex service-delivery environments.</p>
-              <p className="dpi-land-copy">Digital Public Infrastructure creates reusable foundations that allow identity, information, transactions and services to move securely across an ecosystem.</p>
+              <p className="dpi-land-lede">&emsp;People increasingly expect essential services to be simple, accessible and connected. Yet institutions often operate across fragmented systems, disconnected databases, manual processes and complex service-delivery environments.</p>
+              <p className="dpi-land-copy">&emsp;Digital Public Infrastructure creates reusable foundations that allow identity, information, transactions and services to move securely across an ecosystem.</p>
             </div>
             <div className="dpi-land-cards">
               {challengeList.map((item, i) => (
@@ -881,7 +880,7 @@ export default function DigitalPublicInfrastructurePage() {
             </div>
             <div className="dpi-pension-visual dpi-reveal">
               <div className="dpi-visual-tile">
-                <img className="dpi-visual-img" src="/dpi/pension-social-security-operations.jpg" alt="Social Security & Pensions" loading="eager" decoding="sync" />
+                <img className="dpi-visual-img" src="/dpi/pension-social-security-operations.jpg" alt="Social Security & Pensions" loading="lazy"  />
                 <span className="dpi-visual-label">PENSION JOURNEY</span>
               </div>
             </div>
