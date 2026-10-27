@@ -19,9 +19,16 @@ export default function AdminPage() {
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [loggingIn, setLoggingIn] = useState(false);
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [exporting, setExporting] = useState(false);
 
   const loadMessages = useCallback(async () => {
-    const res = await fetch("/api/admin/contact-messages");
+    const params = new URLSearchParams();
+    if (fromDate) params.append("from", fromDate);
+    if (toDate) params.append("to", toDate);
+    const query = params.toString() ? `?${params.toString()}` : "";
+    const res = await fetch(`/api/admin/contact-messages${query}`);
     if (res.status === 401) {
       setAuthenticated(false);
       return;
@@ -31,7 +38,7 @@ export default function AdminPage() {
       setMessages(data.messages);
       setAuthenticated(true);
     }
-  }, []);
+  }, [fromDate, toDate]);
 
   useEffect(() => {
     (async () => {
@@ -69,6 +76,40 @@ export default function AdminPage() {
     await fetch("/api/admin/logout", { method: "POST" });
     setMessages([]);
     setAuthenticated(false);
+  };
+
+  const handleExport = async () => {
+    setExporting(true);
+    try {
+      const params = new URLSearchParams();
+      if (fromDate) params.append("from", fromDate);
+      if (toDate) params.append("to", toDate);
+      const query = params.toString() ? `?${params.toString()}` : "";
+      const res = await fetch(`/api/admin/contact-messages/export${query}`);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to export CSV.");
+        return;
+      }
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      const disposition = res.headers.get("Content-Disposition");
+      let filename = "contact_messages.csv";
+      if (disposition && disposition.includes("filename=")) {
+        filename = disposition.split("filename=")[1].replace(/"/g, "");
+      }
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      alert("Network error while exporting.");
+    } finally {
+      setExporting(false);
+    }
   };
 
   return (
@@ -114,6 +155,34 @@ export default function AdminPage() {
         .admin-logout:hover {
           border-color: #C6E84A;
           color: #C6E84A;
+        }
+        .admin-actions {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+        .admin-export-btn {
+          background: #C6E84A;
+          border: none;
+          color: #0f0f0f;
+          border-radius: 999px;
+          padding: 10px 22px;
+          font-size: 14px;
+          font-weight: 700;
+          font-family: inherit;
+          cursor: pointer;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .admin-export-btn:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 8px 24px rgba(198, 232, 74, 0.35);
+        }
+        .admin-export-btn:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+          transform: none;
+          box-shadow: none;
         }
         .admin-main {
           padding: clamp(24px, 5vw, 56px);
@@ -243,12 +312,41 @@ export default function AdminPage() {
           color: #8a8e96;
           font-size: 14px;
         }
+        .admin-filters {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          flex-wrap: wrap;
+          padding: 16px 20px 0;
+        }
+        .admin-filter-group {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .admin-filter-group label {
+          font-size: 13px;
+          color: #5a5d66;
+          font-weight: 600;
+        }
+        .admin-filter-group input {
+          border: 1px solid rgba(0, 0, 0, 0.12);
+          border-radius: 999px;
+          padding: 8px 14px;
+          font-size: 13px;
+          font-family: inherit;
+          color: #0f0f0f;
+        }
         @media (max-width: 720px) {
           .admin-table th, .admin-table td {
             padding: 12px 14px;
           }
           .admin-table td.admin-msg {
             max-width: 220px;
+          }
+          .admin-actions {
+            width: 100%;
+            justify-content: flex-start;
           }
         }
       `}</style>
@@ -298,13 +396,38 @@ export default function AdminPage() {
               <h1>Contact Submissions</h1>
               <p>{messages.length} message{messages.length === 1 ? "" : "s"} received</p>
             </div>
-            <button className="admin-logout" onClick={handleLogout}>
-              Logout
-            </button>
+            <div className="admin-actions">
+              <button className="admin-export-btn" onClick={handleExport} disabled={exporting}>
+                {exporting ? "Exporting..." : "Export CSV"}
+              </button>
+              <button className="admin-logout" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
           </header>
 
           <main className="admin-main">
             <div className="admin-card">
+              <div className="admin-filters">
+                <div className="admin-filter-group">
+                  <label htmlFor="fromDate">From</label>
+                  <input
+                    id="fromDate"
+                    type="date"
+                    value={fromDate}
+                    onChange={(e) => setFromDate(e.target.value)}
+                  />
+                </div>
+                <div className="admin-filter-group">
+                  <label htmlFor="toDate">To</label>
+                  <input
+                    id="toDate"
+                    type="date"
+                    value={toDate}
+                    onChange={(e) => setToDate(e.target.value)}
+                  />
+                </div>
+              </div>
               {messages.length === 0 ? (
                 <div className="admin-empty">No contact messages yet.</div>
               ) : (

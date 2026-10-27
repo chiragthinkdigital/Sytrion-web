@@ -7,6 +7,9 @@ export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
   const cookieHeader = request.headers.get("cookie");
+  const { searchParams } = new URL(request.url);
+  const fromDate = searchParams.get("from");
+  const toDate = searchParams.get("to");
 
   try {
     await ensureAdminUser();
@@ -24,9 +27,27 @@ export async function GET(request: Request) {
     }
 
     await ensureContactTable();
-    const [rows] = await pool.execute(
-      "SELECT id, full_name, email, phone, message, created_at FROM contact_messages ORDER BY created_at DESC, id DESC"
-    );
+
+    let query = "SELECT id, full_name, email, phone, message, created_at FROM contact_messages";
+    const conditions: string[] = [];
+    const values: any[] = [];
+
+    if (fromDate) {
+      conditions.push("created_at >= ?");
+      values.push(fromDate + " 00:00:00");
+    }
+    if (toDate) {
+      conditions.push("created_at <= ?");
+      values.push(toDate + " 23:59:59");
+    }
+
+    if (conditions.length > 0) {
+      query += " WHERE " + conditions.join(" AND ");
+    }
+
+    query += " ORDER BY created_at DESC, id DESC";
+
+    const [rows] = await pool.execute(query, values);
 
     return NextResponse.json({ messages: rows });
   } catch (err) {
