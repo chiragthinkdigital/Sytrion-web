@@ -53,7 +53,7 @@ export default function HeroVideo() {
     <video
       ref={videoRef}
       className="absolute inset-0 w-full h-full object-cover"
-      src="/home/hero1.mp4"
+      src="/home/hero2.mp4"
       muted
       loop
       playsInline
