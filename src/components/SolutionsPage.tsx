@@ -3,6 +3,10 @@
 import Link from "next/link";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import WhySytrion from "./WhySytrion";
+import {
+  isPreloaderComplete,
+  subscribePreloader,
+} from "@/lib/preloaderState";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Solutions Page — Redesigned
@@ -983,6 +987,63 @@ function CapabilitiesRail() {
         ))}
       </div>
     </div>
+  );
+}
+
+function HeroSolutionsVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    let cancelled = false;
+
+    const play = () => {
+      if (cancelled) return;
+      void video.play().catch(() => {
+        /* Autoplay allowed since muted */
+      });
+    };
+
+    const start = () => {
+      if (video.readyState >= 2) {
+        play();
+      } else {
+        video.addEventListener("canplay", play, { once: true });
+      }
+    };
+
+    if (isPreloaderComplete() || !document.querySelector(".sy-preloader")) {
+      start();
+      return () => {
+        cancelled = true;
+        video.removeEventListener("canplay", play);
+      };
+    }
+
+    const unsubscribe = subscribePreloader(() => {
+      if (isPreloaderComplete()) start();
+    });
+
+    return () => {
+      cancelled = true;
+      video.removeEventListener("canplay", play);
+      unsubscribe();
+    };
+  }, []);
+
+  return (
+    <video
+      ref={videoRef}
+      className="sol-hero-video"
+      muted
+      loop
+      playsInline
+      preload="auto"
+    >
+      <source src="/solutions/solutionshero1.mp4" type="video/mp4" />
+    </video>
   );
 }
 
@@ -2790,15 +2851,8 @@ export default function SolutionsPage() {
         <div className="sol-hero-glow" />
         <div className="sol-hero-orb" />
         <div className="grain-overlay absolute inset-0 pointer-events-none" />
-        <video
-          className="sol-hero-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src="/solutions/solutionshero1.mp4" type="video/mp4" />
-        </video>
+        <HeroSolutionsVideo />
+        <div className="absolute inset-0 bg-black/40 z-[1] pointer-events-none" />
 
         <div className="sol-hero-content">
           <Eyebrow>Our Solutions</Eyebrow>

@@ -87,6 +87,16 @@ html {
   animation: scrollBounce 2s ease-in-out infinite;
 }
 
+/* Vertical scroll indicator bounce */
+@keyframes scrollBounceVertical {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+.scroll-indicator-vertical {
+  animation: scrollBounceVertical 2s ease-in-out infinite;
+  will-change: transform;
+}
+
 /* Glow pulse */
 @keyframes glowPulse {
   0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.12; }
