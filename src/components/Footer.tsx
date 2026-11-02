@@ -520,6 +520,33 @@ export default function Footer() {
                 </div>
                 <span>Nashik, India</span>
               </div>
+
+              <div className="fl-contact-item">
+                <div className="fl-contact-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+                    <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+                    <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+                    <path d="M10 6h4" />
+                    <path d="M10 10h4" />
+                    <path d="M10 14h4" />
+                    <path d="M10 18h4" />
+                  </svg>
+                </div>
+                <span>CIN: U82990MR2026PTC478875</span>
+              </div>
+
+              <div className="fl-contact-item">
+                <div className="fl-contact-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                    <path d="M15 9l-6 6" />
+                    <path d="M9 9h.01" />
+                    <path d="M15 15h.01" />
+                  </svg>
+                </div>
+                <span>GST: 27ABUCS4816L1ZJ</span>
+              </div>
             </div>
 
             <div className="fl-callout-wrap" style={{ marginLeft: "-28px", width: "calc(100% + 28px)" }}>

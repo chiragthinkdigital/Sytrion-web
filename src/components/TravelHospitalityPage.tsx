@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -22,12 +22,12 @@ const serveCols = [
 ];
 
 const tabs = [
-  { num: "01", tab: "RESERVATIONS", title: "01 � Reservations & Ticketing", intro: "Make booking journeys simpler from search to service.", img: "/services/travel/Reservations & Ticketing.jpg", items: ["Reservation support", "Booking modifications", "Ticketing support", "Group bookings", "Cancellations & refunds", "Schedule-change processing"] },
-  { num: "02", tab: "TRAVELER CARE", title: "02 � Traveler Care", intro: "Support travelers across every stage of the journey.", img: "/services/travel/Traveler Care.jpg", items: ["Pre-travel assistance", "Booking queries", "Travel information", "Special-service requests", "Post-travel support", "Omnichannel service"] },
-  { num: "03", tab: "DISRUPTIONS", title: "03 � Disruption Management", intro: "Respond when journeys don't go as planned.", img: "/services/travel/Disruption Management.jpg", items: ["Schedule-change support", "Cancellation handling", "Rebooking assistance", "Traveler notifications", "Service recovery workflows", "Exception management"] },
-  { num: "04", tab: "FULFILLMENT", title: "04 � Fulfillment Operations", intro: "Keep the processes behind every journey moving.", img: "/services/travel/Fulfillment Operations.jpg", items: ["Fare & rate loading", "Booking validation", "Payment processing support", "Refund processing", "Travel-document workflows", "Back-office administration"] },
-  { num: "05", tab: "LOYALTY", title: "05 � Loyalty Operations", intro: "Turn travel relationships into lasting engagement.", img: "/services/travel/Loyalty Operations.jpg", items: ["Member administration", "Points & miles support", "Partner transactions", "Redemption support", "Loyalty queries", "Data & reconciliation"] },
-  { num: "06", tab: "DATA", title: "06 � Travel Data & Insights", intro: "Turn traveler and operational activity into actionable intelligence.", img: "/services/travel/Travel Data & Insights.jpg", items: ["Data management", "Operational reporting", "Traveler insights", "Service analytics", "Exception trends", "Performance dashboards"] },
+  { num: "01", tab: "RESERVATIONS", title: "01  Reservations & Ticketing", intro: "Make booking journeys simpler from search to service.", img: "/services/travel/Reservations & Ticketing.jpg", items: ["Reservation support", "Booking modifications", "Ticketing support", "Group bookings", "Cancellations & refunds", "Schedule-change processing"] },
+  { num: "02", tab: "TRAVELER CARE", title: "02  Traveler Care", intro: "Support travelers across every stage of the journey.", img: "/services/travel/Traveler Care.jpg", items: ["Pre-travel assistance", "Booking queries", "Travel information", "Special-service requests", "Post-travel support", "Omnichannel service"] },
+  { num: "03", tab: "DISRUPTIONS", title: "03  Disruption Management", intro: "Respond when journeys don't go as planned.", img: "/services/travel/Disruption Management.jpg", items: ["Schedule-change support", "Cancellation handling", "Rebooking assistance", "Traveler notifications", "Service recovery workflows", "Exception management"] },
+  { num: "04", tab: "FULFILLMENT", title: "04  Fulfillment Operations", intro: "Keep the processes behind every journey moving.", img: "/services/travel/Fulfillment Operations.jpg", items: ["Fare & rate loading", "Booking validation", "Payment processing support", "Refund processing", "Travel-document workflows", "Back-office administration"] },
+  { num: "05", tab: "LOYALTY", title: "05  Loyalty Operations", intro: "Turn travel relationships into lasting engagement.", img: "/services/travel/Loyalty Operations.jpg", items: ["Member administration", "Points & miles support", "Partner transactions", "Redemption support", "Loyalty queries", "Data & reconciliation"] },
+  { num: "06", tab: "DATA", title: "06  Travel Data & Insights", intro: "Turn traveler and operational activity into actionable intelligence.", img: "/services/travel/Travel Data & Insights.jpg", items: ["Data management", "Operational reporting", "Traveler insights", "Service analytics", "Exception trends", "Performance dashboards"] },
 ];
 
 const journeyStages = [
@@ -294,13 +294,13 @@ const cardSections = [
 ];
 
 const intelligenceNodes = [
-  { title: "Traveler Intelligence", verbs: "Understand � Personalize � Assist", image: "/services/travel/Traveler Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
-  { title: "Conversational AI", verbs: "Engage � Answer � Resolve", image: "/services/travel/Conversational AI.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
-  { title: "Workflow Intelligence", verbs: "Automate � Route � Process", image: "/services/travel/Workflow Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14M14 17.5H7a1 1 0 0 1-1-1V10"/></svg> },
-  { title: "Disruption Intelligence", verbs: "Detect � Prioritize � Respond", image: "/services/travel/Disruption Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg> },
-  { title: "Revenue Intelligence", verbs: "Validate � Reconcile � Protect", image: "/services/travel/Revenue Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> },
-  { title: "Document Intelligence", verbs: "Extract � Classify � Validate", image: "/services/travel/Document Intelligence (3).jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg> },
-  { title: "Decision Intelligence", verbs: "Analyze � Predict � Improve", image: "/services/travel/Decision Intelligence (2).jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg> },
+  { title: "Traveler Intelligence", verbs: "Understand •  Personalize •  Assist", image: "/services/travel/Traveler Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
+  { title: "Conversational AI", verbs: "Engage • Answer •  Resolve", image: "/services/travel/Conversational AI.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
+  { title: "Workflow Intelligence", verbs: "Automate •  Route •  Process", image: "/services/travel/Workflow Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14M14 17.5H7a1 1 0 0 1-1-1V10"/></svg> },
+  { title: "Disruption Intelligence", verbs: "Detect •  Prioritize •  Respond", image: "/services/travel/Disruption Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg> },
+  { title: "Revenue Intelligence", verbs: "Validate •  Reconcile •  Protect", image: "/services/travel/Revenue Intelligence.jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> },
+  { title: "Document Intelligence", verbs: "Extract •  Classify •  Validate", image: "/services/travel/Document Intelligence (3).jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg> },
+  { title: "Decision Intelligence", verbs: "Analyze •  Predict •  Improve", image: "/services/travel/Decision Intelligence (2).jpg", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg> },
 ];
 
 const disruptionSteps = [
@@ -370,11 +370,11 @@ const loyaltyCards = [
 ];
 
 const modelLayers = [
-  { num: "01", name: "Travel Ecosystem", items: "Travelers � Airlines � Airports � Hotels � Travel Partners" },
-  { num: "02", name: "Experience", items: "Web � Mobile � Contact Center � Airport � Assisted Channels " },
-  { num: "03", name: "Sytrion Intelligence Layer", items: "AI � Automation � Document Intelligence � Data � Analytics " },
-  { num: "04", name: "Intelligent Operations", items: "Reservations � Traveler Care � Disruptions � Loyalty � Revenue & Finance " },
-  { num: "05", name: "Business Outcomes", items: "Experience � Speed � Revenue � Efficiency � Loyalty � Scale " },
+  { num: "01", name: "Travel Ecosystem", items: "Travelers •  Airlines •  Airports •  Hotels •  Travel Partners" },
+  { num: "02", name: "Experience", items: "Web •  Mobile •  Contact Center •  Airport •  Assisted Channels " },
+  { num: "03", name: "Sytrion Intelligence Layer", items: "AI •  Automation •  Document Intelligence •  Data •  Analytics " },
+  { num: "04", name: "Intelligent Operations", items: "Reservations •  Traveler Care •  Disruptions •  Loyalty •  Revenue & Finance " },
+  { num: "05", name: "Business Outcomes", items: "Experience •  Speed •  Revenue •  Efficiency •  Loyalty •  Scale " },
 ];
 
 const whyPoints = [
