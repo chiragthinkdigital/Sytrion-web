@@ -236,6 +236,55 @@ export default function Footer() {
           flex-shrink: 0;
         }
 
+        .footer-divider {
+          height: 1px;
+          width: 100%;
+          margin: 0 0 16px;
+          background: linear-gradient(to right, #BCE328 0, #BCE328 40px, rgba(0, 0, 0, 0.12) 40px, rgba(0, 0, 0, 0.12) 100%);
+        }
+
+        .reg-title {
+          font-size: 12px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.12em;
+          color: #8E929C;
+          margin-bottom: 12px;
+        }
+
+        .reg-list {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-bottom: 24px;
+        }
+
+        .reg-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: #6B6F78;
+          font-size: 13px;
+          font-weight: 400;
+        }
+
+        .reg-icon {
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          background: #BCE328;
+          color: #1F2226;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+
+        .reg-prefix {
+          font-weight: 600;
+          margin-right: 6px;
+        }
+
         .fl-callout-wrap {
           margin-top: auto;
           margin-left: 0;
@@ -521,31 +570,33 @@ export default function Footer() {
                 <span>Nashik, India</span>
               </div>
 
-              <div className="fl-contact-item">
-                <div className="fl-contact-icon">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
-                    <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
-                    <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
-                    <path d="M10 6h4" />
-                    <path d="M10 10h4" />
-                    <path d="M10 14h4" />
-                    <path d="M10 18h4" />
+            </div>
+
+            <div className="footer-divider"></div>
+            <div className="reg-title">Registration details</div>
+            <div className="reg-list">
+              <div className="reg-item">
+                <div className="reg-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M13 19a4 4 0 00-8 0" />
+                    <path d="M16 10h2" />
+                    <path d="M16 14h2" />
+                    <circle cx="9" cy="12" r="3" />
+                    <rect x="2" y="5" width="20" height="14" rx="2" />
                   </svg>
                 </div>
-                <span>CIN: U82990MR2026PTC478875</span>
+                <span><span className="reg-prefix">CIN</span>U82990MR2026PTC478875</span>
               </div>
 
-              <div className="fl-contact-item">
-                <div className="fl-contact-icon">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
-                    <path d="M15 9l-6 6" />
-                    <path d="M9 9h.01" />
-                    <path d="M15 15h.01" />
+              <div className="reg-item">
+                <div className="reg-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m14 20-8-8h4c5.333 0 5.333-8 0-8" />
+                    <path d="M6 4h12" />
+                    <path d="M6 8h12" />
                   </svg>
                 </div>
-                <span>GST: 27ABUCS4816L1ZJ</span>
+                <span><span className="reg-prefix">GST</span>27ABUCS4816L1ZJ</span>
               </div>
             </div>
 
