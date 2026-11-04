@@ -716,7 +716,7 @@ export default function TravelHospitalityPage() {
           <div className="tv-s02-row tv-reveal">
             <div className="tv-s02-text">
               <p className="tv-lede">Travel businesses operate in an environment where customer expectations, operational complexity and commercial pressures intersect every day.</p>
-              <p className="tv-copy">Behind every booking is a network of reservations, payments, schedules, customer interactions, baggage, disruptions, partners and financial transactions that must work together � often in real time.</p>
+              <p className="tv-copy">Behind every booking is a network of reservations, payments, schedules, customer interactions, baggage, disruptions, partners and financial transactions that must work together often in real time.</p>
             </div>
             <div className="tv-s02-right">
               {landscapeItems.map((item) => (
@@ -795,8 +795,8 @@ export default function TravelHospitalityPage() {
                 <TvLabel text="TRAVELER EXPERIENCE" />
                 <h2 className="tv-h2">Make every interaction <span style={{ color: "#C6E84A" }}>feel effortless.</span></h2>
                 <div className="tv-s05-lede-row">
-                  <p className="tv-lede">Travelers don&apos;t experience systems, processes or organizational boundaries.</p>
-                  <p className="tv-lede">They experience moments.</p>
+                  <p className="tv-lede">Travelers don&apos;t experience systems, processes or organizational boundaries. They experience moments.</p>
+                  
                 </div>
                 <p className="tv-copy">From booking and departure to disruption and arrival, Sytrion helps travel organizations create connected service operations that make those moments easier to navigate.</p>
               </div>
