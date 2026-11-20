@@ -141,12 +141,12 @@ const pensionJourney = [
 
 
 const openEcosystemLayers = [
-  { name: "People & Businesses", image: "/dpi/People & Businesses.jpg" },
-  { name: "Applications & Services", image: "/dpi/Applications & Services.jpg" },
-  { name: "Open APIs & Protocols", image: "/dpi/Open APIs & Protocols.jpg" },
-  { name: "Registries, Identity & Data Exchange", image: "/dpi/Registries, Identity & Data Exchange.jpg" },
-  { name: "Digital Public Infrastructure", image: "/dpi/Digital Public Infrastructure.jpg" },
-  { name: "Institutions & Ecosystem Participants", image: "/dpi/Institutions & Ecosystem Participants.jpg" },
+  { name: "People & Businesses", card: "/dpi/cards/people-businesses" },
+  { name: "Applications & Services", card: "/dpi/cards/applications-services" },
+  { name: "Open APIs & Protocols", card: "/dpi/cards/open-apis-protocols" },
+  { name: "Registries, Identity & Data Exchange", card: "/dpi/cards/registries-identity-data-exchange" },
+  { name: "Digital Public Infrastructure", card: "/dpi/cards/digital-public-infrastructure" },
+  { name: "Institutions & Ecosystem Participants", card: "/dpi/cards/institutions-ecosystem-participants" },
 ];
 
 const aiNodes = [
@@ -327,9 +327,10 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-hero { position:relative; overflow:hidden; background:linear-gradient(115deg, ${NAVY} 0%, ${NAVY2} 55%, #14263f 100%); padding: clamp(110px, 13vh, 150px) 0 clamp(70px, 8vh, 100px); display:flex; align-items:center; min-height:100dvh; }
         .dpi-hero > .dpi-wrap { width:100%; max-width:none; margin:0; padding:0 clamp(16px, 2vw, 32px); }
         .dpi-hero-bg { position:absolute; inset:0; z-index:0; }
-        .dpi-hero::after { content:""; position:absolute; inset:0; z-index:1; background:linear-gradient(90deg, rgba(7,15,28,0.88) 0%, rgba(7,15,28,0.55) 100%); pointer-events:none; }
-        .dpi-hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+        .dpi-hero::after { content:""; position:absolute; inset:0; z-index:1; background:linear-gradient(90deg, rgba(7,15,28,0.62) 0%, rgba(7,15,28,0.28) 45%, rgba(7,15,28,0.04) 78%, rgba(7,15,28,0) 100%); pointer-events:none; }
+        .dpi-hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(1.12) contrast(1.06) brightness(1.08); }
         .dpi-hero-inner { position:relative; z-index:2; max-width: 720px; text-align:left; margin:0; }
+        .dpi-hero .dpi-h1, .dpi-hero .dpi-sub, .dpi-hero .dpi-body { text-shadow:0 2px 16px rgba(0,0,0,0.55); }
         .dpi-hero-ctas { display:flex; flex-wrap:wrap; gap:16px; margin-top:32px; justify-content:flex-start; }
 
         .dpi-land-grid { margin-bottom: 0; }
@@ -688,8 +689,12 @@ export default function DigitalPublicInfrastructurePage() {
           .dpi-why-card h3 { overflow-wrap: anywhere; }
           .dpi-layer { grid-template-columns: 1fr; gap: 8px; }
           .dpi-open-grid { grid-template-columns: 1fr; }
-          .dpi-open-card-media { display: none; }
-          .dpi-open-card-body { flex: 1 1 auto; }
+          .dpi-open-card { min-height: 132px; }
+          .dpi-open-card-media { display: block; width: 100%; opacity: 0.62; -webkit-mask-image: none; mask-image: none; }
+          .dpi-open-card-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(9,17,31,0.96) 0%, rgba(9,17,31,0.76) 52%, rgba(9,17,31,0.18) 100%); pointer-events: none; }
+          .dpi-open-card-media img { object-position: 72% center; }
+          .dpi-open-card-body { flex: 1 1 auto; padding: 18px 20px; justify-content: center; }
+          .dpi-open-card-name { font-size: 16px; overflow-wrap: anywhere; }
           .dpi-page .progress-tracker__inner { padding: 72px 20px; }
           .dpi-page .progress-tracker__h2 { font-size: clamp(26px, 7vw, 34px); overflow-wrap: anywhere; }
           .dpi-page .progress-tracker__steps { gap: 24px; }
@@ -702,6 +707,7 @@ export default function DigitalPublicInfrastructurePage() {
         }
         @media (max-width: 640px) {
           .dpi-hero { min-height: 100dvh; padding: 104px 0 48px; }
+          .dpi-hero::after { background: linear-gradient(90deg, rgba(7,15,28,0.72) 0%, rgba(7,15,28,0.4) 62%, rgba(7,15,28,0.18) 100%); }
           .dpi-hero-inner { max-width: none; }
           .dpi-h1 { font-size: clamp(30px, 9vw, 42px); margin-bottom: 18px; }
           .dpi-sub { font-size: 15px; line-height: 1.5; margin-bottom: 12px; }
@@ -989,7 +995,16 @@ export default function DigitalPublicInfrastructurePage() {
                   <h3 className="dpi-open-card-name">{l.name}</h3>
                 </div>
                 <div className="dpi-open-card-media" aria-hidden="true">
-                  <img src={l.image} alt="" loading="lazy" decoding="async" />
+                  <img
+                    src={l.card + "-960.jpg"}
+                    srcSet={l.card + "-480.jpg 480w, " + l.card + "-960.jpg 960w"}
+                    sizes="(max-width: 720px) 100vw, 240px"
+                    alt=""
+                    width={960}
+                    height={720}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </article>
             ))}

@@ -685,18 +685,20 @@ export default function BankingOperationsPage() {
         .bk-s09 { background: #070d17; position: relative; overflow: hidden; padding: clamp(76px, 9vw, 128px) 80px; }
         .bk-s09 .bk-h2 { color: #ffffff; }
         .bk-s09-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 56px; }
-        .bk-s09-layer { display: grid; grid-template-columns: 90px 320px 1fr; align-items: center; gap: 20px; border-radius: 14px; padding: 24px 30px; background: #10294A; border: 1px solid rgba(198,232,74,0.12); transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
+        .bk-s09-layer { display: grid; grid-template-columns: 90px 320px minmax(0, 1fr); align-items: center; gap: 20px; min-width: 0; border-radius: 14px; padding: 24px 30px; background: #10294A; border: 1px solid rgba(198,232,74,0.12); transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
         .bk-s09-layer:hover { background: #C6E84A; border-color: rgba(198,232,74,0.8); box-shadow: 0 0 40px -6px rgba(198,232,74,0.4); transform: translateX(6px); }
         .bk-s09-layer:hover .bk-s09-layer-num, .bk-s09-layer:hover .bk-s09-layer-name, .bk-s09-layer:hover .bk-s09-layer-items { color: #0C1B30; }
-        .bk-s09-layer-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #C6E84A; font-variant-numeric: tabular-nums; }
-        .bk-s09-layer-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #ffffff; }
-        .bk-s09-layer-items { font-size: 12.5px; letter-spacing: 0.05em; color: rgba(255,255,255,0.62); }
+        .bk-s09-layer-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #C6E84A; font-variant-numeric: tabular-nums; min-width: 0; }
+        .bk-s09-layer-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #ffffff; min-width: 0; overflow-wrap: anywhere; }
+        .bk-s09-layer-items { font-size: 12.5px; letter-spacing: 0.05em; line-height: 1.6; color: rgba(255,255,255,0.62); min-width: 0; overflow-wrap: anywhere; }
         @media (max-width: 900px) {
-          .bk-s09-layer { grid-template-columns: 60px 1fr; row-gap: 8px; padding: 22px 24px; }
+          .bk-s09-layer { grid-template-columns: 60px minmax(0, 1fr); align-items: start; row-gap: 8px; padding: 22px 24px; }
+          .bk-s09-layer-num { padding-top: 2px; }
           .bk-s09-layer-items { grid-column: 2; }
         }
         @media (max-width: 640px) {
-          .bk-s09-layer { grid-template-columns: 1fr; gap: 8px; padding: 20px; }
+          .bk-s09-layer { grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 18px; }
+          .bk-s09-layer-items { grid-column: auto; }
         }
 
         /* ── S09A ADVANTAGES (Why Sytrion cards) ── */

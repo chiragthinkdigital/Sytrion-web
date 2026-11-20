@@ -540,13 +540,13 @@ export default function ShippingLogisticsPage() {
         /* ── 08 MODEL ── */
         .sl-model { background: #081020; color: #ffffff; }
         .sl-model-stack { max-width: 980px; margin: 56px auto 0; display: flex; flex-direction: column; gap: 12px; }
-        .sl-layer { display: grid; grid-template-columns: 90px 320px 1fr; align-items: center; gap: 20px; border-radius: 14px; padding: 24px 30px; background: #10294A; border: 1px solid rgba(198,232,74,0.12); transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
+        .sl-layer { display: grid; grid-template-columns: 90px 320px minmax(0, 1fr); align-items: center; gap: 20px; min-width: 0; border-radius: 14px; padding: 24px 30px; background: #10294A; border: 1px solid rgba(198,232,74,0.12); transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
         .sl-layer:hover { background: #C6E84A; border-color: rgba(198,232,74,0.8); box-shadow: 0 0 40px -6px rgba(198,232,74,0.4); transform: translateX(6px); }
         .sl-layer:hover .sl-layer-num, .sl-layer:hover .sl-layer-name, .sl-layer:hover .sl-layer-items { color: #0C1B30; }
-        .sl-layer-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #C6E84A; font-variant-numeric: tabular-nums; }
-        .sl-layer-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #ffffff; }
-        .sl-layer-items { font-size: 12.5px; letter-spacing: 0.05em; color: rgba(255,255,255,0.62); }
-        .sl-layer-pipe { color: inherit; padding: 0 7px; }
+        .sl-layer-num { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #C6E84A; font-variant-numeric: tabular-nums; min-width: 0; }
+        .sl-layer-name { font-family: var(--font-syne), Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #ffffff; min-width: 0; overflow-wrap: anywhere; }
+        .sl-layer-items { font-size: 12.5px; letter-spacing: 0.05em; line-height: 1.6; color: rgba(255,255,255,0.62); min-width: 0; overflow-wrap: anywhere; }
+        .sl-layer-pipe { color: inherit; padding: 0 2px; }
 
         /* ── 09 WHY ── */
         .sl-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
@@ -624,6 +624,8 @@ export default function ShippingLogisticsPage() {
           .sl-fa-cards { grid-template-columns: repeat(2, 1fr); }
           .sl-fa-bg { width: 100%; mask-image: linear-gradient(180deg, transparent 0%, #000 60%); -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 60%); }
           .sl-trans { grid-template-columns: 1fr; }
+          .sl-layer { grid-template-columns: 60px minmax(0, 280px) minmax(0, 1fr); align-items: start; gap: 14px; padding: 20px 24px; }
+          .sl-layer-num { padding-top: 2px; }
         }
 
         @media (max-width: 640px) {
@@ -634,7 +636,7 @@ export default function ShippingLogisticsPage() {
           .sl-fa-cards { grid-template-columns: 1fr; }
           .sl-why-grid { grid-template-columns: 1fr; }
           .sl-trans-block ul { grid-template-columns: 1fr; }
-          .sl-layer { grid-template-columns: 1fr; gap: 8px; padding: 20px; }
+          .sl-layer { grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 18px; }
           .sl-hero { height: auto; min-height: 100dvh; }
           .sl-hero-content { position: relative; inset: auto; min-height: 100dvh; padding: 120px 24px 90px; }
           .sl-float-words { left: 24px !important; right: 24px !important; bottom: 16px !important; top: auto !important; gap: 8px; justify-content: flex-start; flex-wrap: wrap; white-space: normal; }
@@ -969,7 +971,7 @@ export default function ShippingLogisticsPage() {
                   {layer.items.map((item, j, arr) => (
                     <span key={item}>
                       {item}
-                      {j < arr.length - 1 && <span className="sl-layer-pipe">|</span>}
+                      {j < arr.length - 1 && <span className="sl-layer-pipe"> | </span>}
                     </span>
                   ))}
                 </span>

@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 const cards = [
   {
     name: "Artificial Intelligence",
@@ -55,6 +57,12 @@ export default function FutureCards() {
           background: #2b2e35;
           display: flex;
           flex-direction: column;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        .fut-card:focus-visible {
+          outline: 2px solid #C6E84A;
+          outline-offset: 3px;
         }
         .fut-card-img {
           height: 290px;
@@ -100,6 +108,12 @@ export default function FutureCards() {
           display: flex;
           align-items: center;
           justify-content: center;
+          transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .fut-card:hover .fut-card-btn,
+        .fut-card:focus-visible .fut-card-btn {
+          transform: translateX(3px);
+          background: #d6f56b;
         }
         .fut-card-btn svg {
           color: #111827;
@@ -115,7 +129,7 @@ export default function FutureCards() {
 
       <div className="fut-cards-scroll">
         {cards.map((card) => (
-          <div key={card.name} className="fut-card">
+          <Link key={card.name} href="/solutions" className="fut-card" aria-label={`Explore solutions related to ${card.name}`}>
             <div className="fut-card-img">
               <img
                 src={card.image}
@@ -134,7 +148,7 @@ export default function FutureCards() {
                 </svg>
               </span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </>
