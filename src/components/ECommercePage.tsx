@@ -538,6 +538,16 @@ function ProcessConveyor() {
     setCycle((c) => c + 1);
   };
 
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el || !window.matchMedia("(max-width: 700px)").matches) return;
+    const station = el.querySelectorAll<HTMLElement>(".process-conveyor__station")[active];
+    if (!station) return;
+    const er = el.getBoundingClientRect();
+    const sr = station.getBoundingClientRect();
+    el.scrollTo({ left: el.scrollLeft + sr.left - er.left - (el.clientWidth - sr.width) / 2, behavior: "smooth" });
+  }, [active]);
+
   const step = processSteps[active];
   const leftPct = `calc((100% / ${PC_TOTAL}) * ${active + 0.5})`;
 
@@ -692,9 +702,15 @@ function ProcessConveyor() {
         .process-conveyor__cap-num { font-family: var(--font-syne), Arial, sans-serif; font-weight: 700; color: #C6E84A; margin-right: 4px; }
 
         @media (max-width: 700px) {
+          .process-conveyor { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: thin; scrollbar-color: #C6E84A #0e2236; }
           .process-conveyor__stations { min-width: 600px; }
-          .process-conveyor { overflow-x: auto; }
-          .process-conveyor__track, .process-conveyor__caption { min-width: 600px; }
+          .process-conveyor__station { scroll-snap-align: center; }
+          .process-conveyor__pod { width: 40px; height: 40px; border-radius: 12px; }
+          .process-conveyor__pod svg { width: 18px; height: 18px; }
+          .process-conveyor__name { font-size: 10px; }
+          .process-conveyor__sub { display: none; }
+          .process-conveyor__track { min-width: 600px; }
+          .process-conveyor__caption { position: sticky; left: 0; width: 100%; min-width: 0; }
         }
         @media (prefers-reduced-motion: reduce) {
           .process-conveyor__stripes { animation: none; }
@@ -743,6 +759,7 @@ export default function ECommercePage() {
     const fill = cxFillRef.current;
     if (!rail || !line || !fill) return;
     const draw = () => {
+      if (window.matchMedia("(max-width: 860px)").matches) return;
       const railRect = rail.getBoundingClientRect();
       const centers = cxBtnRefs.current.map((el) => {
         if (!el) return 0;
@@ -760,6 +777,15 @@ export default function ECommercePage() {
     draw();
     window.addEventListener("resize", draw);
     return () => window.removeEventListener("resize", draw);
+  }, [cxActive]);
+
+  useEffect(() => {
+    const rail = cxRailRef.current;
+    const button = cxBtnRefs.current[cxActive];
+    if (!rail || !button || !window.matchMedia("(max-width: 860px)").matches) return;
+    const rr = rail.getBoundingClientRect();
+    const br = button.getBoundingClientRect();
+    rail.scrollTo({ left: rail.scrollLeft + br.left - rr.left - (rail.clientWidth - br.width) / 2, behavior: "smooth" });
   }, [cxActive]);
 
   useEffect(() => {
@@ -823,7 +849,7 @@ export default function ECommercePage() {
   return (
     <div className="ec-page" ref={revealRef}>
       <style>{`
-        .ec-page { --ecn:#071426; --ecn2:#0B1F38; --ecb:#10315C; --ecc:#C6E84A; --ecl:#F5F9FC; color:#0E1B2A; background:#fff; font-family: var(--font-geist-sans), Arial, sans-serif; }
+        .ec-page { --ecn:#071426; --ecn2:#0B1F38; --ecb:#10315C; --ecc:#C6E84A; --ecl:#F5F9FC; color:#0E1B2A; background:#fff; font-family: var(--font-geist-sans), Arial, sans-serif; overflow-x: clip; }
         .ec-page * { box-sizing: border-box; }
         .ec-wrap { max-width: 1400px; margin: 0 auto; }
         @media (max-width: 900px) {
@@ -1191,10 +1217,10 @@ export default function ECommercePage() {
           .ec-landscape-right { grid-template-columns: 1fr; }
         }
         @media (max-width: 1024px) {
-          .ec-final { padding: 80px 40px !important; }
+          .ec-final { padding: 80px 40px; }
         }
         @media (max-width: 768px) {
-          .ec-final { padding: 60px 20px !important; }
+          .ec-final { padding: 60px 20px; }
           .ec-final-ctas { flex-direction: column; align-items: center; }
           .ec-final .ec-btn { width: 100%; max-width: 320px; }
         }
@@ -1240,6 +1266,51 @@ export default function ECommercePage() {
           .scd-card { padding: 32px 24px; }
         }
 
+        @media (max-width: 1024px) {
+          .ec-final { padding: 80px 40px; }
+          .ec-outcome-media { width: 50%; }
+          .ec-outcome-desc { max-width: none; }
+        }
+        @media (max-width: 900px) {
+          .ec-section-light, .ec-section-dark, .ec-section-navy, .ec-hero .ec-wrap, .ec-banner, .ec-transform .ec-wrap { padding-left: 40px; padding-right: 40px; }
+          .ec-land-row { gap: 28px; }
+          .ec-landscape-right { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .ec-out-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .ec-outcome:nth-child(5) { grid-column: span 1; }
+          .ec-layer { grid-template-columns: 60px minmax(0, 1fr) 1.5fr; min-width: 0; }
+          .ec-layer > * { min-width: 0; }
+          .ec-layer:hover { transform: none; }
+          .ec-outcome { min-height: 0; }
+          .ec-outcome-body { flex-basis: 54%; padding: 16px; }
+          .ec-outcome-media { width: 42%; opacity: 0.55; }
+        }
+        @media (max-width: 800px) {
+          .ec-approach { padding: 32px 24px; }
+          .ec-approach-text { white-space: normal; }
+        }
+        @media (max-width: 768px) {
+          .ec-final { padding: 60px 20px; }
+        }
+        @media (max-width: 640px) {
+          .ec-hero { height: auto; min-height: 100dvh; }
+          .ec-hero .ec-wrap { position: relative; inset: auto; min-height: 100dvh; padding: 96px 20px 48px; }
+          .ec-section-light, .ec-section-dark, .ec-section-navy, .ec-hero .ec-wrap, .ec-banner, .ec-transform .ec-wrap { padding-left: 20px; padding-right: 20px; }
+          .ec-landscape-right { grid-template-columns: 1fr; }
+          .ec-out-grid { grid-template-columns: 1fr; }
+          .ec-layer { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) and (max-height: 700px) {
+          .ec-hero .ec-wrap { padding-top: 88px; padding-bottom: 32px; }
+          .ec-hero .ec-label { margin-bottom: 16px; }
+          .ec-h1 { font-size: clamp(28px, 8.5vw, 36px); margin-bottom: 18px; }
+          .ec-hero-sub { font-size: 14px; line-height: 1.5; margin-bottom: 12px; }
+          .ec-hero-body { display: none; }
+          .ec-hero-ctas { gap: 10px; }
+        }
+        @media (max-width: 560px) {
+          .ec-landscape-right { grid-template-columns: 1fr; }
+        }
+
         @media (prefers-reduced-motion: reduce) {
           .ec-reveal { opacity: 1; transform: none; transition: none; animation: none; }
           .ec-core { animation: none; }
@@ -1248,7 +1319,7 @@ export default function ECommercePage() {
 
       <section className="ec-hero">
         <video
-          className="dpi-hero-video"
+          className="ec-hero-img"
           src="/services/ecommerce/ecommercehero.mp4"
           autoPlay
           muted
@@ -1636,10 +1707,14 @@ export default function ECommercePage() {
           .ec-cx2-list li { display: flex; align-items: center; gap: 14px; padding: 15px 0; border-bottom: 1px solid #223148; font-size: 15px; color: #F4F5F2; }
           .ec-cx2-list li::before { content: ""; width: 8px; height: 8px; flex: 0 0 auto; background: #C6F135; transform: rotate(45deg); }
 
+          @media (max-width: 1024px) {
+            .ec-cx2-label { white-space: normal; max-width: 120px; text-align: center; line-height: 1.3; }
+          }
           @media (max-width: 860px) {
             .ec-cx2-cols { flex-direction: column; gap: 16px; }
-            .ec-cx2-rail { justify-content: flex-start; gap: clamp(28px, 7vw, 56px); overflow-x: auto; padding-bottom: 10px; margin-top: 40px; }
-            .ec-cx2-btn { flex: 0 0 auto; }
+            .ec-cx2-rail { justify-content: flex-start; gap: clamp(28px, 7vw, 56px); overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 10px; margin-top: 40px; scrollbar-width: thin; scrollbar-color: #C6F135 #223148; }
+            .ec-cx2-btn { flex: 0 0 auto; scroll-snap-align: center; }
+            .ec-cx2-label { white-space: normal; max-width: 120px; text-align: center; line-height: 1.3; }
             .ec-cx2-line, .ec-cx2-fill { display: none; }
             .ec-cx2-panel-in { grid-template-columns: 1fr; gap: 32px; }
             .ec-cx2-left { flex-direction: row; align-items: center; }

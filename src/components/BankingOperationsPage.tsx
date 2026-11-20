@@ -241,6 +241,16 @@ function LifecycleConveyor() {
     setCycle((c) => c + 1);
   };
 
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el || !window.matchMedia("(max-width: 760px)").matches) return;
+    const station = el.querySelectorAll<HTMLElement>(".bk-lc__station")[active];
+    if (!station) return;
+    const er = el.getBoundingClientRect();
+    const sr = station.getBoundingClientRect();
+    el.scrollTo({ left: el.scrollLeft + sr.left - er.left - (el.clientWidth - sr.width) / 2, behavior: "smooth" });
+  }, [active]);
+
   const step = kycSteps[active];
   const leftPct = `calc((100% / ${LC_TOTAL}) * ${active + 0.5})`;
 
@@ -388,8 +398,10 @@ function LifecycleConveyor() {
         .bk-lc__cap-num { font-family: var(--font-syne), Arial, sans-serif; font-weight: 700; color: #C6E84A; margin-right: 4px; }
 
         @media (max-width: 760px) {
-          .bk-lc { overflow-x: auto; }
-          .bk-lc__stations, .bk-lc__track, .bk-lc__caption { min-width: 680px; }
+          .bk-lc { max-width: 100%; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: thin; scrollbar-color: #C6E84A #0F1B30; }
+          .bk-lc__stations, .bk-lc__track { min-width: 680px; }
+          .bk-lc__station { scroll-snap-align: center; }
+          .bk-lc__caption { position: sticky; left: 0; width: 100%; min-width: 0; }
         }
         @media (prefers-reduced-motion: reduce) {
           .bk-lc__stripes { animation: none; }
@@ -486,7 +498,7 @@ export default function BankingOperationsPage() {
         .bk-s02-head { max-width: none; }
         .bk-s02-left .bk-lede { color: #5A5D66; }
         .bk-s02-left .bk-copy { color: #5B6472; }
-        .bk-s02-grid-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .bk-s02-grid-inner { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
         .bk-s02-card {
           background: linear-gradient(160deg, #0E1B2E 0%, #1B2735 100%);
           border: 1px solid rgba(198,232,74,0.14);
@@ -595,8 +607,8 @@ export default function BankingOperationsPage() {
         .bk-s04 { background: #ffffff; padding: clamp(76px, 9vw, 128px) 80px; }
         .bk-s04 .bk-h2 { color: #0f172a; }
         .bk-s04 .bk-lede { color: #5A5D66; }
-        .bk-s04-tabbar { display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 48px; border-radius: 12px; overflow: hidden; border: 1px solid #E2E5E9; }
-        .bk-s04-tabbar button { appearance: none; background: #F8F9FA; border: none; border-right: 1px solid #E2E5E9; cursor: pointer; padding: 16px 12px; font-family: inherit; font-size: 14px; font-weight: 600; color: #7A8AA0; transition: background 0.25s ease, color 0.25s ease; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .bk-s04-tabbar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); margin-top: 48px; border-radius: 12px; overflow: hidden; border: 1px solid #E2E5E9; }
+        .bk-s04-tabbar button { appearance: none; background: #F8F9FA; border: none; border-right: 1px solid #E2E5E9; cursor: pointer; padding: 16px 12px; font-family: inherit; font-size: 14px; font-weight: 600; color: #7A8AA0; transition: background 0.25s ease, color 0.25s ease; display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 0; }
         .bk-s04-tabbar button:last-child { border-right: none; }
         .bk-s04-tabbar button em { font-style: normal; font-size: 11px; font-weight: 700; color: #A9B6C6; }
         .bk-s04-tabbar button:hover { background: #F0F2F5; color: #14263C; }
@@ -764,7 +776,7 @@ export default function BankingOperationsPage() {
           .bk-tf-left { max-width: none; }
         }
         @media (max-width: 640px) {
-          .bk-hero-text { padding: 100px 20px 40px; }
+          .bk-hero-content { padding: 100px 20px 40px; }
           .bk-s02, .bk-s04, .bk-s05, .bk-s06, .bk-s08, .bk-s09, .bk-s09a, .bk-tf, .bk-final { padding-left: 20px; padding-right: 20px; }
           .bk-s03 { padding-left: 20px; padding-right: 20px; }
           .bk-s03-cards { grid-template-columns: 1fr; }
@@ -783,6 +795,46 @@ export default function BankingOperationsPage() {
         }
         @media (max-width: 560px) {
           .bk-s02-grid-inner { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 1080px) {
+          .bk-s08-media { width: 50%; }
+          .bk-s08-desc { max-width: none; }
+        }
+        @media (max-width: 900px) {
+          .bk-s02, .bk-s03, .bk-s04, .bk-s05, .bk-s06, .bk-s08, .bk-s09, .bk-s09a, .bk-tf, .bk-final { padding-left: 40px; padding-right: 40px; }
+          .bk-s02-grid, .bk-s05-split { min-width: 0; }
+          .bk-s02-grid > *, .bk-s05-split > * { min-width: 0; }
+          .bk-s04-tabbar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+          .bk-s08-card { min-height: 0; }
+          .bk-s08-body { flex-basis: 54%; padding: 16px; min-width: 0; }
+          .bk-s08-media { width: 42%; opacity: 0.55; }
+        }
+        @media (max-width: 760px) {
+          .bk-s02-grid-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .bk-s04-tabbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 640px) {
+          .bk-hero { height: auto; min-height: 100dvh; }
+          .bk-hero-content { position: relative; inset: auto; min-height: 100dvh; padding: 100px 20px 40px; }
+          .bk-s02, .bk-s03, .bk-s04, .bk-s05, .bk-s06, .bk-s08, .bk-s09, .bk-s09a, .bk-tf, .bk-final { padding-left: 20px; padding-right: 20px; }
+          .bk-s04-tabbar button { padding: 10px 6px; font-size: 12px; }
+          .bk-s08 { padding-left: 20px; padding-right: 20px; }
+          .bk-s08-card { min-height: 0; }
+          .bk-s08-body { flex-basis: 54%; padding: 16px; min-width: 0; }
+          .bk-s08-media { width: 42%; opacity: 0.55; }
+        }
+        @media (max-width: 640px) and (max-height: 700px) {
+          .bk-hero-content { padding-top: 96px; padding-bottom: 56px; }
+          .bk-hero .bk-label { margin-bottom: 16px; }
+          .bk-hero h2 { font-size: clamp(28px, 8.5vw, 36px); margin-bottom: 18px; }
+          .bk-hero-sub { font-size: 14px; line-height: 1.5; margin-bottom: 12px; }
+          .bk-hero-body { display: none; }
+          .bk-hero-ctas { gap: 10px; }
+        }
+        @media (max-width: 560px) {
+          .bk-s02-grid-inner { grid-template-columns: 1fr; }
+          .bk-s04-tabbar { grid-template-columns: 1fr; }
+          .bk-s04-tabbar button { padding: 12px 10px; font-size: 12px; }
         }
         @media (prefers-reduced-motion: reduce) {
           .bk-reveal { opacity: 1; transform: none; transition: none; animation: none; }

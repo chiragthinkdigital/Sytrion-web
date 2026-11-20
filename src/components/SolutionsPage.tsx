@@ -1059,6 +1059,12 @@ export default function SolutionsPage() {
           padding: 100px 80px;
           overflow: hidden;
         }
+        @media (max-width: 1024px) {
+          .sol-section { padding-left: 40px; padding-right: 40px; }
+        }
+        @media (max-width: 640px) {
+          .sol-section { padding: 72px 20px; }
+        }
         .sol-section--dark { background: #0a0a0a; }
         .sol-section--light { background: #f8faf5; }
         .sol-section--cream { background: #F5F4F1; }
@@ -2439,13 +2445,7 @@ export default function SolutionsPage() {
           padding-right: 40px;
         }
 
-        @media (max-width: 600px) {
-          .ops-card {
-            flex: 0 0 320px;
-            width: 320px;
-          }
-        }
-          /* ── Final CTA (banner) ─────────────────────────── */
+        /* ── Final CTA (banner) ─────────────────────────── */
         .sol-section--cta {
           position: relative;
           background: #0f0f0f;
@@ -2842,6 +2842,60 @@ export default function SolutionsPage() {
           .analytics-grid {
             grid-template-columns: 1fr;
           }
+        }
+
+        @media (max-width: 1024px) {
+          .sol-split { grid-template-columns: 1fr; gap: 40px; }
+          .sol-grid-4,
+          .de-grid,
+          .sol-eco-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .de-footer { flex-wrap: wrap; }
+          .de-card { height: 380px; }
+        }
+
+        @media (max-width: 640px) {
+          .sol-split { gap: 36px; margin-bottom: 44px; }
+          .sol-grid-4,
+          .de-grid,
+          .sol-eco-row {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 16px;
+          }
+          .sol-grid-4 > *,
+          .de-grid > *,
+          .sol-eco-row > * { min-width: 0; }
+          .sol-card { padding: 28px 24px; }
+          .de-card { height: auto; min-height: 300px; }
+          .de-card-text { padding: 20px; }
+          .de-footer {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+            margin-top: 36px;
+          }
+          .de-footer-cta {
+            width: 100%;
+            justify-content: center;
+            white-space: normal;
+            flex-shrink: 1;
+          }
+          .sol-eco-item { padding: 24px 20px; }
+          .ops-cards-scroll {
+            scroll-snap-type: x mandatory;
+            scroll-padding-left: 20px;
+            margin-right: -20px;
+            padding-right: 20px;
+          }
+          .ops-card {
+            flex: 0 0 min(320px, 85vw);
+            width: min(320px, 85vw);
+            scroll-snap-align: start;
+          }
+          .ops-card-img { height: 220px; }
+          .ops-card-body { min-height: 0; padding: 22px 20px; }
+          .ops-card-title { font-size: 24px; }
+          .ops-card-desc { padding-right: 0; }
+          .sol-callout-line { font-size: 18px; }
         }
       `}</style>
 

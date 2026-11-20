@@ -327,6 +327,7 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-hero { position:relative; overflow:hidden; background:linear-gradient(115deg, ${NAVY} 0%, ${NAVY2} 55%, #14263f 100%); padding: clamp(110px, 13vh, 150px) 0 clamp(70px, 8vh, 100px); display:flex; align-items:center; min-height:100dvh; }
         .dpi-hero > .dpi-wrap { width:100%; max-width:none; margin:0; padding:0 clamp(16px, 2vw, 32px); }
         .dpi-hero-bg { position:absolute; inset:0; z-index:0; }
+        .dpi-hero::after { content:""; position:absolute; inset:0; z-index:1; background:linear-gradient(90deg, rgba(7,15,28,0.88) 0%, rgba(7,15,28,0.55) 100%); pointer-events:none; }
         .dpi-hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
         .dpi-hero-inner { position:relative; z-index:2; max-width: 720px; text-align:left; margin:0; }
         .dpi-hero-ctas { display:flex; flex-wrap:wrap; gap:16px; margin-top:32px; justify-content:flex-start; }
@@ -396,7 +397,7 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-approach-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; position: relative; z-index: 1; }
         .dpi-approach-dot { width: 7px; height: 7px; border-radius: 50%; background: #C4E538; flex-shrink: 0; box-shadow: 0 0 12px rgba(196,229,56,0.5); }
         .dpi-approach-label { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(196,229,56,0.7); }
-        .dpi-approach-text { font-size: clamp(15px, 1.4vw, 19px); line-height: 1.4; color: rgba(255,255,255,0.92); font-weight: 500; margin: 0; position: relative; z-index: 1; }
+        .dpi-approach-text { font-size: clamp(15px, 1.4vw, 19px); line-height: 1.4; color: rgba(255,255,255,0.92); font-weight: 500; margin: 0; position: relative; z-index: 1; overflow-wrap: anywhere; }
         .dpi-approach-text em { font-style: normal; color: #C4E538; font-weight: 600; }
 
         .dpi-eco-band { background:linear-gradient(160deg, ${NAVY} 0%, ${NAVY2} 100%); }
@@ -653,23 +654,16 @@ export default function DigitalPublicInfrastructurePage() {
         }
         @media (max-width: 900px) {
           .dpi-land-row { grid-template-columns: 1fr; }
+          .dpi-land-cards { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
           .dpi-cap-panel { grid-template-columns: 1fr; }
+          .dpi-cap-visual { min-height: 0; }
+          .dpi-ai .scd-tab-text { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.25; }
           .dpi-out-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           .dpi-why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           .dpi-pstep-detail { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 720px) {
-          .dpi-impact-grid { grid-template-columns: 1fr; }
-          .dpi-cap-list { grid-template-columns: 1fr; }
-          .dpi-pstep-list { grid-template-columns: 1fr; }
-          .dpi-out-grid { grid-template-columns: 1fr; }
-          .dpi-why-grid { grid-template-columns: 1fr; }
-          .dpi-why-grid > .dpi-why-card { min-width: 0; }
-          .dpi-why-card h3 { overflow-wrap: anywhere; }
-          .dpi-layer { grid-template-columns: 1fr; gap: 8px; }
-          .dpi-open-grid { grid-template-columns: 1fr; }
-          .dpi-open-card-media { display: none; }
-          .dpi-open-card-body { flex: 1 1 auto; }
+          .dpi-outcome { min-height: 0; }
+          .dpi-outcome-body { flex-basis: 54%; padding: 16px; }
+          .dpi-outcome-media { width: 42%; opacity: 0.55; }
         }
         @media (max-width: 768px) {
           .dpi-trust-cards { grid-template-columns: 1fr; }
@@ -677,8 +671,69 @@ export default function DigitalPublicInfrastructurePage() {
           .dpi-trust-tile svg { width:26px; height:26px; }
           .dpi-trust .dpi-h2 { font-size: clamp(26px, 6.5vw, 40px); }
         }
+        @media (max-width: 720px) {
+          .dpi-impact-grid { grid-template-columns: 1fr; }
+          .dpi-cap-list { grid-template-columns: 1fr; }
+          .dpi-cap-visual { min-height: 0; }
+          .dpi-pstep-list { grid-template-columns: 1fr; }
+          .dpi-ai .scd-tab { min-height: 56px; padding: 10px 6px; }
+          .dpi-ai .scd-tab-text { min-height: 2.5em; }
+          .dpi-ai .scd-card-tags { white-space: normal; overflow: visible; text-overflow: clip; border-radius: 14px; }
+          .dpi-out-grid { grid-template-columns: 1fr; }
+          .dpi-outcome { min-height: 0; }
+          .dpi-outcome-body { flex-basis: 54%; padding: 16px; }
+          .dpi-outcome-media { width: 42%; opacity: 0.55; }
+          .dpi-why-grid { grid-template-columns: 1fr; }
+          .dpi-why-grid > .dpi-why-card { min-width: 0; }
+          .dpi-why-card h3 { overflow-wrap: anywhere; }
+          .dpi-layer { grid-template-columns: 1fr; gap: 8px; }
+          .dpi-open-grid { grid-template-columns: 1fr; }
+          .dpi-open-card-media { display: none; }
+          .dpi-open-card-body { flex: 1 1 auto; }
+          .dpi-page .progress-tracker__inner { padding: 72px 20px; }
+          .dpi-page .progress-tracker__h2 { font-size: clamp(26px, 7vw, 34px); overflow-wrap: anywhere; }
+          .dpi-page .progress-tracker__steps { gap: 24px; }
+          .dpi-page .progress-tracker__track { left: 28px; top: 28px; bottom: 28px; }
+          .dpi-page .progress-tracker__step { grid-template-columns: 56px minmax(0, 1fr); gap: 12px; }
+          .dpi-page .progress-tracker__node { flex: 0 0 56px; width: 56px; height: 56px; }
+          .dpi-page .progress-tracker__node svg { width: 26px; height: 26px; }
+          .dpi-page .progress-tracker__name { font-size: 16px; overflow-wrap: anywhere; }
+          .dpi-page .progress-tracker__desc { -webkit-line-clamp: unset; white-space: normal; }
+        }
+        @media (max-width: 640px) {
+          .dpi-hero { min-height: 100dvh; padding: 104px 0 48px; }
+          .dpi-hero-inner { max-width: none; }
+          .dpi-h1 { font-size: clamp(30px, 9vw, 42px); margin-bottom: 18px; }
+          .dpi-sub { font-size: 15px; line-height: 1.5; margin-bottom: 12px; }
+          .dpi-hero .dpi-body { font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
+          .dpi-hero-ctas { flex-direction: column; gap: 10px; margin-top: 20px; }
+          .dpi-hero-ctas .dpi-btn { width: 100%; }
+        }
+        @media (max-width: 640px) and (max-height: 700px) {
+          .dpi-hero .dpi-body { display: none; }
+          .dpi-h1 { font-size: clamp(28px, 8.5vw, 36px); }
+          .dpi-eyebrow { margin-bottom: 16px; }
+        }
         @media (max-width: 560px) {
           .dpi-land-cards { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+          .dpi-page .pns-eco-inner { padding: 72px 20px; }
+          .dpi-page .pns-eco-diagram { gap: 24px; margin-top: 36px; }
+          .dpi-page .pns-eco-hub { width: 220px; height: 220px; margin: 32px 0; box-shadow: 0 0 0 6px rgba(197,232,77,0.28), 0 18px 40px rgba(20,26,15,0.35); }
+          .dpi-page .pns-eco-hub > svg { width: 28px; height: 28px; }
+          .dpi-page .pns-eco-hub-title { font-size: 20px; margin-top: 8px; }
+          .dpi-page .pns-eco-hub-tag { font-size: 9px; margin-top: 10px; }
+          .dpi-page .pns-eco-ring1 { inset: -14px; }
+          .dpi-page .pns-eco-ring2 { inset: -28px; }
+          .dpi-page .pns-eco-card { padding: 16px 14px; gap: 12px; }
+          .dpi-page .pns-eco-tile { flex-basis: 40px; width: 40px; height: 40px; border-radius: 12px; }
+          .dpi-page .pns-eco-tile svg { width: 20px; height: 20px; }
+          .dpi-page .pns-eco-card-title { font-size: 15px; }
+          .dpi-page .pns-eco-card-desc { font-size: 12.5px; }
+          .dpi-page .pns-eco-layer { margin-top: 36px; }
+          .dpi-page .pns-eco-layerbar { padding: 10px; }
+          .dpi-page .pns-eco-layerlabel, .dpi-page .pns-eco-chip { font-size: 11px; padding: 8px 12px; }
         }
       `}</style>
 

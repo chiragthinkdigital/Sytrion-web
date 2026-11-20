@@ -87,6 +87,16 @@ function JourneyProcessConveyor() {
     setCycle((c) => c + 1);
   };
 
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el || !window.matchMedia("(max-width: 700px)").matches) return;
+    const station = el.querySelectorAll<HTMLElement>(".process-conveyor__station")[active];
+    if (!station) return;
+    const er = el.getBoundingClientRect();
+    const sr = station.getBoundingClientRect();
+    el.scrollTo({ left: el.scrollLeft + sr.left - er.left - (el.clientWidth - sr.width) / 2, behavior: "smooth" });
+  }, [active]);
+
   const step = journeyStages[active];
   const leftPct = `calc((100% / ${PC_TOTAL}) * ${active + 0.5})`;
 
@@ -241,9 +251,15 @@ function JourneyProcessConveyor() {
         .process-conveyor__cap-num { font-family: var(--font-syne), Arial, sans-serif; font-weight: 700; color: #C6E84A; margin-right: 4px; }
 
         @media (max-width: 700px) {
+          .process-conveyor { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: thin; scrollbar-color: #C6E84A #0e2236; overscroll-behavior-inline: contain; }
           .process-conveyor__stations { min-width: 600px; }
-          .process-conveyor { overflow-x: auto; }
-          .process-conveyor__track, .process-conveyor__caption { min-width: 600px; }
+          .process-conveyor__station { scroll-snap-align: center; }
+          .process-conveyor__pod { width: 40px; height: 40px; border-radius: 12px; }
+          .process-conveyor__pod svg { width: 18px; height: 18px; }
+          .process-conveyor__name { font-size: 10px; }
+          .process-conveyor__sub { display: none; }
+          .process-conveyor__track { min-width: 600px; }
+          .process-conveyor__caption { position: sticky; left: 0; width: 100%; min-width: 0; }
         }
         @media (prefers-reduced-motion: reduce) {
           .process-conveyor__stripes { animation: none; }
@@ -455,7 +471,7 @@ export default function TravelHospitalityPage() {
         .tv-btn--ghost { background: transparent; border: 1px solid rgba(255,255,255,0.45); color: #fff; }
         .tv-btn--ghost:hover { background: rgba(255,255,255,0.08); box-shadow: none; }
 
-        .tv-hero { position: relative; height: 100vh; height: 100dvh; min-height: 600px; background: #0A1628; overflow: hidden; isolation: isolate; }
+        .tv-hero { position: relative; height: 100vh; height: 100dvh; min-height: min(600px, 100dvh); background: #0A1628; overflow: hidden; isolation: isolate; }
         .tv-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; z-index: -2; }
         .tv-hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; z-index: 1; padding: 100px clamp(16px, 2vw, 32px) 0; max-width: none; margin: 0; left: 0; right: auto; }
         .tv-hero-eyebrow { display: inline-block; background: #C6E84A; color: #0f0f0f; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; font-variant: small-caps; margin-bottom: 24px; }
@@ -665,11 +681,26 @@ export default function TravelHospitalityPage() {
           .tv-s04-panel { grid-template-columns: 1fr; }
           .tv-s06-row { grid-template-columns: 1fr; }
           .tv-s05-split { grid-template-columns: 1fr; }
+          .tv-s05-split > * { min-width: 0; }
+          .tv-outcome { min-height: 0; }
+          .tv-outcome-body { flex-basis: 54%; padding: 16px; min-width: 0; }
+          .tv-outcome-title, .tv-outcome-desc { overflow-wrap: anywhere; }
+          .tv-outcome-media { width: 42%; opacity: 0.55; }
+        }
+        @media (max-width: 820px) {
+          .tv-s02-right { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
         @media (max-width: 760px) {
           .tv-hd-stage { max-width: 460px; }
         }
         @media (max-width: 640px) {
+          .tv-hero { height: auto; min-height: 100dvh; }
+          .tv-hero-content { position: relative; inset: auto; width: 100%; min-height: 100dvh; padding: 104px 20px 48px; }
+          .tv-hero h1 { font-size: clamp(30px, 9.5vw, 42px); margin-bottom: 18px; }
+          .tv-hero-sub { font-size: 15px; line-height: 1.5; margin-bottom: 12px; }
+          .tv-hero-body { font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
+          .tv-hero-ctas { flex-direction: column; gap: 10px; }
+          .tv-hero-ctas .tv-btn { width: 100%; padding: 13px 20px; }
           .tv-s02, .tv-s04, .tv-s06, .tv-s10 { padding-left: 20px; padding-right: 20px; }
           .tv-s03 { padding-left: 20px; padding-right: 20px; }
           .tv-s05 { padding-left: 20px; padding-right: 20px; }
@@ -677,14 +708,37 @@ export default function TravelHospitalityPage() {
           .tv-s04-tabbar { grid-template-columns: repeat(2, 1fr); }
           .tv-s04-checklist { grid-template-columns: 1fr; }
           .tv-s02-right { grid-template-columns: 1fr 1fr; }
+          .tv-s02-label { overflow-wrap: anywhere; }
           .tv-s02-approach { padding: 18px 20px 16px; }
+          .tv-h2 { font-size: clamp(28px, 8vw, 36px); overflow-wrap: anywhere; }
+          .tv-s02-head .tv-h2 { font-size: clamp(26px, 7vw, 32px); }
+          .tv-deck-title { font-size: clamp(28px, 7.5vw, 38px); overflow-wrap: anywhere; }
+          .tv-page .scd-tab { min-height: 56px; padding: 10px 6px; }
+          .tv-page .scd-tab-text { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.25; min-height: 2.5em; }
+          .tv-page .scd-card-tags { white-space: normal; overflow: visible; text-overflow: clip; border-radius: 14px; }
           .tv-out-grid { grid-template-columns: 1fr; }
+          .tv-outcome { min-height: 0; }
+          .tv-outcome-body { flex-basis: 54%; padding: 16px; min-width: 0; }
+          .tv-outcome-title, .tv-outcome-desc { overflow-wrap: anywhere; }
+          .tv-outcome-media { width: 42%; opacity: 0.55; }
           .tv-hd-wrap { padding: 72px 20px; }
           .tv-hd-stage { max-width: 400px; }
-          .tv-hero-ctas { flex-direction: column; }
-          .tv-hero-ctas .tv-btn { width: 100%; }
+          .tv-hd-title-white, .tv-hd-title-lime { font-size: clamp(30px, 8vw, 40px); overflow-wrap: anywhere; }
           .tv-s11-ctas { flex-direction: column; }
           .tv-s11-ctas .tv-btn { width: 100%; }
+          .tv-page .progress-tracker__h2 { font-size: clamp(26px, 7vw, 34px); overflow-wrap: anywhere; }
+          .tv-page .progress-tracker__node { flex: 0 0 56px; width: 56px; height: 56px; }
+          .tv-page .progress-tracker__node svg { width: 26px; height: 26px; }
+          .tv-page .progress-tracker__steps { gap: 24px; }
+          .tv-page .progress-tracker__track { left: 28px; top: 28px; bottom: 28px; }
+          .tv-page .progress-tracker__step { grid-template-columns: 56px minmax(0, 1fr); gap: 12px; }
+          .tv-page .progress-tracker__name { font-size: 16px; overflow-wrap: anywhere; }
+          .tv-page .progress-tracker__desc { -webkit-line-clamp: unset; white-space: normal; }
+        }
+        @media (max-width: 640px) and (max-height: 700px) {
+          .tv-hero-body { display: none; }
+          .tv-hero h1 { font-size: clamp(28px, 8.8vw, 36px); }
+          .tv-hero-eyebrow { margin-bottom: 16px; }
         }
         @media (prefers-reduced-motion: reduce) {
           .tv-reveal { opacity: 1; transform: none; transition: none; animation: none; }

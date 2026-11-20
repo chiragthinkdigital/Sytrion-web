@@ -388,7 +388,7 @@ export default function HealthcareOperationsPage() {
         .hc-btn--ghost { background: transparent; border: 1px solid rgba(255,255,255,0.45); color: #fff; }
         .hc-btn--ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); box-shadow: none; }
 
-        .hc-hero { position: relative; height: 100vh; height: 100dvh; min-height: 600px; overflow: hidden; isolation: isolate; background: var(--hcn); }
+        .hc-hero { position: relative; height: 100vh; height: 100dvh; min-height: min(600px, 100dvh); overflow: hidden; isolation: isolate; background: var(--hcn); }
         .hc-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .hc-hero .hc-wrap { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 148px clamp(16px, 2vw, 32px) 0; max-width: none; margin: 0; left: 0; right: auto; }
         .hc-hero-inner { max-width: 900px; }
@@ -768,10 +768,10 @@ export default function HealthcareOperationsPage() {
           .hc-landscape-right { grid-template-columns: 1fr; }
         }
         @media (max-width: 1024px) {
-          .hc-final { padding: 80px 40px !important; }
+          .hc-final { padding: 80px 40px; }
         }
         @media (max-width: 768px) {
-          .hc-final { padding: 60px 20px !important; }
+          .hc-final { padding: 60px 20px; }
           .hc-final-ctas { flex-direction: column; align-items: center; }
           .hc-final .hc-btn { width: 100%; max-width: 320px; }
         }
@@ -818,6 +818,56 @@ export default function HealthcareOperationsPage() {
         .hc-intel-nodes::after { right: 28%; top: 42%; }
         .hc-intel-nodes span { left: 58%; bottom: 30%; }
         @keyframes hcRingSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        @media (max-width: 1024px) {
+          .hc-final { padding: 80px 40px; }
+          .hc-outcome-media { width: 50%; }
+          .hc-outcome-desc { max-width: none; }
+        }
+        @media (max-width: 900px) {
+          .hc-section-light, .hc-section-dark, .hc-section-navy, .hc-hero .hc-wrap, .hc-banner, .hc-transform .hc-wrap { padding-left: 40px; padding-right: 40px; }
+          .hc-land-row { gap: 28px; }
+          .hc-landscape-right { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .hc-eco-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .hc-eco-card { aspect-ratio: auto; min-height: 260px; }
+          .hc-eco-title { overflow-wrap: anywhere; }
+          .scd-tab-text { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.25; }
+          .hc-outcome { min-height: 0; }
+          .hc-outcome-body { flex-basis: 54%; padding: 16px; min-width: 0; }
+          .hc-outcome-title, .hc-outcome-desc { overflow-wrap: anywhere; }
+          .hc-outcome-media { width: 42%; opacity: 0.55; }
+        }
+        @media (max-width: 800px) {
+          .hc-approach { padding: 48px 24px 56px; }
+          .hc-approach-text { white-space: normal; }
+        }
+        @media (max-width: 768px) {
+          .hc-final { padding: 60px 20px; }
+        }
+        @media (max-width: 640px) {
+          .hc-hero { height: auto; min-height: 100dvh; }
+          .hc-hero .hc-wrap { position: relative; inset: auto; min-height: 100dvh; padding: 120px 24px 48px; }
+          .hc-section-light, .hc-section-dark, .hc-section-navy, .hc-hero .hc-wrap, .hc-banner, .hc-transform .hc-wrap { padding-left: 20px; padding-right: 20px; }
+          .hc-eco-grid { grid-template-columns: 1fr; }
+          .hc-eco-card { min-height: 220px; }
+          .scd-tab { min-height: 56px; padding: 10px 6px; }
+          .scd-tab-text { min-height: 2.5em; }
+        }
+        @media (max-width: 640px) and (max-height: 700px) {
+          .hc-hero .hc-wrap { padding-top: 96px; padding-bottom: 40px; }
+          .hc-hero .hc-label { margin-bottom: 16px; }
+          .hc-h1 { font-size: clamp(28px, 8.5vw, 36px); margin-bottom: 18px; }
+          .hc-hero-sub { font-size: 14px; line-height: 1.5; margin-bottom: 12px; }
+          .hc-hero-body { display: none; }
+          .hc-hero-ctas { gap: 10px; }
+        }
+        @media (max-width: 560px) {
+          .hc-landscape-right { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 360px) {
+          .hc-outcome-body { flex-basis: 50%; }
+          .hc-outcome-media { width: 40%; }
+        }
 
         @media (prefers-reduced-motion: reduce) {
           .hc-reveal { opacity: 1; transform: none; transition: none; animation: none; }

@@ -610,10 +610,12 @@ export default function ShippingLogisticsPage() {
           .sl-land-hero { display: block; }
           .sl-land-copy { width: 100%; max-width: 720px; }
           .sl-land-hero-media { position: static; width: 100%; margin-top: 36px; }
+          .sl-land-hero-media img { position: static; height: auto; }
           .sl-land-hero-media::before { display: none; }
           .sl-land-grid { grid-template-columns: repeat(2, 1fr); }
           .sl-eco-grid { grid-template-columns: 1fr 1fr; }
           .sl-outcome-grid { grid-template-columns: repeat(2, 1fr); }
+          .sl-why-grid { grid-template-columns: repeat(2, 1fr); }
           .sl-panel { grid-template-columns: 1fr; }
           .sl-panel-visual { min-height: 260px; }
           .sl-float-words { bottom: clamp(20px, 3vh, 40px) !important; top: auto !important; gap: 12px; right: clamp(20px, 3.5vw, 40px) !important; flex-wrap: nowrap; white-space: nowrap; }
@@ -633,9 +635,24 @@ export default function ShippingLogisticsPage() {
           .sl-why-grid { grid-template-columns: 1fr; }
           .sl-trans-block ul { grid-template-columns: 1fr; }
           .sl-layer { grid-template-columns: 1fr; gap: 8px; padding: 20px; }
-          .sl-float-words { right: 24px !important; bottom: 16px !important; top: auto !important; gap: 8px; flex-wrap: nowrap; white-space: nowrap; }
+          .sl-hero { height: auto; min-height: 100dvh; }
+          .sl-hero-content { position: relative; inset: auto; min-height: 100dvh; padding: 120px 24px 90px; }
+          .sl-float-words { left: 24px !important; right: 24px !important; bottom: 16px !important; top: auto !important; gap: 8px; justify-content: flex-start; flex-wrap: wrap; white-space: normal; }
           .sl-float-word { font-size: 9px; letter-spacing: 0.15em; }
-          .sl-hero-content { padding: 120px 24px 90px; }
+        }
+
+        @media (max-width: 640px) and (max-height: 700px) {
+          .sl-hero-content { padding-top: 96px; padding-bottom: 64px; }
+          .sl-hero-eyebrow { margin-bottom: 16px; }
+          .sl-hero h1 { font-size: clamp(28px, 8.5vw, 36px); margin-bottom: 18px; }
+          .sl-hero-sub { font-size: 14px; line-height: 1.5; margin-bottom: 12px; }
+          .sl-hero-body { display: none; }
+          .sl-hero-ctas { gap: 10px; }
+          .sl-float-words { display: none; }
+        }
+
+        @media (max-width: 360px) {
+          .sl-float-dot { display: none; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -687,7 +704,7 @@ export default function ShippingLogisticsPage() {
               <span className="eyebrow-badge">
                 THE LOGISTICS LANDSCAPE
               </span>
-              <h2 className="sl-h2">Complexity moves with <span style={{ color: "#C6E84A", whiteSpace: "nowrap" }}>every shipment.</span></h2>
+              <h2 className="sl-h2">Complexity moves with <span style={{ color: "#C6E84A" }}>every shipment.</span></h2>
               <p>
                 Global logistics connects carriers, customers, ports, customs authorities, agents, vendors and
                 financial systems — creating thousands of operational and financial interactions behind every
