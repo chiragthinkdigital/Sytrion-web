@@ -858,6 +858,7 @@ function CapabilitiesRail() {
   const stageRef = useRef<HTMLDivElement>(null);
   const railRef = useRef<HTMLDivElement>(null);
   const animatingRef = useRef(false);
+  const queuedRef = useRef<number | null>(null);
 
   const paint = () => {
     if (!stageRef.current || !railRef.current) return;
@@ -890,8 +891,16 @@ function CapabilitiesRail() {
   }, []);
 
   const selectItem = (targetIndex: number) => {
-    if (animatingRef.current || !stageRef.current) return;
-    const targetN = capabilities[targetIndex].number;
+    const targetN = capabilities[targetIndex]?.number;
+    if (!targetN) return;
+
+    if (animatingRef.current) {
+      const cards = stageRef.current ? (Array.from(stageRef.current.children) as HTMLElement[]) : [];
+      queuedRef.current = cards[0]?.dataset.idx === targetN ? null : targetIndex;
+      return;
+    }
+    if (!stageRef.current) return;
+
     const cards = Array.from(stageRef.current.children) as HTMLElement[];
     const front = cards[0];
     if (!front || front.dataset.idx === targetN) return;
@@ -901,24 +910,37 @@ function CapabilitiesRail() {
 
     animatingRef.current = true;
 
-    // Move target element to the top of stage container
     stageRef.current.insertBefore(targetEl, stageRef.current.firstChild);
     paint();
 
     front.classList.add("sending");
 
-    const handler = (e: TransitionEvent) => {
-      if (e.target !== front) return;
-      front.removeEventListener("transitionend", handler);
+    let finished = false;
+
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      front.removeEventListener("transitionend", onEnd);
       front.classList.remove("sending");
       if (stageRef.current) {
         stageRef.current.appendChild(front);
         paint();
       }
       animatingRef.current = false;
+      const next = queuedRef.current;
+      queuedRef.current = null;
+      if (next !== null && next !== targetIndex) selectItem(next);
     };
 
-    front.addEventListener("transitionend", handler);
+    function onEnd(e: TransitionEvent) {
+      if (e.target !== front) return;
+      finish();
+    }
+
+    window.setTimeout(() => {
+      if (!finished) finish();
+    }, 600);
+    front.addEventListener("transitionend", onEnd);
   };
 
   return (
@@ -1553,7 +1575,7 @@ export default function SolutionsPage() {
           .deck-card {
             transition: transform 0.2s, opacity 0.2s, filter 0.2s;
           }
-          .deck-card.sol-sending {
+          .deck-card.sending {
             transition: transform 0.2s, opacity 0.2s;
           }
           .sol-rail-arrow,

@@ -46,7 +46,8 @@ const capabilityTabs = [
   {
     tab: "Identity",
     title: "Identity",
-    image: "/dpi/DPI_Identify.jpeg",
+    image: "/dpi/capabilities/identity.jpg",
+    height: 618,
     lead: "Create trusted foundations for digital interaction.",
     items: [
       "Digital onboarding",
@@ -60,7 +61,8 @@ const capabilityTabs = [
   {
     tab: "Registries",
     title: "Registries",
-    image: "/dpi/DPI_Registries.jpeg",
+    image: "/dpi/capabilities/registries.jpg",
+    height: 606,
     lead: "Create reliable information foundations.",
     items: [
       "Registry operations",
@@ -74,7 +76,8 @@ const capabilityTabs = [
   {
     tab: "Exchange",
     title: "Exchange",
-    image: "/dpi/DPI_Exchange.jpeg",
+    image: "/dpi/capabilities/exchange.jpg",
+    height: 578,
     lead: "Connect information across ecosystems.",
     items: [
       "API integration",
@@ -88,7 +91,8 @@ const capabilityTabs = [
   {
     tab: "Services",
     title: "Services",
-    image: "/dpi/DPI_Services.jpeg",
+    image: "/dpi/capabilities/services.jpg",
+    height: 689,
     lead: "Make essential services easier to access.",
     items: [
       "Digital applications",
@@ -102,7 +106,8 @@ const capabilityTabs = [
   {
     tab: "Operations",
     title: "Operations",
-    image: "/dpi/DPI_Operations.jpeg",
+    image: "/dpi/capabilities/operations.jpg",
+    height: 327,
     lead: "Keep population-scale digital services moving.",
     items: [
       "Transaction processing",
@@ -116,7 +121,8 @@ const capabilityTabs = [
   {
     tab: "Insights",
     title: "Insights",
-    image: "/dpi/DPI_Insights.jpeg",
+    image: "/dpi/capabilities/insights.jpg",
+    height: 626,
     lead: "Turn ecosystem activity into actionable intelligence.",
     items: [
       "Operational dashboards",
@@ -428,9 +434,9 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-impact-title { font-family: var(--font-syne), Arial, sans-serif; font-size:22px; font-weight:700; color:#fff; margin:0 0 8px; }
         .dpi-impact-desc { font-size:14.5px; line-height:1.55; color:rgba(255,255,255,0.85); margin:0; }
 
-        .dpi-cap-tabs { display:flex; flex-wrap:wrap; gap:8px; margin:44px 0 34px; border-bottom:1px solid rgba(15,15,15,0.1); padding-bottom:14px; }
+        .dpi-cap-tabs { display:flex; flex-wrap:wrap; gap:8px; margin:36px 0 18px; border-bottom:1px solid rgba(15,15,15,0.1); padding-bottom:10px; }
         .dpi-cap-tab { appearance:none; background:transparent; border:none; cursor:pointer; font-family:inherit; font-size:15px; font-weight:600; color:#8A8D96; padding:12px 20px; position:relative; transition:color .25s ease; }
-        .dpi-cap-tab::after { content:""; position:absolute; left:20px; right:20px; bottom:-15px; height:3px; border-radius:2px; background:${CYAN}; transform:scaleX(0); transform-origin:left; transition:transform .35s cubic-bezier(.16,1,.3,1); }
+        .dpi-cap-tab::after { content:""; position:absolute; left:20px; right:20px; bottom:-11px; height:3px; border-radius:2px; background:${CYAN}; transform:scaleX(0); transform-origin:left; transition:transform .35s cubic-bezier(.16,1,.3,1); }
         .dpi-cap-tab:hover { color:#242424; }
         .dpi-cap-tab--active { color:#1a1a1a; }
         .dpi-cap-tab--active::after { transform:scaleX(1); }
@@ -441,8 +447,8 @@ export default function DigitalPublicInfrastructurePage() {
         .dpi-cap-list { list-style:none; margin:0 0 0 -18px; padding:0; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:0 clamp(20px,3vw,40px); }
         .dpi-cap-item { display:flex; align-items:baseline; gap:12px; padding:11px 0; font-size:15px; color:#1a1a1a; border-bottom:1px solid rgba(15,15,15,0.08); }
         .dpi-cap-item::before { content:""; width:7px; height:7px; flex:0 0 auto; border-radius:50%; background:${CYAN}; align-self:center; margin-left:18px; }
-        .dpi-cap-visual { position:relative; border-radius:16px; overflow:hidden; aspect-ratio:1; min-height:420px; background:linear-gradient(135deg, #2b2f1a 0%, #0d0f08 100%); }
-        .dpi-cap-preview { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; object-position:center; animation: dpiCapFade 0.32s cubic-bezier(0.16,1,0.3,1); }
+        .dpi-cap-visual { position:relative; border-radius:16px; overflow:hidden; background:transparent; }
+        .dpi-cap-preview { display:block; width:100%; height:auto; animation: dpiCapFade 0.32s cubic-bezier(0.16,1,0.3,1); }
         @keyframes dpiCapFade { from { opacity:0; transform: scale(1.03); } to { opacity:1; transform:none; } }
 
         /* --- Pension & Social Security --- */
@@ -915,8 +921,8 @@ export default function DigitalPublicInfrastructurePage() {
                 className="dpi-cap-preview"
                 src={capabilityTabs[capTab].image}
                 alt={capabilityTabs[capTab].title + " capability preview"}
-                width={627}
-                height={627}
+                width={900}
+                height={capabilityTabs[capTab].height}
                 decoding="async"
               />
             </div>
