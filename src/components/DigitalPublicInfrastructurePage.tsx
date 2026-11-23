@@ -46,7 +46,7 @@ const capabilityTabs = [
   {
     tab: "Identity",
     title: "Identity",
-    image: "/dpi/capabilities/identity.jpg",
+    image: "/dpi/DPI_Identify1.jpeg",
     height: 618,
     lead: "Create trusted foundations for digital interaction.",
     items: [
@@ -61,7 +61,7 @@ const capabilityTabs = [
   {
     tab: "Registries",
     title: "Registries",
-    image: "/dpi/capabilities/registries.jpg",
+    image: "/dpi/DPI_Registries1.jpeg",
     height: 606,
     lead: "Create reliable information foundations.",
     items: [
@@ -76,7 +76,7 @@ const capabilityTabs = [
   {
     tab: "Exchange",
     title: "Exchange",
-    image: "/dpi/capabilities/exchange.jpg",
+    image: "/dpi/DPI_Exchange1.jpeg",
     height: 578,
     lead: "Connect information across ecosystems.",
     items: [
@@ -91,7 +91,7 @@ const capabilityTabs = [
   {
     tab: "Services",
     title: "Services",
-    image: "/dpi/capabilities/services.jpg",
+    image: "/dpi/DPI_Services1.jpeg",
     height: 689,
     lead: "Make essential services easier to access.",
     items: [
@@ -106,7 +106,7 @@ const capabilityTabs = [
   {
     tab: "Operations",
     title: "Operations",
-    image: "/dpi/capabilities/operations.jpg",
+    image: "/dpi/DPI_Operations1.jpeg",
     height: 327,
     lead: "Keep population-scale digital services moving.",
     items: [
@@ -121,7 +121,7 @@ const capabilityTabs = [
   {
     tab: "Insights",
     title: "Insights",
-    image: "/dpi/capabilities/insights.jpg",
+    image: "/dpi/DPI_Insights1.jpeg",
     height: 626,
     lead: "Turn ecosystem activity into actionable intelligence.",
     items: [
