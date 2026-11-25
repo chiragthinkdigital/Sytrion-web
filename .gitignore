@@ -24,6 +24,7 @@
 .DS_Store
 *.pem
 /sytrion.zip
+/uploads/
 
 # debug
 npm-debug.log*

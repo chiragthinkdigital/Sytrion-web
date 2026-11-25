@@ -39,6 +39,10 @@ const navItems = [
     ],
   },
   {
+    name: "Career",
+    href: "/career",
+  },
+  {
     name: "Contact",
     href: "/contact",
   },

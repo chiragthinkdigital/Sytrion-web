@@ -1,8 +1,21 @@
 import { NextResponse } from "next/server";
+import { verifyRecaptcha } from "@/lib/captcha";
 import pool, { ensureContactTable } from "@/lib/db";
 
+function clientIp(request: Request): string | undefined {
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) return forwarded.split(",")[0]?.trim() || undefined;
+  return request.headers.get("x-real-ip")?.trim() || undefined;
+}
+
 export async function POST(request: Request) {
-  let body: { fullName?: string; email?: string; phone?: string; message?: string };
+  let body: {
+    fullName?: string;
+    email?: string;
+    phone?: string;
+    message?: string;
+    captchaToken?: string;
+  };
 
   try {
     body = await request.json();
@@ -13,7 +26,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const { fullName, email, phone, message } = body;
+  const { fullName, email, phone, message, captchaToken } = body;
 
   if (!fullName?.trim() || !email?.trim() || !message?.trim()) {
     return NextResponse.json(
@@ -25,6 +38,13 @@ export async function POST(request: Request) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json(
       { error: "Please enter a valid email address." },
+      { status: 400 }
+    );
+  }
+
+  if (!(await verifyRecaptcha(captchaToken || "", clientIp(request)))) {
+    return NextResponse.json(
+      { error: "CAPTCHA verification failed. Please try again." },
       { status: 400 }
     );
   }

@@ -1,6 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import Script from "next/script";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+interface RecaptchaParameters {
+  sitekey: string;
+  theme?: "light" | "dark";
+  size?: "normal" | "compact";
+  callback?: (token: string) => void;
+  "expired-callback"?: () => void;
+  "error-callback"?: () => void;
+}
+
+interface RecaptchaApi {
+  render(container: HTMLElement | string, parameters: RecaptchaParameters): number;
+  reset(widgetId?: number): void;
+  getResponse(widgetId?: number): string;
+}
+
+declare global {
+  interface Window {
+    grecaptcha?: RecaptchaApi;
+    onRecaptchaLoadCallback?: () => void;
+  }
+}
+
+const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -13,6 +38,64 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
+  const recaptchaWidgetRef = useRef<HTMLDivElement | null>(null);
+  const recaptchaWidgetIdRef = useRef<number | null>(null);
+
+  const renderRecaptchaWidget = useCallback(() => {
+    const container = recaptchaWidgetRef.current;
+    if (
+      !recaptchaSiteKey ||
+      !container ||
+      typeof window.grecaptcha?.render !== "function"
+    ) {
+      return;
+    }
+    if (recaptchaWidgetIdRef.current !== null && container.hasChildNodes()) {
+      return;
+    }
+    recaptchaWidgetIdRef.current = null;
+    recaptchaWidgetIdRef.current = window.grecaptcha.render(container, {
+      sitekey: recaptchaSiteKey,
+      theme: "light",
+      callback: (token: string) => {
+        setCaptchaToken(token);
+        setErrors((current) => ({ ...current, captcha: "" }));
+        setServerError((current) => (current.includes("CAPTCHA") ? "" : current));
+      },
+      "expired-callback": () => {
+        setCaptchaToken("");
+        setServerError("CAPTCHA expired. Please verify again.");
+      },
+      "error-callback": () => {
+        setCaptchaToken("");
+        setServerError("CAPTCHA could not be verified. Please try again.");
+      },
+    });
+  }, []);
+
+  const resetRecaptcha = () => {
+    if (
+      recaptchaWidgetIdRef.current !== null &&
+      typeof window.grecaptcha?.reset === "function"
+    ) {
+      window.grecaptcha.reset(recaptchaWidgetIdRef.current);
+    }
+    setCaptchaToken("");
+  };
+
+  useEffect(() => {
+    if (!recaptchaSiteKey) return;
+    window.onRecaptchaLoadCallback = renderRecaptchaWidget;
+    if (typeof window.grecaptcha?.render === "function") {
+      renderRecaptchaWidget();
+    }
+    return () => {
+      if (window.onRecaptchaLoadCallback === renderRecaptchaWidget) {
+        delete window.onRecaptchaLoadCallback;
+      }
+    };
+  }, [renderRecaptchaWidget]);
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -23,6 +106,7 @@ export default function Contact() {
       newErrors.email = "Please enter a valid email address.";
     }
     if (!formData.message.trim()) newErrors.message = "Please enter a message.";
+    if (!captchaToken) newErrors.captcha = "Please complete the CAPTCHA.";
     return newErrors;
   };
 
@@ -52,23 +136,28 @@ export default function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-        }),
-      });
+          body: JSON.stringify({
+            fullName: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+            captchaToken,
+          }),
+        });
 
-      const data = await res.json();
+        const data = await res.json();
 
-      if (!res.ok) {
-        setServerError(data.error || "Something went wrong. Please try again.");
-        return;
-      }
+        if (!res.ok) {
+          const message = data.error || "Something went wrong. Please try again.";
+          setServerError(message);
+          if (message.includes("CAPTCHA")) resetRecaptcha();
+          return;
+        }
 
-      setSubmitted(true);
-      setFormData({ name: "", email: "", phone: "", message: "" });
+        setSubmitted(true);
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        resetRecaptcha();
+
     } catch {
       setServerError("Network error. Please check your connection and try again.");
     } finally {
@@ -107,6 +196,18 @@ export default function Contact() {
           color: #e53e3e;
           font-size: 13px;
           margin-top: 6px;
+          font-weight: 500;
+        }
+        .contact-recaptcha {
+          min-height: 74px;
+        }
+        .contact-recaptcha-message {
+          padding: 14px 16px;
+          background: rgba(229,62,62,0.08);
+          border: 1px solid rgba(229,62,62,0.2);
+          border-radius: 12px;
+          color: #e53e3e;
+          font-size: 14px;
           font-weight: 500;
         }
         .contact-form-btn {
@@ -487,6 +588,43 @@ export default function Contact() {
                     style={{ resize: "vertical", minHeight: "120px" }}
                   />
                   {errors.message && <p className="contact-error">{errors.message}</p>}
+                </div>
+
+                <div style={{ marginBottom: "32px" }}>
+                  <span
+                    style={{
+                      display: "block",
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      color: "#0f0f0f",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    CAPTCHA
+                  </span>
+                  {!recaptchaSiteKey ? (
+                    <div className="contact-recaptcha-message">
+                      CAPTCHA is not configured. Please contact the site administrator.
+                    </div>
+                  ) : (
+                    <>
+                      <div
+                        id="contact-captcha"
+                        ref={recaptchaWidgetRef}
+                        className="contact-recaptcha"
+                      />
+                      <Script
+                        id="google-recaptcha-v2-contact"
+                        src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoadCallback&render=explicit"
+                        strategy="afterInteractive"
+                        onReady={renderRecaptchaWidget}
+                        onError={() =>
+                          setServerError("Unable to load CAPTCHA. Please refresh the page.")
+                        }
+                      />
+                    </>
+                  )}
+                  {errors.captcha && <p className="contact-error">{errors.captcha}</p>}
                 </div>
 
                 {serverError && (
